@@ -1,0 +1,99 @@
+import { Button } from "@/components/ui/button";
+import { ArrowRight, Award, Users, Building } from "lucide-react";
+
+const Hero = () => {
+  return (
+    <section id="home" className="relative min-h-screen flex items-center" style={{ background: 'var(--gradient-hero)' }}>
+      {/* Background pattern */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpolygon points='30 60 15 45 45 45'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+        }} />
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          {/* Content */}
+          <div className="text-white">
+            <div className="flex items-center gap-2 mb-6">
+              <Award className="h-8 w-8 text-accent" />
+              <span className="text-accent font-semibold text-lg">
+                Trusted Manpower Solutions Provider
+              </span>
+            </div>
+            
+            <h1 className="text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+              Connecting
+              <span className="text-accent"> Talent</span>
+              <br />
+              Powering
+              <span className="text-accent"> Growth</span>
+            </h1>
+            
+            <p className="text-xl mb-8 text-gray-200 leading-relaxed">
+              YouConnect Technologies is your premier partner for comprehensive manpower services. 
+              We connect organizations with the right talent to drive productivity, growth, and success 
+              across all industries.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-4 mb-12">
+              <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-lg px-8">
+                Explore Services
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary text-lg px-8">
+                Contact Us Today
+              </Button>
+            </div>
+
+            {/* Stats */}
+            <div className="grid grid-cols-3 gap-8">
+              <div className="text-center">
+                <div className="text-3xl font-bold text-accent mb-2">500+</div>
+                <div className="text-sm text-gray-300">Happy Clients</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-accent mb-2">10K+</div>
+                <div className="text-sm text-gray-300">Placements</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-accent mb-2">15+</div>
+                <div className="text-sm text-gray-300">Industries</div>
+              </div>
+            </div>
+          </div>
+
+          {/* Visual */}
+          <div className="hidden lg:flex justify-center">
+            <div className="relative">
+              {/* Main card */}
+              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
+                <div className="text-center text-white">
+                  <Building className="h-16 w-16 text-accent mx-auto mb-4" />
+                  <h3 className="text-2xl font-bold mb-4">Enterprise Solutions</h3>
+                  <p className="text-gray-200 mb-6">
+                    Scalable manpower solutions for organizations of all sizes
+                  </p>
+                  <div className="flex justify-center items-center gap-4">
+                    <Users className="h-8 w-8 text-accent" />
+                    <span className="text-accent font-semibold">24/7 Support</span>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Floating elements */}
+              <div className="absolute -top-4 -right-4 bg-accent text-accent-foreground rounded-full p-4">
+                <Award className="h-8 w-8" />
+              </div>
+              <div className="absolute -bottom-4 -left-4 bg-white/20 backdrop-blur-sm rounded-full p-4 border border-white/30">
+                <Users className="h-8 w-8 text-white" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Hero;
