@@ -32,34 +32,19 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      // Save to database
-      const { data, error: dbError } = await supabase
-        .from('contact_submissions')
-        .insert({
-          full_name: formData.fullName,
-          email: formData.email,
-          phone: formData.phone || null,
-          company: formData.company || null,
-          message: formData.message
-        })
-        .select();
+      // Call edge function for secure submission (handles both database and email)
+      const { data: result, error: functionError } = await supabase.functions.invoke('send-contact-email', {
+        body: formData
+      });
 
-      if (dbError) {
-        console.error('Database error:', dbError);
-        throw new Error('Failed to save your message');
+      if (functionError) {
+        console.error('Function error:', functionError);
+        throw new Error('Failed to submit your message');
       }
 
-      // Call edge function for email sending
-      try {
-        const { data: emailResult, error: emailError } = await supabase.functions.invoke('send-contact-email', {
-          body: formData
-        });
-
-        if (emailError) {
-          console.error('Email function error:', emailError);
-        }
-      } catch (emailError) {
-        console.error('Error calling email function:', emailError);
+      if (result?.error) {
+        console.error('Function returned error:', result.error);
+        throw new Error(result.error);
       }
 
       toast({
@@ -80,7 +65,7 @@ const Contact = () => {
       console.error('Error submitting form:', error);
       toast({
         title: "Error",
-        description: "Failed to send message. Please try again or contact us directly.",
+        description: error instanceof Error ? error.message : "Failed to send message. Please try again or contact us directly.",
         variant: "destructive",
       });
     } finally {
