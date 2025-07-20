@@ -62,6 +62,8 @@ serve(async (req) => {
       Deno.env.get('SUPABASE_ANON_KEY') ?? ''
     )
 
+    console.log('About to insert into database...')
+    
     // Insert data into database (RLS allows public inserts)
     const { data, error: dbError } = await supabaseClient
       .from('contact_submissions')
@@ -75,15 +77,17 @@ serve(async (req) => {
       .select()
 
     if (dbError) {
-      console.error('Database error:', dbError.message)
+      console.error('Database error:', dbError.message, dbError)
       return new Response(
-        JSON.stringify({ error: 'Failed to submit contact form' }),
+        JSON.stringify({ error: 'Failed to submit contact form', details: dbError.message }),
         {
           headers: { ...corsHeaders, 'Content-Type': 'application/json' },
           status: 500,
         }
       )
     }
+
+    console.log('Database insertion successful:', data)
 
     // Sanitize data for HTML email
     const safeFullName = sanitizeForHtml(fullName)
