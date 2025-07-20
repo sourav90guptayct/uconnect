@@ -1,11 +1,75 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { useToast } from "@/hooks/use-toast";
 import { MapPin, Phone, Mail, Clock, Send } from "lucide-react";
 
 const Contact = () => {
+  const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    phone: "",
+    company: "",
+    message: ""
+  });
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch('/functions/v1/send-contact-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to submit form');
+      }
+
+      const result = await response.json();
+      
+      toast({
+        title: "Message Sent Successfully!",
+        description: "Thank you for contacting us. We'll get back to you soon.",
+      });
+
+      // Reset form
+      setFormData({
+        fullName: "",
+        email: "",
+        phone: "",
+        company: "",
+        message: ""
+      });
+
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again or contact us directly.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
   return (
     <section id="contact" className="py-20 bg-muted/30">
       <div className="container mx-auto px-4">
@@ -36,83 +100,69 @@ const Contact = () => {
                   Send us a Message
                 </h3>
                 
-                <form className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
-                      <Label htmlFor="firstName" className="text-sm font-medium text-foreground">
-                        First Name *
+                      <Label htmlFor="fullName" className="text-sm font-medium text-foreground">
+                        Full Name *
                       </Label>
                       <Input 
-                        id="firstName" 
+                        id="fullName" 
+                        name="fullName"
                         type="text" 
-                        placeholder="Enter your first name"
+                        value={formData.fullName}
+                        onChange={handleInputChange}
+                        placeholder="Enter your full name"
                         className="mt-2"
                         required
                       />
                     </div>
-                    <div>
-                      <Label htmlFor="lastName" className="text-sm font-medium text-foreground">
-                        Last Name *
-                      </Label>
-                      <Input 
-                        id="lastName" 
-                        type="text" 
-                        placeholder="Enter your last name"
-                        className="mt-2"
-                        required
-                      />
-                    </div>
-                  </div>
-                  
-                  <div className="grid md:grid-cols-2 gap-6">
                     <div>
                       <Label htmlFor="email" className="text-sm font-medium text-foreground">
                         Email Address *
                       </Label>
                       <Input 
                         id="email" 
+                        name="email"
                         type="email" 
+                        value={formData.email}
+                        onChange={handleInputChange}
                         placeholder="Enter your email"
                         className="mt-2"
                         required
                       />
                     </div>
+                  </div>
+                  
+                  <div className="grid md:grid-cols-2 gap-6">
                     <div>
                       <Label htmlFor="phone" className="text-sm font-medium text-foreground">
                         Phone Number
                       </Label>
                       <Input 
                         id="phone" 
+                        name="phone"
                         type="tel" 
+                        value={formData.phone}
+                        onChange={handleInputChange}
                         placeholder="Enter your phone number"
                         className="mt-2"
                       />
                     </div>
-                  </div>
-                  
-                  <div>
-                    <Label htmlFor="company" className="text-sm font-medium text-foreground">
-                      Company/Organization
-                    </Label>
-                    <Input 
-                      id="company" 
-                      type="text" 
-                      placeholder="Enter your company name"
-                      className="mt-2"
-                    />
-                  </div>
-                  
-                  <div>
-                    <Label htmlFor="subject" className="text-sm font-medium text-foreground">
-                      Subject *
-                    </Label>
-                    <Input 
-                      id="subject" 
-                      type="text" 
-                      placeholder="What can we help you with?"
-                      className="mt-2"
-                      required
-                    />
+                    <div>
+                      <Label htmlFor="company" className="text-sm font-medium text-foreground">
+                        Company/Organization
+                      </Label>
+                      <Input 
+                        id="company" 
+                        name="company"
+                        type="text" 
+                        value={formData.company}
+                        onChange={handleInputChange}
+                        placeholder="Enter your company name"
+                        className="mt-2"
+                      />
+                    </div>
                   </div>
                   
                   <div>
@@ -121,6 +171,9 @@ const Contact = () => {
                     </Label>
                     <Textarea 
                       id="message" 
+                      name="message"
+                      value={formData.message}
+                      onChange={handleInputChange}
                       placeholder="Tell us about your manpower requirements..."
                       className="mt-2 min-h-[120px]"
                       required
@@ -131,9 +184,16 @@ const Contact = () => {
                     type="submit" 
                     size="lg" 
                     className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
+                    disabled={isSubmitting}
                   >
-                    Send Message
-                    <Send className="ml-2 h-5 w-5" />
+                    {isSubmitting ? (
+                      "Sending..."
+                    ) : (
+                      <>
+                        Send Message
+                        <Send className="ml-2 h-5 w-5" />
+                      </>
+                    )}
                   </Button>
                 </form>
               </CardContent>
