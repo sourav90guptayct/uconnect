@@ -41,6 +41,12 @@ const Header = () => {
             <a href="#services" className="text-foreground hover:text-primary transition-colors">
               Services
             </a>
+            <a href="#hamara-academy" className="text-foreground hover:text-primary transition-colors">
+              Hamara Academy
+            </a>
+            <a href="#hamara-jobs" className="text-foreground hover:text-primary transition-colors">
+              Hamara Jobs
+            </a>
             <a href="#why-choose-us" className="text-foreground hover:text-primary transition-colors">
               Why Choose Us
             </a>
@@ -69,6 +75,12 @@ const Header = () => {
               </a>
               <a href="#services" className="text-foreground hover:text-primary transition-colors">
                 Services
+              </a>
+              <a href="#hamara-academy" className="text-foreground hover:text-primary transition-colors">
+                Hamara Academy
+              </a>
+              <a href="#hamara-jobs" className="text-foreground hover:text-primary transition-colors">
+                Hamara Jobs
               </a>
               <a href="#why-choose-us" className="text-foreground hover:text-primary transition-colors">
                 Why Choose Us
