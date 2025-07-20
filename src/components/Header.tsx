@@ -36,39 +36,42 @@ const Header = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center">
-            <div className="text-2xl font-bold text-primary">
-              YouConnect
-              <span className="text-accent"> Technologies</span>
+            <div className="text-2xl font-bold">
+              <span className="cyber-gradient bg-clip-text text-transparent neon-text">
+                YouConnect
+              </span>
+              <span className="text-secondary neon-text"> Technologies</span>
             </div>
           </div>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-8">
-            <a href="#home" className="text-foreground hover:text-primary transition-colors">
+            <a href="#home" className="text-foreground hover:text-primary transition-colors hover:neon-text">
               Home
             </a>
-            <a href="#about" className="text-foreground hover:text-primary transition-colors">
+            <a href="#about" className="text-foreground hover:text-primary transition-colors hover:neon-text">
               About Us
             </a>
-            <a href="/#services" className="text-foreground hover:text-primary transition-colors">
+            <a href="/#services" className="text-foreground hover:text-secondary transition-colors hover:neon-text">
               Services
             </a>
-            <a href="/#why-choose-us" className="text-foreground hover:text-primary transition-colors">
+            <a href="/#why-choose-us" className="text-foreground hover:text-accent transition-colors hover:neon-text">
               Why Choose Us
             </a>
-            <a href="#contact" className="text-foreground hover:text-primary transition-colors">
+            <a href="#contact" className="text-foreground hover:text-primary transition-colors hover:neon-text">
               Contact
             </a>
             {user && (
               <Button 
                 variant="outline"
                 onClick={() => navigate('/admin')}
+                className="border-secondary text-secondary hover:bg-secondary/10 neon-border"
               >
                 Admin
               </Button>
             )}
             <Button 
-              className="bg-accent text-accent-foreground hover:bg-accent/90"
+              className="bg-accent text-accent-foreground hover:bg-accent/80 neon-border hover:neon-glow-soft transition-all duration-300"
               onClick={handleAuthAction}
             >
               {user ? 'Sign Out' : 'Sign In'}
@@ -82,34 +85,34 @@ const Header = () => {
         </div>
 
         {/* Mobile Navigation */}
-        {isMenuOpen && <div className="lg:hidden pb-4">
-            <nav className="flex flex-col space-y-4">
-              <a href="#home" className="text-foreground hover:text-primary transition-colors">
+        {isMenuOpen && <div className="lg:hidden pb-4 border-t border-primary/30 mt-4">
+            <nav className="flex flex-col space-y-4 cyber-card p-4 m-2">
+              <a href="#home" className="text-foreground hover:text-primary transition-colors hover:neon-text">
                 Home
               </a>
-              <a href="#about" className="text-foreground hover:text-primary transition-colors">
+              <a href="#about" className="text-foreground hover:text-primary transition-colors hover:neon-text">
                 About Us
               </a>
-              <a href="/#services" className="text-foreground hover:text-primary transition-colors">
+              <a href="/#services" className="text-foreground hover:text-secondary transition-colors hover:neon-text">
                 Services
               </a>
-              <a href="/#why-choose-us" className="text-foreground hover:text-primary transition-colors">
+              <a href="/#why-choose-us" className="text-foreground hover:text-accent transition-colors hover:neon-text">
                 Why Choose Us
               </a>
-              <a href="#contact" className="text-foreground hover:text-primary transition-colors">
+              <a href="#contact" className="text-foreground hover:text-primary transition-colors hover:neon-text">
                 Contact
               </a>
               {user && (
                 <Button 
                   variant="outline"
-                  className="w-fit"
+                  className="w-fit border-secondary text-secondary hover:bg-secondary/10 neon-border"
                   onClick={() => navigate('/admin')}
                 >
                   Admin
                 </Button>
               )}
               <Button 
-                className="bg-accent text-accent-foreground hover:bg-accent/90 w-fit"
+                className="bg-accent text-accent-foreground hover:bg-accent/80 w-fit neon-border hover:neon-glow-soft transition-all duration-300"
                 onClick={handleAuthAction}
               >
                 {user ? 'Sign Out' : 'Sign In'}

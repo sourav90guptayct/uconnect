@@ -2,105 +2,107 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
-
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 208 100% 15%;
-    --primary-foreground: 0 0% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 43 96% 56%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
+    /* Cyber-Neon Theme Colors */
+    --background: 222 84% 5%;          /* Deep dark background */
+    --foreground: 193 100% 95%;        /* Electric cyan text */
+    
+    --card: 222 84% 8%;                /* Slightly lighter dark */
+    --card-foreground: 193 100% 90%;   /* Bright cyan */
+    
+    --popover: 222 84% 6%;             /* Dark popover */
+    --popover-foreground: 193 100% 95%;
+    
+    --primary: 283 100% 65%;           /* Electric purple */
+    --primary-foreground: 222 84% 5%;  /* Dark text on primary */
+    
+    --secondary: 120 100% 50%;         /* Neon green */
+    --secondary-foreground: 222 84% 5%; /* Dark text on secondary */
+    
+    --accent: 195 100% 50%;            /* Electric blue accent */
+    --accent-foreground: 222 84% 5%;
+    
+    --destructive: 0 84% 60%;          /* Neon red */
     --destructive-foreground: 210 40% 98%;
+    
+    --border: 283 100% 25%;            /* Dark purple border */
+    --input: 222 84% 10%;              /* Dark input background */
+    --ring: 283 100% 65%;              /* Purple focus ring */
+    
+    --muted: 222 84% 12%;              /* Muted background */
+    --muted-foreground: 193 50% 70%;   /* Muted cyan text */
+    
+    --radius: 0.75rem;
+    
+    /* Cyber-Neon Custom Properties */
+    --neon-glow: 0 0 20px currentColor, 0 0 40px currentColor, 0 0 60px currentColor;
+    --neon-glow-soft: 0 0 10px currentColor, 0 0 20px currentColor;
+    --grid-pattern: repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 98px,
+      hsl(283 100% 25% / 0.3) 100px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 98px,
+      hsl(283 100% 25% / 0.3) 100px
+    );
+    
+    /* Gradients */
+    --gradient-neon: linear-gradient(135deg, hsl(283 100% 65%), hsl(195 100% 50%));
+    --gradient-cyber: linear-gradient(90deg, hsl(120 100% 50%), hsl(195 100% 50%), hsl(283 100% 65%));
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 208 100% 15%;
-
-    /* Corporate gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(208 100% 15%), hsl(208 100% 25%));
-    --gradient-hero: linear-gradient(135deg, hsl(208 100% 8%), hsl(208 100% 15%));
-    --gradient-accent: linear-gradient(135deg, hsl(43 96% 56%), hsl(43 96% 66%));
-
-    --radius: 0.5rem;
-
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-background: 222 84% 5%;
+    --sidebar-foreground: 193 100% 95%;
+    --sidebar-primary: 283 100% 65%;
+    --sidebar-primary-foreground: 222 84% 5%;
+    --sidebar-accent: 222 84% 8%;
+    --sidebar-accent-foreground: 193 100% 90%;
+    --sidebar-border: 283 100% 25%;
+    --sidebar-ring: 283 100% 65%;
   }
 
   .dark {
-    --background: 208 100% 8%;
-    --foreground: 210 40% 98%;
-
-    --card: 208 100% 10%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 208 100% 10%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 43 96% 56%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 43 96% 56%;
-    --accent-foreground: 208 100% 8%;
-
-    --destructive: 0 62.8% 30.6%;
+    /* Same colors for dark mode consistency */
+    --background: 222 84% 5%;
+    --foreground: 193 100% 95%;
+    
+    --card: 222 84% 8%;
+    --card-foreground: 193 100% 90%;
+    
+    --popover: 222 84% 6%;
+    --popover-foreground: 193 100% 95%;
+    
+    --primary: 283 100% 65%;
+    --primary-foreground: 222 84% 5%;
+    
+    --secondary: 120 100% 50%;
+    --secondary-foreground: 222 84% 5%;
+    
+    --accent: 195 100% 50%;
+    --accent-foreground: 222 84% 5%;
+    
+    --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
+    
+    --border: 283 100% 25%;
+    --input: 222 84% 10%;
+    --ring: 283 100% 65%;
+    
+    --muted: 222 84% 12%;
+    --muted-foreground: 193 50% 70%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 43 96% 56%;
-
-    /* Dark mode gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(43 96% 56%), hsl(43 96% 66%));
-    --gradient-hero: linear-gradient(135deg, hsl(208 100% 5%), hsl(208 100% 10%));
-    --gradient-accent: linear-gradient(135deg, hsl(208 100% 15%), hsl(208 100% 25%));
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-background: 222 84% 5%;
+    --sidebar-foreground: 193 100% 95%;
+    --sidebar-primary: 283 100% 65%;
+    --sidebar-primary-foreground: 222 84% 5%;
+    --sidebar-accent: 222 84% 8%;
+    --sidebar-accent-foreground: 193 100% 90%;
+    --sidebar-border: 283 100% 25%;
+    --sidebar-ring: 283 100% 65%;
   }
 }
 
@@ -108,8 +110,91 @@ All colors MUST be HSL.
   * {
     @apply border-border;
   }
-
+  
   body {
     @apply bg-background text-foreground;
+    background-image: var(--grid-pattern);
+    background-attachment: fixed;
   }
+}
+
+@layer components {
+  /* Neon glow effects */
+  .neon-glow {
+    box-shadow: var(--neon-glow);
+  }
+  
+  .neon-glow-soft {
+    box-shadow: var(--neon-glow-soft);
+  }
+  
+  .neon-border {
+    border: 1px solid;
+    box-shadow: 0 0 10px currentColor, inset 0 0 10px hsl(283 100% 65% / 0.1);
+  }
+  
+  .neon-text {
+    text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor;
+  }
+  
+  .cyber-card {
+    @apply bg-card/80 backdrop-blur-sm border border-primary/30 rounded-lg;
+    box-shadow: 0 0 20px hsl(283 100% 65% / 0.2), inset 0 0 20px hsl(283 100% 65% / 0.05);
+  }
+  
+  .cyber-gradient {
+    background: var(--gradient-cyber);
+    background-size: 300% 300%;
+    animation: gradient-shift 6s ease infinite;
+  }
+  
+  .circuit-pattern {
+    background-image: 
+      radial-gradient(circle at 2px 2px, hsl(283 100% 65% / 0.3) 1px, transparent 1px),
+      linear-gradient(45deg, transparent 40%, hsl(195 100% 50% / 0.1) 50%, transparent 60%);
+    background-size: 20px 20px, 40px 40px;
+  }
+}
+
+@layer utilities {
+  .animate-pulse-neon {
+    animation: pulse-neon 2s ease-in-out infinite alternate;
+  }
+  
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+  
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes pulse-neon {
+  from {
+    text-shadow: 0 0 5px currentColor, 0 0 10px currentColor, 0 0 15px currentColor;
+  }
+  to {
+    text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor;
+  }
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 5px hsl(283 100% 65% / 0.5), 0 0 10px hsl(283 100% 65% / 0.3);
+  }
+  to {
+    box-shadow: 0 0 15px hsl(283 100% 65% / 0.8), 0 0 30px hsl(283 100% 65% / 0.4);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
 }
