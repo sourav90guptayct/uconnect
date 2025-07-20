@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/lib/supabase";
+import { supabase } from "@/integrations/supabase/client";
 import { MapPin, Phone, Mail, Clock, Send } from "lucide-react";
 
 const Contact = () => {
@@ -32,49 +32,34 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      // Check if we have valid Supabase connection
-      const hasValidSupabase = import.meta.env.VITE_SUPABASE_URL && import.meta.env.VITE_SUPABASE_ANON_KEY;
-      
-      if (hasValidSupabase) {
-        // Try Supabase submission
-        const { data, error: dbError } = await supabase
-          .from('contact_submissions')
-          .insert({
-            full_name: formData.fullName,
-            email: formData.email,
-            phone: formData.phone || null,
-            company: formData.company || null,
-            message: formData.message
-          })
-          .select();
-
-        if (dbError) {
-          console.error('Database error:', dbError);
-          throw new Error('Failed to save your message');
-        }
-
-        // Try to call the edge function for email sending
-        try {
-          const { data: emailResult, error: emailError } = await supabase.functions.invoke('send-contact-email', {
-            body: formData
-          });
-
-          if (emailError) {
-            console.error('Email function error:', emailError);
-          }
-        } catch (emailError) {
-          console.error('Error calling email function:', emailError);
-        }
-      } else {
-        // Fallback: Just log the data for now
-        console.log('Contact form submission:', {
-          fullName: formData.fullName,
+      // Save to database
+      const { data, error: dbError } = await supabase
+        .from('contact_submissions')
+        .insert({
+          full_name: formData.fullName,
           email: formData.email,
-          phone: formData.phone,
-          company: formData.company,
-          message: formData.message,
-          timestamp: new Date().toISOString()
+          phone: formData.phone || null,
+          company: formData.company || null,
+          message: formData.message
+        })
+        .select();
+
+      if (dbError) {
+        console.error('Database error:', dbError);
+        throw new Error('Failed to save your message');
+      }
+
+      // Call edge function for email sending
+      try {
+        const { data: emailResult, error: emailError } = await supabase.functions.invoke('send-contact-email', {
+          body: formData
         });
+
+        if (emailError) {
+          console.error('Email function error:', emailError);
+        }
+      } catch (emailError) {
+        console.error('Error calling email function:', emailError);
       }
 
       toast({
