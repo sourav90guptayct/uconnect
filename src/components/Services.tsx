@@ -6,45 +6,45 @@ const Services = () => {
   const services = [
     {
       icon: Users,
-      title: "Managed Staffing Services",
-      description: "Focus on core competencies as we take charge of your workforce management processes",
-      features: ["End-to-end workforce management", "Performance monitoring", "Compliance management", "24/7 operational support"]
+      title: "Managed Services",
+      description: "Focus on core competencies as we take charge of your processes",
+      features: ["End-to-end process management", "24/7 operational support", "Performance monitoring", "Service level agreements"]
     },
     {
       icon: UserCheck,
-      title: "Network Recruitment",
-      description: "Stay Connected, Stay Ahead - One-stop-shop for all your talent acquisition requirements",
-      features: ["Pan-India recruitment network", "Multi-channel sourcing", "Candidate database access", "Real-time hiring updates"]
+      title: "Networks",
+      description: "Stay Connected, Stay Ahead - One-stop-shop for all your networking requirements",
+      features: ["Network infrastructure", "Connectivity solutions", "Network monitoring", "Maintenance & support"]
     },
     {
       icon: Building,
-      title: "Digital HR Transformation",
-      description: "Store, manage & disseminate workforce data & more. Secure Enterprise HR solutions",
-      features: ["HRIS implementation", "Digital onboarding", "Cloud-based HR platforms", "Data analytics & reporting"]
+      title: "Digital Transformation",
+      description: "Store, manage & disseminate data & more. Secure Enterprise IT solutions",
+      features: ["Cloud migration", "Digital platforms", "Data management", "Enterprise IT solutions"]
     },
     {
       icon: Briefcase,
-      title: "Integrated Placement Services",
-      description: "Cutting edge placement & talent solutions: Empowering your organizational growth",
-      features: ["Strategic talent placement", "Leadership hiring", "Skill-based matching", "Career progression planning"]
+      title: "IP Services",
+      description: "Cutting edge IP & ITeS solutions: Empowering your growth",
+      features: ["IP infrastructure", "ITeS solutions", "Technology consulting", "System integration"]
     },
     {
       icon: Search,
       title: "Resource Management",
-      description: "Technology enabled staffing so that you focus on your core business operations",
-      features: ["Resource allocation", "Skill inventory management", "Workforce optimization", "Cost-effective solutions"]
+      description: "Technology enabled staffing so that you focus on your core business",
+      features: ["Technology staffing", "Resource allocation", "Skill management", "Workforce optimization"]
     },
     {
       icon: Settings,
-      title: "Enterprise Workforce Solutions",
-      description: "Driving organizational growth forward - Powering your enterprise workforce needs",
-      features: ["Large-scale hiring", "Workforce transformation", "Change management", "Scalable solutions"]
+      title: "EV Infrastructure",
+      description: "Driving the future forward - Powering your EV infrastructure needs",
+      features: ["Charging solutions", "Infrastructure setup", "Maintenance services", "Smart grid integration"]
     },
     {
       icon: UserCheck,
-      title: "Talent Process Outsourcing",
-      description: "Leverage our expertise to enhance recruitment efficiency & candidate satisfaction",
-      features: ["RPO services", "Screening & assessment", "Interview coordination", "Candidate experience management"]
+      title: "KPO/E COMMERCE",
+      description: "Leverage our expertise to enhance customer service & satisfaction",
+      features: ["Knowledge process outsourcing", "E-commerce solutions", "Customer support", "Business process management"]
     }
   ];
 
@@ -59,13 +59,13 @@ const Services = () => {
           </div>
           
           <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-foreground">
-            Comprehensive Manpower Solutions for
-            <span className="text-primary"> Every Organization</span>
+            Comprehensive Technology Solutions for
+            <span className="text-primary"> Every Industry</span>
           </h2>
           
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            From startups to enterprises, we provide tailored workforce solutions across all industries 
-            to help you build the perfect team for your business objectives.
+            From telecom infrastructure to digital transformation, we provide cutting-edge 
+            technology solutions across all domains to help you innovate, implement and succeed.
           </p>
         </div>
 
@@ -105,8 +105,8 @@ const Services = () => {
               Need a Custom Solution?
             </h3>
             <p className="text-muted-foreground mb-8 text-lg">
-              Every organization is unique. Let us create a tailored manpower strategy 
-              that aligns perfectly with your specific requirements and goals.
+              Every organization is unique. Let us create a tailored technology strategy 
+              that aligns perfectly with your specific requirements and business goals.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 

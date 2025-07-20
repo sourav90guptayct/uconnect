@@ -18,22 +18,22 @@ const Hero = () => {
             <div className="flex items-center gap-2 mb-6">
               <Award className="h-8 w-8 text-accent" />
               <span className="text-accent font-semibold text-lg">
-                Trusted Manpower Solutions Provider
+                Trusted Technology Solutions Provider
               </span>
             </div>
             
             <h1 className="text-5xl lg:text-6xl font-bold mb-6 leading-tight">
               Connecting
-              <span className="text-accent"> Talent</span>
+              <span className="text-accent"> Technology</span>
               <br />
               Powering
-              <span className="text-accent"> Growth</span>
+              <span className="text-accent"> Innovation</span>
             </h1>
             
             <p className="text-xl mb-8 text-gray-200 leading-relaxed">
-              YouConnect Technologies is your premier partner for comprehensive manpower services. 
-              We connect organizations with the right talent to drive productivity, growth, and success 
-              across all industries.
+              YouConnect Technologies is your premier partner for comprehensive technology solutions. 
+              We connect organizations with cutting-edge infrastructure, digital transformation, and 
+              innovative technology services to drive productivity, growth, and success across all industries.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 mb-12">
@@ -81,7 +81,7 @@ const Hero = () => {
                   <Building className="h-16 w-16 text-accent mx-auto mb-4" />
                   <h3 className="text-2xl font-bold mb-4">Enterprise Solutions</h3>
                   <p className="text-gray-200 mb-6">
-                    Scalable manpower solutions for organizations of all sizes
+                    Scalable technology solutions for organizations of all sizes
                   </p>
                   <div className="flex justify-center items-center gap-4">
                     <Users className="h-8 w-8 text-accent" />
