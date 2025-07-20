@@ -59,15 +59,15 @@ const Hero = () => {
             <div className="grid grid-cols-3 gap-8">
               <div className="text-center">
                 <div className="text-3xl font-bold text-accent mb-2">50+</div>
-                <div className="text-sm text-gray-300">Clients</div>
+                <div className="text-sm text-gray-300">Clients Served</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-accent mb-2">1000+</div>
-                <div className="text-sm text-gray-300">Placements</div>
+                <div className="text-3xl font-bold text-accent mb-2">2000+</div>
+                <div className="text-sm text-gray-300">Successful Placements</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-accent mb-2">10+</div>
-                <div className="text-sm text-gray-300">Industries</div>
+                <div className="text-3xl font-bold text-accent mb-2">99%</div>
+                <div className="text-sm text-gray-300">Client Satisfaction</div>
               </div>
             </div>
           </div>
