@@ -1,66 +1,36 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Trophy, Zap, Shield, Users, Globe, Award } from "lucide-react";
-
 const WhyChooseUs = () => {
-  const differentiators = [
-    {
-      icon: Trophy,
-      title: "SCALE",
-      subtitle: "Scale that Delivers",
-      stats: [
-        "National Footprint: 25+ offices across the country",
-        "Recruitment Team: 200+ specialized recruiters",
-        "Active Clients: 500+ organizations",
-        "Workforce Managed: 10K+ professionals",
-        "Industries Served: 15+ sectors"
-      ]
-    },
-    {
-      icon: Zap,
-      title: "AGILITY",
-      subtitle: "Speed meets Precision",
-      stats: [
-        "Rapid Deployment: Up to 100+ hires per month",
-        "Quick Response: 24-hour initial candidate submission",
-        "Flexible Solutions: Adapt to changing requirements",
-        "Streamlined Process: 7-day average placement cycle",
-        "Real-time Tracking: Complete transparency"
-      ]
-    },
-    {
-      icon: Shield,
-      title: "TECHNOLOGY",
-      subtitle: "Powered by Innovation",
-      stats: [
-        "AI-Powered Matching: Advanced candidate screening",
-        "Digital Platform: Real-time project management",
-        "Data Analytics: Predictive hiring insights",
-        "Mobile App: On-the-go workforce management",
-        "Cloud Infrastructure: Secure and scalable"
-      ]
-    }
-  ];
-
-  const achievements = [
-    {
-      icon: Award,
-      title: "Industry Recognition",
-      description: "Top 10 Staffing Company 2024"
-    },
-    {
-      icon: Users,
-      title: "Client Satisfaction",
-      description: "98% Client Retention Rate"
-    },
-    {
-      icon: Globe,
-      title: "Market Presence",
-      description: "Serving 15+ Industries Nationwide"
-    }
-  ];
-
-  return (
-    <section id="why-choose-us" className="py-20 bg-background">
+  const differentiators = [{
+    icon: Trophy,
+    title: "SCALE",
+    subtitle: "Scale that Delivers",
+    stats: ["National Footprint: 25+ offices across the country", "Recruitment Team: 200+ specialized recruiters", "Active Clients: 500+ organizations", "Workforce Managed: 10K+ professionals", "Industries Served: 15+ sectors"]
+  }, {
+    icon: Zap,
+    title: "AGILITY",
+    subtitle: "Speed meets Precision",
+    stats: ["Rapid Deployment: Up to 100+ hires per month", "Quick Response: 24-hour initial candidate submission", "Flexible Solutions: Adapt to changing requirements", "Streamlined Process: 7-day average placement cycle", "Real-time Tracking: Complete transparency"]
+  }, {
+    icon: Shield,
+    title: "TECHNOLOGY",
+    subtitle: "Powered by Innovation",
+    stats: ["AI-Powered Matching: Advanced candidate screening", "Digital Platform: Real-time project management", "Data Analytics: Predictive hiring insights", "Mobile App: On-the-go workforce management", "Cloud Infrastructure: Secure and scalable"]
+  }];
+  const achievements = [{
+    icon: Award,
+    title: "Industry Recognition",
+    description: "Top 10 Staffing Company 2024"
+  }, {
+    icon: Users,
+    title: "Client Satisfaction",
+    description: "98% Client Retention Rate"
+  }, {
+    icon: Globe,
+    title: "Market Presence",
+    description: "Serving 15+ Industries Nationwide"
+  }];
+  return <section id="why-choose-us" className="py-20 bg-background">
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-16">
@@ -80,8 +50,7 @@ const WhyChooseUs = () => {
 
         {/* Main Differentiators */}
         <div className="grid lg:grid-cols-3 gap-8 mb-20">
-          {differentiators.map((item, index) => (
-            <Card key={index} className="group hover:shadow-xl transition-all duration-300 border-border">
+          {differentiators.map((item, index) => <Card key={index} className="group hover:shadow-xl transition-all duration-300 border-border">
               <CardContent className="p-8">
                 <div className="text-center mb-8">
                   <div className="h-20 w-20 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-primary/20 transition-colors">
@@ -92,16 +61,13 @@ const WhyChooseUs = () => {
                 </div>
                 
                 <ul className="space-y-4">
-                  {item.stats.map((stat, statIndex) => (
-                    <li key={statIndex} className="flex items-start gap-3">
+                  {item.stats.map((stat, statIndex) => <li key={statIndex} className="flex items-start gap-3">
                       <div className="h-2 w-2 bg-accent rounded-full mt-2 flex-shrink-0" />
                       <span className="text-muted-foreground">{stat}</span>
-                    </li>
-                  ))}
+                    </li>)}
                 </ul>
               </CardContent>
-            </Card>
-          ))}
+            </Card>)}
         </div>
 
         {/* Achievements Banner */}
@@ -116,26 +82,24 @@ const WhyChooseUs = () => {
           </div>
           
           <div className="grid md:grid-cols-3 gap-8">
-            {achievements.map((achievement, index) => (
-              <div key={index} className="text-center">
+            {achievements.map((achievement, index) => <div key={index} className="text-center">
                 <div className="h-16 w-16 bg-white/20 rounded-xl flex items-center justify-center mx-auto mb-4">
                   <achievement.icon className="h-8 w-8" />
                 </div>
                 <h4 className="text-xl font-bold mb-2">{achievement.title}</h4>
                 <p className="opacity-90">{achievement.description}</p>
-              </div>
-            ))}
+              </div>)}
           </div>
         </div>
 
         {/* Stats Section */}
         <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8">
           <div className="text-center">
-            <div className="text-4xl font-bold text-primary mb-2">500+</div>
+            <div className="text-4xl font-bold text-primary mb-2">20+</div>
             <div className="text-muted-foreground">Happy Clients</div>
           </div>
           <div className="text-center">
-            <div className="text-4xl font-bold text-primary mb-2">10K+</div>
+            <div className="text-4xl font-bold text-primary mb-2">5000+</div>
             <div className="text-muted-foreground">Successful Placements</div>
           </div>
           <div className="text-center">
@@ -148,8 +112,6 @@ const WhyChooseUs = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default WhyChooseUs;

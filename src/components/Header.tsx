@@ -1,24 +1,20 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Phone, Mail } from "lucide-react";
-
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-
-  return (
-    <header className="bg-background border-b border-border sticky top-0 z-50">
+  return <header className="bg-background border-b border-border sticky top-0 z-50">
       {/* Top contact bar */}
       <div className="bg-primary text-primary-foreground py-2">
         <div className="container mx-auto px-4 flex justify-end items-center gap-6 text-sm">
           <div className="flex items-center gap-2">
             <Phone className="h-4 w-4" />
-            <span>+1 (555) 123-4567</span>
+            <span>+(91) 8979199267 </span>
           </div>
           <div className="flex items-center gap-2">
             <Mail className="h-4 w-4" />
-            <span>contact@youconnecttechnologies.com</span>
+            <span>reachus@youconnecttech.com</span>
           </div>
         </div>
       </div>
@@ -57,17 +53,13 @@ const Header = () => {
           </nav>
 
           {/* Mobile menu button */}
-          <button
-            onClick={toggleMenu}
-            className="lg:hidden p-2 rounded-md text-foreground hover:text-primary"
-          >
+          <button onClick={toggleMenu} className="lg:hidden p-2 rounded-md text-foreground hover:text-primary">
             {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
         </div>
 
         {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="lg:hidden pb-4">
+        {isMenuOpen && <div className="lg:hidden pb-4">
             <nav className="flex flex-col space-y-4">
               <a href="#home" className="text-foreground hover:text-primary transition-colors">
                 Home
@@ -88,11 +80,8 @@ const Header = () => {
                 Get Started
               </Button>
             </nav>
-          </div>
-        )}
+          </div>}
       </div>
-    </header>
-  );
+    </header>;
 };
-
 export default Header;

@@ -1,9 +1,7 @@
 import { Separator } from "@/components/ui/separator";
 import { Facebook, Twitter, Linkedin, Instagram, Mail, Phone, MapPin } from "lucide-react";
-
 const Footer = () => {
-  return (
-    <footer className="bg-primary text-primary-foreground">
+  return <footer className="bg-primary text-primary-foreground">
       <div className="container mx-auto px-4 py-12">
         <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-8">
           {/* Company Info */}
@@ -110,15 +108,11 @@ const Footer = () => {
               </div>
               <div className="flex items-center gap-3">
                 <Phone className="h-5 w-5 text-accent flex-shrink-0" />
-                <div className="text-primary-foreground/80">
-                  +1 (555) 123-4567
-                </div>
+                <div className="text-primary-foreground/80">+(91) 8979199267</div>
               </div>
               <div className="flex items-center gap-3">
                 <Mail className="h-5 w-5 text-accent flex-shrink-0" />
-                <div className="text-primary-foreground/80">
-                  contact@youconnecttechnologies.com
-                </div>
+                <div className="text-primary-foreground/80">reachus@youconnecttech.com</div>
               </div>
             </div>
           </div>
@@ -144,8 +138,6 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;
