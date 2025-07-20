@@ -38,10 +38,13 @@ const Header = () => {
             <a href="#about" className="text-foreground hover:text-primary transition-colors">
               About Us
             </a>
-            <a href="#services" className="text-foreground hover:text-primary transition-colors">
+            <a href="/#services" className="text-foreground hover:text-primary transition-colors">
               Services
             </a>
-            <a href="#why-choose-us" className="text-foreground hover:text-primary transition-colors">
+            <a href="/services" className="text-foreground hover:text-primary transition-colors">
+              All Services
+            </a>
+            <a href="/#why-choose-us" className="text-foreground hover:text-primary transition-colors">
               Why Choose Us
             </a>
             <a href="#contact" className="text-foreground hover:text-primary transition-colors">
@@ -67,10 +70,13 @@ const Header = () => {
               <a href="#about" className="text-foreground hover:text-primary transition-colors">
                 About Us
               </a>
-              <a href="#services" className="text-foreground hover:text-primary transition-colors">
+              <a href="/#services" className="text-foreground hover:text-primary transition-colors">
                 Services
               </a>
-              <a href="#why-choose-us" className="text-foreground hover:text-primary transition-colors">
+              <a href="/services" className="text-foreground hover:text-primary transition-colors">
+                All Services
+              </a>
+              <a href="/#why-choose-us" className="text-foreground hover:text-primary transition-colors">
                 Why Choose Us
               </a>
               <a href="#contact" className="text-foreground hover:text-primary transition-colors">
