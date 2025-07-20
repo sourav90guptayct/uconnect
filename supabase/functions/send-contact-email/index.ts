@@ -4,6 +4,7 @@ import { Resend } from 'npm:resend@2.0.0'
 import { z } from 'npm:zod@3.23.8'
 
 const resend = new Resend(Deno.env.get('RESEND_API_KEY'))
+console.log('RESEND_API_KEY exists:', !!Deno.env.get('RESEND_API_KEY'))
 
 // Input validation schema
 const ContactFormSchema = z.object({
