@@ -1,5 +1,8 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
+import { Resend } from 'npm:resend@2.0.0'
+
+const resend = new Resend(Deno.env.get('RESEND_API_KEY'))
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -36,31 +39,29 @@ serve(async (req) => {
       throw new Error(`Database error: ${dbError.message}`)
     }
 
-    // Create Excel-like CSV content
-    const csvContent = `Full Name,Email,Phone,Company,Message,Submitted At
-"${fullName}","${email}","${phone || 'N/A'}","${company || 'N/A'}","${message}","${new Date().toISOString()}"`
+    // Send email to both recipients
+    const emailResponse = await resend.emails.send({
+      from: 'YouConnect Technologies <noreply@resend.dev>',
+      to: ['reachus@youconnecttech.com', 'shivani.s@youconnecttech.com'],
+      subject: `New Contact Form Submission from ${fullName}`,
+      html: `
+        <h2>New Contact Form Submission</h2>
+        <p><strong>Full Name:</strong> ${fullName}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Phone:</strong> ${phone || 'Not provided'}</p>
+        <p><strong>Company:</strong> ${company || 'Not provided'}</p>
+        <p><strong>Message:</strong></p>
+        <p>${message}</p>
+        <p><strong>Submitted:</strong> ${new Date().toLocaleString()}</p>
+      `,
+    });
 
-    // Prepare email content
-    const emailSubject = `New Contact Form Submission from ${fullName}`
-    const emailBody = `
-    <h2>New Contact Form Submission</h2>
-    <p><strong>Full Name:</strong> ${fullName}</p>
-    <p><strong>Email:</strong> ${email}</p>
-    <p><strong>Phone:</strong> ${phone || 'Not provided'}</p>
-    <p><strong>Company:</strong> ${company || 'Not provided'}</p>
-    <p><strong>Message:</strong></p>
-    <p>${message}</p>
-    <p><strong>Submitted:</strong> ${new Date().toLocaleString()}</p>
-    
-    <p>The submission data is also attached as a CSV file for easy import into Excel.</p>
-    `
+    if (emailResponse.error) {
+      console.error('Email sending error:', emailResponse.error);
+      throw new Error(`Failed to send email: ${emailResponse.error.message}`);
+    }
 
-    // Send email using a service (you'll need to configure this with your email service)
-    // For now, we'll return success - you can integrate with services like Resend, SendGrid, etc.
-    
-    console.log('Email would be sent to:', ['reachus@youconnecttech.com', 'shivani.s@youconnecttech.com'])
-    console.log('CSV Content:', csvContent)
-    console.log('Email Body:', emailBody)
+    console.log('Email sent successfully:', emailResponse.data?.id);
 
     return new Response(
       JSON.stringify({ 
