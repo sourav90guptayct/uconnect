@@ -53,108 +53,21 @@ const Header = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-4">
-            <NavigationMenu>
-              <NavigationMenuList>
-                <NavigationMenuItem>
-                  <NavigationMenuLink 
-                    href="#home" 
-                    className={cn(navigationMenuTriggerStyle(), "text-foreground hover:text-primary")}
-                  >
-                    Home
-                  </NavigationMenuLink>
-                </NavigationMenuItem>
-
-                <NavigationMenuItem>
-                  <NavigationMenuLink 
-                    href="#about" 
-                    className={cn(navigationMenuTriggerStyle(), "text-foreground hover:text-primary")}
-                  >
-                    About Us
-                  </NavigationMenuLink>
-                </NavigationMenuItem>
-
-                <NavigationMenuItem>
-                  <NavigationMenuTrigger className="text-foreground hover:text-primary">
-                    Services
-                  </NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <div className="grid gap-3 p-6 w-[500px] lg:w-[600px] lg:grid-cols-2">
-                      <div className="space-y-3">
-                        <h4 className="text-sm font-medium leading-none text-primary">Development Services</h4>
-                        <div className="grid gap-2">
-                          <a href="#services" className="flex items-center gap-2 p-2 hover:bg-accent hover:text-accent-foreground rounded-md transition-colors">
-                            <Code className="h-4 w-4 text-primary" />
-                            <div>
-                              <div className="text-sm font-medium">Web Development</div>
-                              <div className="text-xs text-muted-foreground">Custom web applications</div>
-                            </div>
-                          </a>
-                          <a href="#services" className="flex items-center gap-2 p-2 hover:bg-accent hover:text-accent-foreground rounded-md transition-colors">
-                            <Smartphone className="h-4 w-4 text-primary" />
-                            <div>
-                              <div className="text-sm font-medium">Mobile Apps</div>
-                              <div className="text-xs text-muted-foreground">iOS & Android development</div>
-                            </div>
-                          </a>
-                          <a href="#services" className="flex items-center gap-2 p-2 hover:bg-accent hover:text-accent-foreground rounded-md transition-colors">
-                            <Database className="h-4 w-4 text-primary" />
-                            <div>
-                              <div className="text-sm font-medium">Backend Solutions</div>
-                              <div className="text-xs text-muted-foreground">APIs & database management</div>
-                            </div>
-                          </a>
-                        </div>
-                      </div>
-                      <div className="space-y-3">
-                        <h4 className="text-sm font-medium leading-none text-primary">Digital Solutions</h4>
-                        <div className="grid gap-2">
-                          <a href="#services" className="flex items-center gap-2 p-2 hover:bg-accent hover:text-accent-foreground rounded-md transition-colors">
-                            <Globe className="h-4 w-4 text-primary" />
-                            <div>
-                              <div className="text-sm font-medium">Digital Marketing</div>
-                              <div className="text-xs text-muted-foreground">SEO & online presence</div>
-                            </div>
-                          </a>
-                          <a href="#services" className="flex items-center gap-2 p-2 hover:bg-accent hover:text-accent-foreground rounded-md transition-colors">
-                            <Shield className="h-4 w-4 text-primary" />
-                            <div>
-                              <div className="text-sm font-medium">Cybersecurity</div>
-                              <div className="text-xs text-muted-foreground">Security consulting</div>
-                            </div>
-                          </a>
-                          <a href="#services" className="flex items-center gap-2 p-2 hover:bg-accent hover:text-accent-foreground rounded-md transition-colors">
-                            <Zap className="h-4 w-4 text-primary" />
-                            <div>
-                              <div className="text-sm font-medium">Cloud Solutions</div>
-                              <div className="text-xs text-muted-foreground">Scalable infrastructure</div>
-                            </div>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
-
-                <NavigationMenuItem>
-                  <NavigationMenuLink 
-                    href="#why-choose-us" 
-                    className={cn(navigationMenuTriggerStyle(), "text-foreground hover:text-primary")}
-                  >
-                    Why Choose Us
-                  </NavigationMenuLink>
-                </NavigationMenuItem>
-
-                <NavigationMenuItem>
-                  <NavigationMenuLink 
-                    href="#contact" 
-                    className={cn(navigationMenuTriggerStyle(), "text-foreground hover:text-primary")}
-                  >
-                    Contact
-                  </NavigationMenuLink>
-                </NavigationMenuItem>
-              </NavigationMenuList>
-            </NavigationMenu>
+          <div className="hidden lg:flex items-center space-x-8">
+            <nav className="flex items-center space-x-8">
+              <a href="#about" className="text-foreground hover:text-primary transition-colors font-medium">
+                About Us
+              </a>
+              <a href="#services" className="text-foreground hover:text-primary transition-colors font-medium">
+                Services
+              </a>
+              <a href="#careers" className="text-foreground hover:text-primary transition-colors font-medium">
+                Careers
+              </a>
+              <a href="#contact" className="text-foreground hover:text-primary transition-colors font-medium">
+                Contact Us
+              </a>
+            </nav>
 
             <div className="flex items-center space-x-2 ml-4">
               {user && (
@@ -183,20 +96,17 @@ const Header = () => {
         {/* Mobile Navigation */}
         {isMenuOpen && <div className="lg:hidden pb-4">
             <nav className="flex flex-col space-y-4">
-              <a href="#home" className="text-foreground hover:text-primary transition-colors">
-                Home
-              </a>
               <a href="#about" className="text-foreground hover:text-primary transition-colors">
                 About Us
               </a>
-              <a href="/#services" className="text-foreground hover:text-primary transition-colors">
+              <a href="#services" className="text-foreground hover:text-primary transition-colors">
                 Services
               </a>
-              <a href="/#why-choose-us" className="text-foreground hover:text-primary transition-colors">
-                Why Choose Us
+              <a href="#careers" className="text-foreground hover:text-primary transition-colors">
+                Careers
               </a>
               <a href="#contact" className="text-foreground hover:text-primary transition-colors">
-                Contact
+                Contact Us
               </a>
               {user && (
                 <Button 
