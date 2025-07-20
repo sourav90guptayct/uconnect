@@ -44,47 +44,46 @@ const Header = () => {
       {/* Main navigation */}
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <div className="flex items-center">
+          {/* Logo and Main Navigation */}
+          <div className="flex items-center space-x-8">
             <div className="text-2xl font-bold text-primary">
               YouConnect
               <span className="text-accent"> Technologies</span>
             </div>
-          </div>
-
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-8">
-            <nav className="flex items-center space-x-8">
-              <a href="#about" className="text-foreground hover:text-primary transition-colors font-medium">
+            
+            {/* Navigation items next to logo */}
+            <nav className="hidden lg:flex items-center space-x-6">
+              <a href="#about" className="text-foreground hover:text-primary transition-colors text-sm font-medium">
                 About Us
               </a>
-              <a href="#services" className="text-foreground hover:text-primary transition-colors font-medium">
+              <a href="#services" className="text-foreground hover:text-primary transition-colors text-sm font-medium">
                 Services
               </a>
-              <a href="#careers" className="text-foreground hover:text-primary transition-colors font-medium">
+              <a href="#careers" className="text-foreground hover:text-primary transition-colors text-sm font-medium">
                 Careers
               </a>
-              <a href="#contact" className="text-foreground hover:text-primary transition-colors font-medium">
+              <a href="#contact" className="text-foreground hover:text-primary transition-colors text-sm font-medium">
                 Contact Us
               </a>
             </nav>
+          </div>
 
-            <div className="flex items-center space-x-2 ml-4">
-              {user && (
-                <Button 
-                  variant="outline"
-                  onClick={() => navigate('/admin')}
-                >
-                  Admin
-                </Button>
-              )}
+          {/* Right side - Auth buttons */}
+          <div className="hidden lg:flex items-center space-x-2">
+            {user && (
               <Button 
-                className="bg-accent text-accent-foreground hover:bg-accent/90"
-                onClick={handleAuthAction}
+                variant="outline"
+                onClick={() => navigate('/admin')}
               >
-                {user ? 'Sign Out' : 'Sign In'}
+                Admin
               </Button>
-            </div>
+            )}
+            <Button 
+              className="bg-accent text-accent-foreground hover:bg-accent/90"
+              onClick={handleAuthAction}
+            >
+              {user ? 'Sign Out' : 'Sign In'}
+            </Button>
           </div>
 
           {/* Mobile menu button */}
