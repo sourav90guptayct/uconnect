@@ -98,8 +98,8 @@
   /* Quess Corp geometric patterns */
   .quess-pattern {
     background-image: 
-      linear-gradient(135deg, transparent 40%, hsl(var(--secondary) / 0.1) 50%, transparent 60%),
-      linear-gradient(45deg, transparent 40%, hsl(var(--accent) / 0.05) 50%, transparent 60%);
+      linear-gradient(135deg, transparent 40%, hsl(45 100% 60% / 0.1) 50%, transparent 60%),
+      linear-gradient(45deg, transparent 40%, hsl(200 100% 50% / 0.05) 50%, transparent 60%);
     background-size: 60px 60px, 40px 40px;
   }
   
@@ -114,19 +114,22 @@
     right: -10px;
     width: 100px;
     height: 100px;
-    background: linear-gradient(45deg, hsl(var(--secondary) / 0.2), transparent);
-    border: 2px solid hsl(var(--secondary) / 0.3);
+    background: linear-gradient(45deg, hsl(45 100% 60% / 0.2), transparent);
+    border: 2px solid hsl(45 100% 60% / 0.3);
     transform: rotate(45deg);
     z-index: -1;
   }
   
   .golden-accent {
-    color: hsl(var(--secondary));
-    font-weight: 600;
+    color: hsl(45 100% 60%);
+    font-weight: 700;
+    text-shadow: 0 0 10px hsl(45 100% 60% / 0.3);
   }
   
   .quess-card {
-    @apply bg-card border rounded-lg shadow-lg;
-    background: linear-gradient(135deg, hsl(var(--card)) 0%, hsl(var(--card) / 0.95) 100%);
+    background: linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(0 0% 100% / 0.95) 100%);
+    border: 1px solid hsl(214 32% 91%);
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 15px -3px hsl(0 0% 0% / 0.1), 0 4px 6px -2px hsl(0 0% 0% / 0.05);
   }
 }
