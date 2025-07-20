@@ -171,9 +171,9 @@ const Contact = () => {
                   <div>
                     <h4 className="font-semibold text-card-foreground mb-2">Phone Numbers</h4>
                     <p className="text-muted-foreground">
-                      Main: +1 (555) 123-4567<br />
-                      HR Dept: +1 (555) 123-4568<br />
-                      Support: +1 (555) 123-4569
+                      Main: +91 8979199267<br />
+                      HR Dept: +91 8979199267<br />
+                      Support: +91 8979199267
                     </p>
                   </div>
                 </div>
@@ -231,7 +231,7 @@ const Contact = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">
-                Call Now: +1 (555) 123-4567
+                Call Now: +91 8979199267
               </Button>
               <Button size="lg" variant="outline" className="border-border text-foreground hover:bg-muted">
                 Schedule a Consultation
