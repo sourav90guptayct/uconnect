@@ -7,10 +7,10 @@ const ServicesPage = () => {
   const services = [
     {
       icon: Users,
-      title: "Managed Services Networks",
-      description: "Focus on core competencies as we take charge of your network processes",
-      features: ["End-to-end network management", "24/7 operational support", "Network monitoring", "Service level agreements"],
-      details: "Our managed services networks provide comprehensive network management solutions that allow your organization to focus on core business activities while we handle all networking requirements with expert support and monitoring."
+      title: "Networks",
+      description: "Stay Connected, Stay Ahead - One-stop-shop for all your networking requirements",
+      features: ["Network infrastructure", "Connectivity solutions", "Network monitoring", "Maintenance & support"],
+      details: "Our comprehensive networking solutions ensure your organization stays connected and ahead of the competition. We provide end-to-end networking services from infrastructure setup to ongoing maintenance and support."
     },
     {
       icon: Building,
