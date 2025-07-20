@@ -6,39 +6,45 @@ const Services = () => {
   const services = [
     {
       icon: Users,
-      title: "Temporary Staffing",
-      description: "Flexible workforce solutions for short-term projects and seasonal demands",
-      features: ["Quick deployment", "Scalable teams", "Cost-effective", "Quality assured"]
+      title: "Managed Staffing Services",
+      description: "Focus on core competencies as we take charge of your workforce management processes",
+      features: ["End-to-end workforce management", "Performance monitoring", "Compliance management", "24/7 operational support"]
     },
     {
       icon: UserCheck,
-      title: "Permanent Recruitment",
-      description: "End-to-end recruitment services to find the perfect permanent employees",
-      features: ["Executive search", "Background verification", "Skills assessment", "Cultural fit analysis"]
+      title: "Network Recruitment",
+      description: "Stay Connected, Stay Ahead - One-stop-shop for all your talent acquisition requirements",
+      features: ["Pan-India recruitment network", "Multi-channel sourcing", "Candidate database access", "Real-time hiring updates"]
     },
     {
       icon: Building,
-      title: "Contract Staffing",
-      description: "Long-term contract professionals for specialized projects and roles",
-      features: ["Specialized skills", "Project-based", "Risk mitigation", "Compliance management"]
+      title: "Digital HR Transformation",
+      description: "Store, manage & disseminate workforce data & more. Secure Enterprise HR solutions",
+      features: ["HRIS implementation", "Digital onboarding", "Cloud-based HR platforms", "Data analytics & reporting"]
     },
     {
       icon: Briefcase,
-      title: "Executive Search",
-      description: "Senior-level recruitment for leadership and strategic positions",
-      features: ["C-level recruitment", "Board positions", "Confidential search", "Global reach"]
+      title: "Integrated Placement Services",
+      description: "Cutting edge placement & talent solutions: Empowering your organizational growth",
+      features: ["Strategic talent placement", "Leadership hiring", "Skill-based matching", "Career progression planning"]
     },
     {
       icon: Search,
-      title: "Volume Hiring",
-      description: "Large-scale recruitment solutions for rapid expansion and bulk hiring",
-      features: ["Mass recruitment", "Quick turnaround", "Streamlined process", "Quality control"]
+      title: "Resource Management",
+      description: "Technology enabled staffing so that you focus on your core business operations",
+      features: ["Resource allocation", "Skill inventory management", "Workforce optimization", "Cost-effective solutions"]
     },
     {
       icon: Settings,
-      title: "HR Consulting",
-      description: "Strategic HR advisory services to optimize your workforce management",
-      features: ["HR strategy", "Process optimization", "Compliance advisory", "Training programs"]
+      title: "Enterprise Workforce Solutions",
+      description: "Driving organizational growth forward - Powering your enterprise workforce needs",
+      features: ["Large-scale hiring", "Workforce transformation", "Change management", "Scalable solutions"]
+    },
+    {
+      icon: UserCheck,
+      title: "Talent Process Outsourcing",
+      description: "Leverage our expertise to enhance recruitment efficiency & candidate satisfaction",
+      features: ["RPO services", "Screening & assessment", "Interview coordination", "Candidate experience management"]
     }
   ];
 
