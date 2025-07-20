@@ -37,10 +37,12 @@ const Header = () => {
           {/* Logo */}
           <div className="flex items-center">
             <div className="text-2xl font-bold">
-              <span className="text-primary">
-                YouConnect
+              <span className="text-accent">
+                YOUCONNECT
               </span>
-              <span className="text-secondary"> Technologies</span>
+              <span className="text-primary text-sm block font-normal">
+                WINNING TOGETHER
+              </span>
             </div>
           </div>
 
