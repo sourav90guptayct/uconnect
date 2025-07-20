@@ -101,9 +101,9 @@ const Footer = () => {
               <div className="flex items-start gap-3">
                 <MapPin className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
                 <div className="text-primary-foreground/80">
-                  123 Business District<br />
-                  Tech Tower, Floor 15<br />
-                  Metropolitan City, State 12345
+                  Plot No 1398 Air Force Road<br />
+                  Govindpur<br />
+                  Distt. Saharanpur Uttar Pradesh
                 </div>
               </div>
               <div className="flex items-center gap-3">

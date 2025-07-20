@@ -152,9 +152,9 @@ const Contact = () => {
                   <div>
                     <h4 className="font-semibold text-card-foreground mb-2">Office Address</h4>
                     <p className="text-muted-foreground">
-                      123 Business District<br />
-                      Tech Tower, Floor 15<br />
-                      Metropolitan City, State 12345
+                      Plot No 1398 Air Force Road<br />
+                      Govindpur<br />
+                      Distt. Saharanpur Uttar Pradesh
                     </p>
                   </div>
                 </div>
