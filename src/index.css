@@ -5,33 +5,33 @@
 @layer base {
   :root {
     /* Quess Corp Theme - Dark Navy with Gold Accents */
-    --background: 210 45% 8%;          /* Deep navy blue background */
-    --foreground: 210 20% 90%;         /* Light blue-gray text */
+    --background: 0 0% 100%;           /* White background */
+    --foreground: 210 45% 15%;         /* Dark navy text */
     
-    --card: 210 40% 12%;               /* Slightly lighter navy */
-    --card-foreground: 210 15% 85%;    /* Light text on cards */
+    --card: 0 0% 98%;                 /* Light gray cards */
+    --card-foreground: 210 45% 15%;    /* Dark text on cards */
     
-    --popover: 210 45% 10%;            /* Dark navy popover */
-    --popover-foreground: 210 20% 90%;
+    --popover: 0 0% 100%;              /* White popover */
+    --popover-foreground: 210 45% 15%;
     
     --primary: 43 96% 56%;             /* Quess gold */
-    --primary-foreground: 210 45% 8%;  /* Dark navy text on gold */
+    --primary-foreground: 0 0% 100%;   /* White text on gold */
     
     --secondary: 195 85% 45%;          /* Quess light blue */
-    --secondary-foreground: 210 45% 8%; /* Dark text on blue */
+    --secondary-foreground: 0 0% 100%; /* White text on blue */
     
     --accent: 51 100% 50%;             /* Bright yellow accent */
-    --accent-foreground: 210 45% 8%;
+    --accent-foreground: 0 0% 100%;
     
     --destructive: 0 70% 55%;          /* Professional red */
-    --destructive-foreground: 210 20% 90%;
+    --destructive-foreground: 0 0% 100%;
     
-    --border: 210 30% 18%;             /* Subtle navy border */
-    --input: 210 40% 15%;              /* Dark input background */
+    --border: 210 20% 80%;             /* Light border */
+    --input: 0 0% 96%;                 /* Light input background */
     --ring: 43 96% 56%;                /* Gold focus ring */
     
-    --muted: 210 35% 14%;              /* Muted background */
-    --muted-foreground: 210 15% 60%;   /* Muted text */
+    --muted: 210 20% 96%;              /* Light muted background */
+    --muted-foreground: 210 30% 40%;   /* Muted text */
     
     --radius: 0.5rem;
     
