@@ -1,9 +1,21 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Phone, Mail } from "lucide-react";
+import { useAuth } from "@/hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { user, signOut } = useAuth();
+  const navigate = useNavigate();
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
+  const handleAuthAction = () => {
+    if (user) {
+      signOut();
+    } else {
+      navigate('/auth');
+    }
+  };
   return <header className="bg-background border-b border-border sticky top-0 z-50">
       {/* Top contact bar */}
       <div className="bg-primary text-primary-foreground py-2">
@@ -47,8 +59,19 @@ const Header = () => {
             <a href="#contact" className="text-foreground hover:text-primary transition-colors">
               Contact
             </a>
-            <Button className="bg-accent text-accent-foreground hover:bg-accent/90">
-              Get Started
+            {user && (
+              <Button 
+                variant="outline"
+                onClick={() => navigate('/admin')}
+              >
+                Admin
+              </Button>
+            )}
+            <Button 
+              className="bg-accent text-accent-foreground hover:bg-accent/90"
+              onClick={handleAuthAction}
+            >
+              {user ? 'Sign Out' : 'Sign In'}
             </Button>
           </nav>
 
@@ -76,8 +99,20 @@ const Header = () => {
               <a href="#contact" className="text-foreground hover:text-primary transition-colors">
                 Contact
               </a>
-              <Button className="bg-accent text-accent-foreground hover:bg-accent/90 w-fit">
-                Get Started
+              {user && (
+                <Button 
+                  variant="outline"
+                  className="w-fit"
+                  onClick={() => navigate('/admin')}
+                >
+                  Admin
+                </Button>
+              )}
+              <Button 
+                className="bg-accent text-accent-foreground hover:bg-accent/90 w-fit"
+                onClick={handleAuthAction}
+              >
+                {user ? 'Sign Out' : 'Sign In'}
               </Button>
             </nav>
           </div>}
