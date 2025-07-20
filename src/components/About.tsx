@@ -67,7 +67,7 @@ const About = () => {
               </div>
 
               {/* Vision Card */}
-              <div className="bg-card border border-border rounded-xl p-6 hover:shadow-lg transition-shadow mt-8">
+              <div className="bg-card border border-border rounded-xl p-6 hover:shadow-lg transition-shadow">
                 <Globe className="h-12 w-12 text-accent mb-4" />
                 <h3 className="text-xl font-bold text-card-foreground mb-3">Our Vision</h3>
                 <p className="text-muted-foreground text-sm">
