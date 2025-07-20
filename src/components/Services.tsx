@@ -6,15 +6,9 @@ const Services = () => {
   const services = [
     {
       icon: Users,
-      title: "Managed Services",
-      description: "Focus on core competencies as we take charge of your processes",
-      features: ["End-to-end process management", "24/7 operational support", "Performance monitoring", "Service level agreements"]
-    },
-    {
-      icon: UserCheck,
-      title: "Networks",
-      description: "Stay Connected, Stay Ahead - One-stop-shop for all your networking requirements",
-      features: ["Network infrastructure", "Connectivity solutions", "Network monitoring", "Maintenance & support"]
+      title: "Managed Services Networks",
+      description: "Focus on core competencies as we take charge of your network processes",
+      features: ["End-to-end network management", "24/7 operational support", "Network monitoring", "Service level agreements"]
     },
     {
       icon: Building,
