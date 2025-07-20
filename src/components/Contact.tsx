@@ -233,7 +233,17 @@ const Contact = () => {
               <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">
                 Call Now: +91 8979199267
               </Button>
-              <Button size="lg" variant="outline" className="border-border text-foreground hover:bg-muted">
+              <Button 
+                size="lg" 
+                variant="outline" 
+                className="border-border text-foreground hover:bg-muted"
+                onClick={() => {
+                  const contactForm = document.querySelector('form');
+                  if (contactForm) {
+                    contactForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }
+                }}
+              >
                 Schedule a Consultation
               </Button>
             </div>
