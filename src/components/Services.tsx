@@ -33,18 +33,6 @@ const Services = () => {
       title: "Resource Management",
       description: "Technology enabled staffing so that you focus on your core business",
       features: ["Technology staffing", "Resource allocation", "Skill management", "Workforce optimization"]
-    },
-    {
-      icon: Settings,
-      title: "EV Infrastructure",
-      description: "Driving the future forward - Powering your EV infrastructure needs",
-      features: ["Charging solutions", "Infrastructure setup", "Maintenance services", "Smart grid integration"]
-    },
-    {
-      icon: UserCheck,
-      title: "KPO/E COMMERCE",
-      description: "Leverage our expertise to enhance customer service & satisfaction",
-      features: ["Knowledge process outsourcing", "E-commerce solutions", "Customer support", "Business process management"]
     }
   ];
 
