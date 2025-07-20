@@ -41,7 +41,7 @@ serve(async (req) => {
 
     // Send email to both recipients
     const emailResponse = await resend.emails.send({
-      from: 'YouConnect Technologies <noreply@resend.dev>',
+      from: 'YouConnect Technologies <onboarding@resend.dev>',
       to: ['reachus@youconnecttech.com', 'shivani.s@youconnecttech.com'],
       subject: `New Contact Form Submission from ${fullName}`,
       html: `
