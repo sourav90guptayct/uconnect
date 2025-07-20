@@ -4,83 +4,105 @@
 
 @layer base {
   :root {
-    /* Quess Corp Theme - Dark Blue with Gold Accents */
-    --background: 0 0% 100%;           /* White background */
-    --foreground: 210 30% 25%;         /* Dark blue text */
-    --card: 0 0% 100%;                 /* White cards */
-    --card-foreground: 210 30% 25%;    /* Dark blue text on cards */
-    --popover: 0 0% 100%;              /* White popover */
-    --popover-foreground: 210 30% 25%; /* Dark blue text */
-    --primary: 210 45% 25%;            /* Dark navy primary */
-    --primary-foreground: 0 0% 100%;   /* White text on primary */
-    --secondary: 45 100% 60%;          /* Gold secondary */
-    --secondary-foreground: 210 45% 25%; /* Dark blue text on secondary */
-    --muted: 210 40% 95%;              /* Light muted */
-    --muted-foreground: 210 15% 50%;   /* Muted text */
-    --accent: 200 100% 50%;            /* Light blue accent (Quess blue) */
-    --accent-foreground: 0 0% 100%;    /* White text on accent */
-    --destructive: 0 84% 60%;          /* Red destructive */
+    /* Cyber-Neon Theme Colors */
+    --background: 222 84% 5%;          /* Deep dark background */
+    --foreground: 193 100% 95%;        /* Electric cyan text */
+    
+    --card: 222 84% 8%;                /* Slightly lighter dark */
+    --card-foreground: 193 100% 90%;   /* Bright cyan */
+    
+    --popover: 222 84% 6%;             /* Dark popover */
+    --popover-foreground: 193 100% 95%;
+    
+    --primary: 283 100% 65%;           /* Electric purple */
+    --primary-foreground: 222 84% 5%;  /* Dark text on primary */
+    
+    --secondary: 120 100% 50%;         /* Neon green */
+    --secondary-foreground: 222 84% 5%; /* Dark text on secondary */
+    
+    --accent: 195 100% 50%;            /* Electric blue accent */
+    --accent-foreground: 222 84% 5%;
+    
+    --destructive: 0 84% 60%;          /* Neon red */
     --destructive-foreground: 210 40% 98%;
-    --border: 214 32% 91%;             /* Light border */
-    --input: 214 32% 91%;              /* Light input */
-    --ring: 45 100% 60%;               /* Gold focus ring */
-    --radius: 0.5rem;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
+    
+    --border: 283 100% 25%;            /* Dark purple border */
+    --input: 222 84% 10%;              /* Dark input background */
+    --ring: 283 100% 65%;              /* Purple focus ring */
+    
+    --muted: 222 84% 12%;              /* Muted background */
+    --muted-foreground: 193 50% 70%;   /* Muted cyan text */
+    
+    --radius: 0.75rem;
+    
+    /* Cyber-Neon Custom Properties */
+    --neon-glow: 0 0 20px currentColor, 0 0 40px currentColor, 0 0 60px currentColor;
+    --neon-glow-soft: 0 0 10px currentColor, 0 0 20px currentColor;
+    --grid-pattern: repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 98px,
+      hsl(283 100% 25% / 0.3) 100px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 98px,
+      hsl(283 100% 25% / 0.3) 100px
+    );
+    
+    /* Gradients */
+    --gradient-neon: linear-gradient(135deg, hsl(283 100% 65%), hsl(195 100% 50%));
+    --gradient-cyber: linear-gradient(90deg, hsl(120 100% 50%), hsl(195 100% 50%), hsl(283 100% 65%));
 
-    /* Quess Corp specific colors */
-    --quess-blue: 200 100% 50%;        /* Light blue for branding */
-    --quess-gold: 45 100% 60%;         /* Gold for accents */
-    --quess-navy: 210 45% 25%;         /* Dark navy for backgrounds */
-
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 10.6% 64.9%;
+    --sidebar-background: 222 84% 5%;
+    --sidebar-foreground: 193 100% 95%;
+    --sidebar-primary: 283 100% 65%;
+    --sidebar-primary-foreground: 222 84% 5%;
+    --sidebar-accent: 222 84% 8%;
+    --sidebar-accent-foreground: 193 100% 90%;
+    --sidebar-border: 283 100% 25%;
+    --sidebar-ring: 283 100% 65%;
   }
 
   .dark {
-    /* Dark mode - Navy theme with gold accents */
-    --background: 210 45% 25%;         /* Dark navy background */
-    --foreground: 0 0% 100%;           /* White text */
-    --card: 210 40% 30%;               /* Slightly lighter navy cards */
-    --card-foreground: 0 0% 100%;      /* White text on cards */
-    --popover: 210 45% 25%;            /* Dark navy popover */
-    --popover-foreground: 0 0% 100%;   /* White text */
-    --primary: 210 45% 25%;            /* Dark navy primary */
-    --primary-foreground: 0 0% 100%;   /* White text on primary */
-    --secondary: 45 100% 60%;          /* Gold secondary */
-    --secondary-foreground: 210 45% 25%; /* Dark blue text on secondary */
-    --muted: 210 40% 35%;              /* Muted navy */
-    --muted-foreground: 210 10% 70%;   /* Light muted text */
-    --accent: 200 100% 50%;            /* Light blue accent */
-    --accent-foreground: 0 0% 100%;    /* White text on accent */
-    --destructive: 0 62% 50%;          /* Red destructive */
+    /* Same colors for dark mode consistency */
+    --background: 222 84% 5%;
+    --foreground: 193 100% 95%;
+    
+    --card: 222 84% 8%;
+    --card-foreground: 193 100% 90%;
+    
+    --popover: 222 84% 6%;
+    --popover-foreground: 193 100% 95%;
+    
+    --primary: 283 100% 65%;
+    --primary-foreground: 222 84% 5%;
+    
+    --secondary: 120 100% 50%;
+    --secondary-foreground: 222 84% 5%;
+    
+    --accent: 195 100% 50%;
+    --accent-foreground: 222 84% 5%;
+    
+    --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
-    --border: 210 40% 40%;             /* Navy border */
-    --input: 210 40% 35%;              /* Navy input */
-    --ring: 45 100% 60%;               /* Gold focus ring */
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
+    
+    --border: 283 100% 25%;
+    --input: 222 84% 10%;
+    --ring: 283 100% 65%;
+    
+    --muted: 222 84% 12%;
+    --muted-foreground: 193 50% 70%;
 
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 94.1%;
-    --sidebar-primary-foreground: 240 5.9% 10%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 10.6% 64.9%;
+    --sidebar-background: 222 84% 5%;
+    --sidebar-foreground: 193 100% 95%;
+    --sidebar-primary: 283 100% 65%;
+    --sidebar-primary-foreground: 222 84% 5%;
+    --sidebar-accent: 222 84% 8%;
+    --sidebar-accent-foreground: 193 100% 90%;
+    --sidebar-border: 283 100% 25%;
+    --sidebar-ring: 283 100% 65%;
   }
 }
 
@@ -91,45 +113,88 @@
   
   body {
     @apply bg-background text-foreground;
+    background-image: var(--grid-pattern);
+    background-attachment: fixed;
   }
 }
 
 @layer components {
-  /* Quess Corp geometric patterns */
-  .quess-pattern {
+  /* Neon glow effects */
+  .neon-glow {
+    box-shadow: var(--neon-glow);
+  }
+  
+  .neon-glow-soft {
+    box-shadow: var(--neon-glow-soft);
+  }
+  
+  .neon-border {
+    border: 1px solid;
+    box-shadow: 0 0 10px currentColor, inset 0 0 10px hsl(283 100% 65% / 0.1);
+  }
+  
+  .neon-text {
+    text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor;
+  }
+  
+  .cyber-card {
+    @apply bg-card/80 backdrop-blur-sm border border-primary/30 rounded-lg;
+    box-shadow: 0 0 20px hsl(283 100% 65% / 0.2), inset 0 0 20px hsl(283 100% 65% / 0.05);
+  }
+  
+  .cyber-gradient {
+    background: var(--gradient-cyber);
+    background-size: 300% 300%;
+    animation: gradient-shift 6s ease infinite;
+  }
+  
+  .circuit-pattern {
     background-image: 
-      linear-gradient(135deg, transparent 40%, hsl(45 100% 60% / 0.1) 50%, transparent 60%),
-      linear-gradient(45deg, transparent 40%, hsl(200 100% 50% / 0.05) 50%, transparent 60%);
-    background-size: 60px 60px, 40px 40px;
+      radial-gradient(circle at 2px 2px, hsl(283 100% 65% / 0.3) 1px, transparent 1px),
+      linear-gradient(45deg, transparent 40%, hsl(195 100% 50% / 0.1) 50%, transparent 60%);
+    background-size: 20px 20px, 40px 40px;
+  }
+}
+
+@layer utilities {
+  .animate-pulse-neon {
+    animation: pulse-neon 2s ease-in-out infinite alternate;
   }
   
-  .geometric-accent {
-    position: relative;
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
   }
   
-  .geometric-accent::before {
-    content: '';
-    position: absolute;
-    top: -10px;
-    right: -10px;
-    width: 100px;
-    height: 100px;
-    background: linear-gradient(45deg, hsl(45 100% 60% / 0.2), transparent);
-    border: 2px solid hsl(45 100% 60% / 0.3);
-    transform: rotate(45deg);
-    z-index: -1;
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
   }
-  
-  .golden-accent {
-    color: hsl(45 100% 60%);
-    font-weight: 700;
-    text-shadow: 0 0 10px hsl(45 100% 60% / 0.3);
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes pulse-neon {
+  from {
+    text-shadow: 0 0 5px currentColor, 0 0 10px currentColor, 0 0 15px currentColor;
   }
-  
-  .quess-card {
-    background: linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(0 0% 100% / 0.95) 100%);
-    border: 1px solid hsl(214 32% 91%);
-    border-radius: 0.5rem;
-    box-shadow: 0 10px 15px -3px hsl(0 0% 0% / 0.1), 0 4px 6px -2px hsl(0 0% 0% / 0.05);
+  to {
+    text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor;
   }
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 5px hsl(283 100% 65% / 0.5), 0 0 10px hsl(283 100% 65% / 0.3);
+  }
+  to {
+    box-shadow: 0 0 15px hsl(283 100% 65% / 0.8), 0 0 30px hsl(283 100% 65% / 0.4);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
 }
