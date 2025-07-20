@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Phone, Mail, ChevronDown, Code, Database, Smartphone, Globe, Shield, Zap } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -75,12 +75,9 @@ const Header = () => {
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
-                  <NavigationMenuLink 
-                    href="#services" 
-                    className={cn(navigationMenuTriggerStyle(), "text-foreground hover:text-primary")}
-                  >
+                  <Link to="/services" className={cn(navigationMenuTriggerStyle(), "text-foreground hover:text-primary")}>
                     Services
-                  </NavigationMenuLink>
+                  </Link>
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
@@ -136,9 +133,9 @@ const Header = () => {
               <a href="#about" className="text-foreground hover:text-primary transition-colors">
                 About Us
               </a>
-              <a href="/#services" className="text-foreground hover:text-primary transition-colors">
+              <Link to="/services" className="text-foreground hover:text-primary transition-colors">
                 Services
-              </a>
+              </Link>
               <a href="/#why-choose-us" className="text-foreground hover:text-primary transition-colors">
                 Why Choose Us
               </a>
