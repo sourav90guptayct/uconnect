@@ -33,6 +33,12 @@ const Services = () => {
       title: "Resource Management",
       description: "Technology enabled staffing so that you focus on your core business",
       features: ["Technology staffing", "Resource allocation", "Skill management", "Workforce optimization"]
+    },
+    {
+      icon: Settings,
+      title: "Infra Installation",
+      description: "Self support and Guy mast Tower as well as Pole, Tower Erection Service and Pole Erection Service",
+      features: ["Self support installations", "Guy mast tower setup", "Pole erection services", "Tower erection services"]
     }
   ];
 
