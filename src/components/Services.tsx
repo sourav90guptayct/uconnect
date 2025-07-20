@@ -1,4 +1,5 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { Users, UserCheck, Building, Briefcase, Search, Settings } from "lucide-react";
 
 const Services = () => {
@@ -102,12 +103,19 @@ const Services = () => {
               that aligns perfectly with your specific requirements and goals.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-3 rounded-lg font-semibold transition-colors">
+              <Button 
+                size="lg"
+                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              >
                 Discuss Your Needs
-              </button>
-              <button className="border border-border text-foreground hover:bg-muted px-8 py-3 rounded-lg font-semibold transition-colors">
+              </Button>
+              <Button 
+                variant="outline" 
+                size="lg"
+                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              >
                 Request a Quote
-              </button>
+              </Button>
             </div>
           </div>
         </div>
