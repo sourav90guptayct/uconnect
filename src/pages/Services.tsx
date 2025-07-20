@@ -7,13 +7,34 @@ const ServicesPage = () => {
   const services = [
     {
       icon: Users,
+      title: "Managed Services",
+      description: "Focus on core competencies as we take charge of your processes",
+      features: ["End-to-end process management", "24/7 operational support", "Performance monitoring", "Service level agreements"],
+      details: "Our managed services provide comprehensive process management solutions that allow your organization to focus on core business activities while we handle all operational requirements with expert support and monitoring."
+    },
+    {
+      icon: Building,
       title: "Networks",
       description: "Stay Connected, Stay Ahead - One-stop-shop for all your networking requirements",
       features: ["Network infrastructure", "Connectivity solutions", "Network monitoring", "Maintenance & support"],
       details: "Our comprehensive networking solutions ensure your organization stays connected and ahead of the competition. We provide end-to-end networking services from infrastructure setup to ongoing maintenance and support."
     },
     {
-      icon: Building,
+      icon: Settings,
+      title: "Infra Installation",
+      description: "Self support and Guy mast Tower as well as Pole, Tower Erection Service and Pole Erection Service",
+      features: ["Self support installations", "Guy mast tower setup", "Pole erection services", "Tower erection services"],
+      details: "Complete infrastructure installation services including self-supporting structures, guy mast towers, and comprehensive pole and tower erection services for telecommunications and other industries."
+    },
+    {
+      icon: Search,
+      title: "Resource Management",
+      description: "Technology enabled staffing so that you focus on your core business",
+      features: ["Technology staffing", "Resource allocation", "Skill management", "Workforce optimization"],
+      details: "Optimize your workforce with our technology-enabled resource management solutions. We provide skilled technology professionals and efficient resource allocation to support your business objectives."
+    },
+    {
+      icon: Briefcase,
       title: "Digital Transformation",
       description: "Store, manage & disseminate data & more. Secure Enterprise IT solutions",
       features: ["Cloud migration", "Digital platforms", "Data management", "Enterprise IT solutions"],
@@ -25,20 +46,6 @@ const ServicesPage = () => {
       description: "Cutting edge IP & ITeS solutions: Empowering your growth",
       features: ["IP infrastructure", "ITeS solutions", "Technology consulting", "System integration"],
       details: "Our IP services deliver cutting-edge intellectual property and IT-enabled services that empower business growth through innovative technology consulting and seamless system integration."
-    },
-    {
-      icon: Search,
-      title: "Resource Management",
-      description: "Technology enabled staffing so that you focus on your core business",
-      features: ["Technology staffing", "Resource allocation", "Skill management", "Workforce optimization"],
-      details: "Optimize your workforce with our technology-enabled resource management solutions. We provide skilled technology professionals and efficient resource allocation to support your business objectives."
-    },
-    {
-      icon: Settings,
-      title: "Infra Installation",
-      description: "Self support and Guy mast Tower as well as Pole, Tower Erection Service and Pole Erection Service",
-      features: ["Self support installations", "Guy mast tower setup", "Pole erection services", "Tower erection services"],
-      details: "Complete infrastructure installation services including self-supporting structures, guy mast towers, and comprehensive pole and tower erection services for telecommunications and other industries."
     }
   ];
 
