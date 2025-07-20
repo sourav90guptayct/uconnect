@@ -4,96 +4,96 @@
 
 @layer base {
   :root {
-    /* Quess Corp Theme - Dark Navy with Gold Accents */
-    --background: 0 0% 100%;           /* White background */
-    --foreground: 210 45% 15%;         /* Dark navy text */
+    /* UConnect Tech Theme - Deep Navy with Orange Accents */
+    --background: 215 35% 12%;         /* Deep navy background */
+    --foreground: 210 20% 92%;         /* Light text */
     
-    --card: 0 0% 98%;                 /* Light gray cards */
-    --card-foreground: 210 45% 15%;    /* Dark text on cards */
+    --card: 215 35% 15%;               /* Slightly lighter navy cards */
+    --card-foreground: 210 15% 88%;    /* Light text on cards */
     
-    --popover: 0 0% 100%;              /* White popover */
-    --popover-foreground: 210 45% 15%;
+    --popover: 215 35% 10%;            /* Dark navy popover */
+    --popover-foreground: 210 20% 92%;
     
-    --primary: 43 96% 56%;             /* Quess gold */
-    --primary-foreground: 0 0% 100%;   /* White text on gold */
+    --primary: 37 100% 55%;            /* UConnect orange */
+    --primary-foreground: 215 35% 12%; /* Dark navy text on orange */
     
-    --secondary: 195 85% 45%;          /* Quess light blue */
-    --secondary-foreground: 0 0% 100%; /* White text on blue */
+    --secondary: 210 40% 35%;          /* Medium blue */
+    --secondary-foreground: 210 20% 92%; /* Light text on blue */
     
-    --accent: 51 100% 50%;             /* Bright yellow accent */
-    --accent-foreground: 0 0% 100%;
+    --accent: 45 100% 60%;             /* Bright yellow accent */
+    --accent-foreground: 215 35% 12%;
     
-    --destructive: 0 70% 55%;          /* Professional red */
-    --destructive-foreground: 0 0% 100%;
+    --destructive: 0 70% 55%;          /* Red */
+    --destructive-foreground: 210 20% 92%;
     
-    --border: 210 20% 80%;             /* Light border */
-    --input: 0 0% 96%;                 /* Light input background */
-    --ring: 43 96% 56%;                /* Gold focus ring */
+    --border: 215 25% 25%;             /* Subtle navy border */
+    --input: 215 35% 18%;              /* Dark input background */
+    --ring: 37 100% 55%;               /* Orange focus ring */
     
-    --muted: 210 20% 96%;              /* Light muted background */
-    --muted-foreground: 210 30% 40%;   /* Muted text */
+    --muted: 215 25% 18%;              /* Muted background */
+    --muted-foreground: 210 15% 65%;   /* Muted text */
     
     --radius: 0.5rem;
     
-    /* Quess Corp Custom Properties */
-    --quess-gold-glow: 0 0 20px hsl(43 96% 56% / 0.3), 0 0 40px hsl(43 96% 56% / 0.2);
-    --quess-pattern: 
-      linear-gradient(135deg, transparent 25%, hsl(43 96% 56% / 0.1) 25%, hsl(43 96% 56% / 0.1) 50%, transparent 50%, transparent 75%, hsl(43 96% 56% / 0.1) 75%, hsl(43 96% 56% / 0.1)),
-      linear-gradient(45deg, transparent 25%, hsl(195 85% 45% / 0.05) 25%, hsl(195 85% 45% / 0.05) 50%, transparent 50%, transparent 75%, hsl(195 85% 45% / 0.05) 75%, hsl(195 85% 45% / 0.05));
-    --quess-pattern-size: 40px 40px, 20px 20px;
+    /* UConnect Tech Custom Properties */
+    --uconnect-orange-glow: 0 0 20px hsl(37 100% 55% / 0.3), 0 0 40px hsl(37 100% 55% / 0.2);
+    --uconnect-pattern: 
+      radial-gradient(circle at 25% 25%, hsl(37 100% 55% / 0.1) 2px, transparent 2px),
+      radial-gradient(circle at 75% 75%, hsl(210 40% 35% / 0.1) 1px, transparent 1px);
+    --uconnect-pattern-size: 50px 50px, 25px 25px;
     
     /* Gradients */
-    --gradient-quess: linear-gradient(135deg, hsl(210 40% 12%), hsl(195 85% 45% / 0.2));
-    --gradient-gold: linear-gradient(90deg, hsl(43 96% 56%), hsl(51 100% 50%));
+    --gradient-uconnect: linear-gradient(135deg, hsl(215 35% 12%), hsl(210 40% 35% / 0.3));
+    --gradient-orange: linear-gradient(90deg, hsl(37 100% 55%), hsl(45 100% 60%));
 
-    --sidebar-background: 210 45% 8%;
-    --sidebar-foreground: 210 20% 90%;
-    --sidebar-primary: 43 96% 56%;
-    --sidebar-primary-foreground: 210 45% 8%;
-    --sidebar-accent: 210 40% 12%;
-    --sidebar-accent-foreground: 210 15% 85%;
-    --sidebar-border: 210 30% 18%;
-    --sidebar-ring: 43 96% 56%;
+    --sidebar-background: 215 35% 12%;
+    --sidebar-foreground: 210 20% 92%;
+    --sidebar-primary: 37 100% 55%;
+    --sidebar-primary-foreground: 215 35% 12%;
+    --sidebar-accent: 215 35% 15%;
+    --sidebar-accent-foreground: 210 15% 88%;
+    --sidebar-border: 215 25% 25%;
+    --sidebar-ring: 37 100% 55%;
   }
 
   .dark {
-    /* Quess Corp dark mode consistency */
-    --background: 210 45% 8%;
-    --foreground: 210 20% 90%;
+    /* UConnect Tech dark mode consistency */
+    --background: 215 35% 12%;
+    --foreground: 210 20% 92%;
     
-    --card: 210 40% 12%;
-    --card-foreground: 210 15% 85%;
+    --card: 215 35% 15%;
+    --card-foreground: 210 15% 88%;
     
-    --popover: 210 45% 10%;
-    --popover-foreground: 210 20% 90%;
+    --popover: 215 35% 10%;
+    --popover-foreground: 210 20% 92%;
     
-    --primary: 43 96% 56%;
-    --primary-foreground: 210 45% 8%;
+    --primary: 37 100% 55%;
+    --primary-foreground: 215 35% 12%;
     
-    --secondary: 195 85% 45%;
-    --secondary-foreground: 210 45% 8%;
+    --secondary: 210 40% 35%;
+    --secondary-foreground: 210 20% 92%;
     
-    --accent: 51 100% 50%;
-    --accent-foreground: 210 45% 8%;
+    --accent: 45 100% 60%;
+    --accent-foreground: 215 35% 12%;
     
     --destructive: 0 70% 55%;
-    --destructive-foreground: 210 20% 90%;
+    --destructive-foreground: 210 20% 92%;
     
-    --border: 210 30% 18%;
-    --input: 210 40% 15%;
-    --ring: 43 96% 56%;
+    --border: 215 25% 25%;
+    --input: 215 35% 18%;
+    --ring: 37 100% 55%;
     
-    --muted: 210 35% 14%;
-    --muted-foreground: 210 15% 60%;
+    --muted: 215 25% 18%;
+    --muted-foreground: 210 15% 65%;
 
-    --sidebar-background: 210 45% 8%;
-    --sidebar-foreground: 210 20% 90%;
-    --sidebar-primary: 43 96% 56%;
-    --sidebar-primary-foreground: 210 45% 8%;
-    --sidebar-accent: 210 40% 12%;
-    --sidebar-accent-foreground: 210 15% 85%;
-    --sidebar-border: 210 30% 18%;
-    --sidebar-ring: 43 96% 56%;
+    --sidebar-background: 215 35% 12%;
+    --sidebar-foreground: 210 20% 92%;
+    --sidebar-primary: 37 100% 55%;
+    --sidebar-primary-foreground: 215 35% 12%;
+    --sidebar-accent: 215 35% 15%;
+    --sidebar-accent-foreground: 210 15% 88%;
+    --sidebar-border: 215 25% 25%;
+    --sidebar-ring: 37 100% 55%;
   }
 }
 
@@ -104,59 +104,59 @@
   
   body {
     @apply bg-background text-foreground;
-    background-image: var(--quess-pattern);
-    background-size: var(--quess-pattern-size);
+    background-image: var(--uconnect-pattern);
+    background-size: var(--uconnect-pattern-size);
     background-attachment: fixed;
   }
 }
 
 @layer components {
-  /* Quess Corp theme effects */
-  .quess-gold-glow {
-    box-shadow: var(--quess-gold-glow);
+  /* UConnect Tech theme effects */
+  .uconnect-orange-glow {
+    box-shadow: var(--uconnect-orange-glow);
   }
   
-  .quess-border {
+  .uconnect-border {
     border: 1px solid hsl(var(--border));
-    box-shadow: 0 0 12px hsl(43 96% 56% / 0.2), inset 0 0 8px hsl(43 96% 56% / 0.05);
+    box-shadow: 0 0 15px hsl(37 100% 55% / 0.25), inset 0 0 10px hsl(37 100% 55% / 0.05);
   }
   
-  .quess-gold-text {
+  .uconnect-orange-text {
     color: hsl(var(--primary));
-    text-shadow: 0 0 10px hsl(43 96% 56% / 0.4);
+    text-shadow: 0 0 12px hsl(37 100% 55% / 0.4);
   }
   
-  .quess-card {
+  .uconnect-card {
     @apply bg-card/90 backdrop-blur-sm border border-border rounded-lg;
-    box-shadow: 0 8px 32px hsl(210 45% 8% / 0.6), 0 0 20px hsl(43 96% 56% / 0.1);
+    box-shadow: 0 8px 32px hsl(215 35% 12% / 0.8), 0 0 25px hsl(37 100% 55% / 0.15);
   }
   
-  .quess-gradient {
-    background: var(--gradient-quess);
+  .uconnect-gradient {
+    background: var(--gradient-uconnect);
     background-size: 200% 200%;
     animation: gradient-shift 8s ease infinite;
   }
   
-  .quess-gold-gradient {
-    background: var(--gradient-gold);
+  .uconnect-orange-gradient {
+    background: var(--gradient-orange);
     background-size: 200% 200%;
     animation: gradient-shift 6s ease infinite;
   }
   
-  .quess-geometric {
+  .uconnect-tech-pattern {
     position: relative;
   }
   
-  .quess-geometric::before {
+  .uconnect-tech-pattern::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: var(--quess-pattern);
-    background-size: var(--quess-pattern-size);
-    opacity: 0.5;
+    background: var(--uconnect-pattern);
+    background-size: var(--uconnect-pattern-size);
+    opacity: 0.6;
     pointer-events: none;
   }
 }
@@ -183,19 +183,19 @@
 
 @keyframes pulse-gold {
   from {
-    text-shadow: 0 0 5px hsl(43 96% 56% / 0.5), 0 0 10px hsl(43 96% 56% / 0.3);
+    text-shadow: 0 0 5px hsl(37 100% 55% / 0.5), 0 0 10px hsl(37 100% 55% / 0.3);
   }
   to {
-    text-shadow: 0 0 10px hsl(43 96% 56% / 0.8), 0 0 20px hsl(43 96% 56% / 0.4);
+    text-shadow: 0 0 10px hsl(37 100% 55% / 0.8), 0 0 20px hsl(37 100% 55% / 0.4);
   }
 }
 
 @keyframes glow-professional {
   from {
-    box-shadow: 0 0 5px hsl(43 96% 56% / 0.3), 0 0 10px hsl(195 85% 45% / 0.2);
+    box-shadow: 0 0 5px hsl(37 100% 55% / 0.3), 0 0 10px hsl(210 40% 35% / 0.2);
   }
   to {
-    box-shadow: 0 0 15px hsl(43 96% 56% / 0.5), 0 0 20px hsl(195 85% 45% / 0.3);
+    box-shadow: 0 0 15px hsl(37 100% 55% / 0.5), 0 0 20px hsl(210 40% 35% / 0.3);
   }
 }
 
