@@ -98,29 +98,10 @@ const Services = () => {
             <h3 className="text-3xl font-bold mb-4 text-card-foreground">
               Need a Custom Solution?
             </h3>
-            <p className="text-muted-foreground mb-6 text-lg">
+            <p className="text-muted-foreground mb-8 text-lg">
               Every organization is unique. Let us create a tailored manpower strategy 
               that aligns perfectly with your specific requirements and goals.
             </p>
-            
-            {/* uconnect Academy & Jobs */}
-            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-8">
-              <div className="text-center">
-                <div className="h-16 w-16 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-3">
-                  <span className="text-2xl font-bold text-primary">UC</span>
-                </div>
-                <h4 className="font-semibold text-card-foreground">uconnect Academy</h4>
-                <p className="text-sm text-muted-foreground">Skill Development</p>
-              </div>
-              <div className="text-center">
-                <div className="h-16 w-16 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-3">
-                  <span className="text-2xl font-bold text-primary">UJ</span>
-                </div>
-                <h4 className="font-semibold text-card-foreground">uconnect Jobs</h4>
-                <p className="text-sm text-muted-foreground">Career Opportunities</p>
-              </div>
-            </div>
-            
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
                 size="lg"
