@@ -4,34 +4,34 @@
 
 @layer base {
   :root {
-    /* Light Cyber-Neon Theme Colors */
-    --background: 0 0% 98%;             /* Light background */
-    --foreground: 222 84% 15%;          /* Dark text */
+    /* Cyber-Neon Theme Colors */
+    --background: 222 84% 5%;          /* Deep dark background */
+    --foreground: 193 100% 95%;        /* Electric cyan text */
     
-    --card: 0 0% 100%;                  /* White cards */
-    --card-foreground: 222 84% 15%;     /* Dark text on cards */
+    --card: 222 84% 8%;                /* Slightly lighter dark */
+    --card-foreground: 193 100% 90%;   /* Bright cyan */
     
-    --popover: 0 0% 100%;               /* Light popover */
-    --popover-foreground: 222 84% 15%;
+    --popover: 222 84% 6%;             /* Dark popover */
+    --popover-foreground: 193 100% 95%;
     
-    --primary: 283 100% 45%;            /* Electric purple */
-    --primary-foreground: 0 0% 98%;     /* Light text on primary */
+    --primary: 283 100% 65%;           /* Electric purple */
+    --primary-foreground: 222 84% 5%;  /* Dark text on primary */
     
-    --secondary: 120 100% 35%;          /* Neon green (darker for light bg) */
-    --secondary-foreground: 0 0% 98%;   /* Light text on secondary */
+    --secondary: 120 100% 50%;         /* Neon green */
+    --secondary-foreground: 222 84% 5%; /* Dark text on secondary */
     
-    --accent: 195 100% 35%;             /* Electric blue (darker for light bg) */
-    --accent-foreground: 0 0% 98%;
+    --accent: 195 100% 50%;            /* Electric blue accent */
+    --accent-foreground: 222 84% 5%;
     
-    --destructive: 0 84% 50%;           /* Red */
-    --destructive-foreground: 0 0% 98%;
+    --destructive: 0 84% 60%;          /* Neon red */
+    --destructive-foreground: 210 40% 98%;
     
-    --border: 283 100% 85%;             /* Light purple border */
-    --input: 0 0% 95%;                  /* Light input background */
-    --ring: 283 100% 45%;               /* Purple focus ring */
+    --border: 283 100% 25%;            /* Dark purple border */
+    --input: 222 84% 10%;              /* Dark input background */
+    --ring: 283 100% 65%;              /* Purple focus ring */
     
-    --muted: 0 0% 95%;                  /* Light muted background */
-    --muted-foreground: 222 20% 45%;    /* Muted dark text */
+    --muted: 222 84% 12%;              /* Muted background */
+    --muted-foreground: 193 50% 70%;   /* Muted cyan text */
     
     --radius: 0.75rem;
     
@@ -42,22 +42,22 @@
       90deg,
       transparent,
       transparent 98px,
-      hsl(283 100% 45% / 0.1) 100px
+      hsl(283 100% 25% / 0.3) 100px
     ),
     repeating-linear-gradient(
       0deg,
       transparent,
       transparent 98px,
-      hsl(283 100% 45% / 0.1) 100px
+      hsl(283 100% 25% / 0.3) 100px
     );
     
     /* Gradients */
     --gradient-neon: linear-gradient(135deg, hsl(283 100% 65%), hsl(195 100% 50%));
     --gradient-cyber: linear-gradient(90deg, hsl(120 100% 50%), hsl(195 100% 50%), hsl(283 100% 65%));
 
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 222 84% 15%;
-    --sidebar-primary: 283 100% 45%;
+    --sidebar-background: 222 84% 5%;
+    --sidebar-foreground: 193 100% 95%;
+    --sidebar-primary: 283 100% 65%;
     --sidebar-primary-foreground: 222 84% 5%;
     --sidebar-accent: 222 84% 8%;
     --sidebar-accent-foreground: 193 100% 90%;
@@ -138,8 +138,8 @@
   }
   
   .cyber-card {
-    @apply bg-card/90 backdrop-blur-sm border border-primary/20 rounded-lg;
-    box-shadow: 0 0 20px hsl(283 100% 45% / 0.1), inset 0 0 20px hsl(283 100% 45% / 0.02);
+    @apply bg-card/80 backdrop-blur-sm border border-primary/30 rounded-lg;
+    box-shadow: 0 0 20px hsl(283 100% 65% / 0.2), inset 0 0 20px hsl(283 100% 65% / 0.05);
   }
   
   .cyber-gradient {
