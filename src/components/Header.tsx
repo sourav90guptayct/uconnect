@@ -75,65 +75,12 @@ const Header = () => {
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger className="text-foreground hover:text-primary">
+                  <NavigationMenuLink 
+                    href="#services" 
+                    className={cn(navigationMenuTriggerStyle(), "text-foreground hover:text-primary")}
+                  >
                     Services
-                  </NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <div className="grid gap-3 p-6 w-[500px] lg:w-[600px] lg:grid-cols-2">
-                      <div className="space-y-3">
-                        <h4 className="text-sm font-medium leading-none text-primary">Development Services</h4>
-                        <div className="grid gap-2">
-                          <a href="#services" className="flex items-center gap-2 p-2 hover:bg-accent hover:text-accent-foreground rounded-md transition-colors">
-                            <Code className="h-4 w-4 text-primary" />
-                            <div>
-                              <div className="text-sm font-medium">Web Development</div>
-                              <div className="text-xs text-muted-foreground">Custom web applications</div>
-                            </div>
-                          </a>
-                          <a href="#services" className="flex items-center gap-2 p-2 hover:bg-accent hover:text-accent-foreground rounded-md transition-colors">
-                            <Smartphone className="h-4 w-4 text-primary" />
-                            <div>
-                              <div className="text-sm font-medium">Mobile Apps</div>
-                              <div className="text-xs text-muted-foreground">iOS & Android development</div>
-                            </div>
-                          </a>
-                          <a href="#services" className="flex items-center gap-2 p-2 hover:bg-accent hover:text-accent-foreground rounded-md transition-colors">
-                            <Database className="h-4 w-4 text-primary" />
-                            <div>
-                              <div className="text-sm font-medium">Backend Solutions</div>
-                              <div className="text-xs text-muted-foreground">APIs & database management</div>
-                            </div>
-                          </a>
-                        </div>
-                      </div>
-                      <div className="space-y-3">
-                        <h4 className="text-sm font-medium leading-none text-primary">Digital Solutions</h4>
-                        <div className="grid gap-2">
-                          <a href="#services" className="flex items-center gap-2 p-2 hover:bg-accent hover:text-accent-foreground rounded-md transition-colors">
-                            <Globe className="h-4 w-4 text-primary" />
-                            <div>
-                              <div className="text-sm font-medium">Digital Marketing</div>
-                              <div className="text-xs text-muted-foreground">SEO & online presence</div>
-                            </div>
-                          </a>
-                          <a href="#services" className="flex items-center gap-2 p-2 hover:bg-accent hover:text-accent-foreground rounded-md transition-colors">
-                            <Shield className="h-4 w-4 text-primary" />
-                            <div>
-                              <div className="text-sm font-medium">Cybersecurity</div>
-                              <div className="text-xs text-muted-foreground">Security consulting</div>
-                            </div>
-                          </a>
-                          <a href="#services" className="flex items-center gap-2 p-2 hover:bg-accent hover:text-accent-foreground rounded-md transition-colors">
-                            <Zap className="h-4 w-4 text-primary" />
-                            <div>
-                              <div className="text-sm font-medium">Cloud Solutions</div>
-                              <div className="text-xs text-muted-foreground">Scalable infrastructure</div>
-                            </div>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </NavigationMenuContent>
+                  </NavigationMenuLink>
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
