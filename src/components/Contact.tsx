@@ -75,30 +75,30 @@ const Contact = () => {
   return (
     <section id="contact" className="py-20 bg-background relative overflow-hidden">
       {/* Background effects */}
-      <div className="absolute inset-0 circuit-pattern opacity-10"></div>
+      <div className="absolute inset-0 uconnect-tech-pattern opacity-10"></div>
       <div className="absolute top-20 left-20 w-32 h-32 rounded-full bg-accent/20 blur-2xl animate-float"></div>
       <div className="absolute bottom-20 right-20 w-40 h-40 rounded-full bg-primary/20 blur-2xl animate-float" style={{animationDelay: '2s'}}></div>
       
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 cyber-card px-4 py-2 rounded-full mb-6 neon-glow-soft">
+          <div className="inline-flex items-center gap-2 uconnect-card px-4 py-2 rounded-full mb-6">
             <Mail className="h-5 w-5 text-primary" />
-            <span className="font-semibold text-primary neon-text">Contact Us</span>
+            <span className="font-semibold text-primary uconnect-orange-text">Contact Us</span>
           </div>
           
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-            <span className="cyber-gradient bg-clip-text text-transparent neon-text">
+            <span className="uconnect-orange-gradient bg-clip-text text-transparent uconnect-orange-text">
               Connect to the
             </span>
             <br />
-            <span className="text-foreground neon-text">
+            <span className="text-foreground uconnect-orange-text">
               Future
             </span>
           </h2>
           
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Ready to transform your workforce? <span className="text-secondary neon-text">Initialize contact protocol</span> and discover 
+            Ready to transform your workforce? <span className="text-secondary uconnect-orange-text">Initialize contact protocol</span> and discover 
             how we can help you build the perfect team for your organization.
           </p>
         </div>
@@ -106,9 +106,9 @@ const Contact = () => {
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Contact Form */}
           <div className="lg:col-span-2">
-            <Card className="cyber-card neon-glow-soft">
+            <Card className="uconnect-card">
               <CardContent className="p-8">
-                <h3 className="text-2xl font-bold mb-6 neon-text text-primary">
+                <h3 className="text-2xl font-bold mb-6 uconnect-orange-text text-primary">
                   Send us a Message
                 </h3>
                 
@@ -195,7 +195,7 @@ const Contact = () => {
                   <Button 
                     type="submit" 
                     size="lg" 
-                    className="w-full bg-primary hover:bg-primary/80 text-primary-foreground neon-border hover:neon-glow transition-all duration-300"
+                    className="w-full bg-primary hover:bg-primary/80 text-primary-foreground uconnect-border hover:uconnect-orange-glow transition-all duration-300"
                     disabled={isSubmitting}
                   >
                     {isSubmitting ? (
@@ -215,14 +215,14 @@ const Contact = () => {
           {/* Contact Information */}
           <div className="space-y-6">
             {/* Office Address */}
-            <Card className="cyber-card neon-glow-soft">
+            <Card className="uconnect-card">
               <CardContent className="p-6">
                 <div className="flex items-start gap-4">
-                  <div className="h-12 w-12 bg-primary/20 rounded-xl flex items-center justify-center flex-shrink-0 neon-glow">
+                  <div className="h-12 w-12 bg-primary/20 rounded-xl flex items-center justify-center flex-shrink-0 uconnect-orange-glow">
                     <MapPin className="h-6 w-6 text-primary" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-card-foreground mb-2 neon-text">Office Address</h4>
+                    <h4 className="font-semibold text-card-foreground mb-2 uconnect-orange-text">Office Address</h4>
                     <p className="text-muted-foreground">
                       Plot No 1398 Air Force Road<br />
                       Govindpur<br />
@@ -234,14 +234,14 @@ const Contact = () => {
             </Card>
 
             {/* Phone */}
-            <Card className="cyber-card neon-glow-soft">
+            <Card className="uconnect-card">
               <CardContent className="p-6">
                 <div className="flex items-start gap-4">
-                  <div className="h-12 w-12 bg-accent/20 rounded-xl flex items-center justify-center flex-shrink-0 neon-glow">
+                  <div className="h-12 w-12 bg-accent/20 rounded-xl flex items-center justify-center flex-shrink-0 uconnect-orange-glow">
                     <Phone className="h-6 w-6 text-accent" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-card-foreground mb-2 neon-text">Phone Numbers</h4>
+                    <h4 className="font-semibold text-card-foreground mb-2 uconnect-orange-text">Phone Numbers</h4>
                     <p className="text-muted-foreground">
                       Main: +91 8979199267<br />
                       HR Dept: +91 8755980465<br />
@@ -253,14 +253,14 @@ const Contact = () => {
             </Card>
 
             {/* Email */}
-            <Card className="cyber-card neon-glow-soft">
+            <Card className="uconnect-card">
               <CardContent className="p-6">
                 <div className="flex items-start gap-4">
-                  <div className="h-12 w-12 bg-primary/20 rounded-xl flex items-center justify-center flex-shrink-0 neon-glow">
+                  <div className="h-12 w-12 bg-primary/20 rounded-xl flex items-center justify-center flex-shrink-0 uconnect-orange-glow">
                     <Mail className="h-6 w-6 text-primary" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-card-foreground mb-2 neon-text">Email Addresses</h4>
+                    <h4 className="font-semibold text-card-foreground mb-2 uconnect-orange-text">Email Addresses</h4>
                     <p className="text-muted-foreground">
                       General: reachus@youconnecttech.com<br />
                       HR: Shivani.s@youconnecttech.com<br />
@@ -272,14 +272,14 @@ const Contact = () => {
             </Card>
 
             {/* Business Hours */}
-            <Card className="cyber-card neon-glow-soft">
+            <Card className="uconnect-card">
               <CardContent className="p-6">
                 <div className="flex items-start gap-4">
-                  <div className="h-12 w-12 bg-accent/20 rounded-xl flex items-center justify-center flex-shrink-0 neon-glow">
+                  <div className="h-12 w-12 bg-accent/20 rounded-xl flex items-center justify-center flex-shrink-0 uconnect-orange-glow">
                     <Clock className="h-6 w-6 text-accent" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-card-foreground mb-2 neon-text">Business Hours</h4>
+                    <h4 className="font-semibold text-card-foreground mb-2 uconnect-orange-text">Business Hours</h4>
                     <p className="text-muted-foreground">
                       Monday - Friday: 9:00 AM - 6:00 PM<br />
                       Saturday: 10:00 AM - 4:00 PM<br />
@@ -294,24 +294,24 @@ const Contact = () => {
 
         {/* CTA Banner */}
         <div className="mt-16 text-center">
-          <div className="cyber-card p-8 lg:p-12 max-w-4xl mx-auto neon-glow-soft">
-            <h3 className="text-3xl font-bold mb-4 neon-text text-primary">
+          <div className="uconnect-card p-8 lg:p-12 max-w-4xl mx-auto">
+            <h3 className="text-3xl font-bold mb-4 uconnect-orange-text text-primary">
               Need Immediate Assistance?
             </h3>
             <p className="text-muted-foreground mb-8 text-lg">
-              Our <span className="text-secondary neon-text">cyber specialists</span> are ready to help you with urgent requirements or any questions you may have.
+              Our <span className="text-secondary uconnect-orange-text">tech specialists</span> are ready to help you with urgent requirements or any questions you may have.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
                 size="lg" 
-                className="bg-accent text-accent-foreground hover:bg-accent/80 neon-border hover:neon-glow transition-all duration-300"
+                className="bg-accent text-accent-foreground hover:bg-accent/80 uconnect-border hover:uconnect-orange-glow transition-all duration-300"
               >
                 Call Now: +91 8979199267
               </Button>
               <Button 
                 size="lg" 
                 variant="outline" 
-                className="border-secondary text-secondary hover:bg-secondary/10 neon-border hover:neon-glow-soft transition-all duration-300"
+                className="border-secondary text-secondary hover:bg-secondary/10 uconnect-border transition-all duration-300"
                 onClick={() => {
                   const contactForm = document.querySelector('form');
                   if (contactForm) {
