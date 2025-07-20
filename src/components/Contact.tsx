@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/lib/supabase";
 import { MapPin, Phone, Mail, Clock, Send } from "lucide-react";
 
 const Contact = () => {
@@ -31,20 +32,38 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch('/functions/v1/send-contact-email', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
+      // First, let's try to insert the data directly into the database
+      const { data, error: dbError } = await supabase
+        .from('contact_submissions')
+        .insert({
+          full_name: formData.fullName,
+          email: formData.email,
+          phone: formData.phone || null,
+          company: formData.company || null,
+          message: formData.message
+        })
+        .select();
 
-      if (!response.ok) {
-        throw new Error('Failed to submit form');
+      if (dbError) {
+        console.error('Database error:', dbError);
+        throw new Error('Failed to save your message');
       }
 
-      const result = await response.json();
-      
+      // Try to call the edge function for email sending
+      try {
+        const { data: emailResult, error: emailError } = await supabase.functions.invoke('send-contact-email', {
+          body: formData
+        });
+
+        if (emailError) {
+          console.error('Email function error:', emailError);
+          // Don't throw here - the data is already saved
+        }
+      } catch (emailError) {
+        console.error('Error calling email function:', emailError);
+        // Continue - the form data is saved even if email fails
+      }
+
       toast({
         title: "Message Sent Successfully!",
         description: "Thank you for contacting us. We'll get back to you soon.",
