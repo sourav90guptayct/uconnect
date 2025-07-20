@@ -1,8 +1,18 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Phone, Mail } from "lucide-react";
+import { Menu, X, Phone, Mail, ChevronDown, Code, Database, Smartphone, Globe, Shield, Zap } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { useNavigate } from "react-router-dom";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  navigationMenuTriggerStyle,
+} from "@/components/ui/navigation-menu";
+import { cn } from "@/lib/utils";
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { user, signOut } = useAuth();
@@ -43,37 +53,126 @@ const Header = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-8">
-            <a href="#home" className="text-foreground hover:text-primary transition-colors">
-              Home
-            </a>
-            <a href="#about" className="text-foreground hover:text-primary transition-colors">
-              About Us
-            </a>
-            <a href="/#services" className="text-foreground hover:text-primary transition-colors">
-              Services
-            </a>
-            <a href="/#why-choose-us" className="text-foreground hover:text-primary transition-colors">
-              Why Choose Us
-            </a>
-            <a href="#contact" className="text-foreground hover:text-primary transition-colors">
-              Contact
-            </a>
-            {user && (
+          <div className="hidden lg:flex items-center space-x-4">
+            <NavigationMenu>
+              <NavigationMenuList>
+                <NavigationMenuItem>
+                  <NavigationMenuLink 
+                    href="#home" 
+                    className={cn(navigationMenuTriggerStyle(), "text-foreground hover:text-primary")}
+                  >
+                    Home
+                  </NavigationMenuLink>
+                </NavigationMenuItem>
+
+                <NavigationMenuItem>
+                  <NavigationMenuLink 
+                    href="#about" 
+                    className={cn(navigationMenuTriggerStyle(), "text-foreground hover:text-primary")}
+                  >
+                    About Us
+                  </NavigationMenuLink>
+                </NavigationMenuItem>
+
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger className="text-foreground hover:text-primary">
+                    Services
+                  </NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <div className="grid gap-3 p-6 w-[500px] lg:w-[600px] lg:grid-cols-2">
+                      <div className="space-y-3">
+                        <h4 className="text-sm font-medium leading-none text-primary">Development Services</h4>
+                        <div className="grid gap-2">
+                          <a href="#services" className="flex items-center gap-2 p-2 hover:bg-accent hover:text-accent-foreground rounded-md transition-colors">
+                            <Code className="h-4 w-4 text-primary" />
+                            <div>
+                              <div className="text-sm font-medium">Web Development</div>
+                              <div className="text-xs text-muted-foreground">Custom web applications</div>
+                            </div>
+                          </a>
+                          <a href="#services" className="flex items-center gap-2 p-2 hover:bg-accent hover:text-accent-foreground rounded-md transition-colors">
+                            <Smartphone className="h-4 w-4 text-primary" />
+                            <div>
+                              <div className="text-sm font-medium">Mobile Apps</div>
+                              <div className="text-xs text-muted-foreground">iOS & Android development</div>
+                            </div>
+                          </a>
+                          <a href="#services" className="flex items-center gap-2 p-2 hover:bg-accent hover:text-accent-foreground rounded-md transition-colors">
+                            <Database className="h-4 w-4 text-primary" />
+                            <div>
+                              <div className="text-sm font-medium">Backend Solutions</div>
+                              <div className="text-xs text-muted-foreground">APIs & database management</div>
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                      <div className="space-y-3">
+                        <h4 className="text-sm font-medium leading-none text-primary">Digital Solutions</h4>
+                        <div className="grid gap-2">
+                          <a href="#services" className="flex items-center gap-2 p-2 hover:bg-accent hover:text-accent-foreground rounded-md transition-colors">
+                            <Globe className="h-4 w-4 text-primary" />
+                            <div>
+                              <div className="text-sm font-medium">Digital Marketing</div>
+                              <div className="text-xs text-muted-foreground">SEO & online presence</div>
+                            </div>
+                          </a>
+                          <a href="#services" className="flex items-center gap-2 p-2 hover:bg-accent hover:text-accent-foreground rounded-md transition-colors">
+                            <Shield className="h-4 w-4 text-primary" />
+                            <div>
+                              <div className="text-sm font-medium">Cybersecurity</div>
+                              <div className="text-xs text-muted-foreground">Security consulting</div>
+                            </div>
+                          </a>
+                          <a href="#services" className="flex items-center gap-2 p-2 hover:bg-accent hover:text-accent-foreground rounded-md transition-colors">
+                            <Zap className="h-4 w-4 text-primary" />
+                            <div>
+                              <div className="text-sm font-medium">Cloud Solutions</div>
+                              <div className="text-xs text-muted-foreground">Scalable infrastructure</div>
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+
+                <NavigationMenuItem>
+                  <NavigationMenuLink 
+                    href="#why-choose-us" 
+                    className={cn(navigationMenuTriggerStyle(), "text-foreground hover:text-primary")}
+                  >
+                    Why Choose Us
+                  </NavigationMenuLink>
+                </NavigationMenuItem>
+
+                <NavigationMenuItem>
+                  <NavigationMenuLink 
+                    href="#contact" 
+                    className={cn(navigationMenuTriggerStyle(), "text-foreground hover:text-primary")}
+                  >
+                    Contact
+                  </NavigationMenuLink>
+                </NavigationMenuItem>
+              </NavigationMenuList>
+            </NavigationMenu>
+
+            <div className="flex items-center space-x-2 ml-4">
+              {user && (
+                <Button 
+                  variant="outline"
+                  onClick={() => navigate('/admin')}
+                >
+                  Admin
+                </Button>
+              )}
               <Button 
-                variant="outline"
-                onClick={() => navigate('/admin')}
+                className="bg-accent text-accent-foreground hover:bg-accent/90"
+                onClick={handleAuthAction}
               >
-                Admin
+                {user ? 'Sign Out' : 'Sign In'}
               </Button>
-            )}
-            <Button 
-              className="bg-accent text-accent-foreground hover:bg-accent/90"
-              onClick={handleAuthAction}
-            >
-              {user ? 'Sign Out' : 'Sign In'}
-            </Button>
-          </nav>
+            </div>
+          </div>
 
           {/* Mobile menu button */}
           <button onClick={toggleMenu} className="lg:hidden p-2 rounded-md text-foreground hover:text-primary">
