@@ -1,108 +1,82 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Users, UserCheck, Building, Briefcase, Search, Cpu, Smartphone, Database, Cloud, Shield, Zap } from "lucide-react";
+import { Users, UserCheck, Building, Briefcase, Search, Settings } from "lucide-react";
 
 const Services = () => {
   const services = [
     {
-      icon: Cpu,
-      title: "Neural Networks",
-      description: "Advanced networking solutions with AI-powered optimization and quantum-level security protocols",
-      features: ["AI-optimized infrastructure", "Quantum encryption", "Self-healing networks", "Predictive maintenance"],
-      gradient: "from-primary to-accent"
+      icon: Users,
+      title: "Managed Services",
+      description: "Focus on core competencies as we take charge of your processes",
+      features: ["End-to-end process management", "24/7 operational support", "Performance monitoring", "Service level agreements"]
     },
     {
       icon: UserCheck,
-      title: "Cyber Workforce",
-      description: "Technology-enabled staffing with neural interface compatibility and biometric verification",
-      features: ["Biometric screening", "Skill-AI matching", "Real-time performance", "Virtual collaboration"],
-      gradient: "from-secondary to-primary"
+      title: "Networks",
+      description: "Stay Connected, Stay Ahead - One-stop-shop for all your networking requirements",
+      features: ["Network infrastructure", "Connectivity solutions", "Network monitoring", "Maintenance & support"]
     },
     {
       icon: Building,
       title: "Digital Transformation",
-      description: "Quantum-powered enterprise solutions with holographic data visualization and neural processing",
-      features: ["Quantum computing", "Holographic displays", "Neural processing", "Autonomous systems"],
-      gradient: "from-accent to-secondary"
+      description: "Store, manage & disseminate data & more. Secure Enterprise IT solutions",
+      features: ["Cloud migration", "Digital platforms", "Data management", "Enterprise IT solutions"]
     },
     {
       icon: Briefcase,
-      title: "Cyber-IP Services",
-      description: "Next-gen intellectual property solutions with blockchain verification and quantum encryption",
-      features: ["Blockchain IP protection", "Quantum encryption", "AI patent analysis", "Digital rights management"],
-      gradient: "from-primary to-secondary"
+      title: "IP Services",
+      description: "Cutting edge IP & ITeS solutions: Empowering your growth",
+      features: ["IP infrastructure", "ITeS solutions", "Technology consulting", "System integration"]
     },
     {
       icon: Search,
-      title: "Resource Matrix",
-      description: "AI-driven resource allocation with predictive analytics and autonomous workforce management",
-      features: ["Predictive analytics", "Autonomous allocation", "Neural matching", "Real-time optimization"],
-      gradient: "from-secondary to-accent"
-    },
-    {
-      icon: Shield,
-      title: "Fortress Security",
-      description: "Military-grade cybersecurity with quantum barriers and neural threat detection systems",
-      features: ["Quantum barriers", "Neural threat detection", "Autonomous response", "Biometric access"],
-      gradient: "from-accent to-primary"
+      title: "Resource Management",
+      description: "Technology enabled staffing so that you focus on your core business",
+      features: ["Technology staffing", "Resource allocation", "Skill management", "Workforce optimization"]
     }
   ];
 
   return (
-    <section id="services" className="py-20 bg-background relative overflow-hidden">
-      {/* Background effects */}
-      <div className="absolute inset-0 uconnect-tech-pattern opacity-20"></div>
-      <div className="absolute top-10 right-10 w-64 h-64 rounded-full bg-primary/10 blur-3xl animate-float"></div>
-      <div className="absolute bottom-10 left-10 w-48 h-48 rounded-full bg-secondary/10 blur-3xl animate-float" style={{animationDelay: '3s'}}></div>
-      
-      <div className="container mx-auto px-4 relative z-10">
+    <section id="services" className="py-20 bg-muted/30">
+      <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 uconnect-card px-4 py-2 rounded-full mb-6">
-            <Briefcase className="h-5 w-5 text-primary" />
-            <span className="font-semibold text-primary uconnect-orange-text">Our Services</span>
+          <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full mb-6">
+            <Briefcase className="h-5 w-5" />
+            <span className="font-semibold">Our Services</span>
           </div>
           
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-            <span className="uconnect-orange-gradient bg-clip-text text-transparent uconnect-orange-text">
-              Advanced Technology
-            </span>
-            <br />
-            <span className="text-foreground uconnect-orange-text">
-              Solutions
-            </span>
+          <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-foreground">
+            Comprehensive Technology Solutions for
+            <span className="text-primary"> Every Industry</span>
           </h2>
           
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Unleash the future with our comprehensive suite of <span className="text-accent uconnect-orange-text">cutting-edge</span> technology solutions 
-            across all domains to help you innovate and succeed.
+            From telecom infrastructure to digital transformation, we provide cutting-edge 
+            technology solutions across all domains to help you innovate, implement and succeed.
           </p>
         </div>
 
         {/* Services Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
-            <Card 
-              key={index} 
-              className="uconnect-card hover:uconnect-orange-glow transition-all duration-500 group"
-              style={{animationDelay: `${index * 0.5}s`}}
-            >
+            <Card key={index} className="group hover:shadow-xl transition-all duration-300 border-border hover:border-primary/30">
               <CardHeader>
-                <div className={`h-16 w-16 bg-gradient-to-br ${service.gradient} rounded-xl flex items-center justify-center mb-4 group-hover:uconnect-orange-glow transition-all duration-300`}>
-                  <service.icon className="h-8 w-8 text-background" />
+                <div className="h-16 w-16 bg-primary/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+                  <service.icon className="h-8 w-8 text-primary" />
                 </div>
-                <CardTitle className="text-xl text-card-foreground group-hover:text-primary transition-colors uconnect-orange-text">
+                <CardTitle className="text-xl text-card-foreground group-hover:text-primary transition-colors">
                   {service.title}
                 </CardTitle>
-                <CardDescription className="text-muted-foreground group-hover:text-foreground transition-colors">
+                <CardDescription className="text-muted-foreground">
                   {service.description}
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <ul className="space-y-2">
                   {service.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className="flex items-center gap-2 text-sm text-muted-foreground group-hover:text-foreground transition-colors">
-                      <div className="h-1.5 w-1.5 bg-accent rounded-full flex-shrink-0 uconnect-orange-glow" />
+                    <li key={featureIndex} className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <div className="h-1.5 w-1.5 bg-accent rounded-full flex-shrink-0" />
                       {feature}
                     </li>
                   ))}
@@ -114,18 +88,17 @@ const Services = () => {
 
         {/* CTA Section */}
         <div className="text-center mt-16">
-          <div className="uconnect-card p-8 lg:p-12 max-w-4xl mx-auto">
-            <h3 className="text-3xl font-bold mb-4 uconnect-orange-text text-primary">
+          <div className="bg-card border border-border rounded-2xl p-8 lg:p-12 max-w-4xl mx-auto">
+            <h3 className="text-3xl font-bold mb-4 text-card-foreground">
               Need a Custom Solution?
             </h3>
             <p className="text-muted-foreground mb-8 text-lg">
-              Every organization is unique. Let us create a <span className="text-secondary uconnect-orange-text">tailored technology strategy</span> 
+              Every organization is unique. Let us create a tailored technology strategy 
               that aligns perfectly with your specific requirements and business goals.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
                 size="lg"
-                className="bg-primary hover:bg-primary/80 text-primary-foreground uconnect-border hover:uconnect-orange-glow transition-all duration-300"
                 onClick={() => {
                   const contactSection = document.getElementById('contact');
                   if (contactSection) {
@@ -138,7 +111,6 @@ const Services = () => {
               <Button 
                 variant="outline" 
                 size="lg"
-                className="border-secondary text-secondary hover:bg-secondary/10 uconnect-border transition-all duration-300"
                 onClick={() => {
                   const contactSection = document.getElementById('contact');
                   if (contactSection) {
