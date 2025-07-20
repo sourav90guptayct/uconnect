@@ -86,16 +86,6 @@ const Services = () => {
           ))}
         </div>
 
-        {/* Explore All Services */}
-        <div className="text-center mt-12 mb-16">
-          <Button size="lg" variant="outline" asChild>
-            <a href="/services">
-              Explore All Services
-              <Search className="ml-2 h-5 w-5" />
-            </a>
-          </Button>
-        </div>
-
         {/* CTA Section */}
         <div className="text-center mt-16">
           <div className="bg-card border border-border rounded-2xl p-8 lg:p-12 max-w-4xl mx-auto">
