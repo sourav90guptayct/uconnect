@@ -40,7 +40,7 @@ const Header = () => {
               <span className="text-primary">
                 YouConnect
               </span>
-              <span className="text-foreground"> Technologies</span>
+              <span className="text-secondary"> Technologies</span>
             </div>
           </div>
 
@@ -71,7 +71,7 @@ const Header = () => {
               </Button>
             )}
             <Button 
-              className="bg-primary text-primary-foreground hover:bg-primary/90"
+              className="bg-secondary text-secondary-foreground hover:bg-secondary/90 font-semibold"
               onClick={handleAuthAction}
             >
               {user ? 'Sign Out' : 'Sign In'}
@@ -112,7 +112,7 @@ const Header = () => {
                 </Button>
               )}
               <Button 
-                className="bg-primary text-primary-foreground hover:bg-primary/90 w-fit"
+                className="bg-secondary text-secondary-foreground hover:bg-secondary/90 w-fit font-semibold"
                 onClick={handleAuthAction}
               >
                 {user ? 'Sign Out' : 'Sign In'}
