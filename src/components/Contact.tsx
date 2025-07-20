@@ -264,8 +264,8 @@ const Contact = () => {
                     <h4 className="font-semibold text-card-foreground mb-2">Phone Numbers</h4>
                     <p className="text-muted-foreground">
                       Main: +91 8979199267<br />
-                      HR Dept: +91 8979199267<br />
-                      Support: +91 8979199267
+                      HR Dept: +91 8755980465<br />
+                      Support: +91 7895154327
                     </p>
                   </div>
                 </div>
