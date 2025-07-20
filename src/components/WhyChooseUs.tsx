@@ -95,11 +95,11 @@ const WhyChooseUs = () => {
         {/* Stats Section */}
         <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8">
           <div className="text-center">
-            <div className="text-4xl font-bold text-primary mb-2">20+</div>
-            <div className="text-muted-foreground">Happy Clients</div>
+            <div className="text-4xl font-bold text-primary mb-2">50+</div>
+            <div className="text-muted-foreground">Clients Served</div>
           </div>
           <div className="text-center">
-            <div className="text-4xl font-bold text-primary mb-2">5000+</div>
+            <div className="text-4xl font-bold text-primary mb-2">2000+</div>
             <div className="text-muted-foreground">Successful Placements</div>
           </div>
           <div className="text-center">
@@ -107,7 +107,7 @@ const WhyChooseUs = () => {
             <div className="text-muted-foreground">Industries Served</div>
           </div>
           <div className="text-center">
-            <div className="text-4xl font-bold text-primary mb-2">98%</div>
+            <div className="text-4xl font-bold text-primary mb-2">99%</div>
             <div className="text-muted-foreground">Client Satisfaction</div>
           </div>
         </div>

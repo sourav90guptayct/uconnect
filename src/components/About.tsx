@@ -80,15 +80,15 @@ const About = () => {
               <div className="col-span-2 bg-gradient-to-r from-primary to-primary/80 text-primary-foreground rounded-xl p-6">
                 <div className="grid grid-cols-3 gap-4 text-center">
                   <div>
-                    <div className="text-2xl font-bold mb-1">500+</div>
+                    <div className="text-2xl font-bold mb-1">50+</div>
                     <div className="text-sm opacity-90">Clients Served</div>
                   </div>
                   <div>
-                    <div className="text-2xl font-bold mb-1">10K+</div>
+                    <div className="text-2xl font-bold mb-1">2000+</div>
                     <div className="text-sm opacity-90">Successful Placements</div>
                   </div>
                   <div>
-                    <div className="text-2xl font-bold mb-1">98%</div>
+                    <div className="text-2xl font-bold mb-1">99%</div>
                     <div className="text-sm opacity-90">Client Satisfaction</div>
                   </div>
                 </div>
