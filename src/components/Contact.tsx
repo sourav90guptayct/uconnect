@@ -190,9 +190,9 @@ const Contact = () => {
                   <div>
                     <h4 className="font-semibold text-card-foreground mb-2">Email Addresses</h4>
                     <p className="text-muted-foreground">
-                      General: contact@youconnecttechnologies.com<br />
-                      HR: hr@youconnecttechnologies.com<br />
-                      Support: support@youconnecttechnologies.com
+                      General: reachus@youconnecttech.com<br />
+                      HR: Shivani.s@youconnecttech.com<br />
+                      Support: a_singh@youconnecttech.com
                     </p>
                   </div>
                 </div>
