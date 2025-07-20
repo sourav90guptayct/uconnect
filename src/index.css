@@ -4,100 +4,96 @@
 
 @layer base {
   :root {
-    /* Professional Dark Blue with Gold Accents Theme */
-    --background: 220 30% 8%;          /* Deep navy background */
+    /* Quess Corp Theme - Dark Navy with Gold Accents */
+    --background: 210 45% 8%;          /* Deep navy blue background */
     --foreground: 210 20% 90%;         /* Light blue-gray text */
     
-    --card: 220 25% 12%;               /* Slightly lighter navy */
+    --card: 210 40% 12%;               /* Slightly lighter navy */
     --card-foreground: 210 15% 85%;    /* Light text on cards */
     
-    --popover: 220 30% 10%;            /* Dark navy popover */
+    --popover: 210 45% 10%;            /* Dark navy popover */
     --popover-foreground: 210 20% 90%;
     
-    --primary: 45 95% 60%;             /* Rich gold */
-    --primary-foreground: 220 30% 8%;  /* Dark navy text on gold */
+    --primary: 43 96% 56%;             /* Quess gold */
+    --primary-foreground: 210 45% 8%;  /* Dark navy text on gold */
     
-    --secondary: 210 40% 25%;          /* Professional blue */
-    --secondary-foreground: 210 20% 90%; /* Light text on blue */
+    --secondary: 195 85% 45%;          /* Quess light blue */
+    --secondary-foreground: 210 45% 8%; /* Dark text on blue */
     
-    --accent: 50 90% 65%;              /* Bright yellow accent */
-    --accent-foreground: 220 30% 8%;
+    --accent: 51 100% 50%;             /* Bright yellow accent */
+    --accent-foreground: 210 45% 8%;
     
     --destructive: 0 70% 55%;          /* Professional red */
     --destructive-foreground: 210 20% 90%;
     
-    --border: 210 25% 20%;             /* Subtle blue border */
-    --input: 220 25% 15%;              /* Dark input background */
-    --ring: 45 95% 60%;                /* Gold focus ring */
+    --border: 210 30% 18%;             /* Subtle navy border */
+    --input: 210 40% 15%;              /* Dark input background */
+    --ring: 43 96% 56%;                /* Gold focus ring */
     
-    --muted: 220 20% 15%;              /* Muted background */
+    --muted: 210 35% 14%;              /* Muted background */
     --muted-foreground: 210 15% 60%;   /* Muted text */
     
     --radius: 0.5rem;
     
-    /* Professional Theme Custom Properties */
-    --gold-glow: 0 0 15px hsl(45 95% 60% / 0.3), 0 0 30px hsl(45 95% 60% / 0.2);
-    --subtle-glow: 0 0 10px hsl(210 40% 25% / 0.2);
-    --professional-pattern: repeating-linear-gradient(
-      45deg,
-      transparent,
-      transparent 2px,
-      hsl(210 25% 20% / 0.1) 2px,
-      hsl(210 25% 20% / 0.1) 4px
-    );
+    /* Quess Corp Custom Properties */
+    --quess-gold-glow: 0 0 20px hsl(43 96% 56% / 0.3), 0 0 40px hsl(43 96% 56% / 0.2);
+    --quess-pattern: 
+      linear-gradient(135deg, transparent 25%, hsl(43 96% 56% / 0.1) 25%, hsl(43 96% 56% / 0.1) 50%, transparent 50%, transparent 75%, hsl(43 96% 56% / 0.1) 75%, hsl(43 96% 56% / 0.1)),
+      linear-gradient(45deg, transparent 25%, hsl(195 85% 45% / 0.05) 25%, hsl(195 85% 45% / 0.05) 50%, transparent 50%, transparent 75%, hsl(195 85% 45% / 0.05) 75%, hsl(195 85% 45% / 0.05));
+    --quess-pattern-size: 40px 40px, 20px 20px;
     
     /* Gradients */
-    --gradient-professional: linear-gradient(135deg, hsl(220 25% 12%), hsl(210 40% 25%));
-    --gradient-gold: linear-gradient(90deg, hsl(45 95% 60%), hsl(50 90% 65%));
+    --gradient-quess: linear-gradient(135deg, hsl(210 40% 12%), hsl(195 85% 45% / 0.2));
+    --gradient-gold: linear-gradient(90deg, hsl(43 96% 56%), hsl(51 100% 50%));
 
-    --sidebar-background: 222 84% 5%;
-    --sidebar-foreground: 193 100% 95%;
-    --sidebar-primary: 283 100% 65%;
-    --sidebar-primary-foreground: 222 84% 5%;
-    --sidebar-accent: 222 84% 8%;
-    --sidebar-accent-foreground: 193 100% 90%;
-    --sidebar-border: 283 100% 25%;
-    --sidebar-ring: 283 100% 65%;
+    --sidebar-background: 210 45% 8%;
+    --sidebar-foreground: 210 20% 90%;
+    --sidebar-primary: 43 96% 56%;
+    --sidebar-primary-foreground: 210 45% 8%;
+    --sidebar-accent: 210 40% 12%;
+    --sidebar-accent-foreground: 210 15% 85%;
+    --sidebar-border: 210 30% 18%;
+    --sidebar-ring: 43 96% 56%;
   }
 
   .dark {
-    /* Professional dark mode consistency */
-    --background: 220 30% 8%;
+    /* Quess Corp dark mode consistency */
+    --background: 210 45% 8%;
     --foreground: 210 20% 90%;
     
-    --card: 220 25% 12%;
+    --card: 210 40% 12%;
     --card-foreground: 210 15% 85%;
     
-    --popover: 220 30% 10%;
+    --popover: 210 45% 10%;
     --popover-foreground: 210 20% 90%;
     
-    --primary: 45 95% 60%;
-    --primary-foreground: 220 30% 8%;
+    --primary: 43 96% 56%;
+    --primary-foreground: 210 45% 8%;
     
-    --secondary: 210 40% 25%;
-    --secondary-foreground: 210 20% 90%;
+    --secondary: 195 85% 45%;
+    --secondary-foreground: 210 45% 8%;
     
-    --accent: 50 90% 65%;
-    --accent-foreground: 220 30% 8%;
+    --accent: 51 100% 50%;
+    --accent-foreground: 210 45% 8%;
     
     --destructive: 0 70% 55%;
     --destructive-foreground: 210 20% 90%;
     
-    --border: 210 25% 20%;
-    --input: 220 25% 15%;
-    --ring: 45 95% 60%;
+    --border: 210 30% 18%;
+    --input: 210 40% 15%;
+    --ring: 43 96% 56%;
     
-    --muted: 220 20% 15%;
+    --muted: 210 35% 14%;
     --muted-foreground: 210 15% 60%;
 
-    --sidebar-background: 220 30% 8%;
+    --sidebar-background: 210 45% 8%;
     --sidebar-foreground: 210 20% 90%;
-    --sidebar-primary: 45 95% 60%;
-    --sidebar-primary-foreground: 220 30% 8%;
-    --sidebar-accent: 220 25% 12%;
+    --sidebar-primary: 43 96% 56%;
+    --sidebar-primary-foreground: 210 45% 8%;
+    --sidebar-accent: 210 40% 12%;
     --sidebar-accent-foreground: 210 15% 85%;
-    --sidebar-border: 210 25% 20%;
-    --sidebar-ring: 45 95% 60%;
+    --sidebar-border: 210 30% 18%;
+    --sidebar-ring: 43 96% 56%;
   }
 }
 
@@ -108,46 +104,60 @@
   
   body {
     @apply bg-background text-foreground;
-    background-image: var(--professional-pattern);
+    background-image: var(--quess-pattern);
+    background-size: var(--quess-pattern-size);
     background-attachment: fixed;
   }
 }
 
 @layer components {
-  /* Professional glow effects */
-  .gold-glow {
-    box-shadow: var(--gold-glow);
+  /* Quess Corp theme effects */
+  .quess-gold-glow {
+    box-shadow: var(--quess-gold-glow);
   }
   
-  .subtle-glow {
-    box-shadow: var(--subtle-glow);
-  }
-  
-  .professional-border {
+  .quess-border {
     border: 1px solid hsl(var(--border));
-    box-shadow: 0 0 8px hsl(45 95% 60% / 0.15), inset 0 0 8px hsl(45 95% 60% / 0.05);
+    box-shadow: 0 0 12px hsl(43 96% 56% / 0.2), inset 0 0 8px hsl(43 96% 56% / 0.05);
   }
   
-  .gold-text {
+  .quess-gold-text {
     color: hsl(var(--primary));
-    text-shadow: 0 0 8px hsl(45 95% 60% / 0.3);
+    text-shadow: 0 0 10px hsl(43 96% 56% / 0.4);
   }
   
-  .professional-card {
+  .quess-card {
     @apply bg-card/90 backdrop-blur-sm border border-border rounded-lg;
-    box-shadow: 0 4px 20px hsl(220 30% 8% / 0.5), 0 0 15px hsl(45 95% 60% / 0.1);
+    box-shadow: 0 8px 32px hsl(210 45% 8% / 0.6), 0 0 20px hsl(43 96% 56% / 0.1);
   }
   
-  .professional-gradient {
-    background: var(--gradient-professional);
+  .quess-gradient {
+    background: var(--gradient-quess);
     background-size: 200% 200%;
     animation: gradient-shift 8s ease infinite;
   }
   
-  .gold-gradient {
+  .quess-gold-gradient {
     background: var(--gradient-gold);
     background-size: 200% 200%;
     animation: gradient-shift 6s ease infinite;
+  }
+  
+  .quess-geometric {
+    position: relative;
+  }
+  
+  .quess-geometric::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--quess-pattern);
+    background-size: var(--quess-pattern-size);
+    opacity: 0.5;
+    pointer-events: none;
   }
 }
 
@@ -173,19 +183,19 @@
 
 @keyframes pulse-gold {
   from {
-    text-shadow: 0 0 5px hsl(45 95% 60% / 0.5), 0 0 10px hsl(45 95% 60% / 0.3);
+    text-shadow: 0 0 5px hsl(43 96% 56% / 0.5), 0 0 10px hsl(43 96% 56% / 0.3);
   }
   to {
-    text-shadow: 0 0 10px hsl(45 95% 60% / 0.8), 0 0 20px hsl(45 95% 60% / 0.4);
+    text-shadow: 0 0 10px hsl(43 96% 56% / 0.8), 0 0 20px hsl(43 96% 56% / 0.4);
   }
 }
 
 @keyframes glow-professional {
   from {
-    box-shadow: 0 0 5px hsl(45 95% 60% / 0.3), 0 0 10px hsl(210 40% 25% / 0.2);
+    box-shadow: 0 0 5px hsl(43 96% 56% / 0.3), 0 0 10px hsl(195 85% 45% / 0.2);
   }
   to {
-    box-shadow: 0 0 15px hsl(45 95% 60% / 0.5), 0 0 20px hsl(210 40% 25% / 0.3);
+    box-shadow: 0 0 15px hsl(43 96% 56% / 0.5), 0 0 20px hsl(195 85% 45% / 0.3);
   }
 }
 
