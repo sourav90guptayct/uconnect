@@ -78,18 +78,22 @@ const About = () => {
 
               {/* Stats Card */}
               <div className="col-span-2 bg-gradient-to-r from-primary to-primary/80 text-primary-foreground rounded-xl p-6">
-                <div className="grid grid-cols-3 gap-4 text-center">
-                  <div>
-                    <div className="text-2xl font-bold mb-1">50+</div>
-                    <div className="text-sm opacity-90">Clients Served</div>
+                <div className="grid grid-cols-2 gap-6">
+                  <div className="text-center">
+                    <div className="text-3xl font-bold mb-1">2017</div>
+                    <div className="text-sm opacity-90">Year Established</div>
                   </div>
-                  <div>
-                    <div className="text-2xl font-bold mb-1">2000+</div>
+                  <div className="text-center">
+                    <div className="text-3xl font-bold mb-1">5+</div>
+                    <div className="text-sm opacity-90">States</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-3xl font-bold mb-1">100+</div>
+                    <div className="text-sm opacity-90">Employees</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-3xl font-bold mb-1">2000+</div>
                     <div className="text-sm opacity-90">Successful Placements</div>
-                  </div>
-                  <div>
-                    <div className="text-2xl font-bold mb-1">99%</div>
-                    <div className="text-sm opacity-90">Client Satisfaction</div>
                   </div>
                 </div>
               </div>
