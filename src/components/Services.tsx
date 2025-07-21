@@ -1,14 +1,20 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Users, UserCheck, Building, Briefcase, Search, Settings } from "lucide-react";
+import { Users, UserCheck, Building, Briefcase, Search, Settings, Network } from "lucide-react";
 
 const Services = () => {
   const services = [
     {
+      icon: Network,
+      title: "Networks",
+      description: "Stay Connected, Stay Ahead - One-stop-shop for all your networking requirements",
+      features: ["Network infrastructure", "Connectivity solutions", "Network monitoring", "Maintenance & support"]
+    },
+    {
       icon: Users,
-      title: "Managed Services Networks",
-      description: "Focus on core competencies as we take charge of your network processes",
-      features: ["End-to-end network management", "24/7 operational support", "Network monitoring", "Service level agreements"]
+      title: "Managed Services",
+      description: "Focus on core competencies as we take charge of your processes",
+      features: ["End-to-end process management", "24/7 operational support", "Performance monitoring", "Service level agreements"]
     },
     {
       icon: Building,
