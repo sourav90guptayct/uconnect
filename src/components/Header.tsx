@@ -13,10 +13,12 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
+
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { user, signOut } = useAuth();
   const navigate = useNavigate();
+
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   const handleAuthAction = () => {
@@ -26,21 +28,9 @@ const Header = () => {
       navigate('/auth');
     }
   };
-  return <header className="bg-background border-b border-border sticky top-0 z-50">
-      {/* Top contact bar */}
-      <div className="bg-primary text-primary-foreground py-2">
-        <div className="container mx-auto px-4 flex justify-end items-center gap-6 text-sm">
-          <div className="flex items-center gap-2">
-            <Phone className="h-4 w-4" />
-            <span>+(91) 8979199267 </span>
-          </div>
-          <div className="flex items-center gap-2">
-            <Mail className="h-4 w-4" />
-            <span>reachus@youconnecttech.com</span>
-          </div>
-        </div>
-      </div>
 
+  return (
+    <header className="bg-background border-b border-border sticky top-0 z-50">
       {/* Main navigation */}
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
@@ -131,7 +121,8 @@ const Header = () => {
         </div>
 
         {/* Mobile Navigation */}
-        {isMenuOpen && <div className="lg:hidden pb-4">
+        {isMenuOpen && (
+          <div className="lg:hidden pb-4">
             <nav className="flex flex-col space-y-4">
               <a href="#home" className="text-foreground hover:text-primary transition-colors">
                 Home
@@ -167,8 +158,11 @@ const Header = () => {
                 {user ? 'Sign Out' : 'Sign In'}
               </Button>
             </nav>
-          </div>}
+          </div>
+        )}
       </div>
-    </header>;
+    </header>
+  );
 };
+
 export default Header;
