@@ -231,11 +231,9 @@ const Contact = () => {
                     <Phone className="h-6 w-6 text-accent" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-card-foreground mb-2">Phone Numbers</h4>
+                    <h4 className="font-semibold text-card-foreground mb-2">Phone Number</h4>
                     <p className="text-muted-foreground">
-                      Main: +91 8979199267<br />
-                      HR Dept: +91 8755980465<br />
-                      Support: +91 7895154327
+                      8979199267
                     </p>
                   </div>
                 </div>
@@ -250,11 +248,9 @@ const Contact = () => {
                     <Mail className="h-6 w-6 text-primary" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-card-foreground mb-2">Email Addresses</h4>
+                    <h4 className="font-semibold text-card-foreground mb-2">Email Address</h4>
                     <p className="text-muted-foreground">
-                      General: reachus@youconnecttech.com<br />
-                      HR: Shivani.s@youconnecttech.com<br />
-                      Support: a_singh@youconnecttech.com
+                      reachus@youconnecttech.com
                     </p>
                   </div>
                 </div>
@@ -293,7 +289,7 @@ const Contact = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">
-                Call Now: +91 8979199267
+                Call Now: 8979199267
               </Button>
               <Button 
                 size="lg" 
