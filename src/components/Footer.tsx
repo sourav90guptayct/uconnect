@@ -67,28 +67,33 @@ const Footer = () => {
             <h3 className="text-lg font-semibold mb-4">Our Services</h3>
             <ul className="space-y-3">
               <li>
-                <a href="#" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
-                  Temporary Staffing
+                <a href="/services" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
+                  Managed Services
                 </a>
               </li>
               <li>
-                <a href="#" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
-                  Permanent Recruitment
+                <a href="/services" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
+                  Networks
                 </a>
               </li>
               <li>
-                <a href="#" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
-                  Contract Staffing
+                <a href="/services" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
+                  Infra Installation
                 </a>
               </li>
               <li>
-                <a href="#" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
-                  Executive Search
+                <a href="/services" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
+                  Resource Management
                 </a>
               </li>
               <li>
-                <a href="#" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
-                  HR Consulting
+                <a href="/services" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
+                  Digital Transformation
+                </a>
+              </li>
+              <li>
+                <a href="/services" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
+                  IP Services
                 </a>
               </li>
             </ul>
