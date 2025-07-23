@@ -64,7 +64,7 @@ const ServicesPage = () => {
             Our Services
           </h1>
           <p className="text-xl text-primary-foreground/90 max-w-3xl">
-            YouConnect Technologies offers comprehensive technology solutions across all domains. 
+            uConnect Technologies offers comprehensive technology solutions across all domains. 
             From network management to infrastructure installation, we provide the expertise you need to succeed.
           </p>
         </div>

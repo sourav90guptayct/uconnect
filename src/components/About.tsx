@@ -19,7 +19,7 @@ const About = () => {
             </h2>
             
             <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-              YouConnect Technologies is a leading provider of comprehensive manpower services, 
+              uConnect Technologies is a leading provider of comprehensive manpower services, 
               leveraging our extensive industry knowledge and innovative recruitment platforms to 
               deliver exceptional workforce solutions that drive organizational productivity and growth.
             </p>

@@ -44,7 +44,7 @@ const WhyChooseUs = () => {
           </h2>
           
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            What sets YouConnect Technologies apart in the competitive manpower solutions landscape
+            What sets uConnect Technologies apart in the competitive manpower solutions landscape
           </p>
         </div>
 

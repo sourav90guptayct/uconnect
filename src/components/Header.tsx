@@ -37,7 +37,7 @@ const Header = () => {
           {/* Logo */}
           <div className="flex items-center">
             <div className="text-2xl font-bold text-primary">
-              YouConnect
+              uConnect
               <span className="text-accent"> Technologies</span>
             </div>
           </div>

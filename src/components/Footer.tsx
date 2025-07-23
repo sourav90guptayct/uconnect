@@ -7,7 +7,7 @@ const Footer = () => {
           {/* Company Info */}
           <div>
             <div className="text-2xl font-bold mb-4">
-              YouConnect
+              uConnect
               <span className="text-accent"> Technologies</span>
             </div>
             <p className="text-primary-foreground/80 mb-6">
@@ -117,7 +117,7 @@ const Footer = () => {
               </div>
               <div className="flex items-center gap-3">
                 <Mail className="h-5 w-5 text-accent flex-shrink-0" />
-                <div className="text-primary-foreground/80">reachus@youconnecttech.com</div>
+                <div className="text-primary-foreground/80">reachus@uconnecttech.com</div>
               </div>
             </div>
           </div>
@@ -128,7 +128,7 @@ const Footer = () => {
         {/* Bottom Footer */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="text-primary-foreground/80 text-sm">
-            © 2024 YouConnect Technologies. All rights reserved.
+            © 2024 uConnect Technologies. All rights reserved.
           </div>
           <div className="flex gap-6 text-sm">
             <a href="#" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">

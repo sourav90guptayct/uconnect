@@ -78,7 +78,7 @@ const CareersPage = () => {
             Join Our Team
           </h1>
           <p className="text-xl text-primary-foreground/90 max-w-3xl">
-            Be part of YouConnect Technologies and help shape the future of technology solutions. 
+            Be part of uConnect Technologies and help shape the future of technology solutions. 
             We're looking for passionate individuals who want to make a difference.
           </p>
         </div>
@@ -102,7 +102,7 @@ const CareersPage = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-bold mb-6 text-foreground">
-              Why Choose YouConnect Technologies?
+              Why Choose uConnect Technologies?
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               We offer more than just a job - we provide a platform for growth, innovation, and meaningful impact.

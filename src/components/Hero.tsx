@@ -31,7 +31,7 @@ const Hero = () => {
             </h1>
             
             <p className="text-xl mb-8 text-gray-200 leading-relaxed">
-              YouConnect Technologies is your premier partner for comprehensive technology solutions. 
+              uConnect Technologies is your premier partner for comprehensive technology solutions. 
               We connect organizations with cutting-edge infrastructure, digital transformation, and 
               innovative technology services to drive productivity, growth, and success across all industries.
             </p>
