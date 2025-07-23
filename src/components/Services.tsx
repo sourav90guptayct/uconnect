@@ -5,8 +5,8 @@ import circuitBoard from "@/assets/circuit-board.jpg";
 import teamwork from "@/assets/teamwork.jpg";
 import codeTech from "@/assets/code-tech.jpg";
 import planning from "@/assets/planning.jpg";
-import aiRobot from "@/assets/ai-robot.jpg";
-import smartOffice from "@/assets/smart-office.jpg";
+import workforceManagement from "@/assets/workforce-management.jpg";
+import infrastructure from "@/assets/infrastructure.jpg";
 
 const Services = () => {
   const services = [
@@ -40,14 +40,14 @@ const Services = () => {
     },
     {
       icon: Search,
-      image: aiRobot,
+      image: workforceManagement,
       title: "Resource Management",
       description: "Technology enabled staffing so that you focus on your core business",
       features: ["Technology staffing", "Resource allocation", "Skill management", "Workforce optimization"]
     },
     {
       icon: Settings,
-      image: smartOffice,
+      image: infrastructure,
       title: "Infra Installation",
       description: "Self support and Guy mast Tower as well as Pole, Tower Erection Service and Pole Erection Service",
       features: ["Self support installations", "Guy mast tower setup", "Pole erection services", "Tower erection services"]
