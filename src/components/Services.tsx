@@ -1,41 +1,53 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Users, UserCheck, Building, Briefcase, Search, Settings, Network } from "lucide-react";
+import circuitBoard from "@/assets/circuit-board.jpg";
+import teamwork from "@/assets/teamwork.jpg";
+import codeTech from "@/assets/code-tech.jpg";
+import planning from "@/assets/planning.jpg";
+import aiRobot from "@/assets/ai-robot.jpg";
+import smartOffice from "@/assets/smart-office.jpg";
 
 const Services = () => {
   const services = [
     {
       icon: Network,
+      image: circuitBoard,
       title: "Networks",
       description: "Stay Connected, Stay Ahead - One-stop-shop for all your networking requirements",
       features: ["Network infrastructure", "Connectivity solutions", "Network monitoring", "Maintenance & support"]
     },
     {
       icon: Users,
+      image: teamwork,
       title: "Managed Services",
       description: "Focus on core competencies as we take charge of your processes",
       features: ["End-to-end process management", "24/7 operational support", "Performance monitoring", "Service level agreements"]
     },
     {
       icon: Building,
+      image: codeTech,
       title: "Digital Transformation",
       description: "Store, manage & disseminate data & more. Secure Enterprise IT solutions",
       features: ["Cloud migration", "Digital platforms", "Data management", "Enterprise IT solutions"]
     },
     {
       icon: Briefcase,
+      image: planning,
       title: "IP Services",
       description: "Cutting edge IP & ITeS solutions: Empowering your growth",
       features: ["IP infrastructure", "ITeS solutions", "Technology consulting", "System integration"]
     },
     {
       icon: Search,
+      image: aiRobot,
       title: "Resource Management",
       description: "Technology enabled staffing so that you focus on your core business",
       features: ["Technology staffing", "Resource allocation", "Skill management", "Workforce optimization"]
     },
     {
       icon: Settings,
+      image: smartOffice,
       title: "Infra Installation",
       description: "Self support and Guy mast Tower as well as Pole, Tower Erection Service and Pole Erection Service",
       features: ["Self support installations", "Guy mast tower setup", "Pole erection services", "Tower erection services"]
@@ -66,11 +78,21 @@ const Services = () => {
         {/* Services Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
-            <Card key={index} className="group hover:shadow-xl transition-all duration-300 border-border hover:border-primary/30">
-              <CardHeader>
-                <div className="h-16 w-16 bg-primary/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-                  <service.icon className="h-8 w-8 text-primary" />
+            <Card key={index} className="group hover:shadow-xl transition-all duration-300 border-border hover:border-primary/30 overflow-hidden">
+              <div className="relative h-48 overflow-hidden">
+                <img 
+                  src={service.image} 
+                  alt={service.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
+                <div className="absolute bottom-4 left-4">
+                  <div className="h-12 w-12 bg-primary/90 rounded-lg flex items-center justify-center backdrop-blur-sm">
+                    <service.icon className="h-6 w-6 text-primary-foreground" />
+                  </div>
                 </div>
+              </div>
+              <CardHeader>
                 <CardTitle className="text-xl text-card-foreground group-hover:text-primary transition-colors">
                   {service.title}
                 </CardTitle>
