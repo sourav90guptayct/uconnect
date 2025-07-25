@@ -49,7 +49,7 @@ const Hero = () => {
                 size="lg" 
                 variant="outline" 
                 className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary text-lg px-8"
-                onClick={() => document.getElementById('contact')}
+                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
               >
                 Contact Us Today
               </Button>
