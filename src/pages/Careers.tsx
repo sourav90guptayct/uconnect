@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, MapPin, Clock, Users, Award, Heart, Zap } from "lucide-react";
 import { Link } from "react-router-dom";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 const CareersPage = () => {
   const jobOpenings = [
@@ -65,6 +67,7 @@ const CareersPage = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Header />
       {/* Header */}
       <div className="bg-primary text-primary-foreground py-20">
         <div className="container mx-auto px-4">
@@ -213,6 +216,7 @@ const CareersPage = () => {
           </div>
         </div>
       </section>
+      <Footer />
     </div>
   );
 };

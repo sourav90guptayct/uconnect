@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Users, Building, Briefcase, Search, Settings, ArrowLeft, Network } from "lucide-react";
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import circuitBoard from "@/assets/circuit-board.jpg";
 import teamwork from "@/assets/teamwork.jpg";
 import codeTech from "@/assets/code-tech.jpg";
@@ -161,6 +162,7 @@ const ServicesPage = () => {
           </div>
         </div>
       </section>
+      <Footer />
     </div>
   );
 };
