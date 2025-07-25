@@ -16,50 +16,50 @@ const ServicesPage = () => {
     {
       icon: Network,
       image: circuitBoard,
-      title: "Networks",
-      description: "Stay Connected, Stay Ahead - One-stop-shop for all your networking requirements",
-      features: ["Network infrastructure", "Connectivity solutions", "Network monitoring", "Maintenance & support"],
-      details: "Our comprehensive networking solutions ensure your organization stays connected and ahead of the competition. We provide end-to-end networking services from infrastructure setup to ongoing maintenance and support."
+      title: "Enterprise Networks & Connectivity",
+      description: "Advanced enterprise networking solutions with next-generation security and scalability",
+      features: ["SD-WAN implementation", "5G network deployment", "WiFi 6/7 infrastructure", "Network security", "IoT connectivity", "Network automation", "Edge computing", "MPLS solutions"],
+      details: "Our enterprise networking solutions deliver high-performance, secure, and scalable connectivity. We specialize in SD-WAN, 5G deployment, advanced WiFi infrastructure, and comprehensive network security to keep your organization connected and protected."
     },
     {
       icon: Users,
       image: teamwork,
-      title: "Managed Services",
-      description: "Focus on core competencies as we take charge of your processes",
-      features: ["End-to-end process management", "24/7 operational support", "Performance monitoring", "Service level agreements"],
-      details: "Our managed services provide comprehensive process management solutions that allow your organization to focus on core business activities while we handle all operational requirements with expert support and monitoring."
+      title: "Professional Managed Services",
+      description: "Complete IT operations management with industry-leading expertise and 24/7 support",
+      features: ["24/7 NOC services", "Security operations center", "Application management", "Database administration", "Backup & disaster recovery", "IT service desk", "Performance monitoring", "Compliance management"],
+      details: "Our managed services provide comprehensive IT operations support, allowing your organization to focus on core business while we handle all technology requirements with expert monitoring, security, and support services."
     },
     {
       icon: Building,
       image: codeTech,
-      title: "Digital Transformation",
-      description: "Store, manage & disseminate data & more. Secure Enterprise IT solutions",
-      features: ["Cloud migration", "Digital platforms", "Data management", "Enterprise IT solutions"],
-      details: "Transform your business with our comprehensive digital transformation services. We help organizations modernize their IT infrastructure, migrate to cloud platforms, and implement secure enterprise solutions."
+      title: "Digital Transformation & Cloud Services",
+      description: "End-to-end digital transformation with multi-cloud, hybrid solutions, and AI integration",
+      features: ["Multi-cloud strategy", "Cloud migration & optimization", "DevOps & CI/CD", "Microservices architecture", "API management", "Data analytics platforms", "AI/ML implementation", "Digital workplace"],
+      details: "Transform your business with our comprehensive digital transformation services. We help organizations modernize IT infrastructure, implement cloud-native solutions, and leverage AI/ML for competitive advantage."
     },
     {
       icon: Briefcase,
       image: planning,
-      title: "IP Services",
-      description: "Cutting edge IP & ITeS solutions: Empowering your growth",
-      features: ["IP infrastructure", "ITeS solutions", "Technology consulting", "System integration"],
-      details: "Our IP services deliver cutting-edge intellectual property and IT-enabled services that empower business growth through innovative technology consulting and seamless system integration."
+      title: "Professional Consulting & IP Services",
+      description: "Strategic technology consulting, enterprise architecture, and intellectual property solutions",
+      features: ["Enterprise architecture", "Technology roadmapping", "Solution design & implementation", "Integration services", "Performance optimization", "Compliance consulting", "Digital strategy", "Innovation consulting"],
+      details: "Our professional consulting services provide strategic technology guidance, enterprise architecture design, and comprehensive IP solutions to drive business growth and technological innovation."
     },
     {
       icon: Search,
       image: workforceManagement,
-      title: "Resource Management",
-      description: "Technology enabled staffing so that you focus on your core business",
-      features: ["Technology staffing", "Resource allocation", "Skill management", "Workforce optimization"],
-      details: "Optimize your workforce with our technology-enabled resource management solutions. We provide skilled technology professionals and efficient resource allocation to support your business objectives."
+      title: "Specialized Technology Resources",
+      description: "Expert technology professionals and specialized workforce solutions for complex projects",
+      features: ["Cloud architects & engineers", "Cybersecurity specialists", "Network & infrastructure engineers", "DevOps & automation experts", "Data scientists & analysts", "AI/ML engineers", "Project managers", "Solution architects"],
+      details: "Access specialized technology talent and expertise through our comprehensive resource management solutions. We provide skilled professionals across all technology domains to support your most critical projects."
     },
     {
       icon: Settings,
       image: infrastructure,
-      title: "Infra Installation",
-      description: "Self support and Guy mast Tower as well as Pole, Tower Erection Service and Pole Erection Service",
-      features: ["Self support installations", "Guy mast tower setup", "Pole erection services", "Tower erection services"],
-      details: "Complete infrastructure installation services including self-supporting structures, guy mast towers, and comprehensive pole and tower erection services for telecommunications and other industries."
+      title: "Infrastructure & Professional Deployment",
+      description: "Complete infrastructure design, deployment, and professional installation services",
+      features: ["Data center design & setup", "Server & storage deployment", "Network infrastructure installation", "Security system implementation", "Monitoring & automation systems", "Professional installation services", "Maintenance contracts", "24/7 support"],
+      details: "Professional infrastructure services including data center setup, enterprise server deployment, comprehensive network installation, and ongoing maintenance. We provide complete infrastructure lifecycle management."
     }
   ];
 

@@ -31,9 +31,9 @@ const Hero = () => {
             </h1>
             
             <p className="text-xl mb-8 text-gray-200 leading-relaxed">
-              uConnect Technologies is your premier partner for comprehensive technology solutions. 
-              We connect organizations with cutting-edge infrastructure, digital transformation, and 
-              innovative technology services to drive productivity, growth, and success across all industries.
+              Leading provider of professional technology services, enterprise networks, and digital transformation solutions. 
+              We deliver advanced networking infrastructure, cloud services, cybersecurity, and comprehensive IT solutions 
+              that empower organizations to innovate, scale, and achieve operational excellence.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 mb-12">
@@ -58,16 +58,16 @@ const Hero = () => {
             {/* Stats */}
             <div className="grid grid-cols-3 gap-8">
               <div className="text-center">
-                <div className="text-3xl font-bold text-accent mb-2">50+</div>
-                <div className="text-sm text-gray-300">Clients Served</div>
+                <div className="text-3xl font-bold text-accent mb-2">150+</div>
+                <div className="text-sm text-gray-300">Enterprise Clients</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-accent mb-2">2000+</div>
-                <div className="text-sm text-gray-300">Successful Placements</div>
+                <div className="text-3xl font-bold text-accent mb-2">500+</div>
+                <div className="text-sm text-gray-300">Network Projects</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-accent mb-2">99%</div>
-                <div className="text-sm text-gray-300">Client Satisfaction</div>
+                <div className="text-sm text-gray-300">Network Uptime</div>
               </div>
             </div>
           </div>
@@ -79,9 +79,9 @@ const Hero = () => {
               <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
                 <div className="text-center text-white">
                   <Building className="h-16 w-16 text-accent mx-auto mb-4" />
-                  <h3 className="text-2xl font-bold mb-4">Enterprise Solutions</h3>
+                  <h3 className="text-2xl font-bold mb-4">Professional Network Services</h3>
                   <p className="text-gray-200 mb-6">
-                    Scalable technology solutions for organizations of all sizes
+                    Enterprise-grade networks and professional IT services for mission-critical operations
                   </p>
                   <div className="flex justify-center items-center gap-4">
                     <Users className="h-8 w-8 text-accent" />

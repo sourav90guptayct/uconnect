@@ -13,44 +13,44 @@ const Services = () => {
     {
       icon: Network,
       image: circuitBoard,
-      title: "Networks",
-      description: "Stay Connected, Stay Ahead - One-stop-shop for all your networking requirements",
-      features: ["Network infrastructure", "Connectivity solutions", "Network monitoring", "Maintenance & support"]
+      title: "Enterprise Networks",
+      description: "Comprehensive enterprise networking solutions with advanced security and scalability",
+      features: ["SD-WAN implementation", "Network security", "5G network deployment", "WiFi 6/7 infrastructure", "IoT connectivity", "Network automation"]
     },
     {
       icon: Users,
       image: teamwork,
-      title: "Managed Services",
-      description: "Focus on core competencies as we take charge of your processes",
-      features: ["End-to-end process management", "24/7 operational support", "Performance monitoring", "Service level agreements"]
+      title: "Professional Managed Services",
+      description: "Complete IT operations management with industry-leading expertise and support",
+      features: ["24/7 NOC services", "Security operations center", "Application management", "Database administration", "Backup & disaster recovery", "IT service desk"]
     },
     {
       icon: Building,
       image: codeTech,
-      title: "Digital Transformation",
-      description: "Store, manage & disseminate data & more. Secure Enterprise IT solutions",
-      features: ["Cloud migration", "Digital platforms", "Data management", "Enterprise IT solutions"]
+      title: "Digital Transformation & Cloud",
+      description: "End-to-end digital transformation with multi-cloud and hybrid solutions",
+      features: ["Cloud migration & optimization", "DevOps & CI/CD", "Microservices architecture", "API management", "Data analytics platforms", "AI/ML implementation"]
     },
     {
       icon: Briefcase,
       image: planning,
-      title: "IP Services",
-      description: "Cutting edge IP & ITeS solutions: Empowering your growth",
-      features: ["IP infrastructure", "ITeS solutions", "Technology consulting", "System integration"]
+      title: "Professional IP & Consulting Services",
+      description: "Strategic technology consulting and intellectual property solutions for enterprise growth",
+      features: ["Enterprise architecture", "Technology roadmapping", "Solution design", "Integration services", "Performance optimization", "Compliance consulting"]
     },
     {
       icon: Search,
       image: workforceManagement,
-      title: "Resource Management",
-      description: "Technology enabled staffing so that you focus on your core business",
-      features: ["Technology staffing", "Resource allocation", "Skill management", "Workforce optimization"]
+      title: "Specialized Resource Management",
+      description: "Expert technology professionals and workforce optimization solutions",
+      features: ["Cloud architects", "Security specialists", "Network engineers", "DevOps engineers", "Data scientists", "Project managers"]
     },
     {
       icon: Settings,
       image: infrastructure,
-      title: "Infra Installation",
-      description: "Self support and Guy mast Tower as well as Pole, Tower Erection Service and Pole Erection Service",
-      features: ["Self support installations", "Guy mast tower setup", "Pole erection services", "Tower erection services"]
+      title: "Infrastructure & Deployment Services",
+      description: "Complete infrastructure setup, deployment, and maintenance services",
+      features: ["Data center setup", "Server deployment", "Network infrastructure", "Security implementation", "Monitoring systems", "Maintenance contracts"]
     }
   ];
 
