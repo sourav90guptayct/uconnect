@@ -48,7 +48,7 @@ const Hero = () => {
               <Button 
                 size="lg" 
                 variant="outline" 
-                className="border-white text-white hover:bg-white hover:text-primary text-lg px-8"
+                className="border-2 border-white bg-white/10 text-white hover:bg-white hover:text-primary text-lg px-8 backdrop-blur-sm"
                 onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
               >
                 Contact Us Today
