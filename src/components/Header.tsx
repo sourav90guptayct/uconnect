@@ -48,19 +48,21 @@ const Header = () => {
               <NavigationMenuList>
                 <NavigationMenuItem>
                   <NavigationMenuLink 
-                    href="#home" 
-                    className={cn(navigationMenuTriggerStyle(), "text-foreground hover:text-primary")}
+                    asChild
                   >
-                    Home
+                    <Link to="/" className={cn(navigationMenuTriggerStyle(), "text-foreground hover:text-primary")}>
+                      Home
+                    </Link>
                   </NavigationMenuLink>
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
                   <NavigationMenuLink 
-                    href="#about" 
-                    className={cn(navigationMenuTriggerStyle(), "text-foreground hover:text-primary")}
+                    asChild
                   >
-                    About Us
+                    <Link to="/?section=about" className={cn(navigationMenuTriggerStyle(), "text-foreground hover:text-primary")}>
+                      About Us
+                    </Link>
                   </NavigationMenuLink>
                 </NavigationMenuItem>
 
@@ -78,19 +80,21 @@ const Header = () => {
 
                 <NavigationMenuItem>
                   <NavigationMenuLink 
-                    href="#why-choose-us" 
-                    className={cn(navigationMenuTriggerStyle(), "text-foreground hover:text-primary")}
+                    asChild
                   >
-                    Why Choose Us
+                    <Link to="/?section=why-choose-us" className={cn(navigationMenuTriggerStyle(), "text-foreground hover:text-primary")}>
+                      Why Choose Us
+                    </Link>
                   </NavigationMenuLink>
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
                   <NavigationMenuLink 
-                    href="#contact" 
-                    className={cn(navigationMenuTriggerStyle(), "text-foreground hover:text-primary")}
+                    asChild
                   >
-                    Contact
+                    <Link to="/?section=contact" className={cn(navigationMenuTriggerStyle(), "text-foreground hover:text-primary")}>
+                      Contact
+                    </Link>
                   </NavigationMenuLink>
                 </NavigationMenuItem>
               </NavigationMenuList>
@@ -124,24 +128,24 @@ const Header = () => {
         {isMenuOpen && (
           <div className="lg:hidden pb-4">
             <nav className="flex flex-col space-y-4">
-              <a href="#home" className="text-foreground hover:text-primary transition-colors">
+              <Link to="/" className="text-foreground hover:text-primary transition-colors">
                 Home
-              </a>
-              <a href="#about" className="text-foreground hover:text-primary transition-colors">
+              </Link>
+              <Link to="/?section=about" className="text-foreground hover:text-primary transition-colors">
                 About Us
-              </a>
+              </Link>
               <Link to="/services" className="text-foreground hover:text-primary transition-colors">
                 Services
               </Link>
               <Link to="/careers" className="text-foreground hover:text-primary transition-colors">
                 Careers
               </Link>
-              <a href="/#why-choose-us" className="text-foreground hover:text-primary transition-colors">
+              <Link to="/?section=why-choose-us" className="text-foreground hover:text-primary transition-colors">
                 Why Choose Us
-              </a>
-              <a href="#contact" className="text-foreground hover:text-primary transition-colors">
+              </Link>
+              <Link to="/?section=contact" className="text-foreground hover:text-primary transition-colors">
                 Contact
-              </a>
+              </Link>
               {user && (
                 <Button 
                   variant="outline"
