@@ -67,14 +67,16 @@ const ServicesPage = () => {
     <div className="min-h-screen bg-background">
       <Header />
       {/* Header */}
-      <div className="bg-primary text-primary-foreground py-20">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center gap-4 mb-6">
-            <Link to="/" className="inline-flex items-center gap-2 text-primary-foreground/80 hover:text-primary-foreground">
-              <ArrowLeft className="h-5 w-5" />
-              Back to Home
-            </Link>
-          </div>
+      <div className="relative bg-primary text-primary-foreground py-20 overflow-hidden">
+        <div className="absolute inset-0">
+          <img 
+            src={codeTech} 
+            alt="Professional Technology Services"
+            className="w-full h-full object-cover opacity-20"
+          />
+          <div className="absolute inset-0 bg-primary/80" />
+        </div>
+        <div className="container mx-auto px-4 relative z-10">
           <h1 className="text-4xl lg:text-6xl font-bold mb-6">
             Our Services
           </h1>
