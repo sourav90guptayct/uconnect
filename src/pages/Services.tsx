@@ -87,15 +87,21 @@ const ServicesPage = () => {
         </div>
       </div>
 
-      {/* Services Section */}
-      <section className="relative py-20 overflow-hidden">
-        <div className="absolute inset-0">
-          <img 
-            src={circuitBoard} 
-            alt="Technology Services Background"
-            className="w-full h-full object-cover opacity-5"
-          />
+      {/* Hero Image Section */}
+      <section className="py-12">
+        <div className="container mx-auto px-4">
+          <div className="rounded-2xl overflow-hidden">
+            <img 
+              src={codeTech}
+              alt="Professional Technology Services"
+              className="w-full h-96 object-cover"
+            />
+          </div>
         </div>
+      </section>
+
+      {/* Services Section */}
+      <section className="py-20">
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
              {services.map((service, index) => (
