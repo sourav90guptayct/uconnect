@@ -1,9 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { CheckCircle, Target, Globe, Award } from "lucide-react";
-
 const About = () => {
-  return (
-    <section id="about" className="py-20 bg-background">
+  return <section id="about" className="py-20 bg-background">
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Content */}
@@ -18,7 +16,7 @@ const About = () => {
               <span className="text-primary"> Manpower Solutions</span>
             </h2>
             
-            <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
+            <p className="text-lg text-muted-foreground mb-8 leading-relaxed mx-[10px] px-[10px]">
               uConnect Technologies is a leading provider of comprehensive manpower services, 
               leveraging our extensive industry knowledge and innovative recruitment platforms to 
               deliver exceptional workforce solutions that drive organizational productivity and growth.
@@ -101,8 +99,6 @@ const About = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default About;

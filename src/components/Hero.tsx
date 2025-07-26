@@ -1,14 +1,14 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Award, Users, Building } from "lucide-react";
-
 const Hero = () => {
-  return (
-    <section id="home" className="relative min-h-screen flex items-center" style={{ background: 'var(--gradient-hero)' }}>
+  return <section id="home" className="relative min-h-screen flex items-center" style={{
+    background: 'var(--gradient-hero)'
+  }}>
       {/* Background pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpolygon points='30 60 15 45 45 45'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-        }} />
+        backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpolygon points='30 60 15 45 45 45'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+      }} />
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
@@ -30,27 +30,22 @@ const Hero = () => {
               <span className="text-accent"> Innovation</span>
             </h1>
             
-            <p className="text-xl mb-8 text-gray-200 leading-relaxed">
+            <p className="text-xl mb-8 text-gray-200 leading-relaxed mx-[10px] px-[10px]">
               uConnect Technologies is your premier partner for comprehensive technology solutions. 
               We connect organizations with cutting-edge infrastructure, digital transformation, and 
               innovative technology services to drive productivity, growth, and success across all industries.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 mb-12">
-              <Button 
-                size="lg" 
-                className="bg-accent text-accent-foreground hover:bg-accent/90 text-lg px-8"
-                onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
-              >
+              <Button size="lg" onClick={() => document.getElementById('services')?.scrollIntoView({
+              behavior: 'smooth'
+            })} className="bg-accent text-accent-foreground hover:bg-accent/90 text-lg px-8 mx-[10px]">
                 Explore Services
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
-              <Button 
-                size="lg" 
-                variant="outline" 
-                className="border-2 border-white bg-white/10 text-white hover:bg-white hover:text-primary text-lg px-8 backdrop-blur-sm"
-                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-              >
+              <Button size="lg" variant="outline" className="border-2 border-white bg-white/10 text-white hover:bg-white hover:text-primary text-lg px-8 backdrop-blur-sm" onClick={() => document.getElementById('contact')?.scrollIntoView({
+              behavior: 'smooth'
+            })}>
                 Contact Us Today
               </Button>
             </div>
@@ -101,8 +96,6 @@ const Hero = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default Hero;
