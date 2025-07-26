@@ -71,12 +71,6 @@ const CareersPage = () => {
       {/* Header */}
       <div className="bg-primary text-primary-foreground py-20">
         <div className="container mx-auto px-4">
-          <div className="flex items-center gap-4 mb-6">
-            <Link to="/" className="inline-flex items-center gap-2 text-primary-foreground/80 hover:text-primary-foreground">
-              <ArrowLeft className="h-5 w-5" />
-              Back to Home
-            </Link>
-          </div>
           <h1 className="text-4xl lg:text-6xl font-bold mb-6">
             Join Our Team
           </h1>
