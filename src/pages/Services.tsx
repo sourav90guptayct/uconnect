@@ -92,8 +92,8 @@ const ServicesPage = () => {
         <div className="container mx-auto px-4">
           <div className="rounded-2xl overflow-hidden">
             <img 
-              src={codeTech}
-              alt="Professional Technology Services"
+              src={teamwork}
+              alt="Professional Technology Services Team"
               className="w-full h-96 object-cover"
             />
           </div>
