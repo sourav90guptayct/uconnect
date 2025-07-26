@@ -3,32 +3,32 @@ import { Trophy, Zap, Shield, Users, Globe, Award } from "lucide-react";
 const WhyChooseUs = () => {
   const differentiators = [{
     icon: Trophy,
-    title: "ENTERPRISE SCALE",
-    subtitle: "Professional Solutions at Scale",
-    stats: ["National Network Coverage: 25+ major cities", "Professional Team: 200+ certified engineers", "Enterprise Clients: 500+ organizations", "Network Infrastructure: 10K+ managed endpoints", "Technology Domains: 15+ specializations"]
+    title: "SCALE",
+    subtitle: "Scale that Delivers",
+    stats: ["National Footprint: 25+ offices across the country", "Recruitment Team: 200+ specialized recruiters", "Active Clients: 500+ organizations", "Workforce Managed: 10K+ professionals", "Industries Served: 15+ sectors"]
   }, {
     icon: Zap,
-    title: "RAPID DEPLOYMENT",
-    subtitle: "Speed meets Professional Excellence",
-    stats: ["Quick Implementation: 48-hour network deployment", "Expert Response: 24/7 professional support", "Flexible Solutions: Scalable technology architectures", "Streamlined Process: 5-day average project initiation", "Real-time Monitoring: Complete visibility and control"]
+    title: "AGILITY",
+    subtitle: "Speed meets Precision",
+    stats: ["Rapid Deployment: Up to 100+ hires per month", "Quick Response: 24-hour initial candidate submission", "Flexible Solutions: Adapt to changing requirements", "Streamlined Process: 7-day average placement cycle", "Real-time Tracking: Complete transparency"]
   }, {
     icon: Shield,
-    title: "ADVANCED TECHNOLOGY",
-    subtitle: "Innovation-Driven Solutions",
-    stats: ["AI-Powered Networks: Intelligent traffic optimization", "Cloud-Native Platforms: Modern infrastructure solutions", "Security Excellence: Advanced threat protection", "Professional Tools: Enterprise-grade management systems", "Certified Infrastructure: Industry-compliant deployments"]
+    title: "TECHNOLOGY",
+    subtitle: "Powered by Innovation",
+    stats: ["AI-Powered Matching: Advanced candidate screening", "Digital Platform: Real-time project management", "Data Analytics: Predictive hiring insights", "Mobile App: On-the-go workforce management", "Cloud Infrastructure: Secure and scalable"]
   }];
   const achievements = [{
     icon: Award,
     title: "Industry Recognition",
-    description: "Top 10 Technology Services Provider 2024"
+    description: "Top 10 Staffing Company 2024"
   }, {
     icon: Users,
     title: "Client Satisfaction",
-    description: "99% Network Uptime Guarantee"
+    description: "98% Client Retention Rate"
   }, {
     icon: Globe,
     title: "Market Presence",
-    description: "Enterprise Networks in 15+ Industries"
+    description: "Serving 15+ Industries Nationwide"
   }];
   return <section id="why-choose-us" className="py-20 bg-background">
       <div className="container mx-auto px-4">
@@ -44,7 +44,7 @@ const WhyChooseUs = () => {
           </h2>
           
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            What sets uConnect Technologies apart in providing professional technology services and enterprise networks
+            What sets uConnect Technologies apart in the competitive manpower solutions landscape
           </p>
         </div>
 
@@ -77,7 +77,7 @@ const WhyChooseUs = () => {
               Trusted by Leading Organizations
             </h3>
             <p className="text-xl opacity-90">
-              Our professional technology services and network solutions have earned recognition across enterprise sectors
+              Our commitment to excellence has earned us recognition and trust across industries
             </p>
           </div>
           
@@ -95,20 +95,20 @@ const WhyChooseUs = () => {
         {/* Stats Section */}
         <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8">
           <div className="text-center">
-            <div className="text-4xl font-bold text-primary mb-2">150+</div>
-            <div className="text-muted-foreground">Enterprise Clients</div>
+            <div className="text-4xl font-bold text-primary mb-2">50+</div>
+            <div className="text-muted-foreground">Clients Served</div>
           </div>
           <div className="text-center">
-            <div className="text-4xl font-bold text-primary mb-2">500+</div>
-            <div className="text-muted-foreground">Network Projects</div>
+            <div className="text-4xl font-bold text-primary mb-2">2000+</div>
+            <div className="text-muted-foreground">Successful Placements</div>
           </div>
           <div className="text-center">
             <div className="text-4xl font-bold text-primary mb-2">15+</div>
-            <div className="text-muted-foreground">Technology Domains</div>
+            <div className="text-muted-foreground">Industries Served</div>
           </div>
           <div className="text-center">
             <div className="text-4xl font-bold text-primary mb-2">99%</div>
-            <div className="text-muted-foreground">Network Uptime</div>
+            <div className="text-muted-foreground">Client Satisfaction</div>
           </div>
         </div>
       </div>

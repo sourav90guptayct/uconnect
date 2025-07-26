@@ -14,36 +14,36 @@ const About = () => {
             </div>
             
             <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-foreground">
-              Leading Provider of 
-              <span className="text-primary">Professional Technology Services & Networks</span>
+              A Globally Trusted Leader in 
+              <span className="text-primary"> Manpower Solutions</span>
             </h2>
             
             <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-              uConnect Technologies is a premier technology solutions provider, specializing in enterprise networks, 
-              professional IT services, and comprehensive infrastructure solutions. We deliver cutting-edge technology 
-              services across telecommunications, cloud computing, cybersecurity, and digital transformation initiatives.
+              uConnect Technologies is a leading provider of comprehensive manpower services, 
+              leveraging our extensive industry knowledge and innovative recruitment platforms to 
+              deliver exceptional workforce solutions that drive organizational productivity and growth.
             </p>
 
             <div className="space-y-4 mb-8">
               <div className="flex items-start gap-3">
                 <CheckCircle className="h-6 w-6 text-accent mt-1 flex-shrink-0" />
                 <div>
-                  <h4 className="font-semibold text-foreground">Enterprise Network Solutions</h4>
-                  <p className="text-muted-foreground">Advanced networking, 5G, SD-WAN, and IoT connectivity</p>
+                  <h4 className="font-semibold text-foreground">Industry Expertise</h4>
+                  <p className="text-muted-foreground">Deep understanding across 15+ industries</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
                 <CheckCircle className="h-6 w-6 text-accent mt-1 flex-shrink-0" />
                 <div>
-                  <h4 className="font-semibold text-foreground">Professional IT Services</h4>
-                  <p className="text-muted-foreground">Cloud transformation, cybersecurity, and managed services</p>
+                  <h4 className="font-semibold text-foreground">Quality Assurance</h4>
+                  <p className="text-muted-foreground">Rigorous screening and verification processes</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
                 <CheckCircle className="h-6 w-6 text-accent mt-1 flex-shrink-0" />
                 <div>
-                  <h4 className="font-semibold text-foreground">24/7 Professional Support</h4>
-                  <p className="text-muted-foreground">Expert technical support and monitoring services</p>
+                  <h4 className="font-semibold text-foreground">24/7 Support</h4>
+                  <p className="text-muted-foreground">Round-the-clock assistance for all your needs</p>
                 </div>
               </div>
             </div>
@@ -61,8 +61,8 @@ const About = () => {
                 <Target className="h-12 w-12 text-primary mb-4" />
                 <h3 className="text-xl font-bold text-card-foreground mb-3">Our Mission</h3>
                 <p className="text-muted-foreground text-sm">
-                  To deliver innovative technology solutions and professional services that empower 
-                  organizations to achieve digital transformation and operational excellence.
+                  To bridge the gap between talent and opportunity, creating meaningful connections 
+                  that drive success for both organizations and professionals.
                 </p>
               </div>
 
@@ -71,8 +71,8 @@ const About = () => {
                 <Globe className="h-12 w-12 text-accent mb-4" />
                 <h3 className="text-xl font-bold text-card-foreground mb-3">Our Vision</h3>
                 <p className="text-muted-foreground text-sm">
-                  To be the premier provider of enterprise technology solutions, networks, and 
-                  professional services that drive innovation and business success globally.
+                  To be the global leader in manpower solutions, transforming how organizations 
+                  build and manage their workforce in the digital age.
                 </p>
               </div>
 
@@ -84,16 +84,16 @@ const About = () => {
                     <div className="text-sm opacity-90">Year Established</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-3xl font-bold mb-1">500+</div>
-                    <div className="text-sm opacity-90">Network Projects</div>
+                    <div className="text-3xl font-bold mb-1">5+</div>
+                    <div className="text-sm opacity-90">States</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-3xl font-bold mb-1">200+</div>
-                    <div className="text-sm opacity-90">IT Professionals</div>
+                    <div className="text-3xl font-bold mb-1">100+</div>
+                    <div className="text-sm opacity-90">Employees</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-3xl font-bold mb-1">150+</div>
-                    <div className="text-sm opacity-90">Enterprise Clients</div>
+                    <div className="text-3xl font-bold mb-1">2000+</div>
+                    <div className="text-sm opacity-90">Successful Placements</div>
                   </div>
                 </div>
               </div>
