@@ -37,7 +37,7 @@ export default function Auth() {
       }
     };
     checkUser();
-  }, [navigate]);
+  }, []); // Remove navigate from dependencies to prevent infinite loop
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
