@@ -76,7 +76,7 @@ const Contact = () => {
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full mb-6">
+          <div className="inline-flex items-center gap-2 bg-accent/10 text-accent px-4 py-2 rounded-full mb-6">
             <Mail className="h-5 w-5" />
             <span className="font-semibold">Contact Us</span>
           </div>
@@ -156,8 +156,8 @@ const Contact = () => {
             <Card className="border-border">
               <CardContent className="p-6">
                 <div className="flex items-start gap-4">
-                  <div className="h-12 w-12 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <MapPin className="h-6 w-6 text-primary" />
+                  <div className="h-12 w-12 bg-accent/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <MapPin className="h-6 w-6 text-accent" />
                   </div>
                   <div>
                     <h4 className="font-semibold text-card-foreground mb-2">Office Address</h4>
@@ -192,8 +192,8 @@ const Contact = () => {
             <Card className="border-border">
               <CardContent className="p-6">
                 <div className="flex items-start gap-4">
-                  <div className="h-12 w-12 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <Mail className="h-6 w-6 text-primary" />
+                  <div className="h-12 w-12 bg-accent/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Mail className="h-6 w-6 text-accent" />
                   </div>
                   <div>
                     <h4 className="font-semibold text-card-foreground mb-2">Email Address</h4>

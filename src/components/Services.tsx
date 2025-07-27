@@ -49,7 +49,7 @@ const Services = () => {
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full mb-6">
+          <div className="inline-flex items-center gap-2 bg-accent/10 text-accent px-4 py-2 rounded-full mb-6">
             <Briefcase className="h-5 w-5" />
             <span className="font-semibold">Our Services</span>
           </div>
@@ -72,13 +72,13 @@ const Services = () => {
                 <img src={service.image} alt={service.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
                 <div className="absolute bottom-4 left-4">
-                  <div className="h-12 w-12 bg-primary/90 rounded-lg flex items-center justify-center backdrop-blur-sm">
-                    <service.icon className="h-6 w-6 text-primary-foreground" />
+                  <div className="h-12 w-12 bg-accent/90 rounded-lg flex items-center justify-center backdrop-blur-sm">
+                    <service.icon className="h-6 w-6 text-accent-foreground" />
                   </div>
                 </div>
               </div>
               <CardHeader>
-                <CardTitle className="text-xl text-card-foreground group-hover:text-primary transition-colors">
+                <CardTitle className="text-xl text-card-foreground group-hover:text-accent transition-colors">
                   {service.title}
                 </CardTitle>
                 <CardDescription className="text-muted-foreground">

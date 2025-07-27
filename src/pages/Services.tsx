@@ -114,13 +114,13 @@ const ServicesPage = () => {
                    />
                    <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
                    <div className="absolute bottom-4 left-4">
-                     <div className="h-12 w-12 bg-primary/90 rounded-lg flex items-center justify-center backdrop-blur-sm">
-                       <service.icon className="h-6 w-6 text-primary-foreground" />
+                     <div className="h-12 w-12 bg-accent/90 rounded-lg flex items-center justify-center backdrop-blur-sm">
+                       <service.icon className="h-6 w-6 text-accent-foreground" />
                      </div>
                    </div>
                  </div>
                  <CardHeader>
-                   <CardTitle className="text-xl text-card-foreground group-hover:text-primary transition-colors">
+                   <CardTitle className="text-xl text-card-foreground group-hover:text-accent transition-colors">
                      {service.title}
                    </CardTitle>
                    <CardDescription className="text-muted-foreground">

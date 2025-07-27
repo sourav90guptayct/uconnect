@@ -58,7 +58,7 @@ const About = () => {
             <div className="grid grid-cols-2 gap-6">
               {/* Mission Card */}
               <div className="bg-card border border-border rounded-xl p-6 hover:shadow-lg transition-shadow">
-                <Target className="h-12 w-12 text-primary mb-4" />
+                <Target className="h-12 w-12 text-accent mb-4" />
                 <h3 className="text-xl font-bold text-card-foreground mb-3">Our Mission</h3>
                 <p className="text-muted-foreground text-sm">
                   To bridge the gap between talent and opportunity, creating meaningful connections 

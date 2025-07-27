@@ -53,10 +53,10 @@ const WhyChooseUs = () => {
           {differentiators.map((item, index) => <Card key={index} className="group hover:shadow-xl transition-all duration-300 border-border">
               <CardContent className="p-8">
                 <div className="text-center mb-8">
-                  <div className="h-20 w-20 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-primary/20 transition-colors">
-                    <item.icon className="h-10 w-10 text-primary" />
+                  <div className="h-20 w-20 bg-accent/10 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-accent/20 transition-colors">
+                    <item.icon className="h-10 w-10 text-accent" />
                   </div>
-                  <h3 className="text-2xl font-bold text-primary mb-2">{item.title}</h3>
+                  <h3 className="text-2xl font-bold text-accent mb-2">{item.title}</h3>
                   <p className="text-lg text-muted-foreground font-medium">{item.subtitle}</p>
                 </div>
                 
@@ -84,7 +84,7 @@ const WhyChooseUs = () => {
           <div className="grid md:grid-cols-3 gap-8">
             {achievements.map((achievement, index) => <div key={index} className="text-center">
                 <div className="h-16 w-16 bg-white/20 rounded-xl flex items-center justify-center mx-auto mb-4">
-                  <achievement.icon className="h-8 w-8" />
+                  <achievement.icon className="h-8 w-8 text-accent" />
                 </div>
                 <h4 className="text-xl font-bold mb-2">{achievement.title}</h4>
                 <p className="opacity-90">{achievement.description}</p>
@@ -95,19 +95,19 @@ const WhyChooseUs = () => {
         {/* Stats Section */}
         <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8">
           <div className="text-center">
-            <div className="text-4xl font-bold text-primary mb-2">50+</div>
+            <div className="text-4xl font-bold text-accent mb-2">50+</div>
             <div className="text-muted-foreground">Clients Served</div>
           </div>
           <div className="text-center">
-            <div className="text-4xl font-bold text-primary mb-2">2000+</div>
+            <div className="text-4xl font-bold text-accent mb-2">2000+</div>
             <div className="text-muted-foreground">Successful Placements</div>
           </div>
           <div className="text-center">
-            <div className="text-4xl font-bold text-primary mb-2">15+</div>
+            <div className="text-4xl font-bold text-accent mb-2">15+</div>
             <div className="text-muted-foreground">Industries Served</div>
           </div>
           <div className="text-center">
-            <div className="text-4xl font-bold text-primary mb-2">99%</div>
+            <div className="text-4xl font-bold text-accent mb-2">99%</div>
             <div className="text-muted-foreground">Client Satisfaction</div>
           </div>
         </div>
