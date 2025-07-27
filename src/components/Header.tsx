@@ -92,6 +92,14 @@ const Header = () => {
             </NavigationMenu>
 
             <div className="flex items-center space-x-2 ml-4">
+              {!user && (
+                <Button 
+                  variant="outline"
+                  onClick={() => navigate('/register')}
+                >
+                  Register
+                </Button>
+              )}
               {user && (
                 <Button 
                   variant="outline"
@@ -134,6 +142,15 @@ const Header = () => {
               <Link to="/?section=contact" className="text-foreground hover:text-primary transition-colors">
                 Contact
               </Link>
+              {!user && (
+                <Button 
+                  variant="outline"
+                  className="w-fit"
+                  onClick={() => navigate('/register')}
+                >
+                  Register
+                </Button>
+              )}
               {user && (
                 <Button 
                   variant="outline"
