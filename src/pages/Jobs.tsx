@@ -80,7 +80,10 @@ const JobsPage = () => {
   }, [jobs, searchTerm, selectedState, selectedExperience]);
 
   const fetchCandidateProfile = async () => {
-    if (!user) return;
+    if (!user) {
+      console.log('No user found');
+      return;
+    }
     
     try {
       console.log('Fetching candidate profile for user:', user.id);
@@ -89,10 +92,15 @@ const JobsPage = () => {
         .from('candidate_profiles')
         .select('id, user_id, first_name, last_name')
         .eq('user_id', user.id)
-        .single();
+        .maybeSingle();
 
       if (error) {
         console.error('Error fetching candidate profile:', error);
+        setCandidateProfile(null);
+        return;
+      }
+
+      if (!data) {
         console.log('No candidate profile found - user needs to complete profile to apply for jobs');
         setCandidateProfile(null);
         return;
@@ -101,7 +109,7 @@ const JobsPage = () => {
       console.log('Candidate profile found:', data);
       setCandidateProfile(data);
     } catch (error) {
-      console.error('Error:', error);
+      console.error('Error in fetchCandidateProfile:', error);
       setCandidateProfile(null);
     }
   };
@@ -171,43 +179,82 @@ const JobsPage = () => {
   };
 
   const handleApplyJob = async (jobId: string) => {
-    console.log('Apply job clicked - candidateProfile:', candidateProfile);
+    console.log('=== JOB APPLICATION DEBUG ===');
+    console.log('Apply job clicked for jobId:', jobId);
     console.log('Current user:', user?.id);
+    console.log('CandidateProfile state:', candidateProfile);
+    console.log('User object:', user);
     
-    if (!candidateProfile) {
-      // Try to fetch profile again before giving up
-      await fetchCandidateProfile();
-      
-      // Check again after fetching
-      if (!candidateProfile) {
-        toast({
-          title: "Complete Your Profile",
-          description: "Please complete your profile setup to apply for jobs.",
-          variant: "destructive"
-        });
-        navigate('/profile');
-        return;
-      }
+    if (!user) {
+      console.log('No user - redirecting to auth');
+      navigate('/auth');
+      return;
     }
 
-    try {
-      console.log('Attempting to apply for job:', jobId, 'with candidate:', candidateProfile.id);
+    if (!candidateProfile) {
+      console.log('No candidate profile - trying to fetch again...');
+      await fetchCandidateProfile();
       
-      const { error } = await supabase
+      // Wait a moment for state to update and check again
+      setTimeout(async () => {
+        const { data: profileCheck } = await supabase
+          .from('candidate_profiles')
+          .select('id, user_id, first_name, last_name')
+          .eq('user_id', user.id)
+          .maybeSingle();
+        
+        console.log('Profile check result:', profileCheck);
+        
+        if (!profileCheck) {
+          console.log('Still no profile found - redirecting to profile page');
+          toast({
+            title: "Complete Your Profile",
+            description: "Please complete your profile setup to apply for jobs.",
+            variant: "destructive"
+          });
+          navigate('/profile');
+          return;
+        }
+        
+        // If profile exists, try to apply again
+        console.log('Profile found, attempting application with profile:', profileCheck);
+        performJobApplication(jobId, profileCheck);
+      }, 500);
+      return;
+    }
+
+    performJobApplication(jobId, candidateProfile);
+  };
+
+  const performJobApplication = async (jobId: string, profile: CandidateProfile) => {
+    try {
+      console.log('=== PERFORMING JOB APPLICATION ===');
+      console.log('JobId:', jobId);
+      console.log('Profile:', profile);
+      console.log('Cover letter:', coverLetter);
+      
+      const applicationData = {
+        job_id: jobId,
+        candidate_id: profile.id,
+        cover_letter: coverLetter || '',
+        application_status: 'applied'
+      };
+      
+      console.log('Inserting application data:', applicationData);
+      
+      const { data, error } = await supabase
         .from('job_applications')
-        .insert({
-          job_id: jobId,
-          candidate_id: candidateProfile.id,
-          cover_letter: coverLetter || '',
-          application_status: 'applied'
-        });
+        .insert(applicationData)
+        .select();
+
+      console.log('Insert result - data:', data, 'error:', error);
 
       if (error) {
         console.error('Supabase error during job application:', error);
         throw error;
       }
 
-      console.log('Job application submitted successfully');
+      console.log('Job application submitted successfully:', data);
       setAppliedJobs(prev => new Set([...prev, jobId]));
       setCoverLetter("");
       setApplyingJob(null);
