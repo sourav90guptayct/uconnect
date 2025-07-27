@@ -13,6 +13,7 @@ import Admin from "./pages/Admin";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile";
 import Jobs from "./pages/Jobs";
+import JobDetails from "./pages/JobDetails";
 import Support from "./pages/Support";
 import MyApplications from "./pages/MyApplications";
 import EmployerDashboard from "./pages/EmployerDashboard";
@@ -34,6 +35,7 @@ const App = () => (
             <Route path="/register" element={<Register />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/jobs" element={<Jobs />} />
+            <Route path="/jobs/:id" element={<JobDetails />} />
             <Route path="/my-applications" element={<MyApplications />} />
             <Route path="/employer-dashboard" element={<EmployerDashboard />} />
             <Route path="/support" element={<Support />} />

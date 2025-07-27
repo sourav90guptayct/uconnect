@@ -390,59 +390,68 @@ const JobsPage = () => {
                         Application Deadline: {formatDate(job.application_deadline)}
                       </p>
                       
-                      {appliedJobs.has(job.id) ? (
-                        <Button disabled className="w-full">
-                          Applied
+                      <div className="flex gap-2">
+                        <Button 
+                          variant="outline" 
+                          className="flex-1"
+                          onClick={() => navigate(`/jobs/${job.id}`)}
+                        >
+                          View Details
                         </Button>
-                      ) : (
-                        <Dialog>
-                          <DialogTrigger asChild>
-                            <Button className="w-full" onClick={() => setApplyingJob(job.id)}>
-                              Apply Now
-                            </Button>
-                          </DialogTrigger>
-                          <DialogContent className="max-w-2xl">
-                            <DialogHeader>
-                              <DialogTitle>Apply for {job.title}</DialogTitle>
-                              <DialogDescription>
-                                at {job.company_name} - {job.location_city}, {job.location_state}
-                              </DialogDescription>
-                            </DialogHeader>
-                            
-                            <div className="space-y-4">
-                              <div>
-                                <Label htmlFor="coverLetter">Cover Letter (Optional)</Label>
-                                <Textarea
-                                  id="coverLetter"
-                                  placeholder="Tell us why you're interested in this position..."
-                                  value={coverLetter}
-                                  onChange={(e) => setCoverLetter(e.target.value)}
-                                  rows={4}
-                                />
-                              </div>
+                        {appliedJobs.has(job.id) ? (
+                          <Button disabled className="flex-1">
+                            Applied
+                          </Button>
+                        ) : (
+                          <Dialog>
+                            <DialogTrigger asChild>
+                              <Button className="flex-1" onClick={() => setApplyingJob(job.id)}>
+                                Quick Apply
+                              </Button>
+                            </DialogTrigger>
+                            <DialogContent className="max-w-2xl">
+                              <DialogHeader>
+                                <DialogTitle>Quick Apply for {job.title}</DialogTitle>
+                                <DialogDescription>
+                                  at {job.company_name} - {job.location_city}, {job.location_state}
+                                </DialogDescription>
+                              </DialogHeader>
                               
-                              <div className="flex justify-end space-x-2">
-                                <Button
-                                  variant="outline"
-                                  onClick={() => {
-                                    setApplyingJob(null);
-                                    setCoverLetter("");
-                                  }}
-                                >
-                                  Cancel
-                                </Button>
-                                <Button
-                                  onClick={() => handleApplyJob(job.id)}
-                                  disabled={!candidateProfile}
-                                >
-                                  <Send className="h-4 w-4 mr-2" />
-                                  Submit Application
-                                </Button>
+                              <div className="space-y-4">
+                                <div>
+                                  <Label htmlFor="coverLetter">Cover Letter (Optional)</Label>
+                                  <Textarea
+                                    id="coverLetter"
+                                    placeholder="Tell us why you're interested in this position..."
+                                    value={coverLetter}
+                                    onChange={(e) => setCoverLetter(e.target.value)}
+                                    rows={4}
+                                  />
+                                </div>
+                                
+                                <div className="flex justify-end space-x-2">
+                                  <Button
+                                    variant="outline"
+                                    onClick={() => {
+                                      setApplyingJob(null);
+                                      setCoverLetter("");
+                                    }}
+                                  >
+                                    Cancel
+                                  </Button>
+                                  <Button
+                                    onClick={() => handleApplyJob(job.id)}
+                                    disabled={!candidateProfile}
+                                  >
+                                    <Send className="h-4 w-4 mr-2" />
+                                    Submit Application
+                                  </Button>
+                                </div>
                               </div>
-                            </div>
-                          </DialogContent>
-                        </Dialog>
-                      )}
+                            </DialogContent>
+                          </Dialog>
+                        )}
+                      </div>
                     </div>
                   </CardContent>
                 </Card>
