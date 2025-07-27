@@ -17,9 +17,6 @@ const Hero = () => {
           <div className="text-white">
             <div className="flex items-center gap-2 mb-6">
               <Award className="h-8 w-8 text-accent" />
-              <span className="text-accent font-semibold text-lg">
-                Trusted Technology Solutions Provider
-              </span>
             </div>
             
             <h1 className="text-5xl lg:text-6xl font-bold mb-6 leading-tight">
@@ -79,6 +76,12 @@ const Hero = () => {
               <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
                 <div className="text-center text-white">
                   <Building className="h-16 w-16 text-accent mx-auto mb-4" />
+                  <div className="flex items-center justify-center gap-2 mb-3">
+                    <Award className="h-6 w-6 text-accent" />
+                    <span className="text-accent font-semibold text-lg">
+                      Trusted Technology Solutions Provider
+                    </span>
+                  </div>
                   <h3 className="text-2xl font-bold mb-4">Enterprise Solutions</h3>
                   <p className="text-gray-200 mb-6">
                     Scalable technology solutions for organizations of all sizes
