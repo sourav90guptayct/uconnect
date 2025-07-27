@@ -1,13 +1,17 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, MapPin, Clock, Users, Award, Heart, Zap, DollarSign, Calendar } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import { ArrowLeft, MapPin, Clock, Users, Award, Heart, Zap, DollarSign, Calendar, Send } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { useAuth } from "@/hooks/useAuth";
 
 interface Job {
   id: string;
@@ -36,10 +40,19 @@ const CareersPage = () => {
   const [jobs, setJobs] = useState<Job[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const { toast } = useToast();
+  const navigate = useNavigate();
+  const { user } = useAuth();
+  const [candidateProfile, setCandidateProfile] = useState(null);
+  const [appliedJobs, setAppliedJobs] = useState<Set<string>>(new Set());
+  const [applyingJob, setApplyingJob] = useState<string | null>(null);
+  const [coverLetter, setCoverLetter] = useState("");
 
   useEffect(() => {
     fetchJobs();
-  }, []);
+    if (user) {
+      fetchCandidateProfile();
+    }
+  }, [user]);
 
   const fetchJobs = async () => {
     try {
@@ -75,6 +88,118 @@ const CareersPage = () => {
       day: 'numeric'
     });
   };
+
+  const fetchCandidateProfile = async () => {
+    if (!user) return;
+    
+    try {
+      const { data, error } = await supabase
+        .from('candidate_profiles')
+        .select('id, user_id')
+        .eq('user_id', user.id)
+        .maybeSingle();
+
+      if (error) {
+        console.error('Error fetching candidate profile:', error);
+        setCandidateProfile(null);
+        return;
+      }
+
+      setCandidateProfile(data);
+      if (data) {
+        fetchAppliedJobs(data.id);
+      }
+    } catch (error) {
+      console.error('Error in fetchCandidateProfile:', error);
+      setCandidateProfile(null);
+    }
+  };
+
+  const fetchAppliedJobs = async (candidateId: string) => {
+    try {
+      const { data, error } = await supabase
+        .from('job_applications')
+        .select('job_id')
+        .eq('candidate_id', candidateId);
+
+      if (error) throw error;
+      
+      const appliedJobIds = new Set(data?.map(app => app.job_id) || []);
+      setAppliedJobs(appliedJobIds);
+    } catch (error) {
+      console.error('Error fetching applied jobs:', error);
+    }
+  };
+
+  const handleApplyJob = async (jobId: string) => {
+    if (!user) {
+      toast({
+        title: "Login Required",
+        description: "Please login to apply for jobs.",
+        variant: "destructive"
+      });
+      navigate('/auth');
+      return;
+    }
+
+    if (!candidateProfile) {
+      toast({
+        title: "Complete Your Profile",
+        description: "Please complete your profile setup to apply for jobs.",
+        variant: "destructive"
+      });
+      navigate('/profile');
+      return;
+    }
+
+    performJobApplication(jobId, candidateProfile);
+  };
+
+  const performJobApplication = async (jobId: string, profile: any) => {
+    try {
+      const applicationData = {
+        job_id: jobId,
+        candidate_id: profile.id,
+        cover_letter: coverLetter || '',
+        application_status: 'applied'
+      };
+      
+      const { data, error } = await supabase
+        .from('job_applications')
+        .insert(applicationData)
+        .select();
+
+      if (error) {
+        console.error('Supabase error during job application:', error);
+        throw error;
+      }
+
+      setAppliedJobs(prev => new Set([...prev, jobId]));
+      setCoverLetter("");
+      setApplyingJob(null);
+      
+      toast({
+        title: "Application Submitted Successfully! 🎉",
+        description: "Your application has been submitted. Check 'My Applications' to track status.",
+        duration: 5000
+      });
+    } catch (error: any) {
+      console.error('Error applying for job:', error);
+      if (error.code === '23505') {
+        toast({
+          title: "Already Applied",
+          description: "You have already applied for this job.",
+          variant: "destructive"
+        });
+      } else {
+        toast({
+          title: "Application Failed",
+          description: `Failed to submit application: ${error.message}. Please try again.`,
+          variant: "destructive"
+        });
+      }
+    }
+  }
 
   const benefits = [
     {
@@ -241,11 +366,70 @@ const CareersPage = () => {
                       <p className="text-xs text-muted-foreground mb-3">
                         Application Deadline: {formatDate(job.application_deadline)}
                       </p>
-                      <Link to="/auth">
-                        <Button className="w-full">
-                          Apply Now
+                      <div className="flex gap-2">
+                        <Button 
+                          variant="outline" 
+                          className="flex-1"
+                          onClick={() => navigate(`/jobs/${job.id}`)}
+                        >
+                          View Details
                         </Button>
-                      </Link>
+                        {appliedJobs.has(job.id) ? (
+                          <Button disabled className="flex-1">
+                            Applied
+                          </Button>
+                        ) : (
+                          <Dialog>
+                            <DialogTrigger asChild>
+                              <Button 
+                                className="flex-1" 
+                                onClick={() => setApplyingJob(job.id)}
+                              >
+                                Quick Apply
+                              </Button>
+                            </DialogTrigger>
+                            <DialogContent className="max-w-2xl">
+                              <DialogHeader>
+                                <DialogTitle>Quick Apply for {job.title}</DialogTitle>
+                                <DialogDescription>
+                                  at {job.company_name} - {job.location_city}, {job.location_state}
+                                </DialogDescription>
+                              </DialogHeader>
+                              
+                              <div className="space-y-4">
+                                <div>
+                                  <Label htmlFor="coverLetter">Cover Letter (Optional)</Label>
+                                  <Textarea
+                                    id="coverLetter"
+                                    placeholder="Tell us why you're interested in this position..."
+                                    value={coverLetter}
+                                    onChange={(e) => setCoverLetter(e.target.value)}
+                                    rows={4}
+                                  />
+                                </div>
+                                
+                                <div className="flex justify-end space-x-2">
+                                  <Button
+                                    variant="outline"
+                                    onClick={() => {
+                                      setApplyingJob(null);
+                                      setCoverLetter("");
+                                    }}
+                                  >
+                                    Cancel
+                                  </Button>
+                                  <Button
+                                    onClick={() => handleApplyJob(job.id)}
+                                  >
+                                    <Send className="h-4 w-4 mr-2" />
+                                    Submit Application
+                                  </Button>
+                                </div>
+                              </div>
+                            </DialogContent>
+                          </Dialog>
+                        )}
+                      </div>
                     </div>
                   </CardContent>
                 </Card>
