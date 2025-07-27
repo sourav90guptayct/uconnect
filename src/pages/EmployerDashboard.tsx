@@ -8,6 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { MapPin, Clock, DollarSign, Calendar, Briefcase, FileText, User, Phone, Mail, Eye } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
+import { useAdminCheck } from "@/hooks/useAdminCheck";
 import { useToast } from "@/hooks/use-toast";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -55,6 +56,7 @@ interface CandidateDetails {
 
 const EmployerDashboardPage = () => {
   const { user } = useAuth();
+  const { isAdmin, loading: adminLoading } = useAdminCheck();
   const navigate = useNavigate();
   const { toast } = useToast();
   
@@ -64,6 +66,13 @@ const EmployerDashboardPage = () => {
   const [candidateDetails, setCandidateDetails] = useState<CandidateDetails | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isLoadingCandidate, setIsLoadingCandidate] = useState(false);
+
+  // Redirect non-admin users
+  useEffect(() => {
+    if (!adminLoading && !isAdmin) {
+      window.location.href = '/';
+    }
+  }, [isAdmin, adminLoading]);
 
   useEffect(() => {
     if (!user) {
@@ -250,8 +259,30 @@ const EmployerDashboardPage = () => {
     }
   };
 
-  if (!user) {
-    return null;
+  if (!user || adminLoading) {
+    return (
+      <div className="min-h-screen bg-background">
+        <Header />
+        <main className="container mx-auto px-4 py-8">
+          <div className="text-center">
+            <h2 className="text-2xl font-bold text-foreground mb-4">
+              {!user ? "Access Denied" : "Loading..."}
+            </h2>
+            <p className="text-muted-foreground">
+              {!user 
+                ? "Please log in to access the employer dashboard." 
+                : "Checking permissions..."
+              }
+            </p>
+          </div>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
+  if (!isAdmin) {
+    return null; // This will redirect via useEffect
   }
 
   return (

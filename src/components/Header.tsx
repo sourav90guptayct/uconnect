@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Phone, Mail, ChevronDown, Code, Database, Smartphone, Globe, Shield, Zap } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
+import { useAdminCheck } from "@/hooks/useAdminCheck";
 import { useNavigate, Link } from "react-router-dom";
 import {
   NavigationMenu,
@@ -17,6 +18,7 @@ import { cn } from "@/lib/utils";
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { user, signOut } = useAuth();
+  const { isAdmin } = useAdminCheck();
   const navigate = useNavigate();
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
@@ -108,11 +110,13 @@ const Header = () => {
                       </Link>
                     </NavigationMenuItem>
 
-                    <NavigationMenuItem>
-                      <Link to="/employer-dashboard" className={cn(navigationMenuTriggerStyle(), "text-foreground hover:text-primary")}>
-                        Employer Dashboard
-                      </Link>
-                    </NavigationMenuItem>
+                    {isAdmin && (
+                      <NavigationMenuItem>
+                        <Link to="/employer-dashboard" className={cn(navigationMenuTriggerStyle(), "text-foreground hover:text-primary")}>
+                          Employer Dashboard
+                        </Link>
+                      </NavigationMenuItem>
+                    )}
 
                     <NavigationMenuItem>
                       <Link to="/careers" className={cn(navigationMenuTriggerStyle(), "text-foreground hover:text-primary")}>
@@ -191,9 +195,11 @@ const Header = () => {
                   <Link to="/my-applications" className="text-foreground hover:text-primary transition-colors">
                     My Applications
                   </Link>
-                  <Link to="/employer-dashboard" className="text-foreground hover:text-primary transition-colors">
-                    Employer Dashboard
-                  </Link>
+                  {isAdmin && (
+                    <Link to="/employer-dashboard" className="text-foreground hover:text-primary transition-colors">
+                      Employer Dashboard
+                    </Link>
+                  )}
                   <Link to="/careers" className="text-foreground hover:text-primary transition-colors">
                     All Jobs
                   </Link>
