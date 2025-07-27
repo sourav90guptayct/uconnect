@@ -15,9 +15,6 @@ const Hero = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Content */}
           <div className="text-white">
-            <div className="flex items-center gap-2 mb-6">
-              <Award className="h-8 w-8 text-accent" />
-            </div>
             
             <h1 className="text-5xl lg:text-6xl font-bold mb-6 leading-tight">
               Connecting
