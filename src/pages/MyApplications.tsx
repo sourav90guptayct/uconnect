@@ -149,7 +149,9 @@ const MyApplicationsPage = () => {
             <h2 className="text-2xl font-bold">
               {isLoading ? "Loading..." : `${applications.length} Applications`}
             </h2>
-            
+            <Button onClick={() => navigate('/jobs')}>
+              Browse Jobs
+            </Button>
           </div>
 
           {isLoading ? <div className="text-center py-12">
