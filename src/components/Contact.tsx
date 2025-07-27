@@ -160,7 +160,7 @@ const Contact = () => {
                     <MapPin className="h-6 w-6 text-accent" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-card-foreground mb-2">Office Address</h4>
+                    <h4 className="font-semibold text-card-foreground mb-2">uConnect Technologies HQ Address</h4>
                     <p className="text-muted-foreground">
                       Plot No 1398 Air Force Road<br />
                       Govindpur<br />
