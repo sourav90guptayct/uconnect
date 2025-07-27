@@ -103,6 +103,18 @@ const Header = () => {
                     </NavigationMenuItem>
 
                     <NavigationMenuItem>
+                      <Link to="/my-applications" className={cn(navigationMenuTriggerStyle(), "text-foreground hover:text-primary")}>
+                        My Applications
+                      </Link>
+                    </NavigationMenuItem>
+
+                    <NavigationMenuItem>
+                      <Link to="/employer-dashboard" className={cn(navigationMenuTriggerStyle(), "text-foreground hover:text-primary")}>
+                        Employer Dashboard
+                      </Link>
+                    </NavigationMenuItem>
+
+                    <NavigationMenuItem>
                       <Link to="/careers" className={cn(navigationMenuTriggerStyle(), "text-foreground hover:text-primary")}>
                         All Jobs
                       </Link>
@@ -175,6 +187,12 @@ const Header = () => {
                   </Link>
                   <Link to="/jobs" className="text-foreground hover:text-primary transition-colors">
                     Job Search
+                  </Link>
+                  <Link to="/my-applications" className="text-foreground hover:text-primary transition-colors">
+                    My Applications
+                  </Link>
+                  <Link to="/employer-dashboard" className="text-foreground hover:text-primary transition-colors">
+                    Employer Dashboard
                   </Link>
                   <Link to="/careers" className="text-foreground hover:text-primary transition-colors">
                     All Jobs
