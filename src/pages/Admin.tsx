@@ -197,26 +197,27 @@ export default function Admin() {
 
       if (error) throw error;
       
-      // Get email addresses for candidates
+      // Get email addresses for candidates using RPC function
       if (data && data.length > 0) {
-        const userIds = data.map(candidate => candidate.user_id);
-        const { data: users, error: usersError } = await supabase
-          .from('auth.users')
-          .select('id, email')
-          .in('id', userIds);
-          
-        // If auth.users query fails, try getting from rpc or alternative method
-        if (usersError) {
-          console.log('Could not fetch emails from auth.users:', usersError);
-          setCandidates(data || []);
-        } else {
-          // Merge email data with candidate data
-          const candidatesWithEmail = data.map(candidate => ({
-            ...candidate,
-            email: users?.find(user => user.id === candidate.user_id)?.email || 'Not available'
-          }));
-          setCandidates(candidatesWithEmail || []);
-        }
+        const candidatesWithEmail = await Promise.all(
+          data.map(async (candidate) => {
+            try {
+              const { data: email, error: emailError } = await supabase
+                .rpc('get_user_email', { user_uuid: candidate.user_id });
+              
+              return {
+                ...candidate,
+                email: emailError ? 'Not available' : email || 'Not available'
+              };
+            } catch {
+              return {
+                ...candidate,
+                email: 'Not available'
+              };
+            }
+          })
+        );
+        setCandidates(candidatesWithEmail);
       } else {
         setCandidates(data || []);
       }
