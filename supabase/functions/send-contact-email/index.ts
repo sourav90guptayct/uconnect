@@ -56,10 +56,10 @@ serve(async (req) => {
 
     const { fullName, email, phone, company, message } = validationResult.data
 
-    // Initialize Supabase client with proper credentials for RLS compliance
+    // Initialize Supabase client with service role for anonymous insertions
     const supabaseClient = createClient(
-      'https://dlgrlanmnvpwladkhexb.supabase.co',
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRsZ3JsYW5tbnZwd2xhZGtoZXhiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTMwMTY2NTAsImV4cCI6MjA2ODU5MjY1MH0.ql17Vfaz7fEFFE9HxX2VxYJBo50vUghXKZZgCUFo9HE'
+      Deno.env.get('SUPABASE_URL') ?? '',
+      Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? ''
     )
 
     console.log('About to insert into database...')
