@@ -91,12 +91,8 @@ const JobsPage = () => {
 
       if (error) {
         console.error('Error fetching candidate profile:', error);
-        toast({
-          title: "Profile Required",
-          description: "Please complete your profile to apply for jobs.",
-          variant: "destructive"
-        });
-        navigate('/register');
+        // Don't redirect immediately, just show that profile is needed when applying
+        console.log('No candidate profile found - user needs to complete profile to apply for jobs');
         return;
       }
 
@@ -173,15 +169,17 @@ const JobsPage = () => {
   const handleApplyJob = async (jobId: string) => {
     if (!candidateProfile) {
       toast({
-        title: "Profile Required",
-        description: "Please complete your profile to apply for jobs.",
+        title: "Complete Your Profile",
+        description: "Please complete your profile setup to apply for jobs.",
         variant: "destructive"
       });
-      navigate('/register');
+      navigate('/profile');
       return;
     }
 
     try {
+      console.log('Attempting to apply for job:', jobId, 'with candidate:', candidateProfile.id);
+      
       const { error } = await supabase
         .from('job_applications')
         .insert({
@@ -191,8 +189,12 @@ const JobsPage = () => {
           application_status: 'applied'
         });
 
-      if (error) throw error;
+      if (error) {
+        console.error('Supabase error during job application:', error);
+        throw error;
+      }
 
+      console.log('Job application submitted successfully');
       setAppliedJobs(prev => new Set([...prev, jobId]));
       setCoverLetter("");
       setApplyingJob(null);
