@@ -264,6 +264,144 @@ export type Database = {
         }
         Relationships: []
       }
+      job_applications: {
+        Row: {
+          application_status: string
+          applied_at: string
+          candidate_id: string
+          cover_letter: string | null
+          id: string
+          job_id: string
+          updated_at: string
+        }
+        Insert: {
+          application_status?: string
+          applied_at?: string
+          candidate_id: string
+          cover_letter?: string | null
+          id?: string
+          job_id: string
+          updated_at?: string
+        }
+        Update: {
+          application_status?: string
+          applied_at?: string
+          candidate_id?: string
+          cover_letter?: string | null
+          id?: string
+          job_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "job_applications_candidate_id_fkey"
+            columns: ["candidate_id"]
+            isOneToOne: false
+            referencedRelation: "candidate_profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "job_applications_job_id_fkey"
+            columns: ["job_id"]
+            isOneToOne: false
+            referencedRelation: "jobs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      jobs: {
+        Row: {
+          application_count: number | null
+          application_deadline: string | null
+          company_name: string
+          created_at: string
+          department: string | null
+          education_requirements: string | null
+          employment_type: string
+          experience_required: string
+          id: string
+          industry_type: string | null
+          is_active: boolean | null
+          job_description: string
+          job_highlights: string[] | null
+          job_type: string
+          key_responsibilities: string[] | null
+          location_city: string
+          location_district: string | null
+          location_state: string
+          posted_by: string | null
+          preferred_skills: string[] | null
+          required_skills: string[] | null
+          requirements: string[] | null
+          role_category: string | null
+          salary_max: number | null
+          salary_min: number | null
+          salary_type: string | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          application_count?: number | null
+          application_deadline?: string | null
+          company_name: string
+          created_at?: string
+          department?: string | null
+          education_requirements?: string | null
+          employment_type?: string
+          experience_required: string
+          id?: string
+          industry_type?: string | null
+          is_active?: boolean | null
+          job_description: string
+          job_highlights?: string[] | null
+          job_type?: string
+          key_responsibilities?: string[] | null
+          location_city: string
+          location_district?: string | null
+          location_state: string
+          posted_by?: string | null
+          preferred_skills?: string[] | null
+          required_skills?: string[] | null
+          requirements?: string[] | null
+          role_category?: string | null
+          salary_max?: number | null
+          salary_min?: number | null
+          salary_type?: string | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          application_count?: number | null
+          application_deadline?: string | null
+          company_name?: string
+          created_at?: string
+          department?: string | null
+          education_requirements?: string | null
+          employment_type?: string
+          experience_required?: string
+          id?: string
+          industry_type?: string | null
+          is_active?: boolean | null
+          job_description?: string
+          job_highlights?: string[] | null
+          job_type?: string
+          key_responsibilities?: string[] | null
+          location_city?: string
+          location_district?: string | null
+          location_state?: string
+          posted_by?: string | null
+          preferred_skills?: string[] | null
+          required_skills?: string[] | null
+          requirements?: string[] | null
+          role_category?: string | null
+          salary_max?: number | null
+          salary_min?: number | null
+          salary_type?: string | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string
