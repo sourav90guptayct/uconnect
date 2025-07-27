@@ -1,46 +1,80 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, MapPin, Clock, Users, Award, Heart, Zap } from "lucide-react";
+import { ArrowLeft, MapPin, Clock, Users, Award, Heart, Zap, DollarSign, Calendar } from "lucide-react";
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { useEffect, useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
+
+interface Job {
+  id: string;
+  title: string;
+  company_name: string;
+  job_type: string;
+  employment_type: string;
+  experience_required: string;
+  salary_min: number;
+  salary_max: number;
+  location_city: string;
+  location_state: string;
+  location_district: string;
+  job_description: string;
+  key_responsibilities: string[];
+  required_skills: string[];
+  job_highlights: string[];
+  industry_type: string;
+  department: string;
+  role_category: string;
+  application_deadline: string;
+  created_at: string;
+}
 
 const CareersPage = () => {
-  const jobOpenings = [
-    {
-      title: "Network Engineer",
-      department: "Networks",
-      location: "Remote / On-site",
-      type: "Full-time",
-      description: "Join our network team to design, implement, and maintain cutting-edge network infrastructure solutions.",
-      requirements: ["Bachelor's degree in Network Engineering or related field", "3+ years of network administration experience", "CCNA/CCNP certification preferred", "Experience with network monitoring tools"]
-    },
-    {
-      title: "Digital Transformation Specialist",
-      department: "Digital Transformation",
-      location: "Hybrid",
-      type: "Full-time",
-      description: "Lead digital transformation initiatives and help organizations modernize their IT infrastructure and processes.",
-      requirements: ["5+ years in digital transformation projects", "Experience with cloud platforms (AWS, Azure, GCP)", "Strong project management skills", "Knowledge of enterprise architecture"]
-    },
-    {
-      title: "Resource Management Coordinator",
-      department: "Resource Management",
-      location: "Remote",
-      type: "Full-time",
-      description: "Manage technology staffing and resource allocation to optimize workforce efficiency and project delivery.",
-      requirements: ["3+ years in resource management or HR", "Experience with workforce optimization tools", "Strong communication skills", "Understanding of technology roles and skills"]
-    },
-    {
-      title: "Infrastructure Installation Technician",
-      department: "Infra Installation",
-      location: "Field Work",
-      type: "Full-time",
-      description: "Install and maintain telecommunications infrastructure including towers, poles, and support systems.",
-      requirements: ["Technical certification in telecommunications", "Experience with tower installation and maintenance", "Physical fitness for field work", "Safety certification required"]
+  const [jobs, setJobs] = useState<Job[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const { toast } = useToast();
+
+  useEffect(() => {
+    fetchJobs();
+  }, []);
+
+  const fetchJobs = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('jobs')
+        .select('*')
+        .eq('is_active', true)
+        .order('created_at', { ascending: false })
+        .limit(20);
+
+      if (error) throw error;
+      setJobs(data || []);
+    } catch (error) {
+      console.error('Error fetching jobs:', error);
+      toast({
+        title: "Error",
+        description: "Failed to load job openings.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsLoading(false);
     }
-  ];
+  };
+
+  const formatSalary = (min: number, max: number) => {
+    return `₹${(min / 100000).toFixed(1)}-${(max / 100000).toFixed(1)} LPA`;
+  };
+
+  const formatDate = (dateString: string) => {
+    return new Date(dateString).toLocaleDateString('en-IN', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric'
+    });
+  };
 
   const benefits = [
     {
@@ -137,47 +171,86 @@ const CareersPage = () => {
           </div>
 
           <div className="grid lg:grid-cols-2 gap-8">
-            {jobOpenings.map((job, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <div className="flex justify-between items-start mb-4">
-                    <div>
-                      <CardTitle className="text-xl mb-2">{job.title}</CardTitle>
-                      <Badge variant="secondary" className="mb-2">{job.department}</Badge>
+            {isLoading ? (
+              <div className="col-span-2 text-center py-12">
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+                <p className="text-muted-foreground">Loading job openings...</p>
+              </div>
+            ) : jobs.length === 0 ? (
+              <div className="col-span-2 text-center py-12">
+                <p className="text-muted-foreground text-lg">No job openings available at the moment.</p>
+                <p className="text-muted-foreground">Please check back later or contact HR for upcoming opportunities.</p>
+              </div>
+            ) : (
+              jobs.map((job) => (
+                <Card key={job.id} className="hover:shadow-lg transition-shadow">
+                  <CardHeader>
+                    <div className="flex justify-between items-start mb-4">
+                      <div>
+                        <CardTitle className="text-xl mb-2">{job.title}</CardTitle>
+                        <Badge variant="secondary" className="mb-2">{job.department}</Badge>
+                      </div>
                     </div>
-                  </div>
-                  <div className="flex gap-4 text-sm text-muted-foreground">
-                    <span className="flex items-center gap-1">
-                      <MapPin className="h-4 w-4" />
-                      {job.location}
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <Clock className="h-4 w-4" />
-                      {job.type}
-                    </span>
-                  </div>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <p className="text-muted-foreground">{job.description}</p>
-                  <div>
-                    <h4 className="font-semibold mb-2">Requirements:</h4>
-                    <ul className="space-y-1">
-                      {job.requirements.map((req, reqIndex) => (
-                        <li key={reqIndex} className="flex items-start gap-2 text-sm text-muted-foreground">
-                          <div className="h-1.5 w-1.5 bg-primary rounded-full flex-shrink-0 mt-2" />
-                          {req}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <Link to="/?section=contact">
-                    <Button className="w-full">
-                      Apply Now
-                    </Button>
-                  </Link>
-                </CardContent>
-              </Card>
-            ))}
+                    <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
+                      <span className="flex items-center gap-1">
+                        <MapPin className="h-4 w-4" />
+                        {job.location_city}, {job.location_state}
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <Clock className="h-4 w-4" />
+                        {job.employment_type}
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <DollarSign className="h-4 w-4" />
+                        {formatSalary(job.salary_min, job.salary_max)}
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <Calendar className="h-4 w-4" />
+                        Exp: {job.experience_required}
+                      </span>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <p className="text-muted-foreground">{job.job_description}</p>
+                    {job.job_highlights && job.job_highlights.length > 0 && (
+                      <div>
+                        <h4 className="font-semibold mb-2">Highlights:</h4>
+                        <ul className="space-y-1">
+                          {job.job_highlights.slice(0, 3).map((highlight, index) => (
+                            <li key={index} className="flex items-start gap-2 text-sm text-muted-foreground">
+                              <div className="h-1.5 w-1.5 bg-primary rounded-full flex-shrink-0 mt-2" />
+                              {highlight}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                    {job.required_skills && job.required_skills.length > 0 && (
+                      <div>
+                        <h4 className="font-semibold mb-2">Key Skills:</h4>
+                        <div className="flex flex-wrap gap-2">
+                          {job.required_skills.slice(0, 6).map((skill, index) => (
+                            <Badge key={index} variant="outline" className="text-xs">
+                              {skill}
+                            </Badge>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                    <div className="pt-2">
+                      <p className="text-xs text-muted-foreground mb-3">
+                        Application Deadline: {formatDate(job.application_deadline)}
+                      </p>
+                      <Link to="/auth">
+                        <Button className="w-full">
+                          Apply Now
+                        </Button>
+                      </Link>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))
+            )}
           </div>
         </div>
       </section>
