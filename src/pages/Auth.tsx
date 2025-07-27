@@ -20,8 +20,20 @@ export default function Auth() {
     // Check if user is already logged in
     const checkUser = async () => {
       const { data: { session } } = await supabase.auth.getSession();
-      if (session) {
-        navigate('/profile');
+      if (session?.user) {
+        // Check if user is admin
+        const { data: roleData } = await supabase
+          .from('user_roles')
+          .select('role')
+          .eq('user_id', session.user.id)
+          .eq('role', 'admin')
+          .maybeSingle();
+
+        if (roleData) {
+          navigate('/admin');
+        } else {
+          navigate('/profile');
+        }
       }
     };
     checkUser();
@@ -117,7 +129,7 @@ export default function Auth() {
     setLoading(true);
 
     try {
-      const { error } = await supabase.auth.signInWithPassword({
+      const { data, error } = await supabase.auth.signInWithPassword({
         email,
         password,
       });
@@ -128,8 +140,20 @@ export default function Auth() {
           description: error.message,
           variant: "destructive"
         });
-      } else {
-        navigate('/profile');
+      } else if (data.user) {
+        // Check if user is admin
+        const { data: roleData } = await supabase
+          .from('user_roles')
+          .select('role')
+          .eq('user_id', data.user.id)
+          .eq('role', 'admin')
+          .maybeSingle();
+
+        if (roleData) {
+          navigate('/admin');
+        } else {
+          navigate('/profile');
+        }
       }
     } catch (error) {
       toast({
