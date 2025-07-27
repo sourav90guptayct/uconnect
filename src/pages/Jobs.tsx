@@ -67,8 +67,13 @@ const JobsPage = () => {
     }
     fetchCandidateProfile();
     fetchJobs();
-    fetchAppliedJobs();
   }, [user, navigate]);
+
+  useEffect(() => {
+    if (candidateProfile) {
+      fetchAppliedJobs();
+    }
+  }, [candidateProfile]);
 
   useEffect(() => {
     filterJobs();
@@ -124,13 +129,13 @@ const JobsPage = () => {
   };
 
   const fetchAppliedJobs = async () => {
-    if (!user) return;
+    if (!user || !candidateProfile) return;
 
     try {
       const { data, error } = await supabase
         .from('job_applications')
         .select('job_id')
-        .eq('candidate_id', candidateProfile?.id);
+        .eq('candidate_id', candidateProfile.id);
 
       if (error) throw error;
       
