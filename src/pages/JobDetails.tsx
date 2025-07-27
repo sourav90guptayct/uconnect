@@ -148,14 +148,22 @@ const JobDetailsPage = () => {
   };
 
   const handleApplyJob = async () => {
+    console.log('Apply job clicked - candidateProfile:', candidateProfile);
+    console.log('Current user:', user?.id);
+    
     if (!candidateProfile || !job) {
-      toast({
-        title: "Complete Your Profile",
-        description: "Please complete your profile setup to apply for jobs.",
-        variant: "destructive"
-      });
-      navigate('/profile');
-      return;
+      // Try to fetch profile again before giving up
+      await fetchCandidateProfile();
+      
+      if (!candidateProfile || !job) {
+        toast({
+          title: "Complete Your Profile",
+          description: "Please complete your profile setup to apply for jobs.",
+          variant: "destructive"
+        });
+        navigate('/profile');
+        return;
+      }
     }
 
     setIsApplying(true);
@@ -168,7 +176,7 @@ const JobDetailsPage = () => {
         .insert({
           job_id: job.id,
           candidate_id: candidateProfile.id,
-          cover_letter: coverLetter,
+          cover_letter: coverLetter || '',
           application_status: 'applied'
         });
 
@@ -183,8 +191,9 @@ const JobDetailsPage = () => {
       setShowApplyDialog(false);
       
       toast({
-        title: "Application Submitted",
-        description: "Your application has been submitted successfully!"
+        title: "Application Submitted Successfully! 🎉",
+        description: "Your application has been submitted. Check 'My Applications' to track status.",
+        duration: 5000
       });
     } catch (error: any) {
       console.error('Error applying for job:', error);
@@ -198,7 +207,7 @@ const JobDetailsPage = () => {
       } else {
         toast({
           title: "Application Failed",
-          description: "Failed to submit application. Please try again.",
+          description: `Failed to submit application: ${error.message}. Please try again.`,
           variant: "destructive"
         });
       }

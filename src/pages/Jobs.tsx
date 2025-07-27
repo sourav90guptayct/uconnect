@@ -83,22 +83,26 @@ const JobsPage = () => {
     if (!user) return;
     
     try {
+      console.log('Fetching candidate profile for user:', user.id);
+      
       const { data, error } = await supabase
         .from('candidate_profiles')
-        .select('id, user_id')
+        .select('id, user_id, first_name, last_name')
         .eq('user_id', user.id)
         .single();
 
       if (error) {
         console.error('Error fetching candidate profile:', error);
-        // Don't redirect immediately, just show that profile is needed when applying
         console.log('No candidate profile found - user needs to complete profile to apply for jobs');
+        setCandidateProfile(null);
         return;
       }
 
+      console.log('Candidate profile found:', data);
       setCandidateProfile(data);
     } catch (error) {
       console.error('Error:', error);
+      setCandidateProfile(null);
     }
   };
 
@@ -167,14 +171,23 @@ const JobsPage = () => {
   };
 
   const handleApplyJob = async (jobId: string) => {
+    console.log('Apply job clicked - candidateProfile:', candidateProfile);
+    console.log('Current user:', user?.id);
+    
     if (!candidateProfile) {
-      toast({
-        title: "Complete Your Profile",
-        description: "Please complete your profile setup to apply for jobs.",
-        variant: "destructive"
-      });
-      navigate('/profile');
-      return;
+      // Try to fetch profile again before giving up
+      await fetchCandidateProfile();
+      
+      // Check again after fetching
+      if (!candidateProfile) {
+        toast({
+          title: "Complete Your Profile",
+          description: "Please complete your profile setup to apply for jobs.",
+          variant: "destructive"
+        });
+        navigate('/profile');
+        return;
+      }
     }
 
     try {
@@ -185,7 +198,7 @@ const JobsPage = () => {
         .insert({
           job_id: jobId,
           candidate_id: candidateProfile.id,
-          cover_letter: coverLetter,
+          cover_letter: coverLetter || '',
           application_status: 'applied'
         });
 
@@ -200,8 +213,9 @@ const JobsPage = () => {
       setApplyingJob(null);
       
       toast({
-        title: "Application Submitted",
-        description: "Your application has been submitted successfully!"
+        title: "Application Submitted Successfully! 🎉",
+        description: "Your application has been submitted. Check 'My Applications' to track status.",
+        duration: 5000
       });
     } catch (error: any) {
       console.error('Error applying for job:', error);
@@ -214,7 +228,7 @@ const JobsPage = () => {
       } else {
         toast({
           title: "Application Failed",
-          description: "Failed to submit application. Please try again.",
+          description: `Failed to submit application: ${error.message}. Please try again.`,
           variant: "destructive"
         });
       }
