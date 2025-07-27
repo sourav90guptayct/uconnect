@@ -180,9 +180,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold text-card-foreground mb-2">Phone Number</h4>
-                    <p className="text-muted-foreground">
-                      8979199267
-                    </p>
+                    <p className="text-muted-foreground">+91-8979199267</p>
                   </div>
                 </div>
               </CardContent>
