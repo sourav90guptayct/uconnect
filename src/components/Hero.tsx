@@ -11,35 +11,36 @@ const Hero = () => {
         }} />
       </div>
 
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <div className="container mx-auto px-4 lg:px-8 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-16 xl:gap-20 items-center min-h-[80vh]">
           {/* Content */}
-          <div className="text-white">
-            <div className="flex items-center gap-2 mb-6">
-              <Award className="h-8 w-8 text-accent" />
-              <span className="text-accent font-semibold text-lg">
+          <div className="text-white space-y-8 lg:pr-8">
+            <div className="flex items-center gap-3 mb-2">
+              <div className="p-2 bg-accent/20 rounded-lg backdrop-blur-sm">
+                <Award className="h-6 w-6 text-accent" />
+              </div>
+              <span className="text-accent font-semibold text-lg tracking-wide">
                 Trusted Technology Solutions Provider
               </span>
             </div>
             
-            <h1 className="text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-              Connecting
-              <span className="text-accent"> Technology</span>
-              <br />
-              Powering
-              <span className="text-accent"> Innovation</span>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight">
+              <span className="block">Connecting</span>
+              <span className="text-accent block"> Technology</span>
+              <span className="block">Powering</span>
+              <span className="text-accent block"> Innovation</span>
             </h1>
             
-            <p className="text-xl mb-8 text-gray-200 leading-relaxed">
+            <p className="text-lg lg:text-xl text-gray-200 leading-relaxed max-w-2xl">
               uConnect Technologies is your premier partner for comprehensive technology solutions. 
               We connect organizations with cutting-edge infrastructure, digital transformation, and 
               innovative technology services to drive productivity, growth, and success across all industries.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 mb-12">
+            <div className="flex flex-col sm:flex-row gap-4 pt-4">
               <Button 
                 size="lg" 
-                className="bg-accent text-accent-foreground hover:bg-accent/90 text-lg px-8"
+                className="bg-accent text-accent-foreground hover:bg-accent/90 text-lg px-8 py-4 h-auto shadow-lg hover:shadow-xl transition-all duration-300"
                 onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
               >
                 Explore Services
@@ -48,7 +49,7 @@ const Hero = () => {
               <Button 
                 size="lg" 
                 variant="outline" 
-                className="border-2 border-white bg-white/10 text-white hover:bg-white hover:text-primary text-lg px-8 backdrop-blur-sm"
+                className="border-2 border-white/30 bg-white/10 text-white hover:bg-white hover:text-primary text-lg px-8 py-4 h-auto backdrop-blur-sm transition-all duration-300"
                 onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
               >
                 Contact Us Today
@@ -56,47 +57,56 @@ const Hero = () => {
             </div>
 
             {/* Stats */}
-            <div className="grid grid-cols-3 gap-8">
+            <div className="grid grid-cols-3 gap-6 pt-8 border-t border-white/20">
               <div className="text-center">
-                <div className="text-3xl font-bold text-accent mb-2">50+</div>
-                <div className="text-sm text-gray-300">Clients Served</div>
+                <div className="text-2xl lg:text-3xl xl:text-4xl font-bold text-accent mb-1">50+</div>
+                <div className="text-sm lg:text-base text-gray-300">Clients Served</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-accent mb-2">2000+</div>
-                <div className="text-sm text-gray-300">Successful Placements</div>
+                <div className="text-2xl lg:text-3xl xl:text-4xl font-bold text-accent mb-1">2000+</div>
+                <div className="text-sm lg:text-base text-gray-300">Successful Placements</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-accent mb-2">99%</div>
-                <div className="text-sm text-gray-300">Client Satisfaction</div>
+                <div className="text-2xl lg:text-3xl xl:text-4xl font-bold text-accent mb-1">99%</div>
+                <div className="text-sm lg:text-base text-gray-300">Client Satisfaction</div>
               </div>
             </div>
           </div>
 
           {/* Visual */}
-          <div className="hidden lg:flex justify-center">
-            <div className="relative">
+          <div className="hidden lg:flex justify-center items-center relative">
+            <div className="relative w-full max-w-md xl:max-w-lg">
               {/* Main card */}
-              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
-                <div className="text-center text-white">
-                  <Building className="h-16 w-16 text-accent mx-auto mb-4" />
-                  <h3 className="text-2xl font-bold mb-4">Enterprise Solutions</h3>
-                  <p className="text-gray-200 mb-6">
+              <div className="bg-white/10 backdrop-blur-md rounded-3xl p-8 xl:p-10 border border-white/20 shadow-2xl relative overflow-hidden">
+                {/* Gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-br from-accent/10 to-transparent rounded-3xl"></div>
+                
+                <div className="text-center text-white relative z-10">
+                  <div className="bg-accent/20 rounded-2xl p-4 inline-block mb-6">
+                    <Building className="h-16 w-16 xl:h-20 xl:w-20 text-accent" />
+                  </div>
+                  <h3 className="text-2xl xl:text-3xl font-bold mb-4">Enterprise Solutions</h3>
+                  <p className="text-gray-200 mb-8 leading-relaxed">
                     Scalable technology solutions for organizations of all sizes
                   </p>
-                  <div className="flex justify-center items-center gap-4">
+                  <div className="flex justify-center items-center gap-4 bg-white/10 backdrop-blur-sm rounded-xl p-4">
                     <Users className="h-8 w-8 text-accent" />
-                    <span className="text-accent font-semibold">24/7 Support</span>
+                    <span className="text-accent font-semibold text-lg">24/7 Support</span>
                   </div>
                 </div>
               </div>
               
               {/* Floating elements */}
-              <div className="absolute -top-4 -right-4 bg-accent text-accent-foreground rounded-full p-4">
+              <div className="absolute -top-6 -right-6 bg-accent text-accent-foreground rounded-2xl p-4 shadow-lg animate-pulse">
                 <Award className="h-8 w-8" />
               </div>
-              <div className="absolute -bottom-4 -left-4 bg-white/20 backdrop-blur-sm rounded-full p-4 border border-white/30">
+              <div className="absolute -bottom-6 -left-6 bg-white/20 backdrop-blur-sm rounded-2xl p-4 border border-white/30 shadow-lg">
                 <Users className="h-8 w-8 text-white" />
               </div>
+              
+              {/* Background decorative elements */}
+              <div className="absolute top-1/2 -right-8 w-32 h-32 bg-accent/10 rounded-full blur-xl"></div>
+              <div className="absolute -top-8 left-1/2 w-24 h-24 bg-white/10 rounded-full blur-lg"></div>
             </div>
           </div>
         </div>
