@@ -151,61 +151,7 @@ const Contact = () => {
           </div>
 
           {/* Contact Information */}
-          <div className="space-y-6">
-            {/* Office Address */}
-            <Card className="border-border">
-              <CardContent className="p-6">
-                <div className="flex items-start gap-4">
-                  <div className="h-12 w-12 bg-accent/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <MapPin className="h-6 w-6 text-accent" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-card-foreground mb-2">uConnect Technologies HQ Address</h4>
-                    <p className="text-muted-foreground">
-                      Plot No 1398 Air Force Road<br />
-                      Govindpur<br />
-                      Distt. Saharanpur Uttar Pradesh
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Phone */}
-            <Card className="border-border">
-              <CardContent className="p-6">
-                <div className="flex items-start gap-4">
-                  <div className="h-12 w-12 bg-accent/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <Phone className="h-6 w-6 text-accent" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-card-foreground mb-2">Phone Number</h4>
-                    <p className="text-muted-foreground">+91-8979199267</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Email */}
-            <Card className="border-border">
-              <CardContent className="p-6">
-                <div className="flex items-start gap-4">
-                  <div className="h-12 w-12 bg-accent/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <Mail className="h-6 w-6 text-accent" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-card-foreground mb-2">Email Address</h4>
-                    <p className="text-muted-foreground">reachus@youconnecttech.com</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Business Hours */}
-            <Card className="border-border">
-              
-            </Card>
-          </div>
+          
         </div>
 
         {/* CTA Banner */}
