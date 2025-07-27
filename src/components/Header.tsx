@@ -98,11 +98,6 @@ const Header = () => {
                       </NavigationMenuLink>
                     </NavigationMenuItem>
 
-                    <NavigationMenuItem>
-                      <Link to="/jobs" className={cn(navigationMenuTriggerStyle(), "text-foreground hover:text-primary")}>
-                        Job Search
-                      </Link>
-                    </NavigationMenuItem>
 
                     <NavigationMenuItem>
                       <Link to="/my-applications" className={cn(navigationMenuTriggerStyle(), "text-foreground hover:text-primary")}>
@@ -188,9 +183,6 @@ const Header = () => {
                 <>
                   <Link to="/profile" className="text-foreground hover:text-primary transition-colors">
                     My Profile
-                  </Link>
-                  <Link to="/jobs" className="text-foreground hover:text-primary transition-colors">
-                    Job Search
                   </Link>
                   <Link to="/my-applications" className="text-foreground hover:text-primary transition-colors">
                     My Applications
