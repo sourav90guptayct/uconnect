@@ -9,9 +9,11 @@ import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
 import { useNavigate } from 'react-router-dom';
-import { Users, Briefcase, FileText, Eye, MapPin, Clock, DollarSign, Calendar, Phone, Mail } from 'lucide-react';
+import { Users, Briefcase, FileText, Eye, MapPin, Clock, DollarSign, Calendar, Phone, Mail, UserPlus, Shield, ShieldCheck } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
@@ -80,14 +82,25 @@ interface DashboardStats {
   totalActiveJobs: number;
 }
 
+interface UserRole {
+  id: string;
+  user_id: string;
+  role: string;
+  created_at: string;
+  email?: string;
+}
+
 export default function Admin() {
   const { user, loading: authLoading } = useAuth();
   const { isAdmin, loading: adminLoading } = useAdminCheck();
   const [submissions, setSubmissions] = useState<ContactSubmission[]>([]);
   const [jobs, setJobs] = useState<Job[]>([]);
-  const [applications, setApplications] = useState<JobApplication[]>([]);
   const [candidates, setCandidates] = useState<CandidateProfile[]>([]);
-  const [selectedJob, setSelectedJob] = useState<string>("");
+  const [userRoles, setUserRoles] = useState<UserRole[]>([]);
+  const [newUserEmail, setNewUserEmail] = useState('');
+  const [newUserPassword, setNewUserPassword] = useState('');
+  const [newUserRole, setNewUserRole] = useState<'admin' | 'moderator' | 'user'>('user');
+  const [isAddUserDialogOpen, setIsAddUserDialogOpen] = useState(false);
   const [stats, setStats] = useState<DashboardStats>({
     totalJobs: 0,
     totalUsers: 0,
@@ -121,7 +134,8 @@ export default function Admin() {
         fetchStats(),
         fetchSubmissions(),
         fetchJobs(),
-        fetchCandidates()
+        fetchCandidates(),
+        fetchUserRoles()
       ]);
     } catch (error) {
       console.error('Error fetching dashboard data:', error);
@@ -226,61 +240,140 @@ export default function Admin() {
     }
   };
 
-  const fetchJobApplications = async (jobId: string) => {
+  const fetchUserRoles = async () => {
     try {
       const { data, error } = await supabase
-        .from('job_applications')
-        .select(`
-          id,
-          job_id,
-          cover_letter,
-          application_status,
-          applied_at,
-          candidate_profiles!inner (
-            id,
-            first_name,
-            last_name,
-            phone,
-            profile_summary,
-            total_experience,
-            current_city,
-            expected_salary,
-            user_id
-          )
-        `)
-        .eq('job_id', jobId)
-        .neq('candidate_profiles.user_id', '9c0edbb8-94b8-43ae-a934-c2ad0ea2667b') // Filter out specific user's applications
-        .order('applied_at', { ascending: false });
+        .from('user_roles')
+        .select('*')
+        .order('created_at', { ascending: false });
 
       if (error) throw error;
-      setApplications(data || []);
+      
+      // Get email addresses for users with roles
+      if (data && data.length > 0) {
+        const usersWithEmail = await Promise.all(
+          data.map(async (userRole) => {
+            try {
+              const { data: email, error: emailError } = await supabase
+                .rpc('get_user_email', { user_uuid: userRole.user_id });
+              
+              return {
+                ...userRole,
+                email: emailError ? 'Not available' : email || 'Not available'
+              };
+            } catch {
+              return {
+                ...userRole,
+                email: 'Not available'
+              };
+            }
+          })
+        );
+        setUserRoles(usersWithEmail);
+      } else {
+        setUserRoles(data || []);
+      }
     } catch (error) {
-      console.error('Error fetching job applications:', error);
+      console.error('Error fetching user roles:', error);
     }
   };
 
-  const updateApplicationStatus = async (applicationId: string, status: string) => {
+  const createNewUser = async () => {
+    if (!newUserEmail || !newUserPassword) {
+      toast({
+        title: "Error",
+        description: "Please provide both email and password.",
+        variant: "destructive"
+      });
+      return;
+    }
+
     try {
-      const { error } = await supabase
-        .from('job_applications')
-        .update({ application_status: status })
-        .eq('id', applicationId);
+      // Create user with Supabase Auth
+      const { data, error } = await supabase.auth.signUp({
+        email: newUserEmail,
+        password: newUserPassword,
+        options: {
+          emailRedirectTo: `${window.location.origin}/auth`
+        }
+      });
 
       if (error) throw error;
 
-      if (selectedJob) {
-        fetchJobApplications(selectedJob);
-      }
+      if (data.user) {
+        // Assign role to the new user
+        const { error: roleError } = await supabase
+          .from('user_roles')
+          .insert([
+            { user_id: data.user.id, role: newUserRole }
+          ]);
 
-      toast({
-        title: "Status Updated",
-        description: `Application status updated to ${status}.`
-      });
-    } catch (error) {
-      console.error('Error updating application status:', error);
+        if (roleError) throw roleError;
+
+        toast({
+          title: "User Created",
+          description: `User ${newUserEmail} created successfully with ${newUserRole} role.`
+        });
+
+        // Reset form and refresh data
+        setNewUserEmail('');
+        setNewUserPassword('');
+        setNewUserRole('user');
+        setIsAddUserDialogOpen(false);
+        fetchUserRoles();
+      }
+    } catch (error: any) {
       toast({
         title: "Error",
-        description: "Failed to update application status.",
+        description: error.message || "Failed to create user.",
+        variant: "destructive"
+      });
+    }
+  };
+
+  const updateUserRole = async (userId: string, newRole: 'admin' | 'moderator' | 'user') => {
+    try {
+      const { error } = await supabase
+        .from('user_roles')
+        .update({ role: newRole })
+        .eq('user_id', userId);
+
+      if (error) throw error;
+
+      toast({
+        title: "Role Updated",
+        description: `User role updated to ${newRole}.`
+      });
+
+      fetchUserRoles();
+    } catch (error: any) {
+      toast({
+        title: "Error",
+        description: "Failed to update user role.",
+        variant: "destructive"
+      });
+    }
+  };
+
+  const deleteUserRole = async (roleId: string) => {
+    try {
+      const { error } = await supabase
+        .from('user_roles')
+        .delete()
+        .eq('id', roleId);
+
+      if (error) throw error;
+
+      toast({
+        title: "Role Removed",
+        description: "User role removed successfully."
+      });
+
+      fetchUserRoles();
+    } catch (error: any) {
+      toast({
+        title: "Error",
+        description: "Failed to remove user role.",
         variant: "destructive"
       });
     }
@@ -347,18 +440,27 @@ export default function Admin() {
     return `₹${(amount / 100000).toFixed(1)} LPA`;
   };
 
-  const getStatusColor = (status: string) => {
-    switch (status.toLowerCase()) {
-      case 'applied':
-        return 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200';
-      case 'reviewed':
-        return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200';
-      case 'shortlisted':
-        return 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200';
-      case 'rejected':
+  const getRoleColor = (role: string) => {
+    switch (role.toLowerCase()) {
+      case 'admin':
         return 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200';
+      case 'moderator':
+        return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200';
+      case 'user':
+        return 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200';
       default:
         return 'bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-200';
+    }
+  };
+
+  const getRoleIcon = (role: string) => {
+    switch (role.toLowerCase()) {
+      case 'admin':
+        return <ShieldCheck className="h-3 w-3" />;
+      case 'moderator':
+        return <Shield className="h-3 w-3" />;
+      default:
+        return <Users className="h-3 w-3" />;
     }
   };
 
@@ -458,7 +560,7 @@ export default function Admin() {
           <Tabs defaultValue="jobs" className="w-full">
             <TabsList className="grid w-full grid-cols-4">
               <TabsTrigger value="jobs">All Jobs</TabsTrigger>
-              <TabsTrigger value="applications">Applications</TabsTrigger>
+              <TabsTrigger value="users">User Management</TabsTrigger>
               <TabsTrigger value="candidates">All Candidates</TabsTrigger>
               <TabsTrigger value="contact">Contact Submissions</TabsTrigger>
             </TabsList>
@@ -528,134 +630,152 @@ export default function Admin() {
               </Card>
             </TabsContent>
 
-            {/* Applications Tab */}
-            <TabsContent value="applications" className="space-y-6">
-              <div className="flex flex-col md:flex-row gap-4 items-center">
-                <h2 className="text-2xl font-bold">Job Applications</h2>
-                <Select value={selectedJob} onValueChange={(value) => {
-                  setSelectedJob(value);
-                  if (value) {
-                    fetchJobApplications(value);
-                  } else {
-                    setApplications([]);
-                  }
-                }}>
-                  <SelectTrigger className="w-full md:w-80">
-                    <SelectValue placeholder="Select a job to view applications" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="">All Jobs</SelectItem>
-                    {jobs.map((job) => (
-                      <SelectItem key={job.id} value={job.id}>
-                        {job.title} - {job.company_name}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+            {/* User Management Tab */}
+            <TabsContent value="users" className="space-y-6">
+              <div className="flex justify-between items-center">
+                <div>
+                  <h2 className="text-2xl font-bold">User Management</h2>
+                  <p className="text-muted-foreground">Manage user accounts and permissions</p>
+                </div>
+                <Dialog open={isAddUserDialogOpen} onOpenChange={setIsAddUserDialogOpen}>
+                  <DialogTrigger asChild>
+                    <Button>
+                      <UserPlus className="h-4 w-4 mr-2" />
+                      Add New User
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent>
+                    <DialogHeader>
+                      <DialogTitle>Create New User</DialogTitle>
+                      <DialogDescription>
+                        Add a new user to the system and assign their access level.
+                      </DialogDescription>
+                    </DialogHeader>
+                    <div className="space-y-4">
+                      <div>
+                        <Label htmlFor="user-email">Email Address</Label>
+                        <Input
+                          id="user-email"
+                          type="email"
+                          placeholder="user@example.com"
+                          value={newUserEmail}
+                          onChange={(e) => setNewUserEmail(e.target.value)}
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="user-password">Password</Label>
+                        <Input
+                          id="user-password"
+                          type="password"
+                          placeholder="Enter password"
+                          value={newUserPassword}
+                          onChange={(e) => setNewUserPassword(e.target.value)}
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="user-role">Access Level</Label>
+                        <Select value={newUserRole} onValueChange={(value: 'admin' | 'moderator' | 'user') => setNewUserRole(value)}>
+                          <SelectTrigger>
+                            <SelectValue />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="user">Read Only Access</SelectItem>
+                            <SelectItem value="moderator">Moderator (Limited Access)</SelectItem>
+                            <SelectItem value="admin">Full Access (Admin)</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      <div className="flex justify-end gap-2">
+                        <Button variant="outline" onClick={() => setIsAddUserDialogOpen(false)}>
+                          Cancel
+                        </Button>
+                        <Button onClick={createNewUser}>
+                          Create User
+                        </Button>
+                      </div>
+                    </div>
+                  </DialogContent>
+                </Dialog>
               </div>
 
-              {selectedJob && applications.length > 0 ? (
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Applications for Selected Job</CardTitle>
-                    <CardDescription>
-                      {applications.length} applications received
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-4">
-                      {applications.map((application) => (
-                        <Card key={application.id} className="border-l-4 border-l-primary">
-                          <CardContent className="pt-6">
-                            <div className="flex justify-between items-start mb-4">
-                              <div>
-                                <h3 className="text-lg font-semibold">
-                                  {application.candidate_profiles.first_name} {application.candidate_profiles.last_name}
-                                </h3>
-                                <div className="flex items-center gap-4 text-sm text-muted-foreground mt-1">
+              <Card>
+                <CardHeader>
+                  <CardTitle>System Users</CardTitle>
+                  <CardDescription>
+                    {userRoles.length} users with assigned roles
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  {userRoles.length === 0 ? (
+                    <p className="text-center text-muted-foreground py-8">
+                      No users with roles assigned yet.
+                    </p>
+                  ) : (
+                    <div className="overflow-x-auto">
+                      <Table>
+                        <TableHeader>
+                          <TableRow>
+                            <TableHead>Email</TableHead>
+                            <TableHead>Role</TableHead>
+                            <TableHead>Access Level</TableHead>
+                            <TableHead>Created Date</TableHead>
+                            <TableHead>Actions</TableHead>
+                          </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                          {userRoles.map((userRole) => (
+                            <TableRow key={userRole.id}>
+                              <TableCell className="font-medium">
+                                <span className="flex items-center gap-2">
+                                  <Mail className="h-3 w-3" />
+                                  {userRole.email}
+                                </span>
+                              </TableCell>
+                              <TableCell>
+                                <Badge className={getRoleColor(userRole.role)}>
                                   <span className="flex items-center gap-1">
-                                    <Phone className="h-3 w-3" />
-                                    {application.candidate_profiles.phone}
+                                    {getRoleIcon(userRole.role)}
+                                    {userRole.role}
                                   </span>
-                                  <span className="flex items-center gap-1">
-                                    <MapPin className="h-3 w-3" />
-                                    {application.candidate_profiles.current_city}
-                                  </span>
-                                  <span className="flex items-center gap-1">
-                                    <Clock className="h-3 w-3" />
-                                    {application.candidate_profiles.total_experience}
-                                  </span>
-                                  <span className="flex items-center gap-1">
-                                    <DollarSign className="h-3 w-3" />
-                                    {formatSalary(application.candidate_profiles.expected_salary)}
-                                  </span>
-                                </div>
-                              </div>
-                              <div className="flex items-center gap-2">
-                                <Badge className={getStatusColor(application.application_status)}>
-                                  {application.application_status}
                                 </Badge>
-                                <Select
-                                  value={application.application_status}
-                                  onValueChange={(status) => updateApplicationStatus(application.id, status)}
-                                >
-                                  <SelectTrigger className="w-32">
-                                    <SelectValue />
-                                  </SelectTrigger>
-                                  <SelectContent>
-                                    <SelectItem value="applied">Applied</SelectItem>
-                                    <SelectItem value="reviewed">Reviewed</SelectItem>
-                                    <SelectItem value="shortlisted">Shortlisted</SelectItem>
-                                    <SelectItem value="rejected">Rejected</SelectItem>
-                                  </SelectContent>
-                                </Select>
-                              </div>
-                            </div>
-                            
-                            {application.candidate_profiles.profile_summary && (
-                              <div className="mb-4">
-                                <h4 className="font-semibold mb-2">Profile Summary:</h4>
-                                <p className="text-sm text-muted-foreground">
-                                  {application.candidate_profiles.profile_summary}
-                                </p>
-                              </div>
-                            )}
-                            
-                            {application.cover_letter && (
-                              <div className="mb-4">
-                                <h4 className="font-semibold mb-2">Cover Letter:</h4>
-                                <p className="text-sm text-muted-foreground">
-                                  {application.cover_letter}
-                                </p>
-                              </div>
-                            )}
-                            
-                            <div className="flex justify-between items-center text-xs text-muted-foreground">
-                              <span>Applied on: {formatDate(application.applied_at)}</span>
-                            </div>
-                          </CardContent>
-                        </Card>
-                      ))}
+                              </TableCell>
+                              <TableCell>
+                                {userRole.role === 'admin' ? 'Full Access' : 
+                                 userRole.role === 'moderator' ? 'Limited Access' : 'Read Only'}
+                              </TableCell>
+                              <TableCell>{formatDate(userRole.created_at)}</TableCell>
+                              <TableCell>
+                                <div className="flex gap-2">
+                                  <Select
+                                    value={userRole.role}
+                                    onValueChange={(value: 'admin' | 'moderator' | 'user') => updateUserRole(userRole.user_id, value)}
+                                  >
+                                    <SelectTrigger className="w-32">
+                                      <SelectValue />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                      <SelectItem value="user">Read Only</SelectItem>
+                                      <SelectItem value="moderator">Moderator</SelectItem>
+                                      <SelectItem value="admin">Admin</SelectItem>
+                                    </SelectContent>
+                                  </Select>
+                                  <Button
+                                    variant="destructive"
+                                    size="sm"
+                                    onClick={() => deleteUserRole(userRole.id)}
+                                  >
+                                    Remove
+                                  </Button>
+                                </div>
+                              </TableCell>
+                            </TableRow>
+                          ))}
+                        </TableBody>
+                      </Table>
                     </div>
-                  </CardContent>
-                </Card>
-              ) : selectedJob ? (
-                <Card>
-                  <CardContent className="pt-6">
-                    <p className="text-center text-muted-foreground py-8">
-                      No applications received for this job yet.
-                    </p>
-                  </CardContent>
-                </Card>
-              ) : (
-                <Card>
-                  <CardContent className="pt-6">
-                    <p className="text-center text-muted-foreground py-8">
-                      Select a job to view its applications.
-                    </p>
-                  </CardContent>
-                </Card>
-              )}
+                  )}
+                </CardContent>
+              </Card>
             </TabsContent>
 
             {/* Candidates Tab */}
