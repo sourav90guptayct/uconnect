@@ -48,22 +48,6 @@ const Hero = () => {
                 Contact Us Today
               </Button>
             </div>
-
-            {/* Stats */}
-            <div className="flex justify-between items-center w-full">
-              <div className="text-center flex-1">
-                <div className="text-3xl font-bold text-accent mb-2">50+</div>
-                <div className="text-sm text-gray-300">Clients Served</div>
-              </div>
-              <div className="text-center flex-1">
-                <div className="text-3xl font-bold text-accent mb-2">2000+</div>
-                <div className="text-sm text-gray-300">Successful Placements</div>
-              </div>
-              <div className="text-center flex-1">
-                <div className="text-3xl font-bold text-accent mb-2">99%</div>
-                <div className="text-sm text-gray-300">Client Satisfaction</div>
-              </div>
-            </div>
           </div>
 
           {/* Visual */}
@@ -97,6 +81,24 @@ const Hero = () => {
               <div className="absolute -bottom-4 -left-4 bg-white/20 backdrop-blur-sm rounded-full p-4 border border-white/30">
                 <Users className="h-8 w-8 text-white" />
               </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Stats - Full Width */}
+        <div className="mt-16 pt-8 border-t border-white/20">
+          <div className="flex justify-between items-center w-full max-w-4xl mx-auto">
+            <div className="text-center flex-1">
+              <div className="text-4xl lg:text-5xl font-bold text-accent mb-3">50+</div>
+              <div className="text-lg text-gray-200">Clients Served</div>
+            </div>
+            <div className="text-center flex-1">
+              <div className="text-4xl lg:text-5xl font-bold text-accent mb-3">2000+</div>
+              <div className="text-lg text-gray-200">Successful Placements</div>
+            </div>
+            <div className="text-center flex-1">
+              <div className="text-4xl lg:text-5xl font-bold text-accent mb-3">99%</div>
+              <div className="text-lg text-gray-200">Client Satisfaction</div>
             </div>
           </div>
         </div>
