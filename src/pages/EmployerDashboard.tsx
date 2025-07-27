@@ -62,9 +62,11 @@ const EmployerDashboardPage = () => {
   
   const [jobs, setJobs] = useState<Job[]>([]);
   const [applications, setApplications] = useState<JobApplication[]>([]);
+  const [allCandidates, setAllCandidates] = useState<any[]>([]);
   const [selectedJob, setSelectedJob] = useState<string>("");
   const [candidateDetails, setCandidateDetails] = useState<CandidateDetails | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [isLoadingCandidates, setIsLoadingCandidates] = useState(false);
   const [isLoadingCandidate, setIsLoadingCandidate] = useState(false);
 
   // Redirect non-admin users
@@ -80,7 +82,10 @@ const EmployerDashboardPage = () => {
       return;
     }
     fetchEmployerJobs();
-  }, [user, navigate]);
+    if (isAdmin) {
+      fetchAllCandidates();
+    }
+  }, [user, navigate, isAdmin]);
 
   useEffect(() => {
     if (selectedJob) {
@@ -92,11 +97,14 @@ const EmployerDashboardPage = () => {
     if (!user) return;
 
     try {
-      const { data, error } = await supabase
-        .from('jobs')
-        .select('*')
-        .eq('posted_by', user.id)
-        .order('created_at', { ascending: false });
+      let query = supabase.from('jobs').select('*');
+      
+      // If admin, fetch all jobs; otherwise, fetch only user's jobs
+      if (!isAdmin) {
+        query = query.eq('posted_by', user.id);
+      }
+      
+      const { data, error } = await query.order('created_at', { ascending: false });
 
       if (error) throw error;
       setJobs(data || []);
@@ -105,14 +113,70 @@ const EmployerDashboardPage = () => {
         setSelectedJob(data[0].id);
       }
     } catch (error) {
-      console.error('Error fetching employer jobs:', error);
+      console.error('Error fetching jobs:', error);
       toast({
         title: "Error",
-        description: "Failed to load your posted jobs.",
+        description: `Failed to load ${isAdmin ? 'all' : 'your'} posted jobs.`,
         variant: "destructive"
       });
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const fetchAllCandidates = async () => {
+    if (!isAdmin) return;
+    
+    setIsLoadingCandidates(true);
+    try {
+      const { data, error } = await supabase
+        .from('candidate_profiles')
+        .select(`
+          id,
+          first_name,
+          last_name,
+          phone,
+          profile_summary,
+          total_experience,
+          current_city,
+          home_location,
+          expected_salary,
+          current_salary,
+          notice_period,
+          industry,
+          created_at,
+          user_id,
+          candidate_education (
+            course_name,
+            institute_name,
+            education_level,
+            year_of_passing
+          ),
+          candidate_experience (
+            designation,
+            company_name,
+            start_date,
+            end_date,
+            is_current_job
+          ),
+          candidate_skills (
+            skill_name,
+            years_of_experience
+          )
+        `)
+        .order('created_at', { ascending: false });
+
+      if (error) throw error;
+      setAllCandidates(data || []);
+    } catch (error) {
+      console.error('Error fetching all candidates:', error);
+      toast({
+        title: "Error",
+        description: "Failed to load registered candidates.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsLoadingCandidates(false);
     }
   };
 
@@ -289,14 +353,17 @@ const EmployerDashboardPage = () => {
     <div className="min-h-screen bg-background">
       <Header />
       
-      {/* Header */}
+       {/* Header */}
       <div className="bg-primary text-primary-foreground py-16">
         <div className="container mx-auto px-4">
           <h1 className="text-4xl lg:text-5xl font-bold mb-4">
-            Employer Dashboard
+            {isAdmin ? 'Admin Dashboard' : 'Employer Dashboard'}
           </h1>
           <p className="text-xl text-primary-foreground/90 max-w-2xl">
-            Manage your job postings and review applications from talented candidates.
+            {isAdmin 
+              ? 'Manage all jobs, applications, and view registered candidates across the platform.'
+              : 'Manage your job postings and review applications from talented candidates.'
+            }
           </p>
         </div>
       </div>
@@ -320,9 +387,10 @@ const EmployerDashboardPage = () => {
             </div>
           ) : (
             <Tabs value="applications" className="w-full">
-              <TabsList className="grid w-full grid-cols-2">
+              <TabsList className={`grid w-full ${isAdmin ? 'grid-cols-3' : 'grid-cols-2'}`}>
                 <TabsTrigger value="applications">Applications</TabsTrigger>
-                <TabsTrigger value="jobs">My Jobs</TabsTrigger>
+                <TabsTrigger value="jobs">{isAdmin ? 'All Jobs' : 'My Jobs'}</TabsTrigger>
+                {isAdmin && <TabsTrigger value="users">All Users</TabsTrigger>}
               </TabsList>
               
               <TabsContent value="applications" className="space-y-6">
@@ -533,10 +601,12 @@ const EmployerDashboardPage = () => {
 
               <TabsContent value="jobs" className="space-y-6">
                 <div className="flex justify-between items-center">
-                  <h2 className="text-2xl font-bold">My Posted Jobs</h2>
-                  <Button onClick={() => navigate('/post-job')}>
-                    Post New Job
-                  </Button>
+                  <h2 className="text-2xl font-bold">{isAdmin ? 'All Posted Jobs' : 'My Posted Jobs'}</h2>
+                  {!isAdmin && (
+                    <Button onClick={() => navigate('/post-job')}>
+                      Post New Job
+                    </Button>
+                  )}
                 </div>
 
                 <div className="grid lg:grid-cols-2 gap-6">
@@ -574,6 +644,225 @@ const EmployerDashboardPage = () => {
                   ))}
                 </div>
               </TabsContent>
+
+              {isAdmin && (
+                <TabsContent value="users" className="space-y-6">
+                  <div className="flex justify-between items-center">
+                    <h2 className="text-2xl font-bold">All Registered Users</h2>
+                    <Badge variant="outline">
+                      {allCandidates.length} Total Candidates
+                    </Badge>
+                  </div>
+
+                  {isLoadingCandidates ? (
+                    <div className="text-center py-12">
+                      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+                      <p className="text-muted-foreground">Loading candidates...</p>
+                    </div>
+                  ) : allCandidates.length === 0 ? (
+                    <div className="text-center py-12">
+                      <User className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
+                      <h3 className="text-xl font-semibold mb-2">No registered users</h3>
+                      <p className="text-muted-foreground">No candidates have registered on the platform yet.</p>
+                    </div>
+                  ) : (
+                    <div className="grid lg:grid-cols-2 gap-6">
+                      {allCandidates.map((candidate) => (
+                        <Card key={candidate.id} className="hover:shadow-lg transition-shadow">
+                          <CardHeader>
+                            <CardTitle className="text-lg">
+                              {candidate.first_name} {candidate.last_name}
+                            </CardTitle>
+                            <div className="flex flex-wrap gap-3 text-sm text-muted-foreground">
+                              <span className="flex items-center gap-1">
+                                <MapPin className="h-4 w-4" />
+                                {candidate.current_city || candidate.home_location || 'Not specified'}
+                              </span>
+                              <span className="flex items-center gap-1">
+                                <Calendar className="h-4 w-4" />
+                                {candidate.total_experience || 'Fresher'}
+                              </span>
+                              {candidate.expected_salary && (
+                                <span className="flex items-center gap-1">
+                                  <DollarSign className="h-4 w-4" />
+                                  {formatSalary(candidate.expected_salary)}
+                                </span>
+                              )}
+                            </div>
+                          </CardHeader>
+                          
+                          <CardContent className="space-y-4">
+                            {candidate.profile_summary && (
+                              <div>
+                                <h4 className="font-semibold mb-2">Profile Summary</h4>
+                                <p className="text-sm text-muted-foreground line-clamp-2">
+                                  {candidate.profile_summary}
+                                </p>
+                              </div>
+                            )}
+
+                            {candidate.candidate_education && candidate.candidate_education.length > 0 && (
+                              <div>
+                                <h4 className="font-semibold mb-2">Latest Education</h4>
+                                <p className="text-sm text-muted-foreground">
+                                  {candidate.candidate_education[0].course_name} from {candidate.candidate_education[0].institute_name}
+                                  {candidate.candidate_education[0].year_of_passing && ` (${candidate.candidate_education[0].year_of_passing})`}
+                                </p>
+                              </div>
+                            )}
+
+                            {candidate.candidate_experience && candidate.candidate_experience.length > 0 && (
+                              <div>
+                                <h4 className="font-semibold mb-2">Current Role</h4>
+                                <p className="text-sm text-muted-foreground">
+                                  {candidate.candidate_experience.find((exp: any) => exp.is_current_job)?.designation || candidate.candidate_experience[0].designation} 
+                                  at {candidate.candidate_experience.find((exp: any) => exp.is_current_job)?.company_name || candidate.candidate_experience[0].company_name}
+                                </p>
+                              </div>
+                            )}
+
+                            {candidate.candidate_skills && candidate.candidate_skills.length > 0 && (
+                              <div>
+                                <h4 className="font-semibold mb-2">Key Skills</h4>
+                                <div className="flex flex-wrap gap-1">
+                                  {candidate.candidate_skills.slice(0, 5).map((skill: any, index: number) => (
+                                    <Badge key={index} variant="outline" className="text-xs">
+                                      {skill.skill_name}
+                                    </Badge>
+                                  ))}
+                                  {candidate.candidate_skills.length > 5 && (
+                                    <Badge variant="outline" className="text-xs">
+                                      +{candidate.candidate_skills.length - 5} more
+                                    </Badge>
+                                  )}
+                                </div>
+                              </div>
+                            )}
+
+                            <div className="flex flex-wrap gap-2 pt-2">
+                              <Dialog>
+                                <DialogTrigger asChild>
+                                  <Button 
+                                    variant="outline" 
+                                    size="sm"
+                                    onClick={() => fetchCandidateDetails(candidate.id)}
+                                  >
+                                    <Eye className="h-4 w-4 mr-2" />
+                                    View Full Profile
+                                  </Button>
+                                </DialogTrigger>
+                                <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+                                  <DialogHeader>
+                                    <DialogTitle>
+                                      {candidate.first_name} {candidate.last_name} - Full Profile
+                                    </DialogTitle>
+                                    <DialogDescription>
+                                      Complete candidate profile and background
+                                    </DialogDescription>
+                                  </DialogHeader>
+                                  
+                                  {isLoadingCandidate ? (
+                                    <div className="text-center py-8">
+                                      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-4"></div>
+                                      <p className="text-muted-foreground">Loading candidate details...</p>
+                                    </div>
+                                  ) : candidateDetails ? (
+                                    <div className="space-y-6">
+                                      {/* Contact Info */}
+                                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 bg-muted/50 rounded-lg">
+                                        {candidateDetails.profile.phone && (
+                                          <div className="flex items-center gap-2">
+                                            <Phone className="h-4 w-4 text-muted-foreground" />
+                                            <span className="text-sm">{candidateDetails.profile.phone}</span>
+                                          </div>
+                                        )}
+                                        <div className="flex items-center gap-2">
+                                          <Calendar className="h-4 w-4 text-muted-foreground" />
+                                          <span className="text-sm">Joined {formatDate(candidate.created_at)}</span>
+                                        </div>
+                                        {candidateDetails.profile.notice_period && (
+                                          <div className="flex items-center gap-2">
+                                            <Clock className="h-4 w-4 text-muted-foreground" />
+                                            <span className="text-sm">{candidateDetails.profile.notice_period} days notice</span>
+                                          </div>
+                                        )}
+                                        {candidateDetails.profile.industry && (
+                                          <div className="flex items-center gap-2">
+                                            <Briefcase className="h-4 w-4 text-muted-foreground" />
+                                            <span className="text-sm">{candidateDetails.profile.industry}</span>
+                                          </div>
+                                        )}
+                                      </div>
+
+                                      {/* Experience */}
+                                      {candidateDetails.experience.length > 0 && (
+                                        <div>
+                                          <h3 className="text-lg font-semibold mb-4">Work Experience</h3>
+                                          <div className="space-y-4">
+                                            {candidateDetails.experience.map((exp: any) => (
+                                              <div key={exp.id} className="border-l-2 border-primary pl-4">
+                                                <h4 className="font-medium">{exp.designation}</h4>
+                                                <p className="text-sm text-muted-foreground">{exp.company_name}</p>
+                                                <p className="text-sm text-muted-foreground">
+                                                  {formatDate(exp.start_date)} - {exp.end_date ? formatDate(exp.end_date) : 'Present'}
+                                                </p>
+                                                {exp.job_description && (
+                                                  <p className="text-sm mt-2">{exp.job_description}</p>
+                                                )}
+                                              </div>
+                                            ))}
+                                          </div>
+                                        </div>
+                                      )}
+
+                                      {/* Education */}
+                                      {candidateDetails.education.length > 0 && (
+                                        <div>
+                                          <h3 className="text-lg font-semibold mb-4">Education</h3>
+                                          <div className="space-y-4">
+                                            {candidateDetails.education.map((edu: any) => (
+                                              <div key={edu.id} className="border-l-2 border-secondary pl-4">
+                                                <h4 className="font-medium">{edu.course_name}</h4>
+                                                <p className="text-sm text-muted-foreground">{edu.institute_name}</p>
+                                                <p className="text-sm text-muted-foreground">
+                                                  {edu.year_of_passing} • {edu.percentage && `${edu.percentage}%`}
+                                                </p>
+                                              </div>
+                                            ))}
+                                          </div>
+                                        </div>
+                                      )}
+
+                                      {/* Skills */}
+                                      {candidateDetails.skills.length > 0 && (
+                                        <div>
+                                          <h3 className="text-lg font-semibold mb-4">Skills</h3>
+                                          <div className="flex flex-wrap gap-2">
+                                            {candidateDetails.skills.map((skill: any) => (
+                                              <Badge key={skill.id} variant="outline">
+                                                {skill.skill_name}
+                                                {skill.years_of_experience && ` (${skill.years_of_experience}y)`}
+                                              </Badge>
+                                            ))}
+                                          </div>
+                                        </div>
+                                      )}
+                                    </div>
+                                  ) : null}
+                                </DialogContent>
+                              </Dialog>
+                              
+                              <Badge variant="secondary" className="text-xs">
+                                Registered {formatDate(candidate.created_at)}
+                              </Badge>
+                            </div>
+                          </CardContent>
+                        </Card>
+                      ))}
+                    </div>
+                  )}
+                </TabsContent>
+              )}
             </Tabs>
           )}
         </div>
