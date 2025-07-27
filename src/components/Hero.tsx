@@ -54,22 +54,6 @@ const Hero = () => {
                 Contact Us Today
               </Button>
             </div>
-
-            {/* Stats */}
-            <div className="flex justify-between items-center w-full">
-              <div className="text-center flex-1">
-                <div className="text-3xl font-bold text-accent mb-2">50+</div>
-                <div className="text-sm text-gray-300">Clients Served</div>
-              </div>
-              <div className="text-center flex-1">
-                <div className="text-3xl font-bold text-accent mb-2">2000+</div>
-                <div className="text-sm text-gray-300">Successful Placements</div>
-              </div>
-              <div className="text-center flex-1">
-                <div className="text-3xl font-bold text-accent mb-2">99%</div>
-                <div className="text-sm text-gray-300">Client Satisfaction</div>
-              </div>
-            </div>
           </div>
 
           {/* Visual */}
@@ -98,6 +82,22 @@ const Hero = () => {
                 <Users className="h-8 w-8 text-white" />
               </div>
             </div>
+          </div>
+        </div>
+
+        {/* Stats */}
+        <div className="flex justify-between items-center w-full mt-16">
+          <div className="text-center flex-1">
+            <div className="text-3xl font-bold text-accent mb-2">50+</div>
+            <div className="text-sm text-gray-300">Clients Served</div>
+          </div>
+          <div className="text-center flex-1">
+            <div className="text-3xl font-bold text-accent mb-2">2000+</div>
+            <div className="text-sm text-gray-300">Successful Placements</div>
+          </div>
+          <div className="text-center flex-1">
+            <div className="text-3xl font-bold text-accent mb-2">99%</div>
+            <div className="text-sm text-gray-300">Client Satisfaction</div>
           </div>
         </div>
       </div>
