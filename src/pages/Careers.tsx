@@ -241,18 +241,11 @@ const CareersPage = () => {
                       <p className="text-xs text-muted-foreground mb-3">
                         Application Deadline: {formatDate(job.application_deadline)}
                       </p>
-                      <Button 
-                        className="w-full"
-                        onClick={() => {
-                          toast({
-                            title: "Interest Registered! 📝",
-                            description: "Thank you for your interest! Please contact HR directly to complete your application.",
-                            duration: 7000
-                          });
-                        }}
-                      >
-                        Apply Now
-                      </Button>
+                      <Link to="/auth">
+                        <Button className="w-full">
+                          Apply Now
+                        </Button>
+                      </Link>
                     </div>
                   </CardContent>
                 </Card>

@@ -69,16 +69,16 @@ const JobsPage = () => {
       return;
     }
     
-    // Allow access even without authentication
-    console.log('Loading jobs for all users...');
-    
-    if (user) {
-      console.log('User found, fetching profile...');
-      fetchCandidateProfile();
+    if (!user) {
+      console.log('No user found, redirecting to auth...');
+      navigate('/auth');
+      return;
     }
     
+    console.log('User found, fetching data...');
+    fetchCandidateProfile();
     fetchJobs();
-  }, [user, loading]);
+  }, [user, loading, navigate]);
 
   useEffect(() => {
     if (candidateProfile) {
@@ -194,41 +194,34 @@ const JobsPage = () => {
     console.log('=== JOB APPLICATION DEBUG ===');
     console.log('Apply job clicked for jobId:', jobId);
     console.log('Current user:', user?.id);
+    console.log('CandidateProfile state:', candidateProfile);
     
-    // Allow any user to apply, even without authentication
     if (!user) {
-      console.log('User not logged in - allowing guest application');
-      performGuestJobApplication(jobId);
+      console.log('No user - redirecting to auth');
+      toast({
+        title: "Login Required",
+        description: "Please login to apply for jobs.",
+        variant: "destructive"
+      });
+      navigate('/auth');
       return;
     }
 
-    // If user is logged in, try to use their profile
     if (!candidateProfile) {
-      console.log('No candidate profile - allowing application anyway');
-      performGuestJobApplication(jobId);
+      console.log('No candidate profile - redirecting to profile completion');
+      toast({
+        title: "Complete Your Profile",
+        description: "Please complete your profile setup to apply for jobs.",
+        variant: "destructive"
+      });
+      navigate('/profile');
       return;
     }
 
-    // User is logged in with profile - normal application
+    // User is authenticated with complete profile
     performJobApplication(jobId, candidateProfile);
   };
 
-  const performGuestJobApplication = (jobId: string) => {
-    console.log('=== GUEST APPLICATION ===');
-    console.log('JobId:', jobId);
-    
-    // Show success message for guest users
-    toast({
-      title: "Interest Registered! 📝",
-      description: "Thank you for your interest! Please contact HR directly to complete your application.",
-      duration: 7000
-    });
-    
-    // Mark as applied locally for better UX
-    setAppliedJobs(prev => new Set([...prev, jobId]));
-    setCoverLetter("");
-    setApplyingJob(null);
-  };
 
   const performJobApplication = async (jobId: string, profile: CandidateProfile) => {
     try {
@@ -255,9 +248,7 @@ const JobsPage = () => {
 
       if (error) {
         console.error('Supabase error during job application:', error);
-        // Even if database insertion fails, show success for better UX
-        performGuestJobApplication(jobId);
-        return;
+        throw error;
       }
 
       console.log('Job application submitted successfully:', data);
@@ -272,8 +263,19 @@ const JobsPage = () => {
       });
     } catch (error: any) {
       console.error('Error applying for job:', error);
-      // Fallback to guest application
-      performGuestJobApplication(jobId);
+      if (error.code === '23505') {
+        toast({
+          title: "Already Applied",
+          description: "You have already applied for this job.",
+          variant: "destructive"
+        });
+      } else {
+        toast({
+          title: "Application Failed",
+          description: `Failed to submit application: ${error.message}. Please try again.`,
+          variant: "destructive"
+        });
+      }
     }
   };
 
@@ -298,7 +300,21 @@ const JobsPage = () => {
     const experience = [...new Set(jobs.map(job => job.experience_required))];
     return experience.sort();
   };
-
+  if (!user) {
+    return (
+      <div className="min-h-screen bg-background">
+        <Header />
+        <div className="container mx-auto px-4 py-8">
+          <div className="text-center">
+            <h1 className="text-2xl font-bold mb-4">Login Required</h1>
+            <p className="text-muted-foreground mb-4">Please login to view and apply for jobs.</p>
+            <Button onClick={() => navigate('/auth')}>Login</Button>
+          </div>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-background">
@@ -460,7 +476,11 @@ const JobsPage = () => {
                         ) : (
                           <Dialog>
                             <DialogTrigger asChild>
-                              <Button className="flex-1" onClick={() => setApplyingJob(job.id)}>
+                              <Button 
+                                className="flex-1" 
+                                onClick={() => setApplyingJob(job.id)}
+                                disabled={!candidateProfile}
+                              >
                                 Quick Apply
                               </Button>
                             </DialogTrigger>
@@ -494,9 +514,10 @@ const JobsPage = () => {
                                   >
                                     Cancel
                                   </Button>
-                                   <Button
-                                     onClick={() => handleApplyJob(job.id)}
-                                   >
+                                  <Button
+                                    onClick={() => handleApplyJob(job.id)}
+                                    disabled={!candidateProfile}
+                                  >
                                     <Send className="h-4 w-4 mr-2" />
                                     Submit Application
                                   </Button>
