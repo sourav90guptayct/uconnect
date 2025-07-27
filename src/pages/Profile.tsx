@@ -9,6 +9,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import EditProfileModal from "@/components/EditProfileModal";
 import { 
   User, 
   MapPin, 
@@ -223,14 +224,16 @@ export default function Profile() {
                   </div>
                 </div>
                 <div className="flex gap-2">
-                  <Button variant="outline" size="sm">
-                    <Edit className="h-4 w-4 mr-2" />
-                    Edit Profile
-                  </Button>
-                  {profile.resume_url && (
+                  <EditProfileModal profile={profile} onProfileUpdate={fetchUserProfile}>
                     <Button variant="outline" size="sm">
+                      <Edit className="h-4 w-4 mr-2" />
+                      Edit Profile
+                    </Button>
+                  </EditProfileModal>
+                  {profile.resume_url && (
+                    <Button variant="outline" size="sm" onClick={() => window.open(profile.resume_url, '_blank')}>
                       <Download className="h-4 w-4 mr-2" />
-                      Resume
+                      View Resume
                     </Button>
                   )}
                 </div>

@@ -46,48 +46,71 @@ const Header = () => {
           <div className="hidden lg:flex items-center space-x-4">
             <NavigationMenu>
               <NavigationMenuList>
-                <NavigationMenuItem>
-                  <NavigationMenuLink 
-                    asChild
-                  >
-                    <Link to="/" className={cn(navigationMenuTriggerStyle(), "text-foreground hover:text-primary")}>
-                      Home
-                    </Link>
-                  </NavigationMenuLink>
-                </NavigationMenuItem>
+                {!user ? (
+                  // Show marketing navigation for non-logged in users
+                  <>
+                    <NavigationMenuItem>
+                      <NavigationMenuLink asChild>
+                        <Link to="/" className={cn(navigationMenuTriggerStyle(), "text-foreground hover:text-primary")}>
+                          Home
+                        </Link>
+                      </NavigationMenuLink>
+                    </NavigationMenuItem>
 
-                <NavigationMenuItem>
-                  <NavigationMenuLink 
-                    asChild
-                  >
-                    <Link to="/?section=about" className={cn(navigationMenuTriggerStyle(), "text-foreground hover:text-primary")}>
-                      About Us
-                    </Link>
-                  </NavigationMenuLink>
-                </NavigationMenuItem>
+                    <NavigationMenuItem>
+                      <NavigationMenuLink asChild>
+                        <Link to="/?section=about" className={cn(navigationMenuTriggerStyle(), "text-foreground hover:text-primary")}>
+                          About Us
+                        </Link>
+                      </NavigationMenuLink>
+                    </NavigationMenuItem>
 
-                <NavigationMenuItem>
-                  <Link to="/services" className={cn(navigationMenuTriggerStyle(), "text-foreground hover:text-primary")}>
-                    Services
-                  </Link>
-                </NavigationMenuItem>
+                    <NavigationMenuItem>
+                      <Link to="/services" className={cn(navigationMenuTriggerStyle(), "text-foreground hover:text-primary")}>
+                        Services
+                      </Link>
+                    </NavigationMenuItem>
 
-                <NavigationMenuItem>
-                  <Link to="/careers" className={cn(navigationMenuTriggerStyle(), "text-foreground hover:text-primary")}>
-                    Careers
-                  </Link>
-                </NavigationMenuItem>
+                    <NavigationMenuItem>
+                      <Link to="/careers" className={cn(navigationMenuTriggerStyle(), "text-foreground hover:text-primary")}>
+                        Careers
+                      </Link>
+                    </NavigationMenuItem>
 
+                    <NavigationMenuItem>
+                      <NavigationMenuLink asChild>
+                        <Link to="/?section=contact" className={cn(navigationMenuTriggerStyle(), "text-foreground hover:text-primary")}>
+                          Contact
+                        </Link>
+                      </NavigationMenuLink>
+                    </NavigationMenuItem>
+                  </>
+                ) : (
+                  // Show profile-focused navigation for logged-in users
+                  <>
+                    <NavigationMenuItem>
+                      <NavigationMenuLink asChild>
+                        <Link to="/profile" className={cn(navigationMenuTriggerStyle(), "text-foreground hover:text-primary")}>
+                          My Profile
+                        </Link>
+                      </NavigationMenuLink>
+                    </NavigationMenuItem>
 
-                <NavigationMenuItem>
-                  <NavigationMenuLink 
-                    asChild
-                  >
-                    <Link to="/?section=contact" className={cn(navigationMenuTriggerStyle(), "text-foreground hover:text-primary")}>
-                      Contact
-                    </Link>
-                  </NavigationMenuLink>
-                </NavigationMenuItem>
+                    <NavigationMenuItem>
+                      <Link to="/careers" className={cn(navigationMenuTriggerStyle(), "text-foreground hover:text-primary")}>
+                        Job Search
+                      </Link>
+                    </NavigationMenuItem>
+
+                    <NavigationMenuItem>
+                      <NavigationMenuLink asChild>
+                        <Link to="/?section=contact" className={cn(navigationMenuTriggerStyle(), "text-foreground hover:text-primary")}>
+                          Support
+                        </Link>
+                      </NavigationMenuLink>
+                    </NavigationMenuItem>
+                  </>
+                )}
               </NavigationMenuList>
             </NavigationMenu>
 
@@ -127,21 +150,39 @@ const Header = () => {
         {isMenuOpen && (
           <div className="lg:hidden pb-4">
             <nav className="flex flex-col space-y-4">
-              <Link to="/" className="text-foreground hover:text-primary transition-colors">
-                Home
-              </Link>
-              <Link to="/?section=about" className="text-foreground hover:text-primary transition-colors">
-                About Us
-              </Link>
-              <Link to="/services" className="text-foreground hover:text-primary transition-colors">
-                Services
-              </Link>
-              <Link to="/careers" className="text-foreground hover:text-primary transition-colors">
-                Careers
-              </Link>
-              <Link to="/?section=contact" className="text-foreground hover:text-primary transition-colors">
-                Contact
-              </Link>
+              {!user ? (
+                // Show marketing navigation for non-logged in users
+                <>
+                  <Link to="/" className="text-foreground hover:text-primary transition-colors">
+                    Home
+                  </Link>
+                  <Link to="/?section=about" className="text-foreground hover:text-primary transition-colors">
+                    About Us
+                  </Link>
+                  <Link to="/services" className="text-foreground hover:text-primary transition-colors">
+                    Services
+                  </Link>
+                  <Link to="/careers" className="text-foreground hover:text-primary transition-colors">
+                    Careers
+                  </Link>
+                  <Link to="/?section=contact" className="text-foreground hover:text-primary transition-colors">
+                    Contact
+                  </Link>
+                </>
+              ) : (
+                // Show profile-focused navigation for logged-in users
+                <>
+                  <Link to="/profile" className="text-foreground hover:text-primary transition-colors">
+                    My Profile
+                  </Link>
+                  <Link to="/careers" className="text-foreground hover:text-primary transition-colors">
+                    Job Search
+                  </Link>
+                  <Link to="/?section=contact" className="text-foreground hover:text-primary transition-colors">
+                    Support
+                  </Link>
+                </>
+              )}
               {!user && (
                 <Button 
                   variant="outline"

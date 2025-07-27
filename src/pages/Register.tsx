@@ -29,6 +29,7 @@ export interface CandidateProfile {
   expectedSalary: string;
   noticePeriod: string;
   profileSummary: string;
+  resumeUrl: string;
 }
 
 export interface EducationData {
@@ -89,6 +90,7 @@ export default function Register() {
     expectedSalary: "",
     noticePeriod: "",
     profileSummary: "",
+    resumeUrl: "",
   });
 
   const [educationData, setEducationData] = useState<EducationData[]>([]);
@@ -147,6 +149,7 @@ export default function Register() {
           expected_salary: profileData.expectedSalary ? parseFloat(profileData.expectedSalary) : null,
           notice_period: profileData.noticePeriod ? parseInt(profileData.noticePeriod) : null,
           profile_summary: profileData.profileSummary,
+          resume_url: profileData.resumeUrl,
         })
         .select()
         .single();
