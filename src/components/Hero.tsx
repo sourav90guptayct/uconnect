@@ -81,7 +81,7 @@ const Hero = () => {
         </div>
 
         {/* Stats - Full Width */}
-        <div className="mt-16 pt-8 border-t border-white/20 py-[3px] my-[6px]">
+        <div className="mt-8 pt-6 border-t border-white/20 py-[3px] my-[6px]">
           <div className="flex justify-between items-center w-full max-w-4xl mx-auto">
             <div className="text-center flex-1">
               <div className="text-4xl lg:text-5xl font-bold text-accent mb-3">50+</div>
