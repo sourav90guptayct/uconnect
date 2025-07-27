@@ -45,7 +45,7 @@ interface CandidateProfile {
 }
 
 const JobsPage = () => {
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
   const navigate = useNavigate();
   const { toast } = useToast();
   
@@ -61,16 +61,28 @@ const JobsPage = () => {
   const [coverLetter, setCoverLetter] = useState("");
 
   useEffect(() => {
+    console.log('Jobs page loaded - User:', user);
+    console.log('Auth loading state:', loading);
+    
+    if (loading) {
+      console.log('Auth still loading, waiting...');
+      return;
+    }
+    
     if (!user) {
+      console.log('No user found, redirecting to auth...');
       navigate('/auth');
       return;
     }
+    
+    console.log('User found, fetching data...');
     fetchCandidateProfile();
     fetchJobs();
-  }, [user, navigate]);
+  }, [user, loading, navigate]);
 
   useEffect(() => {
     if (candidateProfile) {
+      console.log('Candidate profile loaded, fetching applied jobs...');
       fetchAppliedJobs();
     }
   }, [candidateProfile]);
