@@ -20,7 +20,7 @@ export default function Auth() {
     const checkUser = async () => {
       const { data: { session } } = await supabase.auth.getSession();
       if (session) {
-        navigate('/');
+        navigate('/profile');
       }
     };
     checkUser();
@@ -87,7 +87,7 @@ export default function Auth() {
           variant: "destructive"
         });
       } else {
-        navigate('/');
+        navigate('/profile');
       }
     } catch (error) {
       toast({

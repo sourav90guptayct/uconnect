@@ -42,6 +42,11 @@ export default function ExperienceForm({ data, onUpdate, onNext, onPrevious }: E
     onNext();
   };
 
+  const handleSkip = () => {
+    onUpdate([]);
+    onNext();
+  };
+
   const addExperience = () => {
     setExperiences([...experiences, emptyExperience]);
   };
@@ -211,7 +216,12 @@ export default function ExperienceForm({ data, onUpdate, onNext, onPrevious }: E
         <Button type="button" variant="outline" onClick={onPrevious}>
           Previous
         </Button>
-        <Button type="submit">Next</Button>
+        <div className="flex gap-2">
+          <Button type="button" variant="outline" onClick={handleSkip}>
+            Skip (I'm a Fresher)
+          </Button>
+          <Button type="submit">Next</Button>
+        </div>
       </div>
     </form>
   );

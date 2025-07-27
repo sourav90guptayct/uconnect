@@ -215,7 +215,7 @@ export default function Register() {
         description: "Your profile has been created successfully.",
       });
 
-      navigate("/");
+      navigate("/profile");
     } catch (error: any) {
       console.error("Registration error:", error);
       toast({
