@@ -69,12 +69,10 @@ const EmployerDashboardPage = () => {
   const [isLoadingCandidates, setIsLoadingCandidates] = useState(false);
   const [isLoadingCandidate, setIsLoadingCandidate] = useState(false);
 
-  // Redirect non-admin users
+  // Redirect to admin dashboard for all users
   useEffect(() => {
-    if (!adminLoading && !isAdmin) {
-      window.location.href = '/';
-    }
-  }, [isAdmin, adminLoading]);
+    navigate('/admin');
+  }, [navigate]);
 
   useEffect(() => {
     if (!user) {

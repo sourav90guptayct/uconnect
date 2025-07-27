@@ -13,7 +13,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
 import { useNavigate } from 'react-router-dom';
-import { Users, Briefcase, FileText, Eye, MapPin, Clock, DollarSign, Calendar, Phone, Mail, UserPlus, Shield, ShieldCheck } from 'lucide-react';
+import { Users, Briefcase, FileText, Eye, MapPin, Clock, DollarSign, Calendar, Phone, Mail, UserPlus, Shield, ShieldCheck, Power, PowerOff } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
@@ -237,6 +237,30 @@ export default function Admin() {
       }
     } catch (error) {
       console.error('Error fetching candidates:', error);
+    }
+  };
+
+  const toggleJobStatus = async (jobId: string, currentStatus: boolean) => {
+    try {
+      const { error } = await supabase
+        .from('jobs')
+        .update({ is_active: !currentStatus })
+        .eq('id', jobId);
+
+      if (error) throw error;
+
+      toast({
+        title: "Job Status Updated",
+        description: `Job ${!currentStatus ? 'activated' : 'deactivated'} successfully.`
+      });
+
+      fetchJobs();
+    } catch (error: any) {
+      toast({
+        title: "Error",
+        description: "Failed to update job status.",
+        variant: "destructive"
+      });
     }
   };
 
@@ -558,9 +582,10 @@ export default function Admin() {
 
           {/* Tabs for different sections */}
           <Tabs defaultValue="jobs" className="w-full">
-            <TabsList className="grid w-full grid-cols-4">
+            <TabsList className="grid w-full grid-cols-5">
               <TabsTrigger value="jobs">All Jobs</TabsTrigger>
-              <TabsTrigger value="users">User Management</TabsTrigger>
+              <TabsTrigger value="users">All Users</TabsTrigger>
+              <TabsTrigger value="system-users">System Users</TabsTrigger>
               <TabsTrigger value="candidates">All Candidates</TabsTrigger>
               <TabsTrigger value="contact">Contact Submissions</TabsTrigger>
             </TabsList>
@@ -582,47 +607,67 @@ export default function Admin() {
                   ) : (
                     <div className="overflow-x-auto">
                       <Table>
-                        <TableHeader>
-                          <TableRow>
-                            <TableHead>Job Title</TableHead>
-                            <TableHead>Company</TableHead>
-                            <TableHead>Location</TableHead>
-                            <TableHead>Salary</TableHead>
-                            <TableHead>Applications</TableHead>
-                            <TableHead>Status</TableHead>
-                            <TableHead>Posted Date</TableHead>
-                          </TableRow>
-                        </TableHeader>
-                        <TableBody>
-                          {jobs.map((job) => (
-                            <TableRow key={job.id}>
-                              <TableCell className="font-medium">
-                                {job.title}
-                              </TableCell>
-                              <TableCell>{job.company_name}</TableCell>
-                              <TableCell>
-                                <span className="flex items-center gap-1">
-                                  <MapPin className="h-3 w-3" />
-                                  {job.location_city}, {job.location_state}
-                                </span>
-                              </TableCell>
-                              <TableCell>
-                                {formatSalary(job.salary_min)} - {formatSalary(job.salary_max)}
-                              </TableCell>
-                              <TableCell>
-                                <Badge variant="outline">
-                                  {job.application_count || 0}
-                                </Badge>
-                              </TableCell>
-                              <TableCell>
-                                <Badge variant={job.is_active ? "default" : "secondary"}>
-                                  {job.is_active ? "Active" : "Inactive"}
-                                </Badge>
-                              </TableCell>
-                              <TableCell>{formatDate(job.created_at)}</TableCell>
-                            </TableRow>
-                          ))}
-                        </TableBody>
+                         <TableHeader>
+                           <TableRow>
+                             <TableHead>Job Title</TableHead>
+                             <TableHead>Company</TableHead>
+                             <TableHead>Location</TableHead>
+                             <TableHead>Salary</TableHead>
+                             <TableHead>Applications</TableHead>
+                             <TableHead>Status</TableHead>
+                             <TableHead>Posted Date</TableHead>
+                             <TableHead>Actions</TableHead>
+                           </TableRow>
+                         </TableHeader>
+                         <TableBody>
+                           {jobs.map((job) => (
+                             <TableRow key={job.id}>
+                               <TableCell className="font-medium">
+                                 {job.title}
+                               </TableCell>
+                               <TableCell>{job.company_name}</TableCell>
+                               <TableCell>
+                                 <span className="flex items-center gap-1">
+                                   <MapPin className="h-3 w-3" />
+                                   {job.location_city}, {job.location_state}
+                                 </span>
+                               </TableCell>
+                               <TableCell>
+                                 {formatSalary(job.salary_min)} - {formatSalary(job.salary_max)}
+                               </TableCell>
+                               <TableCell>
+                                 <Badge variant="outline">
+                                   {job.application_count || 0}
+                                 </Badge>
+                               </TableCell>
+                               <TableCell>
+                                 <Badge variant={job.is_active ? "default" : "secondary"}>
+                                   {job.is_active ? "Active" : "Inactive"}
+                                 </Badge>
+                               </TableCell>
+                               <TableCell>{formatDate(job.created_at)}</TableCell>
+                               <TableCell>
+                                 <Button
+                                   size="sm"
+                                   variant={job.is_active ? "destructive" : "default"}
+                                   onClick={() => toggleJobStatus(job.id, job.is_active)}
+                                 >
+                                   {job.is_active ? (
+                                     <>
+                                       <PowerOff className="h-3 w-3 mr-1" />
+                                       Deactivate
+                                     </>
+                                   ) : (
+                                     <>
+                                       <Power className="h-3 w-3 mr-1" />
+                                       Activate
+                                     </>
+                                   )}
+                                 </Button>
+                               </TableCell>
+                             </TableRow>
+                           ))}
+                         </TableBody>
                       </Table>
                     </div>
                   )}
@@ -635,6 +680,147 @@ export default function Admin() {
               <div className="flex justify-between items-center">
                 <div>
                   <h2 className="text-2xl font-bold">User Management</h2>
+                  <p className="text-muted-foreground">Manage user accounts and permissions</p>
+                </div>
+                <Dialog open={isAddUserDialogOpen} onOpenChange={setIsAddUserDialogOpen}>
+                  <DialogTrigger asChild>
+                    <Button>
+                      <UserPlus className="h-4 w-4 mr-2" />
+                      Add New User
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent>
+                    <DialogHeader>
+                      <DialogTitle>Create New User</DialogTitle>
+                      <DialogDescription>
+                        Add a new user to the system and assign their access level.
+                      </DialogDescription>
+                    </DialogHeader>
+                    <div className="space-y-4">
+                      <div>
+                        <Label htmlFor="user-email">Email Address</Label>
+                        <Input
+                          id="user-email"
+                          type="email"
+                          placeholder="user@example.com"
+                          value={newUserEmail}
+                          onChange={(e) => setNewUserEmail(e.target.value)}
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="user-password">Password</Label>
+                        <Input
+                          id="user-password"
+                          type="password"
+                          placeholder="Enter password"
+                          value={newUserPassword}
+                          onChange={(e) => setNewUserPassword(e.target.value)}
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="user-role">Access Level</Label>
+                        <Select value={newUserRole} onValueChange={(value: 'admin' | 'moderator' | 'user') => setNewUserRole(value)}>
+                          <SelectTrigger>
+                            <SelectValue />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="user">Read Only Access</SelectItem>
+                            <SelectItem value="moderator">Moderator (Limited Access)</SelectItem>
+                            <SelectItem value="admin">Full Access (Admin)</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      <div className="flex justify-end gap-2">
+                        <Button variant="outline" onClick={() => setIsAddUserDialogOpen(false)}>
+                          Cancel
+                        </Button>
+                        <Button onClick={createNewUser}>
+                          Create User
+                        </Button>
+                      </div>
+                    </div>
+                  </DialogContent>
+                </Dialog>
+              </div>
+
+              <Card>
+                <CardHeader>
+                  <CardTitle>All Registered Users</CardTitle>
+                  <CardDescription>
+                    {candidates.length} total users registered on the platform
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  {candidates.length === 0 ? (
+                    <p className="text-center text-muted-foreground py-8">
+                      No users registered yet.
+                    </p>
+                  ) : (
+                    <div className="overflow-x-auto">
+                       <Table>
+                         <TableHeader>
+                           <TableRow>
+                             <TableHead>Name</TableHead>
+                             <TableHead>Email</TableHead>
+                             <TableHead>Phone</TableHead>
+                             <TableHead>Current City</TableHead>
+                             <TableHead>State</TableHead>
+                             <TableHead>Experience</TableHead>
+                             <TableHead>Expected Salary</TableHead>
+                             <TableHead>Registered Date</TableHead>
+                           </TableRow>
+                         </TableHeader>
+                         <TableBody>
+                           {candidates.map((candidate) => (
+                             <TableRow key={candidate.id}>
+                               <TableCell className="font-medium">
+                                 {candidate.first_name} {candidate.last_name}
+                               </TableCell>
+                               <TableCell>
+                                 <span className="flex items-center gap-1">
+                                   <Mail className="h-3 w-3" />
+                                   {candidate.email || 'Not available'}
+                                 </span>
+                               </TableCell>
+                               <TableCell>
+                                 <span className="flex items-center gap-1">
+                                   <Phone className="h-3 w-3" />
+                                   {candidate.phone || 'Not provided'}
+                                 </span>
+                               </TableCell>
+                               <TableCell>
+                                 <span className="flex items-center gap-1">
+                                   <MapPin className="h-3 w-3" />
+                                   {candidate.current_city || 'Not specified'}
+                                 </span>
+                               </TableCell>
+                               <TableCell>
+                                 {candidate.home_location || 'Not specified'}
+                               </TableCell>
+                               <TableCell>
+                                 <Badge variant="outline">
+                                   {candidate.total_experience || 'Not specified'}
+                                 </Badge>
+                               </TableCell>
+                               <TableCell>
+                                 {formatSalary(candidate.expected_salary)}
+                               </TableCell>
+                               <TableCell>{formatDate(candidate.created_at)}</TableCell>
+                             </TableRow>
+                           ))}
+                         </TableBody>
+                      </Table>
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+            </TabsContent>
+
+            {/* System Users Management */}
+            <TabsContent value="system-users" className="space-y-6">
+              <div className="flex justify-between items-center">
+                <div>
+                  <h2 className="text-2xl font-bold">System User Management</h2>
                   <p className="text-muted-foreground">Manage user accounts and permissions</p>
                 </div>
                 <Dialog open={isAddUserDialogOpen} onOpenChange={setIsAddUserDialogOpen}>
