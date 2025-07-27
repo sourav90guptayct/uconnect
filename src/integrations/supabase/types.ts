@@ -117,18 +117,24 @@ export type Database = {
       }
       candidate_profiles: {
         Row: {
+          caste: string | null
           created_at: string
           current_city: string | null
           current_salary: number | null
           date_of_birth: string | null
+          disability_status: string | null
           expected_salary: number | null
+          family_details: string | null
           first_name: string
           gender: string | null
           home_location: string | null
           id: string
+          industry: Database["public"]["Enums"]["industry_type"] | null
           last_name: string
+          marital_status: string | null
           notice_period: number | null
           phone: string | null
+          profile_picture_url: string | null
           profile_summary: string | null
           resume_url: string | null
           total_experience:
@@ -138,18 +144,24 @@ export type Database = {
           user_id: string
         }
         Insert: {
+          caste?: string | null
           created_at?: string
           current_city?: string | null
           current_salary?: number | null
           date_of_birth?: string | null
+          disability_status?: string | null
           expected_salary?: number | null
+          family_details?: string | null
           first_name: string
           gender?: string | null
           home_location?: string | null
           id?: string
+          industry?: Database["public"]["Enums"]["industry_type"] | null
           last_name: string
+          marital_status?: string | null
           notice_period?: number | null
           phone?: string | null
+          profile_picture_url?: string | null
           profile_summary?: string | null
           resume_url?: string | null
           total_experience?:
@@ -159,18 +171,24 @@ export type Database = {
           user_id: string
         }
         Update: {
+          caste?: string | null
           created_at?: string
           current_city?: string | null
           current_salary?: number | null
           date_of_birth?: string | null
+          disability_status?: string | null
           expected_salary?: number | null
+          family_details?: string | null
           first_name?: string
           gender?: string | null
           home_location?: string | null
           id?: string
+          industry?: Database["public"]["Enums"]["industry_type"] | null
           last_name?: string
+          marital_status?: string | null
           notice_period?: number | null
           phone?: string | null
+          profile_picture_url?: string | null
           profile_summary?: string | null
           resume_url?: string | null
           total_experience?:
@@ -297,6 +315,28 @@ export type Database = {
         | "internship"
         | "freelance"
       experience_level: "fresher" | "1-2" | "3-5" | "6-10" | "10+"
+      industry_type:
+        | "technology"
+        | "healthcare"
+        | "finance"
+        | "education"
+        | "retail"
+        | "manufacturing"
+        | "consulting"
+        | "marketing"
+        | "real_estate"
+        | "automotive"
+        | "aerospace"
+        | "energy"
+        | "media"
+        | "hospitality"
+        | "construction"
+        | "agriculture"
+        | "logistics"
+        | "telecommunications"
+        | "government"
+        | "non_profit"
+        | "other"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -442,6 +482,29 @@ export const Constants = {
         "freelance",
       ],
       experience_level: ["fresher", "1-2", "3-5", "6-10", "10+"],
+      industry_type: [
+        "technology",
+        "healthcare",
+        "finance",
+        "education",
+        "retail",
+        "manufacturing",
+        "consulting",
+        "marketing",
+        "real_estate",
+        "automotive",
+        "aerospace",
+        "energy",
+        "media",
+        "hospitality",
+        "construction",
+        "agriculture",
+        "logistics",
+        "telecommunications",
+        "government",
+        "non_profit",
+        "other",
+      ],
     },
   },
 } as const
