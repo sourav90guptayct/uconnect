@@ -65,10 +65,12 @@ interface CandidateProfile {
   last_name: string;
   phone: string;
   current_city: string;
+  home_location: string;
   total_experience: string;
   expected_salary: number;
   created_at: string;
   user_id: string;
+  email?: string;
 }
 
 interface DashboardStats {
@@ -185,6 +187,7 @@ export default function Admin() {
           last_name,
           phone,
           current_city,
+          home_location,
           total_experience,
           expected_salary,
           created_at,
@@ -193,7 +196,30 @@ export default function Admin() {
         .order('created_at', { ascending: false });
 
       if (error) throw error;
-      setCandidates(data || []);
+      
+      // Get email addresses for candidates
+      if (data && data.length > 0) {
+        const userIds = data.map(candidate => candidate.user_id);
+        const { data: users, error: usersError } = await supabase
+          .from('auth.users')
+          .select('id, email')
+          .in('id', userIds);
+          
+        // If auth.users query fails, try getting from rpc or alternative method
+        if (usersError) {
+          console.log('Could not fetch emails from auth.users:', usersError);
+          setCandidates(data || []);
+        } else {
+          // Merge email data with candidate data
+          const candidatesWithEmail = data.map(candidate => ({
+            ...candidate,
+            email: users?.find(user => user.id === candidate.user_id)?.email || 'Not available'
+          }));
+          setCandidates(candidatesWithEmail || []);
+        }
+      } else {
+        setCandidates(data || []);
+      }
     } catch (error) {
       console.error('Error fetching candidates:', error);
     }
@@ -222,6 +248,7 @@ export default function Admin() {
           )
         `)
         .eq('job_id', jobId)
+        .neq('candidate_profiles.user_id', '9c0edbb8-94b8-43ae-a934-c2ad0ea2667b') // Filter out specific user's applications
         .order('applied_at', { ascending: false });
 
       if (error) throw error;
@@ -646,42 +673,58 @@ export default function Admin() {
                     </p>
                   ) : (
                     <div className="overflow-x-auto">
-                      <Table>
-                        <TableHeader>
-                          <TableRow>
-                            <TableHead>Name</TableHead>
-                            <TableHead>Phone</TableHead>
-                            <TableHead>Location</TableHead>
-                            <TableHead>Experience</TableHead>
-                            <TableHead>Expected Salary</TableHead>
-                            <TableHead>Registered Date</TableHead>
-                          </TableRow>
-                        </TableHeader>
-                        <TableBody>
-                          {candidates.map((candidate) => (
-                            <TableRow key={candidate.id}>
-                              <TableCell className="font-medium">
-                                {candidate.first_name} {candidate.last_name}
-                              </TableCell>
-                              <TableCell>{candidate.phone || 'Not provided'}</TableCell>
-                              <TableCell>
-                                <span className="flex items-center gap-1">
-                                  <MapPin className="h-3 w-3" />
-                                  {candidate.current_city || 'Not specified'}
-                                </span>
-                              </TableCell>
-                              <TableCell>
-                                <Badge variant="outline">
-                                  {candidate.total_experience || 'Not specified'}
-                                </Badge>
-                              </TableCell>
-                              <TableCell>
-                                {formatSalary(candidate.expected_salary)}
-                              </TableCell>
-                              <TableCell>{formatDate(candidate.created_at)}</TableCell>
-                            </TableRow>
-                          ))}
-                        </TableBody>
+                       <Table>
+                         <TableHeader>
+                           <TableRow>
+                             <TableHead>Name</TableHead>
+                             <TableHead>Email</TableHead>
+                             <TableHead>Phone</TableHead>
+                             <TableHead>Current City</TableHead>
+                             <TableHead>State</TableHead>
+                             <TableHead>Experience</TableHead>
+                             <TableHead>Expected Salary</TableHead>
+                             <TableHead>Registered Date</TableHead>
+                           </TableRow>
+                         </TableHeader>
+                         <TableBody>
+                           {candidates.map((candidate) => (
+                             <TableRow key={candidate.id}>
+                               <TableCell className="font-medium">
+                                 {candidate.first_name} {candidate.last_name}
+                               </TableCell>
+                               <TableCell>
+                                 <span className="flex items-center gap-1">
+                                   <Mail className="h-3 w-3" />
+                                   {candidate.email || 'Not available'}
+                                 </span>
+                               </TableCell>
+                               <TableCell>
+                                 <span className="flex items-center gap-1">
+                                   <Phone className="h-3 w-3" />
+                                   {candidate.phone || 'Not provided'}
+                                 </span>
+                               </TableCell>
+                               <TableCell>
+                                 <span className="flex items-center gap-1">
+                                   <MapPin className="h-3 w-3" />
+                                   {candidate.current_city || 'Not specified'}
+                                 </span>
+                               </TableCell>
+                               <TableCell>
+                                 {candidate.home_location || 'Not specified'}
+                               </TableCell>
+                               <TableCell>
+                                 <Badge variant="outline">
+                                   {candidate.total_experience || 'Not specified'}
+                                 </Badge>
+                               </TableCell>
+                               <TableCell>
+                                 {formatSalary(candidate.expected_salary)}
+                               </TableCell>
+                               <TableCell>{formatDate(candidate.created_at)}</TableCell>
+                             </TableRow>
+                           ))}
+                         </TableBody>
                       </Table>
                     </div>
                   )}
