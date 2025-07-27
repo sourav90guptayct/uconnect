@@ -179,11 +179,11 @@ const JobsPage = () => {
       );
     }
 
-    if (selectedState) {
+    if (selectedState && selectedState !== "all-states") {
       filtered = filtered.filter(job => job.location_state === selectedState);
     }
 
-    if (selectedExperience) {
+    if (selectedExperience && selectedExperience !== "all-levels") {
       filtered = filtered.filter(job => job.experience_required === selectedExperience);
     }
 
@@ -352,7 +352,7 @@ const JobsPage = () => {
                   <SelectValue placeholder="Select State" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">All States</SelectItem>
+                  <SelectItem value="all-states">All States</SelectItem>
                   {getUniqueStates().map(state => (
                     <SelectItem key={state} value={state}>{state}</SelectItem>
                   ))}
@@ -364,7 +364,7 @@ const JobsPage = () => {
                   <SelectValue placeholder="Experience Level" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">All Levels</SelectItem>
+                  <SelectItem value="all-levels">All Levels</SelectItem>
                   {getUniqueExperience().map(exp => (
                     <SelectItem key={exp} value={exp}>{exp}</SelectItem>
                   ))}
@@ -375,8 +375,8 @@ const JobsPage = () => {
                 variant="outline" 
                 onClick={() => {
                   setSearchTerm("");
-                  setSelectedState("");
-                  setSelectedExperience("");
+                  setSelectedState("all-states");
+                  setSelectedExperience("all-levels");
                 }}
               >
                 <Filter className="h-4 w-4 mr-2" />
