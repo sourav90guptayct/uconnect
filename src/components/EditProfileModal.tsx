@@ -8,7 +8,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
-import { Edit, Upload, FileText } from "lucide-react";
+import { Edit, Upload, FileText, Camera } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 interface CandidateProfile {
   id: string;
@@ -25,6 +26,7 @@ interface CandidateProfile {
   notice_period: number;
   profile_summary: string;
   resume_url: string;
+  profile_picture_url?: string;
 }
 
 interface EditProfileModalProps {
@@ -39,6 +41,7 @@ export default function EditProfileModal({ profile, onProfileUpdate, children }:
   const [open, setOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [uploadingResume, setUploadingResume] = useState(false);
+  const [uploadingProfilePicture, setUploadingProfilePicture] = useState(false);
   const [formData, setFormData] = useState({
     firstName: profile.first_name,
     lastName: profile.last_name,
@@ -52,7 +55,8 @@ export default function EditProfileModal({ profile, onProfileUpdate, children }:
     expectedSalary: profile.expected_salary?.toString() || '',
     noticePeriod: profile.notice_period?.toString() || '',
     profileSummary: profile.profile_summary,
-    resumeUrl: profile.resume_url
+    resumeUrl: profile.resume_url,
+    profilePictureUrl: profile.profile_picture_url || ''
   });
 
   useEffect(() => {
@@ -69,7 +73,8 @@ export default function EditProfileModal({ profile, onProfileUpdate, children }:
       expectedSalary: profile.expected_salary?.toString() || '',
       noticePeriod: profile.notice_period?.toString() || '',
       profileSummary: profile.profile_summary,
-      resumeUrl: profile.resume_url
+      resumeUrl: profile.resume_url,
+      profilePictureUrl: profile.profile_picture_url || ''
     });
   }, [profile]);
 
@@ -138,6 +143,67 @@ export default function EditProfileModal({ profile, onProfileUpdate, children }:
     }
   };
 
+  const handleProfilePictureUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file || !user) return;
+
+    // Validate file type
+    const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
+    if (!allowedTypes.includes(file.type)) {
+      toast({
+        title: "Invalid file type",
+        description: "Please upload a JPEG, PNG, or WebP image.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    // Validate file size (2MB limit)
+    if (file.size > 2 * 1024 * 1024) {
+      toast({
+        title: "File too large",
+        description: "Please upload an image smaller than 2MB.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    setUploadingProfilePicture(true);
+
+    try {
+      const fileExt = file.name.split('.').pop();
+      const fileName = `${user.id}/profile-picture.${fileExt}`;
+
+      const { error: uploadError } = await supabase.storage
+        .from('profile-pictures')
+        .upload(fileName, file, {
+          upsert: true
+        });
+
+      if (uploadError) throw uploadError;
+
+      const { data: { publicUrl } } = supabase.storage
+        .from('profile-pictures')
+        .getPublicUrl(fileName);
+
+      updateField('profilePictureUrl', publicUrl);
+      
+      toast({
+        title: "Profile picture updated",
+        description: "Your profile picture has been updated successfully."
+      });
+    } catch (error) {
+      console.error('Upload error:', error);
+      toast({
+        title: "Upload failed",
+        description: "Failed to upload profile picture. Please try again.",
+        variant: "destructive"
+      });
+    } finally {
+      setUploadingProfilePicture(false);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
@@ -158,7 +224,8 @@ export default function EditProfileModal({ profile, onProfileUpdate, children }:
           expected_salary: formData.expectedSalary ? parseInt(formData.expectedSalary) : null,
           notice_period: formData.noticePeriod ? parseInt(formData.noticePeriod) : null,
           profile_summary: formData.profileSummary,
-          resume_url: formData.resumeUrl
+          resume_url: formData.resumeUrl,
+          profile_picture_url: formData.profilePictureUrl
         })
         .eq('id', profile.id);
 
@@ -197,6 +264,38 @@ export default function EditProfileModal({ profile, onProfileUpdate, children }:
         </DialogHeader>
         
         <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Profile Picture Section */}
+          <div className="flex flex-col items-center space-y-4 mb-6">
+            <div className="relative">
+              <Avatar className="h-24 w-24">
+                <AvatarImage src={formData.profilePictureUrl} alt="Profile picture" />
+                <AvatarFallback className="text-2xl">
+                  {formData.firstName?.charAt(0)}{formData.lastName?.charAt(0)}
+                </AvatarFallback>
+              </Avatar>
+              <div className="absolute bottom-0 right-0">
+                <Label htmlFor="profilePicture" className="cursor-pointer">
+                  <div className="bg-primary text-primary-foreground rounded-full p-2 hover:bg-primary/90 transition-colors">
+                    <Camera className="h-4 w-4" />
+                  </div>
+                </Label>
+                <Input
+                  id="profilePicture"
+                  type="file"
+                  accept="image/*"
+                  onChange={handleProfilePictureUpload}
+                  disabled={uploadingProfilePicture}
+                  className="hidden"
+                />
+              </div>
+            </div>
+            {uploadingProfilePicture && (
+              <div className="text-sm text-muted-foreground">
+                Uploading profile picture...
+              </div>
+            )}
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor="firstName">First Name *</Label>
