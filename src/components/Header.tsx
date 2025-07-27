@@ -104,7 +104,7 @@ const Header = () => {
 
                     <NavigationMenuItem>
                       <NavigationMenuLink asChild>
-                        <Link to="/?section=contact" className={cn(navigationMenuTriggerStyle(), "text-foreground hover:text-primary")}>
+                        <Link to="/support" className={cn(navigationMenuTriggerStyle(), "text-foreground hover:text-primary")}>
                           Support
                         </Link>
                       </NavigationMenuLink>
@@ -121,14 +121,6 @@ const Header = () => {
                   onClick={() => navigate('/register')}
                 >
                   Register
-                </Button>
-              )}
-              {user && (
-                <Button 
-                  variant="outline"
-                  onClick={() => navigate('/admin')}
-                >
-                  Admin
                 </Button>
               )}
               <Button 
@@ -178,7 +170,7 @@ const Header = () => {
                   <Link to="/careers" className="text-foreground hover:text-primary transition-colors">
                     Job Search
                   </Link>
-                  <Link to="/?section=contact" className="text-foreground hover:text-primary transition-colors">
+                  <Link to="/support" className="text-foreground hover:text-primary transition-colors">
                     Support
                   </Link>
                 </>
@@ -190,15 +182,6 @@ const Header = () => {
                   onClick={() => navigate('/register')}
                 >
                   Register
-                </Button>
-              )}
-              {user && (
-                <Button 
-                  variant="outline"
-                  className="w-fit"
-                  onClick={() => navigate('/admin')}
-                >
-                  Admin
                 </Button>
               )}
               <Button 
