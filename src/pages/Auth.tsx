@@ -12,6 +12,7 @@ export default function Auth() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const [resetLoading, setResetLoading] = useState(false);
   const navigate = useNavigate();
   const { toast } = useToast();
 
@@ -26,7 +27,7 @@ export default function Auth() {
     checkUser();
   }, [navigate]);
 
-  const handleSignUp = async (e: React.FormEvent) => {
+  const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
 
@@ -35,7 +36,7 @@ export default function Auth() {
         email,
         password,
         options: {
-          emailRedirectTo: `${window.location.origin}/`
+          emailRedirectTo: `${window.location.origin}/register`
         }
       });
 
@@ -48,16 +49,17 @@ export default function Auth() {
           });
         } else {
           toast({
-            title: "Sign up failed",
+            title: "Registration failed",
             description: error.message,
             variant: "destructive"
           });
         }
       } else {
         toast({
-          title: "Check your email",
-          description: "We've sent you a confirmation link.",
+          title: "Registration successful",
+          description: "Please check your email for confirmation, then complete your profile.",
         });
+        navigate('/register');
       }
     } catch (error) {
       toast({
@@ -67,6 +69,46 @@ export default function Auth() {
       });
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleForgotPassword = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) {
+      toast({
+        title: "Email required",
+        description: "Please enter your email address to reset your password.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    setResetLoading(true);
+    try {
+      const { error } = await supabase.auth.resetPasswordForEmail(email, {
+        redirectTo: `${window.location.origin}/auth`
+      });
+
+      if (error) {
+        toast({
+          title: "Reset failed",
+          description: error.message,
+          variant: "destructive"
+        });
+      } else {
+        toast({
+          title: "Reset email sent",
+          description: "Please check your email for password reset instructions.",
+        });
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "An unexpected error occurred.",
+        variant: "destructive"
+      });
+    } finally {
+      setResetLoading(false);
     }
   };
 
@@ -111,7 +153,7 @@ export default function Auth() {
           <Tabs defaultValue="signin" className="w-full">
             <TabsList className="grid w-full grid-cols-2">
               <TabsTrigger value="signin">Sign In</TabsTrigger>
-              <TabsTrigger value="signup">Sign Up</TabsTrigger>
+              <TabsTrigger value="register">Register</TabsTrigger>
             </TabsList>
             
             <TabsContent value="signin">
@@ -141,15 +183,26 @@ export default function Auth() {
                 <Button type="submit" className="w-full" disabled={loading}>
                   {loading ? 'Signing in...' : 'Sign In'}
                 </Button>
+                <div className="text-center">
+                  <Button 
+                    type="button" 
+                    variant="link" 
+                    onClick={handleForgotPassword}
+                    disabled={resetLoading}
+                    className="text-sm"
+                  >
+                    {resetLoading ? 'Sending...' : 'Forgot Password?'}
+                  </Button>
+                </div>
               </form>
             </TabsContent>
             
-            <TabsContent value="signup">
-              <form onSubmit={handleSignUp} className="space-y-4">
+            <TabsContent value="register">
+              <form onSubmit={handleRegister} className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="signup-email">Email</Label>
+                  <Label htmlFor="register-email">Email</Label>
                   <Input
-                    id="signup-email"
+                    id="register-email"
                     type="email"
                     placeholder="Enter your email"
                     value={email}
@@ -158,9 +211,9 @@ export default function Auth() {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="signup-password">Password</Label>
+                  <Label htmlFor="register-password">Password</Label>
                   <Input
-                    id="signup-password"
+                    id="register-password"
                     type="password"
                     placeholder="Create a password"
                     value={password}
@@ -170,7 +223,7 @@ export default function Auth() {
                   />
                 </div>
                 <Button type="submit" className="w-full" disabled={loading}>
-                  {loading ? 'Creating account...' : 'Sign Up'}
+                  {loading ? 'Creating account...' : 'Register'}
                 </Button>
               </form>
             </TabsContent>
