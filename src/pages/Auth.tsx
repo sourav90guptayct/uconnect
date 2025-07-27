@@ -141,6 +141,35 @@ export default function Auth() {
           variant: "destructive"
         });
       } else if (data.user) {
+        navigate('/profile');
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "An unexpected error occurred.",
+        variant: "destructive"
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleAdminSignIn = async () => {
+    setLoading(true);
+
+    try {
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+
+      if (error) {
+        toast({
+          title: "Admin sign in failed",
+          description: error.message,
+          variant: "destructive"
+        });
+      } else if (data.user) {
         // Check if user is admin
         const { data: roleData } = await supabase
           .from('user_roles')
@@ -150,9 +179,18 @@ export default function Auth() {
           .maybeSingle();
 
         if (roleData) {
+          toast({
+            title: "Admin login successful",
+            description: "Welcome to the admin dashboard!",
+          });
           navigate('/admin');
         } else {
-          navigate('/profile');
+          toast({
+            title: "Access denied",
+            description: "You do not have admin privileges.",
+            variant: "destructive"
+          });
+          await supabase.auth.signOut();
         }
       }
     } catch (error) {
@@ -175,55 +213,118 @@ export default function Auth() {
         </CardHeader>
         <CardContent>
           <Tabs defaultValue="signin" className="w-full">
-            <div className="grid w-full grid-cols-2 mb-6">
-              <Button variant="outline" className="rounded-r-none">Sign In</Button>
-              <Button 
-                variant="outline" 
-                className="rounded-l-none" 
-                onClick={() => navigate('/register')}
-              >
-                Register
-              </Button>
-            </div>
+            <TabsList className="grid w-full grid-cols-3">
+              <TabsTrigger value="signin">User Login</TabsTrigger>
+              <TabsTrigger value="admin">Admin Login</TabsTrigger>
+              <TabsTrigger value="register">Register</TabsTrigger>
+            </TabsList>
             
-            <form onSubmit={handleSignIn} className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="signin-email">Email</Label>
-                <Input
-                  id="signin-email"
-                  type="email"
-                  placeholder="Enter your email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="signin-password">Password</Label>
-                <Input
-                  id="signin-password"
-                  type="password"
-                  placeholder="Enter your password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
-              </div>
-              <Button type="submit" className="w-full" disabled={loading}>
-                {loading ? 'Signing in...' : 'Sign In'}
-              </Button>
-              <div className="text-center">
-                <Button 
-                  type="button" 
-                  variant="link" 
-                  onClick={handleForgotPassword}
-                  disabled={resetLoading}
-                  className="text-sm"
-                >
-                  {resetLoading ? 'Sending...' : 'Forgot Password?'}
+            <TabsContent value="signin">
+              <form onSubmit={handleSignIn} className="space-y-4">
+                <div className="space-y-2">
+                  <Label htmlFor="signin-email">Email</Label>
+                  <Input
+                    id="signin-email"
+                    type="email"
+                    placeholder="Enter your email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="signin-password">Password</Label>
+                  <Input
+                    id="signin-password"
+                    type="password"
+                    placeholder="Enter your password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                  />
+                </div>
+                <Button type="submit" className="w-full" disabled={loading}>
+                  {loading ? 'Signing in...' : 'Sign In'}
                 </Button>
-              </div>
-            </form>
+                <div className="text-center">
+                  <Button 
+                    type="button" 
+                    variant="link" 
+                    onClick={handleForgotPassword}
+                    disabled={resetLoading}
+                    className="text-sm"
+                  >
+                    {resetLoading ? 'Sending...' : 'Forgot Password?'}
+                  </Button>
+                </div>
+              </form>
+            </TabsContent>
+
+            <TabsContent value="admin">
+              <form onSubmit={(e) => {
+                e.preventDefault();
+                handleAdminSignIn();
+              }} className="space-y-4">
+                <div className="space-y-2">
+                  <Label htmlFor="admin-email">Admin Email</Label>
+                  <Input
+                    id="admin-email"
+                    type="email"
+                    placeholder="Enter admin email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="admin-password">Admin Password</Label>
+                  <Input
+                    id="admin-password"
+                    type="password"
+                    placeholder="Enter admin password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                  />
+                </div>
+                <Button type="submit" className="w-full" disabled={loading} variant="destructive">
+                  {loading ? 'Signing in...' : 'Admin Login'}
+                </Button>
+                <p className="text-xs text-muted-foreground text-center">
+                  Admin access only - Unauthorized access is prohibited
+                </p>
+              </form>
+            </TabsContent>
+
+            <TabsContent value="register">
+              <form onSubmit={handleRegister} className="space-y-4">
+                <div className="space-y-2">
+                  <Label htmlFor="register-email">Email</Label>
+                  <Input
+                    id="register-email"
+                    type="email"
+                    placeholder="Enter your email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="register-password">Password</Label>
+                  <Input
+                    id="register-password"
+                    type="password"
+                    placeholder="Create a password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                  />
+                </div>
+                <Button type="submit" className="w-full" disabled={loading}>
+                  {loading ? 'Creating account...' : 'Create Account'}
+                </Button>
+              </form>
+            </TabsContent>
           </Tabs>
         </CardContent>
       </Card>
