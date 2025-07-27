@@ -9,7 +9,6 @@ import { useToast } from "@/hooks/use-toast";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useNavigate } from "react-router-dom";
-
 interface JobApplication {
   id: string;
   job_id: string;
@@ -28,15 +27,16 @@ interface JobApplication {
     experience_required: string;
   };
 }
-
 const MyApplicationsPage = () => {
-  const { user } = useAuth();
+  const {
+    user
+  } = useAuth();
   const navigate = useNavigate();
-  const { toast } = useToast();
-  
+  const {
+    toast
+  } = useToast();
   const [applications, setApplications] = useState<JobApplication[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-
   useEffect(() => {
     if (!user) {
       navigate('/auth');
@@ -44,18 +44,14 @@ const MyApplicationsPage = () => {
     }
     fetchApplications();
   }, [user, navigate]);
-
   const fetchApplications = async () => {
     if (!user) return;
-
     try {
       // First get candidate profile
-      const { data: candidateProfile, error: profileError } = await supabase
-        .from('candidate_profiles')
-        .select('id')
-        .eq('user_id', user.id)
-        .single();
-
+      const {
+        data: candidateProfile,
+        error: profileError
+      } = await supabase.from('candidate_profiles').select('id').eq('user_id', user.id).single();
       if (profileError) {
         console.error('Error fetching candidate profile:', profileError);
         toast({
@@ -68,9 +64,10 @@ const MyApplicationsPage = () => {
       }
 
       // Get applications with job details
-      const { data, error } = await supabase
-        .from('job_applications')
-        .select(`
+      const {
+        data,
+        error
+      } = await supabase.from('job_applications').select(`
           id,
           job_id,
           cover_letter,
@@ -87,10 +84,9 @@ const MyApplicationsPage = () => {
             employment_type,
             experience_required
           )
-        `)
-        .eq('candidate_id', candidateProfile.id)
-        .order('applied_at', { ascending: false });
-
+        `).eq('candidate_id', candidateProfile.id).order('applied_at', {
+        ascending: false
+      });
       if (error) throw error;
       setApplications(data || []);
     } catch (error) {
@@ -104,11 +100,9 @@ const MyApplicationsPage = () => {
       setIsLoading(false);
     }
   };
-
   const formatSalary = (min: number, max: number) => {
     return `₹${(min / 100000).toFixed(1)}-${(max / 100000).toFixed(1)} LPA`;
   };
-
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('en-IN', {
       year: 'numeric',
@@ -116,7 +110,6 @@ const MyApplicationsPage = () => {
       day: 'numeric'
     });
   };
-
   const getStatusColor = (status: string) => {
     switch (status.toLowerCase()) {
       case 'applied':
@@ -131,13 +124,10 @@ const MyApplicationsPage = () => {
         return 'bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-200';
     }
   };
-
   if (!user) {
     return null;
   }
-
-  return (
-    <div className="min-h-screen bg-background">
+  return <div className="min-h-screen bg-background">
       <Header />
       
       {/* Header */}
@@ -159,29 +149,21 @@ const MyApplicationsPage = () => {
             <h2 className="text-2xl font-bold">
               {isLoading ? "Loading..." : `${applications.length} Applications`}
             </h2>
-            <Button onClick={() => navigate('/jobs')} variant="outline">
-              Browse More Jobs
-            </Button>
+            
           </div>
 
-          {isLoading ? (
-            <div className="text-center py-12">
+          {isLoading ? <div className="text-center py-12">
               <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
               <p className="text-muted-foreground">Loading applications...</p>
-            </div>
-          ) : applications.length === 0 ? (
-            <div className="text-center py-12">
+            </div> : applications.length === 0 ? <div className="text-center py-12">
               <Briefcase className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
               <h3 className="text-xl font-semibold mb-2">No applications yet</h3>
               <p className="text-muted-foreground mb-6">You haven't applied to any jobs yet. Start exploring opportunities!</p>
               <Button onClick={() => navigate('/jobs')}>
                 Browse Jobs
               </Button>
-            </div>
-          ) : (
-            <div className="space-y-6">
-              {applications.map((application) => (
-                <Card key={application.id} className="hover:shadow-lg transition-shadow">
+            </div> : <div className="space-y-6">
+              {applications.map(application => <Card key={application.id} className="hover:shadow-lg transition-shadow">
                   <CardHeader>
                     <div className="flex justify-between items-start mb-4">
                       <div>
@@ -217,8 +199,7 @@ const MyApplicationsPage = () => {
                     </div>
                   </CardHeader>
                   
-                  {application.cover_letter && (
-                    <CardContent>
+                  {application.cover_letter && <CardContent>
                       <div className="bg-muted/50 rounded-lg p-4">
                         <div className="flex items-center gap-2 mb-2">
                           <FileText className="h-4 w-4 text-muted-foreground" />
@@ -228,18 +209,13 @@ const MyApplicationsPage = () => {
                           {application.cover_letter}
                         </p>
                       </div>
-                    </CardContent>
-                  )}
-                </Card>
-              ))}
-            </div>
-          )}
+                    </CardContent>}
+                </Card>)}
+            </div>}
         </div>
       </section>
 
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default MyApplicationsPage;
