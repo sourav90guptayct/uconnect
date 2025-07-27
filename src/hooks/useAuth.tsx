@@ -37,7 +37,23 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const signOut = async () => {
-    await supabase.auth.signOut();
+    try {
+      // Clear local state first to prevent UI issues
+      setUser(null);
+      setSession(null);
+      
+      // Then attempt to sign out from Supabase
+      const { error } = await supabase.auth.signOut();
+      
+      // Even if there's an error (like session not found), we've already cleared local state
+      // which is what matters for the UI. Log the error but don't throw it.
+      if (error) {
+        console.log('Sign out error (non-critical):', error.message);
+      }
+    } catch (error) {
+      console.log('Sign out error (non-critical):', error);
+      // Don't throw the error since we've already cleared local state
+    }
   };
 
   return (
