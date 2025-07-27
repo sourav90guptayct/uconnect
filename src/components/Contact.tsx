@@ -197,9 +197,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold text-card-foreground mb-2">Email Address</h4>
-                    <p className="text-muted-foreground">
-                      reachus@uconnecttech.com
-                    </p>
+                    <p className="text-muted-foreground">reachus@youconnecttech.com</p>
                   </div>
                 </div>
               </CardContent>
