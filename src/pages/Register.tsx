@@ -30,6 +30,12 @@ export interface CandidateProfile {
   noticePeriod: string;
   profileSummary: string;
   resumeUrl: string;
+  maritalStatus: string;
+  familyDetails: string;
+  caste: string;
+  disabilityStatus: string;
+  profilePictureUrl: string;
+  industry: string;
 }
 
 export interface EducationData {
@@ -91,6 +97,12 @@ export default function Register() {
     noticePeriod: "",
     profileSummary: "",
     resumeUrl: "",
+    maritalStatus: "",
+    familyDetails: "",
+    caste: "",
+    disabilityStatus: "",
+    profilePictureUrl: "",
+    industry: "",
   });
 
   const [educationData, setEducationData] = useState<EducationData[]>([]);
@@ -150,6 +162,12 @@ export default function Register() {
           notice_period: profileData.noticePeriod ? parseInt(profileData.noticePeriod) : null,
           profile_summary: profileData.profileSummary,
           resume_url: profileData.resumeUrl,
+          marital_status: profileData.maritalStatus,
+          family_details: profileData.familyDetails,
+          caste: profileData.caste,
+          disability_status: profileData.disabilityStatus,
+          profile_picture_url: profileData.profilePictureUrl,
+          industry: profileData.industry as any,
         })
         .select()
         .single();

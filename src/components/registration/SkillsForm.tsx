@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Slider } from "@/components/ui/slider";
+import { Badge } from "@/components/ui/badge";
 import { Plus, Trash2 } from "lucide-react";
 import { SkillData } from "@/pages/Register";
 
@@ -26,6 +27,36 @@ const proficiencyLabels = {
   3: "Intermediate",
   4: "Advanced",
   5: "Expert",
+};
+
+const suggestedSkills = {
+  "Programming Languages": [
+    "JavaScript", "Python", "Java", "C++", "C#", "PHP", "Ruby", "Go", "Rust", "TypeScript"
+  ],
+  "Frontend Technologies": [
+    "React", "Vue.js", "Angular", "HTML5", "CSS3", "Sass", "Bootstrap", "Tailwind CSS", "jQuery"
+  ],
+  "Backend Technologies": [
+    "Node.js", "Express.js", "Django", "Flask", "Spring Boot", "ASP.NET", "Laravel", "FastAPI"
+  ],
+  "Databases": [
+    "MySQL", "PostgreSQL", "MongoDB", "SQLite", "Redis", "Oracle", "SQL Server", "Cassandra"
+  ],
+  "Cloud & DevOps": [
+    "AWS", "Azure", "Google Cloud", "Docker", "Kubernetes", "Jenkins", "Git", "GitHub", "GitLab"
+  ],
+  "Mobile Development": [
+    "React Native", "Flutter", "Swift", "Kotlin", "Xamarin", "Ionic", "Android", "iOS"
+  ],
+  "Data Science & AI": [
+    "Machine Learning", "Deep Learning", "TensorFlow", "PyTorch", "Pandas", "NumPy", "R", "Tableau"
+  ],
+  "Soft Skills": [
+    "Leadership", "Communication", "Problem Solving", "Team Work", "Project Management", "Time Management"
+  ],
+  "Design": [
+    "UI/UX Design", "Figma", "Adobe Creative Suite", "Sketch", "InVision", "Canva", "Photoshop"
+  ]
 };
 
 export default function SkillsForm({ data, onUpdate, onNext, onPrevious }: SkillsFormProps) {
@@ -57,8 +88,53 @@ export default function SkillsForm({ data, onUpdate, onNext, onPrevious }: Skill
     setSkills(updatedSkills);
   };
 
+  const addSuggestedSkill = (skillName: string) => {
+    const existingSkillIndex = skills.findIndex(skill => 
+      skill.skillName.toLowerCase() === skillName.toLowerCase()
+    );
+    
+    if (existingSkillIndex === -1) {
+      setSkills([...skills, { ...emptySkill, skillName }]);
+    }
+  };
+
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
+      {/* Suggested Skills Section */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-lg">Suggested Skills</CardTitle>
+          <p className="text-sm text-muted-foreground">
+            Click on any skill below to add it to your profile
+          </p>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          {Object.entries(suggestedSkills).map(([category, categorySkills]) => (
+            <div key={category} className="space-y-2">
+              <h4 className="font-semibold text-sm text-primary">{category}</h4>
+              <div className="flex flex-wrap gap-2">
+                {categorySkills.map((skill) => {
+                  const isAdded = skills.some(s => s.skillName.toLowerCase() === skill.toLowerCase());
+                  return (
+                    <Badge
+                      key={skill}
+                      variant={isAdded ? "default" : "secondary"}
+                      className={`cursor-pointer transition-colors ${
+                        isAdded 
+                          ? "opacity-50 cursor-not-allowed" 
+                          : "hover:bg-primary hover:text-primary-foreground"
+                      }`}
+                      onClick={() => !isAdded && addSuggestedSkill(skill)}
+                    >
+                      {skill} {isAdded && "✓"}
+                    </Badge>
+                  );
+                })}
+              </div>
+            </div>
+          ))}
+        </CardContent>
+      </Card>
       <div className="space-y-4">
         {skills.map((skill, index) => (
           <Card key={index}>
