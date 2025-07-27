@@ -479,7 +479,6 @@ const JobsPage = () => {
                               <Button 
                                 className="flex-1" 
                                 onClick={() => setApplyingJob(job.id)}
-                                disabled={!candidateProfile}
                               >
                                 Quick Apply
                               </Button>
