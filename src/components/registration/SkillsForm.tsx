@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Slider } from "@/components/ui/slider";
 import { Badge } from "@/components/ui/badge";
 import { Plus, Trash2 } from "lucide-react";
-import { SkillData } from "@/pages/Register";
+import { SkillData } from "@/types/registration";
 
 interface SkillsFormProps {
   data: SkillData[];

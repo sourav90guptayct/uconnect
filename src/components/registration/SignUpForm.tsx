@@ -6,19 +6,22 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { Eye, EyeOff } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 interface SignUpFormProps {
-  onSuccess: (email: string) => void;
+  onSuccess?: () => void;
 }
 
 export default function SignUpForm({ onSuccess }: SignUpFormProps) {
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -32,10 +35,10 @@ export default function SignUpForm({ onSuccess }: SignUpFormProps) {
       return;
     }
 
-    if (password.length < 6) {
+    if (!phone.trim()) {
       toast({
-        title: "Password Too Short",
-        description: "Password must be at least 6 characters long.",
+        title: "Phone Number Required",
+        description: "Please enter your mobile number.",
         variant: "destructive",
       });
       return;
@@ -45,22 +48,46 @@ export default function SignUpForm({ onSuccess }: SignUpFormProps) {
     try {
       const redirectUrl = `${window.location.origin}/register`;
       
-      const { error } = await supabase.auth.signUp({
+      const { data: authData, error } = await supabase.auth.signUp({
         email,
         password,
         options: {
-          emailRedirectTo: redirectUrl
+          emailRedirectTo: `${window.location.origin}/profile`,
+          data: {
+            phone: phone
+          }
         }
       });
 
       if (error) throw error;
 
+      // Create basic candidate profile immediately after signup
+      if (authData.user) {
+        const { error: profileError } = await supabase
+          .from("candidate_profiles")
+          .insert({
+            user_id: authData.user.id,
+            first_name: "",
+            last_name: "",
+            phone: phone,
+          });
+
+        if (profileError) {
+          console.error("Profile creation error:", profileError);
+          // Don't throw error here as signup was successful
+        }
+      }
+
       toast({
         title: "Account Created!",
-        description: "Please check your email for verification link.",
+        description: "Please check your email for verification link, then complete your profile.",
       });
 
-      onSuccess(email);
+      if (onSuccess) {
+        onSuccess();
+      } else {
+        navigate("/profile");
+      }
     } catch (error: any) {
       console.error("Sign up error:", error);
       toast({
@@ -84,6 +111,18 @@ export default function SignUpForm({ onSuccess }: SignUpFormProps) {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="your.email@example.com"
+            required
+          />
+        </div>
+
+        <div className="space-y-2">
+          <Label htmlFor="phone">Mobile Number</Label>
+          <Input
+            id="phone"
+            type="tel"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+            placeholder="+91 9876543210"
             required
           />
         </div>

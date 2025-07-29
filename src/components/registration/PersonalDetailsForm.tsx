@@ -9,7 +9,7 @@ import { Upload, X } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { useToast } from "@/hooks/use-toast";
-import { CandidateProfile } from "@/pages/Register";
+import { CandidateProfile } from "@/types/registration";
 
 interface PersonalDetailsFormProps {
   data: CandidateProfile;

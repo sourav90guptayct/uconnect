@@ -7,7 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Plus, Trash2 } from "lucide-react";
-import { ExperienceData } from "@/pages/Register";
+import { ExperienceData } from "@/types/registration";
 
 interface ExperienceFormProps {
   data: ExperienceData[];
