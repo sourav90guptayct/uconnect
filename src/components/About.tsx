@@ -1,6 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { CheckCircle, Target, Globe, Award } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 const About = () => {
+  const navigate = useNavigate();
+  
   return <section id="about" className="py-20 bg-background">
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -42,7 +45,11 @@ const About = () => {
               </div>
             </div>
 
-            <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
+            <Button 
+              size="lg" 
+              className="bg-primary text-primary-foreground hover:bg-primary/90"
+              onClick={() => navigate('/about')}
+            >
               Learn More About Us
             </Button>
           </div>
