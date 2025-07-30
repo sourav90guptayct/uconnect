@@ -92,12 +92,12 @@ const Contact = () => {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8">
-          {/* Contact Form */}
-          <div className="lg:col-span-2">
+        <div className="flex justify-center">
+          {/* Contact Form - Centered */}
+          <div className="w-full max-w-2xl">
             <Card className="border-border">
               <CardContent className="p-8">
-                <h3 className="text-2xl font-bold mb-6 text-card-foreground">
+                <h3 className="text-2xl font-bold mb-6 text-card-foreground text-center">
                   Send us a Message
                 </h3>
                 
@@ -107,13 +107,31 @@ const Contact = () => {
                       <Label htmlFor="fullName" className="text-sm font-medium text-foreground">
                         Full Name *
                       </Label>
-                      <Input id="fullName" name="fullName" type="text" value={formData.fullName} onChange={handleInputChange} placeholder="Enter your full name" className="mt-2" required />
+                      <Input 
+                        id="fullName" 
+                        name="fullName" 
+                        type="text" 
+                        value={formData.fullName} 
+                        onChange={handleInputChange} 
+                        placeholder="Enter your full name" 
+                        className="mt-2" 
+                        required 
+                      />
                     </div>
                     <div>
                       <Label htmlFor="email" className="text-sm font-medium text-foreground">
                         Email Address *
                       </Label>
-                      <Input id="email" name="email" type="email" value={formData.email} onChange={handleInputChange} placeholder="Enter your email" className="mt-2" required />
+                      <Input 
+                        id="email" 
+                        name="email" 
+                        type="email" 
+                        value={formData.email} 
+                        onChange={handleInputChange} 
+                        placeholder="Enter your email" 
+                        className="mt-2" 
+                        required 
+                      />
                     </div>
                   </div>
                   
@@ -122,13 +140,29 @@ const Contact = () => {
                       <Label htmlFor="phone" className="text-sm font-medium text-foreground">
                         Phone Number
                       </Label>
-                      <Input id="phone" name="phone" type="tel" value={formData.phone} onChange={handleInputChange} placeholder="Enter your phone number" className="mt-2" />
+                      <Input 
+                        id="phone" 
+                        name="phone" 
+                        type="tel" 
+                        value={formData.phone} 
+                        onChange={handleInputChange} 
+                        placeholder="Enter your phone number" 
+                        className="mt-2" 
+                      />
                     </div>
                     <div>
                       <Label htmlFor="company" className="text-sm font-medium text-foreground">
                         Company/Organization
                       </Label>
-                      <Input id="company" name="company" type="text" value={formData.company} onChange={handleInputChange} placeholder="Enter your company name" className="mt-2" />
+                      <Input 
+                        id="company" 
+                        name="company" 
+                        type="text" 
+                        value={formData.company} 
+                        onChange={handleInputChange} 
+                        placeholder="Enter your company name" 
+                        className="mt-2" 
+                      />
                     </div>
                   </div>
                   
@@ -136,27 +170,70 @@ const Contact = () => {
                     <Label htmlFor="message" className="text-sm font-medium text-foreground">
                       Message *
                     </Label>
-                    <Textarea id="message" name="message" value={formData.message} onChange={handleInputChange} placeholder="Tell us about your manpower requirements..." className="mt-2 min-h-[120px]" required />
+                    <Textarea 
+                      id="message" 
+                      name="message" 
+                      value={formData.message} 
+                      onChange={handleInputChange} 
+                      placeholder="Tell us about your manpower requirements..." 
+                      className="mt-2 min-h-[120px]" 
+                      required 
+                    />
                   </div>
                   
-                  <Button type="submit" size="lg" className="w-full bg-primary text-primary-foreground hover:bg-primary/90" disabled={isSubmitting}>
-                    {isSubmitting ? "Sending..." : <>
+                  <Button 
+                    type="submit" 
+                    size="lg" 
+                    className="w-full bg-primary text-primary-foreground hover:bg-primary/90" 
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? "Sending..." : (
+                      <>
                         Send Message
                         <Send className="ml-2 h-5 w-5" />
-                      </>}
+                      </>
+                    )}
                   </Button>
                 </form>
               </CardContent>
             </Card>
           </div>
-
-          {/* Contact Information */}
-          
         </div>
 
-        {/* CTA Banner */}
-        <div className="mt-16 text-center">
+        {/* Contact Information Cards */}
+        <div className="grid md:grid-cols-3 gap-6 mt-12">
+          <Card className="text-center p-6">
+            <CardContent className="pt-6">
+              <MapPin className="h-8 w-8 text-primary mx-auto mb-4" />
+              <h4 className="font-semibold mb-2">Visit Us</h4>
+              <p className="text-muted-foreground text-sm">
+                123 Business Street<br />
+                City, State 12345
+              </p>
+            </CardContent>
+          </Card>
           
+          <Card className="text-center p-6">
+            <CardContent className="pt-6">
+              <Phone className="h-8 w-8 text-primary mx-auto mb-4" />
+              <h4 className="font-semibold mb-2">Call Us</h4>
+              <p className="text-muted-foreground text-sm">
+                +1 (555) 123-4567<br />
+                Mon-Fri 9AM-6PM
+              </p>
+            </CardContent>
+          </Card>
+          
+          <Card className="text-center p-6">
+            <CardContent className="pt-6">
+              <Clock className="h-8 w-8 text-primary mx-auto mb-4" />
+              <h4 className="font-semibold mb-2">Business Hours</h4>
+              <p className="text-muted-foreground text-sm">
+                Monday - Friday<br />
+                9:00 AM - 6:00 PM
+              </p>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </section>;
