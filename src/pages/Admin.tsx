@@ -582,11 +582,10 @@ export default function Admin() {
 
           {/* Tabs for different sections */}
           <Tabs defaultValue="jobs" className="w-full">
-            <TabsList className="grid w-full grid-cols-5">
+            <TabsList className="grid w-full grid-cols-4">
               <TabsTrigger value="jobs">All Jobs</TabsTrigger>
               <TabsTrigger value="users">All Users</TabsTrigger>
               <TabsTrigger value="system-users">System Users</TabsTrigger>
-              <TabsTrigger value="candidates">All Candidates</TabsTrigger>
               <TabsTrigger value="contact">Contact Submissions</TabsTrigger>
             </TabsList>
             
@@ -964,80 +963,6 @@ export default function Admin() {
               </Card>
             </TabsContent>
 
-            {/* Candidates Tab */}
-            <TabsContent value="candidates" className="space-y-6">
-              <Card>
-                <CardHeader>
-                  <CardTitle>All Registered Candidates</CardTitle>
-                  <CardDescription>
-                    {candidates.length} candidates registered on the platform
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  {candidates.length === 0 ? (
-                    <p className="text-center text-muted-foreground py-8">
-                      No candidates registered yet.
-                    </p>
-                  ) : (
-                    <div className="overflow-x-auto">
-                       <Table>
-                         <TableHeader>
-                           <TableRow>
-                             <TableHead>Name</TableHead>
-                             <TableHead>Email</TableHead>
-                             <TableHead>Phone</TableHead>
-                             <TableHead>Current City</TableHead>
-                             <TableHead>State</TableHead>
-                             <TableHead>Experience</TableHead>
-                             <TableHead>Expected Salary</TableHead>
-                             <TableHead>Registered Date</TableHead>
-                           </TableRow>
-                         </TableHeader>
-                         <TableBody>
-                           {candidates.map((candidate) => (
-                             <TableRow key={candidate.id}>
-                               <TableCell className="font-medium">
-                                 {candidate.first_name} {candidate.last_name}
-                               </TableCell>
-                               <TableCell>
-                                 <span className="flex items-center gap-1">
-                                   <Mail className="h-3 w-3" />
-                                   {candidate.email || 'Not available'}
-                                 </span>
-                               </TableCell>
-                               <TableCell>
-                                 <span className="flex items-center gap-1">
-                                   <Phone className="h-3 w-3" />
-                                   {candidate.phone || 'Not provided'}
-                                 </span>
-                               </TableCell>
-                               <TableCell>
-                                 <span className="flex items-center gap-1">
-                                   <MapPin className="h-3 w-3" />
-                                   {candidate.current_city || 'Not specified'}
-                                 </span>
-                               </TableCell>
-                               <TableCell>
-                                 {candidate.home_location || 'Not specified'}
-                               </TableCell>
-                               <TableCell>
-                                 <Badge variant="outline">
-                                   {candidate.total_experience || 'Not specified'}
-                                 </Badge>
-                               </TableCell>
-                               <TableCell>
-                                 {formatSalary(candidate.expected_salary)}
-                               </TableCell>
-                               <TableCell>{formatDate(candidate.created_at)}</TableCell>
-                             </TableRow>
-                           ))}
-                         </TableBody>
-                      </Table>
-                    </div>
-                  )}
-                </CardContent>
-              </Card>
-            </TabsContent>
 
             {/* Contact Submissions Tab */}
             <TabsContent value="contact" className="space-y-6">
