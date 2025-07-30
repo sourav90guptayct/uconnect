@@ -207,8 +207,9 @@ const Contact = () => {
               <MapPin className="h-8 w-8 text-primary mx-auto mb-4" />
               <h4 className="font-semibold mb-2">Visit Us</h4>
               <p className="text-muted-foreground text-sm">
-                123 Business Street<br />
-                City, State 12345
+                Plot No 1398 Air Force Road<br />
+                Govindpur<br />
+                Distt. Saharanpur Uttar Pradesh
               </p>
             </CardContent>
           </Card>
@@ -218,7 +219,7 @@ const Contact = () => {
               <Phone className="h-8 w-8 text-primary mx-auto mb-4" />
               <h4 className="font-semibold mb-2">Call Us</h4>
               <p className="text-muted-foreground text-sm">
-                +1 (555) 123-4567<br />
+                +91-8979199267<br />
                 Mon-Fri 9AM-6PM
               </p>
             </CardContent>
