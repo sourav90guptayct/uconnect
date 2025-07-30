@@ -99,11 +99,13 @@ const Header = () => {
                     </NavigationMenuItem>
 
 
-                    <NavigationMenuItem>
-                      <Link to="/my-applications" className={cn(navigationMenuTriggerStyle(), "text-foreground hover:text-primary")}>
-                        My Applications
-                      </Link>
-                    </NavigationMenuItem>
+                    {!isAdmin && (
+                      <NavigationMenuItem>
+                        <Link to="/my-applications" className={cn(navigationMenuTriggerStyle(), "text-foreground hover:text-primary")}>
+                          My Applications
+                        </Link>
+                      </NavigationMenuItem>
+                    )}
 
                     {isAdmin && (
                       <NavigationMenuItem>
@@ -184,9 +186,11 @@ const Header = () => {
                   <Link to="/profile" className="text-foreground hover:text-primary transition-colors">
                     My Profile
                   </Link>
-                  <Link to="/my-applications" className="text-foreground hover:text-primary transition-colors">
-                    My Applications
-                  </Link>
+                  {!isAdmin && (
+                    <Link to="/my-applications" className="text-foreground hover:text-primary transition-colors">
+                      My Applications
+                    </Link>
+                  )}
                   {isAdmin && (
                     <Link to="/employer-dashboard" className="text-foreground hover:text-primary transition-colors">
                       Employer Dashboard
