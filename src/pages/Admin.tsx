@@ -90,12 +90,21 @@ interface UserRole {
   email?: string;
 }
 
+interface AllUser {
+  id: string;
+  email: string;
+  created_at: string;
+  last_sign_in_at?: string;
+  profile?: CandidateProfile | null;
+}
+
 export default function Admin() {
   const { user, loading: authLoading } = useAuth();
   const { isAdmin, loading: adminLoading } = useAdminCheck();
   const [submissions, setSubmissions] = useState<ContactSubmission[]>([]);
   const [jobs, setJobs] = useState<Job[]>([]);
   const [candidates, setCandidates] = useState<CandidateProfile[]>([]);
+  const [allUsers, setAllUsers] = useState<AllUser[]>([]);
   const [userRoles, setUserRoles] = useState<UserRole[]>([]);
   const [newUserEmail, setNewUserEmail] = useState('');
   const [newUserPassword, setNewUserPassword] = useState('');
@@ -130,11 +139,12 @@ export default function Admin() {
   const fetchDashboardData = async () => {
     setLoading(true);
     try {
-      await Promise.all([
+        await Promise.all([
         fetchStats(),
         fetchSubmissions(),
         fetchJobs(),
         fetchCandidates(),
+        fetchAllUsers(),
         fetchUserRoles()
       ]);
     } catch (error) {
@@ -237,6 +247,18 @@ export default function Admin() {
       }
     } catch (error) {
       console.error('Error fetching candidates:', error);
+    }
+  };
+
+  const fetchAllUsers = async () => {
+    try {
+      const { data, error } = await supabase.functions.invoke('get-all-users');
+      
+      if (error) throw error;
+      
+      setAllUsers(data.users || []);
+    } catch (error) {
+      console.error('Error fetching all users:', error);
     }
   };
 
@@ -584,7 +606,7 @@ export default function Admin() {
           <Tabs defaultValue="jobs" className="w-full">
             <TabsList className="grid w-full grid-cols-4">
               <TabsTrigger value="jobs">All Jobs</TabsTrigger>
-              <TabsTrigger value="users">All Users</TabsTrigger>
+              <TabsTrigger value="users">All Registered Users</TabsTrigger>
               <TabsTrigger value="system-users">System Users</TabsTrigger>
               <TabsTrigger value="contact">Contact Submissions</TabsTrigger>
             </TabsList>
@@ -746,11 +768,11 @@ export default function Admin() {
                 <CardHeader>
                   <CardTitle>All Registered Users</CardTitle>
                   <CardDescription>
-                    {candidates.length} total users registered on the platform
+                    {allUsers.length} total users registered on the platform
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  {candidates.length === 0 ? (
+                  {allUsers.length === 0 ? (
                     <p className="text-center text-muted-foreground py-8">
                       No users registered yet.
                     </p>
@@ -759,52 +781,58 @@ export default function Admin() {
                        <Table>
                          <TableHeader>
                            <TableRow>
-                             <TableHead>Name</TableHead>
                              <TableHead>Email</TableHead>
+                             <TableHead>Profile Status</TableHead>
+                             <TableHead>Name</TableHead>
                              <TableHead>Phone</TableHead>
                              <TableHead>Current City</TableHead>
-                             <TableHead>State</TableHead>
                              <TableHead>Experience</TableHead>
                              <TableHead>Expected Salary</TableHead>
+                             <TableHead>Last Sign In</TableHead>
                              <TableHead>Registered Date</TableHead>
                            </TableRow>
                          </TableHeader>
                          <TableBody>
-                           {candidates.map((candidate) => (
-                             <TableRow key={candidate.id}>
+                           {allUsers.map((user) => (
+                             <TableRow key={user.id}>
                                <TableCell className="font-medium">
-                                 {candidate.first_name} {candidate.last_name}
-                               </TableCell>
-                               <TableCell>
                                  <span className="flex items-center gap-1">
                                    <Mail className="h-3 w-3" />
-                                   {candidate.email || 'Not available'}
+                                   {user.email}
                                  </span>
+                               </TableCell>
+                               <TableCell>
+                                 <Badge variant={user.profile ? "default" : "secondary"}>
+                                   {user.profile ? "Complete" : "Incomplete"}
+                                 </Badge>
+                               </TableCell>
+                               <TableCell>
+                                 {user.profile ? `${user.profile.first_name} ${user.profile.last_name}` : 'Not provided'}
                                </TableCell>
                                <TableCell>
                                  <span className="flex items-center gap-1">
                                    <Phone className="h-3 w-3" />
-                                   {candidate.phone || 'Not provided'}
+                                   {user.profile?.phone || 'Not provided'}
                                  </span>
                                </TableCell>
                                <TableCell>
                                  <span className="flex items-center gap-1">
                                    <MapPin className="h-3 w-3" />
-                                   {candidate.current_city || 'Not specified'}
+                                   {user.profile?.current_city || 'Not specified'}
                                  </span>
                                </TableCell>
                                <TableCell>
-                                 {candidate.home_location || 'Not specified'}
-                               </TableCell>
-                               <TableCell>
                                  <Badge variant="outline">
-                                   {candidate.total_experience || 'Not specified'}
+                                   {user.profile?.total_experience || 'Not specified'}
                                  </Badge>
                                </TableCell>
                                <TableCell>
-                                 {formatSalary(candidate.expected_salary)}
+                                 {user.profile?.expected_salary ? formatSalary(user.profile.expected_salary) : 'Not specified'}
                                </TableCell>
-                               <TableCell>{formatDate(candidate.created_at)}</TableCell>
+                               <TableCell>
+                                 {user.last_sign_in_at ? formatDate(user.last_sign_in_at) : 'Never'}
+                               </TableCell>
+                               <TableCell>{formatDate(user.created_at)}</TableCell>
                              </TableRow>
                            ))}
                          </TableBody>
