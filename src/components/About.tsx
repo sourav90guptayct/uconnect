@@ -57,6 +57,20 @@ const About = () => {
           {/* Visual */}
           <div className="relative">
             <div className="grid grid-cols-2 gap-6">
+              {/* Team Collaboration Image */}
+              <div className="col-span-2 relative rounded-xl overflow-hidden mb-6">
+                <img 
+                  src="/lovable-uploads/839cd676-3d03-4ff0-941b-4baee8220c7b.png" 
+                  alt="Team Collaboration" 
+                  className="w-full h-48 object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
+                <div className="absolute bottom-4 left-4 text-white">
+                  <h3 className="text-2xl font-bold mb-2">Collaborative Excellence</h3>
+                  <p className="text-sm opacity-90">Building partnerships that drive innovation</p>
+                </div>
+              </div>
+
               {/* Mission Card */}
               <div className="bg-card border border-border rounded-xl p-6 hover:shadow-lg transition-shadow">
                 <Target className="h-12 w-12 text-accent mb-4" />
@@ -77,24 +91,32 @@ const About = () => {
                 </p>
               </div>
 
-              {/* Stats Card */}
-              <div className="col-span-2 bg-gradient-to-r from-primary to-primary/80 text-primary-foreground rounded-xl p-6">
-                <div className="grid grid-cols-2 gap-6">
-                  <div className="text-center">
-                    <div className="text-3xl font-bold mb-1">2017</div>
-                    <div className="text-sm opacity-90">Year Established</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-3xl font-bold mb-1">5+</div>
-                    <div className="text-sm opacity-90">States</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-3xl font-bold mb-1">100+</div>
-                    <div className="text-sm opacity-90">Employees</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-3xl font-bold mb-1">2000+</div>
-                    <div className="text-sm opacity-90">Successful Placements</div>
+              {/* Professional Work Environment */}
+              <div className="col-span-2 relative rounded-xl overflow-hidden">
+                <img 
+                  src="/lovable-uploads/8fc1a4ec-6d54-4375-b1f4-6c972127e11e.png" 
+                  alt="Professional Work Environment" 
+                  className="w-full h-32 object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-primary/80 to-primary/60" />
+                <div className="absolute inset-0 flex items-center justify-between p-6 text-primary-foreground">
+                  <div className="grid grid-cols-4 gap-6 w-full">
+                    <div className="text-center">
+                      <div className="text-2xl font-bold mb-1">2017</div>
+                      <div className="text-xs opacity-90">Year Established</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-2xl font-bold mb-1">5+</div>
+                      <div className="text-xs opacity-90">States</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-2xl font-bold mb-1">100+</div>
+                      <div className="text-xs opacity-90">Employees</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-2xl font-bold mb-1">2000+</div>
+                      <div className="text-xs opacity-90">Successful Placements</div>
+                    </div>
                   </div>
                 </div>
               </div>

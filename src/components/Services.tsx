@@ -10,37 +10,37 @@ import infrastructure from "@/assets/infrastructure.jpg";
 const Services = () => {
   const services = [{
     icon: Network,
-    image: circuitBoard,
+    image: "/lovable-uploads/87e1e778-3b68-41c8-bb46-6e22dae156ed.png",
     title: "Networks",
     description: "Stay Connected, Stay Ahead - One-stop-shop for all your networking requirements",
     features: ["Network infrastructure", "Connectivity solutions", "Network monitoring", "Maintenance & support"]
   }, {
     icon: Users,
-    image: teamwork,
+    image: "/lovable-uploads/f3b2f370-c817-48b6-85e7-4f7ea79dcbcc.png",
     title: "Managed Services",
     description: "Focus on core competencies as we take charge of your processes",
     features: ["End-to-end process management", "24/7 operational support", "Performance monitoring", "Service level agreements"]
   }, {
     icon: Building,
-    image: codeTech,
+    image: "/lovable-uploads/8a3919a0-25ca-4ddc-8b40-b666e6f34784.png",
     title: "Digital Transformation",
     description: "Store, manage & disseminate data & more. Secure Enterprise IT solutions",
     features: ["Cloud migration", "Digital platforms", "Data management", "Enterprise IT solutions"]
   }, {
     icon: Briefcase,
-    image: planning,
+    image: "/lovable-uploads/3452b9b3-2558-42b0-a053-f0efdc7efb72.png",
     title: "IP Services",
     description: "Cutting edge IP & ITeS solutions: Empowering your growth",
     features: ["IP infrastructure", "ITeS solutions", "Technology consulting", "System integration"]
   }, {
     icon: Search,
-    image: workforceManagement,
+    image: "/lovable-uploads/4cf29a0e-c8b2-46f9-a586-5e1c9216bfe6.png",
     title: "Resource Management",
     description: "Technology enabled staffing so that you focus on your core business",
     features: ["Technology staffing", "Resource allocation", "Skill management", "Workforce optimization"]
   }, {
     icon: Settings,
-    image: infrastructure,
+    image: "/lovable-uploads/32edb691-2f39-4492-8903-2eef4fa3641a.png",
     title: "Infra Installation",
     description: "Self support and Guy mast Tower as well as Pole, Tower Erection Service and Pole Erection Service",
     features: ["Self support installations", "Guy mast tower setup", "Pole erection services", "Tower erection services"]

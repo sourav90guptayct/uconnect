@@ -48,10 +48,14 @@ const Hero = () => {
           {/* Visual */}
           <div className="hidden lg:flex justify-center">
             <div className="relative">
-              {/* Main card */}
-              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
-                <div className="text-center text-white">
-                  <Building className="h-16 w-16 text-accent mx-auto mb-4" />
+              {/* Main image card */}
+              <div className="bg-white/10 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/20">
+                <img 
+                  src="/lovable-uploads/d75128dc-3c18-4149-aba1-d879dab93472.png" 
+                  alt="Technology Innovation" 
+                  className="w-full h-64 object-cover"
+                />
+                <div className="p-6 text-center text-white">
                   <div className="flex items-center justify-center gap-2 mb-3">
                     <Award className="h-6 w-6 text-accent" />
                     <span className="text-accent font-semibold text-lg">
@@ -59,7 +63,7 @@ const Hero = () => {
                     </span>
                   </div>
                   <h3 className="text-2xl font-bold mb-4">Enterprise Solutions</h3>
-                  <p className="text-gray-200 mb-6">
+                  <p className="text-gray-200 mb-4">
                     Scalable technology solutions for organizations of all sizes
                   </p>
                   <div className="flex justify-center items-center gap-4">

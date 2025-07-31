@@ -70,17 +70,28 @@ const WhyChooseUs = () => {
             </Card>)}
         </div>
 
+        {/* Team Unity Image Section */}
+        <div className="relative rounded-2xl overflow-hidden mb-12">
+          <img 
+            src="/lovable-uploads/e2f0fa8e-0cfd-4a8e-8ab3-e9550216c580.png" 
+            alt="Team Unity and Success" 
+            className="w-full h-64 object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/90 to-primary/70" />
+          <div className="absolute inset-0 flex items-center justify-center text-primary-foreground text-center p-8">
+            <div>
+              <h3 className="text-3xl lg:text-4xl font-bold mb-4">
+                Trusted by Leading Organizations
+              </h3>
+              <p className="text-xl opacity-90 max-w-2xl">
+                Our commitment to excellence has earned us recognition and trust across industries
+              </p>
+            </div>
+          </div>
+        </div>
+
         {/* Achievements Banner */}
         <div className="bg-gradient-to-r from-primary to-primary/80 rounded-2xl p-8 lg:p-12 text-primary-foreground">
-          <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold mb-4">
-              Trusted by Leading Organizations
-            </h3>
-            <p className="text-xl opacity-90">
-              Our commitment to excellence has earned us recognition and trust across industries
-            </p>
-          </div>
-          
           <div className="grid md:grid-cols-3 gap-8">
             {achievements.map((achievement, index) => <div key={index} className="text-center">
                 <div className="h-16 w-16 bg-white/20 rounded-xl flex items-center justify-center mx-auto mb-4">
