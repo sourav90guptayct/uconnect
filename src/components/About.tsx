@@ -3,7 +3,6 @@ import { CheckCircle, Target, Globe, Award } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 const About = () => {
   const navigate = useNavigate();
-  
   return <section id="about" className="py-20 bg-background">
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -45,11 +44,7 @@ const About = () => {
               </div>
             </div>
 
-            <Button 
-              size="lg" 
-              className="bg-primary text-primary-foreground hover:bg-primary/90"
-              onClick={() => navigate('/about')}
-            >
+            <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90" onClick={() => navigate('/about')}>
               Learn More About Us
             </Button>
           </div>
@@ -59,11 +54,7 @@ const About = () => {
             <div className="grid grid-cols-2 gap-6">
               {/* Team Collaboration Image */}
               <div className="col-span-2 relative rounded-xl overflow-hidden mb-6">
-                <img 
-                  src="/lovable-uploads/839cd676-3d03-4ff0-941b-4baee8220c7b.png" 
-                  alt="Team Collaboration" 
-                  className="w-full h-48 object-cover"
-                />
+                <img src="/lovable-uploads/839cd676-3d03-4ff0-941b-4baee8220c7b.png" alt="Team Collaboration" className="w-full h-48 object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
                 <div className="absolute bottom-4 left-4 text-white">
                   <h3 className="text-2xl font-bold mb-2">Collaborative Excellence</h3>
@@ -93,11 +84,7 @@ const About = () => {
 
               {/* Professional Work Environment */}
               <div className="col-span-2 relative rounded-xl overflow-hidden">
-                <img 
-                  src="/lovable-uploads/8fc1a4ec-6d54-4375-b1f4-6c972127e11e.png" 
-                  alt="Professional Work Environment" 
-                  className="w-full h-32 object-cover"
-                />
+                <img src="/lovable-uploads/8fc1a4ec-6d54-4375-b1f4-6c972127e11e.png" alt="Professional Work Environment" className="w-full h-32 object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-r from-primary/80 to-primary/60" />
                 <div className="absolute inset-0 flex items-center justify-between p-6 text-primary-foreground">
                   <div className="grid grid-cols-4 gap-6 w-full">
@@ -106,7 +93,7 @@ const About = () => {
                       <div className="text-xs opacity-90">Year Established</div>
                     </div>
                     <div className="text-center">
-                      <div className="text-2xl font-bold mb-1">5+</div>
+                      <div className="text-2xl font-bold mb-1">10+</div>
                       <div className="text-xs opacity-90">States</div>
                     </div>
                     <div className="text-center">
