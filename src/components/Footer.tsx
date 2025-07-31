@@ -35,28 +35,33 @@ const Footer = () => {
             <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-3">
               <li>
-                <a href="#home" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
+                <a href="/" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
                   Home
                 </a>
               </li>
               <li>
-                <a href="#about" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
+                <a href="/about" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
                   About Us
                 </a>
               </li>
               <li>
-                <a href="#services" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
+                <a href="/services" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
                   Services
                 </a>
               </li>
               <li>
-                <a href="#why-choose-us" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
-                  Why Choose Us
+                <a href="/careers" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
+                  Careers
                 </a>
               </li>
               <li>
-                <a href="#contact" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
-                  Contact
+                <a href="/jobs" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
+                  Jobs
+                </a>
+              </li>
+              <li>
+                <a href="/support" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
+                  Support
                 </a>
               </li>
             </ul>

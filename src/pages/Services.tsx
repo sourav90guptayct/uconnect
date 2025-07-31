@@ -15,7 +15,7 @@ const ServicesPage = () => {
   const services = [
     {
       icon: Network,
-      image: circuitBoard,
+      image: "/lovable-uploads/4404a0c7-dfe8-4d6c-a763-8ddc0c228f40.png",
       title: "Networks",
       description: "Stay Connected, Stay Ahead - One-stop-shop for all your networking requirements",
       features: ["Network infrastructure", "Connectivity solutions", "Network monitoring", "Maintenance & support"],
@@ -23,7 +23,7 @@ const ServicesPage = () => {
     },
     {
       icon: Users,
-      image: teamwork,
+      image: "/lovable-uploads/115872b6-8d21-43a0-b6ed-a612375446ba.png",
       title: "Managed Services",
       description: "Focus on core competencies as we take charge of your processes",
       features: ["End-to-end process management", "24/7 operational support", "Performance monitoring", "Service level agreements"],
@@ -31,7 +31,7 @@ const ServicesPage = () => {
     },
     {
       icon: Building,
-      image: codeTech,
+      image: "/lovable-uploads/3a00d3ac-8dd2-40fb-b5bb-bf516bd60ff2.png",
       title: "Digital Transformation",
       description: "Store, manage & disseminate data & more. Secure Enterprise IT solutions",
       features: ["Cloud migration", "Digital platforms", "Data management", "Enterprise IT solutions"],
@@ -39,7 +39,7 @@ const ServicesPage = () => {
     },
     {
       icon: Briefcase,
-      image: planning,
+      image: "/lovable-uploads/2d02a26b-70d0-4eb8-98e3-04f141cb0bff.png",
       title: "IP Services",
       description: "Cutting edge IP & ITeS solutions: Empowering your growth",
       features: ["IP infrastructure", "ITeS solutions", "Technology consulting", "System integration"],
@@ -47,7 +47,7 @@ const ServicesPage = () => {
     },
     {
       icon: Search,
-      image: workforceManagement,
+      image: "/lovable-uploads/55b3aa6c-9ace-4e67-9a9d-05f41feefab1.png",
       title: "Resource Management",
       description: "Technology enabled staffing so that you focus on your core business",
       features: ["Technology staffing", "Resource allocation", "Skill management", "Workforce optimization"],
@@ -55,7 +55,7 @@ const ServicesPage = () => {
     },
     {
       icon: Settings,
-      image: infrastructure,
+      image: "/lovable-uploads/36d182be-8602-4bb3-9554-331999f9b0ed.png",
       title: "Infra Installation",
       description: "Self support and Guy mast Tower as well as Pole, Tower Erection Service and Pole Erection Service",
       features: ["Self support installations", "Guy mast tower setup", "Pole erection services", "Tower erection services"],
@@ -70,7 +70,7 @@ const ServicesPage = () => {
       <div className="relative bg-primary text-primary-foreground py-20 overflow-hidden">
         <div className="absolute inset-0">
           <img 
-            src={codeTech} 
+            src="/lovable-uploads/2c094ed9-72c7-4355-a7aa-38ea78d08bb1.png" 
             alt="Professional Technology Services"
             className="w-full h-full object-cover opacity-20"
           />
@@ -92,7 +92,7 @@ const ServicesPage = () => {
         <div className="container mx-auto px-4">
           <div className="rounded-2xl overflow-hidden">
             <img 
-              src={teamwork}
+              src="/lovable-uploads/d3434b85-a926-40a1-8d8d-899967351179.png"
               alt="Professional Technology Services Team"
               className="w-full h-96 object-cover"
             />

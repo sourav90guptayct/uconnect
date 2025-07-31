@@ -245,7 +245,7 @@ const CareersPage = () => {
         <div className="container mx-auto px-4">
           <div className="rounded-2xl overflow-hidden">
             <img 
-              src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=6000&q=80"
+              src="/lovable-uploads/115872b6-8d21-43a0-b6ed-a612375446ba.png"
               alt="Team collaboration"
               className="w-full h-96 object-cover"
             />
