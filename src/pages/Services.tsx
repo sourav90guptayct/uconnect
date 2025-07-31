@@ -60,7 +60,7 @@ const ServicesPage = () => {
       <div className="relative bg-primary text-primary-foreground py-20 overflow-hidden">
         <div className="absolute inset-0">
           <img src="/lovable-uploads/2c094ed9-72c7-4355-a7aa-38ea78d08bb1.png" alt="Professional Technology Services" className="w-full h-full object-cover opacity-20" />
-          <div className="absolute inset-0 bg-transparent" />
+          
         </div>
         <div className="container mx-auto px-4 relative z-10">
           <h1 className="text-4xl lg:text-6xl font-bold mb-6">
