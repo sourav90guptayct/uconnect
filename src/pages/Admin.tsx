@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useAuth } from '@/hooks/useAuth';
 import { useAdminCheck } from '@/hooks/useAdminCheck';
 import { supabase } from '@/integrations/supabase/client';
@@ -126,41 +126,7 @@ export default function Admin() {
   const { toast } = useToast();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (!authLoading && !user) {
-      navigate('/auth');
-      return;
-    }
-
-    if (!adminLoading && !isAdmin) {
-      navigate('/');
-      return;
-    }
-
-    if (isAdmin) {
-      fetchDashboardData();
-    }
-  }, [user, authLoading, isAdmin, adminLoading, navigate]);
-
-  const fetchDashboardData = async () => {
-    setLoading(true);
-    try {
-        await Promise.all([
-        fetchStats(),
-        fetchSubmissions(),
-        fetchJobs(),
-        fetchCandidates(),
-        fetchAllUsers(),
-        fetchUserRoles()
-      ]);
-    } catch (error) {
-      console.error('Error fetching dashboard data:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const fetchStats = async () => {
+  const fetchStats = useCallback(async () => {
     try {
       const [jobsResult, usersResult, applicationsResult, activeJobsResult] = await Promise.all([
         supabase.from('jobs').select('id', { count: 'exact', head: true }),
@@ -179,9 +145,30 @@ export default function Admin() {
     } catch (error) {
       console.error('Error fetching stats:', error);
     }
-  };
+  }, []);
 
-  const fetchJobs = async () => {
+  const fetchSubmissions = useCallback(async () => {
+    try {
+      const { data, error } = await supabase
+        .from('contact_submissions')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+      if (error) {
+        toast({
+          title: "Error",
+          description: "Failed to fetch contact submissions.",
+          variant: "destructive"
+        });
+      } else {
+        setSubmissions(data || []);
+      }
+    } catch (error) {
+      console.error('Error fetching submissions:', error);
+    }
+  }, [toast]);
+
+  const fetchJobs = useCallback(async () => {
     try {
       const { data, error } = await supabase
         .from('jobs')
@@ -206,9 +193,9 @@ export default function Admin() {
     } catch (error) {
       console.error('Error fetching jobs:', error);
     }
-  };
+  }, []);
 
-  const fetchCandidates = async () => {
+  const fetchCandidates = useCallback(async () => {
     try {
       const { data, error } = await supabase
         .from('candidate_profiles')
@@ -255,9 +242,9 @@ export default function Admin() {
     } catch (error) {
       console.error('Error fetching candidates:', error);
     }
-  };
+  }, []);
 
-  const fetchAllUsers = async () => {
+  const fetchAllUsers = useCallback(async () => {
     try {
       const { data, error } = await supabase.functions.invoke('get-all-users');
       
@@ -267,34 +254,9 @@ export default function Admin() {
     } catch (error) {
       console.error('Error fetching all users:', error);
     }
-  };
+  }, []);
 
-  const toggleJobStatus = async (jobId: string, currentStatus: boolean) => {
-    try {
-      const { error } = await supabase
-        .from('jobs')
-        .update({ is_active: !currentStatus })
-        .eq('id', jobId);
-
-      if (error) throw error;
-
-      toast({
-        title: "Job Status Updated",
-        description: `Job ${!currentStatus ? 'activated' : 'deactivated'} successfully.`
-      });
-
-      // Refresh both jobs and stats
-      await Promise.all([fetchJobs(), fetchStats()]);
-    } catch (error: any) {
-      toast({
-        title: "Error",
-        description: "Failed to update job status.",
-        variant: "destructive"
-      });
-    }
-  };
-
-  const fetchUserRoles = async () => {
+  const fetchUserRoles = useCallback(async () => {
     try {
       const { data, error } = await supabase
         .from('user_roles')
@@ -330,9 +292,70 @@ export default function Admin() {
     } catch (error) {
       console.error('Error fetching user roles:', error);
     }
+  }, []);
+
+  const fetchDashboardData = useCallback(async () => {
+    if (loading) return; // Prevent multiple simultaneous calls
+    
+    setLoading(true);
+    try {
+      await Promise.all([
+        fetchStats(),
+        fetchSubmissions(),
+        fetchJobs(),
+        fetchCandidates(),
+        fetchAllUsers(),
+        fetchUserRoles()
+      ]);
+    } catch (error) {
+      console.error('Error fetching dashboard data:', error);
+    } finally {
+      setLoading(false);
+    }
+  }, [fetchStats, fetchSubmissions, fetchJobs, fetchCandidates, fetchAllUsers, fetchUserRoles, loading]);
+
+  useEffect(() => {
+    if (!authLoading && !user) {
+      navigate('/auth');
+      return;
+    }
+
+    if (!adminLoading && !isAdmin) {
+      navigate('/');
+      return;
+    }
+
+    if (isAdmin) {
+      fetchDashboardData();
+    }
+  }, [user, authLoading, isAdmin, adminLoading, navigate, fetchDashboardData]);
+
+  const toggleJobStatus = async (jobId: string, currentStatus: boolean) => {
+    try {
+      const { error } = await supabase
+        .from('jobs')
+        .update({ is_active: !currentStatus })
+        .eq('id', jobId);
+
+      if (error) throw error;
+
+      toast({
+        title: "Job Status Updated",
+        description: `Job ${!currentStatus ? 'activated' : 'deactivated'} successfully.`
+      });
+
+      // Refresh both jobs and stats
+      await Promise.all([fetchJobs(), fetchStats()]);
+    } catch (error: any) {
+      toast({
+        title: "Error",
+        description: "Failed to update job status.",
+        variant: "destructive"
+      });
+    }
   };
 
-  const createNewUser = async () => {
+  const createNewUser = useCallback(async () => {
     if (!newUserEmail || !newUserPassword) {
       toast({
         title: "Error",
@@ -383,9 +406,9 @@ export default function Admin() {
         variant: "destructive"
       });
     }
-  };
+  }, [newUserEmail, newUserPassword, newUserRole, toast, fetchUserRoles]);
 
-  const updateUserRole = async (userId: string, newRole: 'admin' | 'moderator' | 'user') => {
+  const updateUserRole = useCallback(async (userId: string, newRole: 'admin' | 'moderator' | 'user') => {
     try {
       const { error } = await supabase
         .from('user_roles')
@@ -407,9 +430,9 @@ export default function Admin() {
         variant: "destructive"
       });
     }
-  };
+  }, [toast, fetchUserRoles]);
 
-  const deleteUserRole = async (roleId: string) => {
+  const deleteUserRole = useCallback(async (roleId: string) => {
     try {
       const { error } = await supabase
         .from('user_roles')
@@ -431,30 +454,7 @@ export default function Admin() {
         variant: "destructive"
       });
     }
-  };
-
-  const fetchSubmissions = async () => {
-    try {
-      const { data, error } = await supabase
-        .from('contact_submissions')
-        .select('*')
-        .order('created_at', { ascending: false });
-
-      if (error) {
-        toast({
-          title: "Error",
-          description: "Failed to fetch contact submissions.",
-          variant: "destructive"
-        });
-      } else {
-        setSubmissions(data || []);
-      }
-    } catch (error) {
-      console.error('Error fetching submissions:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  }, [toast, fetchUserRoles]);
 
   const deleteSubmission = async (id: string) => {
     try {
