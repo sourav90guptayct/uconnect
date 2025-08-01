@@ -43,6 +43,28 @@ const MyApplicationsPage = () => {
       return;
     }
     fetchApplications();
+
+    // Set up real-time subscription for application status changes
+    const channel = supabase
+      .channel('application-status-changes')
+      .on(
+        'postgres_changes',
+        {
+          event: 'UPDATE',
+          schema: 'public',
+          table: 'job_applications',
+        },
+        (payload) => {
+          console.log('Application status changed:', payload);
+          // Refresh applications when any application is updated
+          fetchApplications();
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
   }, [user, navigate]);
   const fetchApplications = async () => {
     if (!user) return;
@@ -114,14 +136,37 @@ const MyApplicationsPage = () => {
     switch (status.toLowerCase()) {
       case 'applied':
         return 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200';
-      case 'reviewed':
+      case 'screening':
         return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200';
-      case 'shortlisted':
+      case 'interview':
+        return 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200';
+      case 'offer':
         return 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200';
+      case 'hired':
+        return 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200';
       case 'rejected':
         return 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200';
       default:
         return 'bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-200';
+    }
+  };
+
+  const getStatusDisplayText = (status: string) => {
+    switch (status.toLowerCase()) {
+      case 'applied':
+        return 'Applied';
+      case 'screening':
+        return 'Under Review';
+      case 'interview':
+        return 'Interview Scheduled';
+      case 'offer':
+        return 'Offer Extended';
+      case 'hired':
+        return 'Hired';
+      case 'rejected':
+        return 'Rejected';
+      default:
+        return status.charAt(0).toUpperCase() + status.slice(1);
     }
   };
   if (!user) {
@@ -172,14 +217,14 @@ const MyApplicationsPage = () => {
                         <CardTitle className="text-xl mb-2">{application.jobs.title}</CardTitle>
                         <Badge variant="secondary" className="mb-2">{application.jobs.company_name}</Badge>
                       </div>
-                      <div className="text-right">
-                        <Badge className={getStatusColor(application.application_status)}>
-                          {application.application_status.charAt(0).toUpperCase() + application.application_status.slice(1)}
-                        </Badge>
-                        <p className="text-sm text-muted-foreground mt-2">
-                          Applied on {formatDate(application.applied_at)}
-                        </p>
-                      </div>
+                       <div className="text-right">
+                         <Badge className={getStatusColor(application.application_status)}>
+                           {getStatusDisplayText(application.application_status)}
+                         </Badge>
+                         <p className="text-sm text-muted-foreground mt-2">
+                           Applied on {formatDate(application.applied_at)}
+                         </p>
+                       </div>
                     </div>
                     <div className="flex flex-wrap gap-3 text-sm text-muted-foreground">
                       <span className="flex items-center gap-1">

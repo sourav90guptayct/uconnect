@@ -318,9 +318,10 @@ export default function JobApplicants({ jobId }: JobApplicantsProps) {
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="applied">Applied</SelectItem>
-                        <SelectItem value="screening">Screening</SelectItem>
-                        <SelectItem value="interview">Interview</SelectItem>
-                        <SelectItem value="offer">Offer</SelectItem>
+                        <SelectItem value="screening">Under Review</SelectItem>
+                        <SelectItem value="interview">Interview Scheduled</SelectItem>
+                        <SelectItem value="offer">Offer Extended</SelectItem>
+                        <SelectItem value="hired">Hired</SelectItem>
                         <SelectItem value="rejected">Rejected</SelectItem>
                       </SelectContent>
                     </Select>
