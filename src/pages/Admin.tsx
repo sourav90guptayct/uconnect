@@ -295,8 +295,6 @@ export default function Admin() {
   }, []);
 
   const fetchDashboardData = useCallback(async () => {
-    if (loading) return; // Prevent multiple simultaneous calls
-    
     setLoading(true);
     try {
       await Promise.all([
@@ -312,7 +310,7 @@ export default function Admin() {
     } finally {
       setLoading(false);
     }
-  }, [fetchStats, fetchSubmissions, fetchJobs, fetchCandidates, fetchAllUsers, fetchUserRoles, loading]);
+  }, [fetchStats, fetchSubmissions, fetchJobs, fetchCandidates, fetchAllUsers, fetchUserRoles]);
 
   useEffect(() => {
     if (!authLoading && !user) {
