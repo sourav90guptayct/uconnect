@@ -44,6 +44,7 @@ export default function AllApplicants() {
 
   const fetchAllApplicants = async () => {
     try {
+      console.log('Fetching all applicants...');
       const { data, error } = await supabase
         .from('job_applications')
         .select(`
@@ -71,6 +72,9 @@ export default function AllApplicants() {
         `)
         .order('applied_at', { ascending: false });
 
+      console.log('Raw data from Supabase:', data);
+      console.log('Error from Supabase:', error);
+
       if (error) throw error;
 
       // Get email addresses for candidates
@@ -93,6 +97,7 @@ export default function AllApplicants() {
             }
           })
         );
+        console.log('Final applicants data with emails:', applicantsWithEmail);
         setApplicants(applicantsWithEmail);
       } else {
         setApplicants(data || []);
