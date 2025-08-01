@@ -69,10 +69,6 @@ const EmployerDashboardPage = () => {
   const [isLoadingCandidates, setIsLoadingCandidates] = useState(false);
   const [isLoadingCandidate, setIsLoadingCandidate] = useState(false);
 
-  // Redirect to admin dashboard for all users
-  useEffect(() => {
-    navigate('/admin');
-  }, [navigate]);
 
   useEffect(() => {
     if (!user) {
