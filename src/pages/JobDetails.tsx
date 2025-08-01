@@ -12,6 +12,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { useToast } from "@/hooks/use-toast";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { TestJobApplication } from "@/components/TestJobApplication";
 
 interface Job {
   id: string;
@@ -350,6 +351,9 @@ const JobDetailsPage = () => {
       {/* Job Details */}
       <section className="py-12">
         <div className="container mx-auto px-4">
+          {/* Debug Component - Remove after testing */}
+          <TestJobApplication />
+          
           <div className="max-w-4xl mx-auto">
             <Card className="mb-8">
               <CardHeader>
