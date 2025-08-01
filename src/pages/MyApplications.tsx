@@ -42,54 +42,60 @@ const MyApplicationsPage = () => {
       navigate('/auth');
       return;
     }
-    fetchApplications();
-
-    // Set up real-time subscription for application status changes
-    let channel: any = null;
     
-    const setupRealTimeSubscription = async () => {
-      // First get candidate profile ID to filter updates
-      const { data: candidateProfile } = await supabase
-        .from('candidate_profiles')
-        .select('id')
-        .eq('user_id', user.id)
-        .single();
-
-      if (candidateProfile) {
-        channel = supabase
-          .channel('my-application-status-changes')
-          .on(
-            'postgres_changes',
-            {
-              event: 'UPDATE',
-              schema: 'public',
-              table: 'job_applications',
-              filter: `candidate_id=eq.${candidateProfile.id}`
-            },
-            (payload) => {
-              console.log('My application status changed:', payload);
-              // Update the specific application in the state
-              if (payload.new && payload.new.application_status !== payload.old?.application_status) {
-                setApplications(prev => 
-                  prev.map(app => 
-                    app.id === payload.new.id 
-                      ? { ...app, application_status: payload.new.application_status }
-                      : app
-                  )
+    const initializeData = async () => {
+      await fetchApplications();
+      
+      // Set up real-time subscription after initial data fetch
+      const channel = supabase
+        .channel('my-applications-updates')
+        .on(
+          'postgres_changes',
+          {
+            event: 'UPDATE',
+            schema: 'public',
+            table: 'job_applications'
+          },
+          (payload) => {
+            console.log('🔄 Application status update received:', payload);
+            
+            // Update the specific application in the state
+            if (payload.new && payload.old) {
+              console.log('Status changed from', payload.old.application_status, 'to', payload.new.application_status);
+              
+              setApplications(prev => {
+                const updated = prev.map(app => 
+                  app.id === payload.new.id 
+                    ? { ...app, application_status: payload.new.application_status }
+                    : app
                 );
-              }
+                console.log('Updated applications state:', updated);
+                return updated;
+              });
+              
+              // Show toast notification for status change
+              const statusDisplayText = getStatusDisplayText(payload.new.application_status);
+              toast({
+                title: "Application Status Updated",
+                description: `Your application status has been updated to: ${statusDisplayText}`,
+              });
             }
-          )
-          .subscribe();
-      }
+          }
+        )
+        .subscribe((status) => {
+          console.log('📡 Real-time subscription status:', status);
+        });
+
+      return () => {
+        console.log('🔌 Cleaning up real-time subscription');
+        supabase.removeChannel(channel);
+      };
     };
 
-    setupRealTimeSubscription();
-
+    const cleanup = initializeData();
+    
     return () => {
-      if (channel) {
-        supabase.removeChannel(channel);
-      }
+      cleanup.then(cleanupFn => cleanupFn && cleanupFn());
     };
   }, [user, navigate]);
   const fetchApplications = async () => {
