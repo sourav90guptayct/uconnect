@@ -194,6 +194,16 @@ const JobDetailsPage = () => {
     setIsApplying(true);
 
     try {
+      // Check current user session and context
+      const { data: { user: currentUser }, error: userError } = await supabase.auth.getUser();
+      console.log('🔐 Current auth user:', currentUser);
+      console.log('🔐 Auth error:', userError);
+      
+      // Check session
+      const { data: { session }, error: sessionError } = await supabase.auth.getSession();
+      console.log('🔐 Current session:', session);
+      console.log('🔐 Session error:', sessionError);
+
       console.log('📝 Attempting to apply for job:', {
         job_id: job.id,
         candidate_id: candidateProfile.id,
