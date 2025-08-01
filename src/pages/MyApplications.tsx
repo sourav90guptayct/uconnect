@@ -45,25 +45,51 @@ const MyApplicationsPage = () => {
     fetchApplications();
 
     // Set up real-time subscription for application status changes
-    const channel = supabase
-      .channel('application-status-changes')
-      .on(
-        'postgres_changes',
-        {
-          event: 'UPDATE',
-          schema: 'public',
-          table: 'job_applications',
-        },
-        (payload) => {
-          console.log('Application status changed:', payload);
-          // Refresh applications when any application is updated
-          fetchApplications();
-        }
-      )
-      .subscribe();
+    let channel: any = null;
+    
+    const setupRealTimeSubscription = async () => {
+      // First get candidate profile ID to filter updates
+      const { data: candidateProfile } = await supabase
+        .from('candidate_profiles')
+        .select('id')
+        .eq('user_id', user.id)
+        .single();
+
+      if (candidateProfile) {
+        channel = supabase
+          .channel('my-application-status-changes')
+          .on(
+            'postgres_changes',
+            {
+              event: 'UPDATE',
+              schema: 'public',
+              table: 'job_applications',
+              filter: `candidate_id=eq.${candidateProfile.id}`
+            },
+            (payload) => {
+              console.log('My application status changed:', payload);
+              // Update the specific application in the state
+              if (payload.new && payload.new.application_status !== payload.old?.application_status) {
+                setApplications(prev => 
+                  prev.map(app => 
+                    app.id === payload.new.id 
+                      ? { ...app, application_status: payload.new.application_status }
+                      : app
+                  )
+                );
+              }
+            }
+          )
+          .subscribe();
+      }
+    };
+
+    setupRealTimeSubscription();
 
     return () => {
-      supabase.removeChannel(channel);
+      if (channel) {
+        supabase.removeChannel(channel);
+      }
     };
   }, [user, navigate]);
   const fetchApplications = async () => {

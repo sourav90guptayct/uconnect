@@ -108,18 +108,32 @@ export default function JobApplicants({ jobId }: JobApplicantsProps) {
     try {
       const { error } = await supabase
         .from('job_applications')
-        .update({ application_status: newStatus })
+        .update({ 
+          application_status: newStatus,
+          updated_at: new Date().toISOString()
+        })
         .eq('id', applicationId);
 
       if (error) throw error;
+
+      // Update the local state immediately for better UX
+      setApplicants(prev => 
+        prev.map(app => 
+          app.id === applicationId 
+            ? { ...app, application_status: newStatus }
+            : app
+        )
+      );
 
       toast({
         title: "Status Updated",
         description: `Application status updated to ${newStatus}.`
       });
 
+      // Refresh data to ensure consistency
       fetchApplicants();
     } catch (error: any) {
+      console.error('Error updating application status:', error);
       toast({
         title: "Error",
         description: "Failed to update application status.",
