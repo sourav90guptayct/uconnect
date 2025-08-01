@@ -244,19 +244,122 @@ const MyApplicationsPage = () => {
                         {application.jobs.experience_required}
                       </span>
                     </div>
-                  </CardHeader>
-                  
-                  {application.cover_letter && <CardContent>
-                      <div className="bg-muted/50 rounded-lg p-4">
-                        <div className="flex items-center gap-2 mb-2">
-                          <FileText className="h-4 w-4 text-muted-foreground" />
-                          <h4 className="font-semibold text-sm">Cover Letter</h4>
-                        </div>
-                        <p className="text-sm text-muted-foreground line-clamp-3">
-                          {application.cover_letter}
-                        </p>
-                      </div>
-                    </CardContent>}
+                   </CardHeader>
+                   
+                   <CardContent>
+                     <div className="space-y-4">
+                       {/* Status Progress Indicator */}
+                       <div className="bg-muted/30 rounded-lg p-4">
+                         <h4 className="font-semibold text-sm mb-3 flex items-center gap-2">
+                           <Clock className="h-4 w-4" />
+                           Application Status
+                         </h4>
+                         <div className="flex items-center justify-between text-sm">
+                           <div className="flex items-center gap-2">
+                             <div className={`w-3 h-3 rounded-full ${
+                               ['applied', 'screening', 'interview', 'offer', 'hired'].includes(application.application_status) 
+                                 ? 'bg-green-500' : 'bg-gray-300'
+                             }`}></div>
+                             <span className="text-muted-foreground">Applied</span>
+                           </div>
+                           <div className="flex items-center gap-2">
+                             <div className={`w-3 h-3 rounded-full ${
+                               ['screening', 'interview', 'offer', 'hired'].includes(application.application_status) 
+                                 ? 'bg-green-500' : 'bg-gray-300'
+                             }`}></div>
+                             <span className="text-muted-foreground">Under Review</span>
+                           </div>
+                           <div className="flex items-center gap-2">
+                             <div className={`w-3 h-3 rounded-full ${
+                               ['interview', 'offer', 'hired'].includes(application.application_status) 
+                                 ? 'bg-green-500' : 'bg-gray-300'
+                             }`}></div>
+                             <span className="text-muted-foreground">Interview</span>
+                           </div>
+                           <div className="flex items-center gap-2">
+                             <div className={`w-3 h-3 rounded-full ${
+                               ['offer', 'hired'].includes(application.application_status) 
+                                 ? 'bg-green-500' : 'bg-gray-300'
+                             }`}></div>
+                             <span className="text-muted-foreground">Offer</span>
+                           </div>
+                           <div className="flex items-center gap-2">
+                             <div className={`w-3 h-3 rounded-full ${
+                               application.application_status === 'hired' 
+                                 ? 'bg-green-500' : 'bg-gray-300'
+                             }`}></div>
+                             <span className="text-muted-foreground">Hired</span>
+                           </div>
+                         </div>
+                         
+                         {/* Status-specific messages */}
+                         <div className="mt-3 p-3 rounded-md bg-background border">
+                           {application.application_status === 'screening' && (
+                             <p className="text-sm text-muted-foreground">
+                               🔍 Your application is being reviewed by the hiring team. We'll update you soon!
+                             </p>
+                           )}
+                           {application.application_status === 'interview' && (
+                             <p className="text-sm text-green-700 dark:text-green-300">
+                               🎉 Congratulations! You've been selected for an interview. Check your email for details.
+                             </p>
+                           )}
+                           {application.application_status === 'offer' && (
+                             <p className="text-sm text-green-700 dark:text-green-300">
+                               🌟 Excellent news! You've received a job offer. Please check your email for next steps.
+                             </p>
+                           )}
+                           {application.application_status === 'hired' && (
+                             <p className="text-sm text-green-700 dark:text-green-300">
+                               🎊 Welcome to the team! Your application has been successful. Congratulations!
+                             </p>
+                           )}
+                           {application.application_status === 'rejected' && (
+                             <p className="text-sm text-red-700 dark:text-red-300">
+                               Thank you for your interest. While we won't be moving forward with your application this time, we encourage you to apply for future opportunities.
+                             </p>
+                           )}
+                           {application.application_status === 'applied' && (
+                             <p className="text-sm text-blue-700 dark:text-blue-300">
+                               📝 Your application has been submitted successfully. We'll review it and get back to you soon.
+                             </p>
+                           )}
+                         </div>
+                       </div>
+
+                       {/* Cover Letter */}
+                       {application.cover_letter && (
+                         <div className="bg-muted/50 rounded-lg p-4">
+                           <div className="flex items-center gap-2 mb-2">
+                             <FileText className="h-4 w-4 text-muted-foreground" />
+                             <h4 className="font-semibold text-sm">Cover Letter</h4>
+                           </div>
+                           <p className="text-sm text-muted-foreground line-clamp-3">
+                             {application.cover_letter}
+                           </p>
+                         </div>
+                       )}
+
+                       {/* Action buttons based on status */}
+                       <div className="flex gap-2">
+                         <Button 
+                           variant="outline" 
+                           size="sm"
+                           onClick={() => navigate(`/job/${application.job_id}`)}
+                         >
+                           View Job Details
+                         </Button>
+                         {(application.application_status === 'interview' || application.application_status === 'offer') && (
+                           <Button 
+                             size="sm"
+                             onClick={() => window.open('mailto:', '_blank')}
+                           >
+                             Contact HR
+                           </Button>
+                         )}
+                       </div>
+                     </div>
+                   </CardContent>
                 </Card>)}
             </div>}
         </div>
