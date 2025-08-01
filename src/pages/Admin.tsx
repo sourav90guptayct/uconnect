@@ -278,7 +278,8 @@ export default function Admin() {
         description: `Job ${!currentStatus ? 'activated' : 'deactivated'} successfully.`
       });
 
-      fetchJobs();
+      // Refresh both jobs and stats
+      await Promise.all([fetchJobs(), fetchStats()]);
     } catch (error: any) {
       toast({
         title: "Error",
