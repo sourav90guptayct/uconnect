@@ -16,6 +16,8 @@ import { useNavigate } from 'react-router-dom';
 import { Users, Briefcase, FileText, Eye, MapPin, Clock, DollarSign, Calendar, Phone, Mail, UserPlus, Shield, ShieldCheck, Power, PowerOff } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import JobPostForm from '@/components/admin/JobPostForm';
+import JobApplicants from '@/components/admin/JobApplicants';
 
 interface ContactSubmission {
   id: string;
@@ -613,6 +615,30 @@ export default function Admin() {
             
             {/* Jobs Tab */}
             <TabsContent value="jobs" className="space-y-6">
+              <div className="flex justify-between items-center mb-6">
+                <div>
+                  <h2 className="text-2xl font-bold">Job Management</h2>
+                  <p className="text-muted-foreground">View and manage all job postings</p>
+                </div>
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Button>
+                      <Briefcase className="h-4 w-4 mr-2" />
+                      Post New Job
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+                    <DialogHeader>
+                      <DialogTitle>Post New Job</DialogTitle>
+                      <DialogDescription>
+                        Create a new job posting for the platform.
+                      </DialogDescription>
+                    </DialogHeader>
+                    <JobPostForm onSuccess={fetchJobs} />
+                  </DialogContent>
+                </Dialog>
+              </div>
+              
               <Card>
                 <CardHeader>
                   <CardTitle>All Jobs Posted</CardTitle>
@@ -634,10 +660,10 @@ export default function Admin() {
                              <TableHead>Company</TableHead>
                              <TableHead>Location</TableHead>
                              <TableHead>Salary</TableHead>
-                             <TableHead>Applications</TableHead>
-                             <TableHead>Status</TableHead>
-                             <TableHead>Posted Date</TableHead>
-                             <TableHead>Actions</TableHead>
+                              <TableHead>Applications</TableHead>
+                              <TableHead>Status</TableHead>
+                              <TableHead>Posted Date</TableHead>
+                              <TableHead>Actions</TableHead>
                            </TableRow>
                          </TableHeader>
                          <TableBody>
@@ -667,25 +693,44 @@ export default function Admin() {
                                  </Badge>
                                </TableCell>
                                <TableCell>{formatDate(job.created_at)}</TableCell>
-                               <TableCell>
-                                 <Button
-                                   size="sm"
-                                   variant={job.is_active ? "destructive" : "default"}
-                                   onClick={() => toggleJobStatus(job.id, job.is_active)}
-                                 >
-                                   {job.is_active ? (
-                                     <>
-                                       <PowerOff className="h-3 w-3 mr-1" />
-                                       Deactivate
-                                     </>
-                                   ) : (
-                                     <>
-                                       <Power className="h-3 w-3 mr-1" />
-                                       Activate
-                                     </>
-                                   )}
-                                 </Button>
-                               </TableCell>
+                                <TableCell>
+                                  <div className="flex gap-2">
+                                    <Button
+                                      size="sm"
+                                      variant={job.is_active ? "destructive" : "default"}
+                                      onClick={() => toggleJobStatus(job.id, job.is_active)}
+                                    >
+                                      {job.is_active ? (
+                                        <>
+                                          <PowerOff className="h-3 w-3 mr-1" />
+                                          Deactivate
+                                        </>
+                                      ) : (
+                                        <>
+                                          <Power className="h-3 w-3 mr-1" />
+                                          Activate
+                                        </>
+                                      )}
+                                    </Button>
+                                    <Dialog>
+                                      <DialogTrigger asChild>
+                                        <Button size="sm" variant="outline">
+                                          <Eye className="h-3 w-3 mr-1" />
+                                          View Applicants
+                                        </Button>
+                                      </DialogTrigger>
+                                      <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+                                        <DialogHeader>
+                                          <DialogTitle>Job Applicants - {job.title}</DialogTitle>
+                                          <DialogDescription>
+                                            View all applicants for this job position
+                                          </DialogDescription>
+                                        </DialogHeader>
+                                        <JobApplicants jobId={job.id} />
+                                      </DialogContent>
+                                    </Dialog>
+                                  </div>
+                                </TableCell>
                              </TableRow>
                            ))}
                          </TableBody>
