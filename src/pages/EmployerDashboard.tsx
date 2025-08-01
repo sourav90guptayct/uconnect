@@ -69,12 +69,7 @@ const EmployerDashboardPage = () => {
   const [isLoadingCandidates, setIsLoadingCandidates] = useState(false);
   const [isLoadingCandidate, setIsLoadingCandidate] = useState(false);
 
-  // Redirect admins to admin dashboard, but allow employers to use this dashboard
-  useEffect(() => {
-    if (isAdmin) {
-      navigate('/admin');
-    }
-  }, [isAdmin, navigate]);
+  // No automatic redirect - allow admins to view employer dashboard too
 
   useEffect(() => {
     if (!user) {
@@ -312,10 +307,14 @@ const EmployerDashboardPage = () => {
     switch (status.toLowerCase()) {
       case 'applied':
         return 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200';
-      case 'reviewed':
+      case 'screening':
         return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200';
-      case 'shortlisted':
+      case 'interview':
+        return 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200';
+      case 'offer':
         return 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200';
+      case 'hired':
+        return 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200';
       case 'rejected':
         return 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200';
       default:
@@ -343,11 +342,6 @@ const EmployerDashboardPage = () => {
         <Footer />
       </div>
     );
-  }
-
-  // Allow non-admin users (employers) to access this dashboard
-  if (isAdmin) {
-    return null; // Admins are redirected via useEffect
   }
 
   return (
@@ -587,8 +581,10 @@ const EmployerDashboardPage = () => {
                               </SelectTrigger>
                               <SelectContent>
                                 <SelectItem value="applied">Applied</SelectItem>
-                                <SelectItem value="reviewed">Reviewed</SelectItem>
-                                <SelectItem value="shortlisted">Shortlisted</SelectItem>
+                                <SelectItem value="screening">Under Review</SelectItem>
+                                <SelectItem value="interview">Interview Scheduled</SelectItem>
+                                <SelectItem value="offer">Offer Extended</SelectItem>
+                                <SelectItem value="hired">Hired</SelectItem>
                                 <SelectItem value="rejected">Rejected</SelectItem>
                               </SelectContent>
                             </Select>
