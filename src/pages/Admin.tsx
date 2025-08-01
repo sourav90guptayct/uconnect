@@ -18,6 +18,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import JobPostForm from '@/components/admin/JobPostForm';
 import JobApplicants from '@/components/admin/JobApplicants';
+import AllApplicants from '@/components/admin/AllApplicants';
 
 interface ContactSubmission {
   id: string;
@@ -82,6 +83,7 @@ interface DashboardStats {
   totalUsers: number;
   totalApplications: number;
   totalActiveJobs: number;
+  totalApplicants: number;
 }
 
 interface UserRole {
@@ -112,11 +114,13 @@ export default function Admin() {
   const [newUserPassword, setNewUserPassword] = useState('');
   const [newUserRole, setNewUserRole] = useState<'admin' | 'moderator' | 'user'>('user');
   const [isAddUserDialogOpen, setIsAddUserDialogOpen] = useState(false);
+  const [showAllApplicants, setShowAllApplicants] = useState(false);
   const [stats, setStats] = useState<DashboardStats>({
     totalJobs: 0,
     totalUsers: 0,
     totalApplications: 0,
-    totalActiveJobs: 0
+    totalActiveJobs: 0,
+    totalApplicants: 0
   });
   const [loading, setLoading] = useState(true);
   const { toast } = useToast();
@@ -169,7 +173,8 @@ export default function Admin() {
         totalJobs: jobsResult.count || 0,
         totalUsers: usersResult.count || 0,
         totalApplications: applicationsResult.count || 0,
-        totalActiveJobs: activeJobsResult.count || 0
+        totalActiveJobs: activeJobsResult.count || 0,
+        totalApplicants: applicationsResult.count || 0
       });
     } catch (error) {
       console.error('Error fetching stats:', error);
@@ -578,15 +583,15 @@ export default function Admin() {
               </CardContent>
             </Card>
             
-            <Card>
+            <Card className="cursor-pointer hover:bg-muted/50 transition-colors" onClick={() => setShowAllApplicants(true)}>
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Total Applications</CardTitle>
+                <CardTitle className="text-sm font-medium">Total Applicants</CardTitle>
                 <FileText className="h-4 w-4 text-muted-foreground" />
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold">{stats.totalApplications}</div>
+                <div className="text-2xl font-bold">{stats.totalApplicants}</div>
                 <p className="text-xs text-muted-foreground">
-                  Job applications
+                  Click to view all applicants
                 </p>
               </CardContent>
             </Card>
@@ -605,14 +610,33 @@ export default function Admin() {
             </Card>
           </div>
 
+          {/* Show All Applicants when clicked */}
+          {showAllApplicants && (
+            <Card>
+              <CardHeader className="flex flex-row items-center justify-between">
+                <CardTitle>All Job Applicants</CardTitle>
+                <Button 
+                  variant="outline" 
+                  onClick={() => setShowAllApplicants(false)}
+                >
+                  Back to Dashboard
+                </Button>
+              </CardHeader>
+              <CardContent>
+                <AllApplicants />
+              </CardContent>
+            </Card>
+          )}
+
           {/* Tabs for different sections */}
-          <Tabs defaultValue="jobs" className="w-full">
-            <TabsList className="grid w-full grid-cols-4">
-              <TabsTrigger value="jobs">All Jobs</TabsTrigger>
-              <TabsTrigger value="users">All Registered Users</TabsTrigger>
-              <TabsTrigger value="system-users">System Users</TabsTrigger>
-              <TabsTrigger value="contact">Contact Submissions</TabsTrigger>
-            </TabsList>
+          {!showAllApplicants && (
+            <Tabs defaultValue="jobs" className="w-full">
+              <TabsList className="grid w-full grid-cols-4">
+                <TabsTrigger value="jobs">All Jobs</TabsTrigger>
+                <TabsTrigger value="users">All Registered Users</TabsTrigger>
+                <TabsTrigger value="system-users">System Users</TabsTrigger>
+                <TabsTrigger value="contact">Contact Submissions</TabsTrigger>
+              </TabsList>
             
             {/* Jobs Tab */}
             <TabsContent value="jobs" className="space-y-6">
@@ -1135,7 +1159,8 @@ export default function Admin() {
                 </CardContent>
               </Card>
             </TabsContent>
-          </Tabs>
+            </Tabs>
+          )}
         </div>
       </section>
 
