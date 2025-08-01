@@ -19,6 +19,7 @@ import Footer from '@/components/Footer';
 import JobPostForm from '@/components/admin/JobPostForm';
 import JobApplicants from '@/components/admin/JobApplicants';
 import AllApplicants from '@/components/admin/AllApplicants';
+import { EmployeeManagement } from "@/components/admin/EmployeeManagement";
 
 interface ContactSubmission {
   id: string;
@@ -619,8 +620,9 @@ export default function Admin() {
           {/* Tabs for different sections */}
           {!showAllApplicants && (
             <Tabs defaultValue="jobs" className="w-full">
-              <TabsList className="grid w-full grid-cols-4">
+              <TabsList className="grid w-full grid-cols-5">
                 <TabsTrigger value="jobs">All Jobs</TabsTrigger>
+                <TabsTrigger value="employees">Employees</TabsTrigger>
                 <TabsTrigger value="users">All Registered Users</TabsTrigger>
                 <TabsTrigger value="system-users">System Users</TabsTrigger>
                 <TabsTrigger value="contact">Contact Submissions</TabsTrigger>
@@ -752,6 +754,11 @@ export default function Admin() {
                   )}
                 </CardContent>
               </Card>
+            </TabsContent>
+
+            {/* Employee Management Tab */}
+            <TabsContent value="employees">
+              <EmployeeManagement />
             </TabsContent>
 
             {/* User Management Tab */}
