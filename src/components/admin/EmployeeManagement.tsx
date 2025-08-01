@@ -10,7 +10,7 @@ import { Badge } from '@/components/ui/badge';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
-import { UserPlus, Edit, Trash2, Calendar, CheckCircle, XCircle, Users, ClipboardList, Plus } from 'lucide-react';
+import { UserPlus, Edit, Trash2, Calendar, CheckCircle, XCircle, Users, ClipboardList, Plus, Key } from 'lucide-react';
 
 interface Employee {
   id: string;
@@ -60,7 +60,13 @@ export const EmployeeManagement = () => {
     department: '',
     position: '',
     hire_date: '',
+    temporary_password: '',
   });
+
+  // Password reset state
+  const [showPasswordDialog, setShowPasswordDialog] = useState(false);
+  const [selectedEmployee, setSelectedEmployee] = useState<Employee | null>(null);
+  const [newPassword, setNewPassword] = useState('');
 
   // Form states for creating task
   const [newTask, setNewTask] = useState({
@@ -127,24 +133,25 @@ export const EmployeeManagement = () => {
 
   const createEmployee = async () => {
     try {
-      // In a real application, you would:
-      // 1. Create auth user first using admin API
-      // 2. Then create employee profile with the user_id
-      // For now, we'll create with a placeholder user_id
-      
-      const { error } = await supabase
-        .from('employee_profiles')
-        .insert({
-          user_id: crypto.randomUUID(), // In production: get from auth.users after creating user
-          ...newEmployee,
-          hire_date: newEmployee.hire_date || null,
+      if (!newEmployee.temporary_password) {
+        toast({
+          title: "Error",
+          description: "Please provide a temporary password for the employee.",
+          variant: "destructive"
         });
+        return;
+      }
+
+      // Call edge function to create employee with auth account
+      const { data, error } = await supabase.functions.invoke('create-employee', {
+        body: newEmployee
+      });
 
       if (error) throw error;
 
       toast({
         title: "Employee Created",
-        description: `Employee ${newEmployee.first_name} ${newEmployee.last_name} has been created successfully.`,
+        description: `Employee ${newEmployee.first_name} ${newEmployee.last_name} has been created successfully with temporary password.`,
       });
 
       setShowCreateDialog(false);
@@ -157,6 +164,7 @@ export const EmployeeManagement = () => {
         department: '',
         position: '',
         hire_date: '',
+        temporary_password: '',
       });
       
       fetchEmployees();
@@ -203,6 +211,43 @@ export const EmployeeManagement = () => {
       toast({
         title: "Error",
         description: `Failed to create task: ${error.message}`,
+        variant: "destructive"
+      });
+    }
+  };
+
+  const resetEmployeePassword = async () => {
+    try {
+      if (!selectedEmployee || !newPassword) {
+        toast({
+          title: "Error",
+          description: "Please provide a new password.",
+          variant: "destructive"
+        });
+        return;
+      }
+
+      const { data, error } = await supabase.functions.invoke('reset-employee-password', {
+        body: {
+          employee_id: selectedEmployee.id,
+          new_password: newPassword
+        }
+      });
+
+      if (error) throw error;
+
+      toast({
+        title: "Password Updated",
+        description: `Password has been reset for ${selectedEmployee.first_name} ${selectedEmployee.last_name}.`,
+      });
+
+      setShowPasswordDialog(false);
+      setSelectedEmployee(null);
+      setNewPassword('');
+    } catch (error: any) {
+      toast({
+        title: "Error",
+        description: `Failed to reset password: ${error.message}`,
         variant: "destructive"
       });
     }
@@ -452,6 +497,19 @@ export const EmployeeManagement = () => {
                   </div>
                 </div>
 
+                <div>
+                  <Label>Temporary Password</Label>
+                  <Input
+                    type="password"
+                    placeholder="Enter temporary password"
+                    value={newEmployee.temporary_password}
+                    onChange={(e) => setNewEmployee({...newEmployee, temporary_password: e.target.value})}
+                  />
+                  <p className="text-sm text-muted-foreground mt-1">
+                    The employee will use this to login initially. They should change it after first login.
+                  </p>
+                </div>
+
                 <div className="flex justify-end space-x-2">
                   <Button variant="outline" onClick={() => setShowCreateDialog(false)}>
                     Cancel
@@ -554,23 +612,36 @@ export const EmployeeManagement = () => {
                     </Badge>
                   </TableCell>
                   <TableCell>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => toggleEmployeeStatus(employee.id, employee.is_active)}
-                    >
-                      {employee.is_active ? (
-                        <>
-                          <XCircle className="h-4 w-4 mr-1" />
-                          Deactivate
-                        </>
-                      ) : (
-                        <>
-                          <CheckCircle className="h-4 w-4 mr-1" />
-                          Activate
-                        </>
-                      )}
-                    </Button>
+                    <div className="flex gap-2">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => {
+                          setSelectedEmployee(employee);
+                          setShowPasswordDialog(true);
+                        }}
+                      >
+                        <Key className="h-4 w-4 mr-1" />
+                        Reset Password
+                      </Button>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => toggleEmployeeStatus(employee.id, employee.is_active)}
+                      >
+                        {employee.is_active ? (
+                          <>
+                            <XCircle className="h-4 w-4 mr-1" />
+                            Deactivate
+                          </>
+                        ) : (
+                          <>
+                            <CheckCircle className="h-4 w-4 mr-1" />
+                            Activate
+                          </>
+                        )}
+                      </Button>
+                    </div>
                   </TableCell>
                 </TableRow>
               ))}
@@ -629,6 +700,46 @@ export const EmployeeManagement = () => {
           </Table>
         </CardContent>
       </Card>
+
+      {/* Password Reset Dialog */}
+      <Dialog open={showPasswordDialog} onOpenChange={setShowPasswordDialog}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Reset Employee Password</DialogTitle>
+            <DialogDescription>
+              Reset password for {selectedEmployee?.first_name} {selectedEmployee?.last_name}
+            </DialogDescription>
+          </DialogHeader>
+          
+          <div className="space-y-4">
+            <div>
+              <Label>New Password</Label>
+              <Input
+                type="password"
+                placeholder="Enter new password"
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+              />
+              <p className="text-sm text-muted-foreground mt-1">
+                The employee will be able to login with this new password immediately.
+              </p>
+            </div>
+
+            <div className="flex justify-end space-x-2">
+              <Button variant="outline" onClick={() => {
+                setShowPasswordDialog(false);
+                setSelectedEmployee(null);
+                setNewPassword('');
+              }}>
+                Cancel
+              </Button>
+              <Button onClick={resetEmployeePassword} disabled={!newPassword}>
+                Reset Password
+              </Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };

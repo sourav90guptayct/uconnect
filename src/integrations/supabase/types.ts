@@ -643,6 +643,20 @@ export type Database = {
         Args: { user_email: string }
         Returns: undefined
       }
+      get_employee_by_email: {
+        Args: { employee_email: string }
+        Returns: {
+          id: string
+          user_id: string
+          employee_id: string
+          first_name: string
+          last_name: string
+          email: string
+          department: string
+          position: string
+          is_active: boolean
+        }[]
+      }
       get_user_email: {
         Args: { user_uuid: string }
         Returns: string
