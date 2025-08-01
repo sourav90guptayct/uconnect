@@ -364,40 +364,30 @@ export default function Admin() {
     }
 
     try {
-      // Create user with Supabase Auth
-      const { data, error } = await supabase.auth.signUp({
-        email: newUserEmail,
-        password: newUserPassword,
-        options: {
-          emailRedirectTo: `${window.location.origin}/auth`
+      // Use the edge function to create user
+      const { data, error } = await supabase.functions.invoke('create-admin-user', {
+        body: {
+          email: newUserEmail,
+          password: newUserPassword,
+          role: newUserRole
         }
       });
 
       if (error) throw error;
 
-      if (data.user) {
-        // Assign role to the new user
-        const { error: roleError } = await supabase
-          .from('user_roles')
-          .insert([
-            { user_id: data.user.id, role: newUserRole }
-          ]);
+      toast({
+        title: "User Created",
+        description: data.message || `User ${newUserEmail} created successfully with ${newUserRole} role.`
+      });
 
-        if (roleError) throw roleError;
-
-        toast({
-          title: "User Created",
-          description: `User ${newUserEmail} created successfully with ${newUserRole} role.`
-        });
-
-        // Reset form and refresh data
-        setNewUserEmail('');
-        setNewUserPassword('');
-        setNewUserRole('user');
-        setIsAddUserDialogOpen(false);
-        fetchUserRoles();
-      }
+      // Reset form and refresh data
+      setNewUserEmail('');
+      setNewUserPassword('');
+      setNewUserRole('user');
+      setIsAddUserDialogOpen(false);
+      await Promise.all([fetchUserRoles(), fetchAllUsers()]);
     } catch (error: any) {
+      console.error('Error creating user:', error);
       toast({
         title: "Error",
         description: error.message || "Failed to create user.",
