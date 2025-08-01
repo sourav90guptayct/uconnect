@@ -16,6 +16,7 @@ import { useNavigate } from 'react-router-dom';
 import { Users, Briefcase, FileText, Eye, MapPin, Clock, DollarSign, Calendar, Phone, Mail, UserPlus, Shield, ShieldCheck, Power, PowerOff } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import JobPostForm from '@/components/admin/JobPostForm';
 import JobApplicants from '@/components/admin/JobApplicants';
 import AllApplicants from '@/components/admin/AllApplicants';
 
@@ -365,18 +366,27 @@ export default function Admin() {
     }
 
     try {
-      // Use edge function to create user with admin privileges
-      const { data, error } = await supabase.functions.invoke('create-admin-user', {
-        body: {
-          email: newUserEmail,
-          password: newUserPassword,
-          role: newUserRole
+      // Create user with Supabase Auth
+      const { data, error } = await supabase.auth.signUp({
+        email: newUserEmail,
+        password: newUserPassword,
+        options: {
+          emailRedirectTo: `${window.location.origin}/auth`
         }
       });
 
       if (error) throw error;
 
-      if (data?.success) {
+      if (data.user) {
+        // Assign role to the new user
+        const { error: roleError } = await supabase
+          .from('user_roles')
+          .insert([
+            { user_id: data.user.id, role: newUserRole }
+          ]);
+
+        if (roleError) throw roleError;
+
         toast({
           title: "User Created",
           description: `User ${newUserEmail} created successfully with ${newUserRole} role.`
@@ -388,11 +398,8 @@ export default function Admin() {
         setNewUserRole('user');
         setIsAddUserDialogOpen(false);
         fetchUserRoles();
-      } else {
-        throw new Error(data?.error || 'Unknown error occurred');
       }
     } catch (error: any) {
-      console.error('Error creating user:', error);
       toast({
         title: "Error",
         description: error.message || "Failed to create user.",
@@ -625,7 +632,7 @@ export default function Admin() {
           {!showAllApplicants && (
             <Tabs defaultValue="jobs" className="w-full">
               <TabsList className="grid w-full grid-cols-4">
-                <TabsTrigger value="jobs">Manage Jobs</TabsTrigger>
+                <TabsTrigger value="jobs">All Jobs</TabsTrigger>
                 <TabsTrigger value="users">All Registered Users</TabsTrigger>
                 <TabsTrigger value="system-users">System Users</TabsTrigger>
                 <TabsTrigger value="contact">Contact Submissions</TabsTrigger>
@@ -636,11 +643,25 @@ export default function Admin() {
               <div className="flex justify-between items-center mb-6">
                 <div>
                   <h2 className="text-2xl font-bold">Job Management</h2>
-                  <p className="text-muted-foreground">View and manage all job postings on the platform</p>
+                  <p className="text-muted-foreground">View and manage all job postings</p>
                 </div>
-                <div className="text-sm text-muted-foreground">
-                  Contact employers to post jobs on the platform
-                </div>
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Button>
+                      <Briefcase className="h-4 w-4 mr-2" />
+                      Post New Job
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+                    <DialogHeader>
+                      <DialogTitle>Post New Job</DialogTitle>
+                      <DialogDescription>
+                        Create a new job posting for the platform.
+                      </DialogDescription>
+                    </DialogHeader>
+                    <JobPostForm onSuccess={fetchJobs} />
+                  </DialogContent>
+                </Dialog>
               </div>
               
               <Card>

@@ -69,7 +69,10 @@ const EmployerDashboardPage = () => {
   const [isLoadingCandidates, setIsLoadingCandidates] = useState(false);
   const [isLoadingCandidate, setIsLoadingCandidate] = useState(false);
 
-  // No automatic redirect - allow admins to view employer dashboard too
+  // Redirect to admin dashboard for all users
+  useEffect(() => {
+    navigate('/admin');
+  }, [navigate]);
 
   useEffect(() => {
     if (!user) {
@@ -307,14 +310,10 @@ const EmployerDashboardPage = () => {
     switch (status.toLowerCase()) {
       case 'applied':
         return 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200';
-      case 'screening':
+      case 'reviewed':
         return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200';
-      case 'interview':
-        return 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200';
-      case 'offer':
+      case 'shortlisted':
         return 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200';
-      case 'hired':
-        return 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200';
       case 'rejected':
         return 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200';
       default:
@@ -342,6 +341,10 @@ const EmployerDashboardPage = () => {
         <Footer />
       </div>
     );
+  }
+
+  if (!isAdmin) {
+    return null; // This will redirect via useEffect
   }
 
   return (
@@ -581,10 +584,8 @@ const EmployerDashboardPage = () => {
                               </SelectTrigger>
                               <SelectContent>
                                 <SelectItem value="applied">Applied</SelectItem>
-                                <SelectItem value="screening">Under Review</SelectItem>
-                                <SelectItem value="interview">Interview Scheduled</SelectItem>
-                                <SelectItem value="offer">Offer Extended</SelectItem>
-                                <SelectItem value="hired">Hired</SelectItem>
+                                <SelectItem value="reviewed">Reviewed</SelectItem>
+                                <SelectItem value="shortlisted">Shortlisted</SelectItem>
                                 <SelectItem value="rejected">Rejected</SelectItem>
                               </SelectContent>
                             </Select>
@@ -599,10 +600,11 @@ const EmployerDashboardPage = () => {
               <TabsContent value="jobs" className="space-y-6">
                 <div className="flex justify-between items-center">
                   <h2 className="text-2xl font-bold">{isAdmin ? 'All Posted Jobs' : 'My Posted Jobs'}</h2>
-                  {/* Remove job posting button for non-admins since they shouldn't post jobs */}
-                  <div className="text-sm text-muted-foreground">
-                    Contact support to post new jobs on the platform.
-                  </div>
+                  {!isAdmin && (
+                    <Button onClick={() => navigate('/post-job')}>
+                      Post New Job
+                    </Button>
+                  )}
                 </div>
 
                 <div className="grid lg:grid-cols-2 gap-6">
