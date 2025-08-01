@@ -148,44 +148,84 @@ const JobDetailsPage = () => {
   };
 
   const handleApplyJob = async () => {
-    console.log('Apply job clicked - candidateProfile:', candidateProfile);
-    console.log('Current user:', user?.id);
+    console.log('🚀 Apply job clicked - candidateProfile:', candidateProfile);
+    console.log('🚀 Current user:', user?.id);
+    console.log('🚀 Job ID:', job?.id);
     
-    if (!candidateProfile || !job) {
+    if (!user) {
+      console.log('❌ No user logged in');
+      toast({
+        title: "Authentication Required",
+        description: "Please log in to apply for jobs.",
+        variant: "destructive"
+      });
+      navigate('/auth');
+      return;
+    }
+
+    if (!job) {
+      console.log('❌ No job data available');
+      toast({
+        title: "Job Not Found",
+        description: "Job information is not available. Please refresh the page.",
+        variant: "destructive"
+      });
+      return;
+    }
+    
+    if (!candidateProfile) {
+      console.log('❌ No candidate profile, attempting to fetch...');
       // Try to fetch profile again before giving up
       await fetchCandidateProfile();
       
-      if (!candidateProfile || !job) {
+      if (!candidateProfile) {
+        console.log('❌ Still no candidate profile after refetch');
         toast({
           title: "Complete Your Profile",
           description: "Please complete your profile setup to apply for jobs.",
           variant: "destructive"
         });
-        navigate('/profile');
+        navigate('/register');
         return;
       }
     }
 
+    console.log('✅ All validations passed, proceeding with application...');
     setIsApplying(true);
 
     try {
-      console.log('Attempting to apply for job:', job.id, 'with candidate:', candidateProfile.id);
+      console.log('📝 Attempting to apply for job:', {
+        job_id: job.id,
+        candidate_id: candidateProfile.id,
+        cover_letter: coverLetter || '',
+        application_status: 'applied'
+      });
       
-      const { error } = await supabase
+      const { data, error } = await supabase
         .from('job_applications')
         .insert({
           job_id: job.id,
           candidate_id: candidateProfile.id,
           cover_letter: coverLetter || '',
           application_status: 'applied'
-        });
+        })
+        .select('*');
+
+      console.log('📊 Supabase response data:', data);
+      console.log('📊 Supabase response error:', error);
 
       if (error) {
-        console.error('Supabase error during job application:', error);
+        console.error('❌ Supabase error during job application:', error);
+        console.error('Error details:', {
+          code: error.code,
+          message: error.message,
+          details: error.details,
+          hint: error.hint
+        });
         throw error;
       }
 
-      console.log('Job application submitted successfully');
+      console.log('✅ Job application submitted successfully:', data);
       setHasApplied(true);
       setCoverLetter("");
       setShowApplyDialog(false);
@@ -196,18 +236,35 @@ const JobDetailsPage = () => {
         duration: 5000
       });
     } catch (error: any) {
-      console.error('Error applying for job:', error);
+      console.error('💥 Error applying for job:', error);
+      
       if (error.code === '23505') {
+        console.log('⚠️ Duplicate application detected');
         toast({
           title: "Already Applied",
           description: "You have already applied for this job.",
           variant: "destructive"
         });
         setHasApplied(true);
-      } else {
+      } else if (error.code === '42501') {
+        console.log('⚠️ Permission denied error');
+        toast({
+          title: "Permission Denied",
+          description: "You don't have permission to apply for this job. Please complete your profile first.",
+          variant: "destructive"
+        });
+      } else if (error.message?.includes('RLS')) {
+        console.log('⚠️ RLS policy violation');
         toast({
           title: "Application Failed",
-          description: `Failed to submit application: ${error.message}. Please try again.`,
+          description: "Please complete your candidate profile before applying for jobs.",
+          variant: "destructive"
+        });
+      } else {
+        console.log('⚠️ Unknown error:', error);
+        toast({
+          title: "Application Failed",
+          description: `Failed to submit application: ${error.message || 'Unknown error'}. Please try again.`,
           variant: "destructive"
         });
       }
