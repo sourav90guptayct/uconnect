@@ -16,7 +16,6 @@ import { useNavigate } from 'react-router-dom';
 import { Users, Briefcase, FileText, Eye, MapPin, Clock, DollarSign, Calendar, Phone, Mail, UserPlus, Shield, ShieldCheck, Power, PowerOff } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import JobPostForm from '@/components/admin/JobPostForm';
 import JobApplicants from '@/components/admin/JobApplicants';
 import AllApplicants from '@/components/admin/AllApplicants';
 
@@ -632,7 +631,7 @@ export default function Admin() {
           {!showAllApplicants && (
             <Tabs defaultValue="jobs" className="w-full">
               <TabsList className="grid w-full grid-cols-4">
-                <TabsTrigger value="jobs">All Jobs</TabsTrigger>
+                <TabsTrigger value="jobs">Manage Jobs</TabsTrigger>
                 <TabsTrigger value="users">All Registered Users</TabsTrigger>
                 <TabsTrigger value="system-users">System Users</TabsTrigger>
                 <TabsTrigger value="contact">Contact Submissions</TabsTrigger>
@@ -643,25 +642,11 @@ export default function Admin() {
               <div className="flex justify-between items-center mb-6">
                 <div>
                   <h2 className="text-2xl font-bold">Job Management</h2>
-                  <p className="text-muted-foreground">View and manage all job postings</p>
+                  <p className="text-muted-foreground">View and manage all job postings on the platform</p>
                 </div>
-                <Dialog>
-                  <DialogTrigger asChild>
-                    <Button>
-                      <Briefcase className="h-4 w-4 mr-2" />
-                      Post New Job
-                    </Button>
-                  </DialogTrigger>
-                  <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
-                    <DialogHeader>
-                      <DialogTitle>Post New Job</DialogTitle>
-                      <DialogDescription>
-                        Create a new job posting for the platform.
-                      </DialogDescription>
-                    </DialogHeader>
-                    <JobPostForm onSuccess={fetchJobs} />
-                  </DialogContent>
-                </Dialog>
+                <div className="text-sm text-muted-foreground">
+                  Contact employers to post jobs on the platform
+                </div>
               </div>
               
               <Card>

@@ -69,10 +69,12 @@ const EmployerDashboardPage = () => {
   const [isLoadingCandidates, setIsLoadingCandidates] = useState(false);
   const [isLoadingCandidate, setIsLoadingCandidate] = useState(false);
 
-  // Redirect to admin dashboard for all users
+  // Redirect admins to admin dashboard, but allow employers to use this dashboard
   useEffect(() => {
-    navigate('/admin');
-  }, [navigate]);
+    if (isAdmin) {
+      navigate('/admin');
+    }
+  }, [isAdmin, navigate]);
 
   useEffect(() => {
     if (!user) {
@@ -343,8 +345,9 @@ const EmployerDashboardPage = () => {
     );
   }
 
-  if (!isAdmin) {
-    return null; // This will redirect via useEffect
+  // Allow non-admin users (employers) to access this dashboard
+  if (isAdmin) {
+    return null; // Admins are redirected via useEffect
   }
 
   return (
@@ -600,11 +603,10 @@ const EmployerDashboardPage = () => {
               <TabsContent value="jobs" className="space-y-6">
                 <div className="flex justify-between items-center">
                   <h2 className="text-2xl font-bold">{isAdmin ? 'All Posted Jobs' : 'My Posted Jobs'}</h2>
-                  {!isAdmin && (
-                    <Button onClick={() => navigate('/post-job')}>
-                      Post New Job
-                    </Button>
-                  )}
+                  {/* Remove job posting button for non-admins since they shouldn't post jobs */}
+                  <div className="text-sm text-muted-foreground">
+                    Contact support to post new jobs on the platform.
+                  </div>
                 </div>
 
                 <div className="grid lg:grid-cols-2 gap-6">
