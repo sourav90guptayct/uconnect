@@ -264,169 +264,6 @@ export type Database = {
         }
         Relationships: []
       }
-      daily_attendance: {
-        Row: {
-          created_at: string
-          employee_id: string
-          id: string
-          login_date: string
-          login_time: string
-          logout_time: string | null
-          notes: string | null
-          status: string
-        }
-        Insert: {
-          created_at?: string
-          employee_id: string
-          id?: string
-          login_date?: string
-          login_time?: string
-          logout_time?: string | null
-          notes?: string | null
-          status?: string
-        }
-        Update: {
-          created_at?: string
-          employee_id?: string
-          id?: string
-          login_date?: string
-          login_time?: string
-          logout_time?: string | null
-          notes?: string | null
-          status?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "daily_attendance_employee_id_fkey"
-            columns: ["employee_id"]
-            isOneToOne: false
-            referencedRelation: "employee_profiles"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      employee_profiles: {
-        Row: {
-          created_at: string
-          department: string | null
-          email: string
-          employee_id: string
-          first_name: string
-          hire_date: string | null
-          id: string
-          is_active: boolean | null
-          last_name: string
-          manager_id: string | null
-          phone: string | null
-          position: string | null
-          updated_at: string
-          user_id: string
-        }
-        Insert: {
-          created_at?: string
-          department?: string | null
-          email: string
-          employee_id: string
-          first_name: string
-          hire_date?: string | null
-          id?: string
-          is_active?: boolean | null
-          last_name: string
-          manager_id?: string | null
-          phone?: string | null
-          position?: string | null
-          updated_at?: string
-          user_id: string
-        }
-        Update: {
-          created_at?: string
-          department?: string | null
-          email?: string
-          employee_id?: string
-          first_name?: string
-          hire_date?: string | null
-          id?: string
-          is_active?: boolean | null
-          last_name?: string
-          manager_id?: string | null
-          phone?: string | null
-          position?: string | null
-          updated_at?: string
-          user_id?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "employee_profiles_manager_id_fkey"
-            columns: ["manager_id"]
-            isOneToOne: false
-            referencedRelation: "employee_profiles"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      employee_tasks: {
-        Row: {
-          assigned_by: string | null
-          assigned_date: string
-          completed_at: string | null
-          created_at: string
-          description: string | null
-          due_date: string | null
-          employee_id: string
-          id: string
-          priority: string
-          started_at: string | null
-          status: string
-          title: string
-          updated_at: string
-        }
-        Insert: {
-          assigned_by?: string | null
-          assigned_date?: string
-          completed_at?: string | null
-          created_at?: string
-          description?: string | null
-          due_date?: string | null
-          employee_id: string
-          id?: string
-          priority?: string
-          started_at?: string | null
-          status?: string
-          title: string
-          updated_at?: string
-        }
-        Update: {
-          assigned_by?: string | null
-          assigned_date?: string
-          completed_at?: string | null
-          created_at?: string
-          description?: string | null
-          due_date?: string | null
-          employee_id?: string
-          id?: string
-          priority?: string
-          started_at?: string | null
-          status?: string
-          title?: string
-          updated_at?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "employee_tasks_assigned_by_fkey"
-            columns: ["assigned_by"]
-            isOneToOne: false
-            referencedRelation: "employee_profiles"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "employee_tasks_employee_id_fkey"
-            columns: ["employee_id"]
-            isOneToOne: false
-            referencedRelation: "employee_profiles"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
       job_applications: {
         Row: {
           application_status: string
@@ -565,54 +402,6 @@ export type Database = {
         }
         Relationships: []
       }
-      task_updates: {
-        Row: {
-          created_at: string
-          employee_id: string
-          hours_worked: number | null
-          id: string
-          progress_percentage: number | null
-          task_id: string
-          update_date: string
-          update_text: string
-        }
-        Insert: {
-          created_at?: string
-          employee_id: string
-          hours_worked?: number | null
-          id?: string
-          progress_percentage?: number | null
-          task_id: string
-          update_date?: string
-          update_text: string
-        }
-        Update: {
-          created_at?: string
-          employee_id?: string
-          hours_worked?: number | null
-          id?: string
-          progress_percentage?: number | null
-          task_id?: string
-          update_date?: string
-          update_text?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "task_updates_employee_id_fkey"
-            columns: ["employee_id"]
-            isOneToOne: false
-            referencedRelation: "employee_profiles"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "task_updates_task_id_fkey"
-            columns: ["task_id"]
-            isOneToOne: false
-            referencedRelation: "employee_tasks"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
       user_roles: {
         Row: {
           created_at: string
@@ -643,20 +432,6 @@ export type Database = {
         Args: { user_email: string }
         Returns: undefined
       }
-      get_employee_by_email: {
-        Args: { employee_email: string }
-        Returns: {
-          id: string
-          user_id: string
-          employee_id: string
-          first_name: string
-          last_name: string
-          email: string
-          department: string
-          position: string
-          is_active: boolean
-        }[]
-      }
       get_user_email: {
         Args: { user_uuid: string }
         Returns: string
@@ -670,7 +445,7 @@ export type Database = {
       }
     }
     Enums: {
-      app_role: "admin" | "moderator" | "user" | "employee"
+      app_role: "admin" | "moderator" | "user"
       education_level:
         | "10th"
         | "12th"
@@ -835,7 +610,7 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
-      app_role: ["admin", "moderator", "user", "employee"],
+      app_role: ["admin", "moderator", "user"],
       education_level: [
         "10th",
         "12th",

@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Menu, X, Phone, Mail, ChevronDown, Code, Database, Smartphone, Globe, Shield, Zap } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { useAdminCheck } from "@/hooks/useAdminCheck";
-import { useEmployeeCheck } from "@/hooks/useEmployeeCheck";
 import { useNavigate, Link } from "react-router-dom";
 import {
   NavigationMenu,
@@ -20,7 +19,6 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { user, signOut } = useAuth();
   const { isAdmin } = useAdminCheck();
-  const { isEmployee } = useEmployeeCheck();
   const navigate = useNavigate();
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
@@ -94,11 +92,8 @@ const Header = () => {
                   <>
                     <NavigationMenuItem>
                       <NavigationMenuLink asChild>
-                        <Link 
-                          to={isEmployee ? "/employee-dashboard" : "/profile"} 
-                          className={cn(navigationMenuTriggerStyle(), "text-foreground hover:text-primary")}
-                        >
-                          {isEmployee ? "My Dashboard" : "My Profile"}
+                        <Link to="/profile" className={cn(navigationMenuTriggerStyle(), "text-foreground hover:text-primary")}>
+                          My Profile
                         </Link>
                       </NavigationMenuLink>
                     </NavigationMenuItem>
@@ -119,12 +114,6 @@ const Header = () => {
                         </Link>
                       </NavigationMenuItem>
                     )}
-
-                    <NavigationMenuItem>
-                      <Link to="/employee-dashboard" className={cn(navigationMenuTriggerStyle(), "text-foreground hover:text-primary")}>
-                        Employee Portal
-                      </Link>
-                    </NavigationMenuItem>
 
                     <NavigationMenuItem>
                       <Link to="/careers" className={cn(navigationMenuTriggerStyle(), "text-foreground hover:text-primary")}>
@@ -194,11 +183,8 @@ const Header = () => {
               ) : (
                 // Show profile-focused navigation for logged-in users
                 <>
-                  <Link 
-                    to={isEmployee ? "/employee-dashboard" : "/profile"} 
-                    className="text-foreground hover:text-primary transition-colors"
-                  >
-                    {isEmployee ? "My Dashboard" : "My Profile"}
+                  <Link to="/profile" className="text-foreground hover:text-primary transition-colors">
+                    My Profile
                   </Link>
                   {!isAdmin && (
                     <Link to="/my-applications" className="text-foreground hover:text-primary transition-colors">
@@ -210,9 +196,6 @@ const Header = () => {
                       Employer Dashboard
                     </Link>
                   )}
-                  <Link to="/employee-dashboard" className="text-foreground hover:text-primary transition-colors">
-                    Employee Portal
-                  </Link>
                   <Link to="/careers" className="text-foreground hover:text-primary transition-colors">
                     All Jobs
                   </Link>

@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState } from 'react';
 import { useAuth } from '@/hooks/useAuth';
 import { useAdminCheck } from '@/hooks/useAdminCheck';
 import { supabase } from '@/integrations/supabase/client';
@@ -16,10 +16,6 @@ import { useNavigate } from 'react-router-dom';
 import { Users, Briefcase, FileText, Eye, MapPin, Clock, DollarSign, Calendar, Phone, Mail, UserPlus, Shield, ShieldCheck, Power, PowerOff } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import JobPostForm from '@/components/admin/JobPostForm';
-import JobApplicants from '@/components/admin/JobApplicants';
-import AllApplicants from '@/components/admin/AllApplicants';
-import { EmployeeManagement } from "@/components/admin/EmployeeManagement";
 
 interface ContactSubmission {
   id: string;
@@ -84,7 +80,6 @@ interface DashboardStats {
   totalUsers: number;
   totalApplications: number;
   totalActiveJobs: number;
-  totalApplicants: number;
 }
 
 interface UserRole {
@@ -115,19 +110,51 @@ export default function Admin() {
   const [newUserPassword, setNewUserPassword] = useState('');
   const [newUserRole, setNewUserRole] = useState<'admin' | 'moderator' | 'user'>('user');
   const [isAddUserDialogOpen, setIsAddUserDialogOpen] = useState(false);
-  const [showAllApplicants, setShowAllApplicants] = useState(false);
   const [stats, setStats] = useState<DashboardStats>({
     totalJobs: 0,
     totalUsers: 0,
     totalApplications: 0,
-    totalActiveJobs: 0,
-    totalApplicants: 0
+    totalActiveJobs: 0
   });
   const [loading, setLoading] = useState(true);
   const { toast } = useToast();
   const navigate = useNavigate();
 
-  const fetchStats = useCallback(async () => {
+  useEffect(() => {
+    if (!authLoading && !user) {
+      navigate('/auth');
+      return;
+    }
+
+    if (!adminLoading && !isAdmin) {
+      navigate('/');
+      return;
+    }
+
+    if (isAdmin) {
+      fetchDashboardData();
+    }
+  }, [user, authLoading, isAdmin, adminLoading, navigate]);
+
+  const fetchDashboardData = async () => {
+    setLoading(true);
+    try {
+        await Promise.all([
+        fetchStats(),
+        fetchSubmissions(),
+        fetchJobs(),
+        fetchCandidates(),
+        fetchAllUsers(),
+        fetchUserRoles()
+      ]);
+    } catch (error) {
+      console.error('Error fetching dashboard data:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const fetchStats = async () => {
     try {
       const [jobsResult, usersResult, applicationsResult, activeJobsResult] = await Promise.all([
         supabase.from('jobs').select('id', { count: 'exact', head: true }),
@@ -140,36 +167,14 @@ export default function Admin() {
         totalJobs: jobsResult.count || 0,
         totalUsers: usersResult.count || 0,
         totalApplications: applicationsResult.count || 0,
-        totalActiveJobs: activeJobsResult.count || 0,
-        totalApplicants: applicationsResult.count || 0
+        totalActiveJobs: activeJobsResult.count || 0
       });
     } catch (error) {
       console.error('Error fetching stats:', error);
     }
-  }, []);
+  };
 
-  const fetchSubmissions = useCallback(async () => {
-    try {
-      const { data, error } = await supabase
-        .from('contact_submissions')
-        .select('*')
-        .order('created_at', { ascending: false });
-
-      if (error) {
-        toast({
-          title: "Error",
-          description: "Failed to fetch contact submissions.",
-          variant: "destructive"
-        });
-      } else {
-        setSubmissions(data || []);
-      }
-    } catch (error) {
-      console.error('Error fetching submissions:', error);
-    }
-  }, [toast]);
-
-  const fetchJobs = useCallback(async () => {
+  const fetchJobs = async () => {
     try {
       const { data, error } = await supabase
         .from('jobs')
@@ -194,9 +199,9 @@ export default function Admin() {
     } catch (error) {
       console.error('Error fetching jobs:', error);
     }
-  }, []);
+  };
 
-  const fetchCandidates = useCallback(async () => {
+  const fetchCandidates = async () => {
     try {
       const { data, error } = await supabase
         .from('candidate_profiles')
@@ -243,9 +248,9 @@ export default function Admin() {
     } catch (error) {
       console.error('Error fetching candidates:', error);
     }
-  }, []);
+  };
 
-  const fetchAllUsers = useCallback(async () => {
+  const fetchAllUsers = async () => {
     try {
       const { data, error } = await supabase.functions.invoke('get-all-users');
       
@@ -255,9 +260,33 @@ export default function Admin() {
     } catch (error) {
       console.error('Error fetching all users:', error);
     }
-  }, []);
+  };
 
-  const fetchUserRoles = useCallback(async () => {
+  const toggleJobStatus = async (jobId: string, currentStatus: boolean) => {
+    try {
+      const { error } = await supabase
+        .from('jobs')
+        .update({ is_active: !currentStatus })
+        .eq('id', jobId);
+
+      if (error) throw error;
+
+      toast({
+        title: "Job Status Updated",
+        description: `Job ${!currentStatus ? 'activated' : 'deactivated'} successfully.`
+      });
+
+      fetchJobs();
+    } catch (error: any) {
+      toast({
+        title: "Error",
+        description: "Failed to update job status.",
+        variant: "destructive"
+      });
+    }
+  };
+
+  const fetchUserRoles = async () => {
     try {
       const { data, error } = await supabase
         .from('user_roles')
@@ -293,68 +322,9 @@ export default function Admin() {
     } catch (error) {
       console.error('Error fetching user roles:', error);
     }
-  }, []);
-
-  const fetchDashboardData = useCallback(async () => {
-    setLoading(true);
-    try {
-      await Promise.all([
-        fetchStats(),
-        fetchSubmissions(),
-        fetchJobs(),
-        fetchCandidates(),
-        fetchAllUsers(),
-        fetchUserRoles()
-      ]);
-    } catch (error) {
-      console.error('Error fetching dashboard data:', error);
-    } finally {
-      setLoading(false);
-    }
-  }, [fetchStats, fetchSubmissions, fetchJobs, fetchCandidates, fetchAllUsers, fetchUserRoles]);
-
-  useEffect(() => {
-    if (!authLoading && !user) {
-      navigate('/auth');
-      return;
-    }
-
-    if (!adminLoading && !isAdmin) {
-      navigate('/');
-      return;
-    }
-
-    if (isAdmin) {
-      fetchDashboardData();
-    }
-  }, [user, authLoading, isAdmin, adminLoading, navigate, fetchDashboardData]);
-
-  const toggleJobStatus = async (jobId: string, currentStatus: boolean) => {
-    try {
-      const { error } = await supabase
-        .from('jobs')
-        .update({ is_active: !currentStatus })
-        .eq('id', jobId);
-
-      if (error) throw error;
-
-      toast({
-        title: "Job Status Updated",
-        description: `Job ${!currentStatus ? 'activated' : 'deactivated'} successfully.`
-      });
-
-      // Refresh both jobs and stats
-      await Promise.all([fetchJobs(), fetchStats()]);
-    } catch (error: any) {
-      toast({
-        title: "Error",
-        description: "Failed to update job status.",
-        variant: "destructive"
-      });
-    }
   };
 
-  const createNewUser = useCallback(async () => {
+  const createNewUser = async () => {
     if (!newUserEmail || !newUserPassword) {
       toast({
         title: "Error",
@@ -365,39 +335,49 @@ export default function Admin() {
     }
 
     try {
-      // Use the edge function to create user
-      const { data, error } = await supabase.functions.invoke('create-admin-user', {
-        body: {
-          email: newUserEmail,
-          password: newUserPassword,
-          role: newUserRole
+      // Create user with Supabase Auth
+      const { data, error } = await supabase.auth.signUp({
+        email: newUserEmail,
+        password: newUserPassword,
+        options: {
+          emailRedirectTo: `${window.location.origin}/auth`
         }
       });
 
       if (error) throw error;
 
-      toast({
-        title: "User Created",
-        description: data.message || `User ${newUserEmail} created successfully with ${newUserRole} role.`
-      });
+      if (data.user) {
+        // Assign role to the new user
+        const { error: roleError } = await supabase
+          .from('user_roles')
+          .insert([
+            { user_id: data.user.id, role: newUserRole }
+          ]);
 
-      // Reset form and refresh data
-      setNewUserEmail('');
-      setNewUserPassword('');
-      setNewUserRole('user');
-      setIsAddUserDialogOpen(false);
-      await Promise.all([fetchUserRoles(), fetchAllUsers()]);
+        if (roleError) throw roleError;
+
+        toast({
+          title: "User Created",
+          description: `User ${newUserEmail} created successfully with ${newUserRole} role.`
+        });
+
+        // Reset form and refresh data
+        setNewUserEmail('');
+        setNewUserPassword('');
+        setNewUserRole('user');
+        setIsAddUserDialogOpen(false);
+        fetchUserRoles();
+      }
     } catch (error: any) {
-      console.error('Error creating user:', error);
       toast({
         title: "Error",
         description: error.message || "Failed to create user.",
         variant: "destructive"
       });
     }
-  }, [newUserEmail, newUserPassword, newUserRole, toast, fetchUserRoles]);
+  };
 
-  const updateUserRole = useCallback(async (userId: string, newRole: 'admin' | 'moderator' | 'user') => {
+  const updateUserRole = async (userId: string, newRole: 'admin' | 'moderator' | 'user') => {
     try {
       const { error } = await supabase
         .from('user_roles')
@@ -419,9 +399,9 @@ export default function Admin() {
         variant: "destructive"
       });
     }
-  }, [toast, fetchUserRoles]);
+  };
 
-  const deleteUserRole = useCallback(async (roleId: string) => {
+  const deleteUserRole = async (roleId: string) => {
     try {
       const { error } = await supabase
         .from('user_roles')
@@ -443,7 +423,30 @@ export default function Admin() {
         variant: "destructive"
       });
     }
-  }, [toast, fetchUserRoles]);
+  };
+
+  const fetchSubmissions = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('contact_submissions')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+      if (error) {
+        toast({
+          title: "Error",
+          description: "Failed to fetch contact submissions.",
+          variant: "destructive"
+        });
+      } else {
+        setSubmissions(data || []);
+      }
+    } catch (error) {
+      console.error('Error fetching submissions:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const deleteSubmission = async (id: string) => {
     try {
@@ -572,15 +575,15 @@ export default function Admin() {
               </CardContent>
             </Card>
             
-            <Card className="cursor-pointer hover:bg-muted/50 transition-colors" onClick={() => setShowAllApplicants(true)}>
+            <Card>
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Total Applicants</CardTitle>
+                <CardTitle className="text-sm font-medium">Total Applications</CardTitle>
                 <FileText className="h-4 w-4 text-muted-foreground" />
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold">{stats.totalApplicants}</div>
+                <div className="text-2xl font-bold">{stats.totalApplications}</div>
                 <p className="text-xs text-muted-foreground">
-                  Click to view all applicants
+                  Job applications
                 </p>
               </CardContent>
             </Card>
@@ -599,61 +602,17 @@ export default function Admin() {
             </Card>
           </div>
 
-          {/* Show All Applicants when clicked */}
-          {showAllApplicants && (
-            <Card>
-              <CardHeader className="flex flex-row items-center justify-between">
-                <CardTitle>All Job Applicants</CardTitle>
-                <Button 
-                  variant="outline" 
-                  onClick={() => setShowAllApplicants(false)}
-                >
-                  Back to Dashboard
-                </Button>
-              </CardHeader>
-              <CardContent>
-                <AllApplicants />
-              </CardContent>
-            </Card>
-          )}
-
           {/* Tabs for different sections */}
-          {!showAllApplicants && (
-            <Tabs defaultValue="jobs" className="w-full">
-              <TabsList className="grid w-full grid-cols-5">
-                <TabsTrigger value="jobs">All Jobs</TabsTrigger>
-                <TabsTrigger value="employees">Employees</TabsTrigger>
-                <TabsTrigger value="users">All Registered Users</TabsTrigger>
-                <TabsTrigger value="system-users">System Users</TabsTrigger>
-                <TabsTrigger value="contact">Contact Submissions</TabsTrigger>
-              </TabsList>
+          <Tabs defaultValue="jobs" className="w-full">
+            <TabsList className="grid w-full grid-cols-4">
+              <TabsTrigger value="jobs">All Jobs</TabsTrigger>
+              <TabsTrigger value="users">All Registered Users</TabsTrigger>
+              <TabsTrigger value="system-users">System Users</TabsTrigger>
+              <TabsTrigger value="contact">Contact Submissions</TabsTrigger>
+            </TabsList>
             
             {/* Jobs Tab */}
             <TabsContent value="jobs" className="space-y-6">
-              <div className="flex justify-between items-center mb-6">
-                <div>
-                  <h2 className="text-2xl font-bold">Job Management</h2>
-                  <p className="text-muted-foreground">View and manage all job postings</p>
-                </div>
-                <Dialog>
-                  <DialogTrigger asChild>
-                    <Button>
-                      <Briefcase className="h-4 w-4 mr-2" />
-                      Post New Job
-                    </Button>
-                  </DialogTrigger>
-                  <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
-                    <DialogHeader>
-                      <DialogTitle>Post New Job</DialogTitle>
-                      <DialogDescription>
-                        Create a new job posting for the platform.
-                      </DialogDescription>
-                    </DialogHeader>
-                    <JobPostForm onSuccess={fetchJobs} />
-                  </DialogContent>
-                </Dialog>
-              </div>
-              
               <Card>
                 <CardHeader>
                   <CardTitle>All Jobs Posted</CardTitle>
@@ -675,10 +634,10 @@ export default function Admin() {
                              <TableHead>Company</TableHead>
                              <TableHead>Location</TableHead>
                              <TableHead>Salary</TableHead>
-                              <TableHead>Applications</TableHead>
-                              <TableHead>Status</TableHead>
-                              <TableHead>Posted Date</TableHead>
-                              <TableHead>Actions</TableHead>
+                             <TableHead>Applications</TableHead>
+                             <TableHead>Status</TableHead>
+                             <TableHead>Posted Date</TableHead>
+                             <TableHead>Actions</TableHead>
                            </TableRow>
                          </TableHeader>
                          <TableBody>
@@ -708,44 +667,25 @@ export default function Admin() {
                                  </Badge>
                                </TableCell>
                                <TableCell>{formatDate(job.created_at)}</TableCell>
-                                <TableCell>
-                                  <div className="flex gap-2">
-                                    <Button
-                                      size="sm"
-                                      variant={job.is_active ? "destructive" : "default"}
-                                      onClick={() => toggleJobStatus(job.id, job.is_active)}
-                                    >
-                                      {job.is_active ? (
-                                        <>
-                                          <PowerOff className="h-3 w-3 mr-1" />
-                                          Deactivate
-                                        </>
-                                      ) : (
-                                        <>
-                                          <Power className="h-3 w-3 mr-1" />
-                                          Activate
-                                        </>
-                                      )}
-                                    </Button>
-                                    <Dialog>
-                                      <DialogTrigger asChild>
-                                        <Button size="sm" variant="outline">
-                                          <Eye className="h-3 w-3 mr-1" />
-                                          View Applicants
-                                        </Button>
-                                      </DialogTrigger>
-                                      <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
-                                        <DialogHeader>
-                                          <DialogTitle>Job Applicants - {job.title}</DialogTitle>
-                                          <DialogDescription>
-                                            View all applicants for this job position
-                                          </DialogDescription>
-                                        </DialogHeader>
-                                        <JobApplicants jobId={job.id} />
-                                      </DialogContent>
-                                    </Dialog>
-                                  </div>
-                                </TableCell>
+                               <TableCell>
+                                 <Button
+                                   size="sm"
+                                   variant={job.is_active ? "destructive" : "default"}
+                                   onClick={() => toggleJobStatus(job.id, job.is_active)}
+                                 >
+                                   {job.is_active ? (
+                                     <>
+                                       <PowerOff className="h-3 w-3 mr-1" />
+                                       Deactivate
+                                     </>
+                                   ) : (
+                                     <>
+                                       <Power className="h-3 w-3 mr-1" />
+                                       Activate
+                                     </>
+                                   )}
+                                 </Button>
+                               </TableCell>
                              </TableRow>
                            ))}
                          </TableBody>
@@ -754,11 +694,6 @@ export default function Admin() {
                   )}
                 </CardContent>
               </Card>
-            </TabsContent>
-
-            {/* Employee Management Tab */}
-            <TabsContent value="employees">
-              <EmployeeManagement />
             </TabsContent>
 
             {/* User Management Tab */}
@@ -1154,8 +1089,7 @@ export default function Admin() {
                 </CardContent>
               </Card>
             </TabsContent>
-            </Tabs>
-          )}
+          </Tabs>
         </div>
       </section>
 
