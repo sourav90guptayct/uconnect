@@ -9,10 +9,11 @@ import { Label } from "@/components/ui/label";
 import { MapPin, Clock, DollarSign, Calendar, ArrowLeft, Send, Building, User, CheckCircle } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
+import { useEmployeeCheck } from "@/hooks/useEmployeeCheck";
 import { useToast } from "@/hooks/use-toast";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { TestJobApplication } from "@/components/TestJobApplication";
+
 
 interface Job {
   id: string;
@@ -47,6 +48,7 @@ interface CandidateProfile {
 const JobDetailsPage = () => {
   const { id } = useParams<{ id: string }>();
   const { user } = useAuth();
+  const { isEmployee } = useEmployeeCheck();
   const navigate = useNavigate();
   const { toast } = useToast();
   
@@ -62,7 +64,7 @@ const JobDetailsPage = () => {
     if (id) {
       fetchJob();
     }
-    if (user) {
+    if (user && !isEmployee) {
       fetchCandidateProfile();
     }
   }, [id, user]);
@@ -351,9 +353,6 @@ const JobDetailsPage = () => {
       {/* Job Details */}
       <section className="py-12">
         <div className="container mx-auto px-4">
-          {/* Debug Component - Remove after testing */}
-          <TestJobApplication />
-          
           <div className="max-w-4xl mx-auto">
             <Card className="mb-8">
               <CardHeader>

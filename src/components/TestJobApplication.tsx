@@ -1,13 +1,9 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { createClient } from '@supabase/supabase-js';
 import { useToast } from '@/hooks/use-toast';
 
-// Create a fresh client to test if there's a configuration issue
-const testClient = createClient(
-  "https://dlgrlanmnvpwladkhexb.supabase.co",
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRsZ3JsYW5tbnZwd2xhZGtoZXhiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTMwMTY2NTAsImV4cCI6MjA2ODU5MjY1MH0.ql17Vfaz7fEFFE9HxX2VxYJBo50vUghXKZZgCUFo9HE"
-);
+// Use the shared client instead of creating a new one
+import { supabase } from '@/integrations/supabase/client';
 
 export const TestJobApplication = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -20,36 +16,17 @@ export const TestJobApplication = () => {
     try {
       // Test 1: Check if we can connect to Supabase at all
       console.log('🧪 Testing basic connection...');
-      const { data: connectionTest, error: connectionError } = await testClient
-        .from('information_schema.tables')
-        .select('table_name')
-        .eq('table_schema', 'public')
+      const { data: connectionTest, error: connectionError } = await supabase
+        .from('jobs')
+        .select('id')
         .limit(5);
       
       console.log('🧪 Connection test result:', connectionTest);
       console.log('🧪 Connection error:', connectionError);
 
-      // Test 2: Check what tables exist
-      console.log('🧪 Checking what tables exist...');
-      const { data: tables, error: tablesError } = await testClient
-        .rpc('exec_sql', { 
-          sql: "SELECT table_name FROM information_schema.tables WHERE table_schema = 'public'" 
-        });
-      
-      console.log('🧪 Tables result:', tables);
-      console.log('🧪 Tables error:', tablesError);
-
-      // Test 3: Try direct SQL query
-      console.log('🧪 Testing direct SQL...');
-      const { data: sqlTest, error: sqlError } = await testClient
-        .rpc('exec_sql', { sql: "SELECT 1 as test" });
-      
-      console.log('🧪 SQL test result:', sqlTest);
-      console.log('🧪 SQL error:', sqlError);
-
-      // Test 4: Try to query jobs with fresh client (no auth needed since RLS is disabled)
+      // Test 2: Try to query jobs table 
       console.log('🧪 Testing jobs table access...');
-      const { data: jobsTest, error: jobsError } = await testClient
+      const { data: jobsTest, error: jobsError } = await supabase
         .from('jobs')
         .select('id, title')
         .limit(1);
