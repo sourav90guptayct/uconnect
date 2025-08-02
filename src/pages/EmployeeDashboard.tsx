@@ -86,7 +86,7 @@ const EmployeeDashboardPage = () => {
 
   useEffect(() => {
     if (!user) {
-      navigate('/auth');
+      navigate('/employee-auth');
       return;
     }
     initializeDashboard();
