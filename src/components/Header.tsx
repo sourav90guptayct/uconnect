@@ -1,6 +1,7 @@
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Phone, Mail, ChevronDown, Code, Database, Smartphone, Globe, Shield, Zap } from "lucide-react";
+import { Menu, X, Phone, Mail, ChevronDown, Code, Database, Smartphone, Globe, Shield, Zap, ExternalLink } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { useAdminCheck } from "@/hooks/useAdminCheck";
 import { useNavigate, Link } from "react-router-dom";
@@ -29,6 +30,10 @@ const Header = () => {
     } else {
       navigate('/auth');
     }
+  };
+
+  const handleEmployeeLogin = () => {
+    window.open('https://uconnect.in', '_blank');
   };
 
   return (
@@ -134,6 +139,14 @@ const Header = () => {
             </NavigationMenu>
 
             <div className="flex items-center space-x-2 ml-4">
+              <Button 
+                variant="outline"
+                onClick={handleEmployeeLogin}
+                className="flex items-center gap-2"
+              >
+                Employee Login
+                <ExternalLink className="h-4 w-4" />
+              </Button>
               {!user && (
                 <Button 
                   variant="outline"
@@ -204,6 +217,14 @@ const Header = () => {
                   </Link>
                 </>
               )}
+              <Button 
+                variant="outline"
+                className="w-fit flex items-center gap-2"
+                onClick={handleEmployeeLogin}
+              >
+                Employee Login
+                <ExternalLink className="h-4 w-4" />
+              </Button>
               {!user && (
                 <Button 
                   variant="outline"
