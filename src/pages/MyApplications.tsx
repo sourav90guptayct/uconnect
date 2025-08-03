@@ -63,17 +63,21 @@ const MyApplicationsPage = () => {
         return;
       }
 
-      // Get applications with job details
-      const {
-        data,
-        error
-      } = await supabase.from('job_applications').select(`
-          id,
-          job_id,
-          cover_letter,
-          application_status,
-          applied_at,
-          jobs (
+      // First get applications
+      const { data: applicationsData, error: applicationsError } = await supabase
+        .from('job_applications')
+        .select('*')
+        .eq('candidate_id', candidateProfile.id)
+        .order('applied_at', { ascending: false });
+
+      if (applicationsError) throw applicationsError;
+
+      // Then get job details for each application
+      if (applicationsData && applicationsData.length > 0) {
+        const jobIds = applicationsData.map(app => app.job_id);
+        const { data: jobsData, error: jobsError } = await supabase
+          .from('jobs')
+          .select(`
             id,
             title,
             company_name,
@@ -83,12 +87,21 @@ const MyApplicationsPage = () => {
             salary_max,
             employment_type,
             experience_required
-          )
-        `).eq('candidate_id', candidateProfile.id).order('applied_at', {
-        ascending: false
-      });
-      if (error) throw error;
-      setApplications(data || []);
+          `)
+          .in('id', jobIds);
+
+        if (jobsError) throw jobsError;
+
+        // Combine applications with job data
+        const applicationsWithJobs = applicationsData.map(app => ({
+          ...app,
+          jobs: jobsData?.find(job => job.id === app.job_id) || null
+        }));
+
+        setApplications(applicationsWithJobs);
+      } else {
+        setApplications([]);
+      }
     } catch (error) {
       console.error('Error fetching applications:', error);
       toast({

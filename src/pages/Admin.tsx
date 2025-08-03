@@ -13,9 +13,10 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
 import { useNavigate } from 'react-router-dom';
-import { Users, Briefcase, FileText, Eye, MapPin, Clock, DollarSign, Calendar, Phone, Mail, UserPlus, Shield, ShieldCheck, Power, PowerOff } from 'lucide-react';
+import { Users, Briefcase, FileText, Eye, MapPin, Clock, DollarSign, Calendar, Phone, Mail, UserPlus, Shield, ShieldCheck, Power, PowerOff, Plus, Upload, Download } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { Textarea } from '@/components/ui/textarea';
 
 interface ContactSubmission {
   id: string;
@@ -98,6 +99,31 @@ interface AllUser {
   profile?: CandidateProfile | null;
 }
 
+interface JobFormData {
+  title: string;
+  company_name: string;
+  job_type: string;
+  employment_type: string;
+  experience_required: string;
+  salary_min: number;
+  salary_max: number;
+  salary_type: string;
+  location_city: string;
+  location_state: string;
+  location_district: string;
+  job_description: string;
+  key_responsibilities: string[];
+  required_skills: string[];
+  preferred_skills: string[];
+  education_requirements: string;
+  industry_type: string;
+  role_category: string;
+  job_highlights: string[];
+  requirements: string[];
+  department: string;
+  application_deadline: string;
+}
+
 export default function Admin() {
   const { user, loading: authLoading } = useAuth();
   const { isAdmin, loading: adminLoading } = useAdminCheck();
@@ -110,6 +136,33 @@ export default function Admin() {
   const [newUserPassword, setNewUserPassword] = useState('');
   const [newUserRole, setNewUserRole] = useState<'admin' | 'moderator' | 'user'>('user');
   const [isAddUserDialogOpen, setIsAddUserDialogOpen] = useState(false);
+  const [isJobPostDialogOpen, setIsJobPostDialogOpen] = useState(false);
+  const [isBulkJobDialogOpen, setIsBulkJobDialogOpen] = useState(false);
+  const [bulkJobsText, setBulkJobsText] = useState('');
+  const [jobFormData, setJobFormData] = useState<JobFormData>({
+    title: '',
+    company_name: '',
+    job_type: 'full_time',
+    employment_type: 'permanent',
+    experience_required: '',
+    salary_min: 0,
+    salary_max: 0,
+    salary_type: 'annual',
+    location_city: '',
+    location_state: '',
+    location_district: '',
+    job_description: '',
+    key_responsibilities: [],
+    required_skills: [],
+    preferred_skills: [],
+    education_requirements: '',
+    industry_type: '',
+    role_category: '',
+    job_highlights: [],
+    requirements: [],
+    department: '',
+    application_deadline: ''
+  });
   const [stats, setStats] = useState<DashboardStats>({
     totalJobs: 0,
     totalUsers: 0,
@@ -425,6 +478,172 @@ export default function Admin() {
     }
   };
 
+  const postSingleJob = async () => {
+    try {
+      // Validate required fields
+      if (!jobFormData.title || !jobFormData.company_name || !jobFormData.location_city || !jobFormData.job_description) {
+        toast({
+          title: "Error",
+          description: "Please fill in all required fields.",
+          variant: "destructive"
+        });
+        return;
+      }
+
+      const { error } = await supabase
+        .from('jobs')
+        .insert([
+          {
+            ...jobFormData,
+            posted_by: user?.id,
+            application_deadline: jobFormData.application_deadline || null
+          }
+        ]);
+
+      if (error) throw error;
+
+      toast({
+        title: "Job Posted",
+        description: "Job has been posted successfully."
+      });
+
+      // Reset form and close dialog
+      setJobFormData({
+        title: '',
+        company_name: '',
+        job_type: 'full_time',
+        employment_type: 'permanent',
+        experience_required: '',
+        salary_min: 0,
+        salary_max: 0,
+        salary_type: 'annual',
+        location_city: '',
+        location_state: '',
+        location_district: '',
+        job_description: '',
+        key_responsibilities: [],
+        required_skills: [],
+        preferred_skills: [],
+        education_requirements: '',
+        industry_type: '',
+        role_category: '',
+        job_highlights: [],
+        requirements: [],
+        department: '',
+        application_deadline: ''
+      });
+      setIsJobPostDialogOpen(false);
+      fetchJobs();
+      fetchStats();
+    } catch (error: any) {
+      toast({
+        title: "Error",
+        description: error.message || "Failed to post job.",
+        variant: "destructive"
+      });
+    }
+  };
+
+  const postBulkJobs = async () => {
+    try {
+      if (!bulkJobsText.trim()) {
+        toast({
+          title: "Error",
+          description: "Please enter job data.",
+          variant: "destructive"
+        });
+        return;
+      }
+
+      // Parse JSON from textarea
+      const jobsData = JSON.parse(bulkJobsText);
+      
+      if (!Array.isArray(jobsData)) {
+        throw new Error("Data must be an array of job objects");
+      }
+
+      // Add posted_by to each job
+      const jobsWithPostedBy = jobsData.map(job => ({
+        ...job,
+        posted_by: user?.id
+      }));
+
+      const { error } = await supabase
+        .from('jobs')
+        .insert(jobsWithPostedBy);
+
+      if (error) throw error;
+
+      toast({
+        title: "Bulk Jobs Posted",
+        description: `${jobsData.length} jobs have been posted successfully.`
+      });
+
+      setBulkJobsText('');
+      setIsBulkJobDialogOpen(false);
+      fetchJobs();
+      fetchStats();
+    } catch (error: any) {
+      toast({
+        title: "Error",
+        description: error.message || "Failed to post bulk jobs. Check JSON format.",
+        variant: "destructive"
+      });
+    }
+  };
+
+  const downloadJobTemplate = () => {
+    const template = [{
+      title: "Sample Job Title",
+      company_name: "Company Name",
+      job_type: "full_time",
+      employment_type: "permanent",
+      experience_required: "2-5 years",
+      salary_min: 500000,
+      salary_max: 800000,
+      salary_type: "annual",
+      location_city: "City Name",
+      location_state: "State Name",
+      location_district: "District Name",
+      job_description: "Detailed job description here...",
+      key_responsibilities: ["Responsibility 1", "Responsibility 2"],
+      required_skills: ["Skill 1", "Skill 2"],
+      preferred_skills: ["Preferred Skill 1"],
+      education_requirements: "Bachelor's degree or equivalent",
+      industry_type: "IT/Technology",
+      role_category: "Software Development",
+      job_highlights: ["Highlight 1", "Highlight 2"],
+      requirements: ["Requirement 1", "Requirement 2"],
+      department: "Engineering",
+      application_deadline: "2025-12-31"
+    }];
+
+    const blob = new Blob([JSON.stringify(template, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'job_template.json';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+
+  const updateJobFormField = (field: keyof JobFormData, value: any) => {
+    setJobFormData(prev => ({
+      ...prev,
+      [field]: value
+    }));
+  };
+
+  const updateJobFormArray = (field: keyof JobFormData, value: string) => {
+    const items = value.split(',').map(item => item.trim()).filter(item => item.length > 0);
+    setJobFormData(prev => ({
+      ...prev,
+      [field]: items
+    }));
+  };
+
   const fetchSubmissions = async () => {
     try {
       const { data, error } = await supabase
@@ -604,8 +823,9 @@ export default function Admin() {
 
           {/* Tabs for different sections */}
           <Tabs defaultValue="jobs" className="w-full">
-            <TabsList className="grid w-full grid-cols-4">
+            <TabsList className="grid w-full grid-cols-5">
               <TabsTrigger value="jobs">All Jobs</TabsTrigger>
+              <TabsTrigger value="post-job">Post Jobs</TabsTrigger>
               <TabsTrigger value="users">All Registered Users</TabsTrigger>
               <TabsTrigger value="system-users">System Users</TabsTrigger>
               <TabsTrigger value="contact">Contact Submissions</TabsTrigger>
@@ -694,6 +914,259 @@ export default function Admin() {
                   )}
                 </CardContent>
               </Card>
+            </TabsContent>
+
+            {/* Post Jobs Tab */}
+            <TabsContent value="post-job" className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Single Job Posting */}
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <Plus className="h-5 w-5" />
+                      Post Single Job
+                    </CardTitle>
+                    <CardDescription>
+                      Create and publish a single job posting
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <Dialog open={isJobPostDialogOpen} onOpenChange={setIsJobPostDialogOpen}>
+                      <DialogTrigger asChild>
+                        <Button className="w-full">
+                          <Plus className="h-4 w-4 mr-2" />
+                          Create New Job
+                        </Button>
+                      </DialogTrigger>
+                      <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+                        <DialogHeader>
+                          <DialogTitle>Post New Job</DialogTitle>
+                          <DialogDescription>
+                            Fill in the job details below to create a new job posting.
+                          </DialogDescription>
+                        </DialogHeader>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 py-4">
+                          <div>
+                            <Label htmlFor="job-title">Job Title *</Label>
+                            <Input
+                              id="job-title"
+                              value={jobFormData.title}
+                              onChange={(e) => updateJobFormField('title', e.target.value)}
+                              placeholder="e.g. Senior Software Engineer"
+                            />
+                          </div>
+                          <div>
+                            <Label htmlFor="company-name">Company Name *</Label>
+                            <Input
+                              id="company-name"
+                              value={jobFormData.company_name}
+                              onChange={(e) => updateJobFormField('company_name', e.target.value)}
+                              placeholder="e.g. TechCorp Solutions"
+                            />
+                          </div>
+                          <div>
+                            <Label htmlFor="job-type">Job Type</Label>
+                            <Select value={jobFormData.job_type} onValueChange={(value) => updateJobFormField('job_type', value)}>
+                              <SelectTrigger>
+                                <SelectValue />
+                              </SelectTrigger>
+                              <SelectContent>
+                                <SelectItem value="full_time">Full Time</SelectItem>
+                                <SelectItem value="part_time">Part Time</SelectItem>
+                                <SelectItem value="contract">Contract</SelectItem>
+                                <SelectItem value="internship">Internship</SelectItem>
+                              </SelectContent>
+                            </Select>
+                          </div>
+                          <div>
+                            <Label htmlFor="employment-type">Employment Type</Label>
+                            <Select value={jobFormData.employment_type} onValueChange={(value) => updateJobFormField('employment_type', value)}>
+                              <SelectTrigger>
+                                <SelectValue />
+                              </SelectTrigger>
+                              <SelectContent>
+                                <SelectItem value="permanent">Permanent</SelectItem>
+                                <SelectItem value="temporary">Temporary</SelectItem>
+                                <SelectItem value="contract">Contract</SelectItem>
+                              </SelectContent>
+                            </Select>
+                          </div>
+                          <div>
+                            <Label htmlFor="experience">Experience Required</Label>
+                            <Input
+                              id="experience"
+                              value={jobFormData.experience_required}
+                              onChange={(e) => updateJobFormField('experience_required', e.target.value)}
+                              placeholder="e.g. 2-5 years"
+                            />
+                          </div>
+                          <div>
+                            <Label htmlFor="department">Department</Label>
+                            <Input
+                              id="department"
+                              value={jobFormData.department}
+                              onChange={(e) => updateJobFormField('department', e.target.value)}
+                              placeholder="e.g. Engineering"
+                            />
+                          </div>
+                          <div>
+                            <Label htmlFor="salary-min">Minimum Salary (₹)</Label>
+                            <Input
+                              id="salary-min"
+                              type="number"
+                              value={jobFormData.salary_min}
+                              onChange={(e) => updateJobFormField('salary_min', parseInt(e.target.value) || 0)}
+                              placeholder="e.g. 500000"
+                            />
+                          </div>
+                          <div>
+                            <Label htmlFor="salary-max">Maximum Salary (₹)</Label>
+                            <Input
+                              id="salary-max"
+                              type="number"
+                              value={jobFormData.salary_max}
+                              onChange={(e) => updateJobFormField('salary_max', parseInt(e.target.value) || 0)}
+                              placeholder="e.g. 800000"
+                            />
+                          </div>
+                          <div>
+                            <Label htmlFor="location-city">City *</Label>
+                            <Input
+                              id="location-city"
+                              value={jobFormData.location_city}
+                              onChange={(e) => updateJobFormField('location_city', e.target.value)}
+                              placeholder="e.g. Bengaluru"
+                            />
+                          </div>
+                          <div>
+                            <Label htmlFor="location-state">State *</Label>
+                            <Input
+                              id="location-state"
+                              value={jobFormData.location_state}
+                              onChange={(e) => updateJobFormField('location_state', e.target.value)}
+                              placeholder="e.g. Karnataka"
+                            />
+                          </div>
+                          <div>
+                            <Label htmlFor="location-district">District</Label>
+                            <Input
+                              id="location-district"
+                              value={jobFormData.location_district}
+                              onChange={(e) => updateJobFormField('location_district', e.target.value)}
+                              placeholder="e.g. Bengaluru Urban"
+                            />
+                          </div>
+                          <div>
+                            <Label htmlFor="application-deadline">Application Deadline</Label>
+                            <Input
+                              id="application-deadline"
+                              type="date"
+                              value={jobFormData.application_deadline}
+                              onChange={(e) => updateJobFormField('application_deadline', e.target.value)}
+                            />
+                          </div>
+                          <div className="md:col-span-2">
+                            <Label htmlFor="job-description">Job Description *</Label>
+                            <Textarea
+                              id="job-description"
+                              value={jobFormData.job_description}
+                              onChange={(e) => updateJobFormField('job_description', e.target.value)}
+                              placeholder="Detailed job description..."
+                              rows={3}
+                            />
+                          </div>
+                          <div>
+                            <Label htmlFor="required-skills">Required Skills (comma-separated)</Label>
+                            <Textarea
+                              id="required-skills"
+                              value={jobFormData.required_skills.join(', ')}
+                              onChange={(e) => updateJobFormArray('required_skills', e.target.value)}
+                              placeholder="React, Node.js, TypeScript"
+                              rows={2}
+                            />
+                          </div>
+                          <div>
+                            <Label htmlFor="key-responsibilities">Key Responsibilities (comma-separated)</Label>
+                            <Textarea
+                              id="key-responsibilities"
+                              value={jobFormData.key_responsibilities.join(', ')}
+                              onChange={(e) => updateJobFormArray('key_responsibilities', e.target.value)}
+                              placeholder="Develop features, Code reviews, Team collaboration"
+                              rows={2}
+                            />
+                          </div>
+                        </div>
+                        <div className="flex justify-end gap-2">
+                          <Button variant="outline" onClick={() => setIsJobPostDialogOpen(false)}>
+                            Cancel
+                          </Button>
+                          <Button onClick={postSingleJob}>
+                            Post Job
+                          </Button>
+                        </div>
+                      </DialogContent>
+                    </Dialog>
+                  </CardContent>
+                </Card>
+
+                {/* Bulk Job Posting */}
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <Upload className="h-5 w-5" />
+                      Bulk Job Upload
+                    </CardTitle>
+                    <CardDescription>
+                      Upload multiple jobs at once using JSON format
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <div className="flex gap-2">
+                      <Button variant="outline" onClick={downloadJobTemplate} className="flex-1">
+                        <Download className="h-4 w-4 mr-2" />
+                        Download Template
+                      </Button>
+                    </div>
+                    <Dialog open={isBulkJobDialogOpen} onOpenChange={setIsBulkJobDialogOpen}>
+                      <DialogTrigger asChild>
+                        <Button className="w-full">
+                          <Upload className="h-4 w-4 mr-2" />
+                          Upload Bulk Jobs
+                        </Button>
+                      </DialogTrigger>
+                      <DialogContent className="max-w-4xl">
+                        <DialogHeader>
+                          <DialogTitle>Bulk Job Upload</DialogTitle>
+                          <DialogDescription>
+                            Paste your JSON data below. Download the template first to see the required format.
+                          </DialogDescription>
+                        </DialogHeader>
+                        <div className="space-y-4">
+                          <div>
+                            <Label htmlFor="bulk-jobs">Job Data (JSON Format)</Label>
+                            <Textarea
+                              id="bulk-jobs"
+                              value={bulkJobsText}
+                              onChange={(e) => setBulkJobsText(e.target.value)}
+                              placeholder="Paste your JSON data here..."
+                              rows={15}
+                              className="font-mono text-sm"
+                            />
+                          </div>
+                        </div>
+                        <div className="flex justify-end gap-2">
+                          <Button variant="outline" onClick={() => setIsBulkJobDialogOpen(false)}>
+                            Cancel
+                          </Button>
+                          <Button onClick={postBulkJobs}>
+                            Upload Jobs
+                          </Button>
+                        </div>
+                      </DialogContent>
+                    </Dialog>
+                  </CardContent>
+                </Card>
+              </div>
             </TabsContent>
 
             {/* User Management Tab */}
