@@ -463,13 +463,6 @@ export type Database = {
             referencedRelation: "candidate_profiles"
             referencedColumns: ["id"]
           },
-          {
-            foreignKeyName: "job_applications_job_id_fkey"
-            columns: ["job_id"]
-            isOneToOne: false
-            referencedRelation: "jobs"
-            referencedColumns: ["id"]
-          },
         ]
       }
       jobs: {
@@ -492,7 +485,7 @@ export type Database = {
           location_city: string
           location_district: string | null
           location_state: string
-          posted_by: string | null
+          posted_by: string
           preferred_skills: string[] | null
           required_skills: string[] | null
           requirements: string[] | null
@@ -522,7 +515,7 @@ export type Database = {
           location_city: string
           location_district?: string | null
           location_state: string
-          posted_by?: string | null
+          posted_by: string
           preferred_skills?: string[] | null
           required_skills?: string[] | null
           requirements?: string[] | null
@@ -552,7 +545,7 @@ export type Database = {
           location_city?: string
           location_district?: string | null
           location_state?: string
-          posted_by?: string | null
+          posted_by?: string
           preferred_skills?: string[] | null
           required_skills?: string[] | null
           requirements?: string[] | null
