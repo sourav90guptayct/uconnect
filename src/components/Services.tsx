@@ -45,21 +45,21 @@ const Services = () => {
     description: "Self support and Guy mast Tower as well as Pole, Tower Erection Service and Pole Erection Service",
     features: ["Self support installations", "Guy mast tower setup", "Pole erection services", "Tower erection services"]
   }];
-  return <section id="services" className="py-20 bg-muted/30">
+  return <section id="services" className="py-20 bg-muted/30 overflow-hidden">
       <div className="container mx-auto px-4">
         {/* Header */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 bg-accent/10 text-accent px-4 py-2 rounded-full mb-6">
-            <Briefcase className="h-5 w-5" />
+        <div className="text-center mb-16 animate-fade-in-up">
+          <div className="inline-flex items-center gap-2 bg-accent/10 text-accent px-4 py-2 rounded-full mb-6 animate-scale-in">
+            <Briefcase className="h-5 w-5 animate-bounce-gentle" />
             <span className="font-semibold">Our Services</span>
           </div>
           
-          <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-foreground">
+          <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-foreground animate-fade-in-up" style={{animationDelay: '0.2s'}}>
             Comprehensive Technology Solutions for
             <span className="text-primary"> Every Industry</span>
           </h2>
           
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto animate-fade-in-up" style={{animationDelay: '0.4s'}}>
             From telecom infrastructure to digital transformation, we provide cutting-edge 
             technology solutions across all domains to help you innovate, implement and succeed.
           </p>
@@ -67,18 +67,18 @@ const Services = () => {
 
         {/* Services Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service, index) => <Card key={index} className="group hover:shadow-xl transition-all duration-300 border-border hover:border-primary/30 overflow-hidden">
+          {services.map((service, index) => <Card key={index} className="group hover:shadow-2xl transition-all duration-500 border-border hover:border-primary/50 overflow-hidden hover:scale-105 animate-fade-in-up" style={{animationDelay: `${0.1 * index}s`}}>
               <div className="relative h-48 overflow-hidden">
-                <img src={service.image} alt={service.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
-                <div className="absolute bottom-4 left-4">
-                  <div className="h-12 w-12 bg-accent/90 rounded-lg flex items-center justify-center backdrop-blur-sm">
+                <img src={service.image} alt={service.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/90 to-transparent" />
+                <div className="absolute bottom-4 left-4 animate-slide-in-left" style={{animationDelay: `${0.3 + 0.1 * index}s`}}>
+                  <div className="h-12 w-12 bg-accent/90 rounded-lg flex items-center justify-center backdrop-blur-sm hover:scale-110 transition-transform duration-300 animate-bounce-gentle" style={{animationDelay: `${1 + 0.2 * index}s`}}>
                     <service.icon className="h-6 w-6 text-accent-foreground" />
                   </div>
                 </div>
               </div>
               <CardHeader>
-                <CardTitle className="text-xl text-card-foreground group-hover:text-accent transition-colors">
+                <CardTitle className="text-xl text-card-foreground group-hover:text-accent transition-colors duration-300">
                   {service.title}
                 </CardTitle>
                 <CardDescription className="text-muted-foreground">
@@ -87,8 +87,8 @@ const Services = () => {
               </CardHeader>
               <CardContent>
                 <ul className="space-y-2">
-                  {service.features.map((feature, featureIndex) => <li key={featureIndex} className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <div className="h-1.5 w-1.5 bg-accent rounded-full flex-shrink-0" />
+                  {service.features.map((feature, featureIndex) => <li key={featureIndex} className="flex items-center gap-2 text-sm text-muted-foreground animate-slide-in-left" style={{animationDelay: `${0.5 + 0.1 * index + 0.05 * featureIndex}s`}}>
+                      <div className="h-1.5 w-1.5 bg-accent rounded-full flex-shrink-0 animate-bounce-gentle" style={{animationDelay: `${2 + 0.1 * featureIndex}s`}} />
                       {feature}
                     </li>)}
                 </ul>
@@ -97,7 +97,7 @@ const Services = () => {
         </div>
 
         {/* CTA Section */}
-        <div className="text-center mt-16">
+        <div className="text-center mt-16 animate-fade-in-up" style={{animationDelay: '1.5s'}}>
           
         </div>
       </div>

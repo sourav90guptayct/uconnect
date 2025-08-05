@@ -54,19 +54,18 @@ const ServicesPage = () => {
     features: ["Self support installations", "Guy mast tower setup", "Pole erection services", "Tower erection services"],
     details: "Complete infrastructure installation services including self-supporting structures, guy mast towers, and comprehensive pole and tower erection services for telecommunications and other industries."
   }];
-  return <div className="min-h-screen bg-background">
+  return <div className="min-h-screen bg-background overflow-hidden">
       <Header />
       {/* Header */}
       <div className="relative bg-primary text-primary-foreground py-20 overflow-hidden">
-        <div className="absolute inset-0">
+        <div className="absolute inset-0 animate-float">
           <img src="/lovable-uploads/2c094ed9-72c7-4355-a7aa-38ea78d08bb1.png" alt="Professional Technology Services" className="w-full h-full object-cover opacity-20" />
-          
         </div>
         <div className="container mx-auto px-4 relative z-10">
-          <h1 className="text-4xl lg:text-6xl font-bold mb-6">
+          <h1 className="text-4xl lg:text-6xl font-bold mb-6 animate-fade-in-up">
             Our Services
           </h1>
-          <p className="text-xl text-primary-foreground/90 max-w-3xl">
+          <p className="text-xl text-primary-foreground/90 max-w-3xl animate-fade-in-up" style={{animationDelay: '0.3s'}}>
             uConnect Technologies offers comprehensive technology solutions across all domains. 
             From network management to infrastructure installation, we provide the expertise you need to succeed.
           </p>
@@ -76,7 +75,7 @@ const ServicesPage = () => {
       {/* Hero Image Section */}
       <section className="py-12">
         <div className="container mx-auto px-4">
-          <div className="rounded-2xl overflow-hidden">
+          <div className="rounded-2xl overflow-hidden animate-scale-in" style={{animationDelay: '0.5s'}}>
             
           </div>
         </div>
@@ -86,18 +85,18 @@ const ServicesPage = () => {
       <section className="py-20">
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-             {services.map((service, index) => <Card key={index} className="group hover:shadow-xl transition-all duration-300 border-border hover:border-primary/30 overflow-hidden">
+             {services.map((service, index) => <Card key={index} className="group hover:shadow-2xl transition-all duration-500 border-border hover:border-primary/50 overflow-hidden hover:scale-105 animate-fade-in-up" style={{animationDelay: `${0.1 * index}s`}}>
                  <div className="relative h-48 overflow-hidden">
-                   <img src={service.image} alt={service.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-                   <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
-                   <div className="absolute bottom-4 left-4">
-                     <div className="h-12 w-12 bg-accent/90 rounded-lg flex items-center justify-center backdrop-blur-sm">
+                   <img src={service.image} alt={service.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                   <div className="absolute inset-0 bg-gradient-to-t from-background/90 to-transparent" />
+                   <div className="absolute bottom-4 left-4 animate-slide-in-left" style={{animationDelay: `${0.3 + 0.1 * index}s`}}>
+                     <div className="h-12 w-12 bg-accent/90 rounded-lg flex items-center justify-center backdrop-blur-sm hover:scale-110 transition-transform duration-300 animate-bounce-gentle" style={{animationDelay: `${1 + 0.2 * index}s`}}>
                        <service.icon className="h-6 w-6 text-accent-foreground" />
                      </div>
                    </div>
                  </div>
                  <CardHeader>
-                   <CardTitle className="text-xl text-card-foreground group-hover:text-accent transition-colors">
+                   <CardTitle className="text-xl text-card-foreground group-hover:text-accent transition-colors duration-300">
                      {service.title}
                    </CardTitle>
                    <CardDescription className="text-muted-foreground">
@@ -111,8 +110,8 @@ const ServicesPage = () => {
                   <div>
                     <h4 className="font-semibold mb-2 text-card-foreground">Key Features:</h4>
                     <ul className="space-y-2">
-                      {service.features.map((feature, featureIndex) => <li key={featureIndex} className="flex items-center gap-2 text-sm text-muted-foreground">
-                          <div className="h-1.5 w-1.5 bg-accent rounded-full flex-shrink-0" />
+                      {service.features.map((feature, featureIndex) => <li key={featureIndex} className="flex items-center gap-2 text-sm text-muted-foreground animate-slide-in-left" style={{animationDelay: `${0.5 + 0.1 * index + 0.05 * featureIndex}s`}}>
+                          <div className="h-1.5 w-1.5 bg-accent rounded-full flex-shrink-0 animate-bounce-gentle" style={{animationDelay: `${2 + 0.1 * featureIndex}s`}} />
                           {feature}
                         </li>)}
                     </ul>
@@ -126,23 +125,23 @@ const ServicesPage = () => {
       {/* CTA Section */}
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
-          <div className="text-center">
-            <div className="bg-card border border-border rounded-2xl p-8 lg:p-12 max-w-4xl mx-auto">
-              <h3 className="text-3xl font-bold mb-4 text-card-foreground">
+          <div className="text-center animate-fade-in-up" style={{animationDelay: '1.2s'}}>
+            <div className="bg-card border border-border rounded-2xl p-8 lg:p-12 max-w-4xl mx-auto hover:shadow-xl transition-all duration-500 hover:scale-105">
+              <h3 className="text-3xl font-bold mb-4 text-card-foreground animate-scale-in" style={{animationDelay: '1.4s'}}>
                 Ready to Get Started?
               </h3>
-              <p className="text-muted-foreground mb-8 text-lg">
+              <p className="text-muted-foreground mb-8 text-lg animate-fade-in-up" style={{animationDelay: '1.6s'}}>
                 Contact us today to discuss how our services can help transform your business 
                 and achieve your technology goals.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center animate-scale-in" style={{animationDelay: '1.8s'}}>
                 <Link to="/?section=contact">
-                  <Button size="lg">
+                  <Button size="lg" className="hover:scale-105 transition-all duration-300 hover:shadow-lg">
                     Get in Touch
                   </Button>
                 </Link>
                 <Link to="/?section=contact">
-                  <Button variant="outline" size="lg">
+                  <Button variant="outline" size="lg" className="hover:scale-105 transition-all duration-300 hover:shadow-lg">
                     Request a Quote
                   </Button>
                 </Link>
