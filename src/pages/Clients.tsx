@@ -102,6 +102,25 @@ const Clients = () => {
         </div>
       </section>
 
+      {/* Scrolling Client Banner */}
+      <section className="py-8 bg-background border-y border-border overflow-hidden">
+        <div className="relative">
+          <div className="flex animate-scroll">
+            {[...clients, ...clients].map((client, index) => (
+              <div key={index} className="flex-shrink-0 mx-8">
+                <div className="w-24 h-16 bg-white rounded-lg shadow-sm flex items-center justify-center overflow-hidden">
+                  <img 
+                    src={client.logo} 
+                    alt={`${client.name} logo`}
+                    className="max-w-full max-h-full object-contain opacity-60 hover:opacity-100 transition-opacity"
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Stats Section */}
       <section className="py-16 bg-muted/30">
         <div className="container mx-auto px-4">
