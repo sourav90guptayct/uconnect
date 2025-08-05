@@ -2,89 +2,77 @@ import { Building2, Globe, Shield, Zap, Users, CheckCircle } from "lucide-react"
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
-
 const Clients = () => {
-  const clients = [
-    {
-      name: "Airtel",
-      logo: "/lovable-uploads/5a19be3e-2375-4395-a5ae-3cfd072f8330.png",
-      sector: "Telecommunications",
-      description: "Leading telecom provider with innovative connectivity solutions"
-    },
-    {
-      name: "Vi (Vodafone Idea)",
-      logo: "/lovable-uploads/10acea3b-9bce-4534-a799-3227e8f04d7a.png",
-      sector: "Telecommunications", 
-      description: "Digital transformation and network infrastructure solutions"
-    },
-    {
-      name: "Airports Authority of India",
-      logo: "/lovable-uploads/981587b1-7cd3-46b5-a056-44bbab360255.png",
-      sector: "Aviation",
-      description: "Critical airport infrastructure and management systems"
-    },
-    {
-      name: "Larsen & Toubro",
-      logo: "/lovable-uploads/981587b1-7cd3-46b5-a056-44bbab360255.png",
-      sector: "Engineering & Construction",
-      description: "Large-scale engineering and technology solutions"
-    },
-    {
-      name: "Indian Army",
-      logo: "/lovable-uploads/92c8fc98-f9f4-42d7-a9e7-7770cec572f1.png",
-      sector: "Defense",
-      description: "Mission-critical defense systems and infrastructure"
-    },
-    {
-      name: "Electronics Corporation of India Limited",
-      logo: "/lovable-uploads/92c8fc98-f9f4-42d7-a9e7-7770cec572f1.png",
-      sector: "Electronics & Technology",
-      description: "Advanced electronics and automation solutions"
-    },
-    {
-      name: "Hitachi MGRM Net",
-      logo: "/lovable-uploads/ae610b9c-2091-4caf-874f-643960b4d5d1.png",
-      sector: "Technology",
-      description: "Enterprise technology and digital transformation"
-    },
-    {
-      name: "Siemens",
-      logo: "/lovable-uploads/ae610b9c-2091-4caf-874f-643960b4d5d1.png",
-      sector: "Industrial Technology",
-      description: "Industrial automation and digitalization solutions"
-    },
-    {
-      name: "Indus Towers",
-      logo: "/lovable-uploads/7685279a-9cd7-43ce-9a5e-1788f6a8ffc0.png",
-      sector: "Infrastructure",
-      description: "Telecom tower infrastructure and management"
-    },
-    {
-      name: "Tejas Networks",
-      logo: "/lovable-uploads/7685279a-9cd7-43ce-9a5e-1788f6a8ffc0.png",
-      sector: "Network Technology",
-      description: "Advanced networking and optical solutions"
-    }
-  ];
-
-  const stats = [
-    { icon: Building2, value: "50+", label: "Enterprise Clients" },
-    { icon: Users, value: "10,000+", label: "Professionals Placed" },
-    { icon: Globe, value: "15+", label: "Industries Served" },
-    { icon: CheckCircle, value: "95%", label: "Client Satisfaction" }
-  ];
-
-  const achievements = [
-    "Trusted partner for Fortune 500 companies",
-    "Successfully delivered 500+ projects",
-    "24/7 dedicated support and maintenance",
-    "ISO 9001:2015 certified organization",
-    "Industry-leading security compliance",
-    "Agile project management methodologies"
-  ];
-
-  return (
-    <div className="min-h-screen bg-background">
+  const clients = [{
+    name: "Airtel",
+    logo: "/lovable-uploads/5a19be3e-2375-4395-a5ae-3cfd072f8330.png",
+    sector: "Telecommunications",
+    description: "Leading telecom provider with innovative connectivity solutions"
+  }, {
+    name: "Vi (Vodafone Idea)",
+    logo: "/lovable-uploads/10acea3b-9bce-4534-a799-3227e8f04d7a.png",
+    sector: "Telecommunications",
+    description: "Digital transformation and network infrastructure solutions"
+  }, {
+    name: "Airports Authority of India",
+    logo: "/lovable-uploads/981587b1-7cd3-46b5-a056-44bbab360255.png",
+    sector: "Aviation",
+    description: "Critical airport infrastructure and management systems"
+  }, {
+    name: "Larsen & Toubro",
+    logo: "/lovable-uploads/981587b1-7cd3-46b5-a056-44bbab360255.png",
+    sector: "Engineering & Construction",
+    description: "Large-scale engineering and technology solutions"
+  }, {
+    name: "Indian Army",
+    logo: "/lovable-uploads/92c8fc98-f9f4-42d7-a9e7-7770cec572f1.png",
+    sector: "Defense",
+    description: "Mission-critical defense systems and infrastructure"
+  }, {
+    name: "Electronics Corporation of India Limited",
+    logo: "/lovable-uploads/92c8fc98-f9f4-42d7-a9e7-7770cec572f1.png",
+    sector: "Electronics & Technology",
+    description: "Advanced electronics and automation solutions"
+  }, {
+    name: "Hitachi MGRM Net",
+    logo: "/lovable-uploads/ae610b9c-2091-4caf-874f-643960b4d5d1.png",
+    sector: "Technology",
+    description: "Enterprise technology and digital transformation"
+  }, {
+    name: "Siemens",
+    logo: "/lovable-uploads/ae610b9c-2091-4caf-874f-643960b4d5d1.png",
+    sector: "Industrial Technology",
+    description: "Industrial automation and digitalization solutions"
+  }, {
+    name: "Indus Towers",
+    logo: "/lovable-uploads/7685279a-9cd7-43ce-9a5e-1788f6a8ffc0.png",
+    sector: "Infrastructure",
+    description: "Telecom tower infrastructure and management"
+  }, {
+    name: "Tejas Networks",
+    logo: "/lovable-uploads/7685279a-9cd7-43ce-9a5e-1788f6a8ffc0.png",
+    sector: "Network Technology",
+    description: "Advanced networking and optical solutions"
+  }];
+  const stats = [{
+    icon: Building2,
+    value: "50+",
+    label: "Enterprise Clients"
+  }, {
+    icon: Users,
+    value: "10,000+",
+    label: "Professionals Placed"
+  }, {
+    icon: Globe,
+    value: "15+",
+    label: "Industries Served"
+  }, {
+    icon: CheckCircle,
+    value: "95%",
+    label: "Client Satisfaction"
+  }];
+  const achievements = ["Trusted partner for Fortune 500 companies", "Successfully delivered 500+ projects", "24/7 dedicated support and maintenance", "ISO 9001:2015 certified organization", "Industry-leading security compliance", "Agile project management methodologies"];
+  return <div className="min-h-screen bg-background">
       <Header />
       
       {/* Hero Section */}
@@ -106,17 +94,11 @@ const Clients = () => {
       <section className="py-8 bg-background border-y border-border overflow-hidden">
         <div className="relative">
           <div className="flex animate-scroll">
-            {[...clients, ...clients].map((client, index) => (
-              <div key={index} className="flex-shrink-0 mx-8">
+            {[...clients, ...clients].map((client, index) => <div key={index} className="flex-shrink-0 mx-8">
                 <div className="w-24 h-16 bg-white rounded-lg shadow-sm flex items-center justify-center overflow-hidden">
-                  <img 
-                    src={client.logo} 
-                    alt={`${client.name} logo`}
-                    className="max-w-full max-h-full object-contain opacity-60 hover:opacity-100 transition-opacity"
-                  />
+                  <img src={client.logo} alt={`${client.name} logo`} className="max-w-full max-h-full object-contain opacity-60 hover:opacity-100 transition-opacity" />
                 </div>
-              </div>
-            ))}
+              </div>)}
           </div>
         </div>
       </section>
@@ -125,15 +107,13 @@ const Clients = () => {
       <section className="py-16 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
-              <div key={index} className="text-center">
+            {stats.map((stat, index) => <div key={index} className="text-center">
                 <div className="inline-flex items-center justify-center w-16 h-16 bg-primary/10 rounded-full mb-4">
                   <stat.icon className="h-8 w-8 text-primary" />
                 </div>
                 <div className="text-3xl font-bold text-foreground mb-2">{stat.value}</div>
                 <div className="text-muted-foreground">{stat.label}</div>
-              </div>
-            ))}
+              </div>)}
           </div>
         </div>
       </section>
@@ -151,32 +131,7 @@ const Clients = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-            {clients.map((client, index) => (
-              <Card key={index} className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-                <CardContent className="p-6">
-                  <div className="flex flex-col items-center text-center">
-                    <div className="w-24 h-24 mb-4 bg-white rounded-lg shadow-sm flex items-center justify-center overflow-hidden">
-                      <img 
-                        src={client.logo} 
-                        alt={`${client.name} logo`}
-                        className="max-w-full max-h-full object-contain"
-                      />
-                    </div>
-                    <h3 className="text-lg font-semibold text-foreground mb-2">
-                      {client.name}
-                    </h3>
-                    <span className="inline-block px-3 py-1 bg-primary/10 text-primary text-sm rounded-full mb-3">
-                      {client.sector}
-                    </span>
-                    <p className="text-sm text-muted-foreground leading-relaxed">
-                      {client.description}
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          
         </div>
       </section>
 
@@ -194,14 +149,12 @@ const Clients = () => {
               </p>
               
               <div className="grid gap-4">
-                {achievements.map((achievement, index) => (
-                  <div key={index} className="flex items-center gap-3">
+                {achievements.map((achievement, index) => <div key={index} className="flex items-center gap-3">
                     <div className="flex-shrink-0 w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center">
                       <CheckCircle className="h-4 w-4 text-primary" />
                     </div>
                     <span className="text-foreground">{achievement}</span>
-                  </div>
-                ))}
+                  </div>)}
               </div>
             </div>
 
@@ -267,8 +220,6 @@ const Clients = () => {
       </section>
 
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default Clients;
