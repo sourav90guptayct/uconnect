@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import AnimatedCounter from "@/components/animations/AnimatedCounter";
 import { ArrowRight, Award, Users, Building } from "lucide-react";
 const Hero = () => {
   return <section id="home" className="relative min-h-screen flex items-center" style={{
@@ -88,15 +89,21 @@ const Hero = () => {
         <div className="mt-4 pt-3 border-t border-white/20 py-[3px] my-[6px]">
           <div className="flex justify-between items-center w-full max-w-4xl mx-auto">
             <div className="text-center flex-1">
-              <div className="text-4xl lg:text-5xl font-bold text-accent mb-3">50+</div>
+              <div className="text-4xl lg:text-5xl font-bold text-accent mb-3">
+                <AnimatedCounter to={50} suffix="+" />
+              </div>
               <div className="text-lg text-gray-200">Clients Served</div>
             </div>
             <div className="text-center flex-1">
-              <div className="text-4xl lg:text-5xl font-bold text-accent mb-3">2000+</div>
+              <div className="text-4xl lg:text-5xl font-bold text-accent mb-3">
+                <AnimatedCounter to={2000} suffix="+" />
+              </div>
               <div className="text-lg text-gray-200">Successful Placements</div>
             </div>
             <div className="text-center flex-1">
-              <div className="text-4xl lg:text-5xl font-bold text-accent mb-3">99%</div>
+              <div className="text-4xl lg:text-5xl font-bold text-accent mb-3">
+                <AnimatedCounter to={99} suffix="%" />
+              </div>
               <div className="text-lg text-gray-200">Client Satisfaction</div>
             </div>
           </div>

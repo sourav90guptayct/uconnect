@@ -53,7 +53,7 @@ const About = () => {
           <div className="relative">
             <div className="grid grid-cols-2 gap-6">
               {/* Team Collaboration Image */}
-              <div className="col-span-2 relative rounded-xl overflow-hidden mb-6">
+              <div className="col-span-2 relative rounded-xl overflow-hidden mb-6 animate-fade-in">
                 <img src="/lovable-uploads/839cd676-3d03-4ff0-941b-4baee8220c7b.png" alt="Team Collaboration" className="w-full h-48 object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
                 <div className="absolute bottom-4 left-4 text-white">
@@ -63,7 +63,7 @@ const About = () => {
               </div>
 
               {/* Mission Card */}
-              <div className="bg-card border border-border rounded-xl p-6 hover:shadow-lg transition-shadow">
+              <div className="bg-card border border-border rounded-xl p-6 hover:shadow-lg transition-shadow hover-scale animate-fade-in">
                 <Target className="h-12 w-12 text-accent mb-4" />
                 <h3 className="text-xl font-bold text-card-foreground mb-3">Our Mission</h3>
                 <p className="text-muted-foreground text-sm">
@@ -73,7 +73,7 @@ const About = () => {
               </div>
 
               {/* Vision Card */}
-              <div className="bg-card border border-border rounded-xl p-6 hover:shadow-lg transition-shadow">
+              <div className="bg-card border border-border rounded-xl p-6 hover:shadow-lg transition-shadow hover-scale animate-fade-in">
                 <Globe className="h-12 w-12 text-accent mb-4" />
                 <h3 className="text-xl font-bold text-card-foreground mb-3">Our Vision</h3>
                 <p className="text-muted-foreground text-sm">
@@ -83,7 +83,7 @@ const About = () => {
               </div>
 
               {/* Professional Work Environment */}
-              <div className="col-span-2 relative rounded-xl overflow-hidden">
+              <div className="col-span-2 relative rounded-xl overflow-hidden animate-fade-in">
                 <img src="/lovable-uploads/8fc1a4ec-6d54-4375-b1f4-6c972127e11e.png" alt="Professional Work Environment" className="w-full h-32 object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-r from-primary/80 to-primary/60" />
                 <div className="absolute inset-0 flex items-center justify-between p-6 text-primary-foreground">
