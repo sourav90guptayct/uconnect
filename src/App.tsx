@@ -19,6 +19,7 @@ import Support from "./pages/Support";
 import MyApplications from "./pages/MyApplications";
 import EmployerDashboard from "./pages/EmployerDashboard";
 import Clients from "./pages/Clients";
+import Products from "./pages/Products";
 
 const queryClient = new QueryClient();
 
@@ -32,6 +33,7 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/services" element={<ServicesPage />} />
+            <Route path="/products" element={<Products />} />
             <Route path="/careers" element={<CareersPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/auth" element={<Auth />} />

@@ -66,6 +66,12 @@ const Header = () => {
                     </NavigationMenuItem>
 
                     <NavigationMenuItem>
+                      <Link to="/products" className={cn(navigationMenuTriggerStyle(), "text-foreground hover:text-primary")}>
+                        Products
+                      </Link>
+                    </NavigationMenuItem>
+
+                    <NavigationMenuItem>
                       <Link to="/careers" className={cn(navigationMenuTriggerStyle(), "text-foreground hover:text-primary")}>
                         Careers
                       </Link>
@@ -155,6 +161,9 @@ const Header = () => {
                   </Link>
                   <Link to="/services" className="text-foreground hover:text-primary transition-colors">
                     Services
+                  </Link>
+                  <Link to="/products" className="text-foreground hover:text-primary transition-colors">
+                    Products
                   </Link>
                   <Link to="/careers" className="text-foreground hover:text-primary transition-colors">
                     Careers
