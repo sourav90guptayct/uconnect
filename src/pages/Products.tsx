@@ -426,7 +426,7 @@ const Products = () => {
 
         {/* Products Tabs */}
         <Tabs defaultValue="ftth" className="w-full">
-          <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4 xl:grid-cols-8 mb-8 h-auto">
+          <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4 xl:grid-cols-8 gap-2 mb-8 h-auto bg-muted/50 p-2 border border-border rounded-lg shadow-sm">
             <TabsTrigger value="ftth">FTTH Products</TabsTrigger>
             <TabsTrigger value="fiberCables">Fiber Cables</TabsTrigger>
             <TabsTrigger value="rfCables">RF Cables</TabsTrigger>
