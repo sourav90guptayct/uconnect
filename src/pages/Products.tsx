@@ -435,11 +435,11 @@ const Products = () => {
                     </CardHeader>
                     <CardContent className="space-y-4">
                       {product.image && (
-                        <div className="relative h-56 w-full overflow-hidden rounded-lg bg-muted">
+                        <div className="relative w-full overflow-hidden rounded-lg bg-muted/50 p-6">
                           <img 
                             src={product.image} 
                             alt={product.name}
-                            className="h-full w-full object-contain p-4 transition-transform duration-500 group-hover:scale-110"
+                            className="w-full h-auto max-h-64 object-contain mx-auto transition-transform duration-500 group-hover:scale-105"
                           />
                         </div>
                       )}
@@ -477,11 +477,11 @@ const Products = () => {
                     </CardHeader>
                     <CardContent className="space-y-4">
                       {product.image && (
-                        <div className="relative h-56 w-full overflow-hidden rounded-lg bg-muted">
+                        <div className="relative w-full overflow-hidden rounded-lg bg-muted/50 p-6">
                           <img 
                             src={product.image} 
                             alt={product.name}
-                            className="h-full w-full object-contain p-4 transition-transform duration-500 group-hover:scale-110"
+                            className="w-full h-auto max-h-64 object-contain mx-auto transition-transform duration-500 group-hover:scale-105"
                           />
                         </div>
                       )}
@@ -519,11 +519,11 @@ const Products = () => {
                     </CardHeader>
                     <CardContent className="space-y-4">
                       {product.image && (
-                        <div className="relative h-56 w-full overflow-hidden rounded-lg bg-muted">
+                        <div className="relative w-full overflow-hidden rounded-lg bg-muted/50 p-6">
                           <img 
                             src={product.image} 
                             alt={product.name}
-                            className="h-full w-full object-contain p-4 transition-transform duration-500 group-hover:scale-110"
+                            className="w-full h-auto max-h-64 object-contain mx-auto transition-transform duration-500 group-hover:scale-105"
                           />
                         </div>
                       )}
@@ -561,11 +561,11 @@ const Products = () => {
                     </CardHeader>
                     <CardContent className="space-y-4">
                       {product.image && (
-                        <div className="relative h-56 w-full overflow-hidden rounded-lg bg-muted">
+                        <div className="relative w-full overflow-hidden rounded-lg bg-muted/50 p-6">
                           <img 
                             src={product.image} 
                             alt={product.name}
-                            className="h-full w-full object-contain p-4 transition-transform duration-500 group-hover:scale-110"
+                            className="w-full h-auto max-h-64 object-contain mx-auto transition-transform duration-500 group-hover:scale-105"
                           />
                         </div>
                       )}
@@ -603,11 +603,11 @@ const Products = () => {
                     </CardHeader>
                     <CardContent className="space-y-4">
                       {product.image && (
-                        <div className="relative h-56 w-full overflow-hidden rounded-lg bg-muted">
+                        <div className="relative w-full overflow-hidden rounded-lg bg-muted/50 p-6">
                           <img 
                             src={product.image} 
                             alt={product.name}
-                            className="h-full w-full object-contain p-4 transition-transform duration-500 group-hover:scale-110"
+                            className="w-full h-auto max-h-64 object-contain mx-auto transition-transform duration-500 group-hover:scale-105"
                           />
                         </div>
                       )}
@@ -645,11 +645,11 @@ const Products = () => {
                     </CardHeader>
                     <CardContent className="space-y-4">
                       {product.image && (
-                        <div className="relative h-56 w-full overflow-hidden rounded-lg bg-muted">
+                        <div className="relative w-full overflow-hidden rounded-lg bg-muted/50 p-6">
                           <img 
                             src={product.image} 
                             alt={product.name}
-                            className="h-full w-full object-contain p-4 transition-transform duration-500 group-hover:scale-110"
+                            className="w-full h-auto max-h-64 object-contain mx-auto transition-transform duration-500 group-hover:scale-105"
                           />
                         </div>
                       )}
@@ -687,11 +687,11 @@ const Products = () => {
                     </CardHeader>
                     <CardContent className="space-y-4">
                       {product.image && (
-                        <div className="relative h-56 w-full overflow-hidden rounded-lg bg-muted">
+                        <div className="relative w-full overflow-hidden rounded-lg bg-muted/50 p-6">
                           <img 
                             src={product.image} 
                             alt={product.name}
-                            className="h-full w-full object-contain p-4 transition-transform duration-500 group-hover:scale-110"
+                            className="w-full h-auto max-h-64 object-contain mx-auto transition-transform duration-500 group-hover:scale-105"
                           />
                         </div>
                       )}
@@ -729,11 +729,11 @@ const Products = () => {
                     </CardHeader>
                     <CardContent className="space-y-4">
                       {product.image && (
-                        <div className="relative h-56 w-full overflow-hidden rounded-lg bg-muted">
+                        <div className="relative w-full overflow-hidden rounded-lg bg-muted/50 p-6">
                           <img 
                             src={product.image} 
                             alt={product.name}
-                            className="h-full w-full object-contain p-4 transition-transform duration-500 group-hover:scale-110"
+                            className="w-full h-auto max-h-64 object-contain mx-auto transition-transform duration-500 group-hover:scale-105"
                           />
                         </div>
                       )}
