@@ -5,109 +5,211 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 
 const Products = () => {
   const productCategories = {
-    towers: {
-      title: "Tower/Poles",
-      description: "Telecom towers are structures specifically designed to facilitate wireless communication and telecommunication services. These towers enable the transmission and reception of signals for various wireless technologies such as 2G, 3G, 4G LTE, and 5G.",
-      image: "/products/telecom-tower.webp",
-      features: [
-        "Support for 2G, 3G, 4G LTE, and 5G technologies",
-        "High-quality construction for long-term reliability",
-        "Minimal downtime and disruptions",
-        "Suitable for high population density areas and remote locations"
-      ]
-    },
     ftth: {
       title: "FTTH Products",
-      description: "Fiber-to-home technology solutions that deliver high-speed internet and other services over optical fibers, supporting higher bandwidths, lower latencies, and lower power consumption.",
+      description: "FTTH Products are fiber-to-home technology solutions that deliver high speed and other services over optical fibers. These solutions meet the diverse needs and requirements of FTTH service providers. FTTH products support higher bandwidths, lower latencies, longer distances, lower costs, and lower power consumption.",
       subProducts: [
         {
           name: "FMS/LIU Boxes",
-          image: "/products/fms-box.jpg",
+          image: "/products/fms-96-port.png",
           description: "Fiber management boxes organize and manage fiber optic cables and connections in a network.",
           specs: [
             "12 Fiber to 288 Fiber sizes",
             "Rackmount/Wall Mount options",
-            "Multiple connector types: SC/PC, LC/PC, SC/UPC, SC APC, LC APC, E2000",
-            "Prevents damage and interference"
+            "Multiple connectors: SC/PC, LC/PC, SC/UPC, SC APC, LC APC, E2000",
+            "Prevents damage and interference in fiber optic networks"
           ]
         },
         {
-          name: "Splitters",
-          description: "Various types of fiber optic splitters for signal distribution",
+          name: "PLC Cassette Splitters",
+          description: "Mini cassette type PLC fiber optic splitter with plug-in-play design",
           specs: [
-            "PLC Cassette Splitters - Plug-and-play design",
-            "ABS Fiber Optic Splitters - Multiple protection",
-            "Blockless Splitters - Compact structure",
-            "Various split ratios: 1×2/4/6/8/16/32"
+            "Fast deployment without splicing machine",
+            "Space-saving design with reliable protection",
+            "Installed in wall mount FTTH boxes",
+            "Fiber optical signal distribution"
           ]
         },
         {
-          name: "Joint Enclosure & Termination Boxes",
-          description: "Protection and termination solutions for fiber connections",
+          name: "ABS Fiber Optic Splitter",
+          description: "PLC fiber optic splitter with plastic ABS box for multiple protection",
           specs: [
-            "Aerial, direct burial, and duct applications",
+            "1 input fiber and 2/4/8/16/32 output fibers",
+            "Easy and reliable installation",
+            "Used in outdoor fiber distribution boxes",
+            "Compact design for various connections"
+          ]
+        },
+        {
+          name: "Blockless Fiber Optic Splitters",
+          description: "Mini type PLC splitter with stainless tube package",
+          specs: [
+            "1×2/4/6/8/16 split ratios",
+            "Strong protection with SC APC connectors",
+            "No fiber splice during installation",
+            "Compact structure for saving space"
+          ]
+        },
+        {
+          name: "Joint Enclosure",
+          description: "Protection for fiber optic cable splicing in various environments",
+          specs: [
+            "Suitable for aerial, direct burial, and duct applications",
             "Fire-resistant and waterproof",
-            "Home termination boxes for user premises",
-            "Cost-effective protection solutions"
+            "Quakeproof protection",
+            "Long-term use in bad natural environments"
+          ]
+        },
+        {
+          name: "Home Termination Box",
+          description: "FTTH connection solution at user's premises",
+          specs: [
+            "Cost-effective protection",
+            "Passive termination of fibers",
+            "Single location deployment",
+            "Reliable user-end connectivity"
           ]
         },
         {
           name: "SFP Modules",
-          description: "Small form-factor pluggable transceivers for network equipment",
+          description: "Small modular transceiver for network switches and servers",
           specs: [
             "Hot-pluggable design",
+            "Small size for tight networking spaces",
             "Fast communication between switches",
-            "Easy network adjustments",
-            "Compatible with various network devices"
+            "Easy network adjustments without redesign"
           ]
         }
       ]
     },
-    cables: {
-      title: "Telecom and Network Cables",
-      description: "Professional-grade cables for telecommunications and networking applications, engineered for exceptional performance and reliability.",
+    fiberCables: {
+      title: "Optic Fiber Cable Assemblies",
+      description: "Cutting-edge connectivity solutions designed to propel your communication networks into the future, delivering unparalleled performance, reliability, and speed.",
       subProducts: [
         {
-          name: "CAT5 Cables",
-          image: "/products/cat5-cable.png",
-          description: "Twisted pair wiring for Ethernet networks supporting speeds up to 100 MHz",
+          name: "Optic Fiber Patch Cords",
+          image: "/products/fiber-patch-cord-1.png",
+          description: "High-speed fiber optic cable assemblies for seamless communication",
+          specs: [
+            "Lightning-fast data transmission",
+            "Precision engineering for optimal signal integrity",
+            "Versatile solutions for diverse applications",
+            "Advanced technology with superior bandwidth"
+          ]
+        },
+        {
+          name: "CPRI Cables",
+          image: "/products/fiber-patch-cord-2.png",
+          description: "High-performance connectivity for modern communication networks",
+          specs: [
+            "Ultra-fast data transmission",
+            "Reliable link performance",
+            "Future-proof technology",
+            "Industry standards compliance"
+          ]
+        }
+      ]
+    },
+    rfCables: {
+      title: "RF Cables & Assemblies",
+      description: "Top-notch RF and coaxial cables specially designed to mitigate signal interference. These cables carry radio frequency signals with different frequencies and wavelengths for various applications.",
+      subProducts: [
+        {
+          name: "RF Jumpers",
+          image: "/products/rf-jumpers.png",
+          description: "Professional RF cables for telecommunications applications",
+          specs: [
+            "7/8\", 1/2\" flex and super flex options",
+            "LMR 300/400 with associated RF Jumpers",
+            "Optimized signal transmission",
+            "Durable build for telecommunications environment"
+          ]
+        },
+        {
+          name: "Coaxial Cables",
+          description: "High-frequency signal cables with minimal interference",
+          specs: [
+            "Copper conductors with metal shielding",
+            "Used in phone lines and cable TV",
+            "Reduced signal interference",
+            "Multiple application support"
+          ]
+        }
+      ]
+    },
+    networkCables: {
+      title: "Network & Data Cable Assemblies",
+      description: "Professional-grade network cables designed to meet the demands of modern connectivity, ensuring seamless data transfer and optimal network performance.",
+      subProducts: [
+        {
+          name: "CAT 5 Cables",
+          image: "/products/cat5-cable-assembly.png",
+          description: "High-speed twisted pair cables for Ethernet networks",
           specs: [
             "Up to 100 MHz data transfer rates",
-            "Telephone and video transmission support",
-            "Industry standards compliant",
-            "Rigorous testing for reliability"
+            "Exceptional bandwidth capacity",
+            "Reduced electromagnetic interference",
+            "Plug-and-play installation"
           ]
         },
         {
-          name: "CAT6 Cables",
-          description: "Enhanced performance cables supporting up to 250 MHz",
+          name: "CAT 6 Cables",
+          image: "/products/cat6-cable-assembly.png",
+          description: "Enhanced performance cables for high-speed data transfer",
           specs: [
             "Up to 250 MHz bandwidth",
+            "Superior signal integrity",
             "Minimized crosstalk and interference",
-            "Improved signal integrity",
-            "Longer cable runs without degradation"
+            "Backward compatible with CAT 5/5e"
           ]
         },
         {
-          name: "HDMI Cables",
-          image: "/products/hdmi-cable.webp",
-          description: "High-Definition Multimedia Interface cables for pristine audio and video transmission",
+          name: "Fiber Patch Cords",
+          image: "/products/patch-cords.png",
+          description: "High-quality fiber optic patch cables for reliable data transmission",
           specs: [
-            "Supports 4K and 8K resolutions",
-            "Single cable for audio and video",
-            "High-definition content delivery",
-            "Wide device compatibility"
+            "Various connector types (LC, SC, MTRJ, ST)",
+            "Rapid connection capability",
+            "Ideal for server rooms and data centers",
+            "Superior reliability and security"
+          ]
+        }
+      ]
+    },
+    specializedCables: {
+      title: "Specialized Cable Assemblies",
+      description: "Meticulously crafted cables for distinct purposes and applications, featuring customized specifications for specific requirements with precision engineering.",
+      subProducts: [
+        {
+          name: "Custom Cable Assemblies",
+          image: "/products/specialized-cable.jpg",
+          description: "Tailored cables with customized specifications",
+          specs: [
+            "HDMI Cables for high-definition",
+            "SMA/QMA connectors",
+            "BNC to SMB adapters",
+            "Shielded/unshielded options with PVC and PE insulation"
+          ]
+        },
+        {
+          name: "Multipin Connectors",
+          description: "Specialized connectors for PCM applications",
+          specs: [
+            "8, 10, 12, and 16 pair configurations",
+            "D-connector compatibility",
+            "High performance and reliability",
+            "Industrial-grade durability"
           ]
         }
       ]
     },
     racks: {
       title: "Racks and Cabinets",
-      description: "Professional equipment mounting solutions for servers, network devices, and telecommunications equipment.",
+      description: "Professional equipment mounting solutions for servers, network devices, and telecommunications equipment with flexible and secure designs.",
       subProducts: [
         {
           name: "Open Frame Racks",
-          image: "/products/open-rack.jpg",
+          image: "/products/open-rack-unicel.jpg",
           description: "Flexible mounting solutions with easy access and airflow",
           specs: [
             "Floor-standing or wall-mounted options",
@@ -118,10 +220,10 @@ const Products = () => {
         },
         {
           name: "Closed Cabinets",
-          image: "/products/enclosed-cabinet.png",
+          image: "/products/enclosed-cabinet-unicel.png",
           description: "Secure enclosures for servers and IT equipment",
           specs: [
-            "Security with locking mechanisms",
+            "Locking mechanisms for security",
             "Protection from environmental factors",
             "Professional appearance",
             "Dust and moisture protection"
@@ -129,6 +231,7 @@ const Products = () => {
         },
         {
           name: "Wall-Mounted Racks",
+          image: "/products/wall-mount-rack.jpg",
           description: "Space-saving enclosed racks for wall mounting",
           specs: [
             "Welded frames with integrated side panels",
@@ -141,68 +244,144 @@ const Products = () => {
     },
     bts: {
       title: "BTS Installation Products",
-      description: "Complete range of products for Base Transceiver Station installations and site infrastructure.",
+      description: "Complete range of products for Base Transceiver Station installations and site infrastructure, providing essential solutions for telecommunications installations.",
       subProducts: [
         {
           name: "Cold Shrink Tubes",
-          image: "/products/cold-shrink-tube.png",
+          image: "/products/cold-shrink-tube-unicel.png",
           description: "Revolutionary cable and connector insulation solution",
           specs: [
             "No heat application required",
             "Easy installation process",
             "Specially formulated rubber material",
-            "Reliable insulation protection"
-          ]
-        },
-        {
-          name: "Cable Ties",
-          image: "/products/cable-ties.png",
-          description: "Durable nylon straps for cable management",
-          specs: [
-            "Various lengths and strengths",
-            "Quick and efficient bundling",
-            "Heavy-duty industrial applications",
-            "Integrated locking mechanism"
+            "Contracts when supporting core is removed"
           ]
         },
         {
           name: "Tapes",
+          image: "/products/pvc-tape.jpg",
           description: "Essential insulation and bundling solutions",
           specs: [
-            "Electrical insulation",
-            "Wire and cable bundling",
-            "Protection against electrical currents",
-            "Multiple application types"
+            "Electrical insulation for wires and cables",
+            "Protective barrier against electrical currents",
+            "Bundling and securing applications",
+            "Versatile for various installations"
           ]
         },
         {
-          name: "Lugs & Feeder Clamps",
-          description: "Electrical connections and cable mounting solutions",
+          name: "Cable Ties",
+          image: "/products/cable-ties-unicel.png",
+          description: "Durable nylon straps for cable management",
+          specs: [
+            "Various lengths and strengths",
+            "Integrated locking mechanism",
+            "Quick and efficient bundling",
+            "Heavy-duty industrial applications"
+          ]
+        },
+        {
+          name: "Lugs",
+          image: "/products/lugs.png",
+          description: "Cable lugs for secure electrical connections",
           specs: [
             "Copper and aluminum construction",
-            "Various sizes for different gauges",
-            "Secure cable fastening",
-            "Excellent conductivity"
+            "Various sizes for different cable gauges",
+            "Excellent conductivity",
+            "Secure interface for electrical circuits"
+          ]
+        },
+        {
+          name: "Feeder Clamps",
+          image: "/products/feeder-clamps.png",
+          description: "Cable fastening solutions for telecommunications",
+          specs: [
+            "Secures coaxial and feeder cables",
+            "Mounts to masts, towers, or walls",
+            "Ensures stability and alignment",
+            "Efficient signal transmission"
           ]
         },
         {
           name: "Weather Proofing Kits",
+          image: "/products/weather-proofing-kit.png",
           description: "Protection for exposed telecommunications connectors",
           specs: [
             "Moisture protection",
-            "Butyl and plastic tapes",
+            "Butyl and plastic tapes included",
             "Various sizes available",
-            "Buried and exposed applications"
+            "Suitable for buried and exposed applications"
           ]
         },
         {
           name: "Conduits",
+          image: "/products/conduits.png",
           description: "Protective pathways for cables and wires",
           specs: [
             "PVC and metal options",
-            "Environmental protection",
+            "Protection from environmental factors",
             "Moisture and abrasion resistance",
             "Organized wiring solutions"
+          ]
+        }
+      ]
+    },
+    fabricated: {
+      title: "Fabricated Products",
+      description: "Specialized fabricated products for infrastructure support, providing sturdy and reliable frameworks for various industrial and telecommunications applications.",
+      subProducts: [
+        {
+          name: "Poles",
+          image: "/products/poles.jpeg",
+          description: "Integral components for supporting utilities",
+          specs: [
+            "Materials: wood, metal, or concrete",
+            "Supports electricity and telecommunications",
+            "Street lighting applications",
+            "Sturdy framework for above-ground equipment"
+          ]
+        },
+        {
+          name: "Cable Trays",
+          image: "/products/cable-trays.png",
+          description: "Efficient cable management and support systems",
+          specs: [
+            "Galvanized steel, aluminum, or fiberglass",
+            "Secure pathway for electrical cables",
+            "Durability and corrosion resistance",
+            "Optimal performance and easy maintenance"
+          ]
+        },
+        {
+          name: "MS Stands",
+          image: "/products/ms-stands.png",
+          description: "Mild Steel Stands for equipment support",
+          specs: [
+            "Fabricated from mild steel",
+            "Stability and durability",
+            "Supports machinery and electrical panels",
+            "Withstands heavy loads"
+          ]
+        },
+        {
+          name: "Antenna Mounts",
+          image: "/products/antenna-mounts.png",
+          description: "Essential mounting solutions for telecommunications",
+          specs: [
+            "Secure platform for antenna positioning",
+            "Galvanized steel or aluminum construction",
+            "Withstands environmental elements",
+            "Optimal signal reception and transmission"
+          ]
+        },
+        {
+          name: "Street Light Poles",
+          image: "/products/street-light-poles.png",
+          description: "Infrastructure for street lighting and telecommunications",
+          specs: [
+            "Durable construction materials",
+            "Weather-resistant design",
+            "Multi-purpose applications",
+            "Long-lasting performance"
           ]
         }
       ]
@@ -225,42 +404,17 @@ const Products = () => {
         </div>
 
         {/* Products Tabs */}
-        <Tabs defaultValue="towers" className="w-full">
-          <TabsList className="grid w-full grid-cols-2 lg:grid-cols-5 mb-8">
-            <TabsTrigger value="towers">Towers/Poles</TabsTrigger>
+        <Tabs defaultValue="ftth" className="w-full">
+          <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4 xl:grid-cols-8 mb-8 h-auto">
             <TabsTrigger value="ftth">FTTH Products</TabsTrigger>
-            <TabsTrigger value="cables">Cables</TabsTrigger>
+            <TabsTrigger value="fiberCables">Fiber Cables</TabsTrigger>
+            <TabsTrigger value="rfCables">RF Cables</TabsTrigger>
+            <TabsTrigger value="networkCables">Network Cables</TabsTrigger>
+            <TabsTrigger value="specializedCables">Specialized Cables</TabsTrigger>
             <TabsTrigger value="racks">Racks & Cabinets</TabsTrigger>
             <TabsTrigger value="bts">BTS Installation</TabsTrigger>
+            <TabsTrigger value="fabricated">Fabricated Products</TabsTrigger>
           </TabsList>
-
-          {/* Towers Tab */}
-          <TabsContent value="towers">
-            <Card className="border-border/50 bg-card/50 backdrop-blur-sm">
-              <CardHeader>
-                <CardTitle className="text-2xl">{productCategories.towers.title}</CardTitle>
-                <CardDescription>{productCategories.towers.description}</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                <img 
-                  src={productCategories.towers.image} 
-                  alt="Telecommunication Tower"
-                  className="w-full h-64 object-cover rounded-lg"
-                />
-                <div>
-                  <h4 className="font-semibold mb-3">Key Features:</h4>
-                  <ul className="space-y-2">
-                    {productCategories.towers.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-start gap-2 text-muted-foreground">
-                        <span className="text-primary mt-1">•</span>
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
 
           {/* FTTH Tab */}
           <TabsContent value="ftth">
@@ -302,18 +456,138 @@ const Products = () => {
             </div>
           </TabsContent>
 
-          {/* Cables Tab */}
-          <TabsContent value="cables">
+          {/* Fiber Cables Tab */}
+          <TabsContent value="fiberCables">
             <div className="space-y-6">
               <Card className="border-border/50 bg-card/50 backdrop-blur-sm">
                 <CardHeader>
-                  <CardTitle className="text-2xl">{productCategories.cables.title}</CardTitle>
-                  <CardDescription>{productCategories.cables.description}</CardDescription>
+                  <CardTitle className="text-2xl">{productCategories.fiberCables.title}</CardTitle>
+                  <CardDescription>{productCategories.fiberCables.description}</CardDescription>
+                </CardHeader>
+              </Card>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {productCategories.fiberCables.subProducts.map((product, idx) => (
+                  <Card key={idx} className="hover:shadow-lg transition-all duration-300 border-border/50 bg-card/50 backdrop-blur-sm">
+                    <CardHeader>
+                      <CardTitle className="text-xl">{product.name}</CardTitle>
+                      <CardDescription>{product.description}</CardDescription>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                      {product.image && (
+                        <img 
+                          src={product.image} 
+                          alt={product.name}
+                          className="w-full h-48 object-cover rounded-lg"
+                        />
+                      )}
+                      <ul className="space-y-2">
+                        {product.specs.map((spec, specIdx) => (
+                          <li key={specIdx} className="flex items-start gap-2 text-sm text-muted-foreground">
+                            <span className="text-primary mt-1">•</span>
+                            <span>{spec}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          </TabsContent>
+
+          {/* RF Cables Tab */}
+          <TabsContent value="rfCables">
+            <div className="space-y-6">
+              <Card className="border-border/50 bg-card/50 backdrop-blur-sm">
+                <CardHeader>
+                  <CardTitle className="text-2xl">{productCategories.rfCables.title}</CardTitle>
+                  <CardDescription>{productCategories.rfCables.description}</CardDescription>
+                </CardHeader>
+              </Card>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {productCategories.rfCables.subProducts.map((product, idx) => (
+                  <Card key={idx} className="hover:shadow-lg transition-all duration-300 border-border/50 bg-card/50 backdrop-blur-sm">
+                    <CardHeader>
+                      <CardTitle className="text-xl">{product.name}</CardTitle>
+                      <CardDescription>{product.description}</CardDescription>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                      {product.image && (
+                        <img 
+                          src={product.image} 
+                          alt={product.name}
+                          className="w-full h-48 object-cover rounded-lg"
+                        />
+                      )}
+                      <ul className="space-y-2">
+                        {product.specs.map((spec, specIdx) => (
+                          <li key={specIdx} className="flex items-start gap-2 text-sm text-muted-foreground">
+                            <span className="text-primary mt-1">•</span>
+                            <span>{spec}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          </TabsContent>
+
+          {/* Network Cables Tab */}
+          <TabsContent value="networkCables">
+            <div className="space-y-6">
+              <Card className="border-border/50 bg-card/50 backdrop-blur-sm">
+                <CardHeader>
+                  <CardTitle className="text-2xl">{productCategories.networkCables.title}</CardTitle>
+                  <CardDescription>{productCategories.networkCables.description}</CardDescription>
                 </CardHeader>
               </Card>
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {productCategories.cables.subProducts.map((product, idx) => (
+                {productCategories.networkCables.subProducts.map((product, idx) => (
+                  <Card key={idx} className="hover:shadow-lg transition-all duration-300 border-border/50 bg-card/50 backdrop-blur-sm">
+                    <CardHeader>
+                      <CardTitle className="text-xl">{product.name}</CardTitle>
+                      <CardDescription>{product.description}</CardDescription>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                      {product.image && (
+                        <img 
+                          src={product.image} 
+                          alt={product.name}
+                          className="w-full h-48 object-cover rounded-lg"
+                        />
+                      )}
+                      <ul className="space-y-2">
+                        {product.specs.map((spec, specIdx) => (
+                          <li key={specIdx} className="flex items-start gap-2 text-sm text-muted-foreground">
+                            <span className="text-primary mt-1">•</span>
+                            <span>{spec}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          </TabsContent>
+
+          {/* Specialized Cables Tab */}
+          <TabsContent value="specializedCables">
+            <div className="space-y-6">
+              <Card className="border-border/50 bg-card/50 backdrop-blur-sm">
+                <CardHeader>
+                  <CardTitle className="text-2xl">{productCategories.specializedCables.title}</CardTitle>
+                  <CardDescription>{productCategories.specializedCables.description}</CardDescription>
+                </CardHeader>
+              </Card>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {productCategories.specializedCables.subProducts.map((product, idx) => (
                   <Card key={idx} className="hover:shadow-lg transition-all duration-300 border-border/50 bg-card/50 backdrop-blur-sm">
                     <CardHeader>
                       <CardTitle className="text-xl">{product.name}</CardTitle>
@@ -394,6 +668,46 @@ const Products = () => {
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {productCategories.bts.subProducts.map((product, idx) => (
+                  <Card key={idx} className="hover:shadow-lg transition-all duration-300 border-border/50 bg-card/50 backdrop-blur-sm">
+                    <CardHeader>
+                      <CardTitle className="text-xl">{product.name}</CardTitle>
+                      <CardDescription>{product.description}</CardDescription>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                      {product.image && (
+                        <img 
+                          src={product.image} 
+                          alt={product.name}
+                          className="w-full h-48 object-cover rounded-lg"
+                        />
+                      )}
+                      <ul className="space-y-2">
+                        {product.specs.map((spec, specIdx) => (
+                          <li key={specIdx} className="flex items-start gap-2 text-sm text-muted-foreground">
+                            <span className="text-primary mt-1">•</span>
+                            <span>{spec}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          </TabsContent>
+
+          {/* Fabricated Products Tab */}
+          <TabsContent value="fabricated">
+            <div className="space-y-6">
+              <Card className="border-border/50 bg-card/50 backdrop-blur-sm">
+                <CardHeader>
+                  <CardTitle className="text-2xl">{productCategories.fabricated.title}</CardTitle>
+                  <CardDescription>{productCategories.fabricated.description}</CardDescription>
+                </CardHeader>
+              </Card>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {productCategories.fabricated.subProducts.map((product, idx) => (
                   <Card key={idx} className="hover:shadow-lg transition-all duration-300 border-border/50 bg-card/50 backdrop-blur-sm">
                     <CardHeader>
                       <CardTitle className="text-xl">{product.name}</CardTitle>
