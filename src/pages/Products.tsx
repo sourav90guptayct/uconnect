@@ -400,16 +400,29 @@ const Products = () => {
     <div className="min-h-screen bg-background">
       <Header />
       
-      <main className="container mx-auto px-4 py-12 animate-fade-in">
-        {/* Hero Section */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
-            Telecommunications Products
-          </h1>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Discover our comprehensive range of high-quality telecommunications products designed to meet the evolving needs of modern network infrastructure.
-          </p>
+      <main className="animate-fade-in">
+        {/* Hero Section with Image */}
+        <div className="relative h-[400px] w-full overflow-hidden">
+          <img 
+            src="/products/fiber-optic-hero.jpeg" 
+            alt="Fiber Optic Cable Assemblies"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/40 flex items-center">
+            <div className="container mx-auto px-4">
+              <div className="max-w-2xl">
+                <h1 className="text-4xl md:text-6xl font-bold mb-4 text-white">
+                  Telecommunications Products
+                </h1>
+                <p className="text-lg md:text-xl text-white/90">
+                  Discover our comprehensive range of high-quality telecommunications products designed to meet the evolving needs of modern network infrastructure.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
+
+        <div className="container mx-auto px-4 py-12">
 
         {/* Products Tabs */}
         <Tabs defaultValue="ftth" className="w-full">
@@ -757,6 +770,7 @@ const Products = () => {
           >
             Contact Us Today
           </a>
+        </div>
         </div>
       </main>
 
