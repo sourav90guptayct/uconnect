@@ -1,29 +1,22 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Phone, Mail, ChevronDown, Code, Database, Smartphone, Globe, Shield, Zap, ExternalLink } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { useAdminCheck } from "@/hooks/useAdminCheck";
 import { useNavigate, Link } from "react-router-dom";
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu";
+import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
-
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { user, signOut } = useAuth();
-  const { isAdmin } = useAdminCheck();
+  const {
+    user,
+    signOut
+  } = useAuth();
+  const {
+    isAdmin
+  } = useAdminCheck();
   const navigate = useNavigate();
-
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-
   const handleAuthAction = () => {
     if (user) {
       signOut();
@@ -31,13 +24,10 @@ const Header = () => {
       navigate('/auth');
     }
   };
-
   const handleEmployeeLogin = () => {
     window.open('https://uconnect.in', '_blank');
   };
-
-  return (
-    <header className="bg-background border-b border-border sticky top-0 z-50">
+  return <header className="bg-background border-b border-border sticky top-0 z-50">
       {/* Main navigation */}
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
@@ -53,9 +43,9 @@ const Header = () => {
           <div className="hidden lg:flex items-center space-x-4">
             <NavigationMenu>
               <NavigationMenuList>
-                {!user ? (
-                  // Show marketing navigation for non-logged in users
-                  <>
+                {!user ?
+              // Show marketing navigation for non-logged in users
+              <>
                     <NavigationMenuItem>
                       <NavigationMenuLink asChild>
                         <Link to="/" className={cn(navigationMenuTriggerStyle(), "text-foreground hover:text-primary")}>
@@ -97,10 +87,9 @@ const Header = () => {
                         </Link>
                       </NavigationMenuLink>
                     </NavigationMenuItem>
-                  </>
-                ) : (
-                  // Show profile-focused navigation for logged-in users
-                  <>
+                  </> :
+              // Show profile-focused navigation for logged-in users
+              <>
                     <NavigationMenuItem>
                       <NavigationMenuLink asChild>
                         <Link to="/profile" className={cn(navigationMenuTriggerStyle(), "text-foreground hover:text-primary")}>
@@ -110,21 +99,17 @@ const Header = () => {
                     </NavigationMenuItem>
 
 
-                    {!isAdmin && (
-                      <NavigationMenuItem>
+                    {!isAdmin && <NavigationMenuItem>
                         <Link to="/my-applications" className={cn(navigationMenuTriggerStyle(), "text-foreground hover:text-primary")}>
                           My Applications
                         </Link>
-                      </NavigationMenuItem>
-                    )}
+                      </NavigationMenuItem>}
 
-                    {isAdmin && (
-                      <NavigationMenuItem>
+                    {isAdmin && <NavigationMenuItem>
                         <Link to="/employer-dashboard" className={cn(navigationMenuTriggerStyle(), "text-foreground hover:text-primary")}>
                           Employer Dashboard
                         </Link>
-                      </NavigationMenuItem>
-                    )}
+                      </NavigationMenuItem>}
 
                     <NavigationMenuItem>
                       <Link to="/careers" className={cn(navigationMenuTriggerStyle(), "text-foreground hover:text-primary")}>
@@ -139,32 +124,19 @@ const Header = () => {
                         </Link>
                       </NavigationMenuLink>
                     </NavigationMenuItem>
-                  </>
-                )}
+                  </>}
               </NavigationMenuList>
             </NavigationMenu>
 
             <div className="flex items-center space-x-2 ml-4">
-              <Button 
-                variant="outline"
-                onClick={handleEmployeeLogin}
-                className="flex items-center gap-2"
-              >
+              <Button variant="outline" onClick={handleEmployeeLogin} className="flex items-center gap-2">
                 Employee Login
                 <ExternalLink className="h-4 w-4" />
               </Button>
-              {!user && (
-                <Button 
-                  variant="outline"
-                  onClick={() => navigate('/register')}
-                >
+              {!user && <Button variant="outline" onClick={() => navigate('/register')}>
                   Register
-                </Button>
-              )}
-              <Button 
-                className="bg-accent text-accent-foreground hover:bg-accent/90"
-                onClick={handleAuthAction}
-              >
+                </Button>}
+              <Button className="bg-accent text-accent-foreground hover:bg-accent/90" onClick={handleAuthAction}>
                 {user ? 'Sign Out' : 'Sign In'}
               </Button>
             </div>
@@ -177,12 +149,11 @@ const Header = () => {
         </div>
 
         {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="lg:hidden pb-4">
+        {isMenuOpen && <div className="lg:hidden pb-4">
             <nav className="flex flex-col space-y-4">
-              {!user ? (
-                // Show marketing navigation for non-logged in users
-                <>
+              {!user ?
+          // Show marketing navigation for non-logged in users
+          <>
                   <Link to="/" className="text-foreground hover:text-primary transition-colors">
                     Home
                   </Link>
@@ -201,60 +172,35 @@ const Header = () => {
                   <Link to="/?section=contact" className="text-foreground hover:text-primary transition-colors">
                     Contact
                   </Link>
-                </>
-              ) : (
-                // Show profile-focused navigation for logged-in users
-                <>
+                </> :
+          // Show profile-focused navigation for logged-in users
+          <>
                   <Link to="/profile" className="text-foreground hover:text-primary transition-colors">
                     My Profile
                   </Link>
-                  {!isAdmin && (
-                    <Link to="/my-applications" className="text-foreground hover:text-primary transition-colors">
+                  {!isAdmin && <Link to="/my-applications" className="text-foreground hover:text-primary transition-colors">
                       My Applications
-                    </Link>
-                  )}
-                  {isAdmin && (
-                    <Link to="/employer-dashboard" className="text-foreground hover:text-primary transition-colors">
+                    </Link>}
+                  {isAdmin && <Link to="/employer-dashboard" className="text-foreground hover:text-primary transition-colors">
                       Employer Dashboard
-                    </Link>
-                  )}
+                    </Link>}
                   <Link to="/careers" className="text-foreground hover:text-primary transition-colors">
                     All Jobs
                   </Link>
                   <Link to="/support" className="text-foreground hover:text-primary transition-colors">
                     Support
                   </Link>
-                </>
-              )}
-              <Button 
-                variant="outline"
-                className="w-fit flex items-center gap-2"
-                onClick={handleEmployeeLogin}
-              >
-                Employee Login
-                <ExternalLink className="h-4 w-4" />
-              </Button>
-              {!user && (
-                <Button 
-                  variant="outline"
-                  className="w-fit"
-                  onClick={() => navigate('/register')}
-                >
+                </>}
+              
+              {!user && <Button variant="outline" className="w-fit" onClick={() => navigate('/register')}>
                   Register
-                </Button>
-              )}
-              <Button 
-                className="bg-accent text-accent-foreground hover:bg-accent/90 w-fit"
-                onClick={handleAuthAction}
-              >
+                </Button>}
+              <Button className="bg-accent text-accent-foreground hover:bg-accent/90 w-fit" onClick={handleAuthAction}>
                 {user ? 'Sign Out' : 'Sign In'}
               </Button>
             </nav>
-          </div>
-        )}
+          </div>}
       </div>
-    </header>
-  );
+    </header>;
 };
-
 export default Header;
