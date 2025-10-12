@@ -392,7 +392,7 @@ const Products = () => {
     <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
       <Header />
       
-      <main className="container mx-auto px-4 py-16">
+      <main className="container mx-auto px-4 py-16 animate-fade-in">
         {/* Hero Section */}
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
@@ -426,25 +426,27 @@ const Products = () => {
                 </CardHeader>
               </Card>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {productCategories.ftth.subProducts.map((product, idx) => (
-                  <Card key={idx} className="hover:shadow-lg transition-all duration-300 border-border/50 bg-card/50 backdrop-blur-sm">
+                  <Card key={idx} className="group hover:shadow-2xl transition-all duration-500 border-border/50 bg-card/50 backdrop-blur-sm overflow-hidden hover:-translate-y-1">
                     <CardHeader>
                       <CardTitle className="text-xl">{product.name}</CardTitle>
                       <CardDescription>{product.description}</CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-4">
                       {product.image && (
-                        <img 
-                          src={product.image} 
-                          alt={product.name}
-                          className="w-full h-48 object-cover rounded-lg"
-                        />
+                        <div className="relative h-56 w-full overflow-hidden rounded-lg bg-muted">
+                          <img 
+                            src={product.image} 
+                            alt={product.name}
+                            className="h-full w-full object-contain p-4 transition-transform duration-500 group-hover:scale-110"
+                          />
+                        </div>
                       )}
                       <ul className="space-y-2">
                         {product.specs.map((spec, specIdx) => (
                           <li key={specIdx} className="flex items-start gap-2 text-sm text-muted-foreground">
-                            <span className="text-primary mt-1">•</span>
+                            <span className="text-primary mt-1 flex-shrink-0">•</span>
                             <span>{spec}</span>
                           </li>
                         ))}
@@ -468,23 +470,25 @@ const Products = () => {
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {productCategories.fiberCables.subProducts.map((product, idx) => (
-                  <Card key={idx} className="hover:shadow-lg transition-all duration-300 border-border/50 bg-card/50 backdrop-blur-sm">
+                  <Card key={idx} className="group hover:shadow-2xl transition-all duration-500 border-border/50 bg-card/50 backdrop-blur-sm overflow-hidden hover:-translate-y-1">
                     <CardHeader>
                       <CardTitle className="text-xl">{product.name}</CardTitle>
                       <CardDescription>{product.description}</CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-4">
                       {product.image && (
-                        <img 
-                          src={product.image} 
-                          alt={product.name}
-                          className="w-full h-48 object-cover rounded-lg"
-                        />
+                        <div className="relative h-56 w-full overflow-hidden rounded-lg bg-muted">
+                          <img 
+                            src={product.image} 
+                            alt={product.name}
+                            className="h-full w-full object-contain p-4 transition-transform duration-500 group-hover:scale-110"
+                          />
+                        </div>
                       )}
                       <ul className="space-y-2">
                         {product.specs.map((spec, specIdx) => (
                           <li key={specIdx} className="flex items-start gap-2 text-sm text-muted-foreground">
-                            <span className="text-primary mt-1">•</span>
+                            <span className="text-primary mt-1 flex-shrink-0">•</span>
                             <span>{spec}</span>
                           </li>
                         ))}
@@ -508,23 +512,25 @@ const Products = () => {
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {productCategories.rfCables.subProducts.map((product, idx) => (
-                  <Card key={idx} className="hover:shadow-lg transition-all duration-300 border-border/50 bg-card/50 backdrop-blur-sm">
+                  <Card key={idx} className="group hover:shadow-2xl transition-all duration-500 border-border/50 bg-card/50 backdrop-blur-sm overflow-hidden hover:-translate-y-1">
                     <CardHeader>
                       <CardTitle className="text-xl">{product.name}</CardTitle>
                       <CardDescription>{product.description}</CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-4">
                       {product.image && (
-                        <img 
-                          src={product.image} 
-                          alt={product.name}
-                          className="w-full h-48 object-cover rounded-lg"
-                        />
+                        <div className="relative h-56 w-full overflow-hidden rounded-lg bg-muted">
+                          <img 
+                            src={product.image} 
+                            alt={product.name}
+                            className="h-full w-full object-contain p-4 transition-transform duration-500 group-hover:scale-110"
+                          />
+                        </div>
                       )}
                       <ul className="space-y-2">
                         {product.specs.map((spec, specIdx) => (
                           <li key={specIdx} className="flex items-start gap-2 text-sm text-muted-foreground">
-                            <span className="text-primary mt-1">•</span>
+                            <span className="text-primary mt-1 flex-shrink-0">•</span>
                             <span>{spec}</span>
                           </li>
                         ))}
@@ -548,23 +554,25 @@ const Products = () => {
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {productCategories.networkCables.subProducts.map((product, idx) => (
-                  <Card key={idx} className="hover:shadow-lg transition-all duration-300 border-border/50 bg-card/50 backdrop-blur-sm">
+                  <Card key={idx} className="group hover:shadow-2xl transition-all duration-500 border-border/50 bg-card/50 backdrop-blur-sm overflow-hidden hover:-translate-y-1">
                     <CardHeader>
                       <CardTitle className="text-xl">{product.name}</CardTitle>
                       <CardDescription>{product.description}</CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-4">
                       {product.image && (
-                        <img 
-                          src={product.image} 
-                          alt={product.name}
-                          className="w-full h-48 object-cover rounded-lg"
-                        />
+                        <div className="relative h-56 w-full overflow-hidden rounded-lg bg-muted">
+                          <img 
+                            src={product.image} 
+                            alt={product.name}
+                            className="h-full w-full object-contain p-4 transition-transform duration-500 group-hover:scale-110"
+                          />
+                        </div>
                       )}
                       <ul className="space-y-2">
                         {product.specs.map((spec, specIdx) => (
                           <li key={specIdx} className="flex items-start gap-2 text-sm text-muted-foreground">
-                            <span className="text-primary mt-1">•</span>
+                            <span className="text-primary mt-1 flex-shrink-0">•</span>
                             <span>{spec}</span>
                           </li>
                         ))}
@@ -588,23 +596,25 @@ const Products = () => {
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {productCategories.specializedCables.subProducts.map((product, idx) => (
-                  <Card key={idx} className="hover:shadow-lg transition-all duration-300 border-border/50 bg-card/50 backdrop-blur-sm">
+                  <Card key={idx} className="group hover:shadow-2xl transition-all duration-500 border-border/50 bg-card/50 backdrop-blur-sm overflow-hidden hover:-translate-y-1">
                     <CardHeader>
                       <CardTitle className="text-xl">{product.name}</CardTitle>
                       <CardDescription>{product.description}</CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-4">
                       {product.image && (
-                        <img 
-                          src={product.image} 
-                          alt={product.name}
-                          className="w-full h-48 object-cover rounded-lg"
-                        />
+                        <div className="relative h-56 w-full overflow-hidden rounded-lg bg-muted">
+                          <img 
+                            src={product.image} 
+                            alt={product.name}
+                            className="h-full w-full object-contain p-4 transition-transform duration-500 group-hover:scale-110"
+                          />
+                        </div>
                       )}
                       <ul className="space-y-2">
                         {product.specs.map((spec, specIdx) => (
                           <li key={specIdx} className="flex items-start gap-2 text-sm text-muted-foreground">
-                            <span className="text-primary mt-1">•</span>
+                            <span className="text-primary mt-1 flex-shrink-0">•</span>
                             <span>{spec}</span>
                           </li>
                         ))}
@@ -628,23 +638,25 @@ const Products = () => {
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {productCategories.racks.subProducts.map((product, idx) => (
-                  <Card key={idx} className="hover:shadow-lg transition-all duration-300 border-border/50 bg-card/50 backdrop-blur-sm">
+                  <Card key={idx} className="group hover:shadow-2xl transition-all duration-500 border-border/50 bg-card/50 backdrop-blur-sm overflow-hidden hover:-translate-y-1">
                     <CardHeader>
                       <CardTitle className="text-xl">{product.name}</CardTitle>
                       <CardDescription>{product.description}</CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-4">
                       {product.image && (
-                        <img 
-                          src={product.image} 
-                          alt={product.name}
-                          className="w-full h-48 object-cover rounded-lg"
-                        />
+                        <div className="relative h-56 w-full overflow-hidden rounded-lg bg-muted">
+                          <img 
+                            src={product.image} 
+                            alt={product.name}
+                            className="h-full w-full object-contain p-4 transition-transform duration-500 group-hover:scale-110"
+                          />
+                        </div>
                       )}
                       <ul className="space-y-2">
                         {product.specs.map((spec, specIdx) => (
                           <li key={specIdx} className="flex items-start gap-2 text-sm text-muted-foreground">
-                            <span className="text-primary mt-1">•</span>
+                            <span className="text-primary mt-1 flex-shrink-0">•</span>
                             <span>{spec}</span>
                           </li>
                         ))}
@@ -668,23 +680,25 @@ const Products = () => {
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {productCategories.bts.subProducts.map((product, idx) => (
-                  <Card key={idx} className="hover:shadow-lg transition-all duration-300 border-border/50 bg-card/50 backdrop-blur-sm">
+                  <Card key={idx} className="group hover:shadow-2xl transition-all duration-500 border-border/50 bg-card/50 backdrop-blur-sm overflow-hidden hover:-translate-y-1">
                     <CardHeader>
                       <CardTitle className="text-xl">{product.name}</CardTitle>
                       <CardDescription>{product.description}</CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-4">
                       {product.image && (
-                        <img 
-                          src={product.image} 
-                          alt={product.name}
-                          className="w-full h-48 object-cover rounded-lg"
-                        />
+                        <div className="relative h-56 w-full overflow-hidden rounded-lg bg-muted">
+                          <img 
+                            src={product.image} 
+                            alt={product.name}
+                            className="h-full w-full object-contain p-4 transition-transform duration-500 group-hover:scale-110"
+                          />
+                        </div>
                       )}
                       <ul className="space-y-2">
                         {product.specs.map((spec, specIdx) => (
                           <li key={specIdx} className="flex items-start gap-2 text-sm text-muted-foreground">
-                            <span className="text-primary mt-1">•</span>
+                            <span className="text-primary mt-1 flex-shrink-0">•</span>
                             <span>{spec}</span>
                           </li>
                         ))}
@@ -708,23 +722,25 @@ const Products = () => {
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {productCategories.fabricated.subProducts.map((product, idx) => (
-                  <Card key={idx} className="hover:shadow-lg transition-all duration-300 border-border/50 bg-card/50 backdrop-blur-sm">
+                  <Card key={idx} className="group hover:shadow-2xl transition-all duration-500 border-border/50 bg-card/50 backdrop-blur-sm overflow-hidden hover:-translate-y-1">
                     <CardHeader>
                       <CardTitle className="text-xl">{product.name}</CardTitle>
                       <CardDescription>{product.description}</CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-4">
                       {product.image && (
-                        <img 
-                          src={product.image} 
-                          alt={product.name}
-                          className="w-full h-48 object-cover rounded-lg"
-                        />
+                        <div className="relative h-56 w-full overflow-hidden rounded-lg bg-muted">
+                          <img 
+                            src={product.image} 
+                            alt={product.name}
+                            className="h-full w-full object-contain p-4 transition-transform duration-500 group-hover:scale-110"
+                          />
+                        </div>
                       )}
                       <ul className="space-y-2">
                         {product.specs.map((spec, specIdx) => (
                           <li key={specIdx} className="flex items-start gap-2 text-sm text-muted-foreground">
-                            <span className="text-primary mt-1">•</span>
+                            <span className="text-primary mt-1 flex-shrink-0">•</span>
                             <span>{spec}</span>
                           </li>
                         ))}
