@@ -96,52 +96,49 @@ serve(async (req) => {
     const safeCompany = company ? sanitizeForHtml(company) : 'Not provided'
     const safeMessage = sanitizeForHtml(message)
 
-    // Send email to both recipients
-    const emailResponse = await resend.emails.send({
-      from: 'YouConnect Technologies <noreply@resend.dev>',
-      to: ['reachus@youconnecttech.com', 'shivani.s@youconnecttech.com'],
-      subject: `New Contact Form Submission from ${safeFullName}`,
-      html: `
-        <!DOCTYPE html>
-        <html>
-          <head>
-            <meta charset="utf-8">
-            <title>New Contact Form Submission</title>
-          </head>
-          <body style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
-            <h2 style="color: #333; border-bottom: 2px solid #0066cc; padding-bottom: 10px;">New Contact Form Submission</h2>
-            <div style="background-color: #f9f9f9; padding: 20px; border-radius: 5px; margin: 20px 0;">
-              <p><strong>Full Name:</strong> ${safeFullName}</p>
-              <p><strong>Email:</strong> ${safeEmail}</p>
-              <p><strong>Phone:</strong> ${safePhone}</p>
-              <p><strong>Company:</strong> ${safeCompany}</p>
-              <p><strong>Message:</strong></p>
-              <div style="background-color: white; padding: 15px; border-left: 4px solid #0066cc; margin: 10px 0;">
-                ${safeMessage.replace(/\n/g, '<br>')}
+    // Try to send email notification (non-critical)
+    try {
+      const emailResponse = await resend.emails.send({
+        from: 'YouConnect Technologies <noreply@resend.dev>',
+        to: ['reachus@youconnecttech.com', 'shivani.s@youconnecttech.com'],
+        subject: `New Contact Form Submission from ${safeFullName}`,
+        html: `
+          <!DOCTYPE html>
+          <html>
+            <head>
+              <meta charset="utf-8">
+              <title>New Contact Form Submission</title>
+            </head>
+            <body style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+              <h2 style="color: #333; border-bottom: 2px solid #0066cc; padding-bottom: 10px;">New Contact Form Submission</h2>
+              <div style="background-color: #f9f9f9; padding: 20px; border-radius: 5px; margin: 20px 0;">
+                <p><strong>Full Name:</strong> ${safeFullName}</p>
+                <p><strong>Email:</strong> ${safeEmail}</p>
+                <p><strong>Phone:</strong> ${safePhone}</p>
+                <p><strong>Company:</strong> ${safeCompany}</p>
+                <p><strong>Message:</strong></p>
+                <div style="background-color: white; padding: 15px; border-left: 4px solid #0066cc; margin: 10px 0;">
+                  ${safeMessage.replace(/\n/g, '<br>')}
+                </div>
+                <p style="color: #666; font-size: 0.9em;"><strong>Submitted:</strong> ${new Date().toLocaleString()}</p>
               </div>
-              <p style="color: #666; font-size: 0.9em;"><strong>Submitted:</strong> ${new Date().toLocaleString()}</p>
-            </div>
-          </body>
-        </html>
-      `,
-    });
+            </body>
+          </html>
+        `,
+      });
 
-    if (emailResponse.error) {
-      console.error('Email sending error:', emailResponse.error);
-      // Don't expose email service errors to client
-      return new Response(
-        JSON.stringify({ error: 'Failed to send notification email' }),
-        {
-          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-          status: 500,
-        }
-      )
+      if (emailResponse.error) {
+        console.error('Email sending error (non-critical):', emailResponse.error);
+      } else {
+        console.log('Email sent successfully:', emailResponse.data?.id);
+      }
+    } catch (emailError) {
+      console.error('Email sending failed (non-critical):', emailError);
     }
 
     console.log('Contact form submitted successfully:', {
       id: data[0]?.id,
-      email: email,
-      emailId: emailResponse.data?.id
+      email: email
     });
 
     return new Response(
