@@ -10,7 +10,7 @@ const Support = () => {
   const { toast } = useToast();
 
   const handleEmailSupport = () => {
-    window.location.href = 'mailto:Support@youconnecttech.com?subject=Support Request';
+    window.location.href = 'mailto:support@youconnecttech.com?subject=Support Request';
     toast({
       title: "Email client opened",
       description: "Your email client should open with our support email address.",
@@ -109,10 +109,10 @@ const Support = () => {
               <div className="space-y-4">
                 <div className="text-lg font-medium">
                   <a 
-                    href="mailto:Support@youconnecttech.com" 
+                    href="mailto:support@youconnecttech.com" 
                     className="text-primary hover:underline"
                   >
-                    Support@youconnecttech.com
+                    support@youconnecttech.com
                   </a>
                 </div>
                 <p className="text-sm text-muted-foreground">
