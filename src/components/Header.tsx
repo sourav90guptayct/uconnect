@@ -24,17 +24,17 @@ const Header = () => {
       navigate('/auth');
     }
   };
-  return <header className="bg-background border-b border-border sticky top-0 z-50">
+  return <header className="bg-background/95 backdrop-blur-md border-b border-border sticky top-0 z-50 shadow-sm">
       {/* Main navigation */}
-      <div className="container mx-auto px-4">
+      <nav className="container mx-auto px-4" aria-label="Main navigation">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <div className="flex items-center">
-            <div className="text-2xl font-bold text-primary">
+          <Link to="/" className="flex items-center group">
+            <span className="text-xl sm:text-2xl font-bold text-primary group-hover:text-primary/80 transition-colors">
               uConnect
               <span className="text-accent"> Technologies</span>
-            </div>
-          </div>
+            </span>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-4">
@@ -202,7 +202,7 @@ const Header = () => {
               </Button>
             </nav>
           </div>}
-      </div>
+      </nav>
     </header>;
 };
 export default Header;
