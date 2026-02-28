@@ -1,153 +1,84 @@
 import { Separator } from "@/components/ui/separator";
 import { Facebook, Twitter, Linkedin, Instagram, Mail, Phone, MapPin } from "lucide-react";
+
 const Footer = () => {
-  return <footer className="bg-primary text-primary-foreground">
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-8">
-          {/* Company Info */}
+  return (
+    <footer className="bg-primary text-primary-foreground">
+      <div className="container mx-auto px-4 py-16">
+        <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-10">
           <div>
             <div className="text-2xl font-bold mb-4">
-              uConnect
-              <span className="text-accent"> Technologies</span>
+              uConnect<span className="text-gradient"> Technologies</span>
             </div>
-            <p className="text-primary-foreground/80 mb-6">
-              Your trusted partner for comprehensive manpower solutions. 
-              Connecting talent with opportunity across all industries.
+            <p className="text-primary-foreground/60 mb-6 text-sm leading-relaxed">
+              Your trusted partner for comprehensive manpower solutions. Connecting talent with opportunity across all industries.
             </p>
-            <div className="flex gap-4">
-              <a href="#" className="h-10 w-10 bg-primary-foreground/10 rounded-lg flex items-center justify-center hover:bg-primary-foreground/20 transition-colors">
-                <Facebook className="h-5 w-5" />
-              </a>
-              <a href="#" className="h-10 w-10 bg-primary-foreground/10 rounded-lg flex items-center justify-center hover:bg-primary-foreground/20 transition-colors">
-                <Twitter className="h-5 w-5" />
-              </a>
-              <a href="#" className="h-10 w-10 bg-primary-foreground/10 rounded-lg flex items-center justify-center hover:bg-primary-foreground/20 transition-colors">
-                <Linkedin className="h-5 w-5" />
-              </a>
-              <a href="#" className="h-10 w-10 bg-primary-foreground/10 rounded-lg flex items-center justify-center hover:bg-primary-foreground/20 transition-colors">
-                <Instagram className="h-5 w-5" />
-              </a>
+            <div className="flex gap-3">
+              {[Facebook, Twitter, Linkedin, Instagram].map((Icon, i) => (
+                <a key={i} href="#" className="h-10 w-10 bg-primary-foreground/5 rounded-xl flex items-center justify-center hover:bg-accent/20 hover:text-accent transition-all duration-300">
+                  <Icon className="h-4 w-4" />
+                </a>
+              ))}
             </div>
           </div>
 
-          {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
+            <h3 className="text-sm font-semibold mb-5 uppercase tracking-wider text-primary-foreground/80">Quick Links</h3>
             <ul className="space-y-3">
-              <li>
-                <a href="/" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
-                  Home
-                </a>
-              </li>
-              <li>
-                <a href="/about" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
-                  About Us
-                </a>
-              </li>
-              <li>
-                <a href="/services" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
-                  Services
-                </a>
-              </li>
-              <li>
-                <a href="/careers" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
-                  Careers
-                </a>
-              </li>
-              <li>
-                <a href="/jobs" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
-                  Jobs
-                </a>
-              </li>
-              <li>
-                <a href="/support" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
-                  Support
-                </a>
-              </li>
+              {[
+                { label: "Home", href: "/" }, { label: "About Us", href: "/about" },
+                { label: "Services", href: "/services" }, { label: "Careers", href: "/careers" },
+                { label: "Jobs", href: "/jobs" }, { label: "Support", href: "/support" },
+              ].map((link, i) => (
+                <li key={i}>
+                  <a href={link.href} className="text-primary-foreground/50 hover:text-accent text-sm transition-colors duration-200">{link.label}</a>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Services */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Our Services</h3>
+            <h3 className="text-sm font-semibold mb-5 uppercase tracking-wider text-primary-foreground/80">Our Services</h3>
             <ul className="space-y-3">
-              <li>
-                <a href="/services" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
-                  Managed Services
-                </a>
-              </li>
-              <li>
-                <a href="/services" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
-                  Networks
-                </a>
-              </li>
-              <li>
-                <a href="/services" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
-                  Infra Installation
-                </a>
-              </li>
-              <li>
-                <a href="/services" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
-                  Resource Management
-                </a>
-              </li>
-              <li>
-                <a href="/services" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
-                  Digital Transformation
-                </a>
-              </li>
-              <li>
-                <a href="/services" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
-                  IP Services
-                </a>
-              </li>
+              {["Managed Services", "Networks", "Infra Installation", "Resource Management", "Digital Transformation", "IP Services"].map((s, i) => (
+                <li key={i}>
+                  <a href="/services" className="text-primary-foreground/50 hover:text-accent text-sm transition-colors duration-200">{s}</a>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Contact Info */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Contact Info</h3>
+            <h3 className="text-sm font-semibold mb-5 uppercase tracking-wider text-primary-foreground/80">Contact Info</h3>
             <div className="space-y-4">
               <div className="flex items-start gap-3">
-                <MapPin className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
-                <div className="text-primary-foreground/80">
-                  Plot No 1398 Air Force Road<br />
-                  Govindpur<br />
-                  Distt. Saharanpur Uttar Pradesh
-                </div>
+                <MapPin className="h-4 w-4 text-accent mt-1 flex-shrink-0" />
+                <div className="text-primary-foreground/50 text-sm">Plot No 1398 Air Force Road<br />Govindpur<br />Distt. Saharanpur Uttar Pradesh</div>
               </div>
               <div className="flex items-center gap-3">
-                <Phone className="h-5 w-5 text-accent flex-shrink-0" />
-                <div className="text-primary-foreground/80">+918800417443</div>
+                <Phone className="h-4 w-4 text-accent flex-shrink-0" />
+                <div className="text-primary-foreground/50 text-sm">+918800417443</div>
               </div>
               <div className="flex items-center gap-3">
-                <Mail className="h-5 w-5 text-accent flex-shrink-0" />
-                <div className="text-primary-foreground/80">reachus@youconnecttech.com</div>
+                <Mail className="h-4 w-4 text-accent flex-shrink-0" />
+                <div className="text-primary-foreground/50 text-sm">reachus@youconnecttech.com</div>
               </div>
             </div>
           </div>
         </div>
 
-        <Separator className="my-8 bg-primary-foreground/20" />
+        <Separator className="my-10 bg-primary-foreground/10" />
 
-        {/* Bottom Footer */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="text-primary-foreground/80 text-sm">
-            © 2024 uConnect Technologies. All rights reserved.
-          </div>
-          <div className="flex gap-6 text-sm">
-            <a href="#" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
-              Privacy Policy
-            </a>
-            <a href="#" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
-              Terms of Service
-            </a>
-            <a href="#" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
-              Cookie Policy
-            </a>
+          <div className="text-primary-foreground/40 text-xs">© 2024 uConnect Technologies. All rights reserved.</div>
+          <div className="flex gap-6 text-xs">
+            {["Privacy Policy", "Terms of Service", "Cookie Policy"].map((t, i) => (
+              <a key={i} href="#" className="text-primary-foreground/40 hover:text-accent transition-colors">{t}</a>
+            ))}
           </div>
         </div>
       </div>
-    </footer>;
+    </footer>
+  );
 };
 export default Footer;
