@@ -381,6 +381,92 @@ const Products = () => {
         }
       ]
     },
+    poe: {
+      title: "ConnectLH™ AC & DC PoE",
+      description: "Power over Ethernet (PoE) solutions under the ConnectLH™ brand, engineered for telecom and wireless infrastructure. These PoE devices deliver reliable power and data over a single Ethernet cable, supporting RADWIN and other radio equipment with built-in surge, overload, and short-circuit protection.",
+      subProducts: [
+        {
+          name: "ACCLH566-056-100 — Indoor AC PoE Adapter",
+          image: "/products/ac-poe-clh.png",
+          description: "Indoor AC Power over Ethernet device supporting most RADWIN product portfolio with up to 2.5 Gbps Ethernet interface and 56W PoE power output.",
+          specs: [
+            "Input: 90–264 VAC | Output: 12–56 VDC",
+            "PoE Power: 56W | Rated Power: up to 35W",
+            "Efficiency > 85% | Energy Level 6",
+            "Two RJ45 connectors (Data In; Data + Power Out)",
+            "Overload, over-voltage & short circuit protection",
+            "Dimensions: 160×63×33 mm | Weight: 205g",
+            "Operating Temp: -10°C to +70°C | Humidity: 0–95% RH"
+          ],
+          datasheet: "/datasheets/AC_POE_CLH-056-100.pdf"
+        },
+        {
+          name: "DCCLH-35-56VDC — Extended Temp DC PoE Adapter",
+          image: "/products/dc-poe-clh.png",
+          description: "Extended temperature DC Power over Ethernet device with 48VDC input, supporting RADWIN product portfolio with up to 2.5 Gbps Ethernet and 35W PoE power.",
+          specs: [
+            "Input: 48 VDC | Output: 12–56 VDC",
+            "PoE Power: 35W | Rated Power: up to 35W",
+            "Efficiency > 85% | Isolated output",
+            "Metallic RJ45 for PoE-OUT and DATA ports",
+            "Protections: Short circuit, overload, over voltage, CC, CV",
+            "LED indication for ON and Output OK",
+            "Earthing port (6 sqmm) | Metallic RJ45 connected to earthing",
+            "Dimensions: 150×60×40 mm | Weight: 245g",
+            "Operating Temp: -20°C to +70°C | Humidity: 0–95% RH"
+          ],
+          datasheet: "/datasheets/DC_POE_CLH-35-56VDC.pdf"
+        },
+        {
+          name: "ConnectLH™ PoE Splitter",
+          image: "/products/ac-poe-clh.png",
+          description: "PoE splitter that separates power and data from a single PoE-enabled Ethernet cable, enabling non-PoE devices to be powered remotely.",
+          specs: [
+            "IEEE 802.3af/at compliant",
+            "Splits PoE into separate data and DC power",
+            "Multiple output voltage options (5V, 9V, 12V)",
+            "Compact design for easy deployment",
+            "Ideal for IP cameras, access points & sensors"
+          ]
+        },
+        {
+          name: "ConnectLH™ Gigabit PoE Midspan Injector (4-Port)",
+          image: "/products/ac-poe-clh.png",
+          description: "4-port Gigabit PoE midspan injector compliant with IEEE 802.3at, delivering up to 30W per port for powering multiple network devices.",
+          specs: [
+            "IEEE 802.3at (PoE+) compliant | 30W per port",
+            "4 Gigabit Ethernet ports",
+            "Auto-sensing PoE with short circuit protection",
+            "Desktop or rack-mount installation",
+            "Ideal for access points, IP phones & cameras"
+          ]
+        },
+        {
+          name: "ConnectLH™ Gigabit PoE Midspan Injector (8-Port)",
+          image: "/products/dc-poe-clh.png",
+          description: "8-port Gigabit PoE midspan injector for enterprise-scale deployments, providing IEEE 802.3at compliant power to multiple endpoints.",
+          specs: [
+            "IEEE 802.3at (PoE+) compliant | 30W per port",
+            "8 Gigabit Ethernet ports",
+            "Total power budget up to 240W",
+            "Auto-sensing with overload protection",
+            "1U rack-mountable for data center use"
+          ]
+        },
+        {
+          name: "ConnectLH™ 100M PoE Adapter",
+          image: "/products/ac-poe-clh.png",
+          description: "Compact 100Mbps PoE adapter delivering 18W power for smaller network devices like IP cameras and wireless access points.",
+          specs: [
+            "IEEE 802.3af compliant | 18W output",
+            "100 Mbps Fast Ethernet",
+            "Plug-and-play installation",
+            "LED power and status indicators",
+            "Compact form factor for flexible deployment"
+          ]
+        }
+      ]
+    },
     fabricated: {
       title: "Fabricated Products",
       description: "Specialized fabricated products for infrastructure support, providing sturdy and reliable frameworks for various industrial and telecommunications applications.",
@@ -481,6 +567,7 @@ const Products = () => {
             <TabsTrigger value="rfCables">RF Cables</TabsTrigger>
             <TabsTrigger value="networkCables">Network Cables</TabsTrigger>
             <TabsTrigger value="specializedCables">Specialized Cables</TabsTrigger>
+            <TabsTrigger value="poe">AC & DC PoE</TabsTrigger>
             <TabsTrigger value="racks">Racks & Cabinets</TabsTrigger>
             <TabsTrigger value="bts">BTS Installation</TabsTrigger>
             <TabsTrigger value="fabricated">Fabricated Products</TabsTrigger>
@@ -729,6 +816,56 @@ const Products = () => {
                           </li>
                         ))}
                       </ul>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </TabsContent>
+
+          {/* AC & DC PoE Tab */}
+          <TabsContent value="poe" className="space-y-8">
+            <div className="bg-card border border-border rounded-lg p-6">
+              <h2 className="text-2xl font-bold mb-2">{productCategories.poe.title}</h2>
+              <p className="text-muted-foreground">{productCategories.poe.description}</p>
+            </div>
+            
+            <div className="space-y-8">
+              {productCategories.poe.subProducts.map((product, idx) => (
+                <div key={idx} className="bg-card border border-border rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                  <div className="grid md:grid-cols-2 gap-6 p-6">
+                    <div className="flex items-center justify-center bg-muted/30 rounded-lg p-6">
+                      {product.image && (
+                        <img 
+                          src={product.image} 
+                          alt={product.name}
+                          className="w-full h-auto max-h-64 object-contain"
+                        />
+                      )}
+                    </div>
+                    <div className="space-y-4">
+                      <div>
+                        <h3 className="text-xl font-semibold mb-2">{product.name}</h3>
+                        <p className="text-muted-foreground text-sm">{product.description}</p>
+                      </div>
+                      <ul className="space-y-2">
+                        {product.specs.map((spec, specIdx) => (
+                          <li key={specIdx} className="flex items-start gap-2 text-sm text-muted-foreground">
+                            <span className="text-primary mt-0.5 flex-shrink-0">–</span>
+                            <span>{spec}</span>
+                          </li>
+                        ))}
+                      </ul>
+                      {'datasheet' in product && product.datasheet && (
+                        <a 
+                          href={product.datasheet} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors text-sm font-medium mt-2"
+                        >
+                          Download Datasheet (PDF)
+                        </a>
+                      )}
                     </div>
                   </div>
                 </div>
