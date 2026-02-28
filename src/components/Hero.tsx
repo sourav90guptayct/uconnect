@@ -39,8 +39,8 @@ const Hero = () => {
             </motion.div>
 
             <h1 className="text-5xl lg:text-7xl font-bold mb-6 leading-[1.1] tracking-tight">
-              Enterprise
-              <span className="text-gradient"> Technology</span>
+              Telecom, IT &
+              <span className="text-gradient"> Infrastructure</span>
               <br />
               Solutions at
               <span className="text-gradient"> Scale</span>
@@ -52,8 +52,9 @@ const Hero = () => {
               transition={{ delay: 0.4, duration: 0.8 }}
               className="text-lg mb-10 text-white/70 leading-relaxed max-w-lg"
             >
-              From telecom infrastructure to managed IT services, uConnect Technologies delivers 
-              mission-critical solutions that power India's leading enterprises across 15+ industries.
+              From proprietary ConnectLH™ antenna systems & telecom products to managed IT services, 
+              digital transformation and workforce solutions — uConnect Technologies is your 
+              single-window partner for end-to-end enterprise technology.
             </motion.p>
 
             <motion.div

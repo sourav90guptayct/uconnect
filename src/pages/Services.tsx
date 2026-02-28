@@ -67,8 +67,8 @@ const ServicesPage = () => {
             Our Services
           </h1>
           <p className="text-xl text-primary-foreground/90 max-w-3xl">
-            uConnect Technologies offers comprehensive technology solutions across all domains. 
-            From network management to infrastructure installation, we provide the expertise you need to succeed.
+            From telecom infrastructure and IT services to digital transformation and branded product lines — 
+            uConnect Technologies delivers end-to-end solutions across Telecom, IT, and Enterprise verticals.
           </p>
         </div>
       </div>
