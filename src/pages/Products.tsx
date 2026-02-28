@@ -333,6 +333,54 @@ const Products = () => {
         }
       ]
     },
+    antennas: {
+      title: "ConnectLH™ Dish Antennas",
+      description: "High-performance 2x2 MIMO dual-polarization dish antennas engineered for 4.9–5.9 GHz unlicensed and licensed bands. ConnectLH™ antennas deliver best-in-class gain, isolation, and rugged environmental durability for point-to-point wireless backhaul and public safety networks.",
+      subProducts: [
+        {
+          name: "29CLH4959 — 29dBi 2×2 MIMO Dish Antenna",
+          image: "/products/dish-antenna-29dbi.jpg",
+          description: "2 ft (Ø650mm) dual-pol dish for 4.9–5.9 GHz. Ideal for mid-range point-to-point links with excellent port isolation.",
+          specs: [
+            "Gain: 29 ±1 dBi | Beamwidth: 6° ±0.5",
+            "VSWR ≤ 1.5:1 | Port Isolation > 30 dB",
+            "Front-to-Back > 30 dB | Cross Pol > 30 dB",
+            "IP65 rated | Wind survival 200 km/h",
+            "Weight: 5 ±0.5 kg | Pole mount 90–120 mm",
+            "Connector: 2× N(F) | Aluminum reflector, powder coated"
+          ],
+          datasheet: "/datasheets/29CLH4959-datasheet.pdf"
+        },
+        {
+          name: "32CLH4959 — 32dBi 2×2 MIMO Dish Antenna",
+          image: "/products/dish-antenna-32dbi.jpg",
+          description: "3 ft (Ø950mm) dual-pol dish for 4.9–5.9 GHz. Higher gain for longer-distance backhaul deployments.",
+          specs: [
+            "Gain: 32 ±1 dBi | Beamwidth: 4° ±0.5",
+            "VSWR ≤ 1.5:1 | Port Isolation > 30 dB",
+            "Front-to-Back > 34 dB | Cross Pol > 30 dB",
+            "IP65 rated | Wind survival 200 km/h",
+            "Weight: 10 ±1 kg | Pole mount 90–120 mm",
+            "Connector: 2× N(F) | Aluminum alloy reflector, powder coated"
+          ],
+          datasheet: "/datasheets/32CLH4959-datasheet.pdf"
+        },
+        {
+          name: "34CLH4959 — 34dBi 2×2 MIMO Dish Antenna",
+          image: "/products/dish-antenna-34dbi.jpg",
+          description: "4 ft (Ø1200mm) dual-pol dish for 4.9–5.9 GHz. Maximum gain for long-haul point-to-point wireless links.",
+          specs: [
+            "Gain: 34 ±1 dBi | Beamwidth: 3° ±0.25",
+            "VSWR ≤ 1.5:1 | Port Isolation > 30 dB",
+            "Front-to-Back > 36 dB | Cross Pol > 28 dB",
+            "IP65 rated | Wind survival 200 km/h",
+            "Weight: 12 ±1 kg | Pole mount 90–120 mm",
+            "Connector: 2× N(F) | Aluminum alloy reflector, powder coated"
+          ],
+          datasheet: "/datasheets/34CLH4959-datasheet.pdf"
+        }
+      ]
+    },
     fabricated: {
       title: "Fabricated Products",
       description: "Specialized fabricated products for infrastructure support, providing sturdy and reliable frameworks for various industrial and telecommunications applications.",
@@ -412,10 +460,10 @@ const Products = () => {
             <div className="container mx-auto px-4">
               <div className="max-w-2xl">
                 <h1 className="text-4xl md:text-6xl font-bold mb-4 text-white">
-                  Telecommunications Products
+                  Telecom, IT & Infrastructure Products
                 </h1>
                 <p className="text-lg md:text-xl text-white/90">
-                  Discover our comprehensive range of high-quality telecommunications products designed to meet the evolving needs of modern network infrastructure.
+                  From our proprietary ConnectLH™ antenna systems to fiber optics and network infrastructure — a complete product ecosystem engineered for performance.
                 </p>
               </div>
             </div>
@@ -425,8 +473,9 @@ const Products = () => {
         <div className="container mx-auto px-4 py-12">
 
         {/* Products Tabs */}
-        <Tabs defaultValue="ftth" className="w-full">
-          <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4 xl:grid-cols-8 gap-2 mb-8 h-auto bg-muted/50 p-2 border border-border rounded-lg shadow-sm">
+        <Tabs defaultValue="antennas" className="w-full">
+          <TabsList className="flex flex-wrap justify-center gap-2 mb-8 h-auto bg-muted/50 p-2 border border-border rounded-lg shadow-sm">
+            <TabsTrigger value="antennas">Dish Antennas</TabsTrigger>
             <TabsTrigger value="ftth">FTTH Products</TabsTrigger>
             <TabsTrigger value="fiberCables">Fiber Cables</TabsTrigger>
             <TabsTrigger value="rfCables">RF Cables</TabsTrigger>
@@ -436,6 +485,56 @@ const Products = () => {
             <TabsTrigger value="bts">BTS Installation</TabsTrigger>
             <TabsTrigger value="fabricated">Fabricated Products</TabsTrigger>
           </TabsList>
+
+          {/* ConnectLH Antennas Tab */}
+          <TabsContent value="antennas" className="space-y-8">
+            <div className="bg-card border border-border rounded-lg p-6">
+              <h2 className="text-2xl font-bold mb-2">{productCategories.antennas.title}</h2>
+              <p className="text-muted-foreground">{productCategories.antennas.description}</p>
+            </div>
+            
+            <div className="space-y-8">
+              {productCategories.antennas.subProducts.map((product, idx) => (
+                <div key={idx} className="bg-card border border-border rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                  <div className="grid md:grid-cols-2 gap-6 p-6">
+                    <div className="flex items-center justify-center bg-muted/30 rounded-lg p-6">
+                      {product.image && (
+                        <img 
+                          src={product.image} 
+                          alt={product.name}
+                          className="w-full h-auto max-h-64 object-contain"
+                        />
+                      )}
+                    </div>
+                    <div className="space-y-4">
+                      <div>
+                        <h3 className="text-xl font-semibold mb-2">{product.name}</h3>
+                        <p className="text-muted-foreground text-sm">{product.description}</p>
+                      </div>
+                      <ul className="space-y-2">
+                        {product.specs.map((spec, specIdx) => (
+                          <li key={specIdx} className="flex items-start gap-2 text-sm text-muted-foreground">
+                            <span className="text-primary mt-0.5 flex-shrink-0">–</span>
+                            <span>{spec}</span>
+                          </li>
+                        ))}
+                      </ul>
+                      {'datasheet' in product && product.datasheet && (
+                        <a 
+                          href={product.datasheet} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors text-sm font-medium mt-2"
+                        >
+                          Download Datasheet (PDF)
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </TabsContent>
 
           {/* FTTH Tab */}
           <TabsContent value="ftth" className="space-y-8">
