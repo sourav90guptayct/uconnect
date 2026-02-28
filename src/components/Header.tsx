@@ -1,208 +1,107 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Phone, Mail, ChevronDown, Code, Database, Smartphone, Globe, Shield, Zap } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { useAdminCheck } from "@/hooks/useAdminCheck";
 import { useNavigate, Link } from "react-router-dom";
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
+
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const {
-    user,
-    signOut
-  } = useAuth();
-  const {
-    isAdmin
-  } = useAdminCheck();
+  const [scrolled, setScrolled] = useState(false);
+  const { user, signOut } = useAuth();
+  const { isAdmin } = useAdminCheck();
   const navigate = useNavigate();
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const handleAuthAction = () => {
-    if (user) {
-      signOut();
-    } else {
-      navigate('/auth');
-    }
+    if (user) signOut();
+    else navigate('/auth');
   };
-  return <header className="bg-background border-b border-border sticky top-0 z-50">
-      {/* Main navigation */}
+
+  const publicLinks = [
+    { to: "/", label: "Home" },
+    { to: "/about", label: "About Us" },
+    { to: "/services", label: "Services" },
+    { to: "/products", label: "Products" },
+    { to: "/careers", label: "Careers" },
+    { to: "/clients", label: "Clients" },
+    { to: "/?section=contact", label: "Contact" },
+  ];
+
+  const authLinks = [
+    { to: "/profile", label: "My Profile" },
+    ...(!isAdmin ? [{ to: "/my-applications", label: "My Applications" }] : []),
+    ...(isAdmin ? [{ to: "/employer-dashboard", label: "Employer Dashboard" }] : []),
+    { to: "/careers", label: "All Jobs" },
+    { to: "/support", label: "Support" },
+  ];
+
+  const links = user ? authLinks : publicLinks;
+
+  return (
+    <header className={cn(
+      "sticky top-0 z-50 transition-all duration-300",
+      scrolled ? "bg-background/80 backdrop-blur-xl border-b border-border shadow-sm" : "bg-background border-b border-border"
+    )}>
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <div className="flex items-center">
-            <div className="text-2xl font-bold text-primary">
-              uConnect
-              <span className="text-accent"> Technologies</span>
-            </div>
-          </div>
+          <Link to="/" className="text-xl font-bold text-primary">
+            uConnect<span className="text-gradient"> Technologies</span>
+          </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-4">
+          {/* Desktop */}
+          <div className="hidden lg:flex items-center space-x-1">
             <NavigationMenu>
               <NavigationMenuList>
-                {!user ?
-              // Show marketing navigation for non-logged in users
-              <>
-                    <NavigationMenuItem>
-                      <NavigationMenuLink asChild>
-                        <Link to="/" className={cn(navigationMenuTriggerStyle(), "text-foreground hover:text-primary")}>
-                          Home
-                        </Link>
-                      </NavigationMenuLink>
-                    </NavigationMenuItem>
-
-                    <NavigationMenuItem>
-                      <NavigationMenuLink asChild>
-                        <Link to="/about" className={cn(navigationMenuTriggerStyle(), "text-foreground hover:text-primary")}>
-                          About Us
-                        </Link>
-                      </NavigationMenuLink>
-                    </NavigationMenuItem>
-
-                    <NavigationMenuItem>
-                      <Link to="/services" className={cn(navigationMenuTriggerStyle(), "text-foreground hover:text-primary")}>
-                        Services
+                {links.map((link) => (
+                  <NavigationMenuItem key={link.to}>
+                    <NavigationMenuLink asChild>
+                      <Link to={link.to} className={cn(navigationMenuTriggerStyle(), "text-foreground/70 hover:text-foreground text-sm")}>
+                        {link.label}
                       </Link>
-                    </NavigationMenuItem>
-
-                    <NavigationMenuItem>
-                      <Link to="/products" className={cn(navigationMenuTriggerStyle(), "text-foreground hover:text-primary")}>
-                        Products
-                      </Link>
-                    </NavigationMenuItem>
-
-                    <NavigationMenuItem>
-                      <Link to="/careers" className={cn(navigationMenuTriggerStyle(), "text-foreground hover:text-primary")}>
-                        Careers
-                      </Link>
-                    </NavigationMenuItem>
-
-                    <NavigationMenuItem>
-                      <Link to="/clients" className={cn(navigationMenuTriggerStyle(), "text-foreground hover:text-primary")}>
-                        Clients
-                      </Link>
-                    </NavigationMenuItem>
-
-                    <NavigationMenuItem>
-                      <NavigationMenuLink asChild>
-                        <Link to="/?section=contact" className={cn(navigationMenuTriggerStyle(), "text-foreground hover:text-primary")}>
-                          Contact
-                        </Link>
-                      </NavigationMenuLink>
-                    </NavigationMenuItem>
-                  </> :
-              // Show profile-focused navigation for logged-in users
-              <>
-                    <NavigationMenuItem>
-                      <NavigationMenuLink asChild>
-                        <Link to="/profile" className={cn(navigationMenuTriggerStyle(), "text-foreground hover:text-primary")}>
-                          My Profile
-                        </Link>
-                      </NavigationMenuLink>
-                    </NavigationMenuItem>
-
-
-                    {!isAdmin && <NavigationMenuItem>
-                        <Link to="/my-applications" className={cn(navigationMenuTriggerStyle(), "text-foreground hover:text-primary")}>
-                          My Applications
-                        </Link>
-                      </NavigationMenuItem>}
-
-                    {isAdmin && <NavigationMenuItem>
-                        <Link to="/employer-dashboard" className={cn(navigationMenuTriggerStyle(), "text-foreground hover:text-primary")}>
-                          Employer Dashboard
-                        </Link>
-                      </NavigationMenuItem>}
-
-                    <NavigationMenuItem>
-                      <Link to="/careers" className={cn(navigationMenuTriggerStyle(), "text-foreground hover:text-primary")}>
-                        All Jobs
-                      </Link>
-                    </NavigationMenuItem>
-
-                    <NavigationMenuItem>
-                      <NavigationMenuLink asChild>
-                        <Link to="/support" className={cn(navigationMenuTriggerStyle(), "text-foreground hover:text-primary")}>
-                          Support
-                        </Link>
-                      </NavigationMenuLink>
-                    </NavigationMenuItem>
-                  </>}
+                    </NavigationMenuLink>
+                  </NavigationMenuItem>
+                ))}
               </NavigationMenuList>
             </NavigationMenu>
-
             <div className="flex items-center space-x-2 ml-4">
-              {!user && <Button variant="outline" onClick={() => navigate('/register')}>
-                  Register
-                </Button>}
-              <Button className="bg-accent text-accent-foreground hover:bg-accent/90" onClick={handleAuthAction}>
+              {!user && <Button variant="outline" className="rounded-xl text-sm" onClick={() => navigate('/register')}>Register</Button>}
+              <Button className="bg-accent text-accent-foreground hover:bg-accent/90 rounded-xl text-sm shadow-md shadow-accent/20" onClick={handleAuthAction}>
                 {user ? 'Sign Out' : 'Sign In'}
               </Button>
             </div>
           </div>
 
-          {/* Mobile menu button */}
-          <button onClick={toggleMenu} className="lg:hidden p-2 rounded-md text-foreground hover:text-primary">
-            {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          <button onClick={toggleMenu} className="lg:hidden p-2 rounded-xl text-foreground hover:text-accent transition-colors">
+            {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
         </div>
 
-        {/* Mobile Navigation */}
-        {isMenuOpen && <div className="lg:hidden pb-4">
-            <nav className="flex flex-col space-y-4">
-              {!user ?
-          // Show marketing navigation for non-logged in users
-          <>
-                  <Link to="/" className="text-foreground hover:text-primary transition-colors">
-                    Home
-                  </Link>
-                  <Link to="/about" className="text-foreground hover:text-primary transition-colors">
-                    About Us
-                  </Link>
-                  <Link to="/services" className="text-foreground hover:text-primary transition-colors">
-                    Services
-                  </Link>
-                  <Link to="/products" className="text-foreground hover:text-primary transition-colors">
-                    Products
-                  </Link>
-                  <Link to="/careers" className="text-foreground hover:text-primary transition-colors">
-                    Careers
-                  </Link>
-                  <Link to="/clients" className="text-foreground hover:text-primary transition-colors">
-                    Clients
-                  </Link>
-                  <Link to="/?section=contact" className="text-foreground hover:text-primary transition-colors">
-                    Contact
-                  </Link>
-                </> :
-          // Show profile-focused navigation for logged-in users
-          <>
-                  <Link to="/profile" className="text-foreground hover:text-primary transition-colors">
-                    My Profile
-                  </Link>
-                  {!isAdmin && <Link to="/my-applications" className="text-foreground hover:text-primary transition-colors">
-                      My Applications
-                    </Link>}
-                  {isAdmin && <Link to="/employer-dashboard" className="text-foreground hover:text-primary transition-colors">
-                      Employer Dashboard
-                    </Link>}
-                  <Link to="/careers" className="text-foreground hover:text-primary transition-colors">
-                    All Jobs
-                  </Link>
-                  <Link to="/support" className="text-foreground hover:text-primary transition-colors">
-                    Support
-                  </Link>
-                </>}
-              
-              {!user && <Button variant="outline" className="w-fit" onClick={() => navigate('/register')}>
-                  Register
-                </Button>}
-              <Button className="bg-accent text-accent-foreground hover:bg-accent/90 w-fit" onClick={handleAuthAction}>
+        {isMenuOpen && (
+          <div className="lg:hidden pb-4">
+            <nav className="flex flex-col space-y-3">
+              {links.map((link) => (
+                <Link key={link.to} to={link.to} onClick={() => setIsMenuOpen(false)} className="text-foreground/70 hover:text-accent transition-colors text-sm py-1">
+                  {link.label}
+                </Link>
+              ))}
+              {!user && <Button variant="outline" className="w-fit rounded-xl text-sm" onClick={() => { navigate('/register'); setIsMenuOpen(false); }}>Register</Button>}
+              <Button className="bg-accent text-accent-foreground hover:bg-accent/90 w-fit rounded-xl text-sm" onClick={() => { handleAuthAction(); setIsMenuOpen(false); }}>
                 {user ? 'Sign Out' : 'Sign In'}
               </Button>
             </nav>
-          </div>}
+          </div>
+        )}
       </div>
-    </header>;
+    </header>
+  );
 };
 export default Header;
