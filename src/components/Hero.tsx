@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 const Hero = () => {
   return (
-    <section id="home" className="relative min-h-screen flex items-center overflow-hidden py-32" style={{ background: 'var(--gradient-hero)' }}>
+    <section id="home" className="relative flex items-center overflow-hidden py-20 lg:py-24" style={{ background: 'var(--gradient-hero)' }}>
       {/* Animated gradient orbs */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-1/4 -left-32 w-96 h-96 bg-accent/20 rounded-full blur-[120px] animate-float" />
@@ -32,7 +32,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.6 }}
-              className="inline-flex items-center gap-2 glass rounded-full px-5 py-2.5 mb-8 mt-8"
+              className="inline-flex items-center gap-2 glass rounded-full px-5 py-2.5 mb-6 mt-4"
             >
               <Sparkles className="h-4 w-4 text-accent" />
               <span className="text-sm font-medium text-white/90">Trusted by 500+ Organizations Nationwide</span>
