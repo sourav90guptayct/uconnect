@@ -5,13 +5,13 @@ const Footer = () => {
   return (
     <footer className="bg-primary text-primary-foreground">
       <div className="container mx-auto px-4 py-16">
-        <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-10">
+        <div className="grid lg:grid-cols-5 md:grid-cols-2 gap-10">
           <div>
             <div className="text-2xl font-bold mb-4">
               uConnect<span className="text-gradient"> Technologies</span>
             </div>
             <p className="text-primary-foreground/60 mb-6 text-sm leading-relaxed">
-              Your trusted partner for comprehensive manpower solutions. Connecting talent with opportunity across all industries.
+              Your trusted partner for Telecom, IT & Infrastructure solutions. Delivering enterprise technology and products across India.
             </p>
             <div className="flex gap-3">
               {[Facebook, Twitter, Linkedin, Instagram].map((Icon, i) => (
@@ -27,8 +27,9 @@ const Footer = () => {
             <ul className="space-y-3">
               {[
                 { label: "Home", href: "/" }, { label: "About Us", href: "/about" },
-                { label: "Services", href: "/services" }, { label: "Careers", href: "/careers" },
-                { label: "Jobs", href: "/jobs" }, { label: "Support", href: "/support" },
+                { label: "Services", href: "/services" }, { label: "Products", href: "/products" },
+                { label: "Careers", href: "/careers" }, { label: "Jobs", href: "/jobs" },
+                { label: "Support", href: "/support" },
               ].map((link, i) => (
                 <li key={i}>
                   <a href={link.href} className="text-primary-foreground/50 hover:text-accent text-sm transition-colors duration-200">{link.label}</a>
@@ -43,6 +44,17 @@ const Footer = () => {
               {["Managed Services", "Networks", "Infra Installation", "Resource Management", "Digital Transformation", "IP Services"].map((s, i) => (
                 <li key={i}>
                   <a href="/services" className="text-primary-foreground/50 hover:text-accent text-sm transition-colors duration-200">{s}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="text-sm font-semibold mb-5 uppercase tracking-wider text-primary-foreground/80">Our Products</h3>
+            <ul className="space-y-3">
+              {["ConnectLH™ Antennas", "FTTH Products", "Fiber Cables", "RF Cables", "Network Cables", "Racks & Cabinets", "BTS Installation"].map((s, i) => (
+                <li key={i}>
+                  <a href="/products" className="text-primary-foreground/50 hover:text-accent text-sm transition-colors duration-200">{s}</a>
                 </li>
               ))}
             </ul>

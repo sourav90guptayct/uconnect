@@ -30,13 +30,14 @@ const About = () => {
 
             <p className="text-lg text-muted-foreground mb-10 leading-relaxed">
               Since 2017, uConnect Technologies has been at the forefront of enterprise IT, Telecom Infrastructure, 
-              NOC Operations, and Strategic Workforce Management. Our pan-India operations serve Fortune 500 companies, 
+              NOC Operations, and Strategic Workforce Management. Our pan-India operations serve top companies, 
+              leading telecom operators, and government organizations with mission-critical solutions.
               leading telecom operators, and government organizations with mission-critical solutions.
             </p>
 
             <div className="space-y-5 mb-10">
               {[
-                { icon: TrendingUp, title: "Proven Track Record", desc: "10,000+ professionals deployed across 15+ industries with 98% client retention rate" },
+                { icon: TrendingUp, title: "Proven Track Record", desc: "1,000+ deployments across 15+ industries with 98% client retention rate" },
                 { icon: Handshake, title: "Strategic Partnerships", desc: "Long-term partnerships with India's top telecom operators, IT companies, and enterprises" },
                 { icon: CheckCircle, title: "Operational Excellence", desc: "ISO-compliant processes with 24/7 NOC support and real-time project management" },
               ].map((item, i) => (
@@ -110,8 +111,8 @@ const About = () => {
                     {[
                       { val: "2017", label: "Established" },
                       { val: "10+", label: "States" },
-                      { val: "500+", label: "Clients" },
-                      { val: "10K+", label: "Deployed" },
+                      { val: "50+", label: "Clients" },
+                      { val: "1000+", label: "Deployments" },
                     ].map((s, i) => (
                       <div key={i} className="text-center">
                         <div className="text-2xl font-bold mb-1">{s.val}</div>

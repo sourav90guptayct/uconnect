@@ -135,8 +135,8 @@ const Hero = () => {
         >
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 w-full max-w-4xl mx-auto">
             {[
-              { value: 500, suffix: "+", label: "Enterprise Clients" },
-              { value: 10000, suffix: "+", label: "Professionals Deployed" },
+              { value: 50, suffix: "+", label: "Enterprise Clients" },
+              { value: 1000, suffix: "+", label: "Deployments" },
               { value: 15, suffix: "+", label: "Industries Served" },
               { value: 98, suffix: "%", label: "Client Retention" },
             ].map((stat, i) => (
