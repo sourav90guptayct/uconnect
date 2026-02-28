@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { CheckCircle, Target, Globe, Award } from "lucide-react";
+import { CheckCircle, Target, Globe, Award, TrendingUp, Handshake } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
@@ -20,23 +20,25 @@ const About = () => {
           <motion.div {...fadeInUp}>
             <div className="inline-flex items-center gap-2 bg-accent/10 text-accent px-4 py-2 rounded-full mb-6">
               <Award className="h-4 w-4" />
-              <span className="font-semibold text-sm">About Us</span>
+              <span className="font-semibold text-sm">About uConnect Technologies</span>
             </div>
 
             <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-foreground leading-tight">
-              A Globally Trusted Leader in
-              <span className="text-gradient"> Manpower Solutions</span>
+              India's Trusted Partner for
+              <span className="text-gradient"> Enterprise Technology</span>
             </h2>
 
             <p className="text-lg text-muted-foreground mb-10 leading-relaxed">
-              uConnect Technologies delivers cutting-edge IT, Telecom, NOC Staffing, and Project Management solutions. With a team of visionary engineers and dynamic leaders, we blend innovation with execution.
+              Since 2017, uConnect Technologies has been at the forefront of enterprise IT, Telecom Infrastructure, 
+              NOC Operations, and Strategic Workforce Management. Our pan-India operations serve Fortune 500 companies, 
+              leading telecom operators, and government organizations with mission-critical solutions.
             </p>
 
             <div className="space-y-5 mb-10">
               {[
-                { title: "Industry Expertise", desc: "Deep understanding across 15+ industries" },
-                { title: "Quality Assurance", desc: "Rigorous screening and verification processes" },
-                { title: "24/7 Support", desc: "Round-the-clock assistance for all your needs" },
+                { icon: TrendingUp, title: "Proven Track Record", desc: "10,000+ professionals deployed across 15+ industries with 98% client retention rate" },
+                { icon: Handshake, title: "Strategic Partnerships", desc: "Long-term partnerships with India's top telecom operators, IT companies, and enterprises" },
+                { icon: CheckCircle, title: "Operational Excellence", desc: "ISO-compliant processes with 24/7 NOC support and real-time project management" },
               ].map((item, i) => (
                 <motion.div
                   key={i}
@@ -46,8 +48,8 @@ const About = () => {
                   transition={{ delay: i * 0.15, duration: 0.5 }}
                   className="flex items-start gap-4"
                 >
-                  <div className="h-8 w-8 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <CheckCircle className="h-4 w-4 text-accent" />
+                  <div className="h-10 w-10 rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <item.icon className="h-5 w-5 text-accent" />
                   </div>
                   <div>
                     <h4 className="font-semibold text-foreground">{item.title}</h4>
@@ -58,7 +60,7 @@ const About = () => {
             </div>
 
             <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-xl h-12 px-8" onClick={() => navigate('/about')}>
-              Learn More About Us
+              Discover Our Story
             </Button>
           </motion.div>
 
@@ -72,17 +74,17 @@ const About = () => {
           >
             <div className="grid grid-cols-2 gap-5">
               <div className="col-span-2 relative rounded-2xl overflow-hidden mb-2 premium-shadow">
-                <img src="/lovable-uploads/839cd676-3d03-4ff0-941b-4baee8220c7b.png" alt="Team Collaboration" className="w-full h-52 object-cover" />
+                <img src="/lovable-uploads/839cd676-3d03-4ff0-941b-4baee8220c7b.png" alt="Enterprise Team" className="w-full h-52 object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 to-transparent" />
                 <div className="absolute bottom-5 left-5 text-white">
-                  <h3 className="text-2xl font-bold mb-1">Collaborative Excellence</h3>
-                  <p className="text-sm text-white/70">Building partnerships that drive innovation</p>
+                  <h3 className="text-2xl font-bold mb-1">Pan-India Operations</h3>
+                  <p className="text-sm text-white/70">Delivering excellence across 10+ states</p>
                 </div>
               </div>
 
               {[
-                { icon: Target, title: "Our Mission", desc: "Bridging the gap between talent and opportunity, creating meaningful connections that drive success." },
-                { icon: Globe, title: "Our Vision", desc: "To be the global leader in manpower solutions, transforming workforce building in the digital age." },
+                { icon: Target, title: "Our Mission", desc: "To empower enterprises with world-class technology infrastructure and the right talent to drive digital transformation at scale." },
+                { icon: Globe, title: "Our Vision", desc: "To be India's most trusted technology solutions partner — known for operational excellence, innovation, and lasting impact." },
               ].map((card, i) => (
                 <motion.div
                   key={i}
@@ -108,8 +110,8 @@ const About = () => {
                     {[
                       { val: "2017", label: "Established" },
                       { val: "10+", label: "States" },
-                      { val: "100+", label: "Employees" },
-                      { val: "2000+", label: "Placements" },
+                      { val: "500+", label: "Clients" },
+                      { val: "10K+", label: "Deployed" },
                     ].map((s, i) => (
                       <div key={i} className="text-center">
                         <div className="text-2xl font-bold mb-1">{s.val}</div>

@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import AnimatedCounter from "@/components/animations/AnimatedCounter";
-import { ArrowRight, Award, Users, Sparkles } from "lucide-react";
+import { ArrowRight, Award, Users, Sparkles, Building2, Globe2 } from "lucide-react";
 import { motion } from "framer-motion";
 
 const Hero = () => {
@@ -35,15 +35,15 @@ const Hero = () => {
               className="inline-flex items-center gap-2 glass rounded-full px-5 py-2.5 mb-8 mt-8"
             >
               <Sparkles className="h-4 w-4 text-accent" />
-              <span className="text-sm font-medium text-white/90">Trusted Technology Solutions Provider</span>
+              <span className="text-sm font-medium text-white/90">Trusted by 500+ Organizations Nationwide</span>
             </motion.div>
 
             <h1 className="text-5xl lg:text-7xl font-bold mb-6 leading-[1.1] tracking-tight">
-              Connecting
+              Enterprise
               <span className="text-gradient"> Technology</span>
               <br />
-              Powering
-              <span className="text-gradient"> Innovation</span>
+              Solutions at
+              <span className="text-gradient"> Scale</span>
             </h1>
 
             <motion.p
@@ -52,8 +52,8 @@ const Hero = () => {
               transition={{ delay: 0.4, duration: 0.8 }}
               className="text-lg mb-10 text-white/70 leading-relaxed max-w-lg"
             >
-              uConnect Technologies is your premier partner for comprehensive technology solutions — 
-              driving productivity, growth, and success across all industries.
+              From telecom infrastructure to managed IT services, uConnect Technologies delivers 
+              mission-critical solutions that power India's leading enterprises across 15+ industries.
             </motion.p>
 
             <motion.div
@@ -63,11 +63,11 @@ const Hero = () => {
               className="flex flex-col sm:flex-row gap-4 mb-16"
             >
               <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8 h-13 rounded-xl shadow-lg shadow-accent/25" onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}>
-                Explore Services
+                Explore Solutions
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
               <Button size="lg" variant="outline" className="border border-white/20 bg-white/5 text-white hover:bg-white/10 text-base px-8 h-13 rounded-xl backdrop-blur-sm" onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
-                Contact Us Today
+                Schedule a Consultation
               </Button>
             </motion.div>
           </motion.div>
@@ -83,19 +83,25 @@ const Hero = () => {
               <div className="glass rounded-3xl overflow-hidden shadow-2xl">
                 <img
                   src="/lovable-uploads/d75128dc-3c18-4149-aba1-d879dab93472.png"
-                  alt="Technology Innovation"
+                  alt="Enterprise Technology Infrastructure"
                   className="w-full h-72 object-cover"
                 />
                 <div className="p-8 text-white">
                   <div className="flex items-center gap-2 mb-4">
                     <Award className="h-5 w-5 text-accent" />
-                    <span className="text-accent font-semibold text-sm uppercase tracking-wider">Enterprise Solutions</span>
+                    <span className="text-accent font-semibold text-sm uppercase tracking-wider">Enterprise Grade</span>
                   </div>
-                  <h3 className="text-2xl font-bold mb-3">Scalable Technology</h3>
-                  <p className="text-white/60 text-sm mb-5">Solutions for organizations of all sizes</p>
-                  <div className="flex items-center gap-3 glass rounded-xl px-4 py-3">
-                    <Users className="h-5 w-5 text-accent" />
-                    <span className="text-white/80 text-sm font-medium">24/7 Dedicated Support</span>
+                  <h3 className="text-2xl font-bold mb-3">End-to-End Infrastructure</h3>
+                  <p className="text-white/60 text-sm mb-5">Trusted by India's top telecom operators & enterprises</p>
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="flex items-center gap-2 glass rounded-xl px-3 py-2.5">
+                      <Building2 className="h-4 w-4 text-accent" />
+                      <span className="text-white/80 text-xs font-medium">Pan-India Operations</span>
+                    </div>
+                    <div className="flex items-center gap-2 glass rounded-xl px-3 py-2.5">
+                      <Globe2 className="h-4 w-4 text-accent" />
+                      <span className="text-white/80 text-xs font-medium">24/7 NOC Support</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -126,17 +132,18 @@ const Hero = () => {
           transition={{ delay: 0.8, duration: 0.6 }}
           className="mt-8 pt-8 border-t border-white/10"
         >
-          <div className="flex justify-between items-center w-full max-w-3xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 w-full max-w-4xl mx-auto">
             {[
-              { value: 50, suffix: "+", label: "Clients Served" },
-              { value: 2000, suffix: "+", label: "Successful Placements" },
-              { value: 99, suffix: "%", label: "Client Satisfaction" },
+              { value: 500, suffix: "+", label: "Enterprise Clients" },
+              { value: 10000, suffix: "+", label: "Professionals Deployed" },
+              { value: 15, suffix: "+", label: "Industries Served" },
+              { value: 98, suffix: "%", label: "Client Retention" },
             ].map((stat, i) => (
-              <div key={i} className="text-center flex-1">
-                <div className="text-4xl lg:text-5xl font-bold text-gradient mb-2">
+              <div key={i} className="text-center">
+                <div className="text-3xl lg:text-4xl font-bold text-gradient mb-2">
                   <AnimatedCounter to={stat.value} suffix={stat.suffix} />
                 </div>
-                <div className="text-sm text-white/50 uppercase tracking-wider">{stat.label}</div>
+                <div className="text-xs text-white/50 uppercase tracking-wider">{stat.label}</div>
               </div>
             ))}
           </div>

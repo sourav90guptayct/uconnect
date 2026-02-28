@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
-import { MapPin, Phone, Mail, Clock, Send } from "lucide-react";
+import { Mail, Send, Shield, Headphones, Clock3 } from "lucide-react";
 import { motion } from "framer-motion";
 
 const Contact = () => {
@@ -26,7 +26,7 @@ const Contact = () => {
       const { data: result, error: functionError } = await supabase.functions.invoke('send-contact-email', { body: formData });
       if (functionError) throw new Error('Failed to submit your message');
       if (result?.error) throw new Error(result.error);
-      toast({ title: "Message Received!", description: "Thank you for contacting us. We'll get back to you soon." });
+      toast({ title: "Message Received!", description: "Thank you for contacting us. Our team will respond within 24 hours." });
       setFormData({ fullName: "", email: "", phone: "", company: "", message: "" });
     } catch (error) {
       toast({ title: "Error", description: error instanceof Error ? error.message : "Failed to send message.", variant: "destructive" });
@@ -36,97 +36,118 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-24 bg-muted/30">
-      <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <div className="inline-flex items-center gap-2 bg-accent/10 text-accent px-4 py-2 rounded-full mb-6">
-            <Mail className="h-4 w-4" />
-            <span className="font-semibold text-sm">Contact Us</span>
-          </div>
-          <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-foreground">
-            Ready to Transform Your <span className="text-gradient">Workforce?</span>
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Get in touch with our experts to discuss your requirements and discover how we can help.
-          </p>
-        </motion.div>
+    <section id="contact" className="py-24 bg-muted/30 relative overflow-hidden">
+      {/* Background accent */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-accent/5 rounded-full blur-[120px]" />
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-[120px]" />
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="flex justify-center"
-        >
-          <div className="w-full max-w-2xl">
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-16 items-start">
+          {/* Left - Content */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="inline-flex items-center gap-2 bg-accent/10 text-accent px-4 py-2 rounded-full mb-6">
+              <Mail className="h-4 w-4" />
+              <span className="font-semibold text-sm">Get In Touch</span>
+            </div>
+            <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-foreground leading-tight">
+              Let's Build Something <span className="text-gradient">Extraordinary</span> Together
+            </h2>
+            <p className="text-lg text-muted-foreground mb-10 leading-relaxed">
+              Whether you're looking for enterprise-grade technology infrastructure, managed services, 
+              or strategic workforce solutions — our team of experts is ready to architect the perfect 
+              solution for your organization.
+            </p>
+
+            {/* Trust signals */}
+            <div className="space-y-6">
+              {[
+                { icon: Headphones, title: "Dedicated Account Manager", desc: "Every client is assigned a senior account manager for personalized, white-glove service." },
+                { icon: Clock3, title: "Rapid Response Guarantee", desc: "We respond to all enterprise inquiries within 4 hours during business days." },
+                { icon: Shield, title: "Enterprise-Grade Security", desc: "ISO 27001 compliant processes ensuring your data and operations are always protected." },
+              ].map((item, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.15, duration: 0.5 }}
+                  className="flex items-start gap-4"
+                >
+                  <div className="h-10 w-10 rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
+                    <item.icon className="h-5 w-5 text-accent" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-foreground mb-1">{item.title}</h4>
+                    <p className="text-muted-foreground text-sm leading-relaxed">{item.desc}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            <div className="mt-10 flex items-center gap-6">
+              <div className="flex -space-x-3">
+                {[1,2,3,4].map((i) => (
+                  <div key={i} className="h-10 w-10 rounded-full bg-accent/20 border-2 border-background flex items-center justify-center">
+                    <span className="text-xs font-bold text-accent">{["JM","SK","RP","AT"][i-1]}</span>
+                  </div>
+                ))}
+              </div>
+              <div>
+                <p className="text-sm font-semibold text-foreground">Join 500+ organizations</p>
+                <p className="text-xs text-muted-foreground">that trust uConnect Technologies</p>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Right - Form */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+          >
             <Card className="border-border rounded-2xl premium-shadow">
               <CardContent className="p-8">
-                <h3 className="text-2xl font-bold mb-6 text-card-foreground text-center">Send us a Message</h3>
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-6">
+                <h3 className="text-2xl font-bold mb-2 text-card-foreground">Start a Conversation</h3>
+                <p className="text-muted-foreground text-sm mb-6">Fill out the form and our solutions team will reach out promptly.</p>
+                <form onSubmit={handleSubmit} className="space-y-5">
+                  <div className="grid md:grid-cols-2 gap-5">
                     <div>
                       <Label htmlFor="fullName" className="text-sm font-medium text-foreground">Full Name *</Label>
-                      <Input id="fullName" name="fullName" type="text" value={formData.fullName} onChange={handleInputChange} placeholder="Enter your full name" className="mt-2 rounded-xl" required />
+                      <Input id="fullName" name="fullName" type="text" value={formData.fullName} onChange={handleInputChange} placeholder="John Smith" className="mt-2 rounded-xl" required />
                     </div>
                     <div>
-                      <Label htmlFor="email" className="text-sm font-medium text-foreground">Email Address *</Label>
-                      <Input id="email" name="email" type="email" value={formData.email} onChange={handleInputChange} placeholder="Enter your email" className="mt-2 rounded-xl" required />
+                      <Label htmlFor="email" className="text-sm font-medium text-foreground">Work Email *</Label>
+                      <Input id="email" name="email" type="email" value={formData.email} onChange={handleInputChange} placeholder="john@company.com" className="mt-2 rounded-xl" required />
                     </div>
                   </div>
-                  <div className="grid md:grid-cols-2 gap-6">
+                  <div className="grid md:grid-cols-2 gap-5">
                     <div>
                       <Label htmlFor="phone" className="text-sm font-medium text-foreground">Phone Number</Label>
-                      <Input id="phone" name="phone" type="tel" value={formData.phone} onChange={handleInputChange} placeholder="Enter your phone number" className="mt-2 rounded-xl" />
+                      <Input id="phone" name="phone" type="tel" value={formData.phone} onChange={handleInputChange} placeholder="+91 XXXXX XXXXX" className="mt-2 rounded-xl" />
                     </div>
                     <div>
-                      <Label htmlFor="company" className="text-sm font-medium text-foreground">Company/Organization</Label>
-                      <Input id="company" name="company" type="text" value={formData.company} onChange={handleInputChange} placeholder="Enter your company name" className="mt-2 rounded-xl" />
+                      <Label htmlFor="company" className="text-sm font-medium text-foreground">Organization</Label>
+                      <Input id="company" name="company" type="text" value={formData.company} onChange={handleInputChange} placeholder="Company name" className="mt-2 rounded-xl" />
                     </div>
                   </div>
                   <div>
-                    <Label htmlFor="message" className="text-sm font-medium text-foreground">Message *</Label>
-                    <Textarea id="message" name="message" value={formData.message} onChange={handleInputChange} placeholder="Tell us about your requirements..." className="mt-2 min-h-[120px] rounded-xl" required />
+                    <Label htmlFor="message" className="text-sm font-medium text-foreground">How can we help? *</Label>
+                    <Textarea id="message" name="message" value={formData.message} onChange={handleInputChange} placeholder="Tell us about your project requirements, timeline, and any specific challenges..." className="mt-2 min-h-[120px] rounded-xl" required />
                   </div>
                   <Button type="submit" size="lg" className="w-full bg-accent text-accent-foreground hover:bg-accent/90 rounded-xl h-12 shadow-lg shadow-accent/25" disabled={isSubmitting}>
-                    {isSubmitting ? "Sending..." : (<>Send Message <Send className="ml-2 h-5 w-5" /></>)}
+                    {isSubmitting ? "Submitting..." : (<>Submit Inquiry <Send className="ml-2 h-5 w-5" /></>)}
                   </Button>
+                  <p className="text-xs text-muted-foreground text-center">By submitting, you agree to our privacy policy. We never share your data with third parties.</p>
                 </form>
               </CardContent>
             </Card>
-          </div>
-        </motion.div>
-
-        {/* Contact Info Cards */}
-        <div className="grid md:grid-cols-3 gap-6 mt-12">
-          {[
-            { icon: MapPin, title: "Visit Us", content: "Plot No 1398 Govindpur\nDistt. Saharanpur Uttar Pradesh" },
-            { icon: Phone, title: "Call Us", content: "+91-8979199267\nMon-Fri 9AM-6PM" },
-            { icon: Clock, title: "Business Hours", content: "Monday - Friday\n9:00 AM - 6:00 PM" },
-          ].map((card, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1, duration: 0.5 }}
-            >
-              <Card className="text-center p-6 rounded-2xl hover:-translate-y-1 transition-all duration-300 hover:premium-shadow-hover">
-                <CardContent className="pt-6">
-                  <div className="h-12 w-12 rounded-xl bg-accent/10 flex items-center justify-center mx-auto mb-4">
-                    <card.icon className="h-6 w-6 text-accent" />
-                  </div>
-                  <h4 className="font-semibold mb-2">{card.title}</h4>
-                  <p className="text-muted-foreground text-sm whitespace-pre-line">{card.content}</p>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
+          </motion.div>
         </div>
       </div>
     </section>
