@@ -105,8 +105,8 @@ const Contact = () => {
         {/* Contact Info Cards */}
         <div className="grid md:grid-cols-3 gap-6 mt-12">
           {[
-            { icon: MapPin, title: "Visit Us", content: "Plot No 1398 Air Force Road\nGovindpur\nDistt. Saharanpur Uttar Pradesh" },
-            { icon: Phone, title: "Call Us", content: "+918800417443\nMon-Fri 9AM-6PM" },
+            { icon: MapPin, title: "Visit Us", content: "Plot No 1398 Govindpur\nDistt. Saharanpur Uttar Pradesh" },
+            { icon: Phone, title: "Call Us", content: "+91-8979199267\nMon-Fri 9AM-6PM" },
             { icon: Clock, title: "Business Hours", content: "Monday - Friday\n9:00 AM - 6:00 PM" },
           ].map((card, i) => (
             <motion.div
