@@ -52,7 +52,7 @@ const Footer = () => {
           <div>
             <h3 className="text-sm font-semibold mb-5 uppercase tracking-wider text-primary-foreground/80">Our Products</h3>
             <ul className="space-y-3">
-              {["ConnectLH™ Antennas", "FTTH Products", "Fiber Cables", "RF Cables", "Network Cables", "Racks & Cabinets", "BTS Installation"].map((s, i) => (
+              {["ConnectLH™ Antennas", "FTTH Products", "Fiber Cables", "RF Cables", "Network Cables", "AC & DC PoE", "Racks & Cabinets"].map((s, i) => (
                 <li key={i}>
                   <a href="/products" className="text-primary-foreground/50 hover:text-accent text-sm transition-colors duration-200">{s}</a>
                 </li>
