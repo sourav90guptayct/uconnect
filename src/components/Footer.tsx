@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <footer className="bg-primary text-primary-foreground">
       <div className="container mx-auto px-4 py-16">
-        <div className="grid lg:grid-cols-5 md:grid-cols-2 gap-10">
+        <div className="grid lg:grid-cols-5 md:grid-cols-2 gap-8">
           <div>
             <div className="text-2xl font-bold mb-4">
               uConnect<span className="text-gradient"> Technologies</span>
@@ -60,7 +60,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          <div>
+          <div className="md:col-span-2 lg:col-span-1">
             <h3 className="text-sm font-semibold mb-5 uppercase tracking-wider text-primary-foreground/80">Contact Info</h3>
             <div className="space-y-4">
               <div className="flex items-start gap-3">
@@ -73,7 +73,7 @@ const Footer = () => {
               </div>
               <div className="flex items-center gap-3">
                 <Mail className="h-4 w-4 text-accent flex-shrink-0" />
-                <div className="text-primary-foreground/50 text-sm break-all">reachus@youconnecttech.com</div>
+                <a href="mailto:reachus@youconnecttech.com" className="text-primary-foreground/50 hover:text-accent text-sm transition-colors break-all">reachus@youconnecttech.com</a>
               </div>
             </div>
           </div>
