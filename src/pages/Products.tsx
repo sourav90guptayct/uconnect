@@ -212,112 +212,40 @@ const Products = () => {
       ]
     },
     racks: {
-      title: "Smart Racks, Cabinets & Enclosures",
-      description: "YouConnect™ Smart Telecommunication Racks & Enclosures — the perfect combination of durability, efficiency, and cutting-edge technology designed to withstand harsh environments while ensuring optimal performance. Always Connected. Always Secure. Always Safe.",
-      datasheet: "/datasheets/YouConnect-Racks-Cabinets-Catalogue.pdf",
+      title: "Racks and Cabinets",
+      description: "Professional equipment mounting solutions for servers, network devices, and telecommunications equipment with flexible and secure designs.",
       subProducts: [
         {
-          name: "19\" IP-55 Outdoor Cabinets",
-          image: "/products/outdoor-cabinet.jpg",
-          description: "Maximum protection for environmental and mechanical impacts, vandalism, electromagnetic emissions and extreme thermal conditions",
+          name: "Open Frame Racks",
+          image: "/products/open-rack-unicel.jpg",
+          description: "Flexible mounting solutions with easy access and airflow",
           specs: [
-            "IP-55 Ingress Protection rating",
-            "EPDM/Polyurethane gasket sealing",
-            "3-point swing handle door locking",
-            "Anti-graffiti RAL7035 powder coating",
-            "Modular construction for easy installation",
-            "Natural or forced cooling configurations"
+            "Floor-standing or wall-mounted options",
+            "Two and four-post configurations",
+            "Easy access to equipment",
+            "Optimal airflow management"
           ]
         },
         {
-          name: "Floor Mount Cabinets",
-          image: "/products/floor-mount-cabinet.jpg",
-          description: "Single and double bay configurations with smart monitoring for critical telecom infrastructure",
+          name: "Closed Cabinets",
+          image: "/products/enclosed-cabinet-unicel.png",
+          description: "Secure enclosures for servers and IT equipment",
           specs: [
-            "IP-55/IP-67 customized ingress protection",
-            "Sizes: 9U, 24U, 32U, 42U and 48U",
-            "Smart locks, smoke & door sensors",
-            "Natural/forced cooling configurations",
-            "Fan tray, earthing, ODFs, PG glands",
-            "Cable hooks for easy handling"
+            "Locking mechanisms for security",
+            "Protection from environmental factors",
+            "Professional appearance",
+            "Dust and moisture protection"
           ]
         },
         {
-          name: "Pole Mount Cabinets",
-          image: "/products/pole-mount-cabinet.jpg",
-          description: "Compact IP55 galvanised steel cabinets for pole-mounted deployments",
+          name: "Wall-Mounted Racks",
+          image: "/products/wall-mount-rack.jpg",
+          description: "Space-saving enclosed racks for wall mounting",
           specs: [
-            "1.2mm galvanised steel construction",
-            "IP55 ingress protection",
-            "2x 105 CFM fans (220VAC/48VDC)",
-            "Pole-mounted kits & cage nuts included",
-            "RAL 7035 polyester powder coating",
-            "Acid pickling & rust prevention treatment"
-          ]
-        },
-        {
-          name: "Wall Mount Cabinets",
-          image: "/products/wall-mount-cabinet.jpg",
-          description: "Outdoor-rated wall mount enclosures with thermal and cable management",
-          specs: [
-            "Galvanised steel welded construction",
-            "IP54/IP55 ingress protection",
-            "RAL 7035 pure polyester finish",
-            "Thermal management equipment included",
-            "Cable management accessories",
-            "Designed for outdoor applications"
-          ]
-        },
-        {
-          name: "19\" Open Rack Cabinets",
-          image: "/products/open-rack-cabinet.jpg",
-          description: "Vertical rack mounting with easy access for installation and maintenance",
-          specs: [
-            "Adjustable 19\" mounting rails front & rear",
-            "RU markings, cable management rings",
-            "Available in 42U, 45U, 48U capacities",
-            "RAL 9005 black fine texture finish",
-            "Rain hood included",
-            "Assembled & SKD options available"
-          ]
-        },
-        {
-          name: "ODC Solutions",
-          image: "/products/odc-cabinet.jpg",
-          description: "Active and passive outdoor distribution cabinets with integrated power, connectivity, security, and cooling",
-          specs: [
-            "Configurable IP rating & dimensions",
-            "AC unit or fan/filter kit cooling",
-            "PDU, power chassis & rectifier options",
-            "Backup battery integration",
-            "Fiber spools & document tray accessories",
-            "Ideal for broadband & telecom deployments"
-          ]
-        },
-        {
-          name: "BESS Cabinets",
-          image: "/products/bess-cabinet.jpg",
-          description: "Battery Energy Storage System cabinets with advanced safety monitoring",
-          specs: [
-            "IP-55 customized ingress protection",
-            "Smoke & flood detection systems",
-            "Door open alarm & ground busbar",
-            "Passive/active thermal management",
-            "Optional remote monitoring system",
-            "Designed for energy storage applications"
-          ]
-        },
-        {
-          name: "Pre-Configured Systems",
-          image: "/products/pre-configured-system.jpg",
-          description: "100% fit-for-purpose solutions with in-house electrical integration, ready for on-site installation",
-          specs: [
-            "Wiring per circuit diagram",
-            "DIN crimping & soldering",
-            "Cable labeling & marking",
-            "Component-level troubleshooting",
-            "Functional testing & documentation",
-            "Fully configured from manufacturer"
+            "Welded frames with integrated side panels",
+            "Vented top cover for cooling",
+            "Front glass door with lock",
+            "Flexible mounting locations"
           ]
         }
       ]
