@@ -89,11 +89,13 @@ export default function PersonalDetailsForm({ data, onUpdate, onNext, onPrevious
 
       if (uploadError) throw uploadError;
 
-      const { data: urlData } = supabase.storage
+      const { data: urlData } = await supabase.storage
         .from('profile-pictures')
-        .getPublicUrl(fileName);
+        .createSignedUrl(fileName, 60 * 60 * 24 * 365); // 1-year signed URL
 
-      updateField('profilePictureUrl', urlData.publicUrl);
+      if (urlData?.signedUrl) {
+        updateField('profilePictureUrl', urlData.signedUrl);
+      }
       toast({
         title: "Image uploaded successfully",
         description: "Your profile picture has been updated.",
