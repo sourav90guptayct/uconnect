@@ -1,0 +1,1 @@
+REVOKE EXECUTE ON FUNCTION public.assign_admin_role_to_user(TEXT) FROM PUBLIC, anon, authenticated;
