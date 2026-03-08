@@ -99,7 +99,7 @@ serve(async (req) => {
     // Try to send email notification (non-critical)
     try {
       const emailResponse = await resend.emails.send({
-        from: 'YouConnect Technologies <noreply@resend.dev>',
+        from: 'YouConnect Technologies <noreply@youconnecttech.com>',
         to: ['reachus@youconnecttech.com', 'shivani.s@youconnecttech.com'],
         subject: `New Contact Form Submission from ${safeFullName}`,
         html: `
