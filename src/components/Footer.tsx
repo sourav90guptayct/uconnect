@@ -1,5 +1,5 @@
 import { Separator } from "@/components/ui/separator";
-import { Facebook, Twitter, Linkedin, Instagram, Mail, Phone, MapPin } from "lucide-react";
+import { Facebook, Twitter, Linkedin, Instagram, Mail } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -63,14 +63,6 @@ const Footer = () => {
           <div className="md:col-span-2 lg:col-span-1">
             <h3 className="text-sm font-semibold mb-5 uppercase tracking-wider text-primary-foreground/80">Contact Info</h3>
             <div className="space-y-4">
-              <div className="flex items-start gap-3">
-                <MapPin className="h-4 w-4 text-accent mt-1 flex-shrink-0" />
-                <div className="text-primary-foreground/50 text-sm">Plot No 1398 Govindpur<br />Distt. Saharanpur Uttar Pradesh</div>
-              </div>
-              <div className="flex items-center gap-3">
-                <Phone className="h-4 w-4 text-accent flex-shrink-0" />
-                <div className="text-primary-foreground/50 text-sm">+91-8979199267</div>
-              </div>
               <div className="flex items-center gap-3">
                 <Mail className="h-4 w-4 text-accent flex-shrink-0" />
                 <a href="mailto:reachus@youconnecttech.com" className="text-primary-foreground/50 hover:text-accent text-sm transition-colors break-all">reachus@youconnecttech.com</a>
