@@ -18,6 +18,8 @@ const EDUCATION = ["Graduate", "Diploma", "10th", "12th", "Post Graduate"];
 const EXPERIENCE = ["Experienced", "Fresher"];
 const PROFILES = ["RF Engineer", "Rigger/Technician", "Back Office /Team Leader", "FTTH Engineer", "Switch/Router Engineer"];
 const TOTAL_EXP = ["0-1 Year", "1 - 2 Year", "2 - 3 Year", "> 3 Years"];
+const BIKE = ["Yes", "No", "Can be arranged"];
+const LAPTOP = ["No", "Yes", "Can be arranged"];
 
 const initialState = {
   fullName: "",
@@ -31,6 +33,8 @@ const initialState = {
   currentCompany: "",
   jobPosition: "",
   experienceYears: "",
+  hasBike: "",
+  hasLaptop: "",
 };
 
 const JobApplicationForm = () => {
