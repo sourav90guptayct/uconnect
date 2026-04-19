@@ -39,11 +39,20 @@ const Header = () => {
     { slug: "fabricated", label: "Fabricated Products", desc: "Poles, trays, mounts & stands" },
   ];
 
+  const serviceCategories = [
+    { slug: "networks", label: "Networks", desc: "Connectivity infrastructure & monitoring" },
+    { slug: "managed-services", label: "Managed Services", desc: "End-to-end operations & SLAs" },
+    { slug: "digital-transformation", label: "Digital Transformation", desc: "Cloud, data & enterprise platforms" },
+    { slug: "ip-services", label: "IP Services", desc: "ITeS & system integration" },
+    { slug: "resource-management", label: "Resource Management", desc: "Technology-enabled staffing" },
+    { slug: "infra-installation", label: "Infra Installation", desc: "Tower & pole erection services" },
+  ];
+
   const publicLinks = [
     { to: "/", label: "Home" },
     { to: "/about", label: "About Us" },
-    { to: "/services", label: "Services" },
-    { to: "/products", label: "Products", hasMenu: true },
+    { to: "/services", label: "Services", hasMenu: "services" as const },
+    { to: "/products", label: "Products", hasMenu: "products" as const },
     { to: "/careers", label: "Careers" },
     { to: "/clients", label: "Clients" },
     { to: "/?section=contact", label: "Contact" },
