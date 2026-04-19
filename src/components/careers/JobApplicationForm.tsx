@@ -18,6 +18,8 @@ const EDUCATION = ["Graduate", "Diploma", "10th", "12th", "Post Graduate"];
 const EXPERIENCE = ["Experienced", "Fresher"];
 const PROFILES = ["RF Engineer", "Rigger/Technician", "Back Office /Team Leader", "FTTH Engineer", "Switch/Router Engineer"];
 const TOTAL_EXP = ["0-1 Year", "1 - 2 Year", "2 - 3 Year", "> 3 Years"];
+const BIKE = ["Yes", "No", "Can be arranged"];
+const LAPTOP = ["No", "Yes", "Can be arranged"];
 
 const initialState = {
   fullName: "",
@@ -31,6 +33,8 @@ const initialState = {
   currentCompany: "",
   jobPosition: "",
   experienceYears: "",
+  hasBike: "",
+  hasLaptop: "",
 };
 
 const JobApplicationForm = () => {
@@ -47,6 +51,7 @@ const JobApplicationForm = () => {
       "fullName", "mobile", "email", "state", "city",
       "qualification", "specialization", "experienceLevel",
       "currentCompany", "jobPosition", "experienceYears",
+      "hasBike", "hasLaptop",
     ];
     const missing = required.filter((k) => !form[k]);
     if (missing.length) {
@@ -155,6 +160,24 @@ const JobApplicationForm = () => {
               <SelectTrigger id="experienceYears"><SelectValue placeholder="Select" /></SelectTrigger>
               <SelectContent>
                 {TOTAL_EXP.map((s) => <SelectItem key={s} value={s}>{s}</SelectItem>)}
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="hasBike">Do You Have Bike? *</Label>
+            <Select value={form.hasBike} onValueChange={(v) => update("hasBike", v)}>
+              <SelectTrigger id="hasBike"><SelectValue placeholder="Select" /></SelectTrigger>
+              <SelectContent>
+                {BIKE.map((s) => <SelectItem key={s} value={s}>{s}</SelectItem>)}
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="hasLaptop">Do You Have Laptop? *</Label>
+            <Select value={form.hasLaptop} onValueChange={(v) => update("hasLaptop", v)}>
+              <SelectTrigger id="hasLaptop"><SelectValue placeholder="Select" /></SelectTrigger>
+              <SelectContent>
+                {LAPTOP.map((s) => <SelectItem key={s} value={s}>{s}</SelectItem>)}
               </SelectContent>
             </Select>
           </div>
