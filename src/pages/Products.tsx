@@ -621,7 +621,7 @@ const Products = () => {
                 <motion.button
                   key={key}
                   type="button"
-                  onClick={() => setActiveCategory(key)}
+                  onClick={() => setSearchParams({ category: key })}
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: idx * 0.05 }}
@@ -663,7 +663,7 @@ const Products = () => {
           >
             <button
               type="button"
-              onClick={() => setActiveCategory(null)}
+              onClick={() => setSearchParams({})}
               className="inline-flex items-center gap-2 text-sm font-semibold text-foreground/70 hover:text-accent transition-colors"
             >
               <ArrowLeft className="w-4 h-4" />
