@@ -1,5 +1,6 @@
 import { ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const Services = () => {
   const services = [
@@ -57,15 +58,17 @@ const Services = () => {
 
         <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-5">
           {services.map((service, index) => (
-            <motion.a
+            <motion.div
               key={index}
-              href="#contact"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.06, duration: 0.5 }}
-              className="group relative block rounded-3xl overflow-hidden bg-muted aspect-[4/5] sm:aspect-[5/6]"
             >
+              <Link
+                to="/services"
+                className="group relative block rounded-3xl overflow-hidden bg-muted aspect-[4/5] sm:aspect-[5/6]"
+              >
               <img
                 loading="lazy"
                 decoding="async"
@@ -88,7 +91,8 @@ const Services = () => {
                   </div>
                 </div>
               </div>
-            </motion.a>
+              </Link>
+            </motion.div>
           ))}
         </div>
       </div>
