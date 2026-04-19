@@ -26,11 +26,24 @@ const Header = () => {
     else navigate('/auth');
   };
 
+  const productCategories = [
+    { slug: "antennas", label: "Dish Antennas", desc: "ConnectLH™ 2×2 MIMO dual-pol dishes" },
+    { slug: "poe", label: "AC & DC PoE", desc: "Power over Ethernet adapters & injectors" },
+    { slug: "switches", label: "Managed PoE Switches", desc: "Carrier-grade L2+ Gigabit switches" },
+    { slug: "ftth", label: "FTTH Products", desc: "Fiber-to-home connectivity solutions" },
+    { slug: "fiberCables", label: "Fiber Cables", desc: "Optic fiber cable assemblies" },
+    { slug: "rfCables", label: "RF Cables", desc: "RF & coaxial cables" },
+    { slug: "networkCables", label: "Network Cables", desc: "CAT5, CAT6 & patch cords" },
+    { slug: "racks", label: "Racks & Cabinets", desc: "Open frame, closed & wall-mount" },
+    { slug: "bts", label: "BTS Installation", desc: "Site infrastructure components" },
+    { slug: "fabricated", label: "Fabricated Products", desc: "Poles, trays, mounts & stands" },
+  ];
+
   const publicLinks = [
     { to: "/", label: "Home" },
     { to: "/about", label: "About Us" },
     { to: "/services", label: "Services" },
-    { to: "/products", label: "Products" },
+    { to: "/products", label: "Products", hasMenu: true },
     { to: "/careers", label: "Careers" },
     { to: "/clients", label: "Clients" },
     { to: "/?section=contact", label: "Contact" },
