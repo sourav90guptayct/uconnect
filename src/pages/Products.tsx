@@ -559,23 +559,32 @@ const Products = () => {
       <Header />
       
       <main className="animate-fade-in">
-        {/* Hero Section with Image */}
-        <div className="relative h-[400px] w-full overflow-hidden">
-          <img loading="lazy" decoding="async" 
-            src="/products/fiber-optic-hero.webp" 
-            alt="Fiber Optic Cable Assemblies"
-            className="w-full h-full object-cover"
+        {/* Editorial Hero */}
+        <div
+          className="relative overflow-hidden pt-28 pb-16 lg:pt-32 lg:pb-20"
+          style={{ background: "var(--gradient-hero-soft)" }}
+        >
+          <div
+            className="absolute inset-0 opacity-[0.04] pointer-events-none"
+            style={{
+              backgroundImage: `linear-gradient(hsl(var(--foreground)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--foreground)) 1px, transparent 1px)`,
+              backgroundSize: "72px 72px",
+            }}
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/40 flex items-center">
-            <div className="container mx-auto px-4">
-              <div className="max-w-2xl">
-                <h1 className="text-4xl md:text-6xl font-bold mb-4 text-white">
-                  Telecom, IT & Infrastructure Products
-                </h1>
-                <p className="text-lg md:text-xl text-white/90">
-                  From our proprietary ConnectLH™ antenna systems to fiber optics and network infrastructure — a complete product ecosystem engineered for performance.
-                </p>
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="max-w-5xl">
+              <div className="text-sm font-semibold text-accent uppercase tracking-widest mb-5">
+                Our products
               </div>
+              <h1 className="display-headline text-foreground text-5xl sm:text-6xl lg:text-8xl">
+                Engineered for
+                <br />
+                <span className="text-accent">the wireless edge.</span>
+              </h1>
+              <p className="mt-8 text-base lg:text-lg text-muted-foreground max-w-2xl leading-relaxed">
+                From our proprietary ConnectLH™ antenna systems to fiber optics and network
+                infrastructure — a complete product ecosystem engineered for performance.
+              </p>
             </div>
           </div>
         </div>
