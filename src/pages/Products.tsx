@@ -30,6 +30,8 @@ const Products = () => {
     ftth: "/products/category-ftth.jpg",
     racks: "/products/category-racks.jpg",
     poe: "/products/category-poe.webp",
+    rfCables: "/products/category-rfCables.jpg",
+    fiberCables: "/products/category-fiberCables.jpg",
   };
 
   const productCategories = {
