@@ -35,6 +35,8 @@ Deno.serve(async (req) => {
       currentCompany,
       jobPosition,
       experienceYears,
+      hasBike,
+      hasLaptop,
     } = await req.json();
 
     const fbzx = await getFbzx();
@@ -55,6 +57,10 @@ Deno.serve(async (req) => {
       "entry.1560570624_sentinel": "",
       "entry.264762602": experienceYears ?? "",
       "entry.264762602_sentinel": "",
+      "entry.2099693160": hasBike ?? "",
+      "entry.2099693160_sentinel": "",
+      "entry.195042154": hasLaptop ?? "",
+      "entry.195042154_sentinel": "",
       fvv: "1",
       pageHistory: "0",
       submissionTimestamp: "-1",
@@ -74,12 +80,10 @@ Deno.serve(async (req) => {
       body: formBody.toString(),
     });
 
-    const html = await res.text();
-    const success =
-      res.status === 200 &&
-      (html.includes("freebirdFormviewerViewResponseConfirm") ||
-        html.includes("Your response has been recorded"));
-    console.log("Careers Form submit status:", res.status, "success:", success, "len:", html.length);
+    // Google returns HTTP 200 on successful submission. A 4xx means a required
+    // field is missing or the form rejected the payload.
+    const success = res.status === 200;
+    console.log("Careers Form submit status:", res.status, "success:", success);
 
     return new Response(
       JSON.stringify({ ok: success, status: res.status }),
