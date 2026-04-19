@@ -43,11 +43,6 @@ const Clients = () => {
     logo: "/clients/siemens.jpg",
     sector: "Industrial Technology",
     description: "Industrial automation and digitalization solutions"
-  }, {
-    name: "Alstom",
-    logo: "/clients/alstom.jpg",
-    sector: "Rail & Mobility",
-    description: "Sustainable rail transport and mobility solutions"
   }];
   const stats = [{
     icon: Building2,
