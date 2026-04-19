@@ -36,8 +36,10 @@
 
     --gradient-primary: linear-gradient(135deg, hsl(222 47% 11%), hsl(222 47% 20%));
     --gradient-hero: linear-gradient(135deg, hsl(222 47% 8%), hsl(222 47% 16%));
+    --gradient-hero-soft: linear-gradient(180deg, hsl(230 30% 96%) 0%, hsl(225 35% 93%) 100%);
     --gradient-accent: linear-gradient(135deg, hsl(24 95% 53%), hsl(32 95% 58%));
     --gradient-glass: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+    --hero-tint: 230 30% 96%;
 
     --radius: 0.75rem;
 
@@ -182,5 +184,18 @@
 
   .animate-float-delayed {
     animation: float 6s ease-in-out 2s infinite;
+  }
+
+  @keyframes wobble {
+    0%, 100% { transform: rotate(-8deg) scale(1); }
+    50% { transform: rotate(-4deg) scale(1.04); }
+  }
+  .animate-wobble { animation: wobble 4s ease-in-out infinite; }
+
+  .display-headline {
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 0.95;
   }
 }
