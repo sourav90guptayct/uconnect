@@ -43,6 +43,26 @@ const Clients = () => {
     logo: "/clients/siemens.jpg",
     sector: "Industrial Technology",
     description: "Industrial automation and digitalization solutions"
+  }, {
+    name: "Airports Authority of India",
+    logo: "/clients/aai.jpg",
+    sector: "Aviation",
+    description: "National airports operations and infrastructure"
+  }, {
+    name: "Larsen & Toubro",
+    logo: "/clients/lt.jpg",
+    sector: "Engineering & Construction",
+    description: "Multinational engineering and construction conglomerate"
+  }, {
+    name: "Indus Towers",
+    logo: "/clients/indus-towers.jpg",
+    sector: "Telecom Infrastructure",
+    description: "Leading passive telecom infrastructure provider"
+  }, {
+    name: "Beetel",
+    logo: "/clients/beetel.jpg",
+    sector: "Telecommunications",
+    description: "Communication devices and networking solutions"
   }];
   const stats = [{
     icon: Building2,
