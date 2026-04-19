@@ -49,11 +49,15 @@ Deno.serve(async (req) => {
       "entry.13989485": qualification ?? "",
       "entry.1243893873": specialization ?? "",
       "entry.1515116795": experienceLevel ?? "",
+      "entry.1515116795_sentinel": "",
       "entry.801044223": currentCompany ?? "",
       "entry.1560570624": jobPosition ?? "",
+      "entry.1560570624_sentinel": "",
       "entry.264762602": experienceYears ?? "",
+      "entry.264762602_sentinel": "",
       fvv: "1",
       pageHistory: "0",
+      submissionTimestamp: "-1",
       ...(fbzx
         ? { fbzx, partialResponse: `[null,null,"${fbzx}"]` }
         : {}),
