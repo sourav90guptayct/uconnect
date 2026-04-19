@@ -39,11 +39,6 @@ const Clients = () => {
     sector: "Network Infrastructure",
     description: "State-wide optical fibre network infrastructure"
   }, {
-    name: "Electronics Corporation of India Limited",
-    logo: "/lovable-uploads/92c8fc98-f9f4-42d7-a9e7-7770cec572f1.png",
-    sector: "Electronics & Technology",
-    description: "Advanced electronics and automation solutions"
-  }, {
     name: "Siemens",
     logo: "/clients/siemens.jpg",
     sector: "Industrial Technology",
