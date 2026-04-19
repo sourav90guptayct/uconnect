@@ -22,6 +22,9 @@ Deno.serve(async (req) => {
       "entry.602424569": phone || "Not provided",
       "entry.1474328581": company || "Not provided",
       "entry.99606719": message ?? "",
+      "fvv": "1",
+      "pageHistory": "0",
+      "fbzx": "-1234567890123456789",
     });
 
     const res = await fetch(GOOGLE_FORM_ACTION, {
