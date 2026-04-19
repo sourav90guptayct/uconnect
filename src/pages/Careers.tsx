@@ -218,7 +218,7 @@ const CareersPage = () => {
       <section className="py-12">
         <div className="container mx-auto px-4">
           <div className="rounded-2xl overflow-hidden">
-            <img src="/lovable-uploads/115872b6-8d21-43a0-b6ed-a612375446ba.png" alt="Team collaboration" className="w-full h-96 object-cover" />
+            <img src="/lovable-uploads/115872b6-8d21-43a0-b6ed-a612375446ba.webp" alt="Team collaboration" className="w-full h-96 object-cover" />
           </div>
         </div>
       </section>

@@ -13,7 +13,7 @@ const Products = () => {
       subProducts: [
         {
           name: "FMS/LIU Boxes",
-          image: "/products/fms-96-port.png",
+          image: "/products/fms-96-port.webp",
           description: "Fiber management boxes organize and manage fiber optic cables and connections in a network.",
           specs: [
             "12 Fiber to 288 Fiber sizes",
@@ -96,7 +96,7 @@ const Products = () => {
       subProducts: [
         {
           name: "Optic Fiber Patch Cords",
-          image: "/products/fiber-patch-cord-1.png",
+          image: "/products/fiber-patch-cord-1.webp",
           description: "High-speed fiber optic cable assemblies for seamless communication",
           specs: [
             "Lightning-fast data transmission",
@@ -107,7 +107,7 @@ const Products = () => {
         },
         {
           name: "CPRI Cables",
-          image: "/products/fiber-patch-cord-2.png",
+          image: "/products/fiber-patch-cord-2.webp",
           description: "High-performance connectivity for modern communication networks",
           specs: [
             "Ultra-fast data transmission",
@@ -124,7 +124,7 @@ const Products = () => {
       subProducts: [
         {
           name: "RF Jumpers",
-          image: "/products/rf-jumpers.png",
+          image: "/products/rf-jumpers.webp",
           description: "Professional RF cables for telecommunications applications",
           specs: [
             "7/8\", 1/2\" flex and super flex options",
@@ -152,7 +152,7 @@ const Products = () => {
       subProducts: [
         {
           name: "CAT 5 Cables",
-          image: "/products/cat5-cable-assembly.png",
+          image: "/products/cat5-cable-assembly.webp",
           description: "High-speed twisted pair cables for Ethernet networks",
           specs: [
             "Up to 100 MHz data transfer rates",
@@ -163,7 +163,7 @@ const Products = () => {
         },
         {
           name: "CAT 6 Cables",
-          image: "/products/cat6-cable-assembly.png",
+          image: "/products/cat6-cable-assembly.webp",
           description: "Enhanced performance cables for high-speed data transfer",
           specs: [
             "Up to 250 MHz bandwidth",
@@ -174,7 +174,7 @@ const Products = () => {
         },
         {
           name: "Fiber Patch Cords",
-          image: "/products/patch-cords.png",
+          image: "/products/patch-cords.webp",
           description: "High-quality fiber optic patch cables for reliable data transmission",
           specs: [
             "Various connector types (LC, SC, MTRJ, ST)",
@@ -191,7 +191,7 @@ const Products = () => {
       subProducts: [
         {
           name: "Custom Cable Assemblies",
-          image: "/products/specialized-cable.jpg",
+          image: "/products/specialized-cable.webp",
           description: "Tailored cables with customized specifications",
           specs: [
             "HDMI Cables for high-definition",
@@ -219,7 +219,7 @@ const Products = () => {
       subProducts: [
         {
           name: "Open Frame Racks",
-          image: "/products/open-rack-unicel.jpg",
+          image: "/products/open-rack-unicel.webp",
           description: "Flexible mounting solutions with easy access and airflow",
           specs: [
             "Floor-standing or wall-mounted options",
@@ -230,7 +230,7 @@ const Products = () => {
         },
         {
           name: "Closed Cabinets",
-          image: "/products/enclosed-cabinet-unicel.png",
+          image: "/products/enclosed-cabinet-unicel.webp",
           description: "Secure enclosures for servers and IT equipment",
           specs: [
             "Locking mechanisms for security",
@@ -241,7 +241,7 @@ const Products = () => {
         },
         {
           name: "Wall-Mounted Racks",
-          image: "/products/wall-mount-rack.jpg",
+          image: "/products/wall-mount-rack.webp",
           description: "Space-saving enclosed racks for wall mounting",
           specs: [
             "Welded frames with integrated side panels",
@@ -258,7 +258,7 @@ const Products = () => {
       subProducts: [
         {
           name: "Cold Shrink Tubes",
-          image: "/products/cold-shrink-tube-unicel.png",
+          image: "/products/cold-shrink-tube-unicel.webp",
           description: "Revolutionary cable and connector insulation solution",
           specs: [
             "No heat application required",
@@ -269,7 +269,7 @@ const Products = () => {
         },
         {
           name: "Tapes",
-          image: "/products/pvc-tape.jpg",
+          image: "/products/pvc-tape.webp",
           description: "Essential insulation and bundling solutions",
           specs: [
             "Electrical insulation for wires and cables",
@@ -280,7 +280,7 @@ const Products = () => {
         },
         {
           name: "Cable Ties",
-          image: "/products/cable-ties-unicel.png",
+          image: "/products/cable-ties-unicel.webp",
           description: "Durable nylon straps for cable management",
           specs: [
             "Various lengths and strengths",
@@ -291,7 +291,7 @@ const Products = () => {
         },
         {
           name: "Lugs",
-          image: "/products/lugs.png",
+          image: "/products/lugs.webp",
           description: "Cable lugs for secure electrical connections",
           specs: [
             "Copper and aluminum construction",
@@ -302,7 +302,7 @@ const Products = () => {
         },
         {
           name: "Feeder Clamps",
-          image: "/products/feeder-clamps.png",
+          image: "/products/feeder-clamps.webp",
           description: "Cable fastening solutions for telecommunications",
           specs: [
             "Secures coaxial and feeder cables",
@@ -313,7 +313,7 @@ const Products = () => {
         },
         {
           name: "Weather Proofing Kits",
-          image: "/products/weather-proofing-kit.png",
+          image: "/products/weather-proofing-kit.webp",
           description: "Protection for exposed telecommunications connectors",
           specs: [
             "Moisture protection",
@@ -324,7 +324,7 @@ const Products = () => {
         },
         {
           name: "Conduits",
-          image: "/products/conduits.png",
+          image: "/products/conduits.webp",
           description: "Protective pathways for cables and wires",
           specs: [
             "PVC and metal options",
@@ -475,7 +475,7 @@ const Products = () => {
       subProducts: [
         {
           name: "CLHS-2710GH — 8-Port L2+ Managed GbE PoE+ Switch",
-          image: "/products/clhs-2710gh-switch.jpg",
+          image: "/products/clhs-2710gh-switch.webp",
           description: "Next-generation L2+ managed Gigabit Ethernet PoE+ switch with 8× 10/100/1000 RJ45 PoE+ ports, 2× GbE RJ45/SFP combo uplinks and RJ45 console. Delivers 250W total PoE budget with carrier Ethernet features for SMB and Enterprise applications.",
           specs: [
             "8× 10/100/1000 RJ45 PoE+ (802.3at/af) | 250W total budget",
@@ -497,7 +497,7 @@ const Products = () => {
       subProducts: [
         {
           name: "Poles",
-          image: "/products/poles.jpeg",
+          image: "/products/poles.webp",
           description: "Integral components for supporting utilities",
           specs: [
             "Materials: wood, metal, or concrete",
@@ -508,7 +508,7 @@ const Products = () => {
         },
         {
           name: "Cable Trays",
-          image: "/products/cable-trays.png",
+          image: "/products/cable-trays.webp",
           description: "Efficient cable management and support systems",
           specs: [
             "Galvanized steel, aluminum, or fiberglass",
@@ -519,7 +519,7 @@ const Products = () => {
         },
         {
           name: "MS Stands",
-          image: "/products/ms-stands.png",
+          image: "/products/ms-stands.webp",
           description: "Mild Steel Stands for equipment support",
           specs: [
             "Fabricated from mild steel",
@@ -530,7 +530,7 @@ const Products = () => {
         },
         {
           name: "Antenna Mounts",
-          image: "/products/antenna-mounts.png",
+          image: "/products/antenna-mounts.webp",
           description: "Essential mounting solutions for telecommunications",
           specs: [
             "Secure platform for antenna positioning",
@@ -562,7 +562,7 @@ const Products = () => {
         {/* Hero Section with Image */}
         <div className="relative h-[400px] w-full overflow-hidden">
           <img 
-            src="/products/fiber-optic-hero.jpeg" 
+            src="/products/fiber-optic-hero.webp" 
             alt="Fiber Optic Cable Assemblies"
             className="w-full h-full object-cover"
           />
