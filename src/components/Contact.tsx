@@ -19,17 +19,32 @@ const Contact = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
+  const submitToGoogleForm = async () => {
+    const GOOGLE_FORM_ACTION = "https://docs.google.com/forms/d/e/1FAIpQLSf2xt_DyU4tBAwcbxio49zuUtMsUSU9taac-5HN5MkLNKFZyw/formResponse";
+    const params = new URLSearchParams();
+    params.append("entry.1858826821", formData.fullName);
+    params.append("entry.915319340", formData.email);
+    params.append("entry.602424569", formData.phone);
+    params.append("entry.1474328581", formData.company);
+    params.append("entry.99606719", formData.message);
+    // no-cors: Google Forms doesn't return CORS headers but accepts the submission
+    await fetch(`${GOOGLE_FORM_ACTION}?${params.toString()}`, { method: "POST", mode: "no-cors" });
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     try {
-      const { data: result, error: functionError } = await supabase.functions.invoke('send-contact-email', { body: formData });
-      if (functionError) throw new Error('Failed to submit your message');
-      if (result?.error) throw new Error(result.error);
+      // Primary: Google Forms (always works, even if Supabase is paused)
+      await submitToGoogleForm();
+
+      // Backup: Supabase (silent fail — don't block user on backend issues)
+      supabase.functions.invoke('send-contact-email', { body: formData }).catch(() => {});
+
       toast({ title: "Message Received!", description: "Thank you for contacting us. Our team will respond within 24 hours." });
       setFormData({ fullName: "", email: "", phone: "", company: "", message: "" });
     } catch (error) {
-      toast({ title: "Error", description: error instanceof Error ? error.message : "Failed to send message.", variant: "destructive" });
+      toast({ title: "Error", description: "Failed to send message. Please try again.", variant: "destructive" });
     } finally {
       setIsSubmitting(false);
     }
