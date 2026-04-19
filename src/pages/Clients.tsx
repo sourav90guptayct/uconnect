@@ -5,14 +5,39 @@ import { Card, CardContent } from "@/components/ui/card";
 const Clients = () => {
   const clients = [{
     name: "Airtel",
-    logo: "/lovable-uploads/5a19be3e-2375-4395-a5ae-3cfd072f8330.png",
+    logo: "/clients/airtel.jpg",
     sector: "Telecommunications",
     description: "Leading telecom provider with innovative connectivity solutions"
   }, {
+    name: "Reliance Jio",
+    logo: "/clients/jio.png",
+    sector: "Telecommunications",
+    description: "Digital services and 4G/5G network solutions"
+  }, {
     name: "Vi (Vodafone Idea)",
-    logo: "/lovable-uploads/10acea3b-9bce-4534-a799-3227e8f04d7a.png",
+    logo: "/clients/vi.jpg",
     sector: "Telecommunications",
     description: "Digital transformation and network infrastructure solutions"
+  }, {
+    name: "BSNL",
+    logo: "/clients/bsnl.png",
+    sector: "Telecommunications",
+    description: "Pan-India telecom and broadband infrastructure"
+  }, {
+    name: "Railtel",
+    logo: "/clients/railtel.jpg",
+    sector: "Telecommunications",
+    description: "Nationwide rail-based telecom infrastructure"
+  }, {
+    name: "Wipro",
+    logo: "/clients/wipro.png",
+    sector: "IT Services",
+    description: "Enterprise IT services and digital transformation"
+  }, {
+    name: "Gujarat FibreGrid",
+    logo: "/clients/gujarat-fibregrid.jpg",
+    sector: "Network Infrastructure",
+    description: "State-wide optical fibre network infrastructure"
   }, {
     name: "Airports Authority of India",
     logo: "/lovable-uploads/981587b1-7cd3-46b5-a056-44bbab360255.png",
