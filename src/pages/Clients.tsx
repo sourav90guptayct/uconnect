@@ -90,22 +90,26 @@ const Clients = () => {
         </div>
       </section>
 
-      {/* Scrolling Client Banner */}
-      <section className="py-12 bg-gradient-to-r from-muted/30 via-background to-muted/30 border-y border-border overflow-hidden relative">
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-accent/5 opacity-50"></div>
-        <div className="relative">
-          <div className="flex animate-scroll">
-            {[...clients, ...clients].map((client, index) => <div key={index} className="flex-shrink-0 mx-6">
-                <div className="group w-28 h-20 bg-gradient-to-br from-white to-gray-50 rounded-xl shadow-md hover:shadow-xl flex items-center justify-center overflow-hidden border border-white/50 backdrop-blur-sm transition-all duration-500 hover:scale-110 hover:-translate-y-1">
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  <img loading="lazy" decoding="async" src={client.logo} alt={`${client.name} logo`} className="max-w-full max-h-full object-contain opacity-70 group-hover:opacity-100 transition-all duration-500 group-hover:scale-105 filter group-hover:brightness-110 relative z-10" />
-                  <div className="absolute inset-0 ring-2 ring-primary/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                </div>
-              </div>)}
+      {/* Static Client Logo Grid */}
+      <section className="py-16 bg-gradient-to-r from-muted/30 via-background to-muted/30 border-y border-border">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+            {clients.map((client, index) => (
+              <div
+                key={index}
+                className="group relative h-24 bg-gradient-to-br from-white to-gray-50 rounded-xl shadow-md hover:shadow-xl flex items-center justify-center overflow-hidden border border-white/50 transition-all duration-300 hover:-translate-y-1 p-4"
+              >
+                <img
+                  loading="lazy"
+                  decoding="async"
+                  src={client.logo}
+                  alt={`${client.name} logo`}
+                  className="max-w-full max-h-full object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-300"
+                />
+              </div>
+            ))}
           </div>
         </div>
-        <div className="absolute top-0 left-0 w-32 h-full bg-gradient-to-r from-background to-transparent z-10"></div>
-        <div className="absolute top-0 right-0 w-32 h-full bg-gradient-to-l from-background to-transparent z-10"></div>
       </section>
 
       {/* Stats Section */}
