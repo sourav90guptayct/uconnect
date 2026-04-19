@@ -251,33 +251,6 @@ const CareersPage = () => {
         </div>
       </section>
 
-      {/* Current Openings */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold mb-6 text-foreground">
-              Current Openings
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Explore exciting career opportunities across our different service areas.
-            </p>
-          </div>
-
-          <div className="grid lg:grid-cols-2 gap-8">
-            {isLoading ? <div className="col-span-2 text-center py-12">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
-                <p className="text-muted-foreground">Loading job openings...</p>
-              </div> : jobs.length === 0 ? <div className="col-span-2 text-center py-12">
-                <p className="text-muted-foreground text-lg">No job openings available at the moment.</p>
-                <p className="text-muted-foreground">Please check back later or contact HR for upcoming opportunities.</p>
-              </div> : jobs.map(job => <Card key={job.id} className="hover:shadow-lg transition-shadow">
-                  
-                  
-                </Card>)}
-          </div>
-        </div>
-      </section>
-
       {/* Application Form Section */}
       <section id="apply" className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
