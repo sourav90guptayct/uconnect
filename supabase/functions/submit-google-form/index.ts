@@ -38,7 +38,7 @@ Deno.serve(async (req) => {
       "entry.99606719": message ?? "",
       fvv: "1",
       pageHistory: "0",
-      ...(fbzx ? { fbzx, draftResponse: `[null,null,"${fbzx}"]` } : {}),
+      ...(fbzx ? { fbzx } : {}),
     });
 
     const res = await fetch(POST_URL, {
