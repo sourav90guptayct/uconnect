@@ -163,6 +163,24 @@ const JobApplicationForm = () => {
               </SelectContent>
             </Select>
           </div>
+          <div className="space-y-2">
+            <Label htmlFor="hasBike">Do You Have Bike? *</Label>
+            <Select value={form.hasBike} onValueChange={(v) => update("hasBike", v)}>
+              <SelectTrigger id="hasBike"><SelectValue placeholder="Select" /></SelectTrigger>
+              <SelectContent>
+                {BIKE.map((s) => <SelectItem key={s} value={s}>{s}</SelectItem>)}
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="hasLaptop">Do You Have Laptop? *</Label>
+            <Select value={form.hasLaptop} onValueChange={(v) => update("hasLaptop", v)}>
+              <SelectTrigger id="hasLaptop"><SelectValue placeholder="Select" /></SelectTrigger>
+              <SelectContent>
+                {LAPTOP.map((s) => <SelectItem key={s} value={s}>{s}</SelectItem>)}
+              </SelectContent>
+            </Select>
+          </div>
           <div className="space-y-2 md:col-span-2">
             <Label htmlFor="currentCompany">Previous Company *</Label>
             <Input id="currentCompany" value={form.currentCompany} onChange={(e) => update("currentCompany", e.target.value)} required />
