@@ -75,7 +75,7 @@ const About = () => {
           >
             <div className="grid grid-cols-2 gap-5">
               <div className="col-span-2 relative rounded-2xl overflow-hidden mb-2 premium-shadow">
-                <img src="/lovable-uploads/839cd676-3d03-4ff0-941b-4baee8220c7b.png" alt="Enterprise Team" className="w-full h-52 object-cover" />
+                <img loading="lazy" decoding="async" src="/lovable-uploads/839cd676-3d03-4ff0-941b-4baee8220c7b.webp" alt="Enterprise Team" className="w-full h-52 object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 to-transparent" />
                 <div className="absolute bottom-5 left-5 text-white">
                   <h3 className="text-2xl font-bold mb-1">Pan-India Operations</h3>
@@ -104,7 +104,7 @@ const About = () => {
               ))}
 
               <div className="col-span-2 relative rounded-2xl overflow-hidden premium-shadow">
-                <img src="/lovable-uploads/8fc1a4ec-6d54-4375-b1f4-6c972127e11e.png" alt="Professional Work Environment" className="w-full h-32 object-cover" />
+                <img loading="lazy" decoding="async" src="/lovable-uploads/8fc1a4ec-6d54-4375-b1f4-6c972127e11e.webp" alt="Professional Work Environment" className="w-full h-32 object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-r from-primary/90 to-accent/70" />
                 <div className="absolute inset-0 flex items-center p-6 text-white">
                   <div className="grid grid-cols-4 gap-6 w-full">

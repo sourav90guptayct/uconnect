@@ -13,28 +13,28 @@ import infrastructure from "@/assets/infrastructure.jpg";
 const ServicesPage = () => {
   const services = [{
     icon: Network,
-    image: "/lovable-uploads/4404a0c7-dfe8-4d6c-a763-8ddc0c228f40.png",
+    image: "/lovable-uploads/4404a0c7-dfe8-4d6c-a763-8ddc0c228f40.webp",
     title: "Networks",
     description: "Stay Connected, Stay Ahead - One-stop-shop for all your networking requirements",
     features: ["Network infrastructure", "Connectivity solutions", "Network monitoring", "Maintenance & support"],
     details: "Our comprehensive networking solutions ensure your organization stays connected and ahead of the competition. We provide end-to-end networking services from infrastructure setup to ongoing maintenance and support."
   }, {
     icon: Users,
-    image: "/lovable-uploads/115872b6-8d21-43a0-b6ed-a612375446ba.png",
+    image: "/lovable-uploads/115872b6-8d21-43a0-b6ed-a612375446ba.webp",
     title: "Managed Services",
     description: "Focus on core competencies as we take charge of your processes",
     features: ["End-to-end process management", "24/7 operational support", "Performance monitoring", "Service level agreements"],
     details: "Our managed services provide comprehensive process management solutions that allow your organization to focus on core business activities while we handle all operational requirements with expert support and monitoring."
   }, {
     icon: Building,
-    image: "/lovable-uploads/3a00d3ac-8dd2-40fb-b5bb-bf516bd60ff2.png",
+    image: "/lovable-uploads/3a00d3ac-8dd2-40fb-b5bb-bf516bd60ff2.webp",
     title: "Digital Transformation",
     description: "Store, manage & disseminate data & more. Secure Enterprise IT solutions",
     features: ["Cloud migration", "Digital platforms", "Data management", "Enterprise IT solutions"],
     details: "Transform your business with our comprehensive digital transformation services. We help organizations modernize their IT infrastructure, migrate to cloud platforms, and implement secure enterprise solutions."
   }, {
     icon: Briefcase,
-    image: "/lovable-uploads/2d02a26b-70d0-4eb8-98e3-04f141cb0bff.png",
+    image: "/lovable-uploads/2d02a26b-70d0-4eb8-98e3-04f141cb0bff.webp",
     title: "IP Services",
     description: "Cutting edge IP & ITeS solutions: Empowering your growth",
     features: ["IP infrastructure", "ITeS solutions", "Technology consulting", "System integration"],
@@ -48,7 +48,7 @@ const ServicesPage = () => {
     details: "Optimize your workforce with our technology-enabled resource management solutions. We provide skilled technology professionals and efficient resource allocation to support your business objectives."
   }, {
     icon: Settings,
-    image: "/lovable-uploads/36d182be-8602-4bb3-9554-331999f9b0ed.png",
+    image: "/lovable-uploads/36d182be-8602-4bb3-9554-331999f9b0ed.webp",
     title: "Infra Installation",
     description: "Self support and Guy mast Tower as well as Pole, Tower Erection Service and Pole Erection Service",
     features: ["Self support installations", "Guy mast tower setup", "Pole erection services", "Tower erection services"],
@@ -59,7 +59,7 @@ const ServicesPage = () => {
       {/* Header */}
       <div className="relative bg-primary text-primary-foreground py-20 overflow-hidden">
         <div className="absolute inset-0">
-          <img src="/lovable-uploads/2c094ed9-72c7-4355-a7aa-38ea78d08bb1.png" alt="Professional Technology Services" className="w-full h-full object-cover opacity-20" />
+          <img loading="lazy" decoding="async" src="/lovable-uploads/2c094ed9-72c7-4355-a7aa-38ea78d08bb1.webp" alt="Professional Technology Services" className="w-full h-full object-cover opacity-20" />
           
         </div>
         <div className="container mx-auto px-4 relative z-10">
@@ -88,7 +88,7 @@ const ServicesPage = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
              {services.map((service, index) => <Card key={index} className="group hover:shadow-xl transition-all duration-300 border-border hover:border-primary/30 overflow-hidden">
                  <div className="relative h-48 overflow-hidden">
-                   <img src={service.image} alt={service.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                   <img loading="lazy" decoding="async" src={service.image} alt={service.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
                    <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
                    <div className="absolute bottom-4 left-4">
                      <div className="h-12 w-12 bg-accent/90 rounded-lg flex items-center justify-center backdrop-blur-sm">

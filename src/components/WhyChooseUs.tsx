@@ -78,7 +78,7 @@ const WhyChooseUs = () => {
           transition={{ duration: 0.7 }}
           className="relative rounded-3xl overflow-hidden mb-12"
         >
-          <img src="/lovable-uploads/e2f0fa8e-0cfd-4a8e-8ab3-e9550216c580.png" alt="Team Unity" className="w-full h-72 object-cover" />
+          <img loading="lazy" decoding="async" src="/lovable-uploads/e2f0fa8e-0cfd-4a8e-8ab3-e9550216c580.png" alt="Team Unity" className="w-full h-72 object-cover" />
           <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/80 to-accent/60" />
           <div className="absolute inset-0 flex items-center justify-center text-white text-center p-8">
             <div>

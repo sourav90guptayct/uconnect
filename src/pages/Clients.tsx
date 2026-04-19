@@ -98,7 +98,7 @@ const Clients = () => {
             {[...clients, ...clients].map((client, index) => <div key={index} className="flex-shrink-0 mx-6">
                 <div className="group w-28 h-20 bg-gradient-to-br from-white to-gray-50 rounded-xl shadow-md hover:shadow-xl flex items-center justify-center overflow-hidden border border-white/50 backdrop-blur-sm transition-all duration-500 hover:scale-110 hover:-translate-y-1">
                   <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  <img src={client.logo} alt={`${client.name} logo`} className="max-w-full max-h-full object-contain opacity-70 group-hover:opacity-100 transition-all duration-500 group-hover:scale-105 filter group-hover:brightness-110 relative z-10" />
+                  <img loading="lazy" decoding="async" src={client.logo} alt={`${client.name} logo`} className="max-w-full max-h-full object-contain opacity-70 group-hover:opacity-100 transition-all duration-500 group-hover:scale-105 filter group-hover:brightness-110 relative z-10" />
                   <div className="absolute inset-0 ring-2 ring-primary/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 </div>
               </div>)}

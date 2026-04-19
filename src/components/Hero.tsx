@@ -80,8 +80,10 @@ const Hero = () => {
             <div className="relative">
               <div className="glass rounded-3xl overflow-hidden shadow-2xl">
                 <img
-                  src="/lovable-uploads/d75128dc-3c18-4149-aba1-d879dab93472.png"
+                  src="/lovable-uploads/d75128dc-3c18-4149-aba1-d879dab93472.webp"
                   alt="Enterprise Technology Infrastructure"
+                  fetchPriority="high"
+                  decoding="async"
                   className="w-full h-72 object-cover"
                 />
                 <div className="p-8 text-white">
