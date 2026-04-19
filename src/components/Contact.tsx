@@ -19,58 +19,15 @@ const Contact = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const submitToGoogleForm = (): Promise<void> => {
-    return new Promise((resolve) => {
-      const GOOGLE_FORM_ACTION = "https://docs.google.com/forms/d/e/1FAIpQLSf2xt_DyU4tBAwcbxio49zuUtMsUSU9taac-5HN5MkLNKFZyw/formResponse";
-      const iframeName = `gform_iframe_${Date.now()}`;
-
-      // Hidden iframe receives Google's response — bypasses CORS entirely
-      const iframe = document.createElement("iframe");
-      iframe.name = iframeName;
-      iframe.style.display = "none";
-      document.body.appendChild(iframe);
-
-      // Native form POST is treated as a top-level navigation by Google (not blocked)
-      const form = document.createElement("form");
-      form.action = GOOGLE_FORM_ACTION;
-      form.method = "POST";
-      form.target = iframeName;
-      form.style.display = "none";
-
-      const fields: Record<string, string> = {
-        "entry.1858826821": formData.fullName,
-        "entry.915319340": formData.email,
-        "entry.602424569": formData.phone || "Not provided",
-        "entry.1474328581": formData.company || "Not provided",
-        "entry.99606719": formData.message,
-      };
-      Object.entries(fields).forEach(([name, value]) => {
-        const input = document.createElement("input");
-        input.type = "hidden";
-        input.name = name;
-        input.value = value;
-        form.appendChild(input);
-      });
-
-      document.body.appendChild(form);
-      form.submit();
-
-      setTimeout(() => {
-        try { document.body.removeChild(form); } catch {}
-        try { document.body.removeChild(iframe); } catch {}
-        resolve();
-      }, 1500);
-    });
-  };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     try {
-      // Primary: Google Forms (always works, even if Supabase is paused)
-      await submitToGoogleForm();
+      // Primary: Google Forms via server-side proxy (bypasses browser CSP/CORS)
+      const { data, error } = await supabase.functions.invoke('submit-google-form', { body: formData });
+      if (error || !data?.ok) throw error || new Error('Google Form submission failed');
 
-      // Backup: Supabase (silent fail — don't block user on backend issues)
+      // Backup: email notification (silent fail — non-critical)
       supabase.functions.invoke('send-contact-email', { body: formData }).catch(() => {});
 
       toast({ title: "Message Received!", description: "Thank you for contacting us. Our team will respond within 24 hours." });
