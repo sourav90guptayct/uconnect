@@ -1,13 +1,30 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ArrowUpRight, Network, Users, Building, Briefcase, Search, Settings } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 const ServicesPage = () => {
+  const [searchParams] = useSearchParams();
+
+  useEffect(() => {
+    const slug = searchParams.get("service");
+    if (slug) {
+      // wait for paint
+      setTimeout(() => {
+        const el = document.getElementById(`service-${slug}`);
+        if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
+      }, 150);
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }, [searchParams]);
+
   const services = [
     {
+      slug: "networks",
       icon: Network,
       image: "/lovable-uploads/4404a0c7-dfe8-4d6c-a763-8ddc0c228f40.webp",
       title: "Networks",
@@ -16,6 +33,7 @@ const ServicesPage = () => {
       features: ["Network infrastructure", "Connectivity solutions", "Network monitoring", "Maintenance & support"],
     },
     {
+      slug: "managed-services",
       icon: Users,
       image: "/lovable-uploads/115872b6-8d21-43a0-b6ed-a612375446ba.webp",
       title: "Managed services",
@@ -24,6 +42,7 @@ const ServicesPage = () => {
       features: ["End-to-end process management", "24/7 operational support", "Performance monitoring", "Service level agreements"],
     },
     {
+      slug: "digital-transformation",
       icon: Building,
       image: "/lovable-uploads/3a00d3ac-8dd2-40fb-b5bb-bf516bd60ff2.webp",
       title: "Digital transformation",
@@ -32,6 +51,7 @@ const ServicesPage = () => {
       features: ["Cloud migration", "Digital platforms", "Data management", "Enterprise IT solutions"],
     },
     {
+      slug: "ip-services",
       icon: Briefcase,
       image: "/lovable-uploads/2d02a26b-70d0-4eb8-98e3-04f141cb0bff.webp",
       title: "IP services",
@@ -40,6 +60,7 @@ const ServicesPage = () => {
       features: ["IP infrastructure", "ITeS solutions", "Technology consulting", "System integration"],
     },
     {
+      slug: "resource-management",
       icon: Search,
       image: "/lovable-uploads/55b3aa6c-9ace-4e67-9a9d-05f41feefab1.png",
       title: "Resource management",
@@ -48,6 +69,7 @@ const ServicesPage = () => {
       features: ["Technology staffing", "Resource allocation", "Skill management", "Workforce optimization"],
     },
     {
+      slug: "infra-installation",
       icon: Settings,
       image: "/lovable-uploads/36d182be-8602-4bb3-9554-331999f9b0ed.webp",
       title: "Infra installation",
