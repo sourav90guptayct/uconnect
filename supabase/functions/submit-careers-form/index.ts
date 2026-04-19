@@ -54,7 +54,9 @@ Deno.serve(async (req) => {
       "entry.264762602": experienceYears ?? "",
       fvv: "1",
       pageHistory: "0",
-      ...(fbzx ? { fbzx } : {}),
+      ...(fbzx
+        ? { fbzx, partialResponse: `[null,null,"${fbzx}"]` }
+        : {}),
     });
 
     const res = await fetch(POST_URL, {
