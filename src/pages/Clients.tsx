@@ -59,11 +59,6 @@ const Clients = () => {
     sector: "Electronics & Technology",
     description: "Advanced electronics and automation solutions"
   }, {
-    name: "Hitachi MGRM Net",
-    logo: "/lovable-uploads/ae610b9c-2091-4caf-874f-643960b4d5d1.png",
-    sector: "Technology",
-    description: "Enterprise technology and digital transformation"
-  }, {
     name: "Siemens",
     logo: "/lovable-uploads/ae610b9c-2091-4caf-874f-643960b4d5d1.png",
     sector: "Industrial Technology",
