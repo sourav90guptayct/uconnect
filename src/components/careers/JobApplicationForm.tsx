@@ -51,6 +51,7 @@ const JobApplicationForm = () => {
       "fullName", "mobile", "email", "state", "city",
       "qualification", "specialization", "experienceLevel",
       "currentCompany", "jobPosition", "experienceYears",
+      "hasBike", "hasLaptop",
     ];
     const missing = required.filter((k) => !form[k]);
     if (missing.length) {
