@@ -5,3 +5,6 @@ verify_jwt = false
 
 [functions.submit-google-form]
 verify_jwt = false
+
+[functions.submit-careers-form]
+verify_jwt = false
