@@ -29,6 +29,7 @@ const Products = () => {
     specializedCables: "/products/category-specializedCables.jpg",
     ftth: "/products/category-ftth.jpg",
     racks: "/products/category-racks.jpg",
+    poe: "/products/category-poe.webp",
   };
 
   const productCategories = {
