@@ -91,7 +91,8 @@ const Services = () => {
                   </div>
                 </div>
               </div>
-            </motion.a>
+              </Link>
+            </motion.div>
           ))}
         </div>
       </div>
