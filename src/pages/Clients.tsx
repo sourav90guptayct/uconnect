@@ -68,11 +68,6 @@ const Clients = () => {
     logo: "/lovable-uploads/7685279a-9cd7-43ce-9a5e-1788f6a8ffc0.png",
     sector: "Infrastructure",
     description: "Telecom tower infrastructure and management"
-  }, {
-    name: "Tejas Networks",
-    logo: "/lovable-uploads/7685279a-9cd7-43ce-9a5e-1788f6a8ffc0.png",
-    sector: "Network Technology",
-    description: "Advanced networking and optical solutions"
   }];
   const stats = [{
     icon: Building2,
