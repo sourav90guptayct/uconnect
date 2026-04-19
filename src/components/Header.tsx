@@ -73,7 +73,6 @@ const Header = () => {
               </NavigationMenuList>
             </NavigationMenu>
             <div className="flex items-center space-x-2 ml-4">
-              {!user && <Button variant="outline" className="rounded-xl text-sm" onClick={() => navigate('/register')}>Register</Button>}
               <Button className="bg-accent text-accent-foreground hover:bg-accent/90 rounded-xl text-sm shadow-md shadow-accent/20" onClick={handleAuthAction}>
                 {user ? 'Sign Out' : 'Sign In'}
               </Button>
@@ -93,7 +92,6 @@ const Header = () => {
                   {link.label}
                 </Link>
               ))}
-              {!user && <Button variant="outline" className="w-fit rounded-xl text-sm" onClick={() => { navigate('/register'); setIsMenuOpen(false); }}>Register</Button>}
               <Button className="bg-accent text-accent-foreground hover:bg-accent/90 w-fit rounded-xl text-sm" onClick={() => { handleAuthAction(); setIsMenuOpen(false); }}>
                 {user ? 'Sign Out' : 'Sign In'}
               </Button>
