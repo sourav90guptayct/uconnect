@@ -2,6 +2,10 @@ import { Building2, Globe, Shield, Zap, Users, CheckCircle } from "lucide-react"
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
+import beetelLogo from "@/assets/clients/beetel.jpg";
+import aaiLogo from "@/assets/clients/aai.jpg";
+import lntLogo from "@/assets/clients/larsen-toubro.jpg";
+import indusLogo from "@/assets/clients/indus-towers.jpg";
 const Clients = () => {
   const clients = [{
     name: "Airtel",
@@ -38,6 +42,26 @@ const Clients = () => {
     logo: "/clients/gujarat-fibregrid.jpg",
     sector: "Network Infrastructure",
     description: "State-wide optical fibre network infrastructure"
+  }, {
+    name: "Larsen & Toubro",
+    logo: lntLogo,
+    sector: "Engineering & Construction",
+    description: "Engineering, construction and infrastructure conglomerate"
+  }, {
+    name: "Airports Authority of India",
+    logo: aaiLogo,
+    sector: "Aviation",
+    description: "National airport operations and air traffic infrastructure"
+  }, {
+    name: "Indus Towers",
+    logo: indusLogo,
+    sector: "Telecom Infrastructure",
+    description: "Pan-India telecom tower infrastructure provider"
+  }, {
+    name: "Beetel",
+    logo: beetelLogo,
+    sector: "Telecommunications",
+    description: "Telephone and communication device manufacturer"
   }];
   const stats = [{
     icon: Building2,
