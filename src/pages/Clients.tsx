@@ -39,11 +39,6 @@ const Clients = () => {
     sector: "Network Infrastructure",
     description: "State-wide optical fibre network infrastructure"
   }, {
-    name: "Airports Authority of India",
-    logo: "/lovable-uploads/981587b1-7cd3-46b5-a056-44bbab360255.png",
-    sector: "Aviation",
-    description: "Critical airport infrastructure and management systems"
-  }, {
     name: "Electronics Corporation of India Limited",
     logo: "/lovable-uploads/92c8fc98-f9f4-42d7-a9e7-7770cec572f1.png",
     sector: "Electronics & Technology",
