@@ -21,6 +21,15 @@ const Products = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [activeCategory]);
 
+  // Curated hero images shown on each category tile in the overview grid
+  const categoryHeroImages: Record<string, string> = {
+    antennas: "/products/category-antennas.jpg",
+    switches: "/products/category-switches.png",
+    networkCables: "/products/category-networkCables.jpg",
+    specializedCables: "/products/category-specializedCables.jpg",
+    ftth: "/products/category-ftth.jpg",
+    racks: "/products/category-racks.jpg",
+  };
 
   const productCategories = {
     ftth: {
@@ -616,7 +625,7 @@ const Products = () => {
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
           >
             {Object.entries(productCategories).map(([key, category], idx) => {
-              const heroImg = category.subProducts[0]?.image;
+              const heroImg = categoryHeroImages[key] ?? category.subProducts[0]?.image;
               return (
                 <motion.button
                   key={key}
