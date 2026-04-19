@@ -60,16 +60,31 @@ const Clients = () => {
   return <div className="min-h-screen bg-background">
       <Header />
       
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-primary/10 via-background to-accent/10 py-20">
-        <div className="container mx-auto px-4">
-          <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-6">
-              Our <span className="text-primary">Trusted</span> Clients
+      {/* Editorial Hero */}
+      <section
+        className="relative overflow-hidden pt-28 pb-16 lg:pt-32 lg:pb-20"
+        style={{ background: "var(--gradient-hero-soft)" }}
+      >
+        <div
+          className="absolute inset-0 opacity-[0.04] pointer-events-none"
+          style={{
+            backgroundImage: `linear-gradient(hsl(var(--foreground)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--foreground)) 1px, transparent 1px)`,
+            backgroundSize: "72px 72px",
+          }}
+        />
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-5xl">
+            <div className="text-sm font-semibold text-accent uppercase tracking-widest mb-5">
+              Our clients
+            </div>
+            <h1 className="display-headline text-foreground text-5xl sm:text-6xl lg:text-8xl">
+              Trusted by the
+              <br />
+              <span className="text-accent">industry's best.</span>
             </h1>
-            <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
-              Partnering with industry leaders to deliver exceptional talent solutions 
-              and drive technological innovation across diverse sectors.
+            <p className="mt-8 text-base lg:text-lg text-muted-foreground max-w-2xl leading-relaxed">
+              Partnering with industry leaders to deliver exceptional talent solutions and drive
+              technological innovation across diverse sectors.
             </p>
           </div>
         </div>
