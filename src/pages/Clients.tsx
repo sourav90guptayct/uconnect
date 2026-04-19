@@ -38,11 +38,6 @@ const Clients = () => {
     logo: "/clients/gujarat-fibregrid.jpg",
     sector: "Network Infrastructure",
     description: "State-wide optical fibre network infrastructure"
-  }, {
-    name: "Siemens",
-    logo: "/clients/siemens.jpg",
-    sector: "Industrial Technology",
-    description: "Industrial automation and digitalization solutions"
   }];
   const stats = [{
     icon: Building2,
