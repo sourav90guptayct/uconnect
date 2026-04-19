@@ -1,9 +1,8 @@
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { motion } from "framer-motion";
-import { Download, ChevronRight } from "lucide-react";
+import { Download, ChevronRight, ArrowUpRight, ArrowLeft } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
 
 const Products = () => {
   const productCategories = {
