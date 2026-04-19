@@ -103,11 +103,11 @@ const Clients = () => {
       {/* Static Client Logo Grid */}
       <section className="py-16 bg-gradient-to-r from-muted/30 via-background to-muted/30 border-y border-border">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8">
             {clients.map((client, index) => (
               <div
                 key={index}
-                className="group relative h-36 md:h-40 bg-gradient-to-br from-white to-gray-50 rounded-xl shadow-md hover:shadow-xl flex items-center justify-center overflow-hidden border border-white/50 transition-all duration-300 hover:-translate-y-1 p-5"
+                className="group relative h-44 md:h-48 lg:h-52 bg-gradient-to-br from-white to-gray-50 rounded-xl shadow-md hover:shadow-xl flex items-center justify-center overflow-hidden border border-white/50 transition-all duration-300 hover:-translate-y-1 p-6"
               >
                 <img
                   loading="lazy"
