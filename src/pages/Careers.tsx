@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/hooks/useAuth";
+import JobApplicationForm from "@/components/careers/JobApplicationForm";
 interface Job {
   id: string;
   title: string;
@@ -277,12 +278,18 @@ const CareersPage = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-muted/30">
+      {/* Application Form Section */}
+      <section id="apply" className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
-          <div className="text-center">
-            
+          <div className="text-center mb-12">
+            <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-foreground">
+              Apply Now
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Don't see a role that fits? Submit your details and we'll get in touch when the right opportunity opens.
+            </p>
           </div>
+          <JobApplicationForm />
         </div>
       </section>
       <Footer />
