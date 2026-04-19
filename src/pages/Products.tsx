@@ -1,11 +1,16 @@
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { motion } from "framer-motion";
-import { Download, ChevronRight } from "lucide-react";
+import { Download, ChevronRight, ArrowUpRight, ArrowLeft } from "lucide-react";
+import { useState, useEffect } from "react";
 
 const Products = () => {
+  const [activeCategory, setActiveCategory] = useState<string | null>(null);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [activeCategory]);
+
   const productCategories = {
     ftth: {
       title: "FTTH Products",
@@ -591,113 +596,140 @@ const Products = () => {
 
         <div className="container mx-auto px-4 py-16">
 
-        {/* Products Tabs */}
-        <Tabs defaultValue="antennas" className="w-full">
-          <div className="sticky top-16 z-30 bg-background/80 backdrop-blur-xl py-4 -mx-4 px-4 mb-10">
-            <TabsList className="flex flex-wrap justify-center gap-1.5 h-auto bg-card p-2 border border-border rounded-2xl shadow-lg max-w-5xl mx-auto">
-              {[
-                { value: "antennas", label: "Dish Antennas" },
-                { value: "ftth", label: "FTTH Products" },
-                { value: "fiberCables", label: "Fiber Cables" },
-                { value: "rfCables", label: "RF Cables" },
-                { value: "networkCables", label: "Network Cables" },
-                { value: "specializedCables", label: "Specialized Cables" },
-                { value: "poe", label: "AC & DC PoE" },
-                { value: "switches", label: "Switches" },
-                { value: "racks", label: "Racks & Cabinets" },
-                { value: "bts", label: "BTS Installation" },
-                { value: "fabricated", label: "Fabricated Products" },
-              ].map((tab) => (
-                <TabsTrigger
-                  key={tab.value}
-                  value={tab.value}
-                  className="rounded-xl px-4 py-2.5 text-sm font-medium transition-all data-[state=active]:bg-accent data-[state=active]:text-accent-foreground data-[state=active]:shadow-md data-[state=active]:scale-105 hover:bg-muted"
+        {/* Inseego-style: image-tile category overview / drill-down */}
+        {!activeCategory ? (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.4 }}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
+          >
+            {Object.entries(productCategories).map(([key, category], idx) => {
+              const heroImg = category.subProducts[0]?.image;
+              return (
+                <motion.button
+                  key={key}
+                  type="button"
+                  onClick={() => setActiveCategory(key)}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: idx * 0.05 }}
+                  className="group relative block text-left rounded-3xl overflow-hidden bg-muted aspect-[4/5] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
                 >
-                  {tab.label}
-                </TabsTrigger>
-              ))}
-            </TabsList>
-          </div>
-
-          {Object.entries(productCategories).map(([key, category]) => (
-            <TabsContent key={key} value={key} className="space-y-10 animate-fade-in">
-              {/* Category Header */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4 }}
-                className="relative bg-card border border-border rounded-2xl p-8 overflow-hidden"
-              >
-                <div className="absolute top-0 left-0 w-1.5 h-full bg-accent rounded-l-2xl" />
-                <h2 className="text-3xl font-bold mb-3 pl-4">{category.title}</h2>
-                <p className="text-muted-foreground leading-relaxed pl-4 max-w-4xl">{category.description}</p>
-              </motion.div>
-
-              {/* Product Grid */}
-              <div className="grid gap-6">
-                {category.subProducts.map((product, idx) => (
-                  <motion.div
-                    key={idx}
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, delay: idx * 0.08 }}
-                    className="group bg-card border border-border rounded-2xl overflow-hidden hover:border-accent/40 hover:shadow-xl transition-all duration-500"
-                  >
-                    <div className="grid md:grid-cols-5 gap-0">
-                      {/* Image Section */}
-                      <div className="md:col-span-2 relative bg-gradient-to-br from-muted/60 to-muted/20 p-8 flex items-center justify-center min-h-[240px]">
-                        <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                        {product.image && (
-                          <img loading="lazy" decoding="async"
-                            src={product.image}
-                            alt={product.name}
-                            className="w-full h-auto max-h-56 object-contain relative z-10 group-hover:scale-105 transition-transform duration-500"
-                          />
-                        )}
-                      </div>
-
-                      {/* Content Section */}
-                      <div className="md:col-span-3 p-8 flex flex-col justify-center space-y-5">
-                        <div>
-                          <h3 className="text-xl font-bold mb-2 group-hover:text-accent transition-colors duration-300">
-                            {product.name}
-                          </h3>
-                          <p className="text-muted-foreground text-sm leading-relaxed">
-                            {product.description}
-                          </p>
-                        </div>
-
-                        <div className="grid sm:grid-cols-2 gap-x-6 gap-y-2">
-                          {product.specs.map((spec, specIdx) => (
-                            <div
-                              key={specIdx}
-                              className="flex items-start gap-2.5 text-sm text-muted-foreground py-1"
-                            >
-                              <ChevronRight className="w-3.5 h-3.5 text-accent mt-0.5 flex-shrink-0" />
-                              <span>{spec}</span>
-                            </div>
-                          ))}
-                        </div>
-
-                        {'datasheet' in product && (product as any).datasheet && (
-                          <a
-                            href={(product as any).datasheet}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 px-5 py-2.5 bg-accent text-accent-foreground rounded-xl hover:bg-accent/90 transition-all text-sm font-semibold w-fit shadow-md hover:shadow-lg hover:-translate-y-0.5 duration-300"
-                          >
-                            <Download className="w-4 h-4" />
-                            Download Datasheet
-                          </a>
-                        )}
-                      </div>
+                  {heroImg && (
+                    <img
+                      src={heroImg}
+                      alt={category.title}
+                      loading="lazy"
+                      className="absolute inset-0 w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-700 ease-out"
+                    />
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-foreground/85 via-foreground/30 to-transparent" />
+                  <div className="absolute inset-0 p-6 lg:p-8 flex flex-col justify-end">
+                    <div className="flex items-end justify-between gap-4">
+                      <h3 className="display-headline text-background text-2xl lg:text-3xl leading-tight">
+                        {category.title}
+                      </h3>
+                      <span className="shrink-0 w-11 h-11 rounded-full bg-background text-foreground flex items-center justify-center group-hover:bg-accent group-hover:text-accent-foreground transition-colors">
+                        <ArrowUpRight className="w-5 h-5" />
+                      </span>
                     </div>
-                  </motion.div>
-                ))}
+                    <p className="mt-3 text-background/80 text-sm line-clamp-2 max-w-md">
+                      {category.description}
+                    </p>
+                  </div>
+                </motion.button>
+              );
+            })}
+          </motion.div>
+        ) : (
+          <motion.div
+            key={activeCategory}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            className="space-y-10"
+          >
+            <button
+              type="button"
+              onClick={() => setActiveCategory(null)}
+              className="inline-flex items-center gap-2 text-sm font-semibold text-foreground/70 hover:text-accent transition-colors"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              All products
+            </button>
+
+            <div className="border-t border-border pt-8">
+              <div className="text-sm font-semibold text-accent uppercase tracking-widest mb-4">
+                Category
               </div>
-            </TabsContent>
-          ))}
-        </Tabs>
+              <h2 className="display-headline text-foreground text-4xl lg:text-6xl max-w-4xl">
+                {productCategories[activeCategory as keyof typeof productCategories].title}
+              </h2>
+              <p className="mt-6 text-muted-foreground leading-relaxed max-w-3xl">
+                {productCategories[activeCategory as keyof typeof productCategories].description}
+              </p>
+            </div>
+
+            <div className="grid gap-6">
+              {productCategories[activeCategory as keyof typeof productCategories].subProducts.map((product, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: idx * 0.06 }}
+                  className="group bg-card border border-border rounded-3xl overflow-hidden hover:border-accent/40 hover:shadow-xl transition-all duration-500"
+                >
+                  <div className="grid md:grid-cols-5 gap-0">
+                    <div className="md:col-span-2 relative bg-gradient-to-br from-muted/60 to-muted/20 p-8 flex items-center justify-center min-h-[240px]">
+                      {product.image && (
+                        <img
+                          loading="lazy"
+                          decoding="async"
+                          src={product.image}
+                          alt={product.name}
+                          className="w-full h-auto max-h-56 object-contain group-hover:scale-105 transition-transform duration-500"
+                        />
+                      )}
+                    </div>
+                    <div className="md:col-span-3 p-8 flex flex-col justify-center space-y-5">
+                      <div>
+                        <h3 className="text-xl font-bold mb-2 group-hover:text-accent transition-colors duration-300">
+                          {product.name}
+                        </h3>
+                        <p className="text-muted-foreground text-sm leading-relaxed">
+                          {product.description}
+                        </p>
+                      </div>
+                      <div className="grid sm:grid-cols-2 gap-x-6 gap-y-2">
+                        {product.specs.map((spec, specIdx) => (
+                          <div
+                            key={specIdx}
+                            className="flex items-start gap-2.5 text-sm text-muted-foreground py-1"
+                          >
+                            <ChevronRight className="w-3.5 h-3.5 text-accent mt-0.5 flex-shrink-0" />
+                            <span>{spec}</span>
+                          </div>
+                        ))}
+                      </div>
+                      {'datasheet' in product && (product as any).datasheet && (
+                        <a
+                          href={(product as any).datasheet}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 px-5 py-2.5 bg-accent text-accent-foreground rounded-xl hover:bg-accent/90 transition-all text-sm font-semibold w-fit shadow-md hover:shadow-lg hover:-translate-y-0.5 duration-300"
+                        >
+                          <Download className="w-4 h-4" />
+                          Download Datasheet
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        )}
 
         {/* CTA Section */}
         <div className="mt-16 text-center bg-gradient-to-r from-primary/10 to-accent/10 rounded-2xl p-12 border border-border/50">
