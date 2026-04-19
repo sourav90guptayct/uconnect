@@ -97,8 +97,8 @@ const Header = () => {
                             {link.label}
                           </NavigationMenuTrigger>
                           <NavigationMenuContent>
-                            <div className="w-[640px] p-6">
-                              <div className="flex items-center justify-between mb-4">
+                            <div className="w-[min(90vw,960px)] p-8">
+                              <div className="flex items-center justify-between mb-6 pb-4 border-b border-border">
                                 <div className="text-xs font-semibold text-accent uppercase tracking-widest">
                                   {label}
                                 </div>
@@ -106,17 +106,17 @@ const Header = () => {
                                   View all →
                                 </Link>
                               </div>
-                              <div className="grid grid-cols-2 gap-1">
+                              <div className="grid grid-cols-3 gap-x-6 gap-y-2">
                                 {items.map((cat) => (
                                   <NavigationMenuLink asChild key={cat.slug}>
                                     <Link
                                       to={`${basePath}?${queryKey}=${cat.slug}`}
-                                      className="block rounded-xl p-3 hover:bg-muted transition-colors group"
+                                      className="block rounded-xl p-4 hover:bg-muted transition-colors group"
                                     >
                                       <div className="text-sm font-semibold text-foreground group-hover:text-accent transition-colors">
                                         {cat.label}
                                       </div>
-                                      <div className="text-xs text-muted-foreground mt-0.5 line-clamp-1">
+                                      <div className="text-xs text-muted-foreground mt-1 leading-relaxed">
                                         {cat.desc}
                                       </div>
                                     </Link>
