@@ -95,7 +95,7 @@ const Header = () => {
                               {productCategories.map((cat) => (
                                 <NavigationMenuLink asChild key={cat.slug}>
                                   <Link
-                                    to="/products"
+                                    to={`/products?category=${cat.slug}`}
                                     className="block rounded-xl p-3 hover:bg-muted transition-colors group"
                                   >
                                     <div className="text-sm font-semibold text-foreground group-hover:text-accent transition-colors">
