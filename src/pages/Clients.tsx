@@ -50,9 +50,14 @@ const Clients = () => {
     description: "Advanced electronics and automation solutions"
   }, {
     name: "Siemens",
-    logo: "/lovable-uploads/ae610b9c-2091-4caf-874f-643960b4d5d1.png",
+    logo: "/clients/siemens.jpg",
     sector: "Industrial Technology",
     description: "Industrial automation and digitalization solutions"
+  }, {
+    name: "Alstom",
+    logo: "/clients/alstom.jpg",
+    sector: "Rail & Mobility",
+    description: "Sustainable rail transport and mobility solutions"
   }, {
     name: "Indus Towers",
     logo: "/lovable-uploads/7685279a-9cd7-43ce-9a5e-1788f6a8ffc0.png",
