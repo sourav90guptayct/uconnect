@@ -19,16 +19,48 @@ const Contact = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const submitToGoogleForm = async () => {
-    const GOOGLE_FORM_ACTION = "https://docs.google.com/forms/d/e/1FAIpQLSf2xt_DyU4tBAwcbxio49zuUtMsUSU9taac-5HN5MkLNKFZyw/formResponse";
-    const params = new URLSearchParams();
-    params.append("entry.1858826821", formData.fullName);
-    params.append("entry.915319340", formData.email);
-    params.append("entry.602424569", formData.phone);
-    params.append("entry.1474328581", formData.company);
-    params.append("entry.99606719", formData.message);
-    // no-cors: Google Forms doesn't return CORS headers but accepts the submission
-    await fetch(`${GOOGLE_FORM_ACTION}?${params.toString()}`, { method: "POST", mode: "no-cors" });
+  const submitToGoogleForm = (): Promise<void> => {
+    return new Promise((resolve) => {
+      const GOOGLE_FORM_ACTION = "https://docs.google.com/forms/d/e/1FAIpQLSf2xt_DyU4tBAwcbxio49zuUtMsUSU9taac-5HN5MkLNKFZyw/formResponse";
+      const iframeName = `gform_iframe_${Date.now()}`;
+
+      // Hidden iframe receives Google's response — bypasses CORS entirely
+      const iframe = document.createElement("iframe");
+      iframe.name = iframeName;
+      iframe.style.display = "none";
+      document.body.appendChild(iframe);
+
+      // Native form POST is treated as a top-level navigation by Google (not blocked)
+      const form = document.createElement("form");
+      form.action = GOOGLE_FORM_ACTION;
+      form.method = "POST";
+      form.target = iframeName;
+      form.style.display = "none";
+
+      const fields: Record<string, string> = {
+        "entry.1858826821": formData.fullName,
+        "entry.915319340": formData.email,
+        "entry.602424569": formData.phone || "Not provided",
+        "entry.1474328581": formData.company || "Not provided",
+        "entry.99606719": formData.message,
+      };
+      Object.entries(fields).forEach(([name, value]) => {
+        const input = document.createElement("input");
+        input.type = "hidden";
+        input.name = name;
+        input.value = value;
+        form.appendChild(input);
+      });
+
+      document.body.appendChild(form);
+      form.submit();
+
+      setTimeout(() => {
+        try { document.body.removeChild(form); } catch {}
+        try { document.body.removeChild(iframe); } catch {}
+        resolve();
+      }, 1500);
+    });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
