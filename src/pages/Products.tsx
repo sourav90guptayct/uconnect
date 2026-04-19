@@ -3,13 +3,24 @@ import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
 import { Download, ChevronRight, ArrowUpRight, ArrowLeft } from "lucide-react";
 import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 
 const Products = () => {
-  const [activeCategory, setActiveCategory] = useState<string | null>(null);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [activeCategory, setActiveCategory] = useState<string | null>(
+    searchParams.get("category")
+  );
+
+  // Sync URL → state when query param changes (e.g. via header dropdown)
+  useEffect(() => {
+    const param = searchParams.get("category");
+    setActiveCategory(param);
+  }, [searchParams]);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [activeCategory]);
+
 
   const productCategories = {
     ftth: {
