@@ -46,7 +46,7 @@ const Services = () => {
             >
               <Card className="group hover:premium-shadow-hover transition-all duration-500 border-border hover:border-accent/30 overflow-hidden rounded-2xl hover:-translate-y-2 h-full">
                 <div className="relative h-48 overflow-hidden">
-                  <img src={service.image} alt={service.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                  <img loading="lazy" decoding="async" src={service.image} alt={service.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                   <div className="absolute inset-0 bg-gradient-to-t from-card via-card/30 to-transparent" />
                   <div className="absolute bottom-4 left-4">
                     <div className="h-11 w-11 bg-accent rounded-xl flex items-center justify-center shadow-lg shadow-accent/30">

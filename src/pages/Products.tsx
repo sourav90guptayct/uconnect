@@ -561,7 +561,7 @@ const Products = () => {
       <main className="animate-fade-in">
         {/* Hero Section with Image */}
         <div className="relative h-[400px] w-full overflow-hidden">
-          <img 
+          <img loading="lazy" decoding="async" 
             src="/products/fiber-optic-hero.webp" 
             alt="Fiber Optic Cable Assemblies"
             className="w-full h-full object-cover"
@@ -639,7 +639,7 @@ const Products = () => {
                       <div className="md:col-span-2 relative bg-gradient-to-br from-muted/60 to-muted/20 p-8 flex items-center justify-center min-h-[240px]">
                         <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                         {product.image && (
-                          <img
+                          <img loading="lazy" decoding="async"
                             src={product.image}
                             alt={product.name}
                             className="w-full h-auto max-h-56 object-contain relative z-10 group-hover:scale-105 transition-transform duration-500"

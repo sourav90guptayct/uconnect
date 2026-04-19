@@ -59,7 +59,7 @@ const ServicesPage = () => {
       {/* Header */}
       <div className="relative bg-primary text-primary-foreground py-20 overflow-hidden">
         <div className="absolute inset-0">
-          <img src="/lovable-uploads/2c094ed9-72c7-4355-a7aa-38ea78d08bb1.webp" alt="Professional Technology Services" className="w-full h-full object-cover opacity-20" />
+          <img loading="lazy" decoding="async" src="/lovable-uploads/2c094ed9-72c7-4355-a7aa-38ea78d08bb1.webp" alt="Professional Technology Services" className="w-full h-full object-cover opacity-20" />
           
         </div>
         <div className="container mx-auto px-4 relative z-10">
@@ -88,7 +88,7 @@ const ServicesPage = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
              {services.map((service, index) => <Card key={index} className="group hover:shadow-xl transition-all duration-300 border-border hover:border-primary/30 overflow-hidden">
                  <div className="relative h-48 overflow-hidden">
-                   <img src={service.image} alt={service.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                   <img loading="lazy" decoding="async" src={service.image} alt={service.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
                    <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
                    <div className="absolute bottom-4 left-4">
                      <div className="h-12 w-12 bg-accent/90 rounded-lg flex items-center justify-center backdrop-blur-sm">
