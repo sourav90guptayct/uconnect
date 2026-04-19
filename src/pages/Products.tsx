@@ -32,6 +32,7 @@ const Products = () => {
     poe: "/products/category-poe.webp",
     rfCables: "/products/category-rfCables.jpg",
     fiberCables: "/products/category-fiberCables.jpg",
+    bts: "/products/category-bts.jpg",
   };
 
   const productCategories = {
