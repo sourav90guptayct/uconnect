@@ -39,11 +39,20 @@ const Header = () => {
     { slug: "fabricated", label: "Fabricated Products", desc: "Poles, trays, mounts & stands" },
   ];
 
+  const serviceCategories = [
+    { slug: "networks", label: "Networks", desc: "Connectivity infrastructure & monitoring" },
+    { slug: "managed-services", label: "Managed Services", desc: "End-to-end operations & SLAs" },
+    { slug: "digital-transformation", label: "Digital Transformation", desc: "Cloud, data & enterprise platforms" },
+    { slug: "ip-services", label: "IP Services", desc: "ITeS & system integration" },
+    { slug: "resource-management", label: "Resource Management", desc: "Technology-enabled staffing" },
+    { slug: "infra-installation", label: "Infra Installation", desc: "Tower & pole erection services" },
+  ];
+
   const publicLinks = [
     { to: "/", label: "Home" },
     { to: "/about", label: "About Us" },
-    { to: "/services", label: "Services" },
-    { to: "/products", label: "Products", hasMenu: true },
+    { to: "/services", label: "Services", hasMenu: "services" as const },
+    { to: "/products", label: "Products", hasMenu: "products" as const },
     { to: "/careers", label: "Careers" },
     { to: "/clients", label: "Clients" },
     { to: "/?section=contact", label: "Contact" },
@@ -76,42 +85,49 @@ const Header = () => {
               <NavigationMenuList>
                 {links.map((link) => (
                   <NavigationMenuItem key={link.to}>
-                    {('hasMenu' in link && link.hasMenu) ? (
-                      <>
-                        <NavigationMenuTrigger className="text-foreground/70 hover:text-foreground text-sm bg-transparent">
-                          {link.label}
-                        </NavigationMenuTrigger>
-                        <NavigationMenuContent>
-                          <div className="w-[640px] p-6">
-                            <div className="flex items-center justify-between mb-4">
-                              <div className="text-xs font-semibold text-accent uppercase tracking-widest">
-                                Our products
+                    {('hasMenu' in link && link.hasMenu) ? (() => {
+                      const isProducts = link.hasMenu === "products";
+                      const items = isProducts ? productCategories : serviceCategories;
+                      const label = isProducts ? "Our products" : "Our services";
+                      const basePath = isProducts ? "/products" : "/services";
+                      const queryKey = isProducts ? "category" : "service";
+                      return (
+                        <>
+                          <NavigationMenuTrigger className="text-foreground/70 hover:text-foreground text-sm bg-transparent">
+                            {link.label}
+                          </NavigationMenuTrigger>
+                          <NavigationMenuContent>
+                            <div className="w-[640px] p-6">
+                              <div className="flex items-center justify-between mb-4">
+                                <div className="text-xs font-semibold text-accent uppercase tracking-widest">
+                                  {label}
+                                </div>
+                                <Link to={basePath} className="text-xs font-semibold text-foreground/70 hover:text-accent">
+                                  View all →
+                                </Link>
                               </div>
-                              <Link to="/products" className="text-xs font-semibold text-foreground/70 hover:text-accent">
-                                View all →
-                              </Link>
+                              <div className="grid grid-cols-2 gap-1">
+                                {items.map((cat) => (
+                                  <NavigationMenuLink asChild key={cat.slug}>
+                                    <Link
+                                      to={`${basePath}?${queryKey}=${cat.slug}`}
+                                      className="block rounded-xl p-3 hover:bg-muted transition-colors group"
+                                    >
+                                      <div className="text-sm font-semibold text-foreground group-hover:text-accent transition-colors">
+                                        {cat.label}
+                                      </div>
+                                      <div className="text-xs text-muted-foreground mt-0.5 line-clamp-1">
+                                        {cat.desc}
+                                      </div>
+                                    </Link>
+                                  </NavigationMenuLink>
+                                ))}
+                              </div>
                             </div>
-                            <div className="grid grid-cols-2 gap-1">
-                              {productCategories.map((cat) => (
-                                <NavigationMenuLink asChild key={cat.slug}>
-                                  <Link
-                                    to={`/products?category=${cat.slug}`}
-                                    className="block rounded-xl p-3 hover:bg-muted transition-colors group"
-                                  >
-                                    <div className="text-sm font-semibold text-foreground group-hover:text-accent transition-colors">
-                                      {cat.label}
-                                    </div>
-                                    <div className="text-xs text-muted-foreground mt-0.5 line-clamp-1">
-                                      {cat.desc}
-                                    </div>
-                                  </Link>
-                                </NavigationMenuLink>
-                              ))}
-                            </div>
-                          </div>
-                        </NavigationMenuContent>
-                      </>
-                    ) : (
+                          </NavigationMenuContent>
+                        </>
+                      );
+                    })() : (
                       <NavigationMenuLink asChild>
                         <Link to={link.to} className={cn(navigationMenuTriggerStyle(), "text-foreground/70 hover:text-foreground text-sm")}>
                           {link.label}
