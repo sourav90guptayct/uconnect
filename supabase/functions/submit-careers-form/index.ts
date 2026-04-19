@@ -70,13 +70,20 @@ Deno.serve(async (req) => {
       body: formBody.toString(),
     });
 
-    const ok = res.status === 200;
-    console.log("Careers Form submit status:", res.status, "ok:", ok);
+    const html = await res.text();
+    const success =
+      res.status === 200 &&
+      (html.includes("freebirdFormviewerViewResponseConfirm") ||
+        html.includes("Your response has been recorded"));
+    console.log("Careers Form submit status:", res.status, "success:", success, "len:", html.length);
 
-    return new Response(JSON.stringify({ ok, status: res.status }), {
-      headers: { ...corsHeaders, "Content-Type": "application/json" },
-      status: ok ? 200 : 502,
-    });
+    return new Response(
+      JSON.stringify({ ok: success, status: res.status }),
+      {
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+        status: success ? 200 : 502,
+      },
+    );
   } catch (err) {
     console.error("submit-careers-form error:", err);
     return new Response(JSON.stringify({ ok: false, error: String(err) }), {
