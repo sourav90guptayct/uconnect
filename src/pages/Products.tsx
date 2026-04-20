@@ -638,27 +638,28 @@ const Products = () => {
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: idx * 0.05 }}
-                  className="group relative block text-left rounded-3xl overflow-hidden bg-secondary aspect-[4/5] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                  className="group relative flex flex-col text-left rounded-3xl overflow-hidden bg-card border border-border shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
                 >
-                  {heroImg && (
-                    <img
-                      src={heroImg}
-                      alt={category.title}
-                      loading="lazy"
-                      className="absolute inset-0 w-full h-full object-contain object-center p-8 group-hover:scale-105 transition-transform duration-700 ease-out"
-                    />
-                  )}
-                  <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-foreground/90 via-foreground/50 to-transparent" />
-                  <div className="absolute inset-0 p-6 lg:p-8 flex flex-col justify-end">
-                    <div className="flex items-end justify-between gap-4">
-                      <h3 className="display-headline text-background text-2xl lg:text-3xl leading-tight">
+                  <div className="relative m-3 rounded-2xl overflow-hidden bg-secondary aspect-[4/3]">
+                    {heroImg && (
+                      <img
+                        src={heroImg}
+                        alt={category.title}
+                        loading="lazy"
+                        className="absolute inset-0 w-full h-full object-contain object-center p-6 group-hover:scale-105 transition-transform duration-700 ease-out"
+                      />
+                    )}
+                  </div>
+                  <div className="px-6 pb-6 pt-2 flex flex-col flex-1">
+                    <div className="flex items-start justify-between gap-4">
+                      <h3 className="display-headline text-foreground text-xl lg:text-2xl leading-tight">
                         {category.title}
                       </h3>
-                      <span className="shrink-0 w-11 h-11 rounded-full bg-background text-foreground flex items-center justify-center group-hover:bg-accent group-hover:text-accent-foreground transition-colors">
-                        <ArrowUpRight className="w-5 h-5" />
+                      <span className="shrink-0 w-10 h-10 rounded-full bg-secondary text-foreground flex items-center justify-center group-hover:bg-accent group-hover:text-accent-foreground transition-colors">
+                        <ArrowUpRight className="w-4 h-4" />
                       </span>
                     </div>
-                    <p className="mt-3 text-background/80 text-sm line-clamp-2 max-w-md">
+                    <p className="mt-3 text-muted-foreground text-sm line-clamp-2">
                       {category.description}
                     </p>
                   </div>
