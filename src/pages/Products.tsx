@@ -638,17 +638,17 @@ const Products = () => {
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: idx * 0.05 }}
-                  className="group relative block text-left rounded-3xl overflow-hidden bg-muted aspect-[4/5] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                  className="group relative block text-left rounded-3xl overflow-hidden bg-secondary aspect-[4/5] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
                 >
                   {heroImg && (
                     <img
                       src={heroImg}
                       alt={category.title}
                       loading="lazy"
-                      className="absolute inset-0 w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-700 ease-out"
+                      className="absolute inset-0 w-full h-full object-contain object-center p-8 group-hover:scale-105 transition-transform duration-700 ease-out"
                     />
                   )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-foreground/85 via-foreground/30 to-transparent" />
+                  <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-foreground/90 via-foreground/50 to-transparent" />
                   <div className="absolute inset-0 p-6 lg:p-8 flex flex-col justify-end">
                     <div className="flex items-end justify-between gap-4">
                       <h3 className="display-headline text-background text-2xl lg:text-3xl leading-tight">
