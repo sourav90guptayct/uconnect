@@ -640,13 +640,13 @@ const Products = () => {
                   transition={{ duration: 0.5, delay: idx * 0.05 }}
                   className="group relative flex flex-col text-left rounded-3xl overflow-hidden bg-card border border-border shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
                 >
-                  <div className="relative m-3 rounded-2xl overflow-hidden bg-secondary aspect-[4/3]">
+                  <div className="relative m-3 rounded-2xl overflow-hidden bg-secondary aspect-[4/3] p-3">
                     {heroImg && (
                       <img
                         src={heroImg}
                         alt={category.title}
                         loading="lazy"
-                        className="absolute inset-0 w-full h-full object-contain object-center p-6 group-hover:scale-105 transition-transform duration-700 ease-out"
+                        className="w-full h-full object-cover object-center rounded-xl group-hover:scale-105 transition-transform duration-700 ease-out"
                       />
                     )}
                   </div>
