@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, Download } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { useAdminCheck } from "@/hooks/useAdminCheck";
 import { useNavigate, Link } from "react-router-dom";
@@ -153,7 +153,17 @@ const Header = () => {
                 </Link>
               );
             })}
-            <div className="ml-4">
+            <div className="ml-4 flex items-center gap-2">
+              <a
+                href="/uConnect-Company-Profile.pdf"
+                download
+                onMouseEnter={scheduleClose}
+                className="hidden xl:inline-flex items-center gap-2 px-3 py-2 rounded-xl text-sm font-medium text-foreground/80 hover:text-accent border border-border hover:border-accent/40 transition-colors"
+                title="Download Company Profile (PDF)"
+              >
+                <Download className="h-3.5 w-3.5" />
+                Company Profile
+              </a>
               <Button
                 className="bg-accent text-accent-foreground hover:bg-accent/90 rounded-xl text-sm shadow-md shadow-accent/20"
                 onClick={handleAuthAction}
@@ -177,6 +187,15 @@ const Header = () => {
                   {link.label}
                 </Link>
               ))}
+              <a
+                href="/uConnect-Company-Profile.pdf"
+                download
+                onClick={() => setIsMenuOpen(false)}
+                className="inline-flex items-center gap-2 w-fit px-3 py-2 rounded-xl text-sm font-medium text-foreground/80 border border-border"
+              >
+                <Download className="h-3.5 w-3.5" />
+                Download Company Profile
+              </a>
               <Button className="bg-accent text-accent-foreground hover:bg-accent/90 w-fit rounded-xl text-sm" onClick={() => { handleAuthAction(); setIsMenuOpen(false); }}>
                 {user ? 'Sign Out' : 'Sign In'}
               </Button>
