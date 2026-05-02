@@ -22,8 +22,8 @@ const Hero = () => {
       <div className="container mx-auto px-4 relative z-10">
         {/* Editorial headline */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ y: 30 }}
+          animate={{ y: 0 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
           className="max-w-6xl"
         >
