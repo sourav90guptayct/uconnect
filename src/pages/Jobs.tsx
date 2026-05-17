@@ -13,6 +13,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { useToast } from "@/hooks/use-toast";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 import { useNavigate } from "react-router-dom";
 
 interface Job {
@@ -318,8 +319,23 @@ const JobsPage = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="Jobs — Telecom & IT Career Openings | uConnect Technologies"
+        description="Browse live telecom and IT job openings across India. RF, FTTH, switching, field engineering and back-office roles. Apply directly online."
+        path="/jobs"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          name: "Open positions at uConnect Technologies",
+          itemListElement: jobs.slice(0, 20).map((j, i) => ({
+            "@type": "ListItem", position: i + 1,
+            url: `https://uconnecttech.com/jobs/${j.id}`,
+            name: j.title,
+          })),
+        }}
+      />
       <Header />
-      
+      <main>
       {/* Header */}
       <div className="bg-primary text-primary-foreground py-16">
         <div className="container mx-auto px-4">
@@ -533,6 +549,7 @@ const JobsPage = () => {
           )}
         </div>
       </section>
+      </main>
 
       <Footer />
     </div>
