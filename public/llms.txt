@@ -1,0 +1,25 @@
+# uConnect Technologies
+
+> uConnect Technologies delivers telecom infrastructure, IT managed services, FTTH products, ConnectLH™ antennas, network solutions, and skilled manpower across India. 50+ clients and 1000+ deployments since 2017.
+
+uConnect Technologies is an enterprise B2B partner for telecom and IT
+infrastructure in India. We design, deploy, and operate networks; supply
+ConnectLH™ antennas, FTTH products, RF/fiber/network cables, PoE systems,
+racks, and BTS equipment; and provide trained field manpower for telecom
+rollouts.
+
+## Pages
+
+- [Home](/): Overview of uConnect Technologies' telecom, IT, and infrastructure offerings.
+- [About](/about): Company background, mission, leadership, and the journey since 2017.
+- [Services](/services): Managed services, networks, infra installation, resource management, digital transformation, and IP services.
+- [Products](/products): ConnectLH™ antennas, FTTH, fiber/RF/network cables, PoE, racks, switches, and BTS equipment with downloadable datasheets.
+- [Careers](/careers): Open roles across RF, FTTH, switching, and field engineering with online application form.
+- [Jobs](/jobs): Live job listings with details, requirements, and direct apply.
+- [Clients](/clients): Enterprise clients and large-scale telecom deployments.
+- [Support](/support): Customer and partner support, contact channels, and escalation.
+
+## Optional
+
+- [Sign in](/auth): Candidate authentication for applications.
+- [Register](/register): Create a candidate profile.
