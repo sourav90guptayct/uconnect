@@ -1,6 +1,7 @@
 import { Building2, Globe, Shield, Zap, Users, CheckCircle } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 import { Card, CardContent } from "@/components/ui/card";
 import beetelLogo from "@/assets/clients/beetel.jpg";
 import aaiLogo from "@/assets/clients/aai.jpg";
@@ -82,7 +83,13 @@ const Clients = () => {
   }];
   const achievements = ["Trusted partner for Fortune 500 companies", "Successfully delivered 500+ projects", "24/7 dedicated support and maintenance", "ISO 9001:2015 certified organization", "Industry-leading security compliance", "Agile project management methodologies"];
   return <div className="min-h-screen bg-background">
+      <SEO
+        title="Our Clients — Enterprise Telecom & IT Partners | uConnect"
+        description="Trusted by leading telecom and enterprise brands across India — Airtel, Jio, Vi, BSNL, Railtel, L&T, Wipro, Indus Towers, and more."
+        path="/clients"
+      />
       <Header />
+      <main>
       
       {/* Editorial Hero */}
       <section
@@ -251,6 +258,7 @@ const Clients = () => {
           </div>
         </div>
       </section>
+      </main>
 
       <Footer />
     </div>;

@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 
 const ServicesPage = () => {
   const [searchParams] = useSearchParams();
@@ -81,7 +82,13 @@ const ServicesPage = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="Services — Telecom, IT & Network Solutions | uConnect"
+        description="Managed services, network deployment, infra installation, resource management, digital transformation, and IP services for enterprise customers across India."
+        path="/services"
+      />
       <Header />
+      <main>
 
       {/* Editorial Hero */}
       <section
@@ -208,6 +215,7 @@ const ServicesPage = () => {
           </motion.div>
         </div>
       </section>
+      </main>
 
       <Footer />
     </div>

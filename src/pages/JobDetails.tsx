@@ -12,6 +12,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { useToast } from "@/hooks/use-toast";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 
 interface Job {
   id: string;
@@ -262,10 +263,54 @@ const JobDetailsPage = () => {
     );
   }
 
+  const jobJsonLd = job ? {
+    "@context": "https://schema.org",
+    "@type": "JobPosting",
+    title: job.title,
+    description: job.job_description,
+    datePosted: job.created_at,
+    validThrough: job.application_deadline,
+    employmentType: (job.employment_type || "full_time").toUpperCase(),
+    hiringOrganization: {
+      "@type": "Organization",
+      name: job.company_name || "uConnect Technologies",
+      sameAs: "https://uconnecttech.com",
+    },
+    jobLocation: {
+      "@type": "Place",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: job.location_city,
+        addressRegion: job.location_state,
+        addressCountry: "IN",
+      },
+    },
+    ...(job.salary_min && job.salary_max ? {
+      baseSalary: {
+        "@type": "MonetaryAmount",
+        currency: "INR",
+        value: {
+          "@type": "QuantitativeValue",
+          minValue: job.salary_min,
+          maxValue: job.salary_max,
+          unitText: "YEAR",
+        },
+      },
+    } : {}),
+  } : null;
+
   return (
     <div className="min-h-screen bg-background">
+      {job && (
+        <SEO
+          title={`${job.title} at ${job.company_name} — uConnect Jobs`}
+          description={(job.job_description || "Apply for this opportunity on uConnect Technologies.").slice(0, 160)}
+          path={`/jobs/${job.id}`}
+          jsonLd={jobJsonLd!}
+        />
+      )}
       <Header />
-      
+      <main>
       {/* Back Button */}
       <div className="bg-muted/30 py-4">
         <div className="container mx-auto px-4">
@@ -481,6 +526,7 @@ const JobDetailsPage = () => {
           </div>
         </div>
       </section>
+      </main>
 
       <Footer />
     </div>

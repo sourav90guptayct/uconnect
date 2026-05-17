@@ -5,6 +5,7 @@ import { Mail, Phone, MessageCircle, FileText, Bug, HelpCircle } from 'lucide-re
 import { useToast } from '@/hooks/use-toast';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import SEO from '@/components/SEO';
 
 const Support = () => {
   const { toast } = useToast();
@@ -50,8 +51,14 @@ const Support = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="Support — Help & Contact | uConnect Technologies"
+        description="Get help from uConnect Technologies. Email support for general questions, technical issues, account management, and career enquiries."
+        path="/support"
+      />
       <Header />
-      
+      <main>
+
       <div className="container mx-auto px-4 py-16">
         <div className="max-w-4xl mx-auto">
           {/* Header Section */}
@@ -131,6 +138,7 @@ const Support = () => {
           </Card>
         </div>
       </div>
+      </main>
 
       <Footer />
     </div>
