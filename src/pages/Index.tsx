@@ -36,12 +36,16 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       <Header />
-      <Hero />
+      <main>
+        <Hero />
+        <Suspense fallback={<SectionFallback />}>
+          <About />
+          <Services />
+          <WhyChooseUs />
+          <Contact />
+        </Suspense>
+      </main>
       <Suspense fallback={<SectionFallback />}>
-        <About />
-        <Services />
-        <WhyChooseUs />
-        <Contact />
         <Footer />
       </Suspense>
     </div>
