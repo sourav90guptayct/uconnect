@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 import { motion } from "framer-motion";
 import { Download, ChevronRight, ArrowUpRight, ArrowLeft } from "lucide-react";
 import { useState, useEffect } from "react";
@@ -585,6 +586,24 @@ const Products = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="Products — ConnectLH™ Antennas, FTTH, Cables, PoE | uConnect"
+        description="Complete product catalogue: ConnectLH™ antennas, FTTH equipment, fiber & RF cables, network cables, AC/DC PoE, racks, switches and BTS — engineered for the wireless edge."
+        path="/products"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          name: "uConnect Technologies Product Catalogue",
+          itemListElement: [
+            "FTTH Products", "ConnectLH™ Antennas", "Fiber Optic Cables",
+            "RF Cables", "Network Cables", "AC & DC PoE", "Racks & Cabinets",
+            "Switches", "BTS Equipment", "Specialized Cables"
+          ].map((name, i) => ({
+            "@type": "ListItem", position: i + 1,
+            item: { "@type": "Product", name, brand: { "@type": "Brand", name: "uConnect Technologies" } }
+          }))
+        }}
+      />
       <Header />
       
       <main className="animate-fade-in">
