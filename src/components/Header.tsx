@@ -43,7 +43,7 @@ const Header = () => {
   ];
 
   const serviceCategories = [
-    { slug: "networks", label: "Networks", desc: "Connectivity infrastructure & monitoring" },
+    { slug: "networks", label: "Networks", desc: "Connectivity at scale" },
     { slug: "managed-services", label: "Managed Services", desc: "End-to-end operations & SLAs" },
     { slug: "digital-transformation", label: "Digital Transformation", desc: "Cloud, data & enterprise platforms" },
     { slug: "ip-services", label: "IP Services", desc: "ITeS & system integration" },
