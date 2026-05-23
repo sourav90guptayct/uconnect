@@ -308,6 +308,30 @@ const NetworksPage = () => {
                 </motion.div>
               ))}
             </div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+              className="mt-12 relative rounded-3xl overflow-hidden border border-border"
+            >
+              <img
+                src={networksInfra}
+                alt="Enterprise data center infrastructure with high-density network switching and cabling"
+                width={1280}
+                height={896}
+                loading="lazy"
+                className="w-full h-[280px] lg:h-[420px] object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/40 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-6 lg:p-10">
+                <h3 className="display-headline text-foreground text-2xl lg:text-4xl max-w-2xl">
+                  Carrier-grade infrastructure,{" "}
+                  <span className="text-accent">built to scale.</span>
+                </h3>
+              </div>
+            </motion.div>
           </div>
         </section>
 
