@@ -550,27 +550,28 @@ const NetworksPage = () => {
                   width={1280}
                   height={896}
                   loading="lazy"
-                  className="w-full h-full object-cover aspect-[2/1]"
+                  className="w-full h-full object-cover aspect-[16/9]"
                 />
                 {/* Country markers */}
                 {[
-                  { name: "India", top: "52%", left: "73.5%" },
-                  { name: "Nepal", top: "47%", left: "74%" },
-                  { name: "Bhutan", top: "47%", left: "76.5%" },
-                  { name: "Sri Lanka", top: "62%", left: "74%" },
+                  { name: "India", top: "55%", left: "70%" },
+                  { name: "Nepal", top: "47%", left: "70.5%" },
+                  { name: "Bhutan", top: "47%", left: "73%" },
+                  { name: "Sri Lanka", top: "65%", left: "70.5%" },
                 ].map((m) => (
                   <div
                     key={m.name}
-                    className="absolute -translate-x-1/2 -translate-y-1/2 group"
+                    className="absolute -translate-x-1/2 -translate-y-1/2"
                     style={{ top: m.top, left: m.left }}
                   >
                     <span className="absolute inset-0 -m-2 rounded-full bg-accent/40 animate-ping" />
                     <span className="relative block h-3 w-3 rounded-full bg-accent shadow-[0_0_12px_hsl(var(--accent))] ring-2 ring-background" />
-                    <span className="absolute left-1/2 top-full mt-1 -translate-x-1/2 whitespace-nowrap text-[10px] font-semibold uppercase tracking-wider text-accent bg-background/80 backdrop-blur px-1.5 py-0.5 rounded">
+                    <span className="absolute left-1/2 top-full mt-1 -translate-x-1/2 whitespace-nowrap text-[10px] font-semibold uppercase tracking-wider text-accent">
                       {m.name}
                     </span>
                   </div>
                 ))}
+
 
               </motion.div>
               <div className="grid grid-cols-2 gap-3 order-1 lg:order-2">
