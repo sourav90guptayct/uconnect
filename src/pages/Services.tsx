@@ -43,24 +43,6 @@ const ServicesPage = () => {
       features: ["End-to-end process management", "24/7 operational support", "Performance monitoring", "Service level agreements"],
     },
     {
-      slug: "digital-transformation",
-      icon: Building,
-      image: "/lovable-uploads/3a00d3ac-8dd2-40fb-b5bb-bf516bd60ff2.webp",
-      title: "Digital transformation",
-      tagline: "Cloud, data & platforms",
-      description: "Modernize IT, migrate to the cloud and deploy secure enterprise platforms.",
-      features: ["Cloud migration", "Digital platforms", "Data management", "Enterprise IT solutions"],
-    },
-    {
-      slug: "ip-services",
-      icon: Briefcase,
-      image: "/lovable-uploads/2d02a26b-70d0-4eb8-98e3-04f141cb0bff.webp",
-      title: "IP services",
-      tagline: "ITeS & system integration",
-      description: "Cutting-edge IP and ITeS solutions that empower business growth.",
-      features: ["IP infrastructure", "ITeS solutions", "Technology consulting", "System integration"],
-    },
-    {
       slug: "resource-management",
       icon: Search,
       image: "/lovable-uploads/55b3aa6c-9ace-4e67-9a9d-05f41feefab1.png",
@@ -84,7 +66,7 @@ const ServicesPage = () => {
     <div className="min-h-screen bg-background">
       <SEO
         title="Services — Telecom, IT & Network Solutions | uConnect"
-        description="Managed services, network deployment, infra installation, resource management, digital transformation, and IP services for enterprise customers across India."
+        description="Managed services, network deployment, infra installation, and resource management for enterprise customers across India."
         path="/services"
       />
       <Header />
@@ -119,9 +101,9 @@ const ServicesPage = () => {
               <span className="text-foreground/80">At enterprise scale.</span>
             </h1>
             <p className="mt-8 text-base lg:text-lg text-muted-foreground max-w-2xl leading-relaxed">
-              From telecom infrastructure and IT services to digital transformation and branded
-              product lines — uConnect Technologies delivers end-to-end solutions across Telecom,
-              IT and Enterprise verticals.
+              From telecom infrastructure and managed IT services to workforce solutions and
+              branded product lines — uConnect Technologies delivers end-to-end solutions across
+              Telecom, IT and Enterprise verticals.
             </p>
           </motion.div>
         </div>

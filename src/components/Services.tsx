@@ -15,16 +15,6 @@ const Services = () => {
       tagline: "End-to-end operations",
     },
     {
-      image: "/lovable-uploads/8a3919a0-25ca-4ddc-8b40-b666e6f34784.webp",
-      title: "Digital transformation",
-      tagline: "Cloud, data & platforms",
-    },
-    {
-      image: "/lovable-uploads/3452b9b3-2558-42b0-a053-f0efdc7efb72.webp",
-      title: "IP services",
-      tagline: "ITeS & system integration",
-    },
-    {
       image: "/lovable-uploads/4cf29a0e-c8b2-46f9-a586-5e1c9216bfe6.webp",
       title: "Resource management",
       tagline: "Technology-enabled staffing",
