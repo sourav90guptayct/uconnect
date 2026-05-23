@@ -144,20 +144,37 @@ const NetworksPage = () => {
         {/* Intro */}
         <section className="py-16 lg:py-24 bg-background">
           <div className="container mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="max-w-3xl"
-            >
-              <p className="text-lg lg:text-xl text-foreground/80 leading-relaxed">
-                With extensive experience in both licensed and unlicensed spectrum networks,
-                we specialize in designing, deploying, integrating, and supporting carrier-grade
-                communication infrastructure built for scalability, reliability, and long-term
-                operational performance.
-              </p>
-            </motion.div>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+              >
+                <p className="text-lg lg:text-xl text-foreground/80 leading-relaxed">
+                  With extensive experience in both licensed and unlicensed spectrum networks,
+                  we specialize in designing, deploying, integrating, and supporting carrier-grade
+                  communication infrastructure built for scalability, reliability, and long-term
+                  operational performance.
+                </p>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7 }}
+                className="relative rounded-3xl overflow-hidden border border-border shadow-xl"
+              >
+                <img
+                  src={networksDeployment}
+                  alt="Field engineer aligning point-to-point wireless antenna during network deployment"
+                  width={1280}
+                  height={896}
+                  loading="lazy"
+                  className="w-full h-full object-cover aspect-[4/3]"
+                />
+              </motion.div>
+            </div>
           </div>
         </section>
 
