@@ -168,8 +168,8 @@ const About = () => {
                 </motion.div>
               ))}
 
-              <div className="col-span-2 bg-foreground rounded-3xl p-8 lg:p-10">
-                <div className="grid grid-cols-4 gap-6">
+              <div className="col-span-2 bg-foreground rounded-3xl p-6 sm:p-8 lg:p-10">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-x-4 gap-y-6">
                   {[
                     { val: "2017", label: "Established" },
                     { val: "18", label: "Circles" },
