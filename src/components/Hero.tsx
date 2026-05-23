@@ -88,10 +88,12 @@ const Hero = () => {
         >
           <div className="relative rounded-[2rem] overflow-hidden shadow-2xl bg-card">
             <img
-              src="/lovable-uploads/d75128dc-3c18-4149-aba1-d879dab93472.webp"
+              src="/lovable-uploads/hero-enterprise-network.jpg"
               alt="Enterprise telecom infrastructure deployed by uConnect Technologies"
               fetchPriority="high"
               decoding="async"
+              width={1920}
+              height={1080}
               className="w-full h-[280px] sm:h-[400px] lg:h-[560px] object-cover"
             />
           </div>
