@@ -5,6 +5,10 @@ import { motion } from "framer-motion";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
+import networksHero from "@/assets/networks-hero.jpg";
+import networksDeployment from "@/assets/networks-deployment.jpg";
+import networksCoverage from "@/assets/networks-coverage.jpg";
+import networksInfra from "@/assets/networks-infra.jpg";
 
 const expertise = [
   {
@@ -95,6 +99,16 @@ const NetworksPage = () => {
           className="relative overflow-hidden pt-28 pb-16 lg:pt-32 lg:pb-20"
           style={{ background: "var(--gradient-hero-soft)" }}
         >
+          <div className="absolute inset-0">
+            <img
+              src={networksHero}
+              alt="Telecom microwave tower at sunset across mountain terrain"
+              width={1600}
+              height={1024}
+              className="w-full h-full object-cover opacity-30"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-background via-background/85 to-background/40" />
+          </div>
           <div
             className="absolute inset-0 opacity-[0.04] pointer-events-none"
             style={{
@@ -130,20 +144,37 @@ const NetworksPage = () => {
         {/* Intro */}
         <section className="py-16 lg:py-24 bg-background">
           <div className="container mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="max-w-3xl"
-            >
-              <p className="text-lg lg:text-xl text-foreground/80 leading-relaxed">
-                With extensive experience in both licensed and unlicensed spectrum networks,
-                we specialize in designing, deploying, integrating, and supporting carrier-grade
-                communication infrastructure built for scalability, reliability, and long-term
-                operational performance.
-              </p>
-            </motion.div>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+              >
+                <p className="text-lg lg:text-xl text-foreground/80 leading-relaxed">
+                  With extensive experience in both licensed and unlicensed spectrum networks,
+                  we specialize in designing, deploying, integrating, and supporting carrier-grade
+                  communication infrastructure built for scalability, reliability, and long-term
+                  operational performance.
+                </p>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7 }}
+                className="relative rounded-3xl overflow-hidden border border-border shadow-xl"
+              >
+                <img
+                  src={networksDeployment}
+                  alt="Field engineer aligning point-to-point wireless antenna during network deployment"
+                  width={1280}
+                  height={896}
+                  loading="lazy"
+                  className="w-full h-full object-cover aspect-[4/3]"
+                />
+              </motion.div>
+            </div>
           </div>
         </section>
 
@@ -277,6 +308,30 @@ const NetworksPage = () => {
                 </motion.div>
               ))}
             </div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+              className="mt-12 relative rounded-3xl overflow-hidden border border-border"
+            >
+              <img
+                src={networksInfra}
+                alt="Enterprise data center infrastructure with high-density network switching and cabling"
+                width={1280}
+                height={896}
+                loading="lazy"
+                className="w-full h-[280px] lg:h-[420px] object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/40 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-6 lg:p-10">
+                <h3 className="display-headline text-foreground text-2xl lg:text-4xl max-w-2xl">
+                  Carrier-grade infrastructure,{" "}
+                  <span className="text-accent">built to scale.</span>
+                </h3>
+              </div>
+            </motion.div>
           </div>
         </section>
 
@@ -414,20 +469,38 @@ const NetworksPage = () => {
               </h2>
             </motion.div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-              {regions.map((region, index) => (
-                <motion.div
-                  key={region}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.06, duration: 0.4 }}
-                  className="flex items-center gap-3 bg-muted/60 border border-border rounded-2xl px-5 py-4 text-sm font-medium text-foreground/90"
-                >
-                  <MapPin className="h-4 w-4 text-accent shrink-0" />
-                  {region}
-                </motion.div>
-              ))}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7 }}
+                className="relative rounded-3xl overflow-hidden border border-border order-2 lg:order-1"
+              >
+                <img
+                  src={networksCoverage}
+                  alt="Map showing uConnect network coverage across India, Nepal, Bhutan, and Sri Lanka"
+                  width={1280}
+                  height={896}
+                  loading="lazy"
+                  className="w-full h-full object-cover aspect-[4/3]"
+                />
+              </motion.div>
+              <div className="grid grid-cols-2 gap-3 order-1 lg:order-2">
+                {regions.map((region, index) => (
+                  <motion.div
+                    key={region}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.06, duration: 0.4 }}
+                    className="flex items-center gap-3 bg-muted/60 border border-border rounded-2xl px-5 py-4 text-sm font-medium text-foreground/90"
+                  >
+                    <MapPin className="h-4 w-4 text-accent shrink-0" />
+                    {region}
+                  </motion.div>
+                ))}
+              </div>
             </div>
 
             <motion.p
