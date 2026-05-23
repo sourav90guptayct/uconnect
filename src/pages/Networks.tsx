@@ -236,27 +236,39 @@ const NetworksPage = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="mt-6 bg-card border border-border rounded-3xl p-6 lg:p-8 hover:border-accent/40 transition-all duration-500"
+              className="mt-6 bg-card border border-border rounded-3xl overflow-hidden hover:border-accent/40 transition-all duration-500"
             >
-              <div className="flex flex-col md:flex-row md:items-start gap-6">
-                <div className="h-10 w-10 rounded-full bg-accent/10 flex items-center justify-center shrink-0">
-                  <Wifi className="h-5 w-5 text-accent" />
-                </div>
-                <div>
-                  <h3 className="display-headline text-foreground text-xl lg:text-2xl mb-4">
-                    Enterprise & Outdoor Wi-Fi Solutions
-                  </h3>
-                  <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
-                    Deployment of secure and high-performance Wi-Fi infrastructure for:
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {["Campuses", "Warehouses", "Hospitality", "Smart public spaces", "Industrial environments"].map((t) => (
-                      <span key={t} className="inline-flex items-center gap-2 text-sm text-foreground/80 bg-muted px-3 py-1.5 rounded-full">
-                        <div className="h-1.5 w-1.5 bg-accent rounded-full" />
-                        {t}
-                      </span>
-                    ))}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
+                <div className="p-6 lg:p-8">
+                  <div className="flex items-start gap-6">
+                    <div className="h-10 w-10 rounded-full bg-accent/10 flex items-center justify-center shrink-0">
+                      <Wifi className="h-5 w-5 text-accent" />
+                    </div>
+                    <div>
+                      <h3 className="display-headline text-foreground text-xl lg:text-2xl mb-4">
+                        Enterprise & Outdoor Wi-Fi Solutions
+                      </h3>
+                      <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
+                        Deployment of secure and high-performance Wi-Fi infrastructure for:
+                      </p>
+                      <div className="flex flex-wrap gap-2">
+                        {["Campuses", "Warehouses", "Hospitality", "Smart public spaces", "Industrial environments"].map((t) => (
+                          <span key={t} className="inline-flex items-center gap-2 text-sm text-foreground/80 bg-muted px-3 py-1.5 rounded-full">
+                            <div className="h-1.5 w-1.5 bg-accent rounded-full" />
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
                   </div>
+                </div>
+                <div className="relative min-h-[220px] md:min-h-full">
+                  <img
+                    src={networksEnterprise}
+                    alt="Modern enterprise campus building with sustainable architecture and green surroundings"
+                    loading="lazy"
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
                 </div>
               </div>
             </motion.div>
