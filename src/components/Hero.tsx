@@ -86,7 +86,7 @@ const Hero = () => {
           transition={{ delay: 0.4, duration: 0.8 }}
           className="relative mt-12 lg:mt-16"
         >
-          <div className="relative rounded-[2rem] overflow-hidden shadow-2xl bg-card">
+          <div className="relative rounded-[2rem] overflow-hidden shadow-2xl bg-white">
             <img
               src="/lovable-uploads/hero-enterprise-network.jpg"
               alt="Enterprise telecom infrastructure deployed by uConnect Technologies"
@@ -94,7 +94,7 @@ const Hero = () => {
               decoding="async"
               width={1920}
               height={1080}
-              className="w-full h-[280px] sm:h-[400px] lg:h-[560px] object-cover"
+              className="w-full h-auto object-contain"
             />
           </div>
 
