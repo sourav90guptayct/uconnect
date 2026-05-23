@@ -79,9 +79,9 @@ const Clients = () => {
   }, {
     icon: CheckCircle,
     value: "10,000+",
-    label: "UBR Links Installed"
+    label: "Links Deployed"
   }];
-  const achievements = ["Trusted partner for India's top telecom carriers", "10,000+ UBR links deployed successfully", "30+ ongoing projects across 18 circles", "24/7 dedicated NOC and field support", "200+ Tier-1 engineers and 5 regional warehouses", "Carrier-grade I&C, switching and CCTV deployment expertise"];
+  const achievements = ["Trusted partner for India's top telecom carriers", "10,000+ Links deployed successfully", "30+ ongoing projects across 18 circles", "24/7 dedicated NOC and field support", "200+ Tier-1 engineers and 5 regional warehouses", "Carrier-grade I&C, switching and CCTV deployment expertise"];
   return <div className="min-h-screen bg-background">
       <SEO
         title="Our Clients — Enterprise Telecom & IT Partners | uConnect"

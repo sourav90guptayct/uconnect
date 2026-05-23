@@ -183,7 +183,7 @@ const NetworksPage = () => {
             {/* Proof points strip */}
             <div className="mt-14 lg:mt-20 grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
               {[
-                { val: "10,000+", label: "UBR links installed" },
+                { val: "10,000+", label: "Links deployed" },
                 { val: "18", label: "Circles operational" },
                 { val: "200+", label: "Field engineers" },
                 { val: "5", label: "Regional warehouses" },
