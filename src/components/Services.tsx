@@ -76,18 +76,17 @@ const Services = () => {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-foreground/85 via-foreground/30 to-transparent" />
 
-              <div className="absolute inset-0 p-5 lg:p-7 flex flex-col justify-end">
-                <div className="text-background/70 text-xs lg:text-sm uppercase tracking-wider mb-1.5">
+              <div className="absolute top-4 right-4 lg:top-5 lg:right-5 h-9 w-9 lg:h-12 lg:w-12 rounded-full bg-accent flex items-center justify-center transition-transform duration-300 group-hover:rotate-45 shadow-lg">
+                <ArrowUpRight className="h-4 w-4 lg:h-6 lg:w-6 text-accent-foreground" />
+              </div>
+
+              <div className="absolute inset-x-0 bottom-0 p-4 lg:p-7">
+                <div className="text-background/70 text-[10px] lg:text-sm uppercase tracking-wider mb-1.5">
                   {service.tagline}
                 </div>
-                <div className="flex items-end justify-between gap-3">
-                  <h3 className="display-headline text-background text-2xl lg:text-4xl">
-                    {service.title}
-                  </h3>
-                  <div className="shrink-0 h-10 w-10 lg:h-12 lg:w-12 rounded-full bg-accent flex items-center justify-center transition-transform duration-300 group-hover:rotate-45">
-                    <ArrowUpRight className="h-5 w-5 lg:h-6 lg:w-6 text-accent-foreground" />
-                  </div>
-                </div>
+                <h3 className="display-headline text-background text-xl sm:text-2xl lg:text-4xl leading-tight">
+                  {service.title}
+                </h3>
               </div>
               </Link>
             </motion.div>
