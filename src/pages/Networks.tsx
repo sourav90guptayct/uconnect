@@ -445,20 +445,38 @@ const NetworksPage = () => {
               </h2>
             </motion.div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-              {regions.map((region, index) => (
-                <motion.div
-                  key={region}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.06, duration: 0.4 }}
-                  className="flex items-center gap-3 bg-muted/60 border border-border rounded-2xl px-5 py-4 text-sm font-medium text-foreground/90"
-                >
-                  <MapPin className="h-4 w-4 text-accent shrink-0" />
-                  {region}
-                </motion.div>
-              ))}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7 }}
+                className="relative rounded-3xl overflow-hidden border border-border order-2 lg:order-1"
+              >
+                <img
+                  src={networksCoverage}
+                  alt="Map showing uConnect network coverage across India, Nepal, Bhutan, and Sri Lanka"
+                  width={1280}
+                  height={896}
+                  loading="lazy"
+                  className="w-full h-full object-cover aspect-[4/3]"
+                />
+              </motion.div>
+              <div className="grid grid-cols-2 gap-3 order-1 lg:order-2">
+                {regions.map((region, index) => (
+                  <motion.div
+                    key={region}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.06, duration: 0.4 }}
+                    className="flex items-center gap-3 bg-muted/60 border border-border rounded-2xl px-5 py-4 text-sm font-medium text-foreground/90"
+                  >
+                    <MapPin className="h-4 w-4 text-accent shrink-0" />
+                    {region}
+                  </motion.div>
+                ))}
+              </div>
             </div>
 
             <motion.p
