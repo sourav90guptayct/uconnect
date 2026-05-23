@@ -44,9 +44,9 @@ const Header = () => {
 
   const serviceCategories = [
     { slug: "networks", label: "Networks", desc: "Connectivity at scale", href: "/networks" },
-    { slug: "managed-services", label: "Managed Services", desc: "End-to-end operations & SLAs" },
-    { slug: "resource-management", label: "Resource Management", desc: "Technology-enabled staffing" },
-    { slug: "infra-installation", label: "Infra Installation", desc: "Tower & pole erection services" },
+    { slug: "managed-services", label: "Managed Services", desc: "End-to-end operations & SLAs", href: "/managed-services" },
+    { slug: "resource-management", label: "Resource Management", desc: "Technology-enabled staffing", href: "/resource-management" },
+    { slug: "infra-installation", label: "Infra Installation", desc: "Tower & pole erection services", href: "/infra-installation" },
   ];
 
   const publicLinks: Array<{ to: string; label: string; menu?: MenuKey }> = [

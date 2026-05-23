@@ -25,6 +25,9 @@ const EmployerDashboard = lazy(() => import("./pages/EmployerDashboard"));
 const Clients = lazy(() => import("./pages/Clients"));
 const Products = lazy(() => import("./pages/Products"));
 const Networks = lazy(() => import("./pages/Networks"));
+const ManagedServices = lazy(() => import("./pages/ManagedServices"));
+const InfraInstallation = lazy(() => import("./pages/InfraInstallation"));
+const ResourceManagement = lazy(() => import("./pages/ResourceManagement"));
 
 const queryClient = new QueryClient();
 
@@ -48,6 +51,9 @@ const App = () => (
               <Route path="/services" element={<ServicesPage />} />
               <Route path="/products" element={<Products />} />
               <Route path="/networks" element={<Networks />} />
+              <Route path="/managed-services" element={<ManagedServices />} />
+              <Route path="/infra-installation" element={<InfraInstallation />} />
+              <Route path="/resource-management" element={<ResourceManagement />} />
               <Route path="/careers" element={<CareersPage />} />
               <Route path="/about" element={<AboutPage />} />
               <Route path="/auth" element={<Auth />} />
