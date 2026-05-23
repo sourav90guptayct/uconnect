@@ -99,6 +99,16 @@ const NetworksPage = () => {
           className="relative overflow-hidden pt-28 pb-16 lg:pt-32 lg:pb-20"
           style={{ background: "var(--gradient-hero-soft)" }}
         >
+          <div className="absolute inset-0">
+            <img
+              src={networksHero}
+              alt="Telecom microwave tower at sunset across mountain terrain"
+              width={1600}
+              height={1024}
+              className="w-full h-full object-cover opacity-30"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-background via-background/85 to-background/40" />
+          </div>
           <div
             className="absolute inset-0 opacity-[0.04] pointer-events-none"
             style={{
