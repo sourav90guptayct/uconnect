@@ -64,7 +64,7 @@ const Services = () => {
               transition={{ delay: index * 0.06, duration: 0.5 }}
             >
               <Link
-                to="/services"
+                to={service.href}
                 className="group relative block rounded-3xl overflow-hidden bg-muted aspect-[4/5] sm:aspect-[5/6]"
               >
               <img
