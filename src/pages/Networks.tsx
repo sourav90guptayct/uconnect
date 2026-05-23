@@ -536,45 +536,8 @@ const NetworksPage = () => {
               </h2>
             </motion.div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7 }}
-                className="relative rounded-3xl overflow-hidden border border-border order-2 lg:order-1 bg-background"
-              >
-                <img
-                  src={networksCoverage}
-                  alt="Map showing uConnect network coverage across India, Nepal, Bhutan, and Sri Lanka"
-                  width={1280}
-                  height={896}
-                  loading="lazy"
-                  className="w-full h-full object-cover aspect-[16/9]"
-                />
-                {/* Country markers */}
-                {[
-                  { name: "India", top: "46%", left: "69.5%" },
-                  { name: "Nepal", top: "40.5%", left: "70.5%" },
-                  { name: "Bhutan", top: "40.5%", left: "72%" },
-                  { name: "Sri Lanka", top: "55%", left: "70.5%" },
-
-                ].map((m) => (
-                  <div
-                    key={m.name}
-                    className="absolute -translate-x-1/2 -translate-y-1/2"
-                    style={{ top: m.top, left: m.left }}
-                  >
-                    <span className="absolute inset-0 -m-2 rounded-full bg-accent/40 animate-ping" />
-                    <span className="relative block h-3 w-3 rounded-full bg-accent shadow-[0_0_12px_hsl(var(--accent))] ring-2 ring-background" />
-                    <span className="sr-only">{m.name}</span>
-
-                  </div>
-                ))}
-
-
-              </motion.div>
-              <div className="grid grid-cols-2 gap-3 order-1 lg:order-2">
+            <div className="max-w-3xl">
+              <div className="grid grid-cols-2 gap-3">
                 {regions.map((region, index) => (
                   <motion.div
                     key={region}
@@ -590,6 +553,7 @@ const NetworksPage = () => {
                 ))}
               </div>
             </div>
+
 
             <motion.p
               initial={{ opacity: 0, y: 20 }}
