@@ -566,9 +566,8 @@ const NetworksPage = () => {
                   >
                     <span className="absolute inset-0 -m-2 rounded-full bg-accent/40 animate-ping" />
                     <span className="relative block h-3 w-3 rounded-full bg-accent shadow-[0_0_12px_hsl(var(--accent))] ring-2 ring-background" />
-                    <span className="absolute left-1/2 top-full mt-1 -translate-x-1/2 whitespace-nowrap text-[10px] font-semibold uppercase tracking-wider text-accent">
-                      {m.name}
-                    </span>
+                    <span className="sr-only">{m.name}</span>
+
                   </div>
                 ))}
 
