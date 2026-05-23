@@ -179,6 +179,28 @@ const NetworksPage = () => {
                 />
               </motion.div>
             </div>
+
+            {/* Proof points strip */}
+            <div className="mt-14 lg:mt-20 grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+              {[
+                { val: "10,000+", label: "UBR links installed" },
+                { val: "18", label: "Circles operational" },
+                { val: "200+", label: "Field engineers" },
+                { val: "5", label: "Regional warehouses" },
+              ].map((s, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.06, duration: 0.5 }}
+                  className="bg-card border border-border rounded-3xl p-6 lg:p-8"
+                >
+                  <div className="display-headline text-foreground text-3xl lg:text-5xl">{s.val}</div>
+                  <div className="mt-2 text-xs lg:text-sm text-muted-foreground uppercase tracking-wider">{s.label}</div>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </section>
 
