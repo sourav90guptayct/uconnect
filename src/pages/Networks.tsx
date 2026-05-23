@@ -397,6 +397,35 @@ const NetworksPage = () => {
               </h2>
             </motion.div>
 
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
+              {[
+                { src: networksRail, label: "Railways & Transit", alt: "Aerial view of a large urban rail terminus connecting city infrastructure" },
+                { src: networksUtility, label: "Utilities & Industrial", alt: "Aerial view of a water utility treatment facility with circular tanks" },
+                { src: networksSmartCity, label: "Smart Cities", alt: "Illuminated smart city convention complex at dusk with connected buildings" },
+              ].map((item, index) => (
+                <motion.div
+                  key={item.label}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.08, duration: 0.6 }}
+                  className="group relative rounded-3xl overflow-hidden border border-border aspect-[4/3]"
+                >
+                  <img
+                    src={item.src}
+                    alt={item.alt}
+                    loading="lazy"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-5">
+                    <div className="text-xs font-semibold text-accent uppercase tracking-widest mb-1">Sector</div>
+                    <div className="display-headline text-foreground text-lg lg:text-xl">{item.label}</div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
               {industries.map((ind, index) => (
                 <motion.div
