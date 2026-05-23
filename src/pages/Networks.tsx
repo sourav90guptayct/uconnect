@@ -554,10 +554,11 @@ const NetworksPage = () => {
                 />
                 {/* Country markers */}
                 {[
-                  { name: "India", top: "55%", left: "70%" },
-                  { name: "Nepal", top: "47%", left: "70.5%" },
-                  { name: "Bhutan", top: "47%", left: "73%" },
-                  { name: "Sri Lanka", top: "65%", left: "70.5%" },
+                  { name: "India", top: "46%", left: "69.5%" },
+                  { name: "Nepal", top: "40.5%", left: "70.5%" },
+                  { name: "Bhutan", top: "40.5%", left: "72%" },
+                  { name: "Sri Lanka", top: "55%", left: "70.5%" },
+
                 ].map((m) => (
                   <div
                     key={m.name}
