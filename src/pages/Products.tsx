@@ -25,6 +25,8 @@ const Products = () => {
   // Curated hero images shown on each category tile in the overview grid
   const categoryHeroImages: Record<string, string> = {
     antennas: "/products/category-antennas.jpg",
+    sectorAntennas: "/products/category-sectorAntennas.jpg",
+    routers: "/products/category-routers.jpg",
     switches: "/products/category-switches.png",
     networkCables: "/products/category-networkCables.jpg",
     specializedCables: "/products/category-specializedCables.jpg",
@@ -244,9 +246,46 @@ const Products = () => {
       ]
     },
     racks: {
-      title: "Racks and Cabinets",
-      description: "Professional equipment mounting solutions for servers, network devices, and telecommunications equipment with flexible and secure designs.",
+      title: "ConnectLH™ Racks & Cabinets",
+      description: "Complete range of indoor wall-mount, outdoor floor-mount and data centre racks engineered for telecom, ISP and enterprise deployments. Wide-temperature operation, high-strength steel construction, and customizable IP protection for harsh outdoor environments.",
       subProducts: [
+        {
+          name: "Wall Mount Racks — 6U / 9U / 12U / 14U",
+          image: "/products/wall-mount-rack-clh.jpg",
+          description: "Wide-temperature wall-mount racks in 1.5 mm stainless steel with branded cooling fans and structured design for higher stability.",
+          specs: [
+            "Operating temp: -30°C to +70°C",
+            "1.5 mm stainless steel construction",
+            "Superior corrosion resistance",
+            "Structured design for higher stability",
+            "Cooling fans — Rexnord / HighCool branded"
+          ]
+        },
+        {
+          name: "Outdoor Floor-Mounted Racks — IP55 / IP68",
+          image: "/products/outdoor-floor-rack.jpg",
+          description: "Outdoor floor-mounted racks in 9U–42U sizes, with customizable IP rating, 3-point door locking and natural or forced cooling.",
+          specs: [
+            "Operating temp: -30°C to +70°C",
+            "IP68 / IP55 customizable",
+            "Wide range: 9U / 24U / 32U / 42U",
+            "3-point locking with handle door mechanism",
+            "Natural cooling / forced cooling options"
+          ]
+        },
+        {
+          name: "Data Centre Racks",
+          image: "/products/data-centre-rack.jpg",
+          description: "High-strength data centre racks with optimised airflow, brushed-entry top panel apertures and 3-point locking for mission-critical environments.",
+          specs: [
+            "High strength & durability",
+            "Optimised airflow design",
+            "Brushed-entry top panel apertures",
+            "Swing handle — keyed",
+            "3-point locking system",
+            "Secure, lockable panels and doors"
+          ]
+        },
         {
           name: "Open Frame Racks",
           image: "/products/open-rack-unicel.webp",
@@ -418,6 +457,42 @@ const Products = () => {
       description: "Power over Ethernet (PoE) solutions under the ConnectLH™ brand, engineered for telecom and wireless infrastructure. These PoE devices deliver reliable power and data over a single Ethernet cable, supporting RADWIN and other radio equipment with built-in surge, overload, and short-circuit protection.",
       subProducts: [
         {
+          name: "ACCLH-566-100 — 56V AC PoE Injector",
+          image: "/products/acclh-566-100.jpg",
+          description: "Industrial 56V AC PoE injector supporting 100M/1G/2.5G data rates with wide AC input and Energy Level 6 efficiency.",
+          specs: [
+            "Operating temp: -10°C to +70°C",
+            "Input: 90–264 VAC | Output: 12–56 VDC",
+            "100M / 1Gig / 2.5Gig data rates",
+            "Efficiency Energy Level 6",
+            "Pin 1/2/4/5 (+), 3/6/7/8 (-) — customizable"
+          ]
+        },
+        {
+          name: "ACCLH-720-50 — 24V AC PoE Injector",
+          image: "/products/acclh-720-50.jpg",
+          description: "24V AC PoE injector for lower-voltage radio and access equipment with wide AC input and Energy Level 6 efficiency.",
+          specs: [
+            "Operating temp: -10°C to +70°C",
+            "Input: 90–264 VAC | Output: 12–24 VDC",
+            "100M / 1Gig data rates",
+            "Efficiency Energy Level 6",
+            "Pin 1/2/4/5 (+), 3/6/7/8 (-) — customizable"
+          ]
+        },
+        {
+          name: "DCCLH-35-56 — 56V DC PoE Injector",
+          image: "/products/dcclh-35-56.jpg",
+          description: "DC-input PoE injector for site cabinets with battery/solar feed — wide 35–56 VDC input with up to 2.5 Gbps data.",
+          specs: [
+            "Operating temp: -10°C to +70°C",
+            "Input: 35–56 VDC | Output: 12–56 VDC",
+            "100M / 1Gig / 2.5Gig data rates",
+            "Efficiency Energy Level 6",
+            "Pin 1/2/4/5 (+), 3/6/7/8 (-) — customizable"
+          ]
+        },
+        {
           name: "ACCLH566-056-100 — Indoor AC PoE Adapter",
           image: "/products/ac-poe-clh.png",
           description: "Indoor AC Power over Ethernet device supporting most RADWIN product portfolio with up to 2.5 Gbps Ethernet interface and 56W PoE power output.",
@@ -500,9 +575,45 @@ const Products = () => {
       ]
     },
     switches: {
-      title: "ConnectLH™ Managed PoE Switches",
-      description: "Carrier-grade L2+ managed Gigabit Ethernet PoE switches under the ConnectLH™ brand, engineered for SMB, enterprise, and carrier Ethernet deployments. Built-in Device Management System (DMS), advanced PoE+ scheduling, and support for ERPS, EPS, IEEE 1588v2 PTP, OAM and CFM for service-grade reliability.",
+      title: "ConnectLH™ Industrial Switches",
+      description: "Industrial-grade managed and unmanaged Ethernet switches under the ConnectLH™ brand — purpose-built for telecom, mission-critical networks, and PROFINET/EtherNet-IP industrial automation. Wide temperature, robust power, and L2+/L3 features for SMB, enterprise and carrier deployments.",
       subProducts: [
+        {
+          name: "CLH202 — 8-Port Managed Gigabit PoE+ Switch",
+          image: "/products/clh202-switch.jpg",
+          description: "Managed PoE+ Ethernet switch for industrial networks with 8× Gigabit PoE+ ports plus 2× SFP fiber ports.",
+          specs: [
+            "8 × Gigabit PoE+ ports + 2 × SFP fiber ports",
+            "Up to 30 W per PoE port, 240 W total PoE budget",
+            "Supports PROFINET Class B, EtherNet/IP, MRP",
+            "VLAN, QoS, SNMP, ring redundancy",
+            "Industrial-grade, DIN-rail mountable"
+          ]
+        },
+        {
+          name: "CLH212 — 8-Port Managed Gigabit Switch (L2/L3)",
+          image: "/products/clh212-switch.jpg",
+          description: "Managed industrial Ethernet switch with L2 and added L3 features, 8× Gigabit copper ports plus 2× SFP fiber uplinks.",
+          specs: [
+            "8 × Gigabit Ethernet ports + 2 × SFP fiber ports",
+            "L2 with added L3 routing features",
+            "PROFINET Class B, EtherNet/IP, MRP support",
+            "SNMP, VLAN, QoS and security features",
+            "Industrial temperature operation"
+          ]
+        },
+        {
+          name: "CLH304 — 4-Port Unmanaged Gigabit Switch",
+          image: "/products/clh304-switch.jpg",
+          description: "Compact industrial unmanaged Ethernet switch with 4 Gigabit RJ45 ports, wide power input range, and very low power consumption.",
+          specs: [
+            "4 × Gigabit RJ45 ports",
+            "Wide power input: 7–57 VDC / 9–40 VAC",
+            "Low power consumption: max 1.44 W",
+            "Plug-and-play unmanaged operation",
+            "Compact DIN-rail design for industrial use"
+          ]
+        },
         {
           name: "CLHS-2710GH — 8-Port L2+ Managed GbE PoE+ Switch",
           image: "/products/clhs-2710gh-switch.webp",
@@ -518,6 +629,90 @@ const Products = () => {
             "CE (EN 62368-1) & FCC Part 15 Class A certified"
           ],
           datasheet: "/datasheets/CLHS-2710GH-datasheet.pdf"
+        }
+      ]
+    },
+    routers: {
+      title: "Outdoor 4G/5G Routers",
+      description: "Industrial-grade outdoor 4G/5G cellular routers engineered for CCTV surveillance, enterprise connectivity, traffic signaling and smart-city IoT. Robust IP-rated enclosures, dual SIM, and PoE-out variants for powering downstream devices.",
+      subProducts: [
+        {
+          name: "CLH500 — 5G/4G Outdoor Router",
+          image: "/products/clh500-router.jpg",
+          description: "5G/4G outdoor router for high-throughput connectivity with integrated antennas and dual-SIM resiliency.",
+          specs: [
+            "Up to 500 Mbps throughput",
+            "5G with 4G fallback (Cat19)",
+            "Dual SIM for carrier resiliency",
+            "Integrated antenna — no external setup",
+            "Outdoor-rated enclosure for pole/wall mount"
+          ]
+        },
+        {
+          name: "CLH951 — Industrial 4G LTE PoE+ Cellular Router",
+          image: "/products/clh951-router.jpg",
+          description: "Industrial 4G LTE cellular router with PoE+ output, dual SIM/eSIM and Wi-Fi — ideal for powering and connecting downstream cameras and APs.",
+          specs: [
+            "4G LTE with 3G/2G fallback",
+            "Dual SIM / eSIM + Wi-Fi",
+            "PoE+ output, up to 90 W power budget",
+            "Multi-port for downstream devices",
+            "Industrial outdoor design"
+          ]
+        },
+        {
+          name: "CLHM31 — Compact 5G Router (IP69)",
+          image: "/products/clhm31-router.jpg",
+          description: "Cost-efficient 5G router for CCTV and enterprise connectivity, with optional external antenna and IP69-rated outdoor enclosure.",
+          specs: [
+            "5G SA & NSA support",
+            "Dual SIM",
+            "Option to connect external outdoor antenna",
+            "IP69 rated enclosure for harsh environments",
+            "Ideal for CCTV, traffic signaling, IoT"
+          ]
+        }
+      ]
+    },
+    sectorAntennas: {
+      title: "ConnectLH™ Sector Antennas",
+      description: "Dual-polarized sector antennas for 4.9–6.4 GHz unlicensed and licensed bands, engineered for WISP, point-to-multipoint backhaul and high-density wireless coverage with high cross-polarization and front-to-back isolation.",
+      subProducts: [
+        {
+          name: "16 dBi Sector Antenna — 90° Horizontal",
+          image: "/products/sector-antenna-16dbi.jpg",
+          description: "4.9–6.4 GHz dual-polarized sector antenna with 90° horizontal coverage — ideal for wide-area access deployments.",
+          specs: [
+            "Frequency: 4.9–6.4 GHz | Dual polarized",
+            "Horizontal coverage up to 90°",
+            "Vertical 8° beamwidth",
+            "Cross polarization > 25 dB",
+            "Front-to-back ratio > 30 dB"
+          ]
+        },
+        {
+          name: "19 dBi Sector Antenna — 60° Horizontal",
+          image: "/products/sector-antenna-19dbi.jpg",
+          description: "4.9–6.4 GHz dual-polarized sector antenna with 60° horizontal coverage — balanced reach and capacity for PtMP deployments.",
+          specs: [
+            "Frequency: 4.9–6.4 GHz | Dual polarized",
+            "Horizontal coverage up to 60°",
+            "Vertical 10° beamwidth",
+            "Cross polarization > 25 dB",
+            "Front-to-back ratio > 30 dB"
+          ]
+        },
+        {
+          name: "21 dBi Sector Antenna — 60° Horizontal, Narrow Beam",
+          image: "/products/sector-antenna-21dbi.jpg",
+          description: "4.9–6.4 GHz dual-polarized sector antenna with tight 4° vertical beamwidth for high-gain, long-range sector coverage.",
+          specs: [
+            "Frequency: 4.9–6.4 GHz | Dual polarized",
+            "Horizontal coverage up to 60°",
+            "Vertical 4° beamwidth",
+            "Cross polarization > 25 dB",
+            "Front-to-back ratio > 30 dB"
+          ]
         }
       ]
     },
@@ -595,9 +790,10 @@ const Products = () => {
           "@type": "ItemList",
           name: "uConnect Technologies Product Catalogue",
           itemListElement: [
-            "FTTH Products", "ConnectLH™ Antennas", "Fiber Optic Cables",
-            "RF Cables", "Network Cables", "AC & DC PoE", "Racks & Cabinets",
-            "Switches", "BTS Equipment", "Specialized Cables"
+            "Dish Antennas", "Sector Antennas", "Outdoor 4G/5G Routers",
+            "AC & DC PoE", "Industrial Switches", "FTTH Products",
+            "Fiber Optic Cables", "RF Cables", "Network Cables",
+            "Racks & Cabinets", "BTS Equipment", "Specialized Cables"
           ].map((name, i) => ({
             "@type": "ListItem", position: i + 1,
             item: { "@type": "Product", name, brand: { "@type": "Brand", name: "uConnect Technologies" } }

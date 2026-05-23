@@ -66,22 +66,22 @@ const Clients = () => {
   }];
   const stats = [{
     icon: Building2,
-    value: "50+",
-    label: "Enterprise Clients"
+    value: "15+",
+    label: "Active Customers"
   }, {
     icon: Users,
-    value: "10,000+",
-    label: "Professionals Placed"
+    value: "200+",
+    label: "Tier-1 Engineers"
   }, {
     icon: Globe,
-    value: "15+",
-    label: "Industries Served"
+    value: "18",
+    label: "Circles Served"
   }, {
     icon: CheckCircle,
-    value: "95%",
-    label: "Client Satisfaction"
+    value: "10,000+",
+    label: "UBR Links Installed"
   }];
-  const achievements = ["Trusted partner for Fortune 500 companies", "Successfully delivered 500+ projects", "24/7 dedicated support and maintenance", "ISO 9001:2015 certified organization", "Industry-leading security compliance", "Agile project management methodologies"];
+  const achievements = ["Trusted partner for India's top telecom carriers", "10,000+ UBR links deployed successfully", "30+ ongoing projects across 18 circles", "24/7 dedicated NOC and field support", "200+ Tier-1 engineers and 5 regional warehouses", "Carrier-grade I&C, switching and CCTV deployment expertise"];
   return <div className="min-h-screen bg-background">
       <SEO
         title="Our Clients — Enterprise Telecom & IT Partners | uConnect"

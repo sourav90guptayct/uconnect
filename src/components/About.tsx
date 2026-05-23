@@ -77,16 +77,22 @@ const About = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
+              <p className="text-base lg:text-lg text-muted-foreground leading-relaxed mb-6 italic border-l-2 border-accent pl-5">
+                "We enable people and organizations to maximize the potential of Digital
+                Transformation by providing best-in-class Products &amp; Services for their
+                business growth."
+              </p>
               <p className="text-base lg:text-lg text-muted-foreground leading-relaxed mb-10">
-                Pan-India operations serving top companies, leading telecom operators and
-                government organizations with mission-critical solutions.
+                Founded in 2017, uConnect Technologies is a leading provider of network and
+                infrastructure services — serving top carrier customers of India with a pan-India
+                team of Tier-1 engineers.
               </p>
 
               <div className="space-y-6 mb-10">
                 {[
-                  { icon: TrendingUp, title: "Proven track record", desc: "1,000+ deployments across 15+ industries with 98% client retention." },
-                  { icon: Handshake, title: "Strategic partnerships", desc: "Long-term partnerships with India's top telecom operators and enterprises." },
-                  { icon: CheckCircle, title: "Operational excellence", desc: "ISO-compliant processes with 24/7 NOC support and real-time project management." },
+                  { icon: TrendingUp, title: "Proven execution", desc: "10,000+ UBR links successfully installed, 30+ ongoing projects, 15+ active customers." },
+                  { icon: Handshake, title: "Pan-India presence", desc: "Operations across 18 circles with 200+ Tier-1 field engineers and 5 regional warehouses." },
+                  { icon: CheckCircle, title: "Carrier-grade execution", desc: "Trusted by India's top carriers for I&C, UBR, switch/router and CCTV surveillance deployments." },
                 ].map((item, i) => (
                   <motion.div
                     key={i}
@@ -138,12 +144,12 @@ const About = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 to-transparent" />
                 <div className="absolute bottom-6 left-6 text-background">
                   <div className="display-headline text-3xl lg:text-4xl">Pan-India</div>
-                  <div className="text-sm text-background/70 mt-1">Operations across 10+ states</div>
+                  <div className="text-sm text-background/70 mt-1">Operations across 18 circles</div>
                 </div>
               </div>
 
               {[
-                { icon: Target, title: "Our mission", desc: "Empower enterprises with world-class technology infrastructure and the right talent to drive digital transformation at scale." },
+                { icon: Target, title: "Our mission", desc: "Enable people and organizations to maximize the potential of Digital Transformation by providing best-in-class Products & Services for their business growth." },
                 { icon: Globe, title: "Our vision", desc: "Be India's most trusted technology solutions partner — known for operational excellence, innovation and lasting impact." },
               ].map((card, i) => (
                 <motion.div
@@ -166,9 +172,9 @@ const About = () => {
                 <div className="grid grid-cols-4 gap-6">
                   {[
                     { val: "2017", label: "Established" },
-                    { val: "10+", label: "States" },
-                    { val: "50+", label: "Clients" },
-                    { val: "1000+", label: "Deployments" },
+                    { val: "18", label: "Circles" },
+                    { val: "200+", label: "Tier-1 engineers" },
+                    { val: "10K+", label: "UBR links" },
                   ].map((s, i) => (
                     <div key={i}>
                       <div className="display-headline text-background text-2xl lg:text-4xl">{s.val}</div>
