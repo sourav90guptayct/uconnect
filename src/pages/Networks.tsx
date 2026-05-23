@@ -5,10 +5,14 @@ import { motion } from "framer-motion";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
-import networksHero from "@/assets/networks-hero.jpg";
-import networksDeployment from "@/assets/networks-deployment.jpg";
+import networksHero from "@/assets/networks-highway.jpg";
+import networksDeployment from "@/assets/networks-station.jpg";
 import networksCoverage from "@/assets/networks-coverage.jpg";
-import networksInfra from "@/assets/networks-infra.jpg";
+import networksInfra from "@/assets/networks-datacenter.png";
+import networksEnterprise from "@/assets/networks-enterprise.png";
+import networksRail from "@/assets/networks-rail.jpg";
+import networksUtility from "@/assets/networks-utility.jpg";
+import networksSmartCity from "@/assets/networks-smartcity.png";
 
 const expertise = [
   {
@@ -232,27 +236,39 @@ const NetworksPage = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="mt-6 bg-card border border-border rounded-3xl p-6 lg:p-8 hover:border-accent/40 transition-all duration-500"
+              className="mt-6 bg-card border border-border rounded-3xl overflow-hidden hover:border-accent/40 transition-all duration-500"
             >
-              <div className="flex flex-col md:flex-row md:items-start gap-6">
-                <div className="h-10 w-10 rounded-full bg-accent/10 flex items-center justify-center shrink-0">
-                  <Wifi className="h-5 w-5 text-accent" />
-                </div>
-                <div>
-                  <h3 className="display-headline text-foreground text-xl lg:text-2xl mb-4">
-                    Enterprise & Outdoor Wi-Fi Solutions
-                  </h3>
-                  <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
-                    Deployment of secure and high-performance Wi-Fi infrastructure for:
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {["Campuses", "Warehouses", "Hospitality", "Smart public spaces", "Industrial environments"].map((t) => (
-                      <span key={t} className="inline-flex items-center gap-2 text-sm text-foreground/80 bg-muted px-3 py-1.5 rounded-full">
-                        <div className="h-1.5 w-1.5 bg-accent rounded-full" />
-                        {t}
-                      </span>
-                    ))}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
+                <div className="p-6 lg:p-8">
+                  <div className="flex items-start gap-6">
+                    <div className="h-10 w-10 rounded-full bg-accent/10 flex items-center justify-center shrink-0">
+                      <Wifi className="h-5 w-5 text-accent" />
+                    </div>
+                    <div>
+                      <h3 className="display-headline text-foreground text-xl lg:text-2xl mb-4">
+                        Enterprise & Outdoor Wi-Fi Solutions
+                      </h3>
+                      <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
+                        Deployment of secure and high-performance Wi-Fi infrastructure for:
+                      </p>
+                      <div className="flex flex-wrap gap-2">
+                        {["Campuses", "Warehouses", "Hospitality", "Smart public spaces", "Industrial environments"].map((t) => (
+                          <span key={t} className="inline-flex items-center gap-2 text-sm text-foreground/80 bg-muted px-3 py-1.5 rounded-full">
+                            <div className="h-1.5 w-1.5 bg-accent rounded-full" />
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
                   </div>
+                </div>
+                <div className="relative min-h-[220px] md:min-h-full">
+                  <img
+                    src={networksEnterprise}
+                    alt="Modern enterprise campus building with sustainable architecture and green surroundings"
+                    loading="lazy"
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
                 </div>
               </div>
             </motion.div>
@@ -392,6 +408,35 @@ const NetworksPage = () => {
                 <span className="text-muted-foreground">support.</span>
               </h2>
             </motion.div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
+              {[
+                { src: networksRail, label: "Railways & Transit", alt: "Aerial view of a large urban rail terminus connecting city infrastructure" },
+                { src: networksUtility, label: "Utilities & Industrial", alt: "Aerial view of a water utility treatment facility with circular tanks" },
+                { src: networksSmartCity, label: "Smart Cities", alt: "Illuminated smart city convention complex at dusk with connected buildings" },
+              ].map((item, index) => (
+                <motion.div
+                  key={item.label}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.08, duration: 0.6 }}
+                  className="group relative rounded-3xl overflow-hidden border border-border aspect-[4/3]"
+                >
+                  <img
+                    src={item.src}
+                    alt={item.alt}
+                    loading="lazy"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-5">
+                    <div className="text-xs font-semibold text-accent uppercase tracking-widest mb-1">Sector</div>
+                    <div className="display-headline text-foreground text-lg lg:text-xl">{item.label}</div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
               {industries.map((ind, index) => (
