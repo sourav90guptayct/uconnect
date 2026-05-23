@@ -31,7 +31,7 @@ const ServicesPage = () => {
     {
       slug: "networks",
       icon: Network,
-      image: "/lovable-uploads/4404a0c7-dfe8-4d6c-a763-8ddc0c228f40.webp",
+      image: networksImg,
       title: "Networks",
       tagline: "Connectivity at scale",
       description: "End-to-end networking — infrastructure, connectivity, monitoring and 24/7 support.",
@@ -40,7 +40,7 @@ const ServicesPage = () => {
     {
       slug: "managed-services",
       icon: Users,
-      image: "/lovable-uploads/115872b6-8d21-43a0-b6ed-a612375446ba.webp",
+      image: managedImg,
       title: "Managed services",
       tagline: "End-to-end operations",
       description: "Comprehensive process management so you focus on the work that matters.",
@@ -49,7 +49,7 @@ const ServicesPage = () => {
     {
       slug: "resource-management",
       icon: Search,
-      image: "/lovable-uploads/55b3aa6c-9ace-4e67-9a9d-05f41feefab1.png",
+      image: resourceImg,
       title: "Resource management",
       tagline: "Technology-enabled staffing",
       description: "Skilled technology professionals and efficient resource allocation.",
@@ -58,7 +58,7 @@ const ServicesPage = () => {
     {
       slug: "infra-installation",
       icon: Settings,
-      image: "/lovable-uploads/36d182be-8602-4bb3-9554-331999f9b0ed.webp",
+      image: infraImg,
       title: "Infra installation",
       tagline: "Tower & pole erection",
       description: "Self-supporting structures, guy mast towers and complete erection services.",
