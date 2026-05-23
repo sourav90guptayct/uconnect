@@ -5,10 +5,14 @@ import { motion } from "framer-motion";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
-import networksHero from "@/assets/networks-hero.jpg";
-import networksDeployment from "@/assets/networks-deployment.jpg";
+import networksHero from "@/assets/networks-highway.jpg";
+import networksDeployment from "@/assets/networks-station.jpg";
 import networksCoverage from "@/assets/networks-coverage.jpg";
-import networksInfra from "@/assets/networks-infra.jpg";
+import networksInfra from "@/assets/networks-datacenter.png";
+import networksEnterprise from "@/assets/networks-enterprise.png";
+import networksRail from "@/assets/networks-rail.jpg";
+import networksUtility from "@/assets/networks-utility.jpg";
+import networksSmartCity from "@/assets/networks-smartcity.png";
 
 const expertise = [
   {
