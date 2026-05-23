@@ -8,7 +8,7 @@ const AboutPage = () => {
     <div className="min-h-screen">
       <SEO
         title="About uConnect Technologies — Telecom & IT Partner"
-        description="Founded in 2017, uConnect Technologies serves top carrier customers with 200+ Tier-1 engineers across 18 circles, 10,000+ UBR links installed, and 30+ ongoing projects."
+        description="Founded in 2017, uConnect Technologies serves top carrier customers with 200+ Tier-1 engineers across 18 circles, 10,000+ Links deployed, and 30+ ongoing projects."
         path="/about"
       />
       <Header />

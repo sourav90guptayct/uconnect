@@ -90,7 +90,7 @@ const About = () => {
 
               <div className="space-y-6 mb-10">
                 {[
-                  { icon: TrendingUp, title: "Proven execution", desc: "10,000+ UBR links successfully installed, 30+ ongoing projects, 15+ active customers." },
+                  { icon: TrendingUp, title: "Proven execution", desc: "10,000+ Links successfully installed, 30+ ongoing projects, 15+ active customers." },
                   { icon: Handshake, title: "Pan-India presence", desc: "Operations across 18 circles with 200+ Tier-1 field engineers and 5 regional warehouses." },
                   { icon: CheckCircle, title: "Carrier-grade execution", desc: "Trusted by India's top carriers for I&C, UBR, switch/router and CCTV surveillance deployments." },
                 ].map((item, i) => (
@@ -174,7 +174,7 @@ const About = () => {
                     { val: "2017", label: "Established" },
                     { val: "18", label: "Circles" },
                     { val: "200+", label: "Tier-1 engineers" },
-                    { val: "10K+", label: "UBR links" },
+                    { val: "10K+", label: "Links deployed" },
                   ].map((s, i) => (
                     <div key={i}>
                       <div className="display-headline text-background text-2xl lg:text-4xl">{s.val}</div>
