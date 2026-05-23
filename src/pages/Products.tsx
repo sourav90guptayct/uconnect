@@ -25,6 +25,8 @@ const Products = () => {
   // Curated hero images shown on each category tile in the overview grid
   const categoryHeroImages: Record<string, string> = {
     antennas: "/products/category-antennas.jpg",
+    sectorAntennas: "/products/category-sectorAntennas.jpg",
+    routers: "/products/category-routers.jpg",
     switches: "/products/category-switches.png",
     networkCables: "/products/category-networkCables.jpg",
     specializedCables: "/products/category-specializedCables.jpg",
@@ -500,9 +502,45 @@ const Products = () => {
       ]
     },
     switches: {
-      title: "ConnectLH™ Managed PoE Switches",
-      description: "Carrier-grade L2+ managed Gigabit Ethernet PoE switches under the ConnectLH™ brand, engineered for SMB, enterprise, and carrier Ethernet deployments. Built-in Device Management System (DMS), advanced PoE+ scheduling, and support for ERPS, EPS, IEEE 1588v2 PTP, OAM and CFM for service-grade reliability.",
+      title: "ConnectLH™ Industrial Switches",
+      description: "Industrial-grade managed and unmanaged Ethernet switches under the ConnectLH™ brand — purpose-built for telecom, mission-critical networks, and PROFINET/EtherNet-IP industrial automation. Wide temperature, robust power, and L2+/L3 features for SMB, enterprise and carrier deployments.",
       subProducts: [
+        {
+          name: "CLH202 — 8-Port Managed Gigabit PoE+ Switch",
+          image: "/products/clh202-switch.jpg",
+          description: "Managed PoE+ Ethernet switch for industrial networks with 8× Gigabit PoE+ ports plus 2× SFP fiber ports.",
+          specs: [
+            "8 × Gigabit PoE+ ports + 2 × SFP fiber ports",
+            "Up to 30 W per PoE port, 240 W total PoE budget",
+            "Supports PROFINET Class B, EtherNet/IP, MRP",
+            "VLAN, QoS, SNMP, ring redundancy",
+            "Industrial-grade, DIN-rail mountable"
+          ]
+        },
+        {
+          name: "CLH212 — 8-Port Managed Gigabit Switch (L2/L3)",
+          image: "/products/clh212-switch.jpg",
+          description: "Managed industrial Ethernet switch with L2 and added L3 features, 8× Gigabit copper ports plus 2× SFP fiber uplinks.",
+          specs: [
+            "8 × Gigabit Ethernet ports + 2 × SFP fiber ports",
+            "L2 with added L3 routing features",
+            "PROFINET Class B, EtherNet/IP, MRP support",
+            "SNMP, VLAN, QoS and security features",
+            "Industrial temperature operation"
+          ]
+        },
+        {
+          name: "CLH304 — 4-Port Unmanaged Gigabit Switch",
+          image: "/products/clh304-switch.jpg",
+          description: "Compact industrial unmanaged Ethernet switch with 4 Gigabit RJ45 ports, wide power input range, and very low power consumption.",
+          specs: [
+            "4 × Gigabit RJ45 ports",
+            "Wide power input: 7–57 VDC / 9–40 VAC",
+            "Low power consumption: max 1.44 W",
+            "Plug-and-play unmanaged operation",
+            "Compact DIN-rail design for industrial use"
+          ]
+        },
         {
           name: "CLHS-2710GH — 8-Port L2+ Managed GbE PoE+ Switch",
           image: "/products/clhs-2710gh-switch.webp",
@@ -518,6 +556,90 @@ const Products = () => {
             "CE (EN 62368-1) & FCC Part 15 Class A certified"
           ],
           datasheet: "/datasheets/CLHS-2710GH-datasheet.pdf"
+        }
+      ]
+    },
+    routers: {
+      title: "Outdoor 4G/5G Routers",
+      description: "Industrial-grade outdoor 4G/5G cellular routers engineered for CCTV surveillance, enterprise connectivity, traffic signaling and smart-city IoT. Robust IP-rated enclosures, dual SIM, and PoE-out variants for powering downstream devices.",
+      subProducts: [
+        {
+          name: "CLH500 — 5G/4G Outdoor Router",
+          image: "/products/clh500-router.jpg",
+          description: "5G/4G outdoor router for high-throughput connectivity with integrated antennas and dual-SIM resiliency.",
+          specs: [
+            "Up to 500 Mbps throughput",
+            "5G with 4G fallback (Cat19)",
+            "Dual SIM for carrier resiliency",
+            "Integrated antenna — no external setup",
+            "Outdoor-rated enclosure for pole/wall mount"
+          ]
+        },
+        {
+          name: "CLH951 — Industrial 4G LTE PoE+ Cellular Router",
+          image: "/products/clh951-router.jpg",
+          description: "Industrial 4G LTE cellular router with PoE+ output, dual SIM/eSIM and Wi-Fi — ideal for powering and connecting downstream cameras and APs.",
+          specs: [
+            "4G LTE with 3G/2G fallback",
+            "Dual SIM / eSIM + Wi-Fi",
+            "PoE+ output, up to 90 W power budget",
+            "Multi-port for downstream devices",
+            "Industrial outdoor design"
+          ]
+        },
+        {
+          name: "CLHM31 — Compact 5G Router (IP69)",
+          image: "/products/clhm31-router.jpg",
+          description: "Cost-efficient 5G router for CCTV and enterprise connectivity, with optional external antenna and IP69-rated outdoor enclosure.",
+          specs: [
+            "5G SA & NSA support",
+            "Dual SIM",
+            "Option to connect external outdoor antenna",
+            "IP69 rated enclosure for harsh environments",
+            "Ideal for CCTV, traffic signaling, IoT"
+          ]
+        }
+      ]
+    },
+    sectorAntennas: {
+      title: "ConnectLH™ Sector Antennas",
+      description: "Dual-polarized sector antennas for 4.9–6.4 GHz unlicensed and licensed bands, engineered for WISP, point-to-multipoint backhaul and high-density wireless coverage with high cross-polarization and front-to-back isolation.",
+      subProducts: [
+        {
+          name: "16 dBi Sector Antenna — 90° Horizontal",
+          image: "/products/sector-antenna-16dbi.jpg",
+          description: "4.9–6.4 GHz dual-polarized sector antenna with 90° horizontal coverage — ideal for wide-area access deployments.",
+          specs: [
+            "Frequency: 4.9–6.4 GHz | Dual polarized",
+            "Horizontal coverage up to 90°",
+            "Vertical 8° beamwidth",
+            "Cross polarization > 25 dB",
+            "Front-to-back ratio > 30 dB"
+          ]
+        },
+        {
+          name: "19 dBi Sector Antenna — 60° Horizontal",
+          image: "/products/sector-antenna-19dbi.jpg",
+          description: "4.9–6.4 GHz dual-polarized sector antenna with 60° horizontal coverage — balanced reach and capacity for PtMP deployments.",
+          specs: [
+            "Frequency: 4.9–6.4 GHz | Dual polarized",
+            "Horizontal coverage up to 60°",
+            "Vertical 10° beamwidth",
+            "Cross polarization > 25 dB",
+            "Front-to-back ratio > 30 dB"
+          ]
+        },
+        {
+          name: "21 dBi Sector Antenna — 60° Horizontal, Narrow Beam",
+          image: "/products/sector-antenna-21dbi.jpg",
+          description: "4.9–6.4 GHz dual-polarized sector antenna with tight 4° vertical beamwidth for high-gain, long-range sector coverage.",
+          specs: [
+            "Frequency: 4.9–6.4 GHz | Dual polarized",
+            "Horizontal coverage up to 60°",
+            "Vertical 4° beamwidth",
+            "Cross polarization > 25 dB",
+            "Front-to-back ratio > 30 dB"
+          ]
         }
       ]
     },
