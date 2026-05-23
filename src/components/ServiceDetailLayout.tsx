@@ -56,9 +56,10 @@ const ServiceDetailLayout = ({ data }: { data: ServiceDetailData }) => {
               alt={data.heroAlt}
               width={1600}
               height={1024}
-              className="w-full h-full object-cover opacity-30"
+              className="w-full h-full object-cover opacity-70"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-background via-background/85 to-background/40" />
+            <div className="absolute inset-0 bg-gradient-to-r from-background/85 via-background/55 to-background/10" />
+            <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent" />
           </div>
           <div
             className="absolute inset-0 opacity-[0.04] pointer-events-none"
