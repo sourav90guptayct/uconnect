@@ -246,9 +246,46 @@ const Products = () => {
       ]
     },
     racks: {
-      title: "Racks and Cabinets",
-      description: "Professional equipment mounting solutions for servers, network devices, and telecommunications equipment with flexible and secure designs.",
+      title: "ConnectLH™ Racks & Cabinets",
+      description: "Complete range of indoor wall-mount, outdoor floor-mount and data centre racks engineered for telecom, ISP and enterprise deployments. Wide-temperature operation, high-strength steel construction, and customizable IP protection for harsh outdoor environments.",
       subProducts: [
+        {
+          name: "Wall Mount Racks — 6U / 9U / 12U / 14U",
+          image: "/products/wall-mount-rack-clh.jpg",
+          description: "Wide-temperature wall-mount racks in 1.5 mm stainless steel with branded cooling fans and structured design for higher stability.",
+          specs: [
+            "Operating temp: -30°C to +70°C",
+            "1.5 mm stainless steel construction",
+            "Superior corrosion resistance",
+            "Structured design for higher stability",
+            "Cooling fans — Rexnord / HighCool branded"
+          ]
+        },
+        {
+          name: "Outdoor Floor-Mounted Racks — IP55 / IP68",
+          image: "/products/outdoor-floor-rack.jpg",
+          description: "Outdoor floor-mounted racks in 9U–42U sizes, with customizable IP rating, 3-point door locking and natural or forced cooling.",
+          specs: [
+            "Operating temp: -30°C to +70°C",
+            "IP68 / IP55 customizable",
+            "Wide range: 9U / 24U / 32U / 42U",
+            "3-point locking with handle door mechanism",
+            "Natural cooling / forced cooling options"
+          ]
+        },
+        {
+          name: "Data Centre Racks",
+          image: "/products/data-centre-rack.jpg",
+          description: "High-strength data centre racks with optimised airflow, brushed-entry top panel apertures and 3-point locking for mission-critical environments.",
+          specs: [
+            "High strength & durability",
+            "Optimised airflow design",
+            "Brushed-entry top panel apertures",
+            "Swing handle — keyed",
+            "3-point locking system",
+            "Secure, lockable panels and doors"
+          ]
+        },
         {
           name: "Open Frame Racks",
           image: "/products/open-rack-unicel.webp",
@@ -419,6 +456,42 @@ const Products = () => {
       title: "ConnectLH™ AC & DC PoE",
       description: "Power over Ethernet (PoE) solutions under the ConnectLH™ brand, engineered for telecom and wireless infrastructure. These PoE devices deliver reliable power and data over a single Ethernet cable, supporting RADWIN and other radio equipment with built-in surge, overload, and short-circuit protection.",
       subProducts: [
+        {
+          name: "ACCLH-566-100 — 56V AC PoE Injector",
+          image: "/products/acclh-566-100.jpg",
+          description: "Industrial 56V AC PoE injector supporting 100M/1G/2.5G data rates with wide AC input and Energy Level 6 efficiency.",
+          specs: [
+            "Operating temp: -10°C to +70°C",
+            "Input: 90–264 VAC | Output: 12–56 VDC",
+            "100M / 1Gig / 2.5Gig data rates",
+            "Efficiency Energy Level 6",
+            "Pin 1/2/4/5 (+), 3/6/7/8 (-) — customizable"
+          ]
+        },
+        {
+          name: "ACCLH-720-50 — 24V AC PoE Injector",
+          image: "/products/acclh-720-50.jpg",
+          description: "24V AC PoE injector for lower-voltage radio and access equipment with wide AC input and Energy Level 6 efficiency.",
+          specs: [
+            "Operating temp: -10°C to +70°C",
+            "Input: 90–264 VAC | Output: 12–24 VDC",
+            "100M / 1Gig data rates",
+            "Efficiency Energy Level 6",
+            "Pin 1/2/4/5 (+), 3/6/7/8 (-) — customizable"
+          ]
+        },
+        {
+          name: "DCCLH-35-56 — 56V DC PoE Injector",
+          image: "/products/dcclh-35-56.jpg",
+          description: "DC-input PoE injector for site cabinets with battery/solar feed — wide 35–56 VDC input with up to 2.5 Gbps data.",
+          specs: [
+            "Operating temp: -10°C to +70°C",
+            "Input: 35–56 VDC | Output: 12–56 VDC",
+            "100M / 1Gig / 2.5Gig data rates",
+            "Efficiency Energy Level 6",
+            "Pin 1/2/4/5 (+), 3/6/7/8 (-) — customizable"
+          ]
+        },
         {
           name: "ACCLH566-056-100 — Indoor AC PoE Adapter",
           image: "/products/ac-poe-clh.png",
