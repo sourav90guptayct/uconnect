@@ -12,7 +12,7 @@ rollouts.
 
 - [Home](/): Overview of uConnect Technologies' telecom, IT, and infrastructure offerings.
 - [About](/about): Company background, mission, leadership, and the journey since 2017.
-- [Services](/services): Managed services, networks, infra installation, resource management, digital transformation, and IP services.
+- [Services](/services): Managed services, networks, infra installation, and resource management.
 - [Products](/products): ConnectLH™ antennas, FTTH, fiber/RF/network cables, PoE, racks, switches, and BTS equipment with downloadable datasheets.
 - [Careers](/careers): Open roles across RF, FTTH, switching, and field engineering with online application form.
 - [Jobs](/jobs): Live job listings with details, requirements, and direct apply.

@@ -45,8 +45,6 @@ const Header = () => {
   const serviceCategories = [
     { slug: "networks", label: "Networks", desc: "Connectivity at scale", href: "/networks" },
     { slug: "managed-services", label: "Managed Services", desc: "End-to-end operations & SLAs" },
-    { slug: "digital-transformation", label: "Digital Transformation", desc: "Cloud, data & enterprise platforms" },
-    { slug: "ip-services", label: "IP Services", desc: "ITeS & system integration" },
     { slug: "resource-management", label: "Resource Management", desc: "Technology-enabled staffing" },
     { slug: "infra-installation", label: "Infra Installation", desc: "Tower & pole erection services" },
   ];

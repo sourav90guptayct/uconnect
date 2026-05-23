@@ -41,7 +41,7 @@ const Hero = () => {
             className="mt-8 text-base lg:text-lg text-muted-foreground max-w-2xl leading-relaxed"
           >
             From proprietary ConnectLH™ antenna systems and telecom products to
-            managed IT services, digital transformation and workforce solutions
+            managed services, network deployment and workforce solutions
             — uConnect Technologies is your single-window partner for end-to-end
             enterprise technology.
           </motion.p>
