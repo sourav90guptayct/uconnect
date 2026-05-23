@@ -24,6 +24,7 @@ const MyApplications = lazy(() => import("./pages/MyApplications"));
 const EmployerDashboard = lazy(() => import("./pages/EmployerDashboard"));
 const Clients = lazy(() => import("./pages/Clients"));
 const Products = lazy(() => import("./pages/Products"));
+const Networks = lazy(() => import("./pages/Networks"));
 
 const queryClient = new QueryClient();
 
@@ -46,6 +47,7 @@ const App = () => (
               <Route path="/" element={<Index />} />
               <Route path="/services" element={<ServicesPage />} />
               <Route path="/products" element={<Products />} />
+              <Route path="/networks" element={<Networks />} />
               <Route path="/careers" element={<CareersPage />} />
               <Route path="/about" element={<AboutPage />} />
               <Route path="/auth" element={<Auth />} />

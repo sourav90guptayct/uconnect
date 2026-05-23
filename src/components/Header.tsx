@@ -43,7 +43,7 @@ const Header = () => {
   ];
 
   const serviceCategories = [
-    { slug: "networks", label: "Networks", desc: "Connectivity infrastructure & monitoring" },
+    { slug: "networks", label: "Networks", desc: "Connectivity at scale", href: "/networks" },
     { slug: "managed-services", label: "Managed Services", desc: "End-to-end operations & SLAs" },
     { slug: "digital-transformation", label: "Digital Transformation", desc: "Cloud, data & enterprise platforms" },
     { slug: "ip-services", label: "IP Services", desc: "ITeS & system integration" },
@@ -206,21 +206,24 @@ const Header = () => {
               </Link>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-3">
-              {activeItems.map((cat) => (
-                <Link
-                  key={cat.slug}
-                  to={`${activeMeta.basePath}?${activeMeta.queryKey}=${cat.slug}`}
-                  onClick={() => setOpenMenu(null)}
-                  className="block rounded-xl p-4 hover:bg-muted transition-colors group"
-                >
-                  <div className="text-sm font-semibold text-foreground group-hover:text-accent transition-colors">
-                    {cat.label}
-                  </div>
-                  <div className="text-xs text-muted-foreground mt-1 leading-relaxed">
-                    {cat.desc}
-                  </div>
-                </Link>
-              ))}
+              {activeItems.map((cat) => {
+                const to = "href" in cat && cat.href ? cat.href : `${activeMeta.basePath}?${activeMeta.queryKey}=${cat.slug}`;
+                return (
+                  <Link
+                    key={cat.slug}
+                    to={to}
+                    onClick={() => setOpenMenu(null)}
+                    className="block rounded-xl p-4 hover:bg-muted transition-colors group"
+                  >
+                    <div className="text-sm font-semibold text-foreground group-hover:text-accent transition-colors">
+                      {cat.label}
+                    </div>
+                    <div className="text-xs text-muted-foreground mt-1 leading-relaxed">
+                      {cat.desc}
+                    </div>
+                  </Link>
+                );
+              })}
             </div>
           </div>
         </div>
