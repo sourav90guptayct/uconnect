@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, ArrowUpRight, Network, Users, Building, Briefcase, Search, Settings } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Network, Users, Search, Settings } from "lucide-react";
 import { Link, useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useEffect } from "react";
