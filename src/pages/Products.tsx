@@ -790,9 +790,10 @@ const Products = () => {
           "@type": "ItemList",
           name: "uConnect Technologies Product Catalogue",
           itemListElement: [
-            "FTTH Products", "ConnectLH™ Antennas", "Fiber Optic Cables",
-            "RF Cables", "Network Cables", "AC & DC PoE", "Racks & Cabinets",
-            "Switches", "BTS Equipment", "Specialized Cables"
+            "Dish Antennas", "Sector Antennas", "Outdoor 4G/5G Routers",
+            "AC & DC PoE", "Industrial Switches", "FTTH Products",
+            "Fiber Optic Cables", "RF Cables", "Network Cables",
+            "Racks & Cabinets", "BTS Equipment", "Specialized Cables"
           ].map((name, i) => ({
             "@type": "ListItem", position: i + 1,
             item: { "@type": "Product", name, brand: { "@type": "Brand", name: "uConnect Technologies" } }
