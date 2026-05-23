@@ -1,28 +1,36 @@
 import { ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import networksImg from "@/assets/networks-highway.jpg";
+import managedImg from "@/assets/managed-hero.jpg";
+import resourceImg from "@/assets/resource-hero.jpg";
+import infraImg from "@/assets/infra-hero.jpg";
 
 const Services = () => {
   const services = [
     {
-      image: "/lovable-uploads/87e1e778-3b68-41c8-bb46-6e22dae156ed.webp",
+      image: networksImg,
       title: "Networks",
       tagline: "Connectivity at scale",
+      href: "/networks",
     },
     {
-      image: "/lovable-uploads/f3b2f370-c817-48b6-85e7-4f7ea79dcbcc.webp",
+      image: managedImg,
       title: "Managed services",
       tagline: "End-to-end operations",
+      href: "/managed-services",
     },
     {
-      image: "/lovable-uploads/4cf29a0e-c8b2-46f9-a586-5e1c9216bfe6.webp",
+      image: resourceImg,
       title: "Resource management",
       tagline: "Technology-enabled staffing",
+      href: "/resource-management",
     },
     {
-      image: "/lovable-uploads/32edb691-2f39-4492-8903-2eef4fa3641a.webp",
+      image: infraImg,
       title: "Infra installation",
       tagline: "Tower & pole erection",
+      href: "/infra-installation",
     },
   ];
 
@@ -56,7 +64,7 @@ const Services = () => {
               transition={{ delay: index * 0.06, duration: 0.5 }}
             >
               <Link
-                to="/services"
+                to={service.href}
                 className="group relative block rounded-3xl overflow-hidden bg-muted aspect-[4/5] sm:aspect-[5/6]"
               >
               <img
