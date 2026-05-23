@@ -113,7 +113,14 @@ const ServicesPage = () => {
       <section className="py-16 lg:py-24 bg-background">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
-            {services.map((service, index) => (
+            {services.map((service, index) => {
+              const detailHref =
+                service.slug === "networks" ? "/networks" :
+                service.slug === "managed-services" ? "/managed-services" :
+                service.slug === "infra-installation" ? "/infra-installation" :
+                service.slug === "resource-management" ? "/resource-management" :
+                `#service-${service.slug}`;
+              return (
               <motion.div
                 key={service.slug}
                 id={`service-${service.slug}`}
@@ -123,42 +130,45 @@ const ServicesPage = () => {
                 transition={{ delay: index * 0.06, duration: 0.5 }}
                 className="scroll-mt-24 group bg-card border border-border rounded-3xl overflow-hidden hover:border-accent/40 hover:shadow-xl transition-all duration-500"
               >
-                <div className="relative aspect-[16/10] overflow-hidden">
-                  <img
-                    loading="lazy"
-                    decoding="async"
-                    src={service.image}
-                    alt={service.title}
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-foreground/70 via-transparent to-transparent" />
-                  <div className="absolute top-4 right-4 h-10 w-10 lg:h-12 lg:w-12 rounded-full bg-background/90 backdrop-blur flex items-center justify-center transition-transform duration-300 group-hover:rotate-45">
-                    <ArrowUpRight className="h-5 w-5 text-foreground" />
-                  </div>
-                  <div className="absolute bottom-5 left-5 right-5">
-                    <div className="text-background/80 text-xs uppercase tracking-wider mb-1">
-                      {service.tagline}
+                <Link to={detailHref} className="block">
+                  <div className="relative aspect-[16/10] overflow-hidden">
+                    <img
+                      loading="lazy"
+                      decoding="async"
+                      src={service.image}
+                      alt={service.title}
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-foreground/70 via-transparent to-transparent" />
+                    <div className="absolute top-4 right-4 h-10 w-10 lg:h-12 lg:w-12 rounded-full bg-background/90 backdrop-blur flex items-center justify-center transition-transform duration-300 group-hover:rotate-45">
+                      <ArrowUpRight className="h-5 w-5 text-foreground" />
                     </div>
-                    <h3 className="display-headline text-background text-2xl lg:text-3xl">
-                      {service.title}
-                    </h3>
+                    <div className="absolute bottom-5 left-5 right-5">
+                      <div className="text-background/80 text-xs uppercase tracking-wider mb-1">
+                        {service.tagline}
+                      </div>
+                      <h3 className="display-headline text-background text-2xl lg:text-3xl">
+                        {service.title}
+                      </h3>
+                    </div>
                   </div>
-                </div>
-                <div className="p-6 lg:p-7">
-                  <p className="text-muted-foreground text-sm leading-relaxed mb-5">
-                    {service.description}
-                  </p>
-                  <ul className="space-y-2.5">
-                    {service.features.map((feature, fi) => (
-                      <li key={fi} className="flex items-center gap-3 text-sm text-foreground/80">
-                        <div className="h-1.5 w-1.5 bg-accent rounded-full flex-shrink-0" />
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                  <div className="p-6 lg:p-7">
+                    <p className="text-muted-foreground text-sm leading-relaxed mb-5">
+                      {service.description}
+                    </p>
+                    <ul className="space-y-2.5">
+                      {service.features.map((feature, fi) => (
+                        <li key={fi} className="flex items-center gap-3 text-sm text-foreground/80">
+                          <div className="h-1.5 w-1.5 bg-accent rounded-full flex-shrink-0" />
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </Link>
               </motion.div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
