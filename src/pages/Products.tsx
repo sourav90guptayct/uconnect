@@ -36,6 +36,7 @@ const Products = () => {
     rfCables: "/products/category-rfCables.png",
     fiberCables: "/products/category-fiberCables.png",
     bts: "/products/category-bts.jpg",
+    fabricated: "/products/category-fabricated.png",
   };
 
   const productCategories = {
