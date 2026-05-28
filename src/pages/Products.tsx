@@ -26,7 +26,7 @@ const Products = () => {
   const categoryHeroImages: Record<string, string> = {
     antennas: "/products/category-antennas.jpg",
     sectorAntennas: "/products/category-sectorAntennas.jpg",
-    routers: "/products/category-routers.jpg",
+    routers: "/products/category-routers.png",
     switches: "/products/category-switches.png",
     networkCables: "/products/category-networkCables.jpg",
     specializedCables: "/products/category-specializedCables.jpg",
