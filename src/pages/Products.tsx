@@ -861,7 +861,7 @@ const Products = () => {
                         src={heroImg}
                         alt={category.title}
                         loading="lazy"
-                        className="w-full h-full object-cover object-center rounded-xl group-hover:scale-105 transition-transform duration-700 ease-out"
+                        className="w-full h-full object-contain object-center rounded-xl group-hover:scale-105 transition-transform duration-700 ease-out"
                       />
                     )}
                   </div>
