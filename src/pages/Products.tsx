@@ -30,7 +30,7 @@ const Products = () => {
     switches: "/products/category-switches.png",
     networkCables: "/products/category-networkCables.jpg",
     specializedCables: "/products/category-specializedCables.jpg",
-    ftth: "/products/category-ftth.jpg",
+    ftth: "/products/category-ftth.png",
     racks: "/products/category-racks.webp",
     poe: "/products/category-poe.png",
     rfCables: "/products/category-rfCables.jpg",
