@@ -24,7 +24,7 @@ const Products = () => {
 
   // Curated hero images shown on each category tile in the overview grid
   const categoryHeroImages: Record<string, string> = {
-    antennas: "/products/category-antennas.jpg",
+    antennas: "/products/category-antennas.png",
     sectorAntennas: "/products/category-sectorAntennas.jpg",
     routers: "/products/category-routers.png",
     switches: "/products/category-switches.png",
