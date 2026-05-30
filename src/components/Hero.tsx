@@ -2,7 +2,6 @@ import { Button } from "@/components/ui/button";
 import AnimatedCounter from "@/components/animations/AnimatedCounter";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
-import heroImage from "@/assets/hero-enterprise-wide.jpg";
 
 const Hero = () => {
   return (
@@ -87,15 +86,15 @@ const Hero = () => {
           transition={{ delay: 0.4, duration: 0.8 }}
           className="relative mt-12 lg:mt-16"
         >
-          <div className="relative rounded-[2rem] overflow-hidden shadow-2xl bg-white aspect-video">
+          <div className="relative rounded-[2rem] overflow-hidden shadow-2xl bg-white">
             <img
-              src={heroImage}
+              src="/lovable-uploads/hero-enterprise-network.jpg"
               alt="Enterprise telecom infrastructure deployed by uConnect Technologies"
               fetchPriority="high"
               decoding="async"
-              width={1920}
-              height={1080}
-              className="w-full h-full object-cover"
+              width={1376}
+              height={768}
+              className="w-full h-auto object-contain"
             />
           </div>
 
