@@ -780,13 +780,30 @@ const Products = () => {
     }
   };
 
+  const activeCategoryData = activeCategory ? (productCategories as any)[activeCategory] : null;
+  const seoTitle = activeCategoryData
+    ? `${activeCategoryData.title} — uConnect Technologies`
+    : "Products — ConnectLH™ Antennas, FTTH, Cables, PoE | uConnect";
+  const seoDescription = activeCategoryData
+    ? String(activeCategoryData.description).slice(0, 300)
+    : "Complete product catalogue: ConnectLH™ antennas, FTTH equipment, fiber & RF cables, network cables, AC/DC PoE, racks, switches and BTS — engineered for the wireless edge.";
+  const seoPath = activeCategory ? `/products?category=${activeCategory}` : "/products";
+
   return (
     <div className="min-h-screen bg-background">
       <SEO
-        title="Products — ConnectLH™ Antennas, FTTH, Cables, PoE | uConnect"
-        description="Complete product catalogue: ConnectLH™ antennas, FTTH equipment, fiber & RF cables, network cables, AC/DC PoE, racks, switches and BTS — engineered for the wireless edge."
-        path="/products"
-        jsonLd={{
+        title={seoTitle}
+        description={seoDescription}
+        path={seoPath}
+        jsonLd={activeCategoryData ? {
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          name: activeCategoryData.title,
+          itemListElement: (activeCategoryData.subProducts || []).map((p: any, i: number) => ({
+            "@type": "ListItem", position: i + 1,
+            item: { "@type": "Product", name: p.name, brand: { "@type": "Brand", name: "uConnect Technologies" } }
+          }))
+        } : {
           "@context": "https://schema.org",
           "@type": "ItemList",
           name: "uConnect Technologies Product Catalogue",
