@@ -27,7 +27,7 @@ const Hero = () => {
           transition={{ duration: 0.7, ease: "easeOut" }}
           className="max-w-6xl"
         >
-          <h1 className="display-headline text-foreground text-[2.75rem] sm:text-6xl lg:text-8xl xl:text-[8.5rem]">
+          <h1 className="display-headline text-foreground text-4xl sm:text-5xl lg:text-6xl xl:text-7xl">
             Deploy. Connect.
             <br />
             <span className="text-accent">Empower.</span>{" "}
