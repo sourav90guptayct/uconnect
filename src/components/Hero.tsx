@@ -87,15 +87,15 @@ const Hero = () => {
           transition={{ delay: 0.4, duration: 0.8 }}
           className="relative mt-12 lg:mt-16"
         >
-          <div className="relative rounded-[2rem] overflow-hidden shadow-2xl bg-white">
+          <div className="relative rounded-[2rem] overflow-hidden shadow-2xl bg-white aspect-video">
             <img
-              src="/lovable-uploads/hero-enterprise-network.jpg"
+              src={heroImage}
               alt="Enterprise telecom infrastructure deployed by uConnect Technologies"
               fetchPriority="high"
               decoding="async"
               width={1920}
               height={1080}
-              className="w-full h-auto object-contain"
+              className="w-full h-full object-cover"
             />
           </div>
 
