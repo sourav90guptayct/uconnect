@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import AnimatedCounter from "@/components/animations/AnimatedCounter";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
+import heroImage from "@/assets/hero-enterprise-wide.jpg";
 
 const Hero = () => {
   return (
