@@ -795,11 +795,11 @@ const Products = () => {
         title={seoTitle}
         description={seoDescription}
         path={seoPath}
-        jsonLd={activeCategory ? {
+        jsonLd={activeCategoryData ? {
           "@context": "https://schema.org",
           "@type": "ItemList",
-          name: activeCategory.title,
-          itemListElement: (activeCategory.subProducts || []).map((p: any, i: number) => ({
+          name: activeCategoryData.title,
+          itemListElement: (activeCategoryData.subProducts || []).map((p: any, i: number) => ({
             "@type": "ListItem", position: i + 1,
             item: { "@type": "Product", name: p.name, brand: { "@type": "Brand", name: "uConnect Technologies" } }
           }))
