@@ -2,6 +2,7 @@ import { useEffect, lazy, Suspense } from "react";
 import { useLocation } from "react-router-dom";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
+import SEO from "@/components/SEO";
 
 // Lazy load below-the-fold sections to reduce initial JS
 const About = lazy(() => import("@/components/About"));
@@ -36,6 +37,11 @@ const Index = () => {
 
   return (
     <div className="min-h-screen">
+      <SEO
+        title="uConnect Technologies — Telecom & IT Infrastructure Partner in India"
+        description="Enterprise telecom infrastructure, IT managed services, ConnectLH™ antennas, FTTH products, and skilled manpower. 200+ Tier-1 engineers across 18 circles, 10,000+ Links deployed."
+        path="/"
+      />
       <Header />
       <main>
         <Hero />
