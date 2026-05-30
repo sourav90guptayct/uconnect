@@ -5,6 +5,7 @@ import { useAuth } from "@/hooks/useAuth";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SignUpForm from "@/components/registration/SignUpForm";
+import SEO from "@/components/SEO";
 
 export default function Register() {
   const { user } = useAuth();
@@ -23,6 +24,7 @@ export default function Register() {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO title="Create Account | uConnect Technologies" description="Create your uConnect Technologies account." path="/register" noindex />
       <Header />
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-lg mx-auto">

@@ -10,6 +10,7 @@ import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import SEO from '@/components/SEO';
 
 export default function Auth() {
   const { user, loading: authLoading } = useAuth();
@@ -234,6 +235,7 @@ export default function Auth() {
 
   return (
     <div className="min-h-screen">
+      <SEO title="Sign In | uConnect Technologies" description="Sign in to your uConnect Technologies account." path="/auth" noindex />
       <Header />
       <div className="flex items-center justify-center bg-background p-4 py-20">
         <Card className="w-full max-w-md">
