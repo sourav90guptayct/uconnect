@@ -10,6 +10,7 @@ import { useAuth } from "@/hooks/useAuth";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import EditProfileModal from "@/components/EditProfileModal";
+import SEO from "@/components/SEO";
 import { 
   User, 
   MapPin, 
@@ -202,6 +203,7 @@ export default function Profile() {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO title="My Profile | uConnect Technologies" description="Your uConnect Technologies profile." path="/profile" noindex />
       <Header />
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-4xl mx-auto space-y-6">

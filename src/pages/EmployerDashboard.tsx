@@ -12,6 +12,7 @@ import { useAdminCheck } from "@/hooks/useAdminCheck";
 import { useToast } from "@/hooks/use-toast";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 import { useNavigate } from "react-router-dom";
 
 interface Job {
@@ -349,6 +350,7 @@ const EmployerDashboardPage = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO title="Dashboard | uConnect Technologies" description="Employer dashboard." path="/employer-dashboard" noindex />
       <Header />
       
        {/* Header */}

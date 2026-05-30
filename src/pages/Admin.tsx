@@ -16,6 +16,7 @@ import { useNavigate } from 'react-router-dom';
 import { Users, Briefcase, FileText, Eye, MapPin, Clock, DollarSign, Calendar, Phone, Mail, UserPlus, Shield, ShieldCheck, Power, PowerOff, Plus, Upload, Download } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import SEO from '@/components/SEO';
 import { Textarea } from '@/components/ui/textarea';
 
 interface ContactSubmission {
@@ -736,6 +737,7 @@ export default function Admin() {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO title="Admin Dashboard | uConnect Technologies" description="Admin dashboard." path="/admin" noindex />
       <Header />
       
       {/* Header */}
