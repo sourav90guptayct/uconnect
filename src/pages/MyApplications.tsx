@@ -142,6 +142,7 @@ const MyApplicationsPage = () => {
     return null;
   }
   return <div className="min-h-screen bg-background">
+      <SEO title="My Applications | uConnect Technologies" description="Your job applications." path="/my-applications" noindex />
       <Header />
       
       {/* Header */}
