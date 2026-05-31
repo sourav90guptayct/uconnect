@@ -164,8 +164,8 @@ const Header = () => {
             </div>
           </nav>
 
-          <button onClick={toggleMenu} className="lg:hidden p-2 rounded-xl text-foreground hover:text-accent transition-colors">
-            {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          <button onClick={toggleMenu} aria-label={isMenuOpen ? "Close menu" : "Open menu"} aria-expanded={isMenuOpen} aria-controls="mobile-nav" className="lg:hidden p-2 rounded-xl text-foreground hover:text-accent transition-colors">
+            {isMenuOpen ? <X className="h-5 w-5" aria-hidden="true" /> : <Menu className="h-5 w-5" aria-hidden="true" />}
           </button>
         </div>
 
