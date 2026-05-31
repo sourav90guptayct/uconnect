@@ -30,18 +30,18 @@ const Header = () => {
   };
 
   const productCategories = [
-    { slug: "antennas", label: "Dish Antennas", desc: "ConnectLH™ 2×2 MIMO dual-pol dishes" },
-    { slug: "sectorAntennas", label: "Sector Antennas", desc: "16/19/21 dBi dual-pol sector antennas" },
-    { slug: "routers", label: "4G/5G Outdoor Routers", desc: "Industrial cellular routers — CLH500, CLH951, CLHM31" },
-    { slug: "poe", label: "AC & DC PoE", desc: "Power over Ethernet adapters & injectors" },
-    { slug: "switches", label: "Switches", desc: "Managed & unmanaged industrial Ethernet" },
-    { slug: "ftth", label: "FTTH Products", desc: "Fiber-to-home connectivity solutions" },
-    { slug: "fiberCables", label: "Fiber Cables", desc: "Optic fiber cable assemblies" },
-    { slug: "rfCables", label: "RF Cables", desc: "RF & coaxial cables" },
-    { slug: "networkCables", label: "Network Cables", desc: "CAT5, CAT6 & patch cords" },
-    { slug: "racks", label: "Racks & Cabinets", desc: "Wall mount, outdoor floor & data centre" },
-    { slug: "bts", label: "BTS Installation", desc: "Site infrastructure components" },
-    { slug: "fabricated", label: "Fabricated Products", desc: "Poles, trays, mounts & stands" },
+    { slug: "antennas", label: "Dish Antennas", desc: "ConnectLH™ 2×2 MIMO dual-pol dishes", image: "/products/category-antennas.png" },
+    { slug: "sectorAntennas", label: "Sector Antennas", desc: "16/19/21 dBi dual-pol sector antennas", image: "/products/category-sectorAntennas.png" },
+    { slug: "routers", label: "4G/5G Outdoor Routers", desc: "Industrial cellular routers — CLH500, CLH951, CLHM31", image: "/products/category-routers.png" },
+    { slug: "poe", label: "AC & DC PoE", desc: "Power over Ethernet adapters & injectors", image: "/products/category-poe.png" },
+    { slug: "switches", label: "Switches", desc: "Managed & unmanaged industrial Ethernet", image: "/products/category-switches.png" },
+    { slug: "ftth", label: "FTTH Products", desc: "Fiber-to-home connectivity solutions", image: "/products/category-ftth.png" },
+    { slug: "fiberCables", label: "Fiber Cables", desc: "Optic fiber cable assemblies", image: "/products/category-fiberCables.png" },
+    { slug: "rfCables", label: "RF Cables", desc: "RF & coaxial cables", image: "/products/category-rfCables.png" },
+    { slug: "networkCables", label: "Network Cables", desc: "CAT5, CAT6 & patch cords", image: "/products/category-networkCables.jpg" },
+    { slug: "racks", label: "Racks & Cabinets", desc: "Wall mount, outdoor floor & data centre", image: "/products/category-racks.webp" },
+    { slug: "bts", label: "BTS Installation", desc: "Site infrastructure components", image: "/products/category-bts.jpg" },
+    { slug: "fabricated", label: "Fabricated Products", desc: "Poles, trays, mounts & stands", image: "/products/category-fabricated.png" },
   ];
 
   const serviceCategories = [
