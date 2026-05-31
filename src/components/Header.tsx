@@ -31,7 +31,7 @@ const Header = () => {
 
   const productCategories = [
     { slug: "antennas", label: "Dish Antennas", desc: "ConnectLH™ 2×2 MIMO dual-pol dishes", image: "/products/category-antennas.png" },
-    { slug: "sectorAntennas", label: "Sector Antennas", desc: "16/19/21 dBi dual-pol sector antennas", image: "/products/category-sectorAntennas.png" },
+    { slug: "sectorAntennas", label: "Sector Antennas", desc: "16/19/21 dBi dual-pol sector antennas", image: "/products/category-sectorAntennas.jpg" },
     { slug: "routers", label: "4G/5G Outdoor Routers", desc: "Industrial cellular routers — CLH500, CLH951, CLHM31", image: "/products/category-routers.png" },
     { slug: "poe", label: "AC & DC PoE", desc: "Power over Ethernet adapters & injectors", image: "/products/category-poe.png" },
     { slug: "switches", label: "Switches", desc: "Managed & unmanaged industrial Ethernet", image: "/products/category-switches.png" },
