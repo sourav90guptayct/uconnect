@@ -14,9 +14,14 @@ const Footer = () => {
               Your trusted partner for Telecom, IT & Infrastructure solutions. Delivering enterprise technology and products across India.
             </p>
             <div className="flex gap-3">
-              {[Facebook, Twitter, Linkedin, Instagram].map((Icon, i) => (
-                <a key={i} href="#" className="h-10 w-10 bg-primary-foreground/5 rounded-xl flex items-center justify-center hover:bg-accent/20 hover:text-accent transition-all duration-300">
-                  <Icon className="h-4 w-4" />
+              {[
+                { Icon: Facebook, label: "Facebook" },
+                { Icon: Twitter, label: "Twitter" },
+                { Icon: Linkedin, label: "LinkedIn" },
+                { Icon: Instagram, label: "Instagram" },
+              ].map(({ Icon, label }) => (
+                <a key={label} href="#" aria-label={`uConnect Technologies on ${label}`} className="h-10 w-10 bg-primary-foreground/5 rounded-xl flex items-center justify-center hover:bg-accent/20 hover:text-accent transition-all duration-300">
+                  <Icon className="h-4 w-4" aria-hidden="true" />
                 </a>
               ))}
             </div>
