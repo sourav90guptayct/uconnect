@@ -157,14 +157,54 @@
     @apply border-border;
   }
 
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
   body {
     @apply bg-background text-foreground;
     font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-size: 1rem;              /* 16px body baseline */
+    line-height: 1.6;
+    font-weight: 400;
+    letter-spacing: -0.005em;
   }
 
+  /* Strict type hierarchy — one scale, ruthlessly enforced.
+     Display 60 / H1 44 / H2 32 / H3 22 / H4 17 / Body 16 / Micro 13.
+     Mobile sizes scale down by ~25%. */
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-weight: 600;
+    color: hsl(var(--foreground));
+    letter-spacing: -0.025em;
+    line-height: 1.15;
   }
+  h1 { font-size: clamp(2rem, 4.5vw, 2.75rem); letter-spacing: -0.03em; font-weight: 700; }
+  h2 { font-size: clamp(1.625rem, 3vw, 2rem); letter-spacing: -0.025em; font-weight: 700; }
+  h3 { font-size: clamp(1.125rem, 1.6vw, 1.375rem); font-weight: 600; }
+  h4 { font-size: 1.0625rem; font-weight: 600; }
+  h5 { font-size: 0.9375rem; font-weight: 600; }
+  h6 { font-size: 0.8125rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; }
+
+  p  { font-size: 1rem; line-height: 1.65; }
+  small { font-size: 0.8125rem; line-height: 1.5; }
+}
+
+@layer components {
+  /* Opt-in semantic typography classes — use these to force the hierarchy
+     in places where heading-level tags are inappropriate. */
+  .t-display  { font-family: 'Space Grotesk', system-ui, sans-serif; font-weight: 700; font-size: clamp(2.5rem, 6vw, 3.75rem); line-height: 1; letter-spacing: -0.04em; }
+  .t-h1       { font-family: 'Space Grotesk', system-ui, sans-serif; font-weight: 700; font-size: clamp(2rem, 4.5vw, 2.75rem); line-height: 1.1;  letter-spacing: -0.03em; }
+  .t-h2       { font-family: 'Space Grotesk', system-ui, sans-serif; font-weight: 700; font-size: clamp(1.625rem, 3vw, 2rem);   line-height: 1.15; letter-spacing: -0.025em; }
+  .t-h3       { font-family: 'Space Grotesk', system-ui, sans-serif; font-weight: 600; font-size: clamp(1.125rem, 1.6vw, 1.375rem); line-height: 1.25; letter-spacing: -0.015em; }
+  .t-body-lg  { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-weight: 400; font-size: 1.125rem; line-height: 1.6; }
+  .t-body     { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-weight: 400; font-size: 1rem; line-height: 1.65; }
+  .t-body-sm  { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-weight: 400; font-size: 0.9375rem; line-height: 1.55; }
+  .t-micro    { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-weight: 500; font-size: 0.8125rem; line-height: 1.45; letter-spacing: 0.005em; }
+  .t-eyebrow  { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-weight: 600; font-size: 0.75rem; line-height: 1.2; letter-spacing: 0.14em; text-transform: uppercase; }
 }
 
 @layer utilities {
