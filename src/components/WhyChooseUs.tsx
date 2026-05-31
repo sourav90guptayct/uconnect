@@ -10,7 +10,7 @@ const WhyChooseUs = () => {
   ];
 
   const achievements = [
-    { icon: Award, title: "Industry Recognition", description: "Top 10 Technology Staffing Company 2024" },
+    { icon: Award, title: "Industry Recognition", description: "Top Technology Staffing Company 2024" },
     { icon: Users, title: "Client Retention", description: "98% Year-over-Year Client Retention" },
     { icon: Globe, title: "National Presence", description: "Operations Across 10+ Indian States" },
   ];
