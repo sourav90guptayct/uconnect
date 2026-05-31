@@ -30,18 +30,18 @@ const Header = () => {
   };
 
   const productCategories = [
-    { slug: "antennas", label: "Dish Antennas", desc: "ConnectLH™ 2×2 MIMO dual-pol dishes" },
-    { slug: "sectorAntennas", label: "Sector Antennas", desc: "16/19/21 dBi dual-pol sector antennas" },
-    { slug: "routers", label: "4G/5G Outdoor Routers", desc: "Industrial cellular routers — CLH500, CLH951, CLHM31" },
-    { slug: "poe", label: "AC & DC PoE", desc: "Power over Ethernet adapters & injectors" },
-    { slug: "switches", label: "Switches", desc: "Managed & unmanaged industrial Ethernet" },
-    { slug: "ftth", label: "FTTH Products", desc: "Fiber-to-home connectivity solutions" },
-    { slug: "fiberCables", label: "Fiber Cables", desc: "Optic fiber cable assemblies" },
-    { slug: "rfCables", label: "RF Cables", desc: "RF & coaxial cables" },
-    { slug: "networkCables", label: "Network Cables", desc: "CAT5, CAT6 & patch cords" },
-    { slug: "racks", label: "Racks & Cabinets", desc: "Wall mount, outdoor floor & data centre" },
-    { slug: "bts", label: "BTS Installation", desc: "Site infrastructure components" },
-    { slug: "fabricated", label: "Fabricated Products", desc: "Poles, trays, mounts & stands" },
+    { slug: "antennas", label: "Dish Antennas", desc: "ConnectLH™ 2×2 MIMO dual-pol dishes", image: "/products/category-antennas.png" },
+    { slug: "sectorAntennas", label: "Sector Antennas", desc: "16/19/21 dBi dual-pol sector antennas", image: "/products/category-sectorAntennas.png" },
+    { slug: "routers", label: "4G/5G Outdoor Routers", desc: "Industrial cellular routers — CLH500, CLH951, CLHM31", image: "/products/category-routers.png" },
+    { slug: "poe", label: "AC & DC PoE", desc: "Power over Ethernet adapters & injectors", image: "/products/category-poe.png" },
+    { slug: "switches", label: "Switches", desc: "Managed & unmanaged industrial Ethernet", image: "/products/category-switches.png" },
+    { slug: "ftth", label: "FTTH Products", desc: "Fiber-to-home connectivity solutions", image: "/products/category-ftth.png" },
+    { slug: "fiberCables", label: "Fiber Cables", desc: "Optic fiber cable assemblies", image: "/products/category-fiberCables.png" },
+    { slug: "rfCables", label: "RF Cables", desc: "RF & coaxial cables", image: "/products/category-rfCables.png" },
+    { slug: "networkCables", label: "Network Cables", desc: "CAT5, CAT6 & patch cords", image: "/products/category-networkCables.jpg" },
+    { slug: "racks", label: "Racks & Cabinets", desc: "Wall mount, outdoor floor & data centre", image: "/products/category-racks.webp" },
+    { slug: "bts", label: "BTS Installation", desc: "Site infrastructure components", image: "/products/category-bts.jpg" },
+    { slug: "fabricated", label: "Fabricated Products", desc: "Poles, trays, mounts & stands", image: "/products/category-fabricated.png" },
   ];
 
   const serviceCategories = [
@@ -205,20 +205,35 @@ const Header = () => {
                 View all →
               </Link>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-3">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-x-4 gap-y-6">
               {activeItems.map((cat) => {
                 const to = "href" in cat && cat.href ? cat.href : `${activeMeta.basePath}?${activeMeta.queryKey}=${cat.slug}`;
+                const image = "image" in cat ? (cat as any).image : null;
                 return (
                   <Link
                     key={cat.slug}
                     to={to}
                     onClick={() => setOpenMenu(null)}
-                    className="block rounded-xl p-4 hover:bg-muted transition-colors group"
+                    className="group flex flex-col items-center text-center rounded-xl p-3 hover:bg-muted transition-colors"
                   >
-                    <div className="text-sm font-semibold text-foreground group-hover:text-accent transition-colors">
+                    {image ? (
+                      <div className="h-20 w-20 mb-3 flex items-center justify-center rounded-lg bg-muted/40 group-hover:bg-background overflow-hidden transition-colors">
+                        <img
+                          src={image}
+                          alt={cat.label}
+                          loading="lazy"
+                          className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300"
+                        />
+                      </div>
+                    ) : (
+                      <div className="h-20 w-20 mb-3 rounded-lg bg-gradient-to-br from-accent/20 to-accent/5 flex items-center justify-center text-accent font-bold text-xl">
+                        {cat.label.charAt(0)}
+                      </div>
+                    )}
+                    <div className="text-sm font-semibold text-foreground group-hover:text-accent transition-colors leading-tight">
                       {cat.label}
                     </div>
-                    <div className="text-xs text-muted-foreground mt-1 leading-relaxed">
+                    <div className="text-[11px] text-muted-foreground mt-1 leading-snug line-clamp-2">
                       {cat.desc}
                     </div>
                   </Link>
