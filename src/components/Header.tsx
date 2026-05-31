@@ -45,10 +45,10 @@ const Header = () => {
   ];
 
   const serviceCategories = [
-    { slug: "networks", label: "Networks", desc: "Connectivity at scale", href: "/networks" },
-    { slug: "managed-services", label: "Managed Services", desc: "End-to-end operations & SLAs", href: "/managed-services" },
-    { slug: "resource-management", label: "Resource Management", desc: "Technology-enabled staffing", href: "/resource-management" },
-    { slug: "infra-installation", label: "Infra Installation", desc: "Tower & pole erection services", href: "/infra-installation" },
+    { slug: "networks", label: "Networks", desc: "Connectivity at scale", href: "/networks", image: "/services/networks.jpg" },
+    { slug: "managed-services", label: "Managed Services", desc: "End-to-end operations & SLAs", href: "/managed-services", image: "/services/managed-services.jpg" },
+    { slug: "resource-management", label: "Resource Management", desc: "Technology-enabled staffing", href: "/resource-management", image: "/services/resource-management.jpg" },
+    { slug: "infra-installation", label: "Infra Installation", desc: "Tower & pole erection services", href: "/infra-installation", image: "/services/infra-installation.jpg" },
   ];
 
   const publicLinks: Array<{ to: string; label: string; menu?: MenuKey }> = [
@@ -205,10 +205,16 @@ const Header = () => {
                 View all →
               </Link>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-x-4 gap-y-6">
+            <div className={cn(
+              "grid gap-x-4 gap-y-6",
+              openMenu === "services"
+                ? "grid-cols-2 md:grid-cols-4"
+                : "grid-cols-2 md:grid-cols-3 lg:grid-cols-6"
+            )}>
               {activeItems.map((cat) => {
                 const to = "href" in cat && cat.href ? cat.href : `${activeMeta.basePath}?${activeMeta.queryKey}=${cat.slug}`;
                 const image = "image" in cat ? (cat as any).image : null;
+                const isService = openMenu === "services";
                 return (
                   <Link
                     key={cat.slug}
@@ -217,12 +223,20 @@ const Header = () => {
                     className="group flex flex-col items-center text-center rounded-xl p-3 hover:bg-muted transition-colors"
                   >
                     {image ? (
-                      <div className="h-20 w-20 mb-3 flex items-center justify-center rounded-lg bg-muted/40 group-hover:bg-background overflow-hidden transition-colors">
+                      <div className={cn(
+                        "mb-3 flex items-center justify-center rounded-lg overflow-hidden transition-colors",
+                        isService
+                          ? "h-32 w-full bg-muted/40"
+                          : "h-20 w-20 bg-muted/40 group-hover:bg-background"
+                      )}>
                         <img
                           src={image}
                           alt={cat.label}
                           loading="lazy"
-                          className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300"
+                          className={cn(
+                            "h-full w-full group-hover:scale-105 transition-transform duration-300",
+                            isService ? "object-cover" : "max-h-full max-w-full object-contain"
+                          )}
                         />
                       </div>
                     ) : (
