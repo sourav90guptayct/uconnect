@@ -94,7 +94,7 @@ const Hero = () => {
               decoding="async"
               width={1376}
               height={768}
-              className="w-full h-auto object-contain"
+              className="w-full h-auto object-contain lg:max-h-[420px] xl:max-h-[480px]"
             />
           </div>
 
