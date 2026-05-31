@@ -7,7 +7,7 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="relative overflow-hidden pt-24 pb-12 lg:pt-28 lg:pb-16"
+      className="relative pt-24 pb-12 lg:pt-28 lg:pb-16"
       style={{ background: "var(--gradient-hero-soft)" }}
     >
       {/* Subtle grid */}
@@ -103,7 +103,7 @@ const Hero = () => {
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 1, duration: 0.6, type: "spring" }}
-            className="hidden md:flex absolute -top-6 -right-6 lg:-top-8 lg:-right-8 w-28 h-28 lg:w-36 lg:h-36 bg-accent rounded-full items-center justify-center shadow-xl shadow-accent/30 animate-wobble z-20"
+            className="hidden md:flex absolute top-4 right-4 lg:top-6 lg:right-6 w-28 h-28 lg:w-36 lg:h-36 bg-accent rounded-full items-center justify-center shadow-xl shadow-accent/30 animate-wobble z-20"
           >
             <div className="text-center -rotate-6">
               <div className="text-accent-foreground font-bold text-lg lg:text-2xl leading-tight tracking-tight">
