@@ -786,7 +786,7 @@ const Products = () => {
     : "Products — ConnectLH™ Antennas, FTTH, Cables, PoE | uConnect";
   const seoDescription = activeCategoryData
     ? String(activeCategoryData.description).slice(0, 300)
-    : "Complete product catalogue: ConnectLH™ antennas, FTTH equipment, fiber & RF cables, network cables, AC/DC PoE, racks, switches and BTS — engineered for the wireless edge.";
+    : "ConnectLH™ antennas, FTTH equipment, fiber & RF cables, PoE, racks, switches and BTS — engineered for the wireless edge.";
   const seoPath = activeCategory ? `/products?category=${activeCategory}` : "/products";
 
   return (
@@ -945,7 +945,7 @@ const Products = () => {
                           loading="lazy"
                           decoding="async"
                           src={product.image}
-                          alt={product.name}
+                          alt={`${product.name} – ${activeCategoryData?.title || 'uConnect Technologies product'}`}
                           className="w-full h-auto max-h-56 object-contain group-hover:scale-105 transition-transform duration-500"
                         />
                       )}

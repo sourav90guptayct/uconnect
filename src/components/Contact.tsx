@@ -86,7 +86,7 @@ const Contact = () => {
                     <item.icon className="h-5 w-5 text-accent" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground mb-1">{item.title}</h4>
+                    <h3 className="font-semibold text-foreground mb-1">{item.title}</h3>
                     <p className="text-muted-foreground text-sm leading-relaxed">{item.desc}</p>
                   </div>
                 </motion.div>

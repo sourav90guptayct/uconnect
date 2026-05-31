@@ -92,7 +92,7 @@ const NetworksPage = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEO
-        title="Connectivity at Scale Networks — Telecom Deployment | uConnect"
+        title="Networks — Telecom Deployment | uConnect"
         description="End-to-end network rollout and deployment services for telecom operators, ISPs, and enterprises across India, Nepal, Bhutan, and Sri Lanka."
         path="/networks"
       />

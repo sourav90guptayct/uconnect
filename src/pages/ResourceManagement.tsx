@@ -3,7 +3,7 @@ import ServiceDetailLayout, { type ServiceDetailData } from "@/components/Servic
 import heroImg from "@/assets/resource-hero.jpg";
 
 const data: ServiceDetailData = {
-  seoTitle: "Resource Management — Technology Staffing & Workforce | uConnect",
+  seoTitle: "Resource Management — Tech Staffing | uConnect",
   seoDescription: "Technology-enabled staffing and workforce solutions: RF, FTTH, networking and field engineers on contract, permanent, and managed-team models.",
   path: "/resource-management",
   eyebrow: "Resource Management",
