@@ -945,7 +945,7 @@ const Products = () => {
                           loading="lazy"
                           decoding="async"
                           src={product.image}
-                          alt={product.name}
+                          alt={`${product.name} – ${activeCategoryData?.title || 'uConnect Technologies product'}`}
                           className="w-full h-auto max-h-56 object-contain group-hover:scale-105 transition-transform duration-500"
                         />
                       )}
