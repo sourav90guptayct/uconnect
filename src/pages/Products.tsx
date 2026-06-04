@@ -616,7 +616,6 @@ const Products = () => {
           ]
         }
       ]
-      ]
     },
     routers: {
       title: "Outdoor 4G/5G Routers",
