@@ -614,22 +614,6 @@ const Products = () => {
             "Plug-and-play unmanaged operation",
             "Compact DIN-rail design for industrial use"
           ]
-        },
-        {
-          name: "CLHS-2710GH — 8-Port L2+ Managed GbE PoE+ Switch",
-          image: "/products/clhs-2710gh-switch.webp",
-          description: "Next-generation L2+ managed Gigabit Ethernet PoE+ switch with 8× 10/100/1000 RJ45 PoE+ ports, 2× GbE RJ45/SFP combo uplinks and RJ45 console. Delivers 250W total PoE budget with carrier Ethernet features for SMB and Enterprise applications.",
-          specs: [
-            "8× 10/100/1000 RJ45 PoE+ (802.3at/af) | 250W total budget",
-            "2× 100/1000 RJ45/SFP combo uplinks + RJ45 console",
-            "Switching: 20 Gbps | Forwarding: 14.88 Mpps | 8K MAC | 9216B Jumbo",
-            "ITU-T G.8031 EPS, G.8032 ERPS, IEEE 1588v2 PTP, 802.3ah OAM, 802.1ag CFM",
-            "Built-in Device Management System (DMS) with topology, floor & map views",
-            "IPv4/IPv6 L3 static routing | DHCP server | 802.3az Energy Efficient Ethernet",
-            "100–240 VAC | 0–40°C operating | 220×44×242 mm | 2.3 kg | Rack mount",
-            "CE (EN 62368-1) & FCC Part 15 Class A certified"
-          ],
-          datasheet: "/datasheets/CLHS-2710GH-datasheet.pdf"
         }
       ]
     },
