@@ -7,6 +7,7 @@ import { AuthProvider } from "@/hooks/useAuth";
 import { lazy, Suspense } from "react";
 import Index from "./pages/Index";
 import ScrollToTop from "./components/ScrollToTop";
+import WhatsAppButton from "./components/WhatsAppButton";
 
 // Lazy load secondary routes for faster initial load
 const ServicesPage = lazy(() => import("./pages/Services"));
