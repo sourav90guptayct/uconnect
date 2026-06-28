@@ -8,6 +8,7 @@ interface SEOProps {
   type?: "website" | "article" | "product";
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
   noindex?: boolean;
+  breadcrumbs?: { name: string; path: string }[];
 }
 
 const SITE = "https://uconnecttech.com";
