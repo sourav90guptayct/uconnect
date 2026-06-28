@@ -137,17 +137,16 @@ const Support = () => {
             </p>
             <div className="mt-9 flex flex-wrap gap-3">
               <Button
-                size="lg"
-                className="bg-accent text-accent-foreground hover:bg-accent/90 rounded-full h-12 px-7"
+                variant="ctaAccent"
+                size="xl"
                 onClick={() => handleEmailSupport("General Support")}
               >
                 <Mail className="h-4 w-4 mr-2" />
                 Email Support
               </Button>
               <Button
-                size="lg"
-                variant="outline"
-                className="rounded-full h-12 px-7 border-background/30 text-background hover:bg-background/10 hover:text-background bg-transparent"
+                variant="ctaOutlineOnDark"
+                size="xl"
                 onClick={() => handleEmailSupport("Technical Issue Report")}
               >
                 Report an Incident

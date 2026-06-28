@@ -2,7 +2,8 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import { motion } from "framer-motion";
-import { Download, ChevronRight, ArrowUpRight, ArrowLeft } from "lucide-react";
+import { Download, ChevronRight, ArrowUpRight, ArrowLeft, ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 
@@ -989,12 +990,14 @@ const Products = () => {
           <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
             Our team of experts is ready to help you find the perfect telecommunications solutions for your business needs.
           </p>
-          <a 
-            href="/?section=contact" 
-            className="inline-flex items-center px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
-          >
-            Contact Us Today
-          </a>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <Button asChild variant="cta" size="xl">
+              <a href="/?section=contact">Get a Quote <ArrowRight className="ml-2 h-4 w-4" /></a>
+            </Button>
+            <Button asChild variant="ctaOutline" size="xl">
+              <a href="/?section=contact">Talk to an Engineer</a>
+            </Button>
+          </div>
         </div>
         </div>
       </main>

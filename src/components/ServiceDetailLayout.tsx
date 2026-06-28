@@ -284,14 +284,14 @@ const ServiceDetailLayout = ({ data }: { data: ServiceDetailData }) => {
               </p>
               <div className="mt-8 flex flex-col sm:flex-row gap-3">
                 <Link to="/?section=contact">
-                  <Button size="lg" className="bg-foreground text-background hover:bg-foreground/90 rounded-full px-7 h-12">
-                    Contact our team
+                  <Button variant="cta" size="xl">
+                    Get a Quote
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </Link>
                 <Link to="/?section=contact">
-                  <Button size="lg" variant="outline" className="rounded-full px-7 h-12 border-foreground/20 hover:bg-foreground/5">
-                    Request a quote
+                  <Button variant="ctaOutline" size="xl">
+                    Talk to an Engineer
                   </Button>
                 </Link>
               </div>

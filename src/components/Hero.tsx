@@ -53,8 +53,8 @@ const Hero = () => {
             className="mt-8 flex flex-col sm:flex-row gap-3"
           >
             <Button
-              size="lg"
-              className="bg-foreground text-background hover:bg-foreground/90 rounded-full px-7 h-12 text-base"
+              variant="cta"
+              size="xl"
               onClick={() =>
                 document
                   .getElementById("services")
@@ -65,16 +65,15 @@ const Hero = () => {
               <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
             <Button
-              size="lg"
-              variant="outline"
-              className="rounded-full px-7 h-12 text-base border-foreground/20 hover:bg-foreground/5"
+              variant="ctaOutline"
+              size="xl"
               onClick={() =>
                 document
                   .getElementById("contact")
                   ?.scrollIntoView({ behavior: "smooth" })
               }
             >
-              Contact us
+              Talk to an engineer
             </Button>
           </motion.div>
         </motion.div>
