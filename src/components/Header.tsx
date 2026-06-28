@@ -232,7 +232,8 @@ const Header = () => {
                         <img loading="lazy" decoding="async"
                           src={image}
                           alt={cat.label}
-                          loading="lazy"
+
+
                           className={cn(
                             "h-full w-full group-hover:scale-105 transition-transform duration-300",
                             isService ? "object-cover" : "max-h-full max-w-full object-contain"
