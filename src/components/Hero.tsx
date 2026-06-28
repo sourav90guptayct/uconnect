@@ -87,7 +87,7 @@ const Hero = () => {
         >
           <div className="relative rounded-[2rem] overflow-hidden shadow-2xl bg-white">
             <img
-              src="/lovable-uploads/hero-enterprise-network.jpg"
+              src="/lovable-uploads/hero-enterprise-network.webp"
               alt="Enterprise telecom infrastructure deployed by uConnect Technologies"
               fetchPriority="high"
               decoding="async"

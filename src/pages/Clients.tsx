@@ -36,7 +36,7 @@ const Clients = () => {
     description: "Nationwide rail-based telecom infrastructure"
   }, {
     name: "Wipro",
-    logo: "/clients/wipro.png",
+    logo: "/clients/wipro.webp",
     sector: "IT Services",
     description: "Enterprise IT services and digital transformation"
   }, {
