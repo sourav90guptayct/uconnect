@@ -97,6 +97,7 @@ const Support = () => {
         description="Enterprise customer support for ConnectLH™ products and uConnect managed services. 4-hour acknowledgement, 24-hour resolution, contractual SLAs for managed customers."
         path="/support"
         jsonLd={faqJsonLd}
+        breadcrumbs={[{ name: "Home", path: "/" }, { name: "Support", path: "/support" }]}
       />
       <Header />
 
