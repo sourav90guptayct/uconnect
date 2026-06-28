@@ -41,6 +41,37 @@ const Index = () => {
         title="uConnect Technologies — Telecom & IT Infrastructure Partner in India"
         description="Enterprise telecom infrastructure, IT managed services, ConnectLH™ antennas, FTTH products, and skilled manpower. 200+ Tier-1 engineers across 18 circles, 10,000+ Links deployed."
         path="/"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: [
+            {
+              "@type": "Question",
+              name: "What does uConnect Technologies do?",
+              acceptedAnswer: { "@type": "Answer", text: "uConnect Technologies delivers telecom infrastructure, IT managed services, ConnectLH™ antennas, FTTH products, RF and fiber cables, PoE solutions, and skilled manpower across India." },
+            },
+            {
+              "@type": "Question",
+              name: "Where does uConnect Technologies operate?",
+              acceptedAnswer: { "@type": "Answer", text: "We operate pan-India across 18 telecom circles, with 200+ Tier-1 engineers, 5 regional warehouses, and 10,000+ ConnectLH™ Links deployed in the field." },
+            },
+            {
+              "@type": "Question",
+              name: "What is ConnectLH™?",
+              acceptedAnswer: { "@type": "Answer", text: "ConnectLH™ is uConnect's flagship product line of carrier-grade dish and sector antennas, PoE injectors, and outdoor radio accessories built for fixed wireless access, ISP backhaul, and rural broadband." },
+            },
+            {
+              "@type": "Question",
+              name: "Who are uConnect's typical customers?",
+              acceptedAnswer: { "@type": "Answer", text: "Telecom operators, internet service providers, system integrators, government and PSU networks, and large enterprises that need carrier-grade infrastructure and 24×7 managed operations." },
+            },
+            {
+              "@type": "Question",
+              name: "How can I request a quote or datasheet?",
+              acceptedAnswer: { "@type": "Answer", text: "Email reachus@youconnecttech.com or use the contact form on this site. Product datasheets are available for download from the Products page." },
+            },
+          ],
+        }}
       />
       <Header />
       <main>
