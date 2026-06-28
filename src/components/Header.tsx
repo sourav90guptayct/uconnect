@@ -229,7 +229,7 @@ const Header = () => {
                           ? "h-32 w-full bg-muted/40"
                           : "h-20 w-20 bg-muted/40 group-hover:bg-background"
                       )}>
-                        <img
+                        <img loading="lazy" decoding="async"
                           src={image}
                           alt={cat.label}
                           loading="lazy"

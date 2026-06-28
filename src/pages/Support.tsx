@@ -105,7 +105,7 @@ const Support = () => {
       {/* HERO */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0">
-          <img
+          <img loading="lazy" decoding="async"
             src={supportHero}
             alt="uConnect Technologies enterprise support helpdesk team"
             className="w-full h-full object-cover"

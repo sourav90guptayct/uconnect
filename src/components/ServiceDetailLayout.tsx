@@ -60,7 +60,7 @@ const ServiceDetailLayout = ({ data }: { data: ServiceDetailData }) => {
           style={{ background: "var(--gradient-hero-soft)" }}
         >
           <div className="absolute inset-0">
-            <img
+            <img loading="lazy" decoding="async"
               src={data.heroImage}
               alt={data.heroAlt}
               width={1600}

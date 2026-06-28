@@ -936,7 +936,7 @@ const Products = () => {
                   <div className="grid md:grid-cols-5 gap-0">
                     <div className="md:col-span-2 relative bg-gradient-to-br from-muted/60 to-muted/20 p-8 flex items-center justify-center min-h-[240px]">
                       {product.image && (
-                        <img
+                        <img loading="lazy" decoding="async"
                           loading="lazy"
                           decoding="async"
                           src={product.image}

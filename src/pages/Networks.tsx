@@ -106,7 +106,7 @@ const NetworksPage = () => {
           style={{ background: "var(--gradient-hero-soft)" }}
         >
           <div className="absolute inset-0">
-            <img
+            <img loading="lazy" decoding="async"
               src={networksHero}
               alt="Telecom microwave tower at sunset across mountain terrain"
               width={1600}
