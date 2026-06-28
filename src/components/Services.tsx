@@ -54,7 +54,7 @@ const Services = () => {
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-5">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-5">
           {services.map((service, index) => (
             <motion.div
               key={index}
