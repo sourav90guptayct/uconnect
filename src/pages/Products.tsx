@@ -37,7 +37,7 @@ const Products = () => {
     rfCables: "/products/category-rfCables.png",
     fiberCables: "/products/category-fiberCables.png",
     bts: "/products/category-bts.jpg",
-    fabricated: "/products/category-fabricated.png",
+    fabricated: "/products/category-fabricated.webp",
   };
 
   const productCategories = {
@@ -936,9 +936,7 @@ const Products = () => {
                   <div className="grid md:grid-cols-5 gap-0">
                     <div className="md:col-span-2 relative bg-gradient-to-br from-muted/60 to-muted/20 p-8 flex items-center justify-center min-h-[240px]">
                       {product.image && (
-                        <img
-                          loading="lazy"
-                          decoding="async"
+                        <img loading="lazy" decoding="async"
                           src={product.image}
                           alt={`${product.name} – ${activeCategoryData?.title || 'uConnect Technologies product'}`}
                           className="w-full h-auto max-h-56 object-contain group-hover:scale-105 transition-transform duration-500"
