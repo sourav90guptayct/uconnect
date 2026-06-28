@@ -1,4 +1,5 @@
-import { Building2, Globe, Shield, Zap, Users, CheckCircle } from "lucide-react";
+import { Building2, Globe, Shield, Zap, Users, CheckCircle, ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
@@ -249,13 +250,13 @@ const Clients = () => {
               Let's discuss how we can help your organization find the right talent 
               and achieve your business objectives.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="px-8 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors">
-                Start Partnership
-              </button>
-              <button className="px-8 py-3 border border-border text-foreground rounded-lg hover:bg-muted/50 transition-colors">
-                Learn More
-              </button>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <Button asChild variant="cta" size="xl">
+                <a href="/?section=contact">Get a Quote <ArrowRight className="ml-2 h-4 w-4" /></a>
+              </Button>
+              <Button asChild variant="ctaOutline" size="xl">
+                <a href="/?section=contact">Talk to an Engineer</a>
+              </Button>
             </div>
           </div>
         </div>
