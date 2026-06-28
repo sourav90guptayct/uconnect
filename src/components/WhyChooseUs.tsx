@@ -78,12 +78,12 @@ const WhyChooseUs = () => {
           transition={{ duration: 0.7 }}
           className="relative rounded-3xl overflow-hidden mb-12"
         >
-          <img loading="lazy" decoding="async" src="/lovable-uploads/digital-infrastructure-banner.jpg" alt="Telecom engineer working on cell tower at sunset" className="w-full h-72 lg:h-96 object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/70 to-transparent" />
-          <div className="absolute inset-0 flex items-center p-8 lg:p-14">
-            <div className="max-w-xl">
+          <img loading="lazy" decoding="async" src="/lovable-uploads/e2f0fa8e-0cfd-4a8e-8ab3-e9550216c580.png" alt="Team Unity" className="w-full h-72 object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/90 to-primary/85" />
+          <div className="absolute inset-0 flex items-center justify-center text-center p-8">
+            <div>
               <h3 className="text-3xl lg:text-5xl font-bold mb-4" style={{ color: '#ffffff' }}>Powering India's Digital Infrastructure</h3>
-              <p className="text-lg lg:text-xl" style={{ color: 'rgba(255,255,255,0.92)' }}>From telecom towers to enterprise IT — we build the backbone of India's connected future</p>
+              <p className="text-xl max-w-2xl mx-auto" style={{ color: 'rgba(255,255,255,0.85)' }}>From telecom towers to enterprise IT — we build the backbone of India's connected future</p>
             </div>
           </div>
         </motion.div>
