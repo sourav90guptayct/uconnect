@@ -779,6 +779,7 @@ const Products = () => {
         title={seoTitle}
         description={seoDescription}
         path={seoPath}
+        image="https://uconnecttech.com/og/products.jpg"
         jsonLd={activeCategoryData ? {
           "@context": "https://schema.org",
           "@type": "ItemList",
