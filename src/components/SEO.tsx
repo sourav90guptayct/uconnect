@@ -23,10 +23,23 @@ export const SEO = ({
   type = "website",
   jsonLd,
   noindex = false,
+  breadcrumbs,
 }: SEOProps) => {
   const url = `${SITE}${path.startsWith("/") ? path : `/${path}`}`;
   const canonical = `${SITE}${path.split("?")[0].startsWith("/") ? path.split("?")[0] : `/${path.split("?")[0]}`}`;
-  const ldArray = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
+  const ldArray: Record<string, unknown>[] = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
+  if (breadcrumbs && breadcrumbs.length) {
+    ldArray.push({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: breadcrumbs.map((b, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        name: b.name,
+        item: `${SITE}${b.path.startsWith("/") ? b.path : `/${b.path}`}`,
+      })),
+    });
+  }
 
   return (
     <Helmet>
