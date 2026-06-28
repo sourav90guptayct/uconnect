@@ -115,8 +115,8 @@ const About = () => {
 
               {!isAboutPage && (
                 <Button
-                  size="lg"
-                  className="bg-foreground text-background hover:bg-foreground/90 rounded-full h-12 px-7"
+                  variant="cta"
+                  size="xl"
                   onClick={() => navigate("/about")}
                 >
                   Discover our story
