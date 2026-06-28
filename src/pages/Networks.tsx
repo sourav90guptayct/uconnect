@@ -95,6 +95,7 @@ const NetworksPage = () => {
         title="Networks — Telecom Deployment | uConnect"
         description="End-to-end network rollout and deployment services for telecom operators, ISPs, and enterprises across India, Nepal, Bhutan, and Sri Lanka."
         path="/networks"
+        breadcrumbs={[{ name: "Home", path: "/" }, { name: "Networks", path: "/networks" }]}
       />
       <Header />
       <main>
