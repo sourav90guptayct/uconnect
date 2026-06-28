@@ -801,6 +801,15 @@ const Products = () => {
             item: { "@type": "Product", name, brand: { "@type": "Brand", name: "uConnect Technologies" } }
           }))
         }}
+        breadcrumbs={
+          activeCategoryData
+            ? [
+                { name: "Home", path: "/" },
+                { name: "Products", path: "/products" },
+                { name: activeCategoryData.title, path: seoPath },
+              ]
+            : [{ name: "Home", path: "/" }, { name: "Products", path: "/products" }]
+        }
       />
       <Header />
       
