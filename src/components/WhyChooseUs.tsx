@@ -79,11 +79,11 @@ const WhyChooseUs = () => {
           className="relative rounded-3xl overflow-hidden mb-12"
         >
           <img loading="lazy" decoding="async" src="/lovable-uploads/e2f0fa8e-0cfd-4a8e-8ab3-e9550216c580.png" alt="Team Unity" className="w-full h-72 object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/80 to-accent/60" />
-          <div className="absolute inset-0 flex items-center justify-center text-white text-center p-8">
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/90 to-primary/85" />
+          <div className="absolute inset-0 flex items-center justify-center text-center p-8">
             <div>
-              <h3 className="text-3xl lg:text-5xl font-bold mb-4">Powering India's Digital Infrastructure</h3>
-              <p className="text-xl text-white/70 max-w-2xl">From telecom towers to enterprise IT — we build the backbone of India's connected future</p>
+              <h3 className="text-3xl lg:text-5xl font-bold mb-4" style={{ color: '#ffffff' }}>Powering India's Digital Infrastructure</h3>
+              <p className="text-xl max-w-2xl mx-auto" style={{ color: 'rgba(255,255,255,0.85)' }}>From telecom towers to enterprise IT — we build the backbone of India's connected future</p>
             </div>
           </div>
         </motion.div>
@@ -94,7 +94,7 @@ const WhyChooseUs = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="bg-gradient-to-r from-primary via-primary/90 to-primary/80 rounded-3xl p-8 lg:p-12 text-primary-foreground"
+          className="bg-gradient-to-r from-primary via-primary/95 to-primary/90 rounded-3xl p-8 lg:p-12"
         >
           <div className="grid md:grid-cols-3 gap-8">
             {achievements.map((achievement, index) => (
@@ -102,8 +102,8 @@ const WhyChooseUs = () => {
                 <div className="h-14 w-14 bg-white/10 rounded-2xl flex items-center justify-center mx-auto mb-4 backdrop-blur-sm">
                   <achievement.icon className="h-7 w-7 text-accent" />
                 </div>
-                <h4 className="text-xl font-bold mb-2">{achievement.title}</h4>
-                <p className="text-primary-foreground/70">{achievement.description}</p>
+                <h4 className="text-xl font-bold mb-2" style={{ color: '#ffffff' }}>{achievement.title}</h4>
+                <p style={{ color: 'rgba(255,255,255,0.8)' }}>{achievement.description}</p>
               </div>
             ))}
           </div>
