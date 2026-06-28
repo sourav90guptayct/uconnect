@@ -42,7 +42,16 @@ export type ServiceDetailData = {
 const ServiceDetailLayout = ({ data }: { data: ServiceDetailData }) => {
   return (
     <div className="min-h-screen bg-background">
-      <SEO title={data.seoTitle} description={data.seoDescription} path={data.path} />
+      <SEO
+        title={data.seoTitle}
+        description={data.seoDescription}
+        path={data.path}
+        breadcrumbs={[
+          { name: "Home", path: "/" },
+          { name: "Services", path: "/services" },
+          { name: data.eyebrow, path: data.path },
+        ]}
+      />
       <Header />
       <main>
         {/* Hero */}
