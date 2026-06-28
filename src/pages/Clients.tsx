@@ -87,6 +87,7 @@ const Clients = () => {
         title="Our Clients — Enterprise Telecom & IT Partners | uConnect"
         description="Trusted by leading telecom and enterprise brands across India — Airtel, Jio, Vi, BSNL, Railtel, L&T, Wipro, Indus Towers, and more."
         path="/clients"
+        image="https://uconnecttech.com/og/clients.jpg"
         breadcrumbs={[{ name: "Home", path: "/" }, { name: "Clients", path: "/clients" }]}
       />
       <Header />

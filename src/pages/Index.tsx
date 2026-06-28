@@ -41,6 +41,7 @@ const Index = () => {
         title="uConnect Technologies — Telecom & IT Infrastructure Partner in India"
         description="Enterprise telecom infrastructure, IT managed services, ConnectLH™ antennas, FTTH products, and skilled manpower. 200+ Tier-1 engineers across 18 circles, 10,000+ Links deployed."
         path="/"
+        image="https://uconnecttech.com/og/home.jpg"
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "FAQPage",

@@ -96,6 +96,7 @@ const Support = () => {
         title="Support — Help, FAQs & Contact | uConnect Technologies"
         description="Enterprise customer support for ConnectLH™ products and uConnect managed services. 4-hour acknowledgement, 24-hour resolution, contractual SLAs for managed customers."
         path="/support"
+        image="https://uconnecttech.com/og/support.jpg"
         jsonLd={faqJsonLd}
         breadcrumbs={[{ name: "Home", path: "/" }, { name: "Support", path: "/support" }]}
       />
