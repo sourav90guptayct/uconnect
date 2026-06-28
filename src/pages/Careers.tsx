@@ -210,24 +210,42 @@ const CareersPage = () => {
       />
       <Header />
       <main>
-      {/* Header */}
-      <div className="bg-primary text-primary-foreground py-20">
-        <div className="container mx-auto px-4">
-          <h1 className="text-4xl lg:text-6xl font-bold mb-6">
-            Join Our Team
-          </h1>
-          <p className="text-xl text-primary-foreground/90 max-w-3xl">
-            Be part of uConnect Technologies and help shape the future of technology solutions. 
-            We're looking for passionate individuals who want to make a difference.
-          </p>
+      {/* Editorial Hero */}
+      <section
+        className="relative overflow-hidden pt-28 pb-16 lg:pt-32 lg:pb-20"
+        style={{ background: "var(--gradient-hero-soft)" }}
+      >
+        <div
+          className="absolute inset-0 opacity-[0.04] pointer-events-none"
+          style={{
+            backgroundImage: `linear-gradient(hsl(var(--foreground)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--foreground)) 1px, transparent 1px)`,
+            backgroundSize: "72px 72px",
+          }}
+        />
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-5xl">
+            <div className="text-sm font-semibold text-accent uppercase tracking-widest mb-5">
+              Careers
+            </div>
+            <h1 className="display-headline text-foreground text-5xl sm:text-6xl lg:text-8xl">
+              Join our team.
+              <br />
+              <span className="text-accent">Build what's next.</span>
+            </h1>
+            <p className="mt-8 text-base lg:text-lg text-muted-foreground max-w-2xl leading-relaxed">
+              Be part of uConnect Technologies and help shape the future of telecom and IT
+              infrastructure. We're looking for passionate engineers and specialists who want
+              to make a difference at enterprise scale.
+            </p>
+          </div>
         </div>
-      </div>
+      </section>
 
       {/* Hero Image Section */}
-      <section className="py-12">
+      <section className="py-12 bg-background">
         <div className="container mx-auto px-4">
           <div className="rounded-2xl overflow-hidden">
-            <img loading="lazy" decoding="async" src="/lovable-uploads/115872b6-8d21-43a0-b6ed-a612375446ba.webp" alt="Team collaboration" className="w-full h-96 object-cover" />
+            <img loading="lazy" decoding="async" src="/lovable-uploads/115872b6-8d21-43a0-b6ed-a612375446ba.webp" alt="Team collaboration at uConnect Technologies" className="w-full h-96 object-cover" />
           </div>
         </div>
       </section>
