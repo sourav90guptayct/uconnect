@@ -72,6 +72,7 @@ const ServicesPage = () => {
         title="Services — Telecom, IT & Network Solutions | uConnect"
         description="Managed services, network deployment, infra installation, and resource management for enterprise customers across India."
         path="/services"
+        breadcrumbs={[{ name: "Home", path: "/" }, { name: "Services", path: "/services" }]}
       />
       <Header />
       <main>
