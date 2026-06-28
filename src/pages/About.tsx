@@ -29,6 +29,7 @@ const AboutPage = () => {
         description="Founded in 2017, uConnect Technologies delivers carrier-grade telecom infrastructure, ConnectLH™ products, and managed IT services. 200+ Tier-1 engineers, 18 circles, 10,000+ Links deployed, 5 regional warehouses."
         path="/about"
         jsonLd={aboutJsonLd}
+        breadcrumbs={[{ name: "Home", path: "/" }, { name: "About", path: "/about" }]}
       />
       <Header />
       <main>
