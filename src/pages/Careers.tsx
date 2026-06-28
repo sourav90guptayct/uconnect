@@ -205,6 +205,7 @@ const CareersPage = () => {
         title="Careers at uConnect Technologies — Telecom & IT Jobs India"
         description="Join uConnect Technologies. Open roles for RF, FTTH, switching, back-office and field engineers across India. Apply online in minutes."
         path="/careers"
+        breadcrumbs={[{ name: "Home", path: "/" }, { name: "Careers", path: "/careers" }]}
       />
       <Header />
       <main>
