@@ -30,17 +30,29 @@ export const Analytics = () => {
 
   // Global CTA click delegation
   useEffect(() => {
+    const TRACKED_LABELS = [
+      "get a quote",
+      "talk to an engineer",
+      "request datasheet",
+      "download datasheet",
+      "contact",
+      "apply now",
+      "view jobs",
+    ];
     const handler = (e: MouseEvent) => {
       const target = e.target as HTMLElement | null;
       if (!target) return;
-      const el = target.closest<HTMLElement>("[data-cta]");
+      const el = target.closest<HTMLElement>("a, button, [data-cta]");
       if (!el) return;
-      const label = el.dataset.cta || el.textContent?.trim() || "cta";
-      const location = el.dataset.ctaLocation || "unknown";
+      const explicit = el.dataset.cta;
+      const text = (el.textContent || "").trim().toLowerCase();
+      const matched = explicit || TRACKED_LABELS.find((l) => text.includes(l));
+      if (!matched) return;
       window.gtag?.("event", "cta_click", {
-        cta_label: label,
-        cta_location: location,
-        page_path: window.location.pathname,
+        cta_label: explicit || matched,
+        cta_text: el.textContent?.trim().slice(0, 80) || "",
+        cta_location: el.dataset.ctaLocation || window.location.pathname,
+        link_url: (el as HTMLAnchorElement).href || "",
       });
     };
     document.addEventListener("click", handler, { capture: true });
