@@ -79,7 +79,7 @@ const WhyChooseUs = () => {
           className="relative rounded-3xl overflow-hidden mb-12"
         >
           <img loading="lazy" decoding="async" src="/lovable-uploads/e2f0fa8e-0cfd-4a8e-8ab3-e9550216c580.png" alt="Team Unity" className="w-full h-72 object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/90 to-primary/85" />
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/45 via-primary/35 to-primary/45" />
           <div className="absolute inset-0 flex items-center justify-center text-center p-8">
             <div>
               <h3 className="text-3xl lg:text-5xl font-bold mb-4" style={{ color: '#ffffff' }}>Powering India's Digital Infrastructure</h3>
