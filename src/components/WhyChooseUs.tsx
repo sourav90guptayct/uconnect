@@ -4,15 +4,15 @@ import { motion } from "framer-motion";
 
 const WhyChooseUs = () => {
   const differentiators = [
-    { icon: Trophy, title: "SCALE", subtitle: "National Infrastructure", stats: ["Pan-India footprint across 10+ states", "200+ specialized recruiters & engineers", "500+ active enterprise clients", "10,000+ professionals managed", "15+ industries served"] },
-    { icon: Zap, title: "AGILITY", subtitle: "Speed & Precision", stats: ["100+ deployments per month capacity", "4-hour enterprise inquiry response", "7-day average placement cycle", "Real-time project tracking dashboard", "Flexible engagement models"] },
-    { icon: Shield, title: "TECHNOLOGY", subtitle: "Innovation-Driven", stats: ["AI-powered candidate matching engine", "Proprietary workforce management platform", "Predictive analytics & reporting", "Cloud-native infrastructure", "ISO 27001 compliant operations"] },
+    { icon: Trophy, title: "SCALE", subtitle: "Pan-India Infrastructure", stats: ["Presence across 18 telecom circles", "200+ Tier-1 field engineers", "10,000+ Links deployed", "30+ projects delivered", "5 regional warehouses"] },
+    { icon: Zap, title: "AGILITY", subtitle: "Speed & Precision", stats: ["4-hour enterprise inquiry response", "Rapid mobilization across circles", "Real-time project tracking", "Flexible engagement models", "Certified rollout playbooks"] },
+    { icon: Shield, title: "RELIABILITY", subtitle: "Carrier-Grade Delivery", stats: ["24/7 NOC & field support", "SLA-driven managed services", "Multi-vendor equipment expertise", "Standardized QA & audits", "Secure operational processes"] },
   ];
 
   const achievements = [
-    { icon: Award, title: "Industry Recognition", description: "Top Technology Staffing Company 2024" },
-    { icon: Users, title: "Client Retention", description: "98% Year-over-Year Client Retention" },
-    { icon: Globe, title: "National Presence", description: "Operations Across 20+ Indian States" },
+    { icon: Award, title: "Trusted Since 2017", description: "Serving India's top telecom carriers and enterprises" },
+    { icon: Users, title: "Active Enterprise Customers", description: "15+ carriers and enterprises rely on us" },
+    { icon: Globe, title: "Pan-India Presence", description: "Operations across 18 telecom circles" },
   ];
 
   return (
