@@ -92,8 +92,8 @@ const NetworksPage = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEO
-        title="Networks — Telecom Deployment | uConnect"
-        description="End-to-end network rollout and deployment services for telecom operators, ISPs, and enterprises across India, Nepal, Bhutan, and Sri Lanka."
+        title="Network Deployment Services India | uConnect"
+        description="I&C, UBR links, switch/router and CCTV surveillance deployment for carriers and enterprises. 10,000+ Links installed across 18 circles."
         path="/networks"
         image="https://uconnecttech.com/og/networks.jpg"
         breadcrumbs={[{ name: "Home", path: "/" }, { name: "Networks", path: "/networks" }]}
