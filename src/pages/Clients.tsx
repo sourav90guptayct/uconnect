@@ -85,8 +85,8 @@ const Clients = () => {
   const achievements = ["Trusted partner for India's top telecom carriers", "10,000+ Links deployed successfully", "30+ ongoing projects across 18 circles", "24/7 dedicated NOC and field support", "200+ Tier-1 engineers and 5 regional warehouses", "Carrier-grade I&C, switching and CCTV deployment expertise"];
   return <div className="min-h-screen bg-background">
       <SEO
-        title="Our Clients — Enterprise Telecom & IT Partners | uConnect"
-        description="Trusted by leading telecom and enterprise brands across India — Airtel, Jio, Vi, BSNL, Railtel, L&T, Wipro, Indus Towers, and more."
+        title="Our Clients — Carriers & Enterprises | uConnect"
+        description="Trusted by India's top telecom carriers and enterprises for network deployment, managed services and infrastructure projects."
         path="/clients"
         image="https://uconnecttech.com/og/clients.jpg"
         breadcrumbs={[{ name: "Home", path: "/" }, { name: "Clients", path: "/clients" }]}
