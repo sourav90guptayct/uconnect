@@ -1,5 +1,5 @@
 import { Separator } from "@/components/ui/separator";
-import { Linkedin, Mail } from "lucide-react";
+import { Mail } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
@@ -39,9 +39,10 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-primary text-primary-foreground">
+    <footer className="bg-primary text-primary-foreground relative overflow-hidden">
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
       <div className="container mx-auto px-4 py-16">
-        <div className="grid lg:grid-cols-5 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 xl:grid-cols-5 gap-8">
           <div>
             <div className="text-2xl font-bold mb-4">
               uConnect<span className="text-gradient"> Technologies</span>
@@ -50,15 +51,6 @@ const Footer = () => {
               Your trusted partner for Telecom, IT & Infrastructure solutions. Delivering enterprise technology and products across India.
             </p>
             <div className="flex gap-3">
-              <a
-                href="https://www.linkedin.com/company/uconnect-technologies/"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="uConnect Technologies on LinkedIn"
-                className="h-10 w-10 bg-primary-foreground/5 rounded-xl flex items-center justify-center hover:bg-accent/20 hover:text-accent transition-all duration-300"
-              >
-                <Linkedin className="h-4 w-4" aria-hidden="true" />
-              </a>
               <a
                 href="mailto:reachus@youconnecttech.com"
                 aria-label="Email uConnect Technologies"
@@ -108,18 +100,18 @@ const Footer = () => {
             </ul>
           </div>
 
-          <div className="md:col-span-2 lg:col-span-1">
+          <div className="md:col-span-2 lg:col-span-2 xl:col-span-1">
             <h3 className="text-sm font-semibold mb-5 uppercase tracking-wider text-primary-foreground/80">Contact Info</h3>
             <div className="space-y-4">
-              <div className="flex items-center gap-3">
-                <Mail className="h-4 w-4 text-accent flex-shrink-0" />
-                <a href="mailto:reachus@youconnecttech.com" className="text-primary-foreground/50 hover:text-accent text-sm transition-colors break-all">
+              <div className="flex items-start gap-3">
+                <Mail className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
+                <a href="mailto:reachus@youconnecttech.com" className="text-primary-foreground/50 hover:text-accent text-sm transition-colors">
                   reachus@youconnecttech.com
                 </a>
               </div>
-              <div className="flex items-center gap-3">
-                <Mail className="h-4 w-4 text-accent flex-shrink-0" />
-                <a href="mailto:support@youconnecttech.com" className="text-primary-foreground/50 hover:text-accent text-sm transition-colors break-all">
+              <div className="flex items-start gap-3">
+                <Mail className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
+                <a href="mailto:support@youconnecttech.com" className="text-primary-foreground/50 hover:text-accent text-sm transition-colors">
                   support@youconnecttech.com
                 </a>
               </div>
