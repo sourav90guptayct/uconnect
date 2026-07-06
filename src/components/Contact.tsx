@@ -102,7 +102,7 @@ const Contact = () => {
                 ))}
               </div>
               <div>
-                <p className="text-sm font-semibold text-foreground">Join 500+ organizations</p>
+                <p className="text-sm font-semibold text-foreground">Join 15+ enterprise customers</p>
                 <p className="text-xs text-muted-foreground">that trust uConnect Technologies</p>
               </div>
             </div>
