@@ -25,8 +25,8 @@ const AboutPage = () => {
   return (
     <div className="min-h-screen">
       <SEO
-        title="About uConnect Technologies — India's Telecom & IT Infrastructure Partner"
-        description="Founded in 2017, uConnect Technologies delivers carrier-grade telecom infrastructure, ConnectLH™ products, and managed IT services. 200+ Tier-1 engineers, 18 circles, 10,000+ Links deployed, 5 regional warehouses."
+        title="About uConnect Technologies | Telecom Partner Since 2017"
+        description="Founded in 2017, uConnect Technologies delivers carrier-grade network deployment across 18 telecom circles with 200+ Tier-1 field engineers."
         path="/about"
         image="https://uconnecttech.com/og/about.jpg"
         jsonLd={aboutJsonLd}
