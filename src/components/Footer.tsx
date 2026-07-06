@@ -41,8 +41,8 @@ const Footer = () => {
   return (
     <footer className="bg-primary text-primary-foreground relative overflow-hidden">
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
-      <div className="container mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 xl:grid-cols-5 gap-8">
+      <div className="container mx-auto px-8 py-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
           <div>
             <div className="text-2xl font-bold mb-4">
               uConnect<span className="text-gradient"> Technologies</span>
@@ -100,7 +100,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          <div className="md:col-span-2 lg:col-span-2 xl:col-span-1">
+          <div>
             <h3 className="text-sm font-semibold mb-5 uppercase tracking-wider text-primary-foreground/80">Contact Info</h3>
             <div className="space-y-4">
               <div className="flex items-start gap-3">
