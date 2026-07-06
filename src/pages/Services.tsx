@@ -69,8 +69,8 @@ const ServicesPage = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEO
-        title="Services — Telecom, IT & Network Solutions | uConnect"
-        description="Managed services, network deployment, infra installation, and resource management for enterprise customers across India."
+        title="Telecom & IT Services in India | uConnect Technologies"
+        description="Network deployment, managed services, infrastructure installation and resource management — one partner for enterprise telecom and IT across India."
         path="/services"
         image="https://uconnecttech.com/og/services.jpg"
         breadcrumbs={[{ name: "Home", path: "/" }, { name: "Services", path: "/services" }]}

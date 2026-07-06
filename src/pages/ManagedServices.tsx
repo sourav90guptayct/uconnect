@@ -3,8 +3,8 @@ import ServiceDetailLayout, { type ServiceDetailData } from "@/components/Servic
 import heroImg from "@/assets/managed-hero.jpg";
 
 const data: ServiceDetailData = {
-  seoTitle: "Managed Services — 24/7 NOC & SLA Operations | uConnect",
-  seoDescription: "End-to-end managed services with 24/7 NOC, proactive monitoring, incident management and SLA-driven operations for telecom and enterprise networks.",
+  seoTitle: "IT Managed Services & 24/7 NOC Support | uConnect",
+  seoDescription: "24/7 NOC, field support and proactive network monitoring for enterprises across India, backed by 5 regional warehouses and flexible SLAs.",
   path: "/managed-services",
   eyebrow: "Managed Services",
   heroImage: heroImg,

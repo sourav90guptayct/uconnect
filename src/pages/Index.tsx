@@ -38,8 +38,8 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       <SEO
-        title="uConnect Technologies — Telecom & IT Infrastructure Partner in India"
-        description="Enterprise telecom infrastructure, IT managed services, ConnectLH™ antennas, FTTH products, and skilled manpower. 200+ Tier-1 engineers across 18 circles, 10,000+ Links deployed."
+        title="uConnect Technologies | Telecom & IT Infrastructure India"
+        description="End-to-end telecom infrastructure, ConnectLH™ antennas, FTTH products, managed services and skilled manpower. Serving India's top carriers since 2017."
         path="/"
         image="https://uconnecttech.com/og/home.jpg"
         jsonLd={{

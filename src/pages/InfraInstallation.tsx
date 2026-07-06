@@ -3,8 +3,8 @@ import ServiceDetailLayout, { type ServiceDetailData } from "@/components/Servic
 import heroImg from "@/assets/infra-hero.jpg";
 
 const data: ServiceDetailData = {
-  seoTitle: "Infra Installation — Tower, Pole & Site Build | uConnect",
-  seoDescription: "Tower erection, pole installation, civil works, structured cabling and end-to-end telecom and enterprise site build services across India and South Asia.",
+  seoTitle: "Telecom Infrastructure Installation | uConnect",
+  seoDescription: "End-to-end telecom infra installation — BTS, towers, CCTV surveillance and enterprise networks — delivered by certified Tier-1 engineers.",
   path: "/infra-installation",
   eyebrow: "Infra Installation",
   heroImage: heroImg,

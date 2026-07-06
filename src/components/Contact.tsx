@@ -72,7 +72,7 @@ const Contact = () => {
               {[
                 { icon: Headphones, title: "Dedicated Account Manager", desc: "Every client is assigned a senior account manager for personalized, white-glove service." },
                 { icon: Clock3, title: "Rapid Response Guarantee", desc: "We respond to all enterprise inquiries within 4 hours during business days." },
-                { icon: Shield, title: "Enterprise-Grade Security", desc: "ISO 27001 compliant processes ensuring your data and operations are always protected." },
+                { icon: Shield, title: "Enterprise-Grade Delivery", desc: "Standardized processes, QA audits and secure operations trusted by India's top carriers." },
               ].map((item, i) => (
                 <motion.div
                   key={i}
@@ -102,7 +102,7 @@ const Contact = () => {
                 ))}
               </div>
               <div>
-                <p className="text-sm font-semibold text-foreground">Join 500+ organizations</p>
+                <p className="text-sm font-semibold text-foreground">Join 15+ enterprise customers</p>
                 <p className="text-xs text-muted-foreground">that trust uConnect Technologies</p>
               </div>
             </div>

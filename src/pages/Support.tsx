@@ -93,8 +93,8 @@ const Support = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEO
-        title="Support — Help, FAQs & Contact | uConnect Technologies"
-        description="Enterprise customer support for ConnectLH™ products and uConnect managed services. 4-hour acknowledgement, 24-hour resolution, contractual SLAs for managed customers."
+        title="Support & Contact | uConnect Technologies"
+        description="Get help, FAQs and contact details. Enterprise inquiries answered within 4 business hours by a dedicated account manager."
         path="/support"
         image="https://uconnecttech.com/og/support.jpg"
         jsonLd={faqJsonLd}
