@@ -206,7 +206,7 @@ const Header = () => {
               </Link>
             </div>
             <div className={cn(
-              "grid gap-x-4 gap-y-6",
+              "grid gap-x-6 gap-y-8",
               openMenu === "services"
                 ? "grid-cols-2 md:grid-cols-4"
                 : "grid-cols-2 md:grid-cols-3 lg:grid-cols-6"
@@ -214,46 +214,36 @@ const Header = () => {
               {activeItems.map((cat) => {
                 const to = "href" in cat && cat.href ? cat.href : `${activeMeta.basePath}?${activeMeta.queryKey}=${cat.slug}`;
                 const image = "image" in cat ? (cat as any).image : null;
-                const isService = openMenu === "services";
                 return (
                   <Link
                     key={cat.slug}
                     to={to}
                     onClick={() => setOpenMenu(null)}
-                    className="group flex flex-col items-center text-center rounded-xl p-3 hover:bg-muted transition-colors"
+                    className="group flex flex-col text-left rounded-xl overflow-hidden hover:bg-muted/50 transition-colors"
                   >
                     {image ? (
-                      <div className={cn(
-                        "mb-3 flex items-center justify-center rounded-lg overflow-hidden transition-colors",
-                        isService
-                          ? "h-32 w-full bg-muted/40"
-                          : "h-20 w-20 bg-muted/40 group-hover:bg-background"
-                      )}>
+                      <div className="mb-3 flex items-center justify-center rounded-lg overflow-hidden bg-muted/40 h-32 w-full">
                         <img loading="lazy" decoding="async"
                           src={image}
                           alt={cat.label}
-
-
-                          className={cn(
-                            "h-full w-full group-hover:scale-105 transition-transform duration-300",
-                            isService ? "object-cover" : "max-h-full max-w-full object-contain"
-                          )}
+                          className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-300"
                         />
                       </div>
                     ) : (
-                      <div className="h-20 w-20 mb-3 rounded-lg bg-gradient-to-br from-accent/20 to-accent/5 flex items-center justify-center text-accent font-bold text-xl">
+                      <div className="h-32 w-full mb-3 rounded-lg bg-gradient-to-br from-accent/20 to-accent/5 flex items-center justify-center text-accent font-bold text-2xl">
                         {cat.label.charAt(0)}
                       </div>
                     )}
-                    <div className="text-sm font-semibold text-foreground group-hover:text-accent transition-colors leading-tight">
+                    <div className="px-1 text-sm font-semibold text-foreground group-hover:text-accent transition-colors leading-tight">
                       {cat.label}
                     </div>
-                    <div className="text-[11px] text-muted-foreground mt-1 leading-snug line-clamp-2">
+                    <div className="px-1 text-[11px] text-muted-foreground mt-1 leading-snug line-clamp-2 pb-2">
                       {cat.desc}
                     </div>
                   </Link>
                 );
               })}
+
             </div>
           </div>
         </div>
