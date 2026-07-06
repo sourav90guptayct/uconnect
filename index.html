@@ -112,24 +112,36 @@
     <!-- LCP image preload (home hero) -->
     <link rel="preload" as="image" href="/lovable-uploads/hero-enterprise-network.webp" type="image/webp" fetchpriority="high" />
 
-    <!-- Microsoft Clarity -->
-    <script type="text/javascript">
-      (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-      })(window, document, "clarity", "script", "xcco76ew5s");
-    </script>
-
-    <!-- Google Analytics 4 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FG0TEVP4HK"></script>
+    <!-- Analytics: deferred until after load to reduce main-thread contention & unused JS during LCP -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       window.gtag = gtag;
       gtag('js', new Date());
       gtag('config', 'G-FG0TEVP4HK', { send_page_view: false });
+
+      function __loadAnalytics() {
+        // Google Analytics 4
+        var ga = document.createElement('script');
+        ga.async = true;
+        ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-FG0TEVP4HK';
+        document.head.appendChild(ga);
+
+        // Microsoft Clarity
+        (function(c,l,a,r,i,t,y){
+          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "xcco76ew5s");
+      }
+
+      if (document.readyState === 'complete') {
+        setTimeout(__loadAnalytics, 1500);
+      } else {
+        window.addEventListener('load', function(){ setTimeout(__loadAnalytics, 1500); });
+      }
     </script>
+
   </head>
 
   <body>
