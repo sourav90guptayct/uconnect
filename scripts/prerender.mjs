@@ -1,6 +1,6 @@
 /**
  * Build-time prerender: stamps per-route <title>, <meta description>,
- * <link rel=canonical>, and og:*/twitter:* tags into a per-route index.html
+ * <link rel=canonical>, and og / twitter tags into a per-route index.html
  * under dist/<route>/index.html.
  *
  * This gives crawlers correct, unique head metadata for every public
