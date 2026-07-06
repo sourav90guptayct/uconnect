@@ -41,8 +41,8 @@ const Footer = () => {
   return (
     <footer className="bg-primary text-primary-foreground relative overflow-hidden">
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
-      <div className="container mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 xl:grid-cols-5 gap-8">
+      <div className="container mx-auto px-8 py-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
           <div>
             <div className="text-2xl font-bold mb-4">
               uConnect<span className="text-gradient"> Technologies</span>
