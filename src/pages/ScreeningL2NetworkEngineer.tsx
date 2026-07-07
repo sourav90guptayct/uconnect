@@ -173,13 +173,23 @@ export default function ScreeningL2NetworkEngineer() {
         warn();
       }
     };
+    // Warn candidate that leaving/refreshing the page will end their attempt.
+    // The screening is one-attempt-per-email, so a refresh cannot resume — we
+    // block it with the browser's native "leave site?" dialog.
+    const onBeforeUnload = (e: BeforeUnloadEvent) => {
+      e.preventDefault();
+      e.returnValue = "";
+      return "";
+    };
     document.addEventListener("visibilitychange", onVis);
     window.addEventListener("blur", onBlur);
     document.addEventListener("fullscreenchange", onFs);
+    window.addEventListener("beforeunload", onBeforeUnload);
     return () => {
       document.removeEventListener("visibilitychange", onVis);
       window.removeEventListener("blur", onBlur);
       document.removeEventListener("fullscreenchange", onFs);
+      window.removeEventListener("beforeunload", onBeforeUnload);
     };
   }, [step]);
 
