@@ -1,56 +1,105 @@
-This is a large, multi-week scope. Rather than try to do everything in a single turn (which would produce shallow, half-broken changes across 30+ files), I'll execute it in clearly scoped phases. You approve the plan, then I ship phase by phase and you review between.
 
-Key note up front: some items in your brief are **already done** on this site. I'll skip or only polish those rather than rebuild:
+# Dashboard Redesign Plan
 
-- `react-helmet-async` + per-route `<SEO>` component — already shipping unique title/description/canonical/OG on /, /about, /products, /support, etc.
-- `robots.txt` + `sitemap.xml` — already present, AI-bot friendly.
-- Microsoft Clarity (`xcco76ew5s`) — already integrated and verified.
-- Tawk.to live chat — already integrated. (You asked to remove the WhatsApp floating button last turn — confirm if you now want it back per section 8, or keep Tawk.to only.)
-- Brand stats — memory locks these to **Founded 2017, 200+ Tier-1 engineers, 10,000+ Links deployed, 30+ projects, 15+ active customers**. Your brief says "50+ clients / 1000+ deployments / 2000+ placements." **I'll keep the memory-locked numbers** unless you explicitly tell me to overwrite them — they came from your deck.
-- Contact details — memory locks the site to **email-only** (no phone, no office address). Your brief asks for phone, office address, and a map embed on /contact. **I'll keep email-only** unless you explicitly override.
+Complete overhaul of Admin, Employee, and Candidate dashboards using a unified sidebar-shell pattern. Keeps the established brand (deep navy + orange, glassmorphism, Space Grotesk / Plus Jakarta Sans) — only structure, IA, and interaction change.
 
-## Phases
+## Design language (locked to existing brand memory)
 
-### Phase 1 — SEO completeness (fast, high-impact)
-- Add `<SEO>` to every remaining route missing it: /services, /careers, /clients, /networks, /managed-services, /infra-installation, /resource-management, /products (already has, verify).
-- Add JSON-LD: sitewide **Organization** in `index.html`, **Product** schema generated per ConnectLH product on /products, **BreadcrumbList** on inner pages, **FAQPage** on home (4–6 real B2B FAQs).
-- Regenerate `sitemap.xml` to include every public route.
-- Verify all canonicals self-reference (no homepage drift).
+- Persistent collapsible sidebar (shadcn `Sidebar`, `collapsible="icon"`) with brand mark, sectioned nav, active-route highlight, user badge + sign-out at the bottom.
+- Top bar per page: breadcrumbs, page title, quick actions, notifications, profile menu.
+- Content grid: KPI cards row → primary work surface (table/list/detail) → side panel (activity/filters).
+- Framer Motion page transitions and card enter animations (staggered).
+- Consistent empty-states, skeleton loaders, and toast confirmations.
 
-### Phase 2 — Per-page OG images
-- Generate 6 branded 1200×630 webp OG images (home, services, products, about, careers, contact) using the existing navy/orange theme. Wire each into its page's `<SEO image>`.
+---
 
-### Phase 3 — Design system tightening
-The site already has a navy/orange enterprise theme, Space Grotesk + Plus Jakarta Sans, and a global type scale. Gaps to close:
-- Audit `src/index.css` tokens; remove any hardcoded `text-white`/`bg-[#…]` in components and replace with semantic tokens.
-- Standardize button, card, stat-counter, logo-wall, CTA-band variants so every section uses the same primitives.
-- Tighten spacing/section rhythm to a single scale.
+## 1. Admin Dashboard (`/admin`)
 
-### Phase 4 — Performance & a11y pass
-- Convert remaining hero/product JPGs to webp where not already; add explicit width/height; `loading="lazy"` on below-the-fold images.
-- Preload LCP hero image and primary font; `font-display: swap`.
-- A11y sweep: alt text, aria-labels on icon-only buttons, focus-visible, contrast check on accent on navy.
-- Run Lighthouse via Playwright and report scores.
+Replaces the current 1,559-line monolith with a routed shell.
 
-### Phase 5 — Conversion polish
-- Confirm WhatsApp floating button decision (currently removed). If you want it back, re-add alongside Tawk.to.
-- Add a "Get a Quote" primary CTA consistently in header, hero, and footer (already partially there — make it uniform).
-- Add `[GA4_ID]` slot in `index.html` ready to fill in.
+**Sidebar sections**
+- Overview (KPIs, recent activity)
+- Jobs (list, create, edit, applications per job)
+- Candidates (all applicants, search, shortlist)
+- Screenings (L2 submissions, video review, scoring) — merges `/admin/screenings`
+- Employees (roster, roles, create account)
+- Contact Submissions (inbox view)
+- Content (products, clients — if managed)
+- Settings (own profile, password)
 
-### Phase 6 — Insights/blog (optional, biggest lift)
-- New `/insights` route with list + post template (MDX or Supabase-backed — your call).
-- Seed 2–3 placeholder posts on FTTH, RF cables, PoE.
-- Only worth doing if you'll actually publish content. Skip if not.
+**Overview page**
+- 6 KPI tiles: Open jobs, Applications this week, Pending screenings, Recommended candidates, Active employees, Unread contacts.
+- Charts: applications trend (7/30 days), recommendation breakdown pie.
+- Recent activity feed (last 10 events).
 
-## Explicitly NOT doing
-- **SSR/SSG / pre-rendering.** This is a Vite SPA on Lovable hosting. Real SSG would require migrating off Vite SPA to Next.js or adding a prerender service at deploy — that's a platform migration, not a content edit, and it's outside what I can ship inside this project. Googlebot already executes the JS and indexes the per-route `<SEO>` tags correctly; the gap is only for non-JS social scrapers (LinkedIn/Slack/Facebook) on deep links. Mitigation: the sitewide `og:*` in `index.html` already covers them with brand-level previews. If true per-route social previews are critical, that's a separate platform conversation.
-- **Renaming or restructuring routes.** Existing /services, /careers, /clients, /networks, etc. stay — they're indexed.
-- **Fabricated content.** No invented testimonials, certifications, or client names.
+**Screenings page**
+- Filter bar: recommendation, date range, score range, search.
+- Table: candidate, email, score, recommendation badge, violations, video link, submitted.
+- Row click → detail drawer with all answers, MCQ breakdown, violation timeline, embedded video, admin notes, override recommendation.
+- CSV export.
 
-## Questions before I start
+---
 
-1. **Numbers**: keep memory-locked deck stats (200+ engineers, 10,000+ Links, 30+ projects, 15+ customers) or overwrite with brief's (50+ clients, 1000+ deployments, 2000+ placements)?
-2. **Contact details**: keep email-only per memory, or override and add phone + office address + map on /contact?
-3. **WhatsApp button**: keep removed, or re-add per section 8?
-4. **Blog (Phase 6)**: include or skip?
-5. **Scope today**: ship Phase 1 (SEO completeness) first and review, or batch Phases 1–4 in one go?
+## 2. Employee Dashboard (`/employer-dashboard` → renamed `/employee`)
+
+**Sidebar sections**
+- My Day (today's tasks, attendance clock-in/out)
+- Tasks (kanban: To do / In progress / Done, with updates)
+- Attendance (calendar heatmap + monthly summary)
+- Profile (personal info, department, position — read-only fields locked)
+
+**My Day**
+- Clock in/out card with elapsed time.
+- Today's tasks list with quick status update.
+- Announcements strip.
+
+---
+
+## 3. Candidate Dashboard (`/profile` → shell at `/candidate`)
+
+**Sidebar sections**
+- Overview (profile completeness %, application count, saved jobs)
+- My Profile (basic info, resume upload, avatar)
+- Education (add/edit/delete)
+- Experience (add/edit/delete)
+- Skills (tag input)
+- My Applications (moved from `/my-applications`)
+- Screening Tests (link to available tests + past attempts summary)
+
+**Overview**
+- Profile completeness ring (calculated from filled fields).
+- Application status counts (Applied, In review, Shortlisted, Rejected).
+- Recommended jobs (based on skills).
+
+---
+
+## Technical Details
+
+**New files**
+- `src/layouts/DashboardLayout.tsx` — shared shell with `SidebarProvider`, top bar, `Outlet`.
+- `src/components/dashboard/AdminSidebar.tsx`, `EmployeeSidebar.tsx`, `CandidateSidebar.tsx`.
+- `src/components/dashboard/KpiCard.tsx`, `PageHeader.tsx`, `EmptyState.tsx`.
+- `src/pages/admin/Overview.tsx`, `Jobs.tsx`, `Candidates.tsx`, `Screenings.tsx`, `Employees.tsx`, `Contacts.tsx`, `Settings.tsx`.
+- `src/pages/employee/MyDay.tsx`, `Tasks.tsx`, `Attendance.tsx`, `Profile.tsx`.
+- `src/pages/candidate/Overview.tsx`, `Profile.tsx`, `Education.tsx`, `Experience.tsx`, `Skills.tsx`, `Applications.tsx`, `Screenings.tsx`.
+
+**Routing (`App.tsx`)**
+- `/admin/*` → `DashboardLayout` + `AdminSidebar` + role guard.
+- `/employee/*` → same shell + `EmployeeSidebar` + employee guard.
+- `/candidate/*` → same shell + `CandidateSidebar` + auth guard.
+- Old routes (`/profile`, `/my-applications`, `/employer-dashboard`, `/admin/screenings`) redirect to new locations.
+
+**Preserved logic**
+- All Supabase queries, RLS-protected access, screening edge functions, video upload, admin role check (`has_role`) — untouched.
+- Data models and migrations — no schema changes.
+
+**Removed/archived**
+- Old `Admin.tsx`, `EmployerDashboard.tsx`, `Profile.tsx`, `MyApplications.tsx`, `AdminScreenings.tsx` deleted after new pages verified.
+
+## Out of scope
+- No schema changes.
+- No new features beyond what already exists (I'm restructuring + polishing, not adding).
+- Public marketing pages untouched.
+
+## Estimated size
+~20 new files, ~5 deletions, App.tsx updated. Build should stay green throughout.
