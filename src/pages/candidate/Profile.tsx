@@ -21,20 +21,26 @@ export default function CandidateProfile() {
   const [loading, setLoading] = useState(true);
 
   const load = async () => {
-    if (!user) return;
-    const { data: p, error } = await supabase.from("candidate_profiles").select("*").eq("user_id", user.id).maybeSingle();
-    if (error || !p) { navigate("/register"); return; }
-    setProfile(p);
-    const [{ data: edu }, { data: exp }, { data: sk }] = await Promise.all([
-      supabase.from("candidate_education").select("*").eq("candidate_id", p.id).order("year_of_passing", { ascending: false }),
-      supabase.from("candidate_experience").select("*").eq("candidate_id", p.id).order("start_date", { ascending: false }),
-      supabase.from("candidate_skills").select("*").eq("candidate_id", p.id).order("proficiency_level", { ascending: false }),
-    ]);
-    setEducation(edu ?? []); setExperience(exp ?? []); setSkills(sk ?? []);
-    setLoading(false);
+    if (!user) { setLoading(false); return; }
+    try {
+      const { data: p, error } = await supabase.from("candidate_profiles").select("*").eq("user_id", user.id).maybeSingle();
+      if (error) { console.error("profile load error", error); setLoading(false); return; }
+      if (!p) { setProfile(null); setLoading(false); return; }
+      setProfile(p);
+      const [{ data: edu }, { data: exp }, { data: sk }] = await Promise.all([
+        supabase.from("candidate_education").select("*").eq("candidate_id", p.id).order("year_of_passing", { ascending: false }),
+        supabase.from("candidate_experience").select("*").eq("candidate_id", p.id).order("start_date", { ascending: false }),
+        supabase.from("candidate_skills").select("*").eq("candidate_id", p.id).order("proficiency_level", { ascending: false }),
+      ]);
+      setEducation(edu ?? []); setExperience(exp ?? []); setSkills(sk ?? []);
+    } catch (e) {
+      console.error("profile load exception", e);
+    } finally {
+      setLoading(false);
+    }
   };
 
-  useEffect(() => { load(); /* eslint-disable-next-line */ }, [user]);
+  useEffect(() => { load(); /* eslint-disable-next-line */ }, [user?.id]);
 
   if (loading) return <p className="text-sm text-muted-foreground">Loading…</p>;
   if (!profile) return <EmptyState icon={User} title="No profile" description="Please complete your registration." actionLabel="Register" onAction={() => navigate("/register")} />;
