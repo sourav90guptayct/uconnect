@@ -304,6 +304,8 @@ export default function AdminScreenings() {
                     </a>
                   </section>
                 )}
+
+                <AnswerBreakdown submission={selected} answerKey={answerKey} />
               </div>
             </>
           )}
