@@ -243,7 +243,7 @@ export default function AdminScreenings() {
                 <section>
                   <h4 className="t-eyebrow text-muted-foreground mb-2">Result</h4>
                   <div className="flex items-center gap-3">
-                    <span className="text-3xl font-bold">{selected.score}<span className="text-muted-foreground text-base">/20</span></span>
+                    <span className="text-3xl font-bold">{selected.score}<span className="text-muted-foreground text-base">/{totalQuestions(selected) || "?"}</span></span>
                     <Badge variant={recBadge(selected.recommendation) as any}>{selected.recommendation}</Badge>
                   </div>
                 </section>
