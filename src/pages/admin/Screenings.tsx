@@ -37,8 +37,13 @@ interface Submission {
   window_blurs: number;
   video_url: string | null;
   video_uploaded: boolean;
+  resume_url: string | null;
   created_at: string;
 }
+
+// Answer count = questions the candidate was shown (mixed pool means 20–25).
+const totalQuestions = (r: Submission) =>
+  r.answers && typeof r.answers === "object" ? Object.keys(r.answers).length : 0;
 
 function recBadge(rec: string) {
   if (rec?.startsWith("Recommended")) return "default";
