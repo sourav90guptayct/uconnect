@@ -64,12 +64,20 @@ function toCsv(rows: Submission[]) {
   return [cols.join(","), ...rows.map((r) => cols.map((c) => esc((r as any)[c])).join(","))].join("\n");
 }
 
+const QUESTION_MAP: Record<number, ScreeningQuestion> = L2_SCREENING_QUESTIONS.reduce(
+  (acc, q) => ((acc[q.id] = q), acc),
+  {} as Record<number, ScreeningQuestion>,
+);
+
+const DIFF_COLORS: Record<string, string> = { easy: "#22c55e", moderate: "#f59e0b", hard: "#ef4444" };
+
 export default function AdminScreenings() {
   const [rows, setRows] = useState<Submission[]>([]);
   const [loading, setLoading] = useState(true);
   const [q, setQ] = useState("");
   const [rec, setRec] = useState("all");
   const [selected, setSelected] = useState<Submission | null>(null);
+  const [answerKey, setAnswerKey] = useState<Record<number, number> | null>(null);
 
   useEffect(() => {
     (async () => {
@@ -79,6 +87,10 @@ export default function AdminScreenings() {
         .order("created_at", { ascending: false });
       setRows((data as Submission[]) ?? []);
       setLoading(false);
+    })();
+    (async () => {
+      const { data, error } = await supabase.functions.invoke("get-screening-answer-key");
+      if (!error && data?.answer_key) setAnswerKey(data.answer_key);
     })();
   }, []);
 
