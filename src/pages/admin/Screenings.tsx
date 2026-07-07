@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
-import { Download, ExternalLink, FileVideo, Search, ShieldAlert } from "lucide-react";
+import { Download, ExternalLink, FileText, FileVideo, Search, ShieldAlert } from "lucide-react";
 
 interface Submission {
   id: string;
