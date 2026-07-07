@@ -48,7 +48,7 @@ const SubmissionSchema = z.object({
   tab_switches: z.number().int().min(0).default(0),
   fullscreen_exits: z.number().int().min(0).default(0),
   window_blurs: z.number().int().min(0).default(0),
-  resume_url: z.string().url().max(1000).optional().nullable(),
+  resume_url: z.string().trim().min(1).max(1000).optional().nullable(),
 });
 
 function recommendation(scorePct: number, laptop: string, manesar: string, shifts: string, ctc: string) {
