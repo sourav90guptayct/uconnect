@@ -226,8 +226,39 @@ export default function ScreeningL2NetworkEngineer() {
       if (!String(v).trim()) return `Please fill: ${k.replace(/_/g, " ")}`;
     }
     if (!/^\S+@\S+\.\S+$/.test(form.email)) return "Please enter a valid email address.";
-    if (Object.keys(answers).length < L2_SCREENING_QUESTIONS.length) return "Please answer all 20 MCQ questions.";
+    if (Object.keys(answers).length < questions.length) return `Please answer all ${questions.length} MCQ questions.`;
     return null;
+  };
+
+  const handleResumeUpload = async (file: File) => {
+    if (file.size > 5 * 1024 * 1024) {
+      toast.error("CV must be under 5 MB.");
+      return;
+    }
+    const allowed = ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"];
+    if (!allowed.includes(file.type)) {
+      toast.error("Please upload a PDF or Word document.");
+      return;
+    }
+    setResumeUploading(true);
+    try {
+      const ext = file.name.split(".").pop() || "pdf";
+      const path = `${crypto.randomUUID()}.${ext}`;
+      const { error } = await supabase.storage
+        .from("screening-resumes")
+        .upload(path, file, { contentType: file.type, upsert: false });
+      if (error) throw error;
+      // Store a stable reference — admins generate signed URLs on view.
+      const publicRef = `screening-resumes/${path}`;
+      setResumeFile(file);
+      setResumeUrl(publicRef);
+      toast.success("CV uploaded.");
+    } catch (e: any) {
+      console.error("CV upload failed:", e);
+      toast.error("CV upload failed. You can continue without it.");
+    } finally {
+      setResumeUploading(false);
+    }
   };
 
   const handleSubmit = async (auto = false) => {
