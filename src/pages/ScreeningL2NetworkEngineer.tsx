@@ -138,7 +138,7 @@ export default function ScreeningL2NetworkEngineer() {
       toast.error("Please allow camera access first.");
       return;
     }
-    setQuestions(shuffle(L2_SCREENING_QUESTIONS));
+    setQuestions(pickBalancedQuestions()); // 10 easy + 10 moderate + 5 hard, randomized
     setStep("test");
     setSecondsLeft(TEST_MINUTES * 60);
     startRecording();
