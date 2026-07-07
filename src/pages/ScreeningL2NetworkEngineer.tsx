@@ -536,7 +536,7 @@ export default function ScreeningL2NetworkEngineer() {
 
         {/* MCQ */}
         <Card className="mb-6">
-          <CardHeader><CardTitle style={{ color: BRAND }}>Technical MCQ ({L2_SCREENING_QUESTIONS.length} questions)</CardTitle></CardHeader>
+          <CardHeader><CardTitle style={{ color: BRAND }}>Technical MCQ ({questions.length} questions)</CardTitle></CardHeader>
           <CardContent className="space-y-6">
             {questions.map((q, idx) => (
               <div key={q.id} className="border-b pb-4 last:border-b-0">
