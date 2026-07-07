@@ -144,13 +144,14 @@ Deno.serve(async (req) => {
       if ((error as any).code === "23505") {
         return new Response(
           JSON.stringify({ ok: false, error: "A submission with this email or phone already exists." }),
-          { status: 409, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+          { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } }
         );
       }
       return new Response(
-        JSON.stringify({ ok: false, error: "Failed to save submission." }),
-        { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        JSON.stringify({ ok: false, error: `Failed to save submission: ${error.message}` }),
+        { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
+
     }
 
     // Never return score/recommendation to the client
