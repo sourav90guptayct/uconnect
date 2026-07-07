@@ -63,6 +63,8 @@ export default function ScreeningL2NetworkEngineer() {
   const [questions, setQuestions] = useState<ScreeningQuestion[]>([]);
   const [secondsLeft, setSecondsLeft] = useState(TEST_MINUTES * 60);
   const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+
   const [cameraReady, setCameraReady] = useState(false);
   const [cameraError, setCameraError] = useState<string | null>(null);
   const [cameraLost, setCameraLost] = useState(false);
@@ -350,13 +352,22 @@ export default function ScreeningL2NetworkEngineer() {
 
   const handleSubmit = async (auto = false) => {
     if (submittedRef.current) return;
+    setSubmitError(null);
     if (!auto) {
       const err = validateForm();
-      if (err) { toast.error(err); return; }
+      if (err) {
+        console.warn("Screening validation failed:", err, { form, answeredCount: Object.keys(answers).length, totalQuestions: questions.length });
+        setSubmitError(err);
+        toast.error(err);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        return;
+      }
     }
     submittedRef.current = true;
     setSubmitting(true);
     toast.info(auto ? "Time is up — submitting your test..." : "Submitting your test...");
+
+
 
     try {
       // 1) Stop recording, get blob
@@ -376,12 +387,17 @@ export default function ScreeningL2NetworkEngineer() {
       };
       const { data, error } = await supabase.functions.invoke("submit-screening", { body: payload });
       if (error || !data?.ok) {
-        const msg = data?.error || error?.message || "Submission failed.";
+        const details = data?.details ? " " + JSON.stringify(data.details) : "";
+        const msg = (data?.error || error?.message || "Submission failed.") + details;
+        console.error("submit-screening failed:", { error, data });
+        setSubmitError(msg);
         toast.error(msg);
+        window.scrollTo({ top: 0, behavior: "smooth" });
         submittedRef.current = false;
         setSubmitting(false);
         return;
       }
+
 
       // 3) Show success immediately — upload video in the background so a slow
       //    or large upload never leaves the candidate stuck on "Submitting...".
@@ -405,10 +421,14 @@ export default function ScreeningL2NetworkEngineer() {
           streamRef.current?.getTracks().forEach((t) => t.stop());
         }
       })();
-    } catch (e) {
-      console.error(e);
-      toast.error("Submission failed. Please try again.");
+    } catch (e: any) {
+      console.error("Screening submit crashed:", e);
+      const msg = e?.message ? `Submission failed: ${e.message}` : "Submission failed. Please try again.";
+      setSubmitError(msg);
+      toast.error(msg);
+      window.scrollTo({ top: 0, behavior: "smooth" });
       submittedRef.current = false;
+
     } finally {
       setSubmitting(false);
     }
@@ -680,11 +700,21 @@ export default function ScreeningL2NetworkEngineer() {
           </CardContent>
         </Card>
 
+        {submitError && (
+          <div className="mb-4 p-3 rounded border border-destructive bg-destructive/10 text-destructive text-sm flex items-start gap-2">
+            <AlertCircle className="w-4 h-4 mt-0.5 shrink-0" />
+            <div>
+              <p className="font-medium">Could not submit</p>
+              <p className="mt-1 break-words">{submitError}</p>
+            </div>
+          </div>
+        )}
         <div className="flex justify-end pb-16">
           <Button size="lg" disabled={submitting} onClick={() => handleSubmit(false)} style={{ background: BRAND }}>
             {submitting ? "Submitting..." : "Submit Test"}
           </Button>
         </div>
+
       </main>
     </div>
   );
