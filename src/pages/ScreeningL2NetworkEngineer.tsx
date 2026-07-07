@@ -421,10 +421,14 @@ export default function ScreeningL2NetworkEngineer() {
           streamRef.current?.getTracks().forEach((t) => t.stop());
         }
       })();
-    } catch (e) {
-      console.error(e);
-      toast.error("Submission failed. Please try again.");
+    } catch (e: any) {
+      console.error("Screening submit crashed:", e);
+      const msg = e?.message ? `Submission failed: ${e.message}` : "Submission failed. Please try again.";
+      setSubmitError(msg);
+      toast.error(msg);
+      window.scrollTo({ top: 0, behavior: "smooth" });
       submittedRef.current = false;
+
     } finally {
       setSubmitting(false);
     }
