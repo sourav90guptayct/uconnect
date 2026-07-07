@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
-import { Download, ExternalLink, FileVideo, Search, ShieldAlert } from "lucide-react";
+import { Download, ExternalLink, FileText, FileVideo, Search, ShieldAlert } from "lucide-react";
 
 interface Submission {
   id: string;
@@ -37,8 +37,13 @@ interface Submission {
   window_blurs: number;
   video_url: string | null;
   video_uploaded: boolean;
+  resume_url: string | null;
   created_at: string;
 }
+
+// Answer count = questions the candidate was shown (mixed pool means 20–25).
+const totalQuestions = (r: Submission) =>
+  r.answers && typeof r.answers === "object" ? Object.keys(r.answers).length : 0;
 
 function recBadge(rec: string) {
   if (rec?.startsWith("Recommended")) return "default";
@@ -102,6 +107,21 @@ export default function AdminScreenings() {
     URL.revokeObjectURL(url);
   };
 
+  const openResume = async (resumeRef: string) => {
+    // resumeRef is stored as "screening-resumes/<uuid>.ext"; strip the bucket prefix.
+    const path = resumeRef.startsWith("screening-resumes/")
+      ? resumeRef.slice("screening-resumes/".length)
+      : resumeRef;
+    const { data, error } = await supabase.storage
+      .from("screening-resumes")
+      .createSignedUrl(path, 60 * 10); // 10 minute link
+    if (error || !data?.signedUrl) {
+      console.error("Signed URL failed:", error);
+      return;
+    }
+    window.open(data.signedUrl, "_blank", "noopener,noreferrer");
+  };
+
   return (
     <>
       <PageHeader
@@ -149,39 +169,62 @@ export default function AdminScreenings() {
                     <TableHead>Score</TableHead>
                     <TableHead>Recommendation</TableHead>
                     <TableHead>Violations</TableHead>
+                    <TableHead>CV</TableHead>
                     <TableHead>Video</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {filtered.map((r) => (
-                    <TableRow key={r.id} className="cursor-pointer" onClick={() => setSelected(r)}>
-                      <TableCell className="whitespace-nowrap text-xs text-muted-foreground">
-                        {new Date(r.created_at).toLocaleString()}
-                      </TableCell>
-                      <TableCell className="font-medium">{r.candidate_name}</TableCell>
-                      <TableCell className="text-xs">
-                        <div>{r.email}</div>
-                        <div className="text-muted-foreground">{r.phone}</div>
-                      </TableCell>
-                      <TableCell className="font-mono">{r.score}/20</TableCell>
-                      <TableCell><Badge variant={recBadge(r.recommendation) as any}>{r.recommendation}</Badge></TableCell>
-                      <TableCell>
-                        <span className="inline-flex items-center gap-1 text-xs">
-                          <ShieldAlert className="h-3 w-3" />
-                          {r.tab_switches}/{r.fullscreen_exits}/{r.window_blurs}
-                        </span>
-                      </TableCell>
-                      <TableCell onClick={(e) => e.stopPropagation()}>
-                        {r.video_url ? (
-                          <a href={r.video_url} target="_blank" rel="noreferrer" className="text-primary inline-flex items-center gap-1 text-xs">
-                            Open <ExternalLink className="h-3 w-3" />
-                          </a>
-                        ) : (
-                          <span className="text-xs text-muted-foreground">{r.video_uploaded ? "—" : "Pending"}</span>
-                        )}
-                      </TableCell>
-                    </TableRow>
-                  ))}
+                  {filtered.map((r) => {
+                    const total = totalQuestions(r);
+                    return (
+                      <TableRow key={r.id} className="cursor-pointer" onClick={() => setSelected(r)}>
+                        <TableCell className="whitespace-nowrap text-xs text-muted-foreground">
+                          {new Date(r.created_at).toLocaleString()}
+                        </TableCell>
+                        <TableCell className="font-medium">{r.candidate_name}</TableCell>
+                        <TableCell className="text-xs">
+                          <div>{r.email}</div>
+                          <div className="text-muted-foreground">{r.phone}</div>
+                        </TableCell>
+                        <TableCell className="font-mono">
+                          {r.score}/{total || "?"}
+                          {total > 0 && (
+                            <span className="ml-1 text-xs text-muted-foreground">
+                              ({Math.round((r.score / total) * 100)}%)
+                            </span>
+                          )}
+                        </TableCell>
+                        <TableCell><Badge variant={recBadge(r.recommendation) as any}>{r.recommendation}</Badge></TableCell>
+                        <TableCell>
+                          <span className="inline-flex items-center gap-1 text-xs">
+                            <ShieldAlert className="h-3 w-3" />
+                            {r.tab_switches}/{r.fullscreen_exits}/{r.window_blurs}
+                          </span>
+                        </TableCell>
+                        <TableCell onClick={(e) => e.stopPropagation()}>
+                          {r.resume_url ? (
+                            <button
+                              className="text-primary inline-flex items-center gap-1 text-xs hover:underline"
+                              onClick={() => openResume(r.resume_url!)}
+                            >
+                              <FileText className="h-3 w-3" /> Open
+                            </button>
+                          ) : (
+                            <span className="text-xs text-muted-foreground">—</span>
+                          )}
+                        </TableCell>
+                        <TableCell onClick={(e) => e.stopPropagation()}>
+                          {r.video_url ? (
+                            <a href={r.video_url} target="_blank" rel="noreferrer" className="text-primary inline-flex items-center gap-1 text-xs">
+                              Open <ExternalLink className="h-3 w-3" />
+                            </a>
+                          ) : (
+                            <span className="text-xs text-muted-foreground">{r.video_uploaded ? "—" : "Pending"}</span>
+                          )}
+                        </TableCell>
+                      </TableRow>
+                    );
+                  })}
                 </TableBody>
               </Table>
             </div>
@@ -200,7 +243,7 @@ export default function AdminScreenings() {
                 <section>
                   <h4 className="t-eyebrow text-muted-foreground mb-2">Result</h4>
                   <div className="flex items-center gap-3">
-                    <span className="text-3xl font-bold">{selected.score}<span className="text-muted-foreground text-base">/20</span></span>
+                    <span className="text-3xl font-bold">{selected.score}<span className="text-muted-foreground text-base">/{totalQuestions(selected) || "?"}</span></span>
                     <Badge variant={recBadge(selected.recommendation) as any}>{selected.recommendation}</Badge>
                   </div>
                 </section>
@@ -228,6 +271,17 @@ export default function AdminScreenings() {
                     <Info label="Window blurs" value={selected.window_blurs} />
                   </div>
                 </section>
+                {selected.resume_url && (
+                  <section>
+                    <h4 className="t-eyebrow text-muted-foreground mb-2">CV / Resume</h4>
+                    <button
+                      onClick={() => openResume(selected.resume_url!)}
+                      className="text-primary text-sm inline-flex items-center gap-1 hover:underline"
+                    >
+                      <FileText className="h-3 w-3" /> Open uploaded CV
+                    </button>
+                  </section>
+                )}
                 {selected.video_url && (
                   <section>
                     <h4 className="t-eyebrow text-muted-foreground mb-2">Video</h4>
