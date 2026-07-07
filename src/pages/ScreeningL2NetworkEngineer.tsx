@@ -365,13 +365,14 @@ export default function ScreeningL2NetworkEngineer() {
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="rounded-md p-4 border" style={{ borderColor: BRAND, background: "#f5f9ff" }}>
-                <p className="font-semibold mb-2" style={{ color: BRAND }}>Duration: 30 minutes</p>
+                <p className="font-semibold mb-2" style={{ color: BRAND }}>Duration: 30 minutes · 25 questions</p>
                 <ul className="list-disc pl-5 text-sm space-y-1 text-foreground">
                   <li>Your camera must stay ON for the entire test.</li>
                   <li>Do NOT switch tabs or applications during the test.</li>
+                  <li>Do NOT refresh or close this page — your attempt will end and cannot be restarted (one attempt per email/phone).</li>
                   <li>Do NOT exit fullscreen. Violations are recorded.</li>
                   <li>The webcam recording is uploaded when you submit.</li>
-                  <li>One attempt only per email/phone.</li>
+                  <li>Each candidate gets a randomly picked set of questions from a large bank.</li>
                 </ul>
               </div>
 
