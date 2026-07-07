@@ -517,7 +517,7 @@ export default function ScreeningL2NetworkEngineer() {
           <CardContent className="grid md:grid-cols-2 gap-4">
             {[
               { key: "owns_laptop", label: "Do you own a personal laptop?", opts: ["Yes", "No"] },
-              { key: "comfortable_manesar", label: "Comfortable working from Airtel NOC, Manesar?", opts: ["Yes", "No"] },
+              { key: "comfortable_manesar", label: "Comfortable working from Manesar?", opts: ["Yes", "No"] },
               { key: "comfortable_shifts", label: "Comfortable with 24x7 rotational shifts?", opts: ["Yes", "No"] },
               { key: "joining_availability", label: "Joining Availability", opts: ["Immediate", "Within 15 Days", "30 Days", "More than 30 Days"] },
             ].map(({ key, label, opts }) => (
