@@ -248,22 +248,26 @@ export default function ScreeningL2NetworkEngineer() {
         return;
       }
 
-      // 3) Upload video (best effort — do not block success screen)
-      try {
-        const filename = `${sanitizeFilename(form.candidate_name)}_${sanitizeFilename(form.phone)}_${todayStr()}.webm`;
-        const fd = new FormData();
-        fd.append("submission_id", data.submission_id);
-        fd.append("filename", filename);
-        fd.append("file", new File([blob], filename, { type: "video/webm" }));
-        await supabase.functions.invoke("upload-screening-video", { body: fd });
-      } catch (e) {
-        console.warn("Video upload failed:", e);
-      }
-
-      // 4) Cleanup + done
-      streamRef.current?.getTracks().forEach((t) => t.stop());
+      // 3) Show success immediately — upload video in the background so a slow
+      //    or large upload never leaves the candidate stuck on "Submitting...".
       if (document.fullscreenElement) { try { await document.exitFullscreen(); } catch { /* ignore */ } }
       setStep("done");
+      toast.success("Test submitted successfully.");
+
+      (async () => {
+        try {
+          const filename = `${sanitizeFilename(form.candidate_name)}_${sanitizeFilename(form.phone)}_${todayStr()}.webm`;
+          const fd = new FormData();
+          fd.append("submission_id", data.submission_id);
+          fd.append("filename", filename);
+          fd.append("file", new File([blob], filename, { type: "video/webm" }));
+          await supabase.functions.invoke("upload-screening-video", { body: fd });
+        } catch (e) {
+          console.warn("Video upload failed:", e);
+        } finally {
+          streamRef.current?.getTracks().forEach((t) => t.stop());
+        }
+      })();
     } catch (e) {
       console.error(e);
       toast.error("Submission failed. Please try again.");
