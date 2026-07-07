@@ -70,9 +70,10 @@ Deno.serve(async (req) => {
       console.error("Validation failed:", JSON.stringify(parsed.error.flatten().fieldErrors));
       return new Response(
         JSON.stringify({ ok: false, error: "Please fill all fields correctly.", details: parsed.error.flatten().fieldErrors }),
-        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }
+
     const d = parsed.data;
 
     // Score server-side — score is out of the questions the candidate was shown,
@@ -102,9 +103,10 @@ Deno.serve(async (req) => {
     if (dupe) {
       return new Response(
         JSON.stringify({ ok: false, error: "A submission with this email or phone already exists. Only one attempt is allowed." }),
-        { status: 409, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }
+
 
     const { data: inserted, error } = await supabase
       .from("screening_submissions")
@@ -142,13 +144,14 @@ Deno.serve(async (req) => {
       if ((error as any).code === "23505") {
         return new Response(
           JSON.stringify({ ok: false, error: "A submission with this email or phone already exists." }),
-          { status: 409, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+          { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } }
         );
       }
       return new Response(
-        JSON.stringify({ ok: false, error: "Failed to save submission." }),
-        { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        JSON.stringify({ ok: false, error: `Failed to save submission: ${error.message}` }),
+        { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
+
     }
 
     // Never return score/recommendation to the client
@@ -159,8 +162,9 @@ Deno.serve(async (req) => {
   } catch (err) {
     console.error("submit-screening error:", err);
     return new Response(
-      JSON.stringify({ ok: false, error: "Submission failed. Please try again." }),
-      { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      JSON.stringify({ ok: false, error: `Submission failed: ${(err as Error).message || "unknown error"}` }),
+      { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );
+
   }
 });
