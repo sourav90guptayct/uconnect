@@ -63,6 +63,8 @@ export default function ScreeningL2NetworkEngineer() {
   const [questions, setQuestions] = useState<ScreeningQuestion[]>([]);
   const [secondsLeft, setSecondsLeft] = useState(TEST_MINUTES * 60);
   const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+
   const [cameraReady, setCameraReady] = useState(false);
   const [cameraError, setCameraError] = useState<string | null>(null);
   const [cameraLost, setCameraLost] = useState(false);
