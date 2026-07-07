@@ -580,6 +580,7 @@ export type Database = {
           qualification: string
           recommendation: string
           relevant_experience: string
+          resume_url: string | null
           role: string
           score: number
           tab_switches: number
@@ -610,6 +611,7 @@ export type Database = {
           qualification: string
           recommendation?: string
           relevant_experience: string
+          resume_url?: string | null
           role?: string
           score?: number
           tab_switches?: number
@@ -640,6 +642,7 @@ export type Database = {
           qualification?: string
           recommendation?: string
           relevant_experience?: string
+          resume_url?: string | null
           role?: string
           score?: number
           tab_switches?: number
