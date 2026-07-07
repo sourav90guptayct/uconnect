@@ -109,21 +109,40 @@ export default function ScreeningL2NetworkEngineer() {
     }
   };
 
+  const recordedMimeRef = useRef<string>("video/webm");
   const startRecording = () => {
     if (!streamRef.current) return;
     chunksRef.current = [];
-    const mimeCandidates = ["video/webm;codecs=vp8,opus", "video/webm;codecs=vp9,opus", "video/webm"];
-    const mime = mimeCandidates.find((m) => MediaRecorder.isTypeSupported(m)) || "video/webm";
-    const rec = new MediaRecorder(streamRef.current, { mimeType: mime, videoBitsPerSecond: 500_000 });
-    rec.ondataavailable = (e) => { if (e.data && e.data.size > 0) chunksRef.current.push(e.data); };
-    rec.start(2000); // gather chunks every 2s
-    recorderRef.current = rec;
+    // iOS Safari (mobile) does NOT support webm — only mp4/h264. Include mp4 candidates.
+    const mimeCandidates = [
+      "video/webm;codecs=vp8,opus",
+      "video/webm;codecs=vp9,opus",
+      "video/webm",
+      "video/mp4;codecs=h264,aac",
+      "video/mp4",
+    ];
+    const supported = (typeof MediaRecorder !== "undefined" && MediaRecorder.isTypeSupported)
+      ? mimeCandidates.find((m) => MediaRecorder.isTypeSupported(m))
+      : undefined;
+    const mime = supported || "";
+    recordedMimeRef.current = mime || "video/mp4";
+    try {
+      const rec = mime
+        ? new MediaRecorder(streamRef.current, { mimeType: mime, videoBitsPerSecond: 500_000 })
+        : new MediaRecorder(streamRef.current, { videoBitsPerSecond: 500_000 });
+      if (!mime && rec.mimeType) recordedMimeRef.current = rec.mimeType;
+      rec.ondataavailable = (e) => { if (e.data && e.data.size > 0) chunksRef.current.push(e.data); };
+      rec.start(2000); // gather chunks every 2s
+      recorderRef.current = rec;
+    } catch (err) {
+      console.error("MediaRecorder failed to start:", err);
+    }
   };
 
   const stopRecordingAndGetBlob = (): Promise<Blob> => {
     return new Promise((resolve) => {
       const rec = recorderRef.current;
-      const done = () => resolve(new Blob(chunksRef.current, { type: "video/webm" }));
+      const done = () => resolve(new Blob(chunksRef.current, { type: recordedMimeRef.current || "video/webm" }));
       if (!rec || rec.state === "inactive") { done(); return; }
       // Safety timeout so we never hang the submit if onstop never fires.
       const t = setTimeout(done, 4000);
@@ -301,11 +320,13 @@ export default function ScreeningL2NetworkEngineer() {
 
       (async () => {
         try {
-          const filename = `${sanitizeFilename(form.candidate_name)}_${sanitizeFilename(form.phone)}_${todayStr()}.webm`;
+          const recMime = recordedMimeRef.current || blob.type || "video/webm";
+          const ext = recMime.includes("mp4") ? "mp4" : "webm";
+          const filename = `${sanitizeFilename(form.candidate_name)}_${sanitizeFilename(form.phone)}_${todayStr()}.${ext}`;
           const fd = new FormData();
           fd.append("submission_id", data.submission_id);
           fd.append("filename", filename);
-          fd.append("file", new File([blob], filename, { type: "video/webm" }));
+          fd.append("file", new File([blob], filename, { type: recMime }));
           await supabase.functions.invoke("upload-screening-video", { body: fd });
         } catch (e) {
           console.warn("Video upload failed:", e);
