@@ -279,7 +279,30 @@ const CareersPage = () => {
         </div>
       </section>
 
+      {/* Screening Test CTA Section */}
+      <section className="py-16 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto rounded-2xl border border-border bg-card/60 backdrop-blur p-10 text-center">
+            <div className="text-sm font-semibold text-accent uppercase tracking-widest mb-3">
+              Prove your skills
+            </div>
+            <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-foreground">
+              Take the L2 Network Engineer Screening Test
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
+              Complete our short technical screening to fast-track your application and stand out to our hiring team.
+            </p>
+            <Button asChild size="lg" className="bg-accent hover:bg-accent/90">
+              <Link to="/careers/screening/l2-network-engineer">
+                Take Screening Test — L2 Network Engineer
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
       {/* Application Form Section */}
+
       <section id="apply" className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
