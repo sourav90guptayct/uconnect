@@ -74,14 +74,17 @@ Deno.serve(async (req) => {
     }
     const d = parsed.data;
 
-    // Score server-side
+    // Score server-side — score is out of the questions the candidate was shown,
+    // normalized to a percentage so mixes of 20/23/25 questions stay comparable.
     let score = 0;
+    const totalShown = Object.keys(d.answers).length || 1;
     for (const [qidStr, selected] of Object.entries(d.answers)) {
       const qid = Number(qidStr);
       if (ANSWER_KEY[qid] === selected) score += 1;
     }
+    const scorePct = Math.round((score / totalShown) * 100);
 
-    const rec = recommendation(score, d.owns_laptop, d.comfortable_manesar, d.comfortable_shifts, d.comfortable_25k);
+    const rec = recommendation(scorePct, d.owns_laptop, d.comfortable_manesar, d.comfortable_shifts, d.comfortable_25k);
 
     const supabase = createClient(
       Deno.env.get("SUPABASE_URL")!,
@@ -128,6 +131,7 @@ Deno.serve(async (req) => {
         tab_switches: d.tab_switches,
         fullscreen_exits: d.fullscreen_exits,
         window_blurs: d.window_blurs,
+        resume_url: d.resume_url ?? null,
       })
       .select("id")
       .single();
