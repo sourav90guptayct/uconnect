@@ -12,8 +12,8 @@ import { supabase } from "@/integrations/supabase/client";
 import SEO from "@/components/SEO";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { L2_SCREENING_QUESTIONS, shuffle, type ScreeningQuestion } from "@/data/l2ScreeningQuestions";
-import { AlertCircle, Circle, Camera, ShieldAlert } from "lucide-react";
+import { pickBalancedQuestions, type ScreeningQuestion } from "@/data/l2ScreeningQuestions";
+import { AlertCircle, Circle, Camera, ShieldAlert, Upload, FileText } from "lucide-react";
 
 type Step = "intro" | "test" | "done";
 
@@ -67,6 +67,9 @@ export default function ScreeningL2NetworkEngineer() {
   const [cameraError, setCameraError] = useState<string | null>(null);
   const [cameraLost, setCameraLost] = useState(false);
   const [violations, setViolations] = useState({ tab_switches: 0, fullscreen_exits: 0, window_blurs: 0 });
+  const [resumeFile, setResumeFile] = useState<File | null>(null);
+  const [resumeUrl, setResumeUrl] = useState<string | null>(null);
+  const [resumeUploading, setResumeUploading] = useState(false);
 
   const streamRef = useRef<MediaStream | null>(null);
   const recorderRef = useRef<MediaRecorder | null>(null);
@@ -138,7 +141,7 @@ export default function ScreeningL2NetworkEngineer() {
       toast.error("Please allow camera access first.");
       return;
     }
-    setQuestions(shuffle(L2_SCREENING_QUESTIONS));
+    setQuestions(pickBalancedQuestions()); // 10 easy + 10 moderate + 5 hard, randomized
     setStep("test");
     setSecondsLeft(TEST_MINUTES * 60);
     startRecording();
@@ -170,13 +173,23 @@ export default function ScreeningL2NetworkEngineer() {
         warn();
       }
     };
+    // Warn candidate that leaving/refreshing the page will end their attempt.
+    // The screening is one-attempt-per-email, so a refresh cannot resume — we
+    // block it with the browser's native "leave site?" dialog.
+    const onBeforeUnload = (e: BeforeUnloadEvent) => {
+      e.preventDefault();
+      e.returnValue = "";
+      return "";
+    };
     document.addEventListener("visibilitychange", onVis);
     window.addEventListener("blur", onBlur);
     document.addEventListener("fullscreenchange", onFs);
+    window.addEventListener("beforeunload", onBeforeUnload);
     return () => {
       document.removeEventListener("visibilitychange", onVis);
       window.removeEventListener("blur", onBlur);
       document.removeEventListener("fullscreenchange", onFs);
+      window.removeEventListener("beforeunload", onBeforeUnload);
     };
   }, [step]);
 
@@ -213,8 +226,39 @@ export default function ScreeningL2NetworkEngineer() {
       if (!String(v).trim()) return `Please fill: ${k.replace(/_/g, " ")}`;
     }
     if (!/^\S+@\S+\.\S+$/.test(form.email)) return "Please enter a valid email address.";
-    if (Object.keys(answers).length < L2_SCREENING_QUESTIONS.length) return "Please answer all 20 MCQ questions.";
+    if (Object.keys(answers).length < questions.length) return `Please answer all ${questions.length} MCQ questions.`;
     return null;
+  };
+
+  const handleResumeUpload = async (file: File) => {
+    if (file.size > 5 * 1024 * 1024) {
+      toast.error("CV must be under 5 MB.");
+      return;
+    }
+    const allowed = ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"];
+    if (!allowed.includes(file.type)) {
+      toast.error("Please upload a PDF or Word document.");
+      return;
+    }
+    setResumeUploading(true);
+    try {
+      const ext = file.name.split(".").pop() || "pdf";
+      const path = `${crypto.randomUUID()}.${ext}`;
+      const { error } = await supabase.storage
+        .from("screening-resumes")
+        .upload(path, file, { contentType: file.type, upsert: false });
+      if (error) throw error;
+      // Store a stable reference — admins generate signed URLs on view.
+      const publicRef = `screening-resumes/${path}`;
+      setResumeFile(file);
+      setResumeUrl(publicRef);
+      toast.success("CV uploaded.");
+    } catch (e: any) {
+      console.error("CV upload failed:", e);
+      toast.error("CV upload failed. You can continue without it.");
+    } finally {
+      setResumeUploading(false);
+    }
   };
 
   const handleSubmit = async (auto = false) => {
@@ -238,6 +282,7 @@ export default function ScreeningL2NetworkEngineer() {
         tab_switches: violations.tab_switches,
         fullscreen_exits: violations.fullscreen_exits,
         window_blurs: violations.window_blurs,
+        resume_url: resumeUrl,
       };
       const { data, error } = await supabase.functions.invoke("submit-screening", { body: payload });
       if (error || !data?.ok) {
@@ -320,13 +365,14 @@ export default function ScreeningL2NetworkEngineer() {
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="rounded-md p-4 border" style={{ borderColor: BRAND, background: "#f5f9ff" }}>
-                <p className="font-semibold mb-2" style={{ color: BRAND }}>Duration: 30 minutes</p>
+                <p className="font-semibold mb-2" style={{ color: BRAND }}>Duration: 30 minutes · 25 questions</p>
                 <ul className="list-disc pl-5 text-sm space-y-1 text-foreground">
                   <li>Your camera must stay ON for the entire test.</li>
                   <li>Do NOT switch tabs or applications during the test.</li>
+                  <li>Do NOT refresh or close this page — your attempt will end and cannot be restarted (one attempt per email/phone).</li>
                   <li>Do NOT exit fullscreen. Violations are recorded.</li>
                   <li>The webcam recording is uploaded when you submit.</li>
-                  <li>One attempt only per email/phone.</li>
+                  <li>Each candidate gets a randomly picked set of questions from a large bank.</li>
                 </ul>
               </div>
 
@@ -351,6 +397,40 @@ export default function ScreeningL2NetworkEngineer() {
                   <Button className="mt-4" onClick={requestCamera} style={{ background: BRAND }}>
                     Enable Camera & Microphone
                   </Button>
+                )}
+              </div>
+
+              <div className="rounded-md border p-4">
+                <div className="flex items-center gap-2 mb-3">
+                  <FileText className="w-5 h-5" style={{ color: BRAND }} />
+                  <span className="font-medium">Upload your CV <span className="text-muted-foreground font-normal">(optional)</span></span>
+                </div>
+                <p className="text-sm text-muted-foreground mb-3">
+                  PDF or Word document, max 5 MB. Sharing a CV helps our HR team review your background faster.
+                </p>
+                {resumeFile ? (
+                  <div className="flex items-center gap-2 text-sm">
+                    <FileText className="w-4 h-4" style={{ color: BRAND }} />
+                    <span className="font-medium">{resumeFile.name}</span>
+                    <Button variant="ghost" size="sm" onClick={() => { setResumeFile(null); setResumeUrl(null); }}>
+                      Remove
+                    </Button>
+                  </div>
+                ) : (
+                  <label className="inline-flex items-center gap-2 cursor-pointer">
+                    <input
+                      type="file"
+                      accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                      className="hidden"
+                      onChange={(e) => { const f = e.target.files?.[0]; if (f) handleResumeUpload(f); }}
+                    />
+                    <Button asChild variant="outline" disabled={resumeUploading}>
+                      <span>
+                        <Upload className="w-4 h-4 mr-2" />
+                        {resumeUploading ? "Uploading..." : "Choose file"}
+                      </span>
+                    </Button>
+                  </label>
                 )}
               </div>
 
@@ -456,7 +536,7 @@ export default function ScreeningL2NetworkEngineer() {
 
         {/* MCQ */}
         <Card className="mb-6">
-          <CardHeader><CardTitle style={{ color: BRAND }}>Technical MCQ ({L2_SCREENING_QUESTIONS.length} questions)</CardTitle></CardHeader>
+          <CardHeader><CardTitle style={{ color: BRAND }}>Technical MCQ ({questions.length} questions)</CardTitle></CardHeader>
           <CardContent className="space-y-6">
             {questions.map((q, idx) => (
               <div key={q.id} className="border-b pb-4 last:border-b-0">

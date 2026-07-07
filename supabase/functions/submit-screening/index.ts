@@ -12,8 +12,19 @@ const corsHeaders = {
 // question_id -> correct option index (0-based against the ORIGINAL options list in
 // src/data/l2ScreeningQuestions.ts). Never send to client.
 const ANSWER_KEY: Record<number, number> = {
+  // Easy (1-40)
   1: 1, 2: 2, 3: 1, 4: 2, 5: 2, 6: 1, 7: 2, 8: 1, 9: 1, 10: 2,
-  11: 1, 12: 2, 13: 2, 14: 2, 15: 2, 16: 3, 17: 2, 18: 2, 19: 0, 20: 0,
+  11: 1, 12: 2, 13: 2, 14: 2, 15: 1, 16: 1, 17: 2, 18: 0, 19: 1, 20: 2,
+  21: 1, 22: 2, 23: 1, 24: 1, 25: 3, 26: 1, 27: 2, 28: 1, 29: 2, 30: 0,
+  31: 2, 32: 2, 33: 1, 34: 1, 35: 0, 36: 1, 37: 3, 38: 1, 39: 1, 40: 1,
+  // Moderate (41-80)
+  41: 1, 42: 1, 43: 1, 44: 1, 45: 0, 46: 1, 47: 1, 48: 1, 49: 1, 50: 2,
+  51: 1, 52: 1, 53: 1, 54: 1, 55: 1, 56: 1, 57: 2, 58: 1, 59: 2, 60: 2,
+  61: 1, 62: 0, 63: 2, 64: 2, 65: 1, 66: 1, 67: 1, 68: 1, 69: 1, 70: 1,
+  71: 2, 72: 2, 73: 0, 74: 1, 75: 2, 76: 1, 77: 2, 78: 1, 79: 2, 80: 0,
+  // Hard (81-100)
+  81: 0, 82: 3, 83: 0, 84: 0, 85: 2, 86: 2, 87: 1, 88: 0, 89: 1, 90: 2,
+  91: 2, 92: 1, 93: 2, 94: 1, 95: 0, 96: 2, 97: 0, 98: 2, 99: 1, 100: 1,
 };
 
 const SubmissionSchema = z.object({
@@ -37,14 +48,15 @@ const SubmissionSchema = z.object({
   tab_switches: z.number().int().min(0).default(0),
   fullscreen_exits: z.number().int().min(0).default(0),
   window_blurs: z.number().int().min(0).default(0),
+  resume_url: z.string().url().max(1000).optional().nullable(),
 });
 
-function recommendation(score: number, laptop: string, manesar: string, shifts: string, ctc: string) {
+function recommendation(scorePct: number, laptop: string, manesar: string, shifts: string, ctc: string) {
   if (laptop !== "Yes" || manesar !== "Yes" || shifts !== "Yes" || ctc !== "Yes") {
     return "Rejected - Mandatory criteria not met";
   }
-  if (score >= 16) return "Recommended for Technical Interview";
-  if (score >= 12) return "Hold / Needs Review";
+  if (scorePct >= 80) return "Recommended for Technical Interview";
+  if (scorePct >= 60) return "Hold / Needs Review";
   return "Not Recommended";
 }
 
@@ -62,14 +74,17 @@ Deno.serve(async (req) => {
     }
     const d = parsed.data;
 
-    // Score server-side
+    // Score server-side — score is out of the questions the candidate was shown,
+    // normalized to a percentage so mixes of 20/23/25 questions stay comparable.
     let score = 0;
+    const totalShown = Object.keys(d.answers).length || 1;
     for (const [qidStr, selected] of Object.entries(d.answers)) {
       const qid = Number(qidStr);
       if (ANSWER_KEY[qid] === selected) score += 1;
     }
+    const scorePct = Math.round((score / totalShown) * 100);
 
-    const rec = recommendation(score, d.owns_laptop, d.comfortable_manesar, d.comfortable_shifts, d.comfortable_25k);
+    const rec = recommendation(scorePct, d.owns_laptop, d.comfortable_manesar, d.comfortable_shifts, d.comfortable_25k);
 
     const supabase = createClient(
       Deno.env.get("SUPABASE_URL")!,
@@ -116,6 +131,7 @@ Deno.serve(async (req) => {
         tab_switches: d.tab_switches,
         fullscreen_exits: d.fullscreen_exits,
         window_blurs: d.window_blurs,
+        resume_url: d.resume_url ?? null,
       })
       .select("id")
       .single();
