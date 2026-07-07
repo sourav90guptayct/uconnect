@@ -271,6 +271,17 @@ export default function AdminScreenings() {
                     <Info label="Window blurs" value={selected.window_blurs} />
                   </div>
                 </section>
+                {selected.resume_url && (
+                  <section>
+                    <h4 className="t-eyebrow text-muted-foreground mb-2">CV / Resume</h4>
+                    <button
+                      onClick={() => openResume(selected.resume_url!)}
+                      className="text-primary text-sm inline-flex items-center gap-1 hover:underline"
+                    >
+                      <FileText className="h-3 w-3" /> Open uploaded CV
+                    </button>
+                  </section>
+                )}
                 {selected.video_url && (
                   <section>
                     <h4 className="t-eyebrow text-muted-foreground mb-2">Video</h4>
