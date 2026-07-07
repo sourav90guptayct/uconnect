@@ -558,6 +558,99 @@ export type Database = {
         }
         Relationships: []
       }
+      screening_submissions: {
+        Row: {
+          answers: Json
+          candidate_name: string
+          comfortable_25k: string
+          comfortable_manesar: string
+          comfortable_shifts: string
+          created_at: string
+          current_company: string
+          current_ctc: string
+          current_designation: string
+          current_location: string
+          email: string
+          expected_ctc: string
+          fullscreen_exits: number
+          id: string
+          joining_availability: string
+          owns_laptop: string
+          phone: string
+          qualification: string
+          recommendation: string
+          relevant_experience: string
+          role: string
+          score: number
+          tab_switches: number
+          total_experience: string
+          updated_at: string
+          video_uploaded: boolean
+          video_url: string | null
+          window_blurs: number
+        }
+        Insert: {
+          answers?: Json
+          candidate_name: string
+          comfortable_25k: string
+          comfortable_manesar: string
+          comfortable_shifts: string
+          created_at?: string
+          current_company: string
+          current_ctc: string
+          current_designation: string
+          current_location: string
+          email: string
+          expected_ctc: string
+          fullscreen_exits?: number
+          id?: string
+          joining_availability: string
+          owns_laptop: string
+          phone: string
+          qualification: string
+          recommendation?: string
+          relevant_experience: string
+          role?: string
+          score?: number
+          tab_switches?: number
+          total_experience: string
+          updated_at?: string
+          video_uploaded?: boolean
+          video_url?: string | null
+          window_blurs?: number
+        }
+        Update: {
+          answers?: Json
+          candidate_name?: string
+          comfortable_25k?: string
+          comfortable_manesar?: string
+          comfortable_shifts?: string
+          created_at?: string
+          current_company?: string
+          current_ctc?: string
+          current_designation?: string
+          current_location?: string
+          email?: string
+          expected_ctc?: string
+          fullscreen_exits?: number
+          id?: string
+          joining_availability?: string
+          owns_laptop?: string
+          phone?: string
+          qualification?: string
+          recommendation?: string
+          relevant_experience?: string
+          role?: string
+          score?: number
+          tab_switches?: number
+          total_experience?: string
+          updated_at?: string
+          video_uploaded?: boolean
+          video_url?: string | null
+          window_blurs?: number
+        }
+        Relationships: []
+      }
       task_updates: {
         Row: {
           created_at: string

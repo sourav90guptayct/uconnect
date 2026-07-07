@@ -8,3 +8,10 @@ verify_jwt = false
 
 [functions.submit-careers-form]
 verify_jwt = false
+
+[functions.submit-screening]
+verify_jwt = false
+
+[functions.upload-screening-video]
+verify_jwt = false
+
