@@ -120,12 +120,12 @@ export default function ScreeningL2NetworkEngineer() {
   const stopRecordingAndGetBlob = (): Promise<Blob> => {
     return new Promise((resolve) => {
       const rec = recorderRef.current;
-      if (!rec || rec.state === "inactive") {
-        resolve(new Blob(chunksRef.current, { type: "video/webm" }));
-        return;
-      }
-      rec.onstop = () => resolve(new Blob(chunksRef.current, { type: "video/webm" }));
-      rec.stop();
+      const done = () => resolve(new Blob(chunksRef.current, { type: "video/webm" }));
+      if (!rec || rec.state === "inactive") { done(); return; }
+      // Safety timeout so we never hang the submit if onstop never fires.
+      const t = setTimeout(done, 4000);
+      rec.onstop = () => { clearTimeout(t); done(); };
+      try { rec.stop(); } catch { clearTimeout(t); done(); }
     });
   };
 
