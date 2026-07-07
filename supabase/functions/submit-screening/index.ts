@@ -162,8 +162,9 @@ Deno.serve(async (req) => {
   } catch (err) {
     console.error("submit-screening error:", err);
     return new Response(
-      JSON.stringify({ ok: false, error: "Submission failed. Please try again." }),
-      { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      JSON.stringify({ ok: false, error: `Submission failed: ${(err as Error).message || "unknown error"}` }),
+      { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );
+
   }
 });
