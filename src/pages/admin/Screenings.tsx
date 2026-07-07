@@ -29,7 +29,7 @@ interface Submission {
   current_ctc: string;
   expected_ctc: string;
   comfortable_25k: string;
-  mcq_answers: any;
+  answers: any;
   score: number;
   recommendation: string;
   tab_switches: number;
