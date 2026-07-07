@@ -103,9 +103,10 @@ Deno.serve(async (req) => {
     if (dupe) {
       return new Response(
         JSON.stringify({ ok: false, error: "A submission with this email or phone already exists. Only one attempt is allowed." }),
-        { status: 409, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }
+
 
     const { data: inserted, error } = await supabase
       .from("screening_submissions")
