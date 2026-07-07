@@ -399,6 +399,40 @@ export default function ScreeningL2NetworkEngineer() {
                 )}
               </div>
 
+              <div className="rounded-md border p-4">
+                <div className="flex items-center gap-2 mb-3">
+                  <FileText className="w-5 h-5" style={{ color: BRAND }} />
+                  <span className="font-medium">Upload your CV <span className="text-muted-foreground font-normal">(optional)</span></span>
+                </div>
+                <p className="text-sm text-muted-foreground mb-3">
+                  PDF or Word document, max 5 MB. Sharing a CV helps our HR team review your background faster.
+                </p>
+                {resumeFile ? (
+                  <div className="flex items-center gap-2 text-sm">
+                    <FileText className="w-4 h-4" style={{ color: BRAND }} />
+                    <span className="font-medium">{resumeFile.name}</span>
+                    <Button variant="ghost" size="sm" onClick={() => { setResumeFile(null); setResumeUrl(null); }}>
+                      Remove
+                    </Button>
+                  </div>
+                ) : (
+                  <label className="inline-flex items-center gap-2 cursor-pointer">
+                    <input
+                      type="file"
+                      accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                      className="hidden"
+                      onChange={(e) => { const f = e.target.files?.[0]; if (f) handleResumeUpload(f); }}
+                    />
+                    <Button asChild variant="outline" disabled={resumeUploading}>
+                      <span>
+                        <Upload className="w-4 h-4 mr-2" />
+                        {resumeUploading ? "Uploading..." : "Choose file"}
+                      </span>
+                    </Button>
+                  </label>
+                )}
+              </div>
+
               <div className="flex justify-end">
                 <Button size="lg" disabled={!cameraReady} onClick={beginTest} style={{ background: BRAND }}>
                   Start Test
