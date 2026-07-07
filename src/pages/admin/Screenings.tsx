@@ -107,6 +107,21 @@ export default function AdminScreenings() {
     URL.revokeObjectURL(url);
   };
 
+  const openResume = async (resumeRef: string) => {
+    // resumeRef is stored as "screening-resumes/<uuid>.ext"; strip the bucket prefix.
+    const path = resumeRef.startsWith("screening-resumes/")
+      ? resumeRef.slice("screening-resumes/".length)
+      : resumeRef;
+    const { data, error } = await supabase.storage
+      .from("screening-resumes")
+      .createSignedUrl(path, 60 * 10); // 10 minute link
+    if (error || !data?.signedUrl) {
+      console.error("Signed URL failed:", error);
+      return;
+    }
+    window.open(data.signedUrl, "_blank", "noopener,noreferrer");
+  };
+
   return (
     <>
       <PageHeader
