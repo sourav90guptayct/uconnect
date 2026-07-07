@@ -9,7 +9,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
-import { Download, ExternalLink, FileText, FileVideo, Search, ShieldAlert } from "lucide-react";
+import { Check, Download, ExternalLink, FileText, FileVideo, Search, ShieldAlert, X } from "lucide-react";
+import { L2_SCREENING_QUESTIONS, type ScreeningQuestion } from "@/data/l2ScreeningQuestions";
+import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend, BarChart, Bar, XAxis, YAxis, CartesianGrid } from "recharts";
 
 interface Submission {
   id: string;
@@ -62,12 +64,20 @@ function toCsv(rows: Submission[]) {
   return [cols.join(","), ...rows.map((r) => cols.map((c) => esc((r as any)[c])).join(","))].join("\n");
 }
 
+const QUESTION_MAP: Record<number, ScreeningQuestion> = L2_SCREENING_QUESTIONS.reduce(
+  (acc, q) => ((acc[q.id] = q), acc),
+  {} as Record<number, ScreeningQuestion>,
+);
+
+const DIFF_COLORS: Record<string, string> = { easy: "#22c55e", moderate: "#f59e0b", hard: "#ef4444" };
+
 export default function AdminScreenings() {
   const [rows, setRows] = useState<Submission[]>([]);
   const [loading, setLoading] = useState(true);
   const [q, setQ] = useState("");
   const [rec, setRec] = useState("all");
   const [selected, setSelected] = useState<Submission | null>(null);
+  const [answerKey, setAnswerKey] = useState<Record<number, number> | null>(null);
 
   useEffect(() => {
     (async () => {
@@ -77,6 +87,10 @@ export default function AdminScreenings() {
         .order("created_at", { ascending: false });
       setRows((data as Submission[]) ?? []);
       setLoading(false);
+    })();
+    (async () => {
+      const { data, error } = await supabase.functions.invoke("get-screening-answer-key");
+      if (!error && data?.answer_key) setAnswerKey(data.answer_key);
     })();
   }, []);
 
@@ -233,7 +247,7 @@ export default function AdminScreenings() {
       )}
 
       <Sheet open={!!selected} onOpenChange={(o) => !o && setSelected(null)}>
-        <SheetContent className="w-full sm:max-w-xl overflow-y-auto">
+        <SheetContent className="w-full sm:max-w-2xl overflow-y-auto">
           {selected && (
             <>
               <SheetHeader>
@@ -290,6 +304,8 @@ export default function AdminScreenings() {
                     </a>
                   </section>
                 )}
+
+                <AnswerBreakdown submission={selected} answerKey={answerKey} />
               </div>
             </>
           )}
@@ -305,5 +321,147 @@ function Info({ label, value }: { label: string; value: any }) {
       <div className="text-[10px] uppercase tracking-wide text-muted-foreground">{label}</div>
       <div className="text-sm font-medium truncate">{value ?? "—"}</div>
     </div>
+  );
+}
+
+function AnswerBreakdown({
+  submission,
+  answerKey,
+}: {
+  submission: Submission;
+  answerKey: Record<number, number> | null;
+}) {
+  const answers = (submission.answers ?? {}) as Record<string, number>;
+  const entries = Object.entries(answers).map(([qid, sel]) => {
+    const id = Number(qid);
+    const q = QUESTION_MAP[id];
+    const correctIdx = answerKey?.[id];
+    const isCorrect = correctIdx != null ? correctIdx === sel : null;
+    return { id, question: q, selected: sel, correctIdx, isCorrect };
+  });
+  entries.sort((a, b) => a.id - b.id);
+
+  const totalCorrect = entries.filter((e) => e.isCorrect === true).length;
+  const totalWrong = entries.filter((e) => e.isCorrect === false).length;
+
+  // Category = difficulty
+  const byCategory: Record<string, { correct: number; wrong: number }> = {};
+  entries.forEach((e) => {
+    const cat = e.question?.difficulty ?? "unknown";
+    byCategory[cat] ??= { correct: 0, wrong: 0 };
+    if (e.isCorrect === true) byCategory[cat].correct += 1;
+    else if (e.isCorrect === false) byCategory[cat].wrong += 1;
+  });
+  const catOrder = ["easy", "moderate", "hard"];
+  const barData = catOrder
+    .filter((c) => byCategory[c])
+    .map((c) => ({ category: c[0].toUpperCase() + c.slice(1), correct: byCategory[c].correct, wrong: byCategory[c].wrong }));
+
+  const pieData = catOrder
+    .filter((c) => byCategory[c])
+    .map((c) => ({ name: c[0].toUpperCase() + c.slice(1), value: byCategory[c].correct, key: c }));
+
+  return (
+    <section className="space-y-4">
+      <div className="flex items-center justify-between">
+        <h4 className="t-eyebrow text-muted-foreground">Question breakdown</h4>
+        {answerKey && (
+          <span className="text-xs text-muted-foreground">
+            {totalCorrect} correct · {totalWrong} wrong
+          </span>
+        )}
+      </div>
+
+      {!answerKey ? (
+        <p className="text-xs text-muted-foreground">Loading answer key…</p>
+      ) : (
+        <>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <Card>
+              <CardContent className="p-3">
+                <div className="text-xs text-muted-foreground mb-2">Correct answers by category</div>
+                <div className="h-52">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <PieChart>
+                      <Pie data={pieData} dataKey="value" nameKey="name" outerRadius={70} label>
+                        {pieData.map((d) => (
+                          <Cell key={d.key} fill={DIFF_COLORS[d.key] ?? "#64748b"} />
+                        ))}
+                      </Pie>
+                      <Tooltip />
+                      <Legend />
+                    </PieChart>
+                  </ResponsiveContainer>
+                </div>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardContent className="p-3">
+                <div className="text-xs text-muted-foreground mb-2">Right vs wrong per category</div>
+                <div className="h-52">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <BarChart data={barData}>
+                      <CartesianGrid strokeDasharray="3 3" opacity={0.2} />
+                      <XAxis dataKey="category" tick={{ fontSize: 11 }} />
+                      <YAxis allowDecimals={false} tick={{ fontSize: 11 }} />
+                      <Tooltip />
+                      <Legend />
+                      <Bar dataKey="correct" stackId="a" fill="#22c55e" name="Correct" />
+                      <Bar dataKey="wrong" stackId="a" fill="#ef4444" name="Wrong" />
+                    </BarChart>
+                  </ResponsiveContainer>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          <ol className="space-y-2">
+            {entries.map((e, idx) => {
+              const opts = e.question?.options ?? [];
+              return (
+                <li key={e.id} className="rounded-md border border-border/60 bg-muted/20 p-3">
+                  <div className="flex items-start justify-between gap-2">
+                    <div className="text-sm font-medium">
+                      Q{idx + 1}. {e.question?.question ?? `Question ${e.id}`}
+                    </div>
+                    <div className="flex items-center gap-2 shrink-0">
+                      <Badge variant="outline" className="text-[10px] capitalize">
+                        {e.question?.difficulty ?? "?"}
+                      </Badge>
+                      {e.isCorrect === true ? (
+                        <Badge className="gap-1 bg-green-600 hover:bg-green-600"><Check className="h-3 w-3" /> Right</Badge>
+                      ) : e.isCorrect === false ? (
+                        <Badge variant="destructive" className="gap-1"><X className="h-3 w-3" /> Wrong</Badge>
+                      ) : (
+                        <Badge variant="secondary">—</Badge>
+                      )}
+                    </div>
+                  </div>
+                  <ul className="mt-2 space-y-1">
+                    {opts.map((opt, i) => {
+                      const isChosen = i === e.selected;
+                      const isRight = i === e.correctIdx;
+                      const cls = isRight
+                        ? "border-green-500/60 bg-green-500/10"
+                        : isChosen
+                        ? "border-red-500/60 bg-red-500/10"
+                        : "border-border/40";
+                      return (
+                        <li key={i} className={`text-xs rounded border px-2 py-1 flex items-center gap-2 ${cls}`}>
+                          <span className="font-mono text-[10px] text-muted-foreground">{String.fromCharCode(65 + i)}.</span>
+                          <span className="flex-1">{opt}</span>
+                          {isChosen && <span className="text-[10px] text-muted-foreground">chosen</span>}
+                          {isRight && <Check className="h-3 w-3 text-green-600" />}
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </li>
+              );
+            })}
+          </ol>
+        </>
+      )}
+    </section>
   );
 }
