@@ -550,7 +550,13 @@ export default function ScreeningL2NetworkEngineer() {
           <span className="font-mono">{timeStr}</span>
         </div>
         <video ref={smallVideoRef} autoPlay playsInline muted className="w-full aspect-video rounded bg-black" />
+        {cameraHidden && (
+          <div className="mt-1 text-[11px] bg-red-600 text-white px-1.5 py-0.5 rounded flex items-center gap-1">
+            <AlertCircle className="w-3 h-3" /> Camera hidden — violation
+          </div>
+        )}
       </div>
+
 
       {cameraLost && (
         <div className="fixed inset-0 z-40 bg-black/70 flex items-center justify-center p-4">
