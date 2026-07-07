@@ -61,13 +61,14 @@ const Header = () => {
     { to: "/?section=contact", label: "Contact" },
   ];
 
-  const authLinks = [
-    { to: "/profile", label: "My Profile" },
-    ...(!isAdmin ? [{ to: "/my-applications", label: "My Applications" }] : []),
-    ...(isAdmin ? [{ to: "/employer-dashboard", label: "Employer Dashboard" }] : []),
-    { to: "/careers", label: "All Jobs" },
-    { to: "/support", label: "Support" },
-  ];
+  const authLinks = isAdmin
+    ? [{ to: "/admin", label: "Admin Console" }]
+    : [
+        { to: "/profile", label: "My Profile" },
+        { to: "/my-applications", label: "My Applications" },
+        { to: "/careers", label: "All Jobs" },
+        { to: "/support", label: "Support" },
+      ];
 
   const links = user ? authLinks : publicLinks;
 
