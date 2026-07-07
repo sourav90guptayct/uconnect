@@ -66,7 +66,9 @@ export default function ScreeningL2NetworkEngineer() {
   const [cameraReady, setCameraReady] = useState(false);
   const [cameraError, setCameraError] = useState<string | null>(null);
   const [cameraLost, setCameraLost] = useState(false);
-  const [violations, setViolations] = useState({ tab_switches: 0, fullscreen_exits: 0, window_blurs: 0 });
+  const [cameraHidden, setCameraHidden] = useState(false);
+  const [violations, setViolations] = useState({ tab_switches: 0, fullscreen_exits: 0, window_blurs: 0, camera_hidden: 0 });
+
   const [resumeFile, setResumeFile] = useState<File | null>(null);
   const [resumeUrl, setResumeUrl] = useState<string | null>(null);
   const [resumeUploading, setResumeUploading] = useState(false);
@@ -91,14 +93,24 @@ export default function ScreeningL2NetworkEngineer() {
     setCameraError(null);
     try {
       const stream = await navigator.mediaDevices.getUserMedia({
-        video: { width: 640, height: 480 },
+        video: { width: 640, height: 480, facingMode: "user" },
         audio: true,
       });
       streamRef.current = stream;
       setCameraReady(true);
-      // Detect track ending
+      setCameraHidden(false);
+      // Detect track ending, muting (camera covered / disabled by OS / permission revoked)
       stream.getVideoTracks().forEach((t) => {
         t.addEventListener("ended", () => setCameraLost(true));
+        t.addEventListener("mute", () => {
+          setCameraHidden(true);
+          setViolations((v) => ({ ...v, camera_hidden: v.camera_hidden + 1 }));
+          toast.error("Camera feed hidden — this is being recorded as a violation.");
+        });
+        t.addEventListener("unmute", () => {
+          setCameraHidden(false);
+          toast.success("Camera feed restored.");
+        });
       });
       setTimeout(() => {
         if (videoRef.current) videoRef.current.srcObject = stream;
@@ -108,6 +120,7 @@ export default function ScreeningL2NetworkEngineer() {
       setCameraError("Camera access is required to take this test. Please enable your camera and reload.");
     }
   };
+
 
   const recordedMimeRef = useRef<string>("video/webm");
   const startRecording = () => {
@@ -234,6 +247,61 @@ export default function ScreeningL2NetworkEngineer() {
     streamRef.current?.getTracks().forEach((t) => t.stop());
   }, []);
 
+  // Hide Tawk.to chat widget on this page (and restore on unmount)
+  useEffect(() => {
+    const style = document.createElement("style");
+    style.setAttribute("data-screening-tawk-hide", "true");
+    style.innerHTML = `
+      iframe[title*="chat" i], iframe[src*="tawk.to"],
+      #tawk-container, .tawk-min-container, .widget-visible {
+        display: none !important; visibility: hidden !important;
+      }
+    `;
+    document.head.appendChild(style);
+    const hide = () => { try { (window as any).Tawk_API?.hideWidget?.(); } catch { /* ignore */ } };
+    hide();
+    const interval = window.setInterval(hide, 1500);
+    return () => {
+      window.clearInterval(interval);
+      style.remove();
+      try { (window as any).Tawk_API?.showWidget?.(); } catch { /* ignore */ }
+    };
+  }, []);
+
+  // Periodically sample the video frame — if it's near-black (camera covered)
+  // count it as a violation and warn the candidate.
+  useEffect(() => {
+    if (step !== "test" || !cameraReady) return;
+    const canvas = document.createElement("canvas");
+    canvas.width = 40; canvas.height = 30;
+    const ctx = canvas.getContext("2d");
+    let darkStreak = 0;
+    const id = window.setInterval(() => {
+      const v = smallVideoRef.current || videoRef.current;
+      if (!v || !ctx || v.readyState < 2) return;
+      try {
+        ctx.drawImage(v, 0, 0, canvas.width, canvas.height);
+        const { data } = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        let sum = 0;
+        for (let i = 0; i < data.length; i += 4) sum += data[i] + data[i + 1] + data[i + 2];
+        const avg = sum / ((data.length / 4) * 3);
+        if (avg < 12) {
+          darkStreak += 1;
+          if (darkStreak === 3) {
+            setCameraHidden(true);
+            setViolations((vv) => ({ ...vv, camera_hidden: vv.camera_hidden + 1 }));
+            toast.error("Your face is not visible — please stay in front of the camera. Recorded as a violation.");
+          }
+        } else {
+          if (darkStreak >= 3) setCameraHidden(false);
+          darkStreak = 0;
+        }
+      } catch { /* ignore */ }
+    }, 2000);
+    return () => window.clearInterval(id);
+  }, [step, cameraReady]);
+
+
   const timeStr = useMemo(() => {
     const m = Math.floor(secondsLeft / 60).toString().padStart(2, "0");
     const s = (secondsLeft % 60).toString().padStart(2, "0");
@@ -301,6 +369,9 @@ export default function ScreeningL2NetworkEngineer() {
         tab_switches: violations.tab_switches,
         fullscreen_exits: violations.fullscreen_exits,
         window_blurs: violations.window_blurs,
+        camera_hidden: violations.camera_hidden,
+
+
         resume_url: resumeUrl,
       };
       const { data, error } = await supabase.functions.invoke("submit-screening", { body: payload });
@@ -479,7 +550,13 @@ export default function ScreeningL2NetworkEngineer() {
           <span className="font-mono">{timeStr}</span>
         </div>
         <video ref={smallVideoRef} autoPlay playsInline muted className="w-full aspect-video rounded bg-black" />
+        {cameraHidden && (
+          <div className="mt-1 text-[11px] bg-red-600 text-white px-1.5 py-0.5 rounded flex items-center gap-1">
+            <AlertCircle className="w-3 h-3" /> Camera hidden — violation
+          </div>
+        )}
       </div>
+
 
       {cameraLost && (
         <div className="fixed inset-0 z-40 bg-black/70 flex items-center justify-center p-4">
