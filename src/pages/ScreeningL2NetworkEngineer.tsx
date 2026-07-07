@@ -238,8 +238,61 @@ export default function ScreeningL2NetworkEngineer() {
         return s - 1;
       });
     }, 1000);
-    return () => clearInterval(t);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+  // Hide Tawk.to chat widget on this page (and restore on unmount)
+  useEffect(() => {
+    const style = document.createElement("style");
+    style.setAttribute("data-screening-tawk-hide", "true");
+    style.innerHTML = `
+      iframe[title*="chat" i], iframe[src*="tawk.to"],
+      #tawk-container, .tawk-min-container, .widget-visible {
+        display: none !important; visibility: hidden !important;
+      }
+    `;
+    document.head.appendChild(style);
+    const hide = () => { try { (window as any).Tawk_API?.hideWidget?.(); } catch { /* ignore */ } };
+    hide();
+    const interval = window.setInterval(hide, 1500);
+    return () => {
+      window.clearInterval(interval);
+      style.remove();
+      try { (window as any).Tawk_API?.showWidget?.(); } catch { /* ignore */ }
+    };
+  }, []);
+
+  // Periodically sample the video frame — if the frame is near-black (camera
+  // covered or a black cover placed over the lens) count it as a violation.
+  useEffect(() => {
+    if (step !== "test" || !cameraReady) return;
+    const canvas = document.createElement("canvas");
+    canvas.width = 40; canvas.height = 30;
+    const ctx = canvas.getContext("2d");
+    let darkStreak = 0;
+    const id = window.setInterval(() => {
+      const v = smallVideoRef.current || videoRef.current;
+      if (!v || !ctx || v.readyState < 2) return;
+      try {
+        ctx.drawImage(v, 0, 0, canvas.width, canvas.height);
+        const { data } = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        let sum = 0;
+        for (let i = 0; i < data.length; i += 4) sum += data[i] + data[i + 1] + data[i + 2];
+        const avg = sum / (data.length / 4 * 3);
+        if (avg < 12) {
+          darkStreak += 1;
+          if (darkStreak === 3) {
+            setCameraHidden(true);
+            setViolations((vv) => ({ ...vv, camera_hidden: vv.camera_hidden + 1 }));
+            toast.error("Your face is not visible — please stay in front of the camera. Recorded as a violation.");
+          }
+        } else {
+          if (darkStreak >= 3) setCameraHidden(false);
+          darkStreak = 0;
+        }
+      } catch { /* cross-origin or not-ready — ignore */ }
+    }, 2000);
+    return () => window.clearInterval(id);
+  }, [step, cameraReady]);
+
+
   }, [step]);
 
   // Cleanup on unmount
