@@ -700,11 +700,21 @@ export default function ScreeningL2NetworkEngineer() {
           </CardContent>
         </Card>
 
+        {submitError && (
+          <div className="mb-4 p-3 rounded border border-destructive bg-destructive/10 text-destructive text-sm flex items-start gap-2">
+            <AlertCircle className="w-4 h-4 mt-0.5 shrink-0" />
+            <div>
+              <p className="font-medium">Could not submit</p>
+              <p className="mt-1 break-words">{submitError}</p>
+            </div>
+          </div>
+        )}
         <div className="flex justify-end pb-16">
           <Button size="lg" disabled={submitting} onClick={() => handleSubmit(false)} style={{ background: BRAND }}>
             {submitting ? "Submitting..." : "Submit Test"}
           </Button>
         </div>
+
       </main>
     </div>
   );
