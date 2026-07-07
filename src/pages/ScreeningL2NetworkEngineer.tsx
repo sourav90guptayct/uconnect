@@ -320,11 +320,13 @@ export default function ScreeningL2NetworkEngineer() {
 
       (async () => {
         try {
-          const filename = `${sanitizeFilename(form.candidate_name)}_${sanitizeFilename(form.phone)}_${todayStr()}.webm`;
+          const recMime = recordedMimeRef.current || blob.type || "video/webm";
+          const ext = recMime.includes("mp4") ? "mp4" : "webm";
+          const filename = `${sanitizeFilename(form.candidate_name)}_${sanitizeFilename(form.phone)}_${todayStr()}.${ext}`;
           const fd = new FormData();
           fd.append("submission_id", data.submission_id);
           fd.append("filename", filename);
-          fd.append("file", new File([blob], filename, { type: "video/webm" }));
+          fd.append("file", new File([blob], filename, { type: recMime }));
           await supabase.functions.invoke("upload-screening-video", { body: fd });
         } catch (e) {
           console.warn("Video upload failed:", e);
