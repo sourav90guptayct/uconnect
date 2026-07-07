@@ -1,0 +1,149 @@
+// Submit L2 Network Engineer screening test.
+// Scores answers server-side (correct answers never leave this file) and stores submission.
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2.45.0";
+import { z } from "npm:zod@3.23.8";
+
+const corsHeaders = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
+  "Access-Control-Allow-Methods": "POST, OPTIONS",
+};
+
+// question_id -> correct option index (0-based against the ORIGINAL options list in
+// src/data/l2ScreeningQuestions.ts). Never send to client.
+const ANSWER_KEY: Record<number, number> = {
+  1: 1, 2: 2, 3: 1, 4: 2, 5: 2, 6: 1, 7: 2, 8: 1, 9: 1, 10: 2,
+  11: 1, 12: 2, 13: 2, 14: 2, 15: 2, 16: 3, 17: 2, 18: 2, 19: 0, 20: 0,
+};
+
+const SubmissionSchema = z.object({
+  candidate_name: z.string().trim().min(1).max(120),
+  email: z.string().trim().email().max(254),
+  phone: z.string().trim().min(6).max(20),
+  current_location: z.string().trim().min(1).max(120),
+  qualification: z.string().trim().min(1).max(120),
+  total_experience: z.string().trim().min(1).max(60),
+  relevant_experience: z.string().trim().min(1).max(60),
+  current_company: z.string().trim().min(1).max(160),
+  current_designation: z.string().trim().min(1).max(120),
+  owns_laptop: z.enum(["Yes", "No"]),
+  comfortable_manesar: z.enum(["Yes", "No"]),
+  comfortable_shifts: z.enum(["Yes", "No"]),
+  joining_availability: z.enum(["Immediate", "Within 15 Days", "30 Days", "More than 30 Days"]),
+  current_ctc: z.string().trim().min(1).max(60),
+  expected_ctc: z.string().trim().min(1).max(60),
+  comfortable_25k: z.enum(["Yes", "No"]),
+  answers: z.record(z.string(), z.number().int().min(0).max(3)),
+  tab_switches: z.number().int().min(0).default(0),
+  fullscreen_exits: z.number().int().min(0).default(0),
+  window_blurs: z.number().int().min(0).default(0),
+});
+
+function recommendation(score: number, laptop: string, manesar: string, shifts: string, ctc: string) {
+  if (laptop !== "Yes" || manesar !== "Yes" || shifts !== "Yes" || ctc !== "Yes") {
+    return "Rejected - Mandatory criteria not met";
+  }
+  if (score >= 16) return "Recommended for Technical Interview";
+  if (score >= 12) return "Hold / Needs Review";
+  return "Not Recommended";
+}
+
+Deno.serve(async (req) => {
+  if (req.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
+
+  try {
+    const body = await req.json();
+    const parsed = SubmissionSchema.safeParse(body);
+    if (!parsed.success) {
+      return new Response(
+        JSON.stringify({ ok: false, error: "Please fill all fields correctly.", details: parsed.error.flatten().fieldErrors }),
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+    const d = parsed.data;
+
+    // Score server-side
+    let score = 0;
+    for (const [qidStr, selected] of Object.entries(d.answers)) {
+      const qid = Number(qidStr);
+      if (ANSWER_KEY[qid] === selected) score += 1;
+    }
+
+    const rec = recommendation(score, d.owns_laptop, d.comfortable_manesar, d.comfortable_shifts, d.comfortable_25k);
+
+    const supabase = createClient(
+      Deno.env.get("SUPABASE_URL")!,
+      Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!,
+    );
+
+    // Duplicate check
+    const { data: dupe } = await supabase
+      .from("screening_submissions")
+      .select("id, email, phone")
+      .or(`email.eq.${d.email},phone.eq.${d.phone}`)
+      .maybeSingle();
+
+    if (dupe) {
+      return new Response(
+        JSON.stringify({ ok: false, error: "A submission with this email or phone already exists. Only one attempt is allowed." }),
+        { status: 409, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    const { data: inserted, error } = await supabase
+      .from("screening_submissions")
+      .insert({
+        role: "l2-network-engineer",
+        candidate_name: d.candidate_name,
+        email: d.email,
+        phone: d.phone,
+        current_location: d.current_location,
+        qualification: d.qualification,
+        total_experience: d.total_experience,
+        relevant_experience: d.relevant_experience,
+        current_company: d.current_company,
+        current_designation: d.current_designation,
+        owns_laptop: d.owns_laptop,
+        comfortable_manesar: d.comfortable_manesar,
+        comfortable_shifts: d.comfortable_shifts,
+        joining_availability: d.joining_availability,
+        current_ctc: d.current_ctc,
+        expected_ctc: d.expected_ctc,
+        comfortable_25k: d.comfortable_25k,
+        answers: d.answers,
+        score,
+        recommendation: rec,
+        tab_switches: d.tab_switches,
+        fullscreen_exits: d.fullscreen_exits,
+        window_blurs: d.window_blurs,
+      })
+      .select("id")
+      .single();
+
+    if (error) {
+      console.error("Insert error:", error);
+      if ((error as any).code === "23505") {
+        return new Response(
+          JSON.stringify({ ok: false, error: "A submission with this email or phone already exists." }),
+          { status: 409, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
+      }
+      return new Response(
+        JSON.stringify({ ok: false, error: "Failed to save submission." }),
+        { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    // Never return score/recommendation to the client
+    return new Response(
+      JSON.stringify({ ok: true, submission_id: inserted.id }),
+      { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+    );
+  } catch (err) {
+    console.error("submit-screening error:", err);
+    return new Response(
+      JSON.stringify({ ok: false, error: "Submission failed. Please try again." }),
+      { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+    );
+  }
+});
