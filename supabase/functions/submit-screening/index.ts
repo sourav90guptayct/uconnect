@@ -51,12 +51,12 @@ const SubmissionSchema = z.object({
   resume_url: z.string().url().max(1000).optional().nullable(),
 });
 
-function recommendation(score: number, laptop: string, manesar: string, shifts: string, ctc: string) {
+function recommendation(scorePct: number, laptop: string, manesar: string, shifts: string, ctc: string) {
   if (laptop !== "Yes" || manesar !== "Yes" || shifts !== "Yes" || ctc !== "Yes") {
     return "Rejected - Mandatory criteria not met";
   }
-  if (score >= 16) return "Recommended for Technical Interview";
-  if (score >= 12) return "Hold / Needs Review";
+  if (scorePct >= 80) return "Recommended for Technical Interview";
+  if (scorePct >= 60) return "Hold / Needs Review";
   return "Not Recommended";
 }
 
