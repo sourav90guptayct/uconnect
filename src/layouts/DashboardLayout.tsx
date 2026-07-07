@@ -13,7 +13,6 @@ interface Props {
 
 export default function DashboardLayout({ sidebar, title }: Props) {
   const { user, signOut } = useAuth();
-  const { isAdmin } = useAdminCheck();
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
