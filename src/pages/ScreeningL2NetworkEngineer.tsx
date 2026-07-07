@@ -93,14 +93,24 @@ export default function ScreeningL2NetworkEngineer() {
     setCameraError(null);
     try {
       const stream = await navigator.mediaDevices.getUserMedia({
-        video: { width: 640, height: 480 },
+        video: { width: 640, height: 480, facingMode: "user" },
         audio: true,
       });
       streamRef.current = stream;
       setCameraReady(true);
-      // Detect track ending
+      setCameraHidden(false);
+      // Detect track ending, muting (camera covered / disabled by OS / permission revoked)
       stream.getVideoTracks().forEach((t) => {
         t.addEventListener("ended", () => setCameraLost(true));
+        t.addEventListener("mute", () => {
+          setCameraHidden(true);
+          setViolations((v) => ({ ...v, camera_hidden: v.camera_hidden + 1 }));
+          toast.error("Camera feed hidden — this is being recorded as a violation.");
+        });
+        t.addEventListener("unmute", () => {
+          setCameraHidden(false);
+          toast.success("Camera feed restored.");
+        });
       });
       setTimeout(() => {
         if (videoRef.current) videoRef.current.srcObject = stream;
@@ -110,6 +120,7 @@ export default function ScreeningL2NetworkEngineer() {
       setCameraError("Camera access is required to take this test. Please enable your camera and reload.");
     }
   };
+
 
   const recordedMimeRef = useRef<string>("video/webm");
   const startRecording = () => {
