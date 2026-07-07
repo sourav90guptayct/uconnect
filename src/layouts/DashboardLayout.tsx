@@ -2,8 +2,9 @@ import { ReactNode } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
-import { LogOut, ArrowLeft } from "lucide-react";
+import { LogOut } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
+import { useAdminCheck } from "@/hooks/useAdminCheck";
 import { motion } from "framer-motion";
 
 interface Props {
@@ -13,6 +14,7 @@ interface Props {
 
 export default function DashboardLayout({ sidebar, title }: Props) {
   const { user, signOut } = useAuth();
+  const { isAdmin } = useAdminCheck();
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
@@ -29,15 +31,6 @@ export default function DashboardLayout({ sidebar, title }: Props) {
           <header className="sticky top-0 z-30 h-14 border-b bg-background/70 backdrop-blur-xl flex items-center gap-3 px-4">
             <SidebarTrigger />
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <Button
-                variant="ghost"
-                size="sm"
-                className="h-8 gap-1 text-xs"
-                onClick={() => navigate("/")}
-              >
-                <ArrowLeft className="h-3 w-3" /> Site
-              </Button>
-              <span className="text-border">/</span>
               <span className="font-medium text-foreground truncate max-w-[40vw]">
                 {title ?? pathname}
               </span>
