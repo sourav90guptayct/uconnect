@@ -237,6 +237,13 @@ const CareersPage = () => {
               infrastructure. We're looking for passionate engineers and specialists who want
               to make a difference at enterprise scale.
             </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Button asChild size="lg" className="bg-accent hover:bg-accent/90">
+                <Link to="/careers/screening/l2-network-engineer">
+                  Take Screening Test — L2 Network Engineer
+                </Link>
+              </Button>
+            </div>
           </div>
         </div>
       </section>
