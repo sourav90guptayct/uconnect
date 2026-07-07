@@ -30,6 +30,8 @@ const Networks = lazy(() => import("./pages/Networks"));
 const ManagedServices = lazy(() => import("./pages/ManagedServices"));
 const InfraInstallation = lazy(() => import("./pages/InfraInstallation"));
 const ResourceManagement = lazy(() => import("./pages/ResourceManagement"));
+const ScreeningL2NetworkEngineer = lazy(() => import("./pages/ScreeningL2NetworkEngineer"));
+const AdminScreenings = lazy(() => import("./pages/AdminScreenings"));
 
 const queryClient = new QueryClient();
 
