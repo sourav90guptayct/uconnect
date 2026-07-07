@@ -352,13 +352,22 @@ export default function ScreeningL2NetworkEngineer() {
 
   const handleSubmit = async (auto = false) => {
     if (submittedRef.current) return;
+    setSubmitError(null);
     if (!auto) {
       const err = validateForm();
-      if (err) { toast.error(err); return; }
+      if (err) {
+        console.warn("Screening validation failed:", err, { form, answeredCount: Object.keys(answers).length, totalQuestions: questions.length });
+        setSubmitError(err);
+        toast.error(err);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        return;
+      }
     }
     submittedRef.current = true;
     setSubmitting(true);
     toast.info(auto ? "Time is up — submitting your test..." : "Submitting your test...");
+
+
 
     try {
       // 1) Stop recording, get blob
