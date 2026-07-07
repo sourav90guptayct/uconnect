@@ -43,6 +43,7 @@ const AdminScreenings = lazy(() => import("./pages/admin/Screenings"));
 const AdminEmployees = lazy(() => import("./pages/admin/Employees"));
 const AdminContacts = lazy(() => import("./pages/admin/Contacts"));
 const AdminSettings = lazy(() => import("./pages/admin/Settings"));
+const AdminRegister = lazy(() => import("./pages/admin/RegisterAdmin"));
 
 // Candidate dashboard
 const CandidateOverview = lazy(() => import("./pages/candidate/Overview"));
