@@ -48,7 +48,7 @@ const SubmissionSchema = z.object({
   tab_switches: z.number().int().min(0).default(0),
   fullscreen_exits: z.number().int().min(0).default(0),
   window_blurs: z.number().int().min(0).default(0),
-  resume_url: z.string().url().max(1000).optional().nullable(),
+  resume_url: z.string().trim().min(1).max(1000).optional().nullable(),
 });
 
 function recommendation(scorePct: number, laptop: string, manesar: string, shifts: string, ctc: string) {
@@ -67,6 +67,7 @@ Deno.serve(async (req) => {
     const body = await req.json();
     const parsed = SubmissionSchema.safeParse(body);
     if (!parsed.success) {
+      console.error("Validation failed:", JSON.stringify(parsed.error.flatten().fieldErrors));
       return new Response(
         JSON.stringify({ ok: false, error: "Please fill all fields correctly.", details: parsed.error.flatten().fieldErrors }),
         { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
