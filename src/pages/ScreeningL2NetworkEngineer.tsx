@@ -66,7 +66,9 @@ export default function ScreeningL2NetworkEngineer() {
   const [cameraReady, setCameraReady] = useState(false);
   const [cameraError, setCameraError] = useState<string | null>(null);
   const [cameraLost, setCameraLost] = useState(false);
-  const [violations, setViolations] = useState({ tab_switches: 0, fullscreen_exits: 0, window_blurs: 0 });
+  const [cameraHidden, setCameraHidden] = useState(false);
+  const [violations, setViolations] = useState({ tab_switches: 0, fullscreen_exits: 0, window_blurs: 0, camera_hidden: 0 });
+
   const [resumeFile, setResumeFile] = useState<File | null>(null);
   const [resumeUrl, setResumeUrl] = useState<string | null>(null);
   const [resumeUploading, setResumeUploading] = useState(false);
