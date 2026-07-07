@@ -20,6 +20,7 @@ import {
   UserCog,
   Settings,
   Shield,
+  UserPlus,
 } from "lucide-react";
 
 const items = [
@@ -29,6 +30,7 @@ const items = [
   { title: "Screenings", url: "/admin/screenings", icon: FileVideo },
   { title: "Employees", url: "/admin/employees", icon: UserCog },
   { title: "Contact Inbox", url: "/admin/contacts", icon: MailOpen },
+  { title: "Register Admin", url: "/admin/register", icon: UserPlus },
   { title: "Settings", url: "/admin/settings", icon: Settings },
 ];
 
