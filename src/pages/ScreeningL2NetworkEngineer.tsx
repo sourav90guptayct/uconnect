@@ -387,12 +387,17 @@ export default function ScreeningL2NetworkEngineer() {
       };
       const { data, error } = await supabase.functions.invoke("submit-screening", { body: payload });
       if (error || !data?.ok) {
-        const msg = data?.error || error?.message || "Submission failed.";
+        const details = data?.details ? " " + JSON.stringify(data.details) : "";
+        const msg = (data?.error || error?.message || "Submission failed.") + details;
+        console.error("submit-screening failed:", { error, data });
+        setSubmitError(msg);
         toast.error(msg);
+        window.scrollTo({ top: 0, behavior: "smooth" });
         submittedRef.current = false;
         setSubmitting(false);
         return;
       }
+
 
       // 3) Show success immediately — upload video in the background so a slow
       //    or large upload never leaves the candidate stuck on "Submitting...".
