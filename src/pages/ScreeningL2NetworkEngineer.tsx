@@ -12,8 +12,8 @@ import { supabase } from "@/integrations/supabase/client";
 import SEO from "@/components/SEO";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { L2_SCREENING_QUESTIONS, shuffle, type ScreeningQuestion } from "@/data/l2ScreeningQuestions";
-import { AlertCircle, Circle, Camera, ShieldAlert } from "lucide-react";
+import { L2_SCREENING_QUESTIONS, pickBalancedQuestions, type ScreeningQuestion } from "@/data/l2ScreeningQuestions";
+import { AlertCircle, Circle, Camera, ShieldAlert, Upload, FileText } from "lucide-react";
 
 type Step = "intro" | "test" | "done";
 
