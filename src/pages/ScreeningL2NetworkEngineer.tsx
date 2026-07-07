@@ -238,6 +238,15 @@ export default function ScreeningL2NetworkEngineer() {
         return s - 1;
       });
     }, 1000);
+    return () => clearInterval(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [step]);
+
+  // Cleanup on unmount
+  useEffect(() => () => {
+    streamRef.current?.getTracks().forEach((t) => t.stop());
+  }, []);
+
   // Hide Tawk.to chat widget on this page (and restore on unmount)
   useEffect(() => {
     const style = document.createElement("style");
@@ -259,8 +268,8 @@ export default function ScreeningL2NetworkEngineer() {
     };
   }, []);
 
-  // Periodically sample the video frame — if the frame is near-black (camera
-  // covered or a black cover placed over the lens) count it as a violation.
+  // Periodically sample the video frame — if it's near-black (camera covered)
+  // count it as a violation and warn the candidate.
   useEffect(() => {
     if (step !== "test" || !cameraReady) return;
     const canvas = document.createElement("canvas");
@@ -275,7 +284,7 @@ export default function ScreeningL2NetworkEngineer() {
         const { data } = ctx.getImageData(0, 0, canvas.width, canvas.height);
         let sum = 0;
         for (let i = 0; i < data.length; i += 4) sum += data[i] + data[i + 1] + data[i + 2];
-        const avg = sum / (data.length / 4 * 3);
+        const avg = sum / ((data.length / 4) * 3);
         if (avg < 12) {
           darkStreak += 1;
           if (darkStreak === 3) {
@@ -287,18 +296,11 @@ export default function ScreeningL2NetworkEngineer() {
           if (darkStreak >= 3) setCameraHidden(false);
           darkStreak = 0;
         }
-      } catch { /* cross-origin or not-ready — ignore */ }
+      } catch { /* ignore */ }
     }, 2000);
     return () => window.clearInterval(id);
   }, [step, cameraReady]);
 
-
-  }, [step]);
-
-  // Cleanup on unmount
-  useEffect(() => () => {
-    streamRef.current?.getTracks().forEach((t) => t.stop());
-  }, []);
 
   const timeStr = useMemo(() => {
     const m = Math.floor(secondsLeft / 60).toString().padStart(2, "0");
