@@ -39,7 +39,7 @@ async function getAccessToken(serviceAccount: { client_email: string; private_ke
   const header = { alg: "RS256", typ: "JWT" };
   const claim = {
     iss: serviceAccount.client_email,
-    scope: "https://www.googleapis.com/auth/drive.file",
+    scope: "https://www.googleapis.com/auth/drive",
     aud: serviceAccount.token_uri || "https://oauth2.googleapis.com/token",
     exp: now + 3600,
     iat: now,
@@ -71,6 +71,42 @@ async function getAccessToken(serviceAccount: { client_email: string; private_ke
   if (!res.ok) throw new Error(`Token exchange failed [${res.status}]: ${await res.text()}`);
   const json = await res.json();
   return json.access_token as string;
+}
+
+async function resolveDriveFolderId(accessToken: string, configuredFolderId: string) {
+  const configured = configuredFolderId.trim();
+  const metadataRes = await fetch(
+    `https://www.googleapis.com/drive/v3/files/${encodeURIComponent(configured)}?supportsAllDrives=true&fields=id,name,mimeType,trashed`,
+    { headers: { Authorization: `Bearer ${accessToken}` } },
+  );
+
+  if (metadataRes.ok) {
+    const folder = await metadataRes.json();
+    if (folder.mimeType === "application/vnd.google-apps.folder" && !folder.trashed) return folder.id as string;
+  } else {
+    console.error(`Configured Drive folder lookup failed [${metadataRes.status}]: ${await metadataRes.text()}`);
+  }
+
+  const folderName = configured.toLowerCase() === "uconnect technologies" ? configured : "uconnect technologies";
+  const searchParams = new URLSearchParams({
+    q: `mimeType='application/vnd.google-apps.folder' and trashed=false and name='${folderName.replace(/'/g, "\\'")}'`,
+    fields: "files(id,name)",
+    pageSize: "10",
+    includeItemsFromAllDrives: "true",
+    supportsAllDrives: "true",
+    corpora: "allDrives",
+  });
+  const searchRes = await fetch(`https://www.googleapis.com/drive/v3/files?${searchParams.toString()}`, {
+    headers: { Authorization: `Bearer ${accessToken}` },
+  });
+  if (!searchRes.ok) throw new Error(`Drive folder search failed [${searchRes.status}]: ${await searchRes.text()}`);
+  const search = await searchRes.json();
+  const match = search.files?.find((file: { name?: string }) => file.name?.toLowerCase() === folderName.toLowerCase()) || search.files?.[0];
+  if (!match?.id) {
+    throw new Error(`Google Drive folder not found. Share the "uconnect technologies" folder with the service account as Editor, or update DRIVE_FOLDER_ID to the folder ID.`);
+  }
+  console.log(`Using Drive folder resolved by name: ${match.name}`);
+  return match.id as string;
 }
 
 async function uploadResumable(accessToken: string, folderId: string, filename: string, fileBytes: Uint8Array, mimeType: string) {
@@ -131,8 +167,9 @@ Deno.serve(async (req) => {
 
     const serviceAccount = JSON.parse(saJson);
     const accessToken = await getAccessToken(serviceAccount);
+    const resolvedFolderId = await resolveDriveFolderId(accessToken, folderId);
     const bytes = new Uint8Array(await file.arrayBuffer());
-    const uploaded = await uploadResumable(accessToken, folderId, filename, bytes, file.type || "video/webm");
+    const uploaded = await uploadResumable(accessToken, resolvedFolderId, filename, bytes, file.type || "video/webm");
 
     const driveUrl = `https://drive.google.com/file/d/${uploaded.id}/view`;
 
