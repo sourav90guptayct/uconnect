@@ -154,39 +154,62 @@ export default function AdminScreenings() {
                     <TableHead>Score</TableHead>
                     <TableHead>Recommendation</TableHead>
                     <TableHead>Violations</TableHead>
+                    <TableHead>CV</TableHead>
                     <TableHead>Video</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {filtered.map((r) => (
-                    <TableRow key={r.id} className="cursor-pointer" onClick={() => setSelected(r)}>
-                      <TableCell className="whitespace-nowrap text-xs text-muted-foreground">
-                        {new Date(r.created_at).toLocaleString()}
-                      </TableCell>
-                      <TableCell className="font-medium">{r.candidate_name}</TableCell>
-                      <TableCell className="text-xs">
-                        <div>{r.email}</div>
-                        <div className="text-muted-foreground">{r.phone}</div>
-                      </TableCell>
-                      <TableCell className="font-mono">{r.score}/20</TableCell>
-                      <TableCell><Badge variant={recBadge(r.recommendation) as any}>{r.recommendation}</Badge></TableCell>
-                      <TableCell>
-                        <span className="inline-flex items-center gap-1 text-xs">
-                          <ShieldAlert className="h-3 w-3" />
-                          {r.tab_switches}/{r.fullscreen_exits}/{r.window_blurs}
-                        </span>
-                      </TableCell>
-                      <TableCell onClick={(e) => e.stopPropagation()}>
-                        {r.video_url ? (
-                          <a href={r.video_url} target="_blank" rel="noreferrer" className="text-primary inline-flex items-center gap-1 text-xs">
-                            Open <ExternalLink className="h-3 w-3" />
-                          </a>
-                        ) : (
-                          <span className="text-xs text-muted-foreground">{r.video_uploaded ? "—" : "Pending"}</span>
-                        )}
-                      </TableCell>
-                    </TableRow>
-                  ))}
+                  {filtered.map((r) => {
+                    const total = totalQuestions(r);
+                    return (
+                      <TableRow key={r.id} className="cursor-pointer" onClick={() => setSelected(r)}>
+                        <TableCell className="whitespace-nowrap text-xs text-muted-foreground">
+                          {new Date(r.created_at).toLocaleString()}
+                        </TableCell>
+                        <TableCell className="font-medium">{r.candidate_name}</TableCell>
+                        <TableCell className="text-xs">
+                          <div>{r.email}</div>
+                          <div className="text-muted-foreground">{r.phone}</div>
+                        </TableCell>
+                        <TableCell className="font-mono">
+                          {r.score}/{total || "?"}
+                          {total > 0 && (
+                            <span className="ml-1 text-xs text-muted-foreground">
+                              ({Math.round((r.score / total) * 100)}%)
+                            </span>
+                          )}
+                        </TableCell>
+                        <TableCell><Badge variant={recBadge(r.recommendation) as any}>{r.recommendation}</Badge></TableCell>
+                        <TableCell>
+                          <span className="inline-flex items-center gap-1 text-xs">
+                            <ShieldAlert className="h-3 w-3" />
+                            {r.tab_switches}/{r.fullscreen_exits}/{r.window_blurs}
+                          </span>
+                        </TableCell>
+                        <TableCell onClick={(e) => e.stopPropagation()}>
+                          {r.resume_url ? (
+                            <button
+                              className="text-primary inline-flex items-center gap-1 text-xs hover:underline"
+                              onClick={() => openResume(r.resume_url!)}
+                            >
+                              <FileText className="h-3 w-3" /> Open
+                            </button>
+                          ) : (
+                            <span className="text-xs text-muted-foreground">—</span>
+                          )}
+                        </TableCell>
+                        <TableCell onClick={(e) => e.stopPropagation()}>
+                          {r.video_url ? (
+                            <a href={r.video_url} target="_blank" rel="noreferrer" className="text-primary inline-flex items-center gap-1 text-xs">
+                              Open <ExternalLink className="h-3 w-3" />
+                            </a>
+                          ) : (
+                            <span className="text-xs text-muted-foreground">{r.video_uploaded ? "—" : "Pending"}</span>
+                          )}
+                        </TableCell>
+                      </TableRow>
+                    );
+                  })}
                 </TableBody>
               </Table>
             </div>
