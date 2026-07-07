@@ -67,6 +67,7 @@ Deno.serve(async (req) => {
     const body = await req.json();
     const parsed = SubmissionSchema.safeParse(body);
     if (!parsed.success) {
+      console.error("Validation failed:", JSON.stringify(parsed.error.flatten().fieldErrors));
       return new Response(
         JSON.stringify({ ok: false, error: "Please fill all fields correctly.", details: parsed.error.flatten().fieldErrors }),
         { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
