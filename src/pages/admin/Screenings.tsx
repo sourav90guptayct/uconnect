@@ -9,7 +9,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
-import { Download, ExternalLink, FileText, FileVideo, Search, ShieldAlert } from "lucide-react";
+import { Check, Download, ExternalLink, FileText, FileVideo, Search, ShieldAlert, X } from "lucide-react";
+import { L2_SCREENING_QUESTIONS, type ScreeningQuestion } from "@/data/l2ScreeningQuestions";
+import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend, BarChart, Bar, XAxis, YAxis, CartesianGrid } from "recharts";
 
 interface Submission {
   id: string;
