@@ -70,9 +70,10 @@ Deno.serve(async (req) => {
       console.error("Validation failed:", JSON.stringify(parsed.error.flatten().fieldErrors));
       return new Response(
         JSON.stringify({ ok: false, error: "Please fill all fields correctly.", details: parsed.error.flatten().fieldErrors }),
-        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }
+
     const d = parsed.data;
 
     // Score server-side — score is out of the questions the candidate was shown,
