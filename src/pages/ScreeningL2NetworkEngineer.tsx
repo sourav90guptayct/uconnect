@@ -368,7 +368,9 @@ export default function ScreeningL2NetworkEngineer() {
         answers,
         tab_switches: violations.tab_switches,
         fullscreen_exits: violations.fullscreen_exits,
-        window_blurs: violations.window_blurs,
+        window_blurs: violations.window_blurs + violations.camera_hidden,
+        camera_hidden: violations.camera_hidden,
+
         resume_url: resumeUrl,
       };
       const { data, error } = await supabase.functions.invoke("submit-screening", { body: payload });
