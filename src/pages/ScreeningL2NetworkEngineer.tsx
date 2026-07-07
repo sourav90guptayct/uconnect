@@ -282,6 +282,7 @@ export default function ScreeningL2NetworkEngineer() {
         tab_switches: violations.tab_switches,
         fullscreen_exits: violations.fullscreen_exits,
         window_blurs: violations.window_blurs,
+        resume_url: resumeUrl,
       };
       const { data, error } = await supabase.functions.invoke("submit-screening", { body: payload });
       if (error || !data?.ok) {
