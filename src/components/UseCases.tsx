@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { Wifi, Shield, TrainFront, Zap, Factory, Server, ArrowUpRight } from "lucide-react";
 import telecomAsset from "@/assets/telecom-connectivity.jpg.asset.json";
 import governmentImg from "@/assets/networks-smartcity.png";
