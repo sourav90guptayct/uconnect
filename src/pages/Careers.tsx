@@ -19,7 +19,7 @@ import JobApplicationForm from "@/components/careers/JobApplicationForm";
 import careersHero from "@/assets/teamwork.jpg";
 import imgPower from "@/assets/sector-power.jpg";
 import imgRail from "@/assets/sector-railways.jpg";
-import imgDataCentre from "@/assets/networks-datacenter.png";
+import imgDataCentre from "@/assets/networks-datacenter.jpg";
 import imgEnterprise from "@/assets/usecase-enterprise.jpg";
 import imgLogistics from "@/assets/film-logistics.jpg";
 import imgSmartCity from "@/assets/usecase-smartcity.jpg";
