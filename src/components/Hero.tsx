@@ -372,7 +372,7 @@ const Hero = () => {
       </div>
 
       {/* Positioning statement */}
-      <div className="bg-background py-14 lg:py-20">
+      <div className="bg-background py-10 lg:py-14">
         <div className="container mx-auto px-4 text-center">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -391,7 +391,7 @@ const Hero = () => {
 
 
           {/* Client trust strip */}
-          <div className="mt-12 lg:mt-16 pt-10 border-t border-border">
+          <div className="mt-8 lg:mt-12 pt-8 border-t border-border">
             <div className="text-[11px] font-semibold text-muted-foreground uppercase tracking-[0.18em]">
               Trusted by India's operators, integrators &amp; enterprises
             </div>

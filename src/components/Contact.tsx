@@ -40,7 +40,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-24 bg-muted/30 relative overflow-hidden">
+    <section id="contact" className="py-16 lg:py-20 bg-muted/30 relative overflow-hidden">
       {/* Background accent */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-accent/5 rounded-full blur-[120px]" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-[120px]" />

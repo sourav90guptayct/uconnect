@@ -56,14 +56,14 @@ const useCases = [
 
 const UseCases = () => {
   return (
-    <section id="use-cases" className="py-20 lg:py-28 bg-muted/30">
+    <section id="use-cases" className="py-14 lg:py-20 bg-muted/30">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="max-w-4xl mb-12 lg:mb-16"
+          className="max-w-4xl mb-8 lg:mb-12"
         >
           <div className="text-sm font-semibold text-accent uppercase tracking-widest mb-4">
             Industries we serve
