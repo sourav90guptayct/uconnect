@@ -299,6 +299,12 @@ const Hero = () => {
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </Link>
+              <Link to="/products">
+                <Button variant="outline" size="xl" className="w-full sm:w-auto">
+                  Explore our products
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </Link>
             </div>
 
             {/* Solution selector */}
