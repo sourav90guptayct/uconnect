@@ -89,7 +89,26 @@ const routes = [
     description:
       "Get help, FAQs and contact details. Enterprise inquiries answered within 4 business hours by a dedicated account manager.",
   },
+  {
+    path: "/business-practices",
+    title: "Business Practices & Policies | uConnect Technologies",
+    description:
+      "uConnect Technologies' commitments on ethical conduct, fair dealing, supplier standards, delivery discipline and workplace policies for enterprise telecom projects.",
+  },
+  {
+    path: "/governance",
+    title: "Corporate Governance | uConnect Technologies",
+    description:
+      "Leadership structure, decision rights, project governance, risk management and financial discipline at uConnect Technologies, a product and services integrator.",
+  },
+  {
+    path: "/quality-hse",
+    title: "Quality, Health, Safety & Environment | uConnect Technologies",
+    description:
+      "uConnect Technologies' approach to installation quality, site safety, field engineer training, waste handling and environmental responsibility on telecom deployments.",
+  },
 ];
+
 
 const escapeAttr = (v) =>
   String(v)
