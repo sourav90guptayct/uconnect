@@ -12,6 +12,12 @@ import sectorPorts from "@/assets/film-ports.jpg";
 import sectorTransport from "@/assets/film-transport.jpg";
 import sectorOperations from "@/assets/film-operations.jpg";
 import sectorAviation from "@/assets/film-aviation.jpg";
+import tileAviation from "@/assets/tile-aviation.jpg.asset.json";
+import tilePorts from "@/assets/tile-ports.png.asset.json";
+import tileTerminal from "@/assets/tile-airport-terminal.webp.asset.json";
+import tileLogistics from "@/assets/tile-logistics.webp.asset.json";
+import tileRail from "@/assets/tile-rail.jpg.asset.json";
+import tileBus from "@/assets/tile-bus.png.asset.json";
 
 const sectorFrames = [
   { image: sectorDesign, label: "Design & engineering", alt: "Engineers reviewing an infrastructure design together on screen" },
