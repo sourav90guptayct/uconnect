@@ -121,38 +121,20 @@ const Hero = () => {
           )}
         </AnimatePresence>
 
-        {/* The film — only rendered/played on demand */}
-        <video
-          ref={videoRef}
-          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${
-            playing ? "opacity-100" : "opacity-0 pointer-events-none"
-          }`}
-          src={heroVideo.url}
-          playsInline
-          preload="none"
-          onEnded={stopFilm}
-        />
-
         {/* Legibility scrim */}
-        <div
-          className="absolute inset-0 transition-opacity duration-500"
-          style={{
-            opacity: playing ? 0.35 : 1,
-            background:
-              "linear-gradient(180deg, hsl(222 47% 8% / 0.55) 0%, hsl(222 47% 8% / 0.25) 40%, hsl(222 47% 8% / 0.75) 100%)",
-          }}
-        />
-
-        {/* Close control while the film plays */}
-        {playing && (
-          <button
-            onClick={stopFilm}
-            aria-label="Close film"
-            className="absolute right-4 top-4 z-20 inline-flex h-11 w-11 items-center justify-center rounded-full bg-background/85 text-foreground backdrop-blur transition-transform hover:scale-105"
-          >
-            <X className="h-5 w-5" />
-          </button>
+        {!playing && (
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(180deg, hsl(222 47% 8% / 0.55) 0%, hsl(222 47% 8% / 0.25) 40%, hsl(222 47% 8% / 0.75) 100%)",
+            }}
+          />
         )}
+
+        {/* The film — real photography with Arcadis-style on-screen titles */}
+        {playing && <HeroFilm onClose={stopFilm} />}
+
 
         <AnimatePresence>
           {!playing && (
