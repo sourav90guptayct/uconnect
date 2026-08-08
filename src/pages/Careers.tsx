@@ -382,7 +382,7 @@ const CareersPage = () => {
                 </p>
               </div>
               <Button asChild className="bg-accent hover:bg-accent/90 shrink-0">
-                <a href="mailto:reachus@uconnecttech.com?subject=Campus%20Partnership">
+                <a href="mailto:reachus@youconnecttech.com?subject=Campus%20Partnership">
                   <Mail className="mr-2 h-4 w-4" /> Talk to our talent team
                 </a>
               </Button>
