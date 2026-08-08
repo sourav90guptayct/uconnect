@@ -15,8 +15,12 @@ import tileAviation from "@/assets/tile-aviation.jpg.asset.json";
 import tilePorts from "@/assets/tile-ports.png.asset.json";
 import tileTerminal from "@/assets/tile-airport-terminal.webp.asset.json";
 import tileLogistics from "@/assets/tile-logistics.webp.asset.json";
-import tileRail from "@/assets/tile-rail.jpg.asset.json";
 import tileBus from "@/assets/tile-bus.png.asset.json";
+import tileRoads from "@/assets/tile-roads.webp.asset.json";
+import tileUrbanEnergy from "@/assets/tile-urban-energy.webp.asset.json";
+import tileSmartCity from "@/assets/tile-smart-city.jpg.asset.json";
+import tileCampus from "@/assets/tile-campus.jpg.asset.json";
+import tileRailHub from "@/assets/tile-rail-hub.jpg.asset.json";
 
 const sectorFrames = [
   { image: sectorDesign, label: "Design & engineering", alt: "Engineers reviewing an infrastructure design together on screen" },
@@ -47,8 +51,8 @@ const slides = [
     body: "Mission-critical telecom and signalling networks for metro, mainline and rail operations across India.",
     ctaLabel: "Explore our services",
     ctaHref: "/services",
-    image: tileRail.url,
-    imageAlt: "Modern tram crossing a city bridge",
+    image: tileRailHub.url,
+    imageAlt: "Rail interchange with metro, tram and mainline trains around a control centre",
   },
   {
     kicker: "Solutions we have implemented",
@@ -86,6 +90,20 @@ const slides = [
     image: tileBus.url,
     imageAlt: "Fleet of buses parked at a city transport depot",
   },
+];
+
+// Pool used by the two supporting mosaic tiles — rotates alongside the featured tile
+const tilePool = [
+  { url: tilePorts.url, alt: "Aerial view of a container port terminal and logistics yard" },
+  { url: tileTerminal.url, alt: "Airport terminal forecourt at dusk with traffic and surveillance coverage" },
+  { url: tileRoads.url, alt: "Aerial view of a motorway interchange with managed traffic lanes" },
+  { url: tileUrbanEnergy.url, alt: "Illuminated urban exhibition campus at dusk with a city skyline behind" },
+  { url: tileSmartCity.url, alt: "Aerial view of a waterfront city at sunset" },
+  { url: tileCampus.url, alt: "Modern glass corporate campus building at dusk" },
+  { url: tileRailHub.url, alt: "Rail interchange with metro, tram and mainline trains around a control centre" },
+  { url: tileLogistics.url, alt: "Automated container handling at an intermodal logistics park" },
+  { url: tileAviation.url, alt: "Traveller walking through an airport boarding bridge" },
+  { url: tileBus.url, alt: "Fleet of buses parked at a city transport depot" },
 ];
 
 
@@ -126,6 +144,12 @@ const Hero = () => {
 
   const slide = slides[index];
   const sector = sectorFrames[frame];
+
+  // Keep all three tiles showing different photography at any moment
+  const supporting = tilePool.filter((t) => t.url !== slide.image);
+  const tileA = supporting[(index * 2) % supporting.length];
+  const tileB = supporting[(index * 2 + 4) % supporting.length];
+
 
   return (
     <>
@@ -327,25 +351,28 @@ const Hero = () => {
                 </AnimatePresence>
               </div>
 
-              {/* Static supporting tiles */}
-              <div className="col-span-2 row-span-3 rounded-[1.5rem] overflow-hidden bg-muted">
-                <img
-                  src={tilePorts.url}
-                  alt="Aerial view of a container port terminal and logistics yard"
-                  loading="lazy"
-                  decoding="async"
-                  className="h-full w-full object-cover"
-                />
-              </div>
-              <div className="col-span-2 row-span-3 rounded-[1.5rem] overflow-hidden bg-muted">
-                <img
-                  src={tileTerminal.url}
-                  alt="Airport terminal forecourt at dusk with taxis and traffic"
-                  loading="lazy"
-                  decoding="async"
-                  className="h-full w-full object-cover"
-                />
-              </div>
+              {/* Supporting tiles — rotate with the featured tile, always different photos */}
+              {[tileA, tileB].map((tile, i) => (
+                <div
+                  key={i}
+                  className="col-span-2 row-span-3 relative rounded-[1.5rem] overflow-hidden bg-muted"
+                >
+                  <AnimatePresence mode="wait">
+                    <motion.img
+                      key={tile.url}
+                      src={tile.url}
+                      alt={tile.alt}
+                      initial={{ opacity: 0, scale: 1.06 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.7, ease: "easeOut", delay: i === 1 ? 0.12 : 0 }}
+                      loading="lazy"
+                      decoding="async"
+                      className="absolute inset-0 h-full w-full object-cover"
+                    />
+                  </AnimatePresence>
+                </div>
+              ))}
 
             </div>
           </div>
