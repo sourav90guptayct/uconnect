@@ -77,23 +77,20 @@ const About = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <p className="text-base lg:text-lg text-muted-foreground leading-relaxed mb-6 italic border-l-2 border-accent pl-5">
-                "We enable people and organizations to maximize the potential of Digital
-                Transformation by providing best-in-class Products &amp; Services for their
-                business growth."
-              </p>
               <p className="text-base lg:text-lg text-muted-foreground leading-relaxed mb-10">
-                Founded in 2017, uConnect Technologies is a leading provider of network and
-                infrastructure services — serving top carrier customers of India with a pan-India
-                team of Tier-1 engineers.
+                Founded in 2017, uConnect Technologies is a product and services integrator. We
+                design and supply our own ConnectLH™ hardware, deploy it, and then run it — so
+                carriers, enterprises and government bodies deal with one accountable partner
+                instead of a chain of vendors.
               </p>
 
               <div className="space-y-6 mb-10">
                 {[
-                  { icon: TrendingUp, title: "Proven execution", desc: "10,000+ Links successfully installed, 30+ ongoing projects, 15+ active customers." },
-                  { icon: Handshake, title: "Pan-India presence", desc: "Operations across 18 circles with 200+ Tier-1 field engineers and 5 regional warehouses." },
-                  { icon: CheckCircle, title: "Carrier-grade execution", desc: "Trusted by India's top carriers for I&C, UBR, switch/router and CCTV surveillance deployments." },
+                  { icon: TrendingUp, title: "Products plus services", desc: "In-house hardware combined with deployment and managed operations under a single scope of work." },
+                  { icon: Handshake, title: "Four service lines", desc: "Managed services, network deployment, resources management and infra solutions — taken together or standalone." },
+                  { icon: CheckCircle, title: "Carrier-grade delivery", desc: "I&C, UBR, switch/router and surveillance rollouts executed to operator acceptance standards." },
                 ].map((item, i) => (
+
                   <motion.div
                     key={i}
                     initial={{ opacity: 0, x: -20 }}

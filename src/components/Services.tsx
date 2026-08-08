@@ -9,27 +9,31 @@ import infraImg from "@/assets/infra-hero.jpg";
 const Services = () => {
   const services = [
     {
-      image: networksImg,
-      title: "Networks",
-      tagline: "Connectivity at scale",
-      href: "/networks",
-    },
-    {
       image: managedImg,
       title: "Managed services",
-      tagline: "End-to-end operations",
+      tagline: "24×7 NOC & SLA operations",
+      desc: "We run the network after go-live — monitoring, incident response, spares and field engineers on SLA.",
       href: "/managed-services",
     },
     {
+      image: networksImg,
+      title: "Network deployment",
+      tagline: "Survey to acceptance",
+      desc: "RF planning, I&C, UBR, switching and fiber rollouts commissioned and handed over with acceptance reports.",
+      href: "/networks",
+    },
+    {
       image: resourceImg,
-      title: "Resource management",
-      tagline: "Technology-enabled staffing",
+      title: "Resources management",
+      tagline: "Engineers on demand",
+      desc: "Dedicated, shared or project-based Tier-1 engineering teams deployed and managed by us.",
       href: "/resource-management",
     },
     {
       image: infraImg,
-      title: "Infra installation",
-      tagline: "Tower & pole erection",
+      title: "Infra solutions",
+      tagline: "Towers, poles & passive",
+      desc: "Tower and pole erection, civil and electrical works, and passive infrastructure built to carrier standards.",
       href: "/infra-installation",
     },
   ];
@@ -45,14 +49,19 @@ const Services = () => {
           className="max-w-4xl mb-12 lg:mb-16"
         >
           <div className="text-sm font-semibold text-accent uppercase tracking-widest mb-4">
-            What we do
+            Four service lines, one integrator
           </div>
           <h2 className="display-headline text-foreground text-4xl sm:text-5xl lg:text-7xl">
-            Solutions built for the
+            Products we make.
             <br />
-            <span className="text-muted-foreground">enterprise edge.</span>
+            <span className="text-muted-foreground">Services we own.</span>
           </h2>
+          <p className="mt-6 text-base lg:text-lg text-muted-foreground max-w-2xl leading-relaxed">
+            Buy the hardware, the rollout and the ongoing operations from a single partner —
+            or pick only the line you need.
+          </p>
         </motion.div>
+
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-5">
           {services.map((service, index) => (
@@ -87,11 +96,43 @@ const Services = () => {
                 <h3 className="display-headline text-background text-xl sm:text-2xl lg:text-4xl leading-tight">
                   {service.title}
                 </h3>
+                <p className="mt-2 hidden lg:block text-background/75 text-sm leading-relaxed">
+                  {service.desc}
+                </p>
               </div>
               </Link>
             </motion.div>
           ))}
         </div>
+
+        {/* Product side of the integrator story */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mt-8 lg:mt-10 rounded-3xl border border-border bg-muted/40 p-6 lg:p-10 flex flex-col lg:flex-row lg:items-center gap-6 lg:gap-10"
+        >
+          <div className="flex-1">
+            <div className="text-sm font-semibold text-accent uppercase tracking-widest mb-3">
+              The product side
+            </div>
+            <h3 className="display-headline text-foreground text-2xl lg:text-4xl">
+              ConnectLH™ — our own hardware line
+            </h3>
+            <p className="mt-4 text-muted-foreground text-sm lg:text-base leading-relaxed max-w-2xl">
+              Dish and sector antennas, PoE injectors, RF accessories and outdoor enclosures,
+              stocked in regional warehouses and installed by the same team that supplies them.
+              That is what makes us an integrator rather than a reseller or a labour vendor.
+            </p>
+          </div>
+          <Link to="/products" className="flex-shrink-0">
+            <span className="inline-flex items-center gap-2 rounded-full bg-accent text-accent-foreground px-6 py-3 font-semibold text-sm">
+              Browse products <ArrowUpRight className="h-4 w-4" />
+            </span>
+          </Link>
+        </motion.div>
+
       </div>
     </section>
   );
