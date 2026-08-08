@@ -77,6 +77,7 @@ const Hero = () => {
         <video
           className="absolute inset-0 h-full w-full object-cover"
           src={heroVideo.url}
+          poster={tileTower}
           autoPlay
           muted
           loop
