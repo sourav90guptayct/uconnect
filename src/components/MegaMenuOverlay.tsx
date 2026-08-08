@@ -121,7 +121,10 @@ const railItems: { key: PanelKey | null; label: string; to?: string; external?: 
   { key: "products", label: "Products" },
   { key: null, label: "Careers", to: "/careers", external: true },
   { key: null, label: "Clients", to: "/clients" },
+  { key: null, label: "Contact Us", to: "/?section=contact" },
+  { key: null, label: "Sign In", to: "/auth" },
 ];
+
 
 interface Props {
   open: boolean;
