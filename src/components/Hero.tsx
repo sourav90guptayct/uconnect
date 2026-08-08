@@ -51,8 +51,8 @@ const slides = [
     body: "Mission-critical telecom and signalling networks for metro, mainline and rail operations across India.",
     ctaLabel: "Explore our services",
     ctaHref: "/services",
-    image: tileRail.url,
-    imageAlt: "Modern tram crossing a city bridge",
+    image: tileRailHub.url,
+    imageAlt: "Rail interchange with metro, tram and mainline trains around a control centre",
   },
   {
     kicker: "Solutions we have implemented",
