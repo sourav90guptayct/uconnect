@@ -107,6 +107,222 @@ const routes = [
     description:
       "uConnect Technologies' approach to installation quality, site safety, field engineer training, waste handling and environmental responsibility on telecom deployments.",
   },
+  {
+    path: "/solutions/5g",
+    title: "5G Deployment & Infrastructure Solutions India | uConnect",
+    description:
+      "5G network deployment, installation, integration and infrastructure solutions for enterprise and telecom networks across India.",
+  },
+  {
+    path: "/solutions/private-5g",
+    title: "Private 5G Network Solutions India | uConnect",
+    description:
+      "Private 5G network solutions for industrial, enterprise, campus and mission-critical connectivity applications.",
+  },
+  {
+    path: "/solutions/4g-lte",
+    title: "4G LTE Network Deployment Services India | uConnect",
+    description:
+      "4G LTE deployment, installation, integration and support services for enterprise, telecom and remote connectivity.",
+  },
+  {
+    path: "/solutions/microwave",
+    title: "Microwave Link Deployment & Wireless Backhaul India | uConnect",
+    description:
+      "Microwave link planning, installation, commissioning and support for reliable wireless backhaul networks.",
+  },
+  {
+    path: "/solutions/ubr",
+    title: "UBR Wireless Network Solutions & Deployment India | uConnect",
+    description:
+      "UBR and unlicensed wireless network solutions for broadband, backhaul, enterprise and remote connectivity.",
+  },
+  {
+    path: "/solutions/e-band",
+    title: "e-Band Wireless Backhaul Solutions India | uConnect",
+    description:
+      "High-capacity e-Band wireless backhaul solutions for enterprise and telecom connectivity.",
+  },
+  {
+    path: "/solutions/fiber",
+    title: "Fiber Optic Network Deployment Services India | uConnect",
+    description:
+      "Fiber optic network deployment, installation, testing, splicing and last-mile connectivity services.",
+  },
+  {
+    path: "/solutions/ftth",
+    title: "FTTH & Broadband Deployment Services India | uConnect",
+    description:
+      "FTTH and broadband network deployment services for ISPs and connectivity providers.",
+  },
+  {
+    path: "/solutions/enterprise-connectivity",
+    title: "Enterprise Connectivity & Network Solutions India | uConnect",
+    description:
+      "Enterprise connectivity, wireless, SD-WAN and branch network deployment solutions across India.",
+  },
+  {
+    path: "/solutions/sd-wan",
+    title: "SD-WAN Deployment & Managed Network Services India | uConnect",
+    description:
+      "SD-WAN deployment and managed network solutions for distributed enterprise locations.",
+  },
+  {
+    path: "/solutions/industrial-connectivity",
+    title: "Industrial Wireless & 5G Connectivity Solutions India | uConnect",
+    description:
+      "Industrial wireless, 4G/5G, networking and IoT connectivity for factories and critical infrastructure.",
+  },
+  {
+    path: "/solutions/power-poe",
+    title: "Telecom PoE & Power Solutions India | uConnect",
+    description:
+      "Telecom and wireless PoE solutions including AC/DC PoE injectors, adapters and power infrastructure.",
+  },
+  {
+    path: "/services/network-deployment",
+    title: "Network Deployment & Installation Services India | uConnect",
+    description:
+      "End-to-end network deployment, installation, integration and commissioning services across India.",
+  },
+  {
+    path: "/services/rf-planning",
+    title: "RF Planning & Wireless Network Engineering India | uConnect",
+    description:
+      "RF planning, link budget, path profile, coverage analysis and wireless network optimization services.",
+  },
+  {
+    path: "/services/site-survey",
+    title: "Telecom Site Survey & Feasibility Services India | uConnect",
+    description:
+      "Telecom site surveys, feasibility studies, RF assessments and infrastructure audits for network projects.",
+  },
+  {
+    path: "/services/installation",
+    title: "Telecom Equipment Installation Services India | uConnect",
+    description:
+      "Professional telecom equipment, antenna, radio, rack, cabling and power installation services.",
+  },
+  {
+    path: "/services/integration",
+    title: "Network Integration & Commissioning Services India | uConnect",
+    description:
+      "Multi-vendor network integration, configuration, testing and commissioning services.",
+  },
+  {
+    path: "/services/testing-commissioning",
+    title: "Network Testing & Commissioning Services India | uConnect",
+    description:
+      "Network testing, acceptance, commissioning and performance validation for telecom and enterprise deployments.",
+  },
+  {
+    path: "/services/managed-services",
+    title: "Telecom O&M & Network Maintenance Services India | uConnect",
+    description:
+      "Preventive and corrective telecom network maintenance, field support and operational services.",
+  },
+  {
+    path: "/services/noc",
+    title: "NOC & Network Monitoring Services India | uConnect",
+    description:
+      "NOC and network monitoring services with remote support, incident management and operational visibility.",
+  },
+  {
+    path: "/services/field-engineering",
+    title: "Telecom Field Engineering & Support Services India | uConnect",
+    description:
+      "Pan-India field engineering, deployment, maintenance and technical support services.",
+  },
+  {
+    path: "/services/project-management",
+    title: "Telecom Project Management & Rollout Services India | uConnect",
+    description:
+      "Telecom project management, rollout coordination, quality control and multi-site delivery support.",
+  },
+  {
+    path: "/products/antennas",
+    title: "Telecom & Wireless Antennas India | uConnect",
+    description:
+      "ConnectLH wireless dish and sector antennas for P2P, P2MP, WISP and backhaul deployments.",
+  },
+  {
+    path: "/products/5g-routers",
+    title: "Industrial 4G/5G Routers & CPE India | uConnect",
+    description:
+      "Industrial-grade outdoor 4G/5G routers for enterprise, CCTV, traffic, smart-city and remote connectivity.",
+  },
+  {
+    path: "/products/managed-switches",
+    title: "Industrial Managed Ethernet & PoE Switches India | uConnect",
+    description:
+      "Managed and industrial Ethernet switches for telecom, enterprise and mission-critical networks.",
+  },
+  {
+    path: "/products/ftth-products",
+    title: "FTTH & Fiber Optic Products India | uConnect",
+    description:
+      "FTTH and fiber optic products, cable assemblies and connectivity accessories for broadband deployments.",
+  },
+  {
+    path: "/products/rf-cables",
+    title: "RF Cables & Cable Assemblies India | uConnect",
+    description:
+      "RF and coaxial cable assemblies designed for wireless and telecom network applications.",
+  },
+  {
+    path: "/products/racks-cabinets",
+    title: "Telecom Racks & Outdoor Cabinets India | uConnect",
+    description:
+      "Indoor, outdoor and data-center racks and cabinets for telecom and enterprise network equipment.",
+  },
+  {
+    path: "/industries/smart-city",
+    title: "Smart City Connectivity & Network Solutions India | uConnect",
+    description:
+      "Connectivity infrastructure for CCTV, traffic systems, smart streetlights and IoT deployments.",
+  },
+  {
+    path: "/industries/energy-utilities",
+    title: "Energy & Utility Connectivity Solutions India | uConnect",
+    description:
+      "Reliable wireless, cellular and network infrastructure for substations, solar farms and utility assets.",
+  },
+  {
+    path: "/industries/transportation",
+    title: "Transportation & Fleet Connectivity Solutions India | uConnect",
+    description:
+      "Connectivity and network infrastructure for transportation, fleet, logistics and public transit applications.",
+  },
+  {
+    path: "/industries/railways",
+    title: "Railway Communication & Network Solutions India | uConnect",
+    description:
+      "Telecom, wireless and network infrastructure solutions for railway and transportation environments.",
+  },
+  {
+    path: "/industries/retail",
+    title: "Retail & POS Connectivity Solutions India | uConnect",
+    description:
+      "Always-on connectivity and network deployment for retail stores, POS, digital signage and branch locations.",
+  },
+  {
+    path: "/industries/data-centers",
+    title: "Data Center Network Infrastructure & Connectivity India | uConnect",
+    description:
+      "Network infrastructure, connectivity, racks, switching and deployment services for data centers.",
+  },
+  {
+    path: "/industries/government",
+    title: "Government Network & Connectivity Solutions India | uConnect",
+    description:
+      "Technology infrastructure, connectivity and deployment services for government and public-sector networks.",
+  },
+  {
+    path: "/industries/rural-connectivity",
+    title: "Rural Broadband & Last-Mile Connectivity India | uConnect",
+    description:
+      "Wireless and fiber solutions for rural broadband, remote sites and last-mile connectivity.",
+  },
 ];
 
 
