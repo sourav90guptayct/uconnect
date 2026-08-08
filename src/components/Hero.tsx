@@ -28,33 +28,34 @@ const sectorFrames = [
 
 const slides = [
   {
-    kicker: "Managed services",
-    word: "watched",
-    body: "24×7 monitoring, field response and SLA-backed operations so your team stays focused on growth, not troubleshooting.",
+    kicker: "Design & project management",
+    word: "designed",
+    body: "Surveys, network and system design, and end-to-end project management for telecom, railway, power and transport programmes.",
+    ctaLabel: "Explore our services",
+    ctaHref: "/services",
+    image: sectorDesign,
+    imageAlt: "Engineers reviewing an infrastructure design on a tablet in a bright office",
+  },
+  {
+    kicker: "Day-to-day operations",
+    word: "operated",
+    body: "24×7 monitoring, field response and SLA-backed operations across multiple verticals so your team stays focused on growth.",
     ctaLabel: "Explore managed services",
     ctaHref: "/managed-services",
-    image: tileNoc,
-    imageAlt: "Engineers monitoring network dashboards inside a bright operations centre",
+    image: sectorOperations,
+    imageAlt: "Operators monitoring dashboards inside a bright network operations centre",
   },
   {
     kicker: "ConnectLH™ product line",
     word: "connected",
-    body: "Dish and sector antennas, PoE injectors and outdoor accessories — 10,000+ Links already deployed across India.",
+    body: "Our own hardware line — connectivity, PoE and outdoor equipment deployed across telecom, railways, power, transportation and ports.",
     ctaLabel: "View products",
     ctaHref: "/products",
-    image: tileField,
-    imageAlt: "Field engineer aligning a ConnectLH microwave dish antenna",
-  },
-  {
-    kicker: "Network deployment",
-    word: "built",
-    body: "200+ Tier-1 engineers across 18 circles, backed by 5 regional warehouses for rapid pan-India deployment.",
-    ctaLabel: "See our networks work",
-    ctaHref: "/networks",
-    image: tileTower,
-    imageAlt: "Telecom tower with sector antennas against a bright sky",
+    image: sectorRailways,
+    imageAlt: "Modern electric train at a station platform with trackside equipment cabinets",
   },
 ];
+
 
 const logos = [
   { src: "/clients/airtel.jpg", name: "Airtel" },
