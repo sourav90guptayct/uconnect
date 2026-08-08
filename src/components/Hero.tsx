@@ -15,8 +15,12 @@ import tileAviation from "@/assets/tile-aviation.jpg.asset.json";
 import tilePorts from "@/assets/tile-ports.png.asset.json";
 import tileTerminal from "@/assets/tile-airport-terminal.webp.asset.json";
 import tileLogistics from "@/assets/tile-logistics.webp.asset.json";
-import tileRail from "@/assets/tile-rail.jpg.asset.json";
 import tileBus from "@/assets/tile-bus.png.asset.json";
+import tileRoads from "@/assets/tile-roads.webp.asset.json";
+import tileUrbanEnergy from "@/assets/tile-urban-energy.webp.asset.json";
+import tileSmartCity from "@/assets/tile-smart-city.jpg.asset.json";
+import tileCampus from "@/assets/tile-campus.jpg.asset.json";
+import tileRailHub from "@/assets/tile-rail-hub.jpg.asset.json";
 
 const sectorFrames = [
   { image: sectorDesign, label: "Design & engineering", alt: "Engineers reviewing an infrastructure design together on screen" },
