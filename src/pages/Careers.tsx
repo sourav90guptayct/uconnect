@@ -289,8 +289,45 @@ const CareersPage = () => {
           </div>
         </section>
 
-        {/* Why work here */}
+        {/* Sectors we hire for */}
         <section className="py-24">
+          <div className="container mx-auto px-4 lg:px-8">
+            <motion.div {...fadeUp} className="max-w-3xl mb-14">
+              <div className="text-sm font-semibold text-accent uppercase tracking-[0.2em] mb-4">Sectors we hire for</div>
+              <h2 className="text-3xl lg:text-5xl font-bold text-foreground">
+                Not one industry — several
+              </h2>
+              <p className="mt-6 text-lg text-muted-foreground">
+                Our projects span multiple sectors, so your experience compounds across domains
+                instead of narrowing into one.
+              </p>
+            </motion.div>
+            <div className="grid grid-cols-2 lg:grid-cols-3 gap-6">
+              {sectors.map((s, i) => (
+                <motion.div
+                  key={s.title}
+                  {...fadeUp}
+                  transition={{ duration: 0.5, delay: i * 0.05 }}
+                  className="relative rounded-2xl overflow-hidden border border-border group"
+                >
+                  <img
+                    src={s.image}
+                    alt={`${s.title} projects at uConnect Technologies`}
+                    loading="lazy"
+                    className="h-48 lg:h-56 w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-5">
+                    <h3 className="text-base lg:text-lg font-semibold text-foreground">{s.title}</h3>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Why work here */}
+        <section className="py-24 bg-muted/30 border-y border-border">
           <div className="container mx-auto px-4 lg:px-8">
             <motion.div {...fadeUp} className="max-w-3xl mb-16">
               <div className="text-sm font-semibold text-accent uppercase tracking-[0.2em] mb-4">Life here</div>
@@ -298,8 +335,8 @@ const CareersPage = () => {
                 Serious infrastructure. Sane teams.
               </h2>
               <p className="mt-6 text-lg text-muted-foreground">
-                We are a product and services integrator — which means our engineers touch design,
-                deployment and operations rather than a single narrow slice.
+                As a product and services integrator, our people touch products, design, deployment
+                and operations across several sectors rather than a single narrow slice.
               </p>
             </motion.div>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -323,21 +360,43 @@ const CareersPage = () => {
         </section>
 
         {/* Disciplines */}
-        <section className="py-24 bg-muted/30 border-y border-border">
+        <section className="py-24">
           <div className="container mx-auto px-4 lg:px-8">
             <motion.div {...fadeUp} className="max-w-3xl mb-14">
               <div className="text-sm font-semibold text-accent uppercase tracking-[0.2em] mb-4">Where you fit</div>
-              <h2 className="text-3xl lg:text-5xl font-bold text-foreground">Career areas</h2>
+              <h2 className="text-3xl lg:text-5xl font-bold text-foreground">Career areas & profiles</h2>
+              <p className="mt-6 text-lg text-muted-foreground">
+                Technical and non-technical, field and office, entry level and senior — we hire across
+                the full delivery chain.
+              </p>
             </motion.div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-border rounded-2xl overflow-hidden">
-              {disciplines.map((d) => (
-                <div key={d.title} className="bg-background p-8 hover:bg-card transition-colors group">
-                  <d.icon className="h-7 w-7 text-accent mb-6" />
-                  <h3 className="text-xl font-semibold text-foreground group-hover:text-accent transition-colors">
-                    {d.title}
-                  </h3>
-                  <p className="mt-3 text-sm text-muted-foreground">{d.roles}</p>
-                </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {disciplines.map((d, i) => (
+                <motion.div
+                  key={d.title}
+                  {...fadeUp}
+                  transition={{ duration: 0.5, delay: i * 0.04 }}
+                  className="rounded-2xl overflow-hidden border border-border bg-card/60 backdrop-blur hover:border-accent/40 transition-colors group"
+                >
+                  <div className="relative h-36 overflow-hidden">
+                    <img
+                      src={d.image}
+                      alt={`${d.title} careers at uConnect Technologies`}
+                      loading="lazy"
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-card via-card/20 to-transparent" />
+                    <div className="absolute bottom-3 left-4 h-10 w-10 rounded-xl bg-accent/15 backdrop-blur flex items-center justify-center">
+                      <d.icon className="h-5 w-5 text-accent" />
+                    </div>
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-lg font-semibold text-foreground group-hover:text-accent transition-colors">
+                      {d.title}
+                    </h3>
+                    <p className="mt-2 text-sm text-muted-foreground">{d.roles}</p>
+                  </div>
+                </motion.div>
               ))}
             </div>
           </div>
