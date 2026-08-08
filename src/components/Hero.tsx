@@ -95,12 +95,6 @@ const logos = [
   { src: "/clients/alstom.jpg", name: "Alstom" },
 ];
 
-const stats = [
-  { value: 200, suffix: "+", label: "Tier-1 engineers" },
-  { value: 10000, suffix: "+", label: "Links deployed" },
-  { value: 18, suffix: "", label: "Circles served" },
-  { value: 5, suffix: "", label: "Warehouses" },
-];
 
 const Hero = () => {
   const [index, setIndex] = useState(0);
@@ -359,21 +353,6 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Stat ticker */}
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-2 lg:grid-cols-4 divide-x divide-border border-y border-border">
-          {stats.map((s) => (
-            <div key={s.label} className="px-5 py-6 lg:py-8">
-              <div className="display-headline text-2xl lg:text-3xl text-foreground">
-                <AnimatedCounter to={s.value} suffix={s.suffix} />
-              </div>
-              <div className="mt-1.5 t-micro text-muted-foreground uppercase tracking-wider">
-                {s.label}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
 
       {/* Positioning statement */}
       <div className="bg-background py-10 lg:py-14">
