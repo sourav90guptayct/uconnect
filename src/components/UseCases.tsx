@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Wifi, Shield, TrainFront, Zap, Factory, Server, ArrowUpRight } from "lucide-react";
-import telecomImg from "@/assets/networks-coverage.jpg";
+import telecomImg from "@/assets/telecom-connectivity.jpg.asset.json";
 import governmentImg from "@/assets/networks-smartcity.png";
 import railImg from "@/assets/networks-rail.jpg";
 import energyImg from "@/assets/networks-utility.jpg";
