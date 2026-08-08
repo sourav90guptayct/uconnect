@@ -124,11 +124,24 @@ const Hero = () => {
   const [paused, setPaused] = useState(false);
   const [frame, setFrame] = useState(0);
   const [playing, setPlaying] = useState(false);
+  const [aStep, setAStep] = useState(0);
+  const [bStep, setBStep] = useState(4);
 
   useEffect(() => {
     if (paused) return;
     const t = setInterval(() => setIndex((i) => (i + 1) % slides.length), 6000);
     return () => clearInterval(t);
+  }, [paused]);
+
+  // Supporting tiles rotate on their own cadence so the three photos never swap together
+  useEffect(() => {
+    if (paused) return;
+    const a = setInterval(() => setAStep((s) => s + 1), 4300);
+    const b = setInterval(() => setBStep((s) => s + 1), 7900);
+    return () => {
+      clearInterval(a);
+      clearInterval(b);
+    };
   }, [paused]);
 
   // Ambient sector montage — pauses while the film plays
@@ -147,8 +160,10 @@ const Hero = () => {
 
   // Keep all three tiles showing different photography at any moment
   const supporting = tilePool.filter((t) => t.url !== slide.image);
-  const tileA = supporting[(index * 2) % supporting.length];
-  const tileB = supporting[(index * 2 + 4) % supporting.length];
+  const tileA = supporting[aStep % supporting.length];
+  const tileBCandidates = supporting.filter((t) => t.url !== tileA.url);
+  const tileB = tileBCandidates[bStep % tileBCandidates.length];
+
 
 
   return (
