@@ -9,7 +9,7 @@ const sectors = [
   { label: "Power & Utilities", src: "images/film-power.jpg" },
   { label: "Transportation", src: "images/film-transport.jpg" },
   { label: "Ports & Logistics", src: "images/film-ports.jpg" },
-  { label: "Aviation", src: "images/film-aviation.jpg" },
+  { label: "Enterprise & Data Centre", src: "images/networks-datacenter.png" },
 ];
 
 export const SceneSectors: React.FC<{ span: number }> = ({ span }) => {
