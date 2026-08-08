@@ -94,18 +94,14 @@ const whoGroups = [
     ],
   },
   {
-    title: "People & careers",
+    title: "Industries we serve",
     links: [
-      { label: "Life at uConnect", to: "/careers" },
-      { label: "Open roles", to: "/jobs" },
-      { label: "Workplace policies", to: "/business-practices" },
-    ],
-  },
-  {
-    title: "Reach us",
-    links: [
-      { label: "Contact", to: "/?section=contact" },
-      { label: "Support", to: "/support" },
+      { label: "Telecommunications", to: "/?section=use-cases" },
+      { label: "Government & Public Safety", to: "/?section=use-cases" },
+      { label: "Rail & Transportation", to: "/?section=use-cases" },
+      { label: "Energy & Utilities", to: "/?section=use-cases" },
+      { label: "Enterprise & Industrial", to: "/?section=use-cases" },
+      { label: "Digital Infrastructure", to: "/?section=use-cases" },
     ],
   },
 ];
