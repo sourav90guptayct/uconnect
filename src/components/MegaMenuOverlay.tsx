@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ChevronRight, ExternalLink } from "lucide-react";
+import { X, ChevronRight, ChevronLeft, ExternalLink } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useIsMobile } from "@/hooks/use-mobile";
+
 
 type PanelKey = "what" | "who" | "products";
 
@@ -171,12 +173,16 @@ interface Props {
 const MegaMenuOverlay = ({ open, onClose }: Props) => {
   const [panel, setPanel] = useState<PanelKey>("what");
   const [tab, setTab] = useState(0);
+  const [mobilePanelOpen, setMobilePanelOpen] = useState(false);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
     if (open) {
       document.addEventListener("keydown", onKey);
       document.body.style.overflow = "hidden";
+    } else {
+      setMobilePanelOpen(false);
     }
     return () => {
       document.removeEventListener("keydown", onKey);
@@ -186,6 +192,89 @@ const MegaMenuOverlay = ({ open, onClose }: Props) => {
 
   const activeTabs = panels[panel].tabs;
   const activeTab = activeTabs[Math.min(tab, activeTabs.length - 1)];
+
+  const rightPanel = (
+    <div className="bg-muted/40 px-6 sm:px-10 py-8 lg:py-14">
+      {isMobile && (
+        <button
+          onClick={() => setMobilePanelOpen(false)}
+          className="mb-6 inline-flex items-center gap-1.5 text-sm font-semibold text-foreground hover:text-accent transition-colors"
+        >
+          <ChevronLeft className="h-4 w-4" />
+          Back
+        </button>
+      )}
+      <div className="flex items-center gap-8 border-b border-border">
+        {activeTabs.map((t, i) => (
+          <button
+            key={t.id}
+            onClick={() => setTab(i)}
+            className={cn(
+              "pb-3 -mb-px text-lg sm:text-xl font-bold transition-colors border-b-2",
+              activeTab.id === t.id
+                ? "text-accent border-accent"
+                : "text-foreground border-transparent hover:text-accent"
+            )}
+          >
+            {t.label}
+          </button>
+        ))}
+      </div>
+
+      <motion.div
+        key={panel + activeTab.id}
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.25 }}
+        className="mt-8 grid sm:grid-cols-2 xl:grid-cols-3 gap-x-10 gap-y-9"
+      >
+        {activeTab.groups.map((g) => (
+          <div key={g.title}>
+            <div className="text-base font-bold text-foreground">{g.title}</div>
+            <ul className="mt-3 space-y-2.5">
+              {g.links.map((l) => (
+                <li key={l.label + l.to}>
+                  <Link
+                    to={l.to}
+                    onClick={onClose}
+                    className="text-[15px] text-muted-foreground hover:text-accent transition-colors"
+                  >
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </motion.div>
+
+      <div className="mt-10 grid gap-8 lg:grid-cols-[auto_1fr] lg:items-center">
+        <Link
+          to={activeTab.cta.to}
+          onClick={onClose}
+          className="inline-flex w-fit items-center rounded-full bg-foreground px-7 py-3.5 text-sm font-semibold text-background hover:bg-foreground/90 transition-colors"
+        >
+          {activeTab.cta.label}
+        </Link>
+
+        <Link
+          to={featured[panel].to}
+          onClick={onClose}
+          className="group rounded-2xl border border-border bg-background p-6 transition-colors hover:border-accent"
+        >
+          <div className="text-xs font-semibold uppercase tracking-widest text-accent">
+            {featured[panel].eyebrow}
+          </div>
+          <div className="mt-2 text-lg font-bold text-foreground">{featured[panel].title}</div>
+          <p className="mt-2 text-sm text-muted-foreground">{featured[panel].body}</p>
+          <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-foreground group-hover:text-accent transition-colors">
+            {featured[panel].cta}
+            <ChevronRight className="h-4 w-4" />
+          </span>
+        </Link>
+      </div>
+    </div>
+  );
 
   return (
     <AnimatePresence>
@@ -204,10 +293,10 @@ const MegaMenuOverlay = ({ open, onClose }: Props) => {
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: -16, opacity: 0 }}
             transition={{ duration: 0.28, ease: "easeOut" }}
-            className="relative h-full w-full grid lg:grid-cols-[minmax(260px,26%)_1fr] bg-background overflow-y-auto"
+            className="relative h-full w-full grid lg:grid-cols-[minmax(260px,26%)_1fr] bg-background overflow-hidden lg:overflow-y-auto"
           >
             {/* Left rail */}
-            <div className="bg-background px-6 sm:px-10 py-8 lg:py-10 border-r border-border">
+            <div className="bg-background px-6 sm:px-10 py-8 lg:py-10 border-r border-border h-full overflow-y-auto">
               <div className="flex items-start justify-between">
                 <Link to="/" onClick={onClose} className="text-xl font-bold text-primary">
                   uConnect<span className="text-gradient"> Technologies</span>
@@ -223,7 +312,7 @@ const MegaMenuOverlay = ({ open, onClose }: Props) => {
 
               <nav className="mt-10 divide-y divide-border border-t border-border">
                 {railItems.map((item) => {
-                  const isActive = item.key && panel === item.key;
+                  const isActive = item.key && panel === item.key && !isMobile;
                   if (!item.key) {
                     return (
                       <Link
@@ -243,8 +332,10 @@ const MegaMenuOverlay = ({ open, onClose }: Props) => {
                       onClick={() => {
                         setPanel(item.key as PanelKey);
                         setTab(0);
+                        if (isMobile) setMobilePanelOpen(true);
                       }}
                       onMouseEnter={() => {
+                        if (isMobile) return;
                         setPanel(item.key as PanelKey);
                         setTab(0);
                       }}
@@ -261,83 +352,31 @@ const MegaMenuOverlay = ({ open, onClose }: Props) => {
               </nav>
             </div>
 
-            {/* Right panel */}
-            <div className="bg-muted/40 px-6 sm:px-10 py-8 lg:py-14">
-              <div className="flex items-center gap-8 border-b border-border">
-                {activeTabs.map((t, i) => (
-                  <button
-                    key={t.id}
-                    onClick={() => setTab(i)}
-                    className={cn(
-                      "pb-3 -mb-px text-lg sm:text-xl font-bold transition-colors border-b-2",
-                      activeTab.id === t.id
-                        ? "text-accent border-accent"
-                        : "text-foreground border-transparent hover:text-accent"
-                    )}
+            {/* Right panel — desktop inline */}
+            {!isMobile && rightPanel}
+
+            {/* Right panel — mobile slide-in from right */}
+            {isMobile && (
+              <AnimatePresence>
+                {mobilePanelOpen && (
+                  <motion.div
+                    initial={{ x: "100%" }}
+                    animate={{ x: 0 }}
+                    exit={{ x: "100%" }}
+                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                    className="absolute inset-0 z-10 bg-background overflow-y-auto"
                   >
-                    {t.label}
-                  </button>
-                ))}
-              </div>
-
-              <motion.div
-                key={panel + activeTab.id}
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.25 }}
-                className="mt-8 grid sm:grid-cols-2 xl:grid-cols-3 gap-x-10 gap-y-9"
-              >
-                {activeTab.groups.map((g) => (
-                  <div key={g.title}>
-                    <div className="text-base font-bold text-foreground">{g.title}</div>
-                    <ul className="mt-3 space-y-2.5">
-                      {g.links.map((l) => (
-                        <li key={l.label + l.to}>
-                          <Link
-                            to={l.to}
-                            onClick={onClose}
-                            className="text-[15px] text-muted-foreground hover:text-accent transition-colors"
-                          >
-                            {l.label}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-              </motion.div>
-
-              <div className="mt-10 grid gap-8 lg:grid-cols-[auto_1fr] lg:items-center">
-                <Link
-                  to={activeTab.cta.to}
-                  onClick={onClose}
-                  className="inline-flex w-fit items-center rounded-full bg-foreground px-7 py-3.5 text-sm font-semibold text-background hover:bg-foreground/90 transition-colors"
-                >
-                  {activeTab.cta.label}
-                </Link>
-
-                <Link
-                  to={featured[panel].to}
-                  onClick={onClose}
-                  className="group rounded-2xl border border-border bg-background p-6 transition-colors hover:border-accent"
-                >
-                  <div className="text-xs font-semibold uppercase tracking-widest text-accent">
-                    {featured[panel].eyebrow}
-                  </div>
-                  <div className="mt-2 text-lg font-bold text-foreground">{featured[panel].title}</div>
-                  <p className="mt-2 text-sm text-muted-foreground">{featured[panel].body}</p>
-                  <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-foreground group-hover:text-accent transition-colors">
-                    {featured[panel].cta}
-                    <ChevronRight className="h-4 w-4" />
-                  </span>
-                </Link>
-              </div>
-            </div>
+                    {rightPanel}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            )}
           </motion.div>
         </motion.div>
       )}
     </AnimatePresence>
   );
 };
+
 
 export default MegaMenuOverlay;
