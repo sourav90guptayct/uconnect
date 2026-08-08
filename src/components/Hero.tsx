@@ -95,12 +95,6 @@ const logos = [
   { src: "/clients/alstom.jpg", name: "Alstom" },
 ];
 
-const stats = [
-  { value: 200, suffix: "+", label: "Tier-1 engineers" },
-  { value: 10000, suffix: "+", label: "Links deployed" },
-  { value: 18, suffix: "", label: "Circles served" },
-  { value: 5, suffix: "", label: "Warehouses" },
-];
 
 const Hero = () => {
   const [index, setIndex] = useState(0);
