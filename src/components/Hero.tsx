@@ -276,15 +276,6 @@ const Hero = () => {
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </Link>
-              <Button
-                size="xl"
-                variant="outline"
-                onClick={() =>
-                  document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })
-                }
-              >
-                Talk to an engineer
-              </Button>
             </div>
 
             {/* Slide selector as labelled rails */}
