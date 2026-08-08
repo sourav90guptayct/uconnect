@@ -1,35 +1,40 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import AnimatedCounter from "@/components/animations/AnimatedCounter";
-import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
-import heroImg from "@/assets/hero-bright-tower.jpg";
+import tileTower from "@/assets/hero-tile-tower.jpg";
+import tileNoc from "@/assets/hero-tile-noc.jpg";
+import tileField from "@/assets/hero-tile-field.jpg";
 
 const slides = [
   {
-    eyebrow: "Managed services",
-    titleA: "Your network,",
-    titleB: "our watch.",
+    kicker: "Managed services",
+    word: "watched",
     body: "24×7 monitoring, field response and SLA-backed operations so your team stays focused on growth, not troubleshooting.",
     ctaLabel: "Explore managed services",
     ctaHref: "/managed-services",
+    image: tileNoc,
+    imageAlt: "Engineers monitoring network dashboards inside a bright operations centre",
   },
   {
-    eyebrow: "ConnectLH™ product line",
-    titleA: "Carrier-grade radios,",
-    titleB: "built for the field.",
+    kicker: "ConnectLH™ product line",
+    word: "connected",
     body: "Dish and sector antennas, PoE injectors and outdoor accessories — 10,000+ Links already deployed across India.",
     ctaLabel: "View products",
     ctaHref: "/products",
+    image: tileField,
+    imageAlt: "Field engineer aligning a ConnectLH microwave dish antenna",
   },
   {
-    eyebrow: "Network deployment",
-    titleA: "Towers, fiber, rollout —",
-    titleB: "one partner.",
+    kicker: "Network deployment",
+    word: "built",
     body: "200+ Tier-1 engineers across 18 circles, backed by 5 regional warehouses for rapid pan-India deployment.",
     ctaLabel: "See our networks work",
     ctaHref: "/networks",
+    image: tileTower,
+    imageAlt: "Telecom tower with sector antennas against a bright sky",
   },
 ];
 
@@ -44,159 +49,198 @@ const logos = [
   { src: "/clients/alstom.jpg", name: "Alstom" },
 ];
 
+const stats = [
+  { value: 200, suffix: "+", label: "Tier-1 engineers" },
+  { value: 10000, suffix: "+", label: "Links deployed" },
+  { value: 18, suffix: "", label: "Circles served" },
+  { value: 5, suffix: "", label: "Warehouses" },
+];
+
 const Hero = () => {
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
 
   useEffect(() => {
     if (paused) return;
-    const t = setInterval(() => setIndex((i) => (i + 1) % slides.length), 6500);
+    const t = setInterval(() => setIndex((i) => (i + 1) % slides.length), 6000);
     return () => clearInterval(t);
   }, [paused]);
-
-  const go = (dir: number) =>
-    setIndex((i) => (i + dir + slides.length) % slides.length);
 
   const slide = slides[index];
 
   return (
-    <section id="home" className="relative bg-background">
-      {/* Bright photographic band, inset rounded frame */}
-      <div className="container mx-auto px-4 pt-4 lg:pt-6">
-        <div
-          className="relative min-h-[600px] lg:min-h-[700px] flex items-center overflow-hidden rounded-[1.75rem]"
-          onMouseEnter={() => setPaused(true)}
-          onMouseLeave={() => setPaused(false)}
-        >
-          <img
-            src={heroImg}
-            alt="uConnect Technologies engineers surveying a telecom tower under bright daylight"
-            {...{ fetchpriority: "high" }}
-            decoding="async"
-            width={1920}
-            height={1088}
-            className="absolute inset-0 h-full w-full object-cover"
-          />
-          {/* Light legibility scrims — keeps the photo bright and airy */}
-          <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/45 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent" />
+    <section id="home" className="relative bg-background overflow-hidden">
+      {/* Soft light wash instead of a dark scrim */}
+      <div
+        className="pointer-events-none absolute -top-40 -right-24 h-[36rem] w-[36rem] rounded-full opacity-60 blur-3xl"
+        style={{ background: "radial-gradient(circle, hsl(var(--accent) / 0.18), transparent 70%)" }}
+      />
 
-          <div className="relative z-10 w-full px-5 sm:px-8 lg:px-12 py-16 lg:py-20">
-            <div className="grid lg:grid-cols-12 gap-8 items-center">
-              {/* Rotating message card */}
-              <div className="lg:col-span-7">
+      <div className="container mx-auto px-4 pt-10 pb-6 lg:pt-16 lg:pb-10 relative">
+        <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+          {/* Editorial headline column */}
+          <div className="lg:col-span-6">
+            <div className="flex items-center gap-3">
+              <span className="h-px w-10 bg-accent" />
+              <AnimatePresence mode="wait">
+                <motion.span
+                  key={slide.kicker}
+                  initial={{ opacity: 0, y: 6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -6 }}
+                  transition={{ duration: 0.35 }}
+                  className="t-eyebrow text-accent"
+                >
+                  {slide.kicker}
+                </motion.span>
+              </AnimatePresence>
+            </div>
+
+            <h1 className="display-headline mt-6 text-foreground text-[2.5rem] sm:text-5xl lg:text-6xl xl:text-7xl">
+              India&apos;s networks,
+              <br />
+              <span className="relative inline-flex items-baseline">
                 <AnimatePresence mode="wait">
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 18 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -12 }}
-                    transition={{ duration: 0.5, ease: "easeOut" }}
-                    className="rounded-3xl border border-border bg-card/85 backdrop-blur-xl p-7 lg:p-10 shadow-xl max-w-2xl"
+                  <motion.span
+                    key={slide.word}
+                    initial={{ opacity: 0, y: 20, filter: "blur(6px)" }}
+                    animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                    exit={{ opacity: 0, y: -20, filter: "blur(6px)" }}
+                    transition={{ duration: 0.45, ease: "easeOut" }}
+                    className="text-accent"
                   >
-                    <div className="text-xs lg:text-sm font-semibold text-accent uppercase tracking-[0.18em]">
-                      {slide.eyebrow}
-                    </div>
-                    <h1 className="display-headline mt-4 text-foreground text-3xl sm:text-4xl lg:text-5xl xl:text-6xl">
-                      {slide.titleA}
-                      <br />
-                      <span className="text-muted-foreground">{slide.titleB}</span>
-                    </h1>
-                    <p className="mt-5 text-sm lg:text-base text-muted-foreground leading-relaxed max-w-xl">
-                      {slide.body}
-                    </p>
-                    <div className="mt-7 flex flex-col sm:flex-row gap-3">
-                      <Link to={slide.ctaHref}>
-                        <Button variant="cta" size="xl" className="w-full sm:w-auto">
-                          {slide.ctaLabel}
-                          <ArrowRight className="ml-2 h-4 w-4" />
-                        </Button>
-                      </Link>
-                      <Button
-                        size="xl"
-                        variant="outline"
-                        onClick={() =>
-                          document
-                            .getElementById("contact")
-                            ?.scrollIntoView({ behavior: "smooth" })
-                        }
-                      >
-                        Talk to an engineer
-                      </Button>
-                    </div>
-                  </motion.div>
+                    {slide.word}
+                  </motion.span>
                 </AnimatePresence>
+              </span>{" "}
+              <span className="text-muted-foreground">end to end.</span>
+            </h1>
 
-                {/* Slide controls */}
-                <div className="mt-6 flex items-center gap-4">
-                  <div className="flex items-center gap-2">
-                    {slides.map((_, i) => (
-                      <button
-                        key={i}
-                        aria-label={`Show slide ${i + 1}`}
-                        onClick={() => setIndex(i)}
-                        className={`h-1.5 rounded-full transition-all duration-300 ${
-                          i === index
-                            ? "w-8 bg-accent"
-                            : "w-3 bg-foreground/25 hover:bg-foreground/50"
-                        }`}
-                      />
-                    ))}
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <button
-                      aria-label="Previous slide"
-                      onClick={() => go(-1)}
-                      className="h-9 w-9 rounded-full border border-border bg-card/70 text-foreground/70 flex items-center justify-center hover:bg-card transition-colors"
-                    >
-                      <ChevronLeft className="h-4 w-4" />
-                    </button>
-                    <button
-                      aria-label="Next slide"
-                      onClick={() => go(1)}
-                      className="h-9 w-9 rounded-full border border-border bg-card/70 text-foreground/70 flex items-center justify-center hover:bg-card transition-colors"
-                    >
-                      <ChevronRight className="h-4 w-4" />
-                    </button>
-                  </div>
-                </div>
+            <AnimatePresence mode="wait">
+              <motion.p
+                key={slide.body}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.4 }}
+                className="mt-6 t-body-lg text-muted-foreground max-w-xl"
+              >
+                {slide.body}
+              </motion.p>
+            </AnimatePresence>
+
+            <div className="mt-8 flex flex-col sm:flex-row gap-3">
+              <Link to={slide.ctaHref}>
+                <Button variant="cta" size="xl" className="w-full sm:w-auto">
+                  {slide.ctaLabel}
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </Link>
+              <Button
+                size="xl"
+                variant="outline"
+                onClick={() =>
+                  document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })
+                }
+              >
+                Talk to an engineer
+              </Button>
+            </div>
+
+            {/* Slide selector as labelled rails */}
+            <div className="mt-10 flex flex-col sm:flex-row gap-3 sm:gap-6">
+              {slides.map((s, i) => (
+                <button
+                  key={s.kicker}
+                  onClick={() => setIndex(i)}
+                  onMouseEnter={() => setPaused(true)}
+                  onMouseLeave={() => setPaused(false)}
+                  className="group text-left flex-1"
+                  aria-label={`Show ${s.kicker}`}
+                >
+                  <span
+                    className={`block h-[3px] rounded-full transition-colors duration-300 ${
+                      i === index ? "bg-accent" : "bg-border group-hover:bg-foreground/25"
+                    }`}
+                  />
+                  <span
+                    className={`mt-2 block t-micro transition-colors ${
+                      i === index ? "text-foreground" : "text-muted-foreground"
+                    }`}
+                  >
+                    {s.kicker}
+                  </span>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Photo mosaic */}
+          <div className="lg:col-span-6">
+            <div className="grid grid-cols-5 grid-rows-6 gap-3 sm:gap-4 h-[380px] sm:h-[460px] lg:h-[560px]">
+              {/* Featured tile — swaps with the slide */}
+              <div className="col-span-3 row-span-6 relative rounded-[1.5rem] overflow-hidden bg-muted">
+                <AnimatePresence mode="wait">
+                  <motion.img
+                    key={slide.image}
+                    src={slide.image}
+                    alt={slide.imageAlt}
+                    initial={{ opacity: 0, scale: 1.06 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.7, ease: "easeOut" }}
+                    {...{ fetchpriority: "high" }}
+                    decoding="async"
+                    className="absolute inset-0 h-full w-full object-cover"
+                  />
+                </AnimatePresence>
               </div>
 
-              {/* Credibility panel */}
-              <motion.div
-                initial={{ opacity: 0, x: 24 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.3, duration: 0.7 }}
-                className="lg:col-span-5 hidden lg:block"
-              >
-                <div className="ml-auto max-w-sm rounded-3xl border border-border bg-card/80 backdrop-blur-xl p-8 shadow-lg">
-                  <div className="text-xs font-semibold text-muted-foreground uppercase tracking-[0.18em]">
-                    Since 2017
+              {/* Static supporting tiles */}
+              <div className="col-span-2 row-span-3 rounded-[1.5rem] overflow-hidden bg-muted">
+                <img
+                  src={tileTower}
+                  alt="Telecom tower against a bright sky"
+                  loading="lazy"
+                  decoding="async"
+                  className="h-full w-full object-cover"
+                />
+              </div>
+              <div className="col-span-2 row-span-3 rounded-[1.5rem] border border-border bg-card p-5 flex flex-col justify-between">
+                <div className="t-eyebrow text-muted-foreground">Since 2017</div>
+                <div>
+                  <div className="display-headline text-3xl lg:text-4xl text-foreground">
+                    <AnimatedCounter to={10000} suffix="+" />
                   </div>
-                  <div className="mt-6 grid grid-cols-2 gap-x-6 gap-y-8">
-                    {[
-                      { value: 200, suffix: "+", label: "Tier-1 engineers" },
-                      { value: 10000, suffix: "+", label: "Links deployed" },
-                      { value: 18, suffix: "", label: "Circles served" },
-                      { value: 5, suffix: "", label: "Warehouses" },
-                    ].map((stat, i) => (
-                      <div key={i}>
-                        <div className="display-headline text-3xl xl:text-4xl text-foreground">
-                          <AnimatedCounter to={stat.value} suffix={stat.suffix} />
-                        </div>
-                        <div className="mt-1.5 text-[11px] text-muted-foreground uppercase tracking-wider">
-                          {stat.label}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
+                  <div className="mt-1 t-micro text-muted-foreground">Links deployed</div>
                 </div>
-              </motion.div>
+                <Link
+                  to="/about"
+                  className="inline-flex items-center gap-1 t-micro text-accent hover:underline"
+                >
+                  Our story <ArrowUpRight className="h-3.5 w-3.5" />
+                </Link>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
+      {/* Stat ticker */}
+      <div className="container mx-auto px-4">
+        <div className="grid grid-cols-2 lg:grid-cols-4 divide-x divide-border border-y border-border">
+          {stats.map((s) => (
+            <div key={s.label} className="px-5 py-6 lg:py-8">
+              <div className="display-headline text-2xl lg:text-3xl text-foreground">
+                <AnimatedCounter to={s.value} suffix={s.suffix} />
+              </div>
+              <div className="mt-1.5 t-micro text-muted-foreground uppercase tracking-wider">
+                {s.label}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
 
       {/* Positioning statement */}
       <div className="bg-background py-14 lg:py-20">
