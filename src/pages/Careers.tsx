@@ -211,13 +211,14 @@ const CareersPage = () => {
       <Header />
       <main>
         {/* Cinematic hero */}
-        <section className="relative min-h-[85vh] flex items-end overflow-hidden">
+        <section className="relative min-h-[72vh] flex items-end overflow-hidden">
           <img
             src="/lovable-uploads/115872b6-8d21-43a0-b6ed-a612375446ba.webp"
             alt="uConnect Technologies engineers working on network infrastructure"
             className="absolute inset-0 w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background/20" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent" />
+
           <div className="container mx-auto px-4 lg:px-8 relative z-10 pb-16 pt-40">
             <motion.div {...fadeUp} className="max-w-4xl">
               <div className="text-sm font-semibold text-accent uppercase tracking-[0.2em] mb-6">
