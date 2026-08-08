@@ -16,6 +16,18 @@ import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/hooks/useAuth";
 import JobApplicationForm from "@/components/careers/JobApplicationForm";
+import careersHero from "@/assets/teamwork.jpg";
+import imgPower from "@/assets/sector-power.jpg";
+import imgRail from "@/assets/sector-railways.jpg";
+import imgDataCentre from "@/assets/networks-datacenter.png";
+import imgEnterprise from "@/assets/usecase-enterprise.jpg";
+import imgLogistics from "@/assets/film-logistics.jpg";
+import imgSmartCity from "@/assets/usecase-smartcity.jpg";
+import imgPlanning from "@/assets/planning.jpg";
+import imgWorkforce from "@/assets/workforce-management.jpg";
+import imgOffice from "@/assets/smart-office.jpg";
+import imgInfra from "@/assets/infra-hero.jpg";
+import imgManaged from "@/assets/managed-hero.jpg";
 
 interface Job {
   id: string;
