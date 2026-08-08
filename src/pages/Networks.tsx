@@ -88,6 +88,69 @@ const whyUs = [
 
 const regions = ["India", "Nepal", "Bhutan", "Sri Lanka"];
 
+const telecomServices = [
+  {
+    icon: Signal,
+    title: "Radio Access Deployment",
+    subtitle: "Mobile network rollout",
+    items: ["5G & 4G deployment", "RF planning & optimization", "Site survey & installation"],
+  },
+  {
+    icon: Antenna,
+    title: "Backhaul & Transmission",
+    subtitle: "Microwave and UBR links",
+    items: ["Microwave & UBR I&C services", "LOS survey & antenna alignment", "Link testing & acceptance"],
+  },
+  {
+    icon: Cable,
+    title: "Fiber & FTTH",
+    subtitle: "Wireline infrastructure",
+    items: ["Fiber & FTTH I&C services", "Splicing, OTDR & termination", "Last-mile activation"],
+  },
+  {
+    icon: Ruler,
+    title: "Planning & Design",
+    subtitle: "Engineering upfront",
+    items: ["Network planning", "Capacity & coverage design", "Bill of material & LLD/HLD"],
+  },
+  {
+    icon: Network,
+    title: "Integration & Commissioning",
+    subtitle: "Bring the network live",
+    items: ["Network integration", "Testing & commissioning", "ATP/UAT and handover"],
+  },
+  {
+    icon: Activity,
+    title: "NOC, Monitoring & O&M",
+    subtitle: "Lifecycle operations",
+    items: ["NOC & monitoring", "Network O&M", "Preventive & corrective maintenance"],
+  },
+  {
+    icon: Router,
+    title: "Enterprise & Industrial",
+    subtitle: "Beyond the carrier network",
+    items: ["Enterprise connectivity", "SD-WAN", "Industrial connectivity"],
+  },
+  {
+    icon: Building2,
+    title: "Infrastructure & Power",
+    subtitle: "Passive and energy layer",
+    items: ["Telecom infrastructure", "Power & PoE solutions", "Structured cabling & racks"],
+  },
+  {
+    icon: Wrench,
+    title: "Decommissioning",
+    subtitle: "Safe network exit",
+    items: ["Network decommissioning", "Asset recovery & reverse logistics", "Site restoration"],
+  },
+  {
+    icon: ClipboardList,
+    title: "Project Management",
+    subtitle: "Single point of accountability",
+    items: ["Project management", "Rollout governance & reporting", "Multi-vendor coordination"],
+  },
+];
+
 const NetworksPage = () => {
   return (
     <div className="min-h-screen bg-background">
