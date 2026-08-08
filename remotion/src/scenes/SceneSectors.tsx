@@ -26,18 +26,19 @@ export const SceneSectors: React.FC<{ span: number }> = ({ span }) => {
           backgroundPosition: "center",
         }}
       />
-      <AbsoluteFill style={{ padding: "96px 120px 96px" }}>
+      <AbsoluteFill style={{ padding: "70px 110px 70px" }}>
         <Eyebrow>Industries we serve</Eyebrow>
-        <Headline text="Serving multiple sectors." delay={12} size={92} maxWidth={900} />
+        <Headline text="Serving multiple sectors." delay={12} size={76} maxWidth={860} />
 
         <div
           style={{
-            marginTop: 56,
+            marginTop: 36,
             display: "grid",
             gridTemplateColumns: "repeat(3, 1fr)",
-            gridAutoRows: "1fr",
-            gap: 24,
+            gridTemplateRows: "1fr 1fr",
+            gap: 20,
             flex: 1,
+            minHeight: 0,
           }}
         >
           {sectors.map((s, i) => {
