@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import AnimatedCounter from "@/components/animations/AnimatedCounter";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import tileTower from "@/assets/hero-tile-tower.jpg";
 import tileNoc from "@/assets/hero-tile-noc.jpg";
 import tileField from "@/assets/hero-tile-field.jpg";
+import heroVideo from "@/assets/hero-imagination.mp4.asset.json";
+
 
 const slides = [
   {
