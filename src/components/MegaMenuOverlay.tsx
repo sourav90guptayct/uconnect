@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronRight, ChevronLeft, ExternalLink } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useIsMobile } from "@/hooks/use-mobile";
+import logo from "@/assets/uconnect-logo.png";
 
 
 type PanelKey = "what" | "who" | "products";
@@ -312,8 +313,15 @@ const MegaMenuOverlay = ({ open, onClose }: Props) => {
             {/* Left rail */}
             <div className="bg-background px-6 sm:px-10 py-8 lg:py-10 border-r border-border h-full overflow-y-auto">
               <div className="flex items-start justify-between">
-                <Link to="/" onClick={onClose} className="text-xl font-bold text-primary">
-                  uConnect<span className="text-gradient"> Technologies</span>
+                <Link to="/" onClick={onClose} className="inline-block">
+                  <img
+                    src={logo}
+                    alt="uConnect Technologies"
+                    className="h-8 md:h-10 w-auto"
+                    width={1792}
+                    height={1024}
+                    loading="eager"
+                  />
                 </Link>
                 <button
                   onClick={onClose}
