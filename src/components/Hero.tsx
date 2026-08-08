@@ -28,31 +28,58 @@ const sectorFrames = [
 
 const slides = [
   {
-    kicker: "Design & project management",
-    word: "designed",
-    body: "Surveys, network and system design, and end-to-end project management for telecom, railway, power and transport programmes.",
+    kicker: "Solutions we have implemented",
+    word: "Ports",
+    body: "High-throughput fibre, wireless backhaul and IP networks designed for port terminals, container yards and logistics hubs.",
     ctaLabel: "Explore our services",
     ctaHref: "/services",
-    image: sectorDesign,
-    imageAlt: "Engineers reviewing an infrastructure design on a tablet in a bright office",
+    image: sectorPorts,
+    imageAlt: "Container port with gantry cranes and connected operations",
   },
   {
-    kicker: "Day-to-day operations",
-    word: "operated",
-    body: "24×7 monitoring, field response and SLA-backed operations across multiple verticals so your team stays focused on growth.",
-    ctaLabel: "Explore managed services",
-    ctaHref: "/managed-services",
-    image: sectorOperations,
-    imageAlt: "Operators monitoring dashboards inside a bright network operations centre",
-  },
-  {
-    kicker: "ConnectLH™ product line",
-    word: "connected",
-    body: "Our own hardware line — connectivity, PoE and outdoor equipment deployed across telecom, railways, power, transportation and ports.",
-    ctaLabel: "View products",
-    ctaHref: "/products",
+    kicker: "Solutions we have implemented",
+    word: "Railways",
+    body: "Mission-critical telecom and signalling networks for metro, mainline and rail operations across India.",
+    ctaLabel: "Explore our services",
+    ctaHref: "/services",
     image: sectorRailways,
-    imageAlt: "Modern electric train at a station platform with trackside equipment cabinets",
+    imageAlt: "Modern railway platform with trackside connectivity equipment",
+  },
+  {
+    kicker: "Solutions we have implemented",
+    word: "Airports",
+    body: "Converged wireless, wireline and CCTV infrastructure for passenger operations, baggage and security.",
+    ctaLabel: "Explore our services",
+    ctaHref: "/services",
+    image: sectorAviation,
+    imageAlt: "Airport terminal boarding bridge and connected systems",
+  },
+  {
+    kicker: "Solutions we have implemented",
+    word: "Wireless & Wireline",
+    body: "Multi-gigabit wireless backhaul and structured fibre networks for campuses, cities and large enterprises.",
+    ctaLabel: "Explore our services",
+    ctaHref: "/networks",
+    image: sectorDesign,
+    imageAlt: "Engineers designing high-capacity network on screen",
+  },
+  {
+    kicker: "Solutions we have implemented",
+    word: "Smart CCTV",
+    body: "End-to-end IP surveillance solutions with network design, cameras, storage and analytics for safe operations.",
+    ctaLabel: "Explore our services",
+    ctaHref: "/services",
+    image: sectorOperations,
+    imageAlt: "Operators monitoring CCTV and network dashboards",
+  },
+  {
+    kicker: "Solutions we have implemented",
+    word: "Skilled resources",
+    body: "Certified engineers, technicians and project managers deployed across network, IT and infrastructure roles.",
+    ctaLabel: "Explore our services",
+    ctaHref: "/careers",
+    image: sectorTransport,
+    imageAlt: "Field team deploying connectivity across transport corridors",
   },
 ];
 
@@ -224,23 +251,9 @@ const Hero = () => {
             </div>
 
             <h1 className="display-headline mt-6 text-foreground text-[2.5rem] sm:text-5xl lg:text-6xl xl:text-7xl">
-              India&apos;s networks,
+              We design <span className="text-accent">networks</span>
               <br />
-              <span className="relative inline-flex items-baseline">
-                <AnimatePresence mode="wait">
-                  <motion.span
-                    key={slide.word}
-                    initial={{ opacity: 0, y: 20, filter: "blur(6px)" }}
-                    animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                    exit={{ opacity: 0, y: -20, filter: "blur(6px)" }}
-                    transition={{ duration: 0.45, ease: "easeOut" }}
-                    className="text-accent"
-                  >
-                    {slide.word}
-                  </motion.span>
-                </AnimatePresence>
-              </span>{" "}
-              <span className="text-muted-foreground">end to end.</span>
+              for seamless operations.
             </h1>
 
             <AnimatePresence mode="wait">
@@ -263,27 +276,18 @@ const Hero = () => {
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </Link>
-              <Button
-                size="xl"
-                variant="outline"
-                onClick={() =>
-                  document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })
-                }
-              >
-                Talk to an engineer
-              </Button>
             </div>
 
-            {/* Slide selector as labelled rails */}
-            <div className="mt-10 flex flex-col sm:flex-row gap-3 sm:gap-6">
+            {/* Solution selector */}
+            <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
               {slides.map((s, i) => (
                 <button
-                  key={s.kicker}
+                  key={s.word}
                   onClick={() => setIndex(i)}
                   onMouseEnter={() => setPaused(true)}
                   onMouseLeave={() => setPaused(false)}
-                  className="group text-left flex-1"
-                  aria-label={`Show ${s.kicker}`}
+                  className="group text-left"
+                  aria-label={`Show ${s.word}`}
                 >
                   <span
                     className={`block h-[3px] rounded-full transition-colors duration-300 ${
@@ -295,7 +299,7 @@ const Hero = () => {
                       i === index ? "text-foreground" : "text-muted-foreground"
                     }`}
                   >
-                    {s.kicker}
+                    {s.word}
                   </span>
                 </button>
               ))}
