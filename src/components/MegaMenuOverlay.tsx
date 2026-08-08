@@ -175,6 +175,20 @@ const MegaMenuOverlay = ({ open, onClose }: Props) => {
   const [tab, setTab] = useState(0);
   const [mobilePanelOpen, setMobilePanelOpen] = useState(false);
   const isMobile = useIsMobile();
+  const location = useLocation();
+
+  // Close the menu and, when already on the target page, scroll to the section
+  const handleNavClick = (to: string) => {
+    onClose();
+    const [path, query] = to.split("?");
+    const section = new URLSearchParams(query || "").get("section");
+    if (section && path === location.pathname) {
+      setTimeout(() => {
+        document.getElementById(section)?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 200);
+    }
+  };
+
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
