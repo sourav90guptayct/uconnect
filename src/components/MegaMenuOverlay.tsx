@@ -313,15 +313,18 @@ const MegaMenuOverlay = ({ open, onClose }: Props) => {
             {/* Left rail */}
             <div className="bg-background px-6 sm:px-10 py-8 lg:py-10 border-r border-border h-full overflow-y-auto">
               <div className="flex items-start justify-between">
-                <Link to="/" onClick={onClose} className="inline-block">
+                <Link to="/" onClick={onClose} className="inline-flex items-center gap-2.5 group">
                   <img
-                    src={logo}
-                    alt="uConnect Technologies"
-                    className="h-8 md:h-10 w-auto"
-                    width={1792}
-                    height={1024}
+                    src={logoIcon}
+                    alt="uConnect"
+                    className="h-9 w-auto transition-transform duration-300 group-hover:scale-105"
+                    width={512}
+                    height={512}
                     loading="eager"
                   />
+                  <span className="text-xl font-bold tracking-tight text-foreground whitespace-nowrap">
+                    uConnect<span className="text-gradient"> Technologies</span>
+                  </span>
                 </Link>
                 <button
                   onClick={onClose}
