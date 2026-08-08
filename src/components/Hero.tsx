@@ -71,7 +71,80 @@ const Hero = () => {
   const slide = slides[index];
 
   return (
+    <>
+      {/* Full-bleed cinematic video hero */}
+      <section className="relative h-[88svh] min-h-[520px] w-full overflow-hidden bg-primary">
+        <video
+          className="absolute inset-0 h-full w-full object-cover"
+          src={heroVideo.url}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          aria-hidden="true"
+        />
+        {/* Legibility scrim */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(180deg, hsl(222 47% 8% / 0.55) 0%, hsl(222 47% 8% / 0.25) 40%, hsl(222 47% 8% / 0.75) 100%)",
+          }}
+        />
+
+        <div className="relative h-full container mx-auto px-4 flex flex-col justify-end pb-16 lg:pb-24">
+          <motion.div
+            initial={{ opacity: 0, y: 28 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, ease: "easeOut" }}
+            className="max-w-4xl"
+          >
+            <div className="flex items-center gap-3">
+              <span className="h-px w-10 bg-accent" />
+              <span className="t-eyebrow text-on-media/80">uConnect Technologies</span>
+            </div>
+            <h1 className="display-headline mt-6 text-on-media text-[2.75rem] leading-[1.02] sm:text-6xl lg:text-7xl xl:text-8xl">
+              Putting Imagination
+              <br />
+              to <span className="text-accent">work</span>
+            </h1>
+            <p className="mt-6 t-body-lg text-on-media/80 max-w-xl">
+              A product &amp; services integrator for enterprise networks — ConnectLH™ hardware,
+              managed services, deployment, resources and infra under one accountable team.
+            </p>
+            <div className="mt-8 flex flex-col sm:flex-row gap-3">
+              <Link to="/services">
+                <Button variant="cta" size="xl" className="w-full sm:w-auto">
+                  What we do
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </Link>
+              <Button
+                size="xl"
+                variant="outline"
+                className="border-on-media/40 bg-transparent text-on-media hover:bg-on-media/10 hover:text-on-media"
+                onClick={() =>
+                  document.getElementById("home")?.scrollIntoView({ behavior: "smooth" })
+                }
+              >
+                Explore uConnect
+              </Button>
+            </div>
+          </motion.div>
+        </div>
+
+        <button
+          onClick={() => document.getElementById("home")?.scrollIntoView({ behavior: "smooth" })}
+          aria-label="Scroll to content"
+          className="absolute bottom-5 left-1/2 -translate-x-1/2 text-on-media/70 hover:text-on-media transition-colors"
+        >
+          <ChevronDown className="h-6 w-6 animate-bounce" />
+        </button>
+      </section>
+
     <section id="home" className="relative bg-background overflow-hidden">
+
       {/* Soft light wash instead of a dark scrim */}
       <div
         className="pointer-events-none absolute -top-40 -right-24 h-[36rem] w-[36rem] rounded-full opacity-60 blur-3xl"
