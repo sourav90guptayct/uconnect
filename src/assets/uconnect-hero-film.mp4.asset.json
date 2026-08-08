@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "asset_id": "6bbd3db8-a7ee-4cff-a9d6-713636f4749b",
+  "asset_id": "9834cf54-03fe-4c54-be9f-cae65b9af99b",
   "project_id": "7cf0c05d-c965-4e8e-8697-d0b2135b22b9",
-  "url": "/__l5e/assets-v1/6bbd3db8-a7ee-4cff-a9d6-713636f4749b/uconnect-hero-film.mp4",
-  "r2_key": "a/v1/7cf0c05d-c965-4e8e-8697-d0b2135b22b9/6bbd3db8-a7ee-4cff-a9d6-713636f4749b/uconnect-hero-film.mp4",
-  "original_filename": "uconnect-hero-film.mp4",
-  "size": 15925204,
+  "url": "/__l5e/assets-v1/9834cf54-03fe-4c54-be9f-cae65b9af99b/uconnect-hero-film-v3.mp4",
+  "r2_key": "a/v1/7cf0c05d-c965-4e8e-8697-d0b2135b22b9/9834cf54-03fe-4c54-be9f-cae65b9af99b/uconnect-hero-film-v3.mp4",
+  "original_filename": "uconnect-hero-film-v3.mp4",
+  "size": 15865747,
   "content_type": "video/mp4",
-  "created_at": "2026-08-08T12:18:17Z"
+  "created_at": "2026-08-08T12:30:57Z"
 }
