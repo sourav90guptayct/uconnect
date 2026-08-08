@@ -131,6 +131,7 @@ const UseCases = () => {
                   ))}
                 </div>
               </div>
+              </Link>
             </motion.article>
           ))}
         </div>
