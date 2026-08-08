@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronRight, ChevronLeft, ExternalLink } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useIsMobile } from "@/hooks/use-mobile";
-import logoIcon from "@/assets/uconnect-icon-dark.webp";
+
 
 
 type PanelKey = "what" | "who" | "products";
