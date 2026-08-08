@@ -76,8 +76,9 @@ const Hero = () => {
           className="absolute inset-0 h-full w-full object-cover"
         />
         {/* Legibility scrims */}
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/60 to-primary/20" />
-        <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-primary/40" />
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/85 via-primary/55 to-primary/15" />
+        <div className="absolute inset-0 bg-gradient-to-t from-primary/70 via-transparent to-primary/30" />
+
 
         <div className="container mx-auto px-4 relative z-10 py-24 lg:py-28">
           <div className="grid lg:grid-cols-12 gap-10 items-center">
