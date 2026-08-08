@@ -5,11 +5,9 @@ import Hero from "@/components/Hero";
 import SEO from "@/components/SEO";
 
 // Lazy load below-the-fold sections to reduce initial JS
-const About = lazy(() => import("@/components/About"));
 const Services = lazy(() => import("@/components/Services"));
-const UseCases = lazy(() => import("@/components/UseCases"));
-const HowItWorks = lazy(() => import("@/components/HowItWorks"));
 const WhyChooseUs = lazy(() => import("@/components/WhyChooseUs"));
+
 
 const Contact = lazy(() => import("@/components/Contact"));
 const Footer = lazy(() => import("@/components/Footer"));
@@ -81,14 +79,11 @@ const Index = () => {
       <main>
         <Hero />
         <Suspense fallback={<SectionFallback />}>
-          <About />
           <Services />
-          <UseCases />
-          <HowItWorks />
           <WhyChooseUs />
-
           <Contact />
         </Suspense>
+
       </main>
       <Suspense fallback={<SectionFallback />}>
         <Footer />
