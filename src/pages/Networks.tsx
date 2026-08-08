@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, CheckCircle2, Radio, Wifi, Antenna, Router, Globe, MapPin } from "lucide-react";
+import { ArrowRight, CheckCircle2, Radio, Wifi, Antenna, Router, Globe, MapPin, Signal, Cable, Ruler, Wrench, Network, Activity, Building2, Zap, ClipboardList } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import Header from "@/components/Header";
