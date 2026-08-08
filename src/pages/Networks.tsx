@@ -8,11 +8,11 @@ import SEO from "@/components/SEO";
 import networksHero from "@/assets/networks-highway.jpg";
 import networksDeployment from "@/assets/networks-station.jpg";
 import networksCoverage from "@/assets/networks-coverage.jpg";
-import networksInfra from "@/assets/networks-datacenter.png";
-import networksEnterprise from "@/assets/networks-enterprise.png";
+import networksInfra from "@/assets/networks-datacenter.jpg";
+import networksEnterprise from "@/assets/networks-enterprise.jpg";
 import networksRail from "@/assets/networks-rail.jpg";
 import networksUtility from "@/assets/networks-utility.jpg";
-import networksSmartCity from "@/assets/networks-smartcity.png";
+import networksSmartCity from "@/assets/networks-smartcity.jpg";
 
 const expertise = [
   {

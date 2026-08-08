@@ -2,11 +2,11 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Wifi, Shield, TrainFront, Zap, Factory, Server, ArrowUpRight } from "lucide-react";
 import telecomAsset from "@/assets/telecom-connectivity.jpg.asset.json";
-import governmentImg from "@/assets/networks-smartcity.png";
+import governmentImg from "@/assets/networks-smartcity.jpg";
 import railImg from "@/assets/networks-rail.jpg";
 import energyImg from "@/assets/networks-utility.jpg";
 import enterpriseImg from "@/assets/usecase-industrial.jpg";
-import digitalImg from "@/assets/networks-datacenter.png";
+import digitalImg from "@/assets/networks-datacenter.jpg";
 
 const telecomImg = telecomAsset.url;
 
