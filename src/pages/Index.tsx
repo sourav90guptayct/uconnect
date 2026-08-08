@@ -7,7 +7,6 @@ import SEO from "@/components/SEO";
 // Lazy load below-the-fold sections to reduce initial JS
 const Services = lazy(() => import("@/components/Services"));
 const UseCases = lazy(() => import("@/components/UseCases"));
-const WhyChooseUs = lazy(() => import("@/components/WhyChooseUs"));
 const Contact = lazy(() => import("@/components/Contact"));
 const Footer = lazy(() => import("@/components/Footer"));
 
@@ -80,7 +79,6 @@ const Index = () => {
         <Suspense fallback={<SectionFallback />}>
           <Services />
           <UseCases />
-          <WhyChooseUs />
           <Contact />
         </Suspense>
 
