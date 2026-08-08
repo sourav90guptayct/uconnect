@@ -279,18 +279,18 @@ const Hero = () => {
             </div>
 
             {/* Solution selector */}
-            <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+            <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 items-start">
               {slides.map((s, i) => (
                 <button
                   key={s.word}
                   onClick={() => setIndex(i)}
                   onMouseEnter={() => setPaused(true)}
                   onMouseLeave={() => setPaused(false)}
-                  className="group text-left"
+                  className="group flex flex-col text-left self-start"
                   aria-label={`Show ${s.word}`}
                 >
                   <span
-                    className={`block h-[3px] rounded-full transition-colors duration-300 ${
+                    className={`block w-full shrink-0 h-[3px] rounded-full transition-colors duration-300 ${
                       i === index ? "bg-accent" : "bg-border group-hover:bg-foreground/25"
                     }`}
                   />
@@ -304,6 +304,7 @@ const Hero = () => {
                 </button>
               ))}
             </div>
+
           </div>
 
           {/* Photo mosaic */}
