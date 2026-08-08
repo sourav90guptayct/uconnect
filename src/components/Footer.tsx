@@ -14,7 +14,11 @@ const Footer = () => {
     { label: "Careers", to: "/careers" },
     { label: "Jobs", to: "/jobs" },
     { label: "Support", to: "/support" },
+    { label: "Governance", to: "/governance" },
+    { label: "Business Practices", to: "/business-practices" },
+    { label: "Quality & HSE", to: "/quality-hse" },
   ];
+
 
   const services = [
     { label: "Managed Services", to: "/managed-services" },

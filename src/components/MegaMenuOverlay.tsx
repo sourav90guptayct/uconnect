@@ -81,7 +81,24 @@ const whoGroups = [
     links: [
       { label: "About uConnect", to: "/about" },
       { label: "Our story since 2017", to: "/about" },
+      { label: "Leadership & governance", to: "/governance" },
       { label: "Clients & partners", to: "/clients" },
+    ],
+  },
+  {
+    title: "How we work",
+    links: [
+      { label: "Business practices & policies", to: "/business-practices" },
+      { label: "Quality, health, safety & environment", to: "/quality-hse" },
+      { label: "Risk & project governance", to: "/governance" },
+    ],
+  },
+  {
+    title: "People & careers",
+    links: [
+      { label: "Life at uConnect", to: "/careers" },
+      { label: "Open roles", to: "/jobs" },
+      { label: "Workplace policies", to: "/business-practices" },
     ],
   },
   {
@@ -92,6 +109,30 @@ const whoGroups = [
     ],
   },
 ];
+
+const featured: Record<PanelKey, { eyebrow: string; title: string; body: string; to: string; cta: string }> = {
+  what: {
+    eyebrow: "Integrator",
+    title: "Product and services under one accountable owner",
+    body: "Managed services, network deployment, resource management and infra solutions delivered across 18 telecom circles.",
+    to: "/services",
+    cta: "Explore our capabilities",
+  },
+  products: {
+    eyebrow: "ConnectLH™",
+    title: "Field-proven telecom hardware, 10,000+ links deployed",
+    body: "Antennas, routers, PoE, switches, FTTH, fiber and RF cables, racks and fabricated site infrastructure with datasheets on request.",
+    to: "/products",
+    cta: "Browse the catalogue",
+  },
+  who: {
+    eyebrow: "Since 2017",
+    title: "Built on disciplined governance and 200+ Tier-1 engineers",
+    body: "Documented decision rights, project governance and safety practice on every site — read how we run the business.",
+    to: "/governance",
+    cta: "How we are governed",
+  },
+};
 
 const panels: Record<
   PanelKey,
@@ -167,7 +208,7 @@ const MegaMenuOverlay = ({ open, onClose }: Props) => {
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: -16, opacity: 0 }}
             transition={{ duration: 0.28, ease: "easeOut" }}
-            className="relative h-full w-full grid lg:grid-cols-[minmax(280px,32%)_1fr] bg-background overflow-y-auto"
+            className="relative h-full w-full grid lg:grid-cols-[minmax(260px,26%)_1fr] bg-background overflow-y-auto"
           >
             {/* Left rail */}
             <div className="bg-background px-6 sm:px-10 py-8 lg:py-10 border-r border-border">
@@ -248,7 +289,7 @@ const MegaMenuOverlay = ({ open, onClose }: Props) => {
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.25 }}
-                className="mt-8 grid sm:grid-cols-2 gap-x-10 gap-y-9"
+                className="mt-8 grid sm:grid-cols-2 xl:grid-cols-3 gap-x-10 gap-y-9"
               >
                 {activeTab.groups.map((g) => (
                   <div key={g.title}>
@@ -270,13 +311,31 @@ const MegaMenuOverlay = ({ open, onClose }: Props) => {
                 ))}
               </motion.div>
 
-              <Link
-                to={activeTab.cta.to}
-                onClick={onClose}
-                className="mt-10 inline-flex items-center rounded-full bg-foreground px-7 py-3.5 text-sm font-semibold text-background hover:bg-foreground/90 transition-colors"
-              >
-                {activeTab.cta.label}
-              </Link>
+              <div className="mt-10 grid gap-8 lg:grid-cols-[auto_1fr] lg:items-center">
+                <Link
+                  to={activeTab.cta.to}
+                  onClick={onClose}
+                  className="inline-flex w-fit items-center rounded-full bg-foreground px-7 py-3.5 text-sm font-semibold text-background hover:bg-foreground/90 transition-colors"
+                >
+                  {activeTab.cta.label}
+                </Link>
+
+                <Link
+                  to={featured[panel].to}
+                  onClick={onClose}
+                  className="group rounded-2xl border border-border bg-background p-6 transition-colors hover:border-accent"
+                >
+                  <div className="text-xs font-semibold uppercase tracking-widest text-accent">
+                    {featured[panel].eyebrow}
+                  </div>
+                  <div className="mt-2 text-lg font-bold text-foreground">{featured[panel].title}</div>
+                  <p className="mt-2 text-sm text-muted-foreground">{featured[panel].body}</p>
+                  <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-foreground group-hover:text-accent transition-colors">
+                    {featured[panel].cta}
+                    <ChevronRight className="h-4 w-4" />
+                  </span>
+                </Link>
+              </div>
             </div>
           </motion.div>
         </motion.div>

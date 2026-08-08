@@ -24,6 +24,9 @@ const Register = lazy(() => import("./pages/Register"));
 const Jobs = lazy(() => import("./pages/Jobs"));
 const JobDetails = lazy(() => import("./pages/JobDetails"));
 const Support = lazy(() => import("./pages/Support"));
+const BusinessPractices = lazy(() => import("./pages/BusinessPractices"));
+const Governance = lazy(() => import("./pages/Governance"));
+const QualityHSE = lazy(() => import("./pages/QualityHSE"));
 const Clients = lazy(() => import("./pages/Clients"));
 const Products = lazy(() => import("./pages/Products"));
 const Networks = lazy(() => import("./pages/Networks"));
@@ -94,6 +97,9 @@ const App = () => (
               <Route path="/jobs/:id" element={<JobDetails />} />
               <Route path="/support" element={<Support />} />
               <Route path="/clients" element={<Clients />} />
+              <Route path="/business-practices" element={<BusinessPractices />} />
+              <Route path="/governance" element={<Governance />} />
+              <Route path="/quality-hse" element={<QualityHSE />} />
               <Route path="/careers/screening/l2-network-engineer" element={<ScreeningL2NetworkEngineer />} />
 
               {/* Redirects for legacy paths */}
