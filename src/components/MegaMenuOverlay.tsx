@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ChevronRight, ExternalLink } from "lucide-react";
+import { X, ChevronRight, ChevronLeft, ExternalLink } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useIsMobile } from "@/hooks/use-mobile";
+
 
 type PanelKey = "what" | "who" | "products";
 
