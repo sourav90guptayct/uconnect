@@ -6,6 +6,7 @@ import { useAdminCheck } from "@/hooks/useAdminCheck";
 import { useNavigate, Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import MegaMenuOverlay from "@/components/MegaMenuOverlay";
+import logo from "@/assets/uconnect-logo.png";
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -46,8 +47,15 @@ const Header = () => {
       >
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
-            <Link to="/" className="text-xl font-bold text-primary">
-              uConnect<span className="text-gradient"> Technologies</span>
+            <Link to="/" className="flex items-center">
+              <img
+                src={logo}
+                alt="uConnect Technologies"
+                className="h-8 md:h-10 w-auto"
+                width={1792}
+                height={1024}
+                loading="eager"
+              />
             </Link>
 
             <div className="flex items-center gap-2 sm:gap-4">
