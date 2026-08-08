@@ -179,13 +179,6 @@ const Hero = () => {
                       Watch the film
                     </span>
                   </button>
-
-                  <Link to="/services" className="sm:ml-4">
-                    <Button variant="cta" size="xl" className="w-full sm:w-auto">
-                      What we do
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    </Button>
-                  </Link>
                 </div>
 
               </motion.div>
