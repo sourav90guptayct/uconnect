@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import AnimatedCounter from "@/components/animations/AnimatedCounter";
-import { ArrowRight, ArrowUpRight, ChevronDown, Play } from "lucide-react";
+import { ArrowRight, ChevronDown, Play } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import HeroFilm from "@/components/HeroFilm";
@@ -12,6 +11,12 @@ import sectorPorts from "@/assets/film-ports.jpg";
 import sectorTransport from "@/assets/film-transport.jpg";
 import sectorOperations from "@/assets/film-operations.jpg";
 import sectorAviation from "@/assets/film-aviation.jpg";
+import tileAviation from "@/assets/tile-aviation.jpg.asset.json";
+import tilePorts from "@/assets/tile-ports.png.asset.json";
+import tileTerminal from "@/assets/tile-airport-terminal.webp.asset.json";
+import tileLogistics from "@/assets/tile-logistics.webp.asset.json";
+import tileRail from "@/assets/tile-rail.jpg.asset.json";
+import tileBus from "@/assets/tile-bus.png.asset.json";
 
 const sectorFrames = [
   { image: sectorDesign, label: "Design & engineering", alt: "Engineers reviewing an infrastructure design together on screen" },
@@ -33,8 +38,8 @@ const slides = [
     body: "High-throughput fibre, wireless backhaul and IP networks designed for port terminals, container yards and logistics hubs.",
     ctaLabel: "Explore our services",
     ctaHref: "/services",
-    image: sectorPorts,
-    imageAlt: "Container port with gantry cranes and connected operations",
+    image: tilePorts.url,
+    imageAlt: "Aerial view of a container port terminal and logistics yard",
   },
   {
     kicker: "Solutions we have implemented",
@@ -42,8 +47,8 @@ const slides = [
     body: "Mission-critical telecom and signalling networks for metro, mainline and rail operations across India.",
     ctaLabel: "Explore our services",
     ctaHref: "/services",
-    image: sectorRailways,
-    imageAlt: "Modern railway platform with trackside connectivity equipment",
+    image: tileRail.url,
+    imageAlt: "Modern tram crossing a city bridge",
   },
   {
     kicker: "Solutions we have implemented",
@@ -51,8 +56,8 @@ const slides = [
     body: "Converged wireless, wireline and CCTV infrastructure for passenger operations, baggage and security.",
     ctaLabel: "Explore our services",
     ctaHref: "/services",
-    image: sectorAviation,
-    imageAlt: "Airport terminal boarding bridge and connected systems",
+    image: tileAviation.url,
+    imageAlt: "Traveller walking through an airport boarding bridge",
   },
   {
     kicker: "Solutions we have implemented",
@@ -60,8 +65,8 @@ const slides = [
     body: "Multi-gigabit wireless backhaul and structured fibre networks for campuses, cities and large enterprises.",
     ctaLabel: "Explore our services",
     ctaHref: "/networks",
-    image: sectorDesign,
-    imageAlt: "Engineers designing high-capacity network on screen",
+    image: tileLogistics.url,
+    imageAlt: "Automated container handling at an intermodal logistics park",
   },
   {
     kicker: "Solutions we have implemented",
@@ -69,8 +74,8 @@ const slides = [
     body: "End-to-end IP surveillance solutions with network design, cameras, storage and analytics for safe operations.",
     ctaLabel: "Explore our services",
     ctaHref: "/services",
-    image: sectorOperations,
-    imageAlt: "Operators monitoring CCTV and network dashboards",
+    image: tileTerminal.url,
+    imageAlt: "Airport terminal forecourt at dusk with traffic and surveillance coverage",
   },
   {
     kicker: "Solutions we have implemented",
@@ -78,8 +83,8 @@ const slides = [
     body: "Certified engineers, technicians and project managers deployed across network, IT and infrastructure roles.",
     ctaLabel: "Explore our services",
     ctaHref: "/careers",
-    image: sectorTransport,
-    imageAlt: "Field team deploying connectivity across transport corridors",
+    image: tileBus.url,
+    imageAlt: "Fleet of buses parked at a city transport depot",
   },
 ];
 
@@ -273,18 +278,18 @@ const Hero = () => {
             </div>
 
             {/* Solution selector */}
-            <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+            <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 items-start">
               {slides.map((s, i) => (
                 <button
                   key={s.word}
                   onClick={() => setIndex(i)}
                   onMouseEnter={() => setPaused(true)}
                   onMouseLeave={() => setPaused(false)}
-                  className="group text-left"
+                  className="group flex flex-col text-left self-start"
                   aria-label={`Show ${s.word}`}
                 >
                   <span
-                    className={`block h-[3px] rounded-full transition-colors duration-300 ${
+                    className={`block w-full shrink-0 h-[3px] rounded-full transition-colors duration-300 ${
                       i === index ? "bg-accent" : "bg-border group-hover:bg-foreground/25"
                     }`}
                   />
@@ -298,6 +303,7 @@ const Hero = () => {
                 </button>
               ))}
             </div>
+
           </div>
 
           {/* Photo mosaic */}
@@ -324,30 +330,23 @@ const Hero = () => {
               {/* Static supporting tiles */}
               <div className="col-span-2 row-span-3 rounded-[1.5rem] overflow-hidden bg-muted">
                 <img
-                  src={sectorPorts}
-                  alt="Container port with gantry cranes loading a vessel"
-
+                  src={tilePorts.url}
+                  alt="Aerial view of a container port terminal and logistics yard"
                   loading="lazy"
                   decoding="async"
                   className="h-full w-full object-cover"
                 />
               </div>
-              <div className="col-span-2 row-span-3 rounded-[1.5rem] border border-border bg-card p-5 flex flex-col justify-between">
-                <div className="t-eyebrow text-muted-foreground">Since 2017</div>
-                <div>
-                  <div className="display-headline text-3xl lg:text-4xl text-foreground">
-                    <AnimatedCounter to={15} suffix="+" />
-                  </div>
-                  <div className="mt-1 t-micro text-muted-foreground">Enterprise customers</div>
-
-                </div>
-                <Link
-                  to="/about"
-                  className="inline-flex items-center gap-1 t-micro text-accent hover:underline"
-                >
-                  Our story <ArrowUpRight className="h-3.5 w-3.5" />
-                </Link>
+              <div className="col-span-2 row-span-3 rounded-[1.5rem] overflow-hidden bg-muted">
+                <img
+                  src={tileTerminal.url}
+                  alt="Airport terminal forecourt at dusk with taxis and traffic"
+                  loading="lazy"
+                  decoding="async"
+                  className="h-full w-full object-cover"
+                />
               </div>
+
             </div>
           </div>
         </div>
