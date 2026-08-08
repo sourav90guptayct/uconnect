@@ -60,141 +60,143 @@ const Hero = () => {
   const slide = slides[index];
 
   return (
-    <section id="home" className="relative">
-      {/* Full-bleed photographic band */}
-      <div
-        className="relative min-h-[620px] lg:min-h-[720px] flex items-center overflow-hidden"
-        onMouseEnter={() => setPaused(true)}
-        onMouseLeave={() => setPaused(false)}
-      >
-        <img
-          src={heroImg}
-          alt="Telecom tower and microwave links deployed by uConnect Technologies at sunset"
-          {...{ fetchpriority: "high" }}
-          decoding="async"
+    <section id="home" className="relative bg-background">
+      {/* Bright photographic band, inset rounded frame */}
+      <div className="container mx-auto px-4 pt-4 lg:pt-6">
+        <div
+          className="relative min-h-[600px] lg:min-h-[700px] flex items-center overflow-hidden rounded-[1.75rem]"
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+        >
+          <img
+            src={heroImg}
+            alt="uConnect Technologies engineers surveying a telecom tower under bright daylight"
+            {...{ fetchpriority: "high" }}
+            decoding="async"
+            width={1920}
+            height={1088}
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+          {/* Light legibility scrims — keeps the photo bright and airy */}
+          <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/45 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent" />
 
-          className="absolute inset-0 h-full w-full object-cover"
-        />
-        {/* Legibility scrims */}
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/85 via-primary/55 to-primary/15" />
-        <div className="absolute inset-0 bg-gradient-to-t from-primary/70 via-transparent to-primary/30" />
-
-
-        <div className="container mx-auto px-4 relative z-10 py-24 lg:py-28">
-          <div className="grid lg:grid-cols-12 gap-10 items-center">
-            {/* Rotating message card */}
-            <div className="lg:col-span-7">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 18 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -12 }}
-                  transition={{ duration: 0.5, ease: "easeOut" }}
-                  className="rounded-3xl border border-primary-foreground/15 bg-primary/30 backdrop-blur-xl p-7 lg:p-10 shadow-2xl max-w-2xl"
-                >
-                  <div className="text-xs lg:text-sm font-semibold text-accent uppercase tracking-[0.18em]">
-                    {slide.eyebrow}
-                  </div>
-                  <h1 className="display-headline mt-4 text-primary-foreground text-3xl sm:text-4xl lg:text-5xl xl:text-6xl">
-                    {slide.titleA}
-                    <br />
-                    <span className="text-primary-foreground/70">{slide.titleB}</span>
-                  </h1>
-                  <p className="mt-5 text-sm lg:text-base text-primary-foreground/75 leading-relaxed max-w-xl">
-                    {slide.body}
-                  </p>
-                  <div className="mt-7 flex flex-col sm:flex-row gap-3">
-                    <Link to={slide.ctaHref}>
-                      <Button variant="cta" size="xl" className="w-full sm:w-auto">
-                        {slide.ctaLabel}
-                        <ArrowRight className="ml-2 h-4 w-4" />
-                      </Button>
-                    </Link>
-                    <Button
-                      size="xl"
-                      variant="ghost"
-                      className="text-primary-foreground border border-primary-foreground/25 hover:bg-primary-foreground/10 hover:text-primary-foreground"
-                      onClick={() =>
-                        document
-                          .getElementById("contact")
-                          ?.scrollIntoView({ behavior: "smooth" })
-                      }
-                    >
-                      Talk to an engineer
-                    </Button>
-                  </div>
-                </motion.div>
-              </AnimatePresence>
-
-              {/* Slide controls */}
-              <div className="mt-6 flex items-center gap-4">
-                <div className="flex items-center gap-2">
-                  {slides.map((_, i) => (
-                    <button
-                      key={i}
-                      aria-label={`Show slide ${i + 1}`}
-                      onClick={() => setIndex(i)}
-                      className={`h-1.5 rounded-full transition-all duration-300 ${
-                        i === index
-                          ? "w-8 bg-accent"
-                          : "w-3 bg-primary-foreground/35 hover:bg-primary-foreground/60"
-                      }`}
-                    />
-                  ))}
-                </div>
-                <div className="flex items-center gap-2">
-                  <button
-                    aria-label="Previous slide"
-                    onClick={() => go(-1)}
-                    className="h-9 w-9 rounded-full border border-primary-foreground/25 text-primary-foreground/80 flex items-center justify-center hover:bg-primary-foreground/10 transition-colors"
+          <div className="relative z-10 w-full px-5 sm:px-8 lg:px-12 py-16 lg:py-20">
+            <div className="grid lg:grid-cols-12 gap-8 items-center">
+              {/* Rotating message card */}
+              <div className="lg:col-span-7">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 18 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -12 }}
+                    transition={{ duration: 0.5, ease: "easeOut" }}
+                    className="rounded-3xl border border-border bg-card/85 backdrop-blur-xl p-7 lg:p-10 shadow-xl max-w-2xl"
                   >
-                    <ChevronLeft className="h-4 w-4" />
-                  </button>
-                  <button
-                    aria-label="Next slide"
-                    onClick={() => go(1)}
-                    className="h-9 w-9 rounded-full border border-primary-foreground/25 text-primary-foreground/80 flex items-center justify-center hover:bg-primary-foreground/10 transition-colors"
-                  >
-                    <ChevronRight className="h-4 w-4" />
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            {/* Credibility panel */}
-            <motion.div
-              initial={{ opacity: 0, x: 24 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.3, duration: 0.7 }}
-              className="lg:col-span-5 hidden lg:block"
-            >
-              <div className="ml-auto max-w-sm rounded-3xl border border-primary-foreground/15 bg-primary/25 backdrop-blur-xl p-8">
-                <div className="text-xs font-semibold text-primary-foreground/60 uppercase tracking-[0.18em]">
-                  Since 2017
-                </div>
-                <div className="mt-6 grid grid-cols-2 gap-x-6 gap-y-8">
-                  {[
-                    { value: 200, suffix: "+", label: "Tier-1 engineers" },
-                    { value: 10000, suffix: "+", label: "Links deployed" },
-                    { value: 18, suffix: "", label: "Circles served" },
-                    { value: 5, suffix: "", label: "Warehouses" },
-                  ].map((stat, i) => (
-                    <div key={i}>
-                      <div className="display-headline text-3xl xl:text-4xl text-primary-foreground">
-                        <AnimatedCounter to={stat.value} suffix={stat.suffix} />
-                      </div>
-                      <div className="mt-1.5 text-[11px] text-primary-foreground/60 uppercase tracking-wider">
-                        {stat.label}
-                      </div>
+                    <div className="text-xs lg:text-sm font-semibold text-accent uppercase tracking-[0.18em]">
+                      {slide.eyebrow}
                     </div>
-                  ))}
+                    <h1 className="display-headline mt-4 text-foreground text-3xl sm:text-4xl lg:text-5xl xl:text-6xl">
+                      {slide.titleA}
+                      <br />
+                      <span className="text-muted-foreground">{slide.titleB}</span>
+                    </h1>
+                    <p className="mt-5 text-sm lg:text-base text-muted-foreground leading-relaxed max-w-xl">
+                      {slide.body}
+                    </p>
+                    <div className="mt-7 flex flex-col sm:flex-row gap-3">
+                      <Link to={slide.ctaHref}>
+                        <Button variant="cta" size="xl" className="w-full sm:w-auto">
+                          {slide.ctaLabel}
+                          <ArrowRight className="ml-2 h-4 w-4" />
+                        </Button>
+                      </Link>
+                      <Button
+                        size="xl"
+                        variant="outline"
+                        onClick={() =>
+                          document
+                            .getElementById("contact")
+                            ?.scrollIntoView({ behavior: "smooth" })
+                        }
+                      >
+                        Talk to an engineer
+                      </Button>
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
+
+                {/* Slide controls */}
+                <div className="mt-6 flex items-center gap-4">
+                  <div className="flex items-center gap-2">
+                    {slides.map((_, i) => (
+                      <button
+                        key={i}
+                        aria-label={`Show slide ${i + 1}`}
+                        onClick={() => setIndex(i)}
+                        className={`h-1.5 rounded-full transition-all duration-300 ${
+                          i === index
+                            ? "w-8 bg-accent"
+                            : "w-3 bg-foreground/25 hover:bg-foreground/50"
+                        }`}
+                      />
+                    ))}
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <button
+                      aria-label="Previous slide"
+                      onClick={() => go(-1)}
+                      className="h-9 w-9 rounded-full border border-border bg-card/70 text-foreground/70 flex items-center justify-center hover:bg-card transition-colors"
+                    >
+                      <ChevronLeft className="h-4 w-4" />
+                    </button>
+                    <button
+                      aria-label="Next slide"
+                      onClick={() => go(1)}
+                      className="h-9 w-9 rounded-full border border-border bg-card/70 text-foreground/70 flex items-center justify-center hover:bg-card transition-colors"
+                    >
+                      <ChevronRight className="h-4 w-4" />
+                    </button>
+                  </div>
                 </div>
               </div>
-            </motion.div>
+
+              {/* Credibility panel */}
+              <motion.div
+                initial={{ opacity: 0, x: 24 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.3, duration: 0.7 }}
+                className="lg:col-span-5 hidden lg:block"
+              >
+                <div className="ml-auto max-w-sm rounded-3xl border border-border bg-card/80 backdrop-blur-xl p-8 shadow-lg">
+                  <div className="text-xs font-semibold text-muted-foreground uppercase tracking-[0.18em]">
+                    Since 2017
+                  </div>
+                  <div className="mt-6 grid grid-cols-2 gap-x-6 gap-y-8">
+                    {[
+                      { value: 200, suffix: "+", label: "Tier-1 engineers" },
+                      { value: 10000, suffix: "+", label: "Links deployed" },
+                      { value: 18, suffix: "", label: "Circles served" },
+                      { value: 5, suffix: "", label: "Warehouses" },
+                    ].map((stat, i) => (
+                      <div key={i}>
+                        <div className="display-headline text-3xl xl:text-4xl text-foreground">
+                          <AnimatedCounter to={stat.value} suffix={stat.suffix} />
+                        </div>
+                        <div className="mt-1.5 text-[11px] text-muted-foreground uppercase tracking-wider">
+                          {stat.label}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            </div>
           </div>
         </div>
       </div>
+
 
       {/* Positioning statement */}
       <div className="bg-background py-14 lg:py-20">
