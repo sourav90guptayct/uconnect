@@ -47,11 +47,12 @@ const Header = () => {
       >
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
-            <Link to="/" className="text-xl md:text-2xl font-bold tracking-tight text-foreground flex items-center gap-2">
+            <Link to="/" className="text-base sm:text-xl md:text-2xl font-bold tracking-tight text-foreground flex items-center gap-2 min-w-0 truncate">
               uConnect<span className="text-gradient"> Technologies</span>
             </Link>
 
-            <div className="flex items-center gap-2 sm:gap-4">
+            <div className="flex items-center gap-2 sm:gap-4 shrink-0">
+
               {user && (
                 <nav className="hidden lg:flex items-center gap-1">
                   {authLinks.map((link) => (
