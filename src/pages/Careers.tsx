@@ -410,7 +410,7 @@ const CareersPage = () => {
                 Emerging talent
               </div>
               <h2 className="text-3xl lg:text-5xl font-bold text-foreground">
-                Starting out? Start on a live network.
+                Starting out? Start on a real project.
               </h2>
               <p className="mt-6 text-lg text-muted-foreground">
                 Three structured routes in for students, graduates and diploma holders — each with
