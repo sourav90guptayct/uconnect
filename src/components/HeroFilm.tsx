@@ -34,19 +34,20 @@ const HeroFilm = ({ onClose }: HeroFilmProps) => {
   };
 
   return (
-    <div className="absolute inset-0 z-30 bg-primary">
+    <div className="absolute inset-0 z-30 bg-primary flex items-center justify-center">
       <video
         ref={videoRef}
         src={filmAsset.url}
         autoPlay
         muted={muted}
         playsInline
+        controls={false}
         onEnded={onClose}
         onTimeUpdate={(e) => {
           const v = e.currentTarget;
           if (v.duration) setProgress((v.currentTime / v.duration) * 100);
         }}
-        className="absolute inset-0 h-full w-full object-cover"
+        className="h-full w-full max-w-full max-h-full object-contain sm:object-cover"
       />
 
       {/* Controls */}
