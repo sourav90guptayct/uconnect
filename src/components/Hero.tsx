@@ -70,8 +70,9 @@ const Hero = () => {
         <img
           src={heroImg}
           alt="Telecom tower and microwave links deployed by uConnect Technologies at sunset"
-          fetchPriority="high"
+          {...{ fetchpriority: "high" }}
           decoding="async"
+
           className="absolute inset-0 h-full w-full object-cover"
         />
         {/* Legibility scrims */}
