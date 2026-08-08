@@ -1,44 +1,58 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import AnimatedCounter from "@/components/animations/AnimatedCounter";
-import { ArrowRight, ArrowUpRight, ChevronDown } from "lucide-react";
+import { ArrowRight, ArrowUpRight, ChevronDown, Play, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
-import tileTower from "@/assets/hero-tile-tower.jpg";
-import tileNoc from "@/assets/hero-tile-noc.jpg";
-import tileField from "@/assets/hero-tile-field.jpg";
-import heroVideo from "@/assets/hero-imagination.mp4.asset.json";
+import heroVideo from "@/assets/hero-sectors.mp4.asset.json";
+import sectorDesign from "@/assets/sector-design.jpg";
+import sectorRailways from "@/assets/sector-railways.jpg";
+import sectorPower from "@/assets/sector-power.jpg";
+import sectorPorts from "@/assets/sector-ports.jpg";
+import sectorTransport from "@/assets/sector-transport.jpg";
+import sectorOperations from "@/assets/sector-operations.jpg";
+
+const sectorFrames = [
+  { image: sectorDesign, label: "Design & engineering", alt: "Engineers reviewing an infrastructure design on a tablet" },
+  { image: sectorRailways, label: "Railways", alt: "Modern electric train at a station platform with trackside equipment" },
+  { image: sectorPower, label: "Power", alt: "Technician inspecting a control panel at a high-voltage substation" },
+  { image: sectorPorts, label: "Ports & logistics", alt: "Container port with gantry cranes loading a vessel" },
+  { image: sectorTransport, label: "Transportation", alt: "Metro viaduct and city highway with roadside equipment cabinets" },
+  { image: sectorOperations, label: "Day-to-day operations", alt: "Operators monitoring dashboards in a network operations centre" },
+];
+
 
 
 const slides = [
   {
-    kicker: "Managed services",
-    word: "watched",
-    body: "24×7 monitoring, field response and SLA-backed operations so your team stays focused on growth, not troubleshooting.",
+    kicker: "Design & project management",
+    word: "designed",
+    body: "Surveys, network and system design, and end-to-end project management for telecom, railway, power and transport programmes.",
+    ctaLabel: "Explore our services",
+    ctaHref: "/services",
+    image: sectorDesign,
+    imageAlt: "Engineers reviewing an infrastructure design on a tablet in a bright office",
+  },
+  {
+    kicker: "Day-to-day operations",
+    word: "operated",
+    body: "24×7 monitoring, field response and SLA-backed operations across multiple verticals so your team stays focused on growth.",
     ctaLabel: "Explore managed services",
     ctaHref: "/managed-services",
-    image: tileNoc,
-    imageAlt: "Engineers monitoring network dashboards inside a bright operations centre",
+    image: sectorOperations,
+    imageAlt: "Operators monitoring dashboards inside a bright network operations centre",
   },
   {
     kicker: "ConnectLH™ product line",
     word: "connected",
-    body: "Dish and sector antennas, PoE injectors and outdoor accessories — 10,000+ Links already deployed across India.",
+    body: "Our own hardware line — connectivity, PoE and outdoor equipment deployed across telecom, railways, power, transportation and ports.",
     ctaLabel: "View products",
     ctaHref: "/products",
-    image: tileField,
-    imageAlt: "Field engineer aligning a ConnectLH microwave dish antenna",
-  },
-  {
-    kicker: "Network deployment",
-    word: "built",
-    body: "200+ Tier-1 engineers across 18 circles, backed by 5 regional warehouses for rapid pan-India deployment.",
-    ctaLabel: "See our networks work",
-    ctaHref: "/networks",
-    image: tileTower,
-    imageAlt: "Telecom tower with sector antennas against a bright sky",
+    image: sectorRailways,
+    imageAlt: "Modern electric train at a station platform with trackside equipment cabinets",
   },
 ];
+
 
 const logos = [
   { src: "/clients/airtel.jpg", name: "Airtel" },
@@ -61,6 +75,9 @@ const stats = [
 const Hero = () => {
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
+  const [frame, setFrame] = useState(0);
+  const [playing, setPlaying] = useState(false);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
 
   useEffect(() => {
     if (paused) return;
@@ -68,81 +85,180 @@ const Hero = () => {
     return () => clearInterval(t);
   }, [paused]);
 
+  // Ambient sector montage — pauses while the film plays
+  useEffect(() => {
+    if (playing) return;
+    const t = setInterval(() => setFrame((f) => (f + 1) % sectorFrames.length), 4200);
+    return () => clearInterval(t);
+  }, [playing]);
+
+  const startFilm = () => {
+    setPlaying(true);
+    requestAnimationFrame(() => {
+      const v = videoRef.current;
+      if (!v) return;
+      v.currentTime = 0;
+      v.muted = false;
+      v.volume = 1;
+      v.play().catch(() => {
+        v.muted = true;
+        v.play().catch(() => undefined);
+      });
+    });
+  };
+
+  const stopFilm = () => {
+    const v = videoRef.current;
+    if (v) {
+      v.pause();
+      v.currentTime = 0;
+    }
+    setPlaying(false);
+  };
+
   const slide = slides[index];
+  const sector = sectorFrames[frame];
 
   return (
     <>
-      {/* Full-bleed cinematic video hero */}
+      {/* Cinematic hero — ambient sector montage with a play-to-watch film */}
       <section className="relative h-[88svh] min-h-[520px] w-full overflow-hidden bg-primary">
+        {/* Ambient still montage (Ken Burns) */}
+        <AnimatePresence mode="sync">
+          {!playing && (
+            <motion.img
+              key={sector.image}
+              src={sector.image}
+              alt={sector.alt}
+              initial={{ opacity: 0, scale: 1.12 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ opacity: { duration: 1.2 }, scale: { duration: 6, ease: "linear" } }}
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+          )}
+        </AnimatePresence>
+
+        {/* The film — only rendered/played on demand */}
         <video
-          className="absolute inset-0 h-full w-full object-cover"
+          ref={videoRef}
+          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${
+            playing ? "opacity-100" : "opacity-0 pointer-events-none"
+          }`}
           src={heroVideo.url}
-          poster={tileTower}
-          autoPlay
-          muted
-          loop
           playsInline
-          preload="auto"
-          aria-hidden="true"
+          preload="none"
+          onEnded={stopFilm}
         />
+
         {/* Legibility scrim */}
         <div
-          className="absolute inset-0"
+          className="absolute inset-0 transition-opacity duration-500"
           style={{
+            opacity: playing ? 0.35 : 1,
             background:
               "linear-gradient(180deg, hsl(222 47% 8% / 0.55) 0%, hsl(222 47% 8% / 0.25) 40%, hsl(222 47% 8% / 0.75) 100%)",
           }}
         />
 
-        <div className="relative h-full container mx-auto px-4 flex flex-col justify-end pb-16 lg:pb-24">
-          <motion.div
-            initial={{ opacity: 0, y: 28 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, ease: "easeOut" }}
-            className="max-w-4xl"
+        {/* Close control while the film plays */}
+        {playing && (
+          <button
+            onClick={stopFilm}
+            aria-label="Close film"
+            className="absolute right-4 top-4 z-20 inline-flex h-11 w-11 items-center justify-center rounded-full bg-background/85 text-foreground backdrop-blur transition-transform hover:scale-105"
           >
-            <div className="flex items-center gap-3">
-              <span className="h-px w-10 bg-accent" />
-              <span className="t-eyebrow text-on-media/80">uConnect Technologies</span>
-            </div>
-            <h1 className="display-headline mt-6 text-on-media text-[2.75rem] leading-[1.02] sm:text-6xl lg:text-7xl xl:text-8xl">
-              Putting Imagination
-              <br />
-              to <span className="text-accent">work</span>
-            </h1>
-            <p className="mt-6 t-body-lg text-on-media/80 max-w-xl">
-              A product &amp; services integrator for enterprise networks — ConnectLH™ hardware,
-              managed services, deployment, resources and infra under one accountable team.
-            </p>
-            <div className="mt-8 flex flex-col sm:flex-row gap-3">
-              <Link to="/services">
-                <Button variant="cta" size="xl" className="w-full sm:w-auto">
-                  What we do
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </Link>
-              <Button
-                size="xl"
-                variant="outline"
-                className="border-on-media/40 bg-transparent text-on-media hover:bg-on-media/10 hover:text-on-media"
-                onClick={() =>
-                  document.getElementById("home")?.scrollIntoView({ behavior: "smooth" })
-                }
-              >
-                Explore uConnect
-              </Button>
-            </div>
-          </motion.div>
-        </div>
+            <X className="h-5 w-5" />
+          </button>
+        )}
 
-        <button
-          onClick={() => document.getElementById("home")?.scrollIntoView({ behavior: "smooth" })}
-          aria-label="Scroll to content"
-          className="absolute bottom-5 left-1/2 -translate-x-1/2 text-on-media/70 hover:text-on-media transition-colors"
-        >
-          <ChevronDown className="h-6 w-6 animate-bounce" />
-        </button>
+        <AnimatePresence>
+          {!playing && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.5 }}
+              className="relative h-full container mx-auto px-4 flex flex-col justify-end pb-16 lg:pb-24"
+            >
+              <motion.div
+                initial={{ opacity: 0, y: 28 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.9, ease: "easeOut" }}
+                className="max-w-4xl"
+              >
+                <div className="flex items-center gap-3">
+                  <span className="h-px w-10 bg-accent" />
+                  <span className="t-eyebrow text-on-media/80">uConnect Technologies</span>
+                </div>
+                <h1 className="display-headline mt-6 text-on-media text-[2.75rem] leading-[1.02] sm:text-6xl lg:text-7xl xl:text-8xl">
+                  Putting Imagination
+                  <br />
+                  to <span className="text-accent">work</span>
+                </h1>
+                <p className="mt-6 t-body-lg text-on-media/80 max-w-xl">
+                  Design, project management and day-to-day operations — plus our own ConnectLH™
+                  product line — across telecom, railways, power, transportation and ports.
+                </p>
+
+                <div className="mt-8 flex flex-col sm:flex-row sm:items-center gap-4">
+                  <button
+                    onClick={startFilm}
+                    className="group inline-flex items-center gap-4 text-left"
+                    aria-label="Play the uConnect film"
+                  >
+                    <span className="relative inline-flex h-16 w-16 items-center justify-center rounded-full bg-on-media/95 text-primary transition-transform duration-300 group-hover:scale-110">
+                      <span className="absolute inset-0 rounded-full border border-on-media/50 animate-ping" />
+                      <Play className="h-6 w-6 translate-x-[1px] fill-current" />
+                    </span>
+                    <span className="t-eyebrow text-on-media/85 group-hover:text-on-media">
+                      Watch the film
+                    </span>
+                  </button>
+
+                  <Link to="/services" className="sm:ml-4">
+                    <Button variant="cta" size="xl" className="w-full sm:w-auto">
+                      What we do
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </Link>
+                </div>
+
+                {/* Sector rail — shows the breadth of verticals we work across */}
+                <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3">
+                  {sectorFrames.map((s, i) => (
+                    <button
+                      key={s.label}
+                      onClick={() => setFrame(i)}
+                      className={`t-micro transition-colors ${
+                        i === frame ? "text-on-media" : "text-on-media/50 hover:text-on-media/80"
+                      }`}
+                    >
+                      <span
+                        className={`mr-2 inline-block h-1.5 w-1.5 rounded-full align-middle ${
+                          i === frame ? "bg-accent" : "bg-on-media/40"
+                        }`}
+                      />
+                      {s.label}
+                    </button>
+                  ))}
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {!playing && (
+          <button
+            onClick={() => document.getElementById("home")?.scrollIntoView({ behavior: "smooth" })}
+            aria-label="Scroll to content"
+            className="absolute bottom-5 left-1/2 -translate-x-1/2 text-on-media/70 hover:text-on-media transition-colors"
+          >
+            <ChevronDown className="h-6 w-6 animate-bounce" />
+          </button>
+        )}
       </section>
+
 
     <section id="home" className="relative bg-background overflow-hidden">
 
@@ -275,8 +391,9 @@ const Hero = () => {
               {/* Static supporting tiles */}
               <div className="col-span-2 row-span-3 rounded-[1.5rem] overflow-hidden bg-muted">
                 <img
-                  src={tileTower}
-                  alt="Telecom tower against a bright sky"
+                  src={sectorPorts}
+                  alt="Container port with gantry cranes loading a vessel"
+
                   loading="lazy"
                   decoding="async"
                   className="h-full w-full object-cover"
