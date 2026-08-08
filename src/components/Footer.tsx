@@ -1,7 +1,7 @@
 import { Separator } from "@/components/ui/separator";
 import { Mail } from "lucide-react";
 import { Link } from "react-router-dom";
-import logoIcon from "@/assets/uconnect-icon.webp";
+
 
 const Footer = () => {
   const year = new Date().getFullYear();
@@ -49,18 +49,8 @@ const Footer = () => {
       <div className="container mx-auto px-8 py-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
           <div>
-            <Link to="/" className="inline-flex items-center gap-2.5 mb-5 group">
-              <img
-                src={logoIcon}
-                alt="uConnect"
-                className="h-9 w-auto transition-transform duration-300 group-hover:scale-105"
-                width={1024}
-                height={1024}
-                loading="lazy"
-              />
-              <span className="text-xl font-bold tracking-tight text-primary-foreground whitespace-nowrap">
-                uConnect<span className="text-gradient"> Technologies</span>
-              </span>
+            <Link to="/" className="text-2xl font-bold tracking-tight text-primary-foreground flex items-center gap-2 mb-4">
+              uConnect<span className="text-gradient"> Technologies</span>
             </Link>
             <p className="text-primary-foreground/60 mb-6 text-sm leading-relaxed">
               Your trusted partner for Telecom, IT & Infrastructure solutions. Delivering enterprise technology and products across India.
