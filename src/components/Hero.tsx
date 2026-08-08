@@ -394,8 +394,9 @@ const Hero = () => {
               {/* Static supporting tiles */}
               <div className="col-span-2 row-span-3 rounded-[1.5rem] overflow-hidden bg-muted">
                 <img
-                  src={tileTower}
-                  alt="Telecom tower against a bright sky"
+                  src={sectorPorts}
+                  alt="Container port with gantry cranes loading a vessel"
+
                   loading="lazy"
                   decoding="async"
                   className="h-full w-full object-cover"
