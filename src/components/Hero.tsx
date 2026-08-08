@@ -80,7 +80,6 @@ const Hero = () => {
   const [paused, setPaused] = useState(false);
   const [frame, setFrame] = useState(0);
   const [playing, setPlaying] = useState(false);
-  const videoRef = useRef<HTMLVideoElement | null>(null);
 
   useEffect(() => {
     if (paused) return;
@@ -95,29 +94,9 @@ const Hero = () => {
     return () => clearInterval(t);
   }, [playing]);
 
-  const startFilm = () => {
-    setPlaying(true);
-    requestAnimationFrame(() => {
-      const v = videoRef.current;
-      if (!v) return;
-      v.currentTime = 0;
-      v.muted = false;
-      v.volume = 1;
-      v.play().catch(() => {
-        v.muted = true;
-        v.play().catch(() => undefined);
-      });
-    });
-  };
+  const startFilm = () => setPlaying(true);
+  const stopFilm = () => setPlaying(false);
 
-  const stopFilm = () => {
-    const v = videoRef.current;
-    if (v) {
-      v.pause();
-      v.currentTime = 0;
-    }
-    setPlaying(false);
-  };
 
   const slide = slides[index];
   const sector = sectorFrames[frame];
