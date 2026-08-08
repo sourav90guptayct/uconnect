@@ -81,14 +81,11 @@ const Index = () => {
       <main>
         <Hero />
         <Suspense fallback={<SectionFallback />}>
-          <About />
           <Services />
-          <UseCases />
-          <HowItWorks />
           <WhyChooseUs />
-
           <Contact />
         </Suspense>
+
       </main>
       <Suspense fallback={<SectionFallback />}>
         <Footer />
