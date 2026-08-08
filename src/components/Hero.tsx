@@ -331,30 +331,23 @@ const Hero = () => {
               {/* Static supporting tiles */}
               <div className="col-span-2 row-span-3 rounded-[1.5rem] overflow-hidden bg-muted">
                 <img
-                  src={sectorPorts}
-                  alt="Container port with gantry cranes loading a vessel"
-
+                  src={tilePorts.url}
+                  alt="Aerial view of a container port terminal and logistics yard"
                   loading="lazy"
                   decoding="async"
                   className="h-full w-full object-cover"
                 />
               </div>
-              <div className="col-span-2 row-span-3 rounded-[1.5rem] border border-border bg-card p-5 flex flex-col justify-between">
-                <div className="t-eyebrow text-muted-foreground">Since 2017</div>
-                <div>
-                  <div className="display-headline text-3xl lg:text-4xl text-foreground">
-                    <AnimatedCounter to={15} suffix="+" />
-                  </div>
-                  <div className="mt-1 t-micro text-muted-foreground">Enterprise customers</div>
-
-                </div>
-                <Link
-                  to="/about"
-                  className="inline-flex items-center gap-1 t-micro text-accent hover:underline"
-                >
-                  Our story <ArrowUpRight className="h-3.5 w-3.5" />
-                </Link>
+              <div className="col-span-2 row-span-3 rounded-[1.5rem] overflow-hidden bg-muted">
+                <img
+                  src={tileTerminal.url}
+                  alt="Airport terminal forecourt at dusk with taxis and traffic"
+                  loading="lazy"
+                  decoding="async"
+                  className="h-full w-full object-cover"
+                />
               </div>
+
             </div>
           </div>
         </div>
