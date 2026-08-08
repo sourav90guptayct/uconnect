@@ -11,7 +11,7 @@ const Contact = lazy(() => import("@/components/Contact"));
 const Footer = lazy(() => import("@/components/Footer"));
 
 const SectionFallback = () => (
-  <div className="min-h-[200px]" />
+  <div className="min-h-[120px]" />
 );
 
 const Index = () => {
