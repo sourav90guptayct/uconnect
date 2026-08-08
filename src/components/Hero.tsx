@@ -39,8 +39,8 @@ const slides = [
     body: "High-throughput fibre, wireless backhaul and IP networks designed for port terminals, container yards and logistics hubs.",
     ctaLabel: "Explore our services",
     ctaHref: "/services",
-    image: sectorPorts,
-    imageAlt: "Container port with gantry cranes and connected operations",
+    image: tilePorts.url,
+    imageAlt: "Aerial view of a container port terminal and logistics yard",
   },
   {
     kicker: "Solutions we have implemented",
@@ -48,8 +48,8 @@ const slides = [
     body: "Mission-critical telecom and signalling networks for metro, mainline and rail operations across India.",
     ctaLabel: "Explore our services",
     ctaHref: "/services",
-    image: sectorRailways,
-    imageAlt: "Modern railway platform with trackside connectivity equipment",
+    image: tileRail.url,
+    imageAlt: "Modern tram crossing a city bridge",
   },
   {
     kicker: "Solutions we have implemented",
@@ -57,8 +57,8 @@ const slides = [
     body: "Converged wireless, wireline and CCTV infrastructure for passenger operations, baggage and security.",
     ctaLabel: "Explore our services",
     ctaHref: "/services",
-    image: sectorAviation,
-    imageAlt: "Airport terminal boarding bridge and connected systems",
+    image: tileAviation.url,
+    imageAlt: "Traveller walking through an airport boarding bridge",
   },
   {
     kicker: "Solutions we have implemented",
@@ -66,8 +66,8 @@ const slides = [
     body: "Multi-gigabit wireless backhaul and structured fibre networks for campuses, cities and large enterprises.",
     ctaLabel: "Explore our services",
     ctaHref: "/networks",
-    image: sectorDesign,
-    imageAlt: "Engineers designing high-capacity network on screen",
+    image: tileLogistics.url,
+    imageAlt: "Automated container handling at an intermodal logistics park",
   },
   {
     kicker: "Solutions we have implemented",
@@ -75,8 +75,8 @@ const slides = [
     body: "End-to-end IP surveillance solutions with network design, cameras, storage and analytics for safe operations.",
     ctaLabel: "Explore our services",
     ctaHref: "/services",
-    image: sectorOperations,
-    imageAlt: "Operators monitoring CCTV and network dashboards",
+    image: tileTerminal.url,
+    imageAlt: "Airport terminal forecourt at dusk with traffic and surveillance coverage",
   },
   {
     kicker: "Solutions we have implemented",
@@ -84,8 +84,8 @@ const slides = [
     body: "Certified engineers, technicians and project managers deployed across network, IT and infrastructure roles.",
     ctaLabel: "Explore our services",
     ctaHref: "/careers",
-    image: sectorTransport,
-    imageAlt: "Field team deploying connectivity across transport corridors",
+    image: tileBus.url,
+    imageAlt: "Fleet of buses parked at a city transport depot",
   },
 ];
 
