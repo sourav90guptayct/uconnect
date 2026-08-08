@@ -278,16 +278,16 @@ const Hero = () => {
               </Link>
             </div>
 
-            {/* Slide selector as labelled rails */}
-            <div className="mt-10 flex flex-col sm:flex-row gap-3 sm:gap-6">
+            {/* Solution selector */}
+            <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
               {slides.map((s, i) => (
                 <button
-                  key={s.kicker}
+                  key={s.word}
                   onClick={() => setIndex(i)}
                   onMouseEnter={() => setPaused(true)}
                   onMouseLeave={() => setPaused(false)}
-                  className="group text-left flex-1"
-                  aria-label={`Show ${s.kicker}`}
+                  className="group text-left"
+                  aria-label={`Show ${s.word}`}
                 >
                   <span
                     className={`block h-[3px] rounded-full transition-colors duration-300 ${
@@ -299,7 +299,7 @@ const Hero = () => {
                       i === index ? "text-foreground" : "text-muted-foreground"
                     }`}
                   >
-                    {s.kicker}
+                    {s.word}
                   </span>
                 </button>
               ))}
