@@ -251,23 +251,9 @@ const Hero = () => {
             </div>
 
             <h1 className="display-headline mt-6 text-foreground text-[2.5rem] sm:text-5xl lg:text-6xl xl:text-7xl">
-              India&apos;s networks,
+              We design <span className="text-accent">networks</span>
               <br />
-              <span className="relative inline-flex items-baseline">
-                <AnimatePresence mode="wait">
-                  <motion.span
-                    key={slide.word}
-                    initial={{ opacity: 0, y: 20, filter: "blur(6px)" }}
-                    animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                    exit={{ opacity: 0, y: -20, filter: "blur(6px)" }}
-                    transition={{ duration: 0.45, ease: "easeOut" }}
-                    className="text-accent"
-                  >
-                    {slide.word}
-                  </motion.span>
-                </AnimatePresence>
-              </span>{" "}
-              <span className="text-muted-foreground">end to end.</span>
+              for seamless operations.
             </h1>
 
             <AnimatePresence mode="wait">
