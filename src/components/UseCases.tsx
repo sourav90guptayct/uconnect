@@ -1,11 +1,13 @@
 import { motion } from "framer-motion";
 import { Wifi, Shield, TrainFront, Zap, Factory, Server, ArrowUpRight } from "lucide-react";
-import telecomImg from "@/assets/networks-coverage.jpg";
+import telecomAsset from "@/assets/telecom-connectivity.jpg.asset.json";
 import governmentImg from "@/assets/networks-smartcity.png";
 import railImg from "@/assets/networks-rail.jpg";
 import energyImg from "@/assets/networks-utility.jpg";
 import enterpriseImg from "@/assets/usecase-industrial.jpg";
 import digitalImg from "@/assets/networks-datacenter.png";
+
+const telecomImg = telecomAsset.url;
 
 const useCases = [
   {
