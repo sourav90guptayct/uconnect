@@ -9,27 +9,31 @@ import infraImg from "@/assets/infra-hero.jpg";
 const Services = () => {
   const services = [
     {
-      image: networksImg,
-      title: "Networks",
-      tagline: "Connectivity at scale",
-      href: "/networks",
-    },
-    {
       image: managedImg,
       title: "Managed services",
-      tagline: "End-to-end operations",
+      tagline: "24×7 NOC & SLA operations",
+      desc: "We run the network after go-live — monitoring, incident response, spares and field engineers on SLA.",
       href: "/managed-services",
     },
     {
+      image: networksImg,
+      title: "Network deployment",
+      tagline: "Survey to acceptance",
+      desc: "RF planning, I&C, UBR, switching and fiber rollouts commissioned and handed over with acceptance reports.",
+      href: "/networks",
+    },
+    {
       image: resourceImg,
-      title: "Resource management",
-      tagline: "Technology-enabled staffing",
+      title: "Resources management",
+      tagline: "Engineers on demand",
+      desc: "Dedicated, shared or project-based Tier-1 engineering teams deployed and managed by us.",
       href: "/resource-management",
     },
     {
       image: infraImg,
-      title: "Infra installation",
-      tagline: "Tower & pole erection",
+      title: "Infra solutions",
+      tagline: "Towers, poles & passive",
+      desc: "Tower and pole erection, civil and electrical works, and passive infrastructure built to carrier standards.",
       href: "/infra-installation",
     },
   ];
@@ -45,14 +49,19 @@ const Services = () => {
           className="max-w-4xl mb-12 lg:mb-16"
         >
           <div className="text-sm font-semibold text-accent uppercase tracking-widest mb-4">
-            What we do
+            Four service lines, one integrator
           </div>
           <h2 className="display-headline text-foreground text-4xl sm:text-5xl lg:text-7xl">
-            Solutions built for the
+            Products we make.
             <br />
-            <span className="text-muted-foreground">enterprise edge.</span>
+            <span className="text-muted-foreground">Services we own.</span>
           </h2>
+          <p className="mt-6 text-base lg:text-lg text-muted-foreground max-w-2xl leading-relaxed">
+            Buy the hardware, the rollout and the ongoing operations from a single partner —
+            or pick only the line you need.
+          </p>
         </motion.div>
+
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-5">
           {services.map((service, index) => (
