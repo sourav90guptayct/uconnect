@@ -47,15 +47,18 @@ const Header = () => {
       >
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
-            <Link to="/" className="flex items-center">
+            <Link to="/" className="flex items-center gap-2 md:gap-2.5 group">
               <img
-                src={logo}
-                alt="uConnect Technologies"
-                className="h-8 md:h-10 w-auto"
-                width={1792}
-                height={1024}
+                src={logoIcon}
+                alt="uConnect"
+                className="h-8 w-auto md:h-9 transition-transform duration-300 group-hover:scale-105"
+                width={512}
+                height={512}
                 loading="eager"
               />
+              <span className="text-lg md:text-xl font-bold tracking-tight text-foreground whitespace-nowrap">
+                uConnect<span className="text-gradient"> Technologies</span>
+              </span>
             </Link>
 
             <div className="flex items-center gap-2 sm:gap-4">
