@@ -34,6 +34,7 @@ const ManagedServices = lazy(() => import("./pages/ManagedServices"));
 const InfraInstallation = lazy(() => import("./pages/InfraInstallation"));
 const ResourceManagement = lazy(() => import("./pages/ResourceManagement"));
 const ScreeningL2NetworkEngineer = lazy(() => import("./pages/ScreeningL2NetworkEngineer"));
+const SeoLanding = lazy(() => import("./pages/SeoLanding"));
 
 // Legacy admin (kept for job posting dialogs and system users)
 const LegacyAdmin = lazy(() => import("./pages/Admin"));
@@ -100,6 +101,10 @@ const App = () => (
               <Route path="/business-practices" element={<BusinessPractices />} />
               <Route path="/governance" element={<Governance />} />
               <Route path="/quality-hse" element={<QualityHSE />} />
+              <Route path="/solutions/:slug" element={<SeoLanding group="solutions" />} />
+              <Route path="/services/:slug" element={<SeoLanding group="services" />} />
+              <Route path="/products/:slug" element={<SeoLanding group="products" />} />
+              <Route path="/industries/:slug" element={<SeoLanding group="industries" />} />
               <Route path="/careers/screening/l2-network-engineer" element={<ScreeningL2NetworkEngineer />} />
 
               {/* Redirects for legacy paths */}
