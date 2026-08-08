@@ -413,6 +413,65 @@ const NetworksPage = () => {
           </div>
         </section>
 
+        {/* Telecommunications services */}
+        <section id="telecommunications" className="py-16 lg:py-24 bg-background">
+          <div className="container mx-auto px-4">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="max-w-4xl mb-12 lg:mb-16"
+            >
+              <div className="text-sm font-semibold text-accent uppercase tracking-widest mb-4">
+                Telecommunications
+              </div>
+              <h2 className="display-headline text-foreground text-4xl sm:text-5xl lg:text-7xl">
+                What we do for
+                <br />
+                <span className="text-muted-foreground">telecom networks.</span>
+              </h2>
+              <p className="text-base lg:text-lg text-muted-foreground mt-6 max-w-2xl">
+                From planning and RF design to deployment, integration and lifecycle operations —
+                delivered by in-house Tier-1 engineering teams across India and South Asia.
+              </p>
+            </motion.div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
+              {telecomServices.map((group, index) => (
+                <motion.div
+                  key={group.title}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.06, duration: 0.5 }}
+                  className="bg-card border border-border rounded-3xl p-6 lg:p-8 hover:border-accent/50 transition-colors"
+                >
+                  <div className="flex items-center gap-4 mb-5">
+                    <div className="h-12 w-12 rounded-2xl bg-accent/10 flex items-center justify-center shrink-0">
+                      <group.icon className="h-6 w-6 text-accent" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg lg:text-xl font-semibold text-foreground leading-tight">
+                        {group.title}
+                      </h3>
+                      <p className="text-xs text-muted-foreground mt-1">{group.subtitle}</p>
+                    </div>
+                  </div>
+                  <ul className="space-y-2.5">
+                    {group.items.map((item) => (
+                      <li key={item} className="flex items-start gap-3 text-sm text-foreground/80">
+                        <CheckCircle2 className="h-4 w-4 text-accent shrink-0 mt-0.5" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* Industries */}
         <section className="py-16 lg:py-24 bg-background">
           <div className="container mx-auto px-4">
