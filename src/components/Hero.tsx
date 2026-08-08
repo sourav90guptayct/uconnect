@@ -92,6 +92,20 @@ const slides = [
   },
 ];
 
+// Pool used by the two supporting mosaic tiles — rotates alongside the featured tile
+const tilePool = [
+  { url: tilePorts.url, alt: "Aerial view of a container port terminal and logistics yard" },
+  { url: tileTerminal.url, alt: "Airport terminal forecourt at dusk with traffic and surveillance coverage" },
+  { url: tileRoads.url, alt: "Aerial view of a motorway interchange with managed traffic lanes" },
+  { url: tileUrbanEnergy.url, alt: "Illuminated urban exhibition campus at dusk with a city skyline behind" },
+  { url: tileSmartCity.url, alt: "Aerial view of a waterfront city at sunset" },
+  { url: tileCampus.url, alt: "Modern glass corporate campus building at dusk" },
+  { url: tileRailHub.url, alt: "Rail interchange with metro, tram and mainline trains around a control centre" },
+  { url: tileLogistics.url, alt: "Automated container handling at an intermodal logistics park" },
+  { url: tileAviation.url, alt: "Traveller walking through an airport boarding bridge" },
+  { url: tileBus.url, alt: "Fleet of buses parked at a city transport depot" },
+];
+
 
 const logos = [
   { src: "/clients/airtel.jpg", name: "Airtel" },
