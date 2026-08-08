@@ -210,9 +210,10 @@ const Hero = () => {
                 <div className="t-eyebrow text-muted-foreground">Since 2017</div>
                 <div>
                   <div className="display-headline text-3xl lg:text-4xl text-foreground">
-                    <AnimatedCounter to={10000} suffix="+" />
+                    <AnimatedCounter to={15} suffix="+" />
                   </div>
-                  <div className="mt-1 t-micro text-muted-foreground">Links deployed</div>
+                  <div className="mt-1 t-micro text-muted-foreground">Enterprise customers</div>
+
                 </div>
                 <Link
                   to="/about"
