@@ -1,54 +1,54 @@
 import { motion } from "framer-motion";
-import { Factory, Zap, Building2, Truck, Briefcase, ShoppingBag, ArrowUpRight } from "lucide-react";
-import industrialImg from "@/assets/usecase-industrial.jpg";
-import energyImg from "@/assets/usecase-energy.jpg";
-import smartcityImg from "@/assets/usecase-smartcity.jpg";
-import transportationImg from "@/assets/usecase-transportation.jpg";
-import enterpriseImg from "@/assets/usecase-enterprise.jpg";
-import retailImg from "@/assets/usecase-retail.jpg";
+import { Wifi, Shield, TrainFront, Zap, Factory, Server, ArrowUpRight } from "lucide-react";
+import telecomImg from "@/assets/networks-coverage.jpg";
+import governmentImg from "@/assets/networks-smartcity.png";
+import railImg from "@/assets/networks-rail.jpg";
+import energyImg from "@/assets/networks-utility.jpg";
+import enterpriseImg from "@/assets/usecase-industrial.jpg";
+import digitalImg from "@/assets/networks-datacenter.png";
 
 const useCases = [
   {
-    icon: Factory,
-    title: "Industrial & Automation",
-    image: industrialImg,
-    desc: "Resilient connectivity for PLCs, SCADA and factory-floor automation — keeping production lines online with redundant cellular and wired uplinks.",
-    tags: ["Cellular routers", "Managed switches", "Remote monitoring"],
+    icon: Wifi,
+    title: "Telecommunications",
+    image: telecomImg,
+    desc: "Carriers, ISPs, WISPs, tower companies and system integrators rely on our ConnectLH™ hardware and rollout playbooks for rapid, reliable network expansion.",
+    tags: ["ConnectLH™", "Antennas & radios", "Turnkey rollouts"],
+  },
+  {
+    icon: Shield,
+    title: "Government & Public Safety",
+    image: governmentImg,
+    desc: "Police, smart cities, government networks, defense and emergency communications — mission-critical connectivity built for public service.",
+    tags: ["Secure backhaul", "Smart city", "Surveillance"],
+  },
+  {
+    icon: TrainFront,
+    title: "Rail & Transportation",
+    image: railImg,
+    desc: "Railways, metro, highways, airports, ports and intelligent transportation systems stay connected with ruggedized radios and managed networks.",
+    tags: ["Rail backhaul", "Onboard Wi-Fi", "ITS networks"],
   },
   {
     icon: Zap,
     title: "Energy & Utilities",
     image: energyImg,
-    desc: "Secure remote access for substations, solar farms and smart-grid assets. Reliable backhaul where wired lines can't reach.",
-    tags: ["4G/5G routers", "VPN", "Outdoor enclosures"],
+    desc: "Power, renewable energy, electricity distribution and water utilities use our outdoor enclosures and 4G/5G routers for secure remote operations.",
+    tags: ["Smart grid", "Substation backhaul", "Remote monitoring"],
   },
   {
-    icon: Building2,
-    title: "Smart City",
-    image: smartcityImg,
-    desc: "Connect traffic systems, smart streetlights, CCTV and environmental sensors with PoE-powered ConnectLH™ switches and outdoor radios.",
-    tags: ["PoE switches", "Surveillance", "UBR links"],
-  },
-  {
-    icon: Truck,
-    title: "Transportation & Fleet",
-    image: transportationImg,
-    desc: "On-board connectivity for fleet vehicles, public transit and logistics — GPS, telematics and passenger Wi-Fi on one platform.",
-    tags: ["In-vehicle routers", "GPS", "Wi-Fi"],
-  },
-  {
-    icon: Briefcase,
-    title: "Enterprise & Branch",
+    icon: Factory,
+    title: "Enterprise & Industrial",
     image: enterpriseImg,
-    desc: "Day-one branch rollouts and 4G/5G failover for retail, banking and corporate offices. Centrally managed across 18 circles.",
-    tags: ["SD-WAN failover", "Site rollouts", "NOC"],
+    desc: "Manufacturing, mining, logistics, oil & gas, warehouses and large campuses get redundant, high-capacity connectivity for automation and operations.",
+    tags: ["Industrial Wi-Fi", "Private networks", "SD-WAN"],
   },
   {
-    icon: ShoppingBag,
-    title: "Retail & POS",
-    image: retailImg,
-    desc: "Always-on connectivity for POS terminals, payment devices and digital signage. Zero-touch deployment to hundreds of stores.",
-    tags: ["POS uplink", "Digital signage", "Zero-touch"],
+    icon: Server,
+    title: "Digital Infrastructure",
+    image: digitalImg,
+    desc: "Data centers, cloud infrastructure, edge computing and enterprise networks run on our structured cabling, PoE solutions and fiber/RF systems.",
+    tags: ["Data center cabling", "Edge connectivity", "Fiber & RF"],
   },
 ];
 
@@ -72,8 +72,7 @@ const UseCases = () => {
             <span className="text-muted-foreground">across every sector.</span>
           </h2>
           <p className="mt-6 text-base lg:text-lg text-muted-foreground max-w-2xl leading-relaxed">
-            From smart factories to remote substations, our routers, switches and antenna systems
-            power mission-critical connectivity for India's most demanding industries.
+            From telecom carriers and government networks to data centers and industrial campuses, we deliver integrated products and services for India's most demanding infrastructure.
           </p>
         </motion.div>
 
