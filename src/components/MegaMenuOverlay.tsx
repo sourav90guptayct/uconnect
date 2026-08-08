@@ -250,7 +250,7 @@ const MegaMenuOverlay = ({ open, onClose }: Props) => {
                 <li key={l.label + l.to}>
                   <Link
                     to={l.to}
-                    onClick={onClose}
+                    onClick={() => handleNavClick(l.to)}
                     className="text-[15px] text-muted-foreground hover:text-accent transition-colors"
                   >
                     {l.label}
