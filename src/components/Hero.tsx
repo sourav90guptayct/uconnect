@@ -145,6 +145,12 @@ const Hero = () => {
   const slide = slides[index];
   const sector = sectorFrames[frame];
 
+  // Keep all three tiles showing different photography at any moment
+  const supporting = tilePool.filter((t) => t.url !== slide.image);
+  const tileA = supporting[(index * 2) % supporting.length];
+  const tileB = supporting[(index * 2 + 4) % supporting.length];
+
+
   return (
     <>
       {/* Cinematic hero — ambient sector montage with a play-to-watch film */}
