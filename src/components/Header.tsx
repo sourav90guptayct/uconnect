@@ -65,12 +65,6 @@ const Header = () => {
                 </nav>
               )}
 
-              <Link
-                to="/?section=contact"
-                className="hidden sm:inline-flex text-sm font-medium text-foreground/70 hover:text-accent transition-colors"
-              >
-                Contact
-              </Link>
 
               <Button
                 className="bg-accent text-accent-foreground hover:bg-accent/90 rounded-full text-sm shadow-md shadow-accent/20"
