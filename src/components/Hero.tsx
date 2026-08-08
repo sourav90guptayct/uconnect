@@ -294,13 +294,13 @@ const Hero = () => {
 
             <div className="mt-8 flex flex-col sm:flex-row gap-3">
               <Link to={slide.ctaHref}>
-                <Button variant="cta" size="xl" className="w-full sm:w-auto">
+                <Button variant="ctaOutline" size="xl" className="w-full sm:w-auto">
                   {slide.ctaLabel}
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </Link>
               <Link to="/products">
-                <Button variant="outline" size="xl" className="w-full sm:w-auto">
+                <Button variant="ctaOutline" size="xl" className="w-full sm:w-auto">
                   Explore our products
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
