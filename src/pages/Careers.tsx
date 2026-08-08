@@ -16,6 +16,18 @@ import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/hooks/useAuth";
 import JobApplicationForm from "@/components/careers/JobApplicationForm";
+import careersHero from "@/assets/teamwork.jpg";
+import imgPower from "@/assets/sector-power.jpg";
+import imgRail from "@/assets/sector-railways.jpg";
+import imgDataCentre from "@/assets/networks-datacenter.png";
+import imgEnterprise from "@/assets/usecase-enterprise.jpg";
+import imgLogistics from "@/assets/film-logistics.jpg";
+import imgSmartCity from "@/assets/usecase-smartcity.jpg";
+import imgPlanning from "@/assets/planning.jpg";
+import imgWorkforce from "@/assets/workforce-management.jpg";
+import imgOffice from "@/assets/smart-office.jpg";
+import imgInfra from "@/assets/infra-hero.jpg";
+import imgManaged from "@/assets/managed-hero.jpg";
 
 interface Job {
   id: string;
@@ -125,26 +137,38 @@ const CareersPage = () => {
   };
 
   const stats = [
-    { value: "200+", label: "Tier-1 engineers" },
-    { value: "18", label: "Telecom circles" },
+    { value: "200+", label: "Engineers & specialists" },
+    { value: "18", label: "Operating circles" },
     { value: "30+", label: "Projects delivered" },
     { value: "2017", label: "Building since" },
   ];
 
+  const sectors = [
+    { image: imgPower, title: "Energy & Utilities" },
+    { image: imgRail, title: "Rail & Transportation" },
+    { image: imgDataCentre, title: "Digital Infrastructure" },
+    { image: imgEnterprise, title: "Enterprise & Industrial" },
+    { image: imgSmartCity, title: "Government & Public Safety" },
+    { image: imgLogistics, title: "Logistics & Manufacturing" },
+  ];
+
   const pillars = [
-    { icon: Zap, title: "Work on live networks", description: "Deploy and manage carrier-grade infrastructure across 18 circles — not sandboxes." },
-    { icon: BookOpen, title: "Certification sponsored", description: "We fund CCNA, CCNP, JNCIA and OEM tracks, with paid study time before exams." },
-    { icon: Users, title: "Engineer-led culture", description: "Flat teams, senior engineers on call as mentors, and real ownership from month one." },
+    { icon: Zap, title: "Work across sectors", description: "Move between energy, transport, public infrastructure, industry and digital projects instead of one narrow domain." },
+    { icon: BookOpen, title: "Certification sponsored", description: "We fund technical, OEM, project management and safety certifications, with paid study time before exams." },
+    { icon: Users, title: "Engineer-led culture", description: "Flat teams, senior specialists on call as mentors, and real ownership from month one." },
     { icon: Heart, title: "Care that shows up", description: "Health cover, field allowances, and a safety-first culture on every site." },
   ];
 
   const disciplines = [
-    { icon: Radio, title: "RF & Wireless", roles: "RF Engineer · Drive Test · Optimisation" },
-    { icon: Network, title: "Network Engineering", roles: "L1/L2/L3 NOC · Routing & Switching" },
-    { icon: Server, title: "Data Centre & Cloud", roles: "DC Ops · Structured Cabling · Edge" },
-    { icon: Wrench, title: "Field & Installation", roles: "FTTH · Splicing · I&C Technicians" },
-    { icon: ShieldCheck, title: "Quality, HSE & PMO", roles: "QA/QC · Safety · Project Coordination" },
-    { icon: Briefcase, title: "Corporate & Support", roles: "Supply Chain · Finance · People" },
+    { icon: Server, title: "Design & Engineering", roles: "Solution design · Systems engineering · Documentation", image: imgPlanning },
+    { icon: Wrench, title: "Deployment & Field Operations", roles: "Installation · Commissioning · Site supervision", image: imgInfra },
+    { icon: Radio, title: "Technology & Integration", roles: "IT/OT integration · Automation · Systems testing", image: imgDataCentre },
+    { icon: Network, title: "Managed Services & Operations", roles: "Operations centres · Maintenance · Service desk", image: imgManaged },
+    { icon: Users, title: "Resource & Project Management", roles: "Project managers · Planners · Workforce leads", image: imgWorkforce },
+    { icon: ShieldCheck, title: "Quality, HSE & Governance", roles: "QA/QC · Safety · Audit & compliance", image: imgOffice },
+    { icon: Briefcase, title: "Supply Chain & Warehousing", roles: "Procurement · Logistics · Inventory control", image: imgLogistics },
+    { icon: Award, title: "Commercial & Client Facing", roles: "Pre-sales · Bids & proposals · Account management", image: imgEnterprise },
+    { icon: GraduationCap, title: "Corporate & Support", roles: "Finance · People · Legal · IT", image: imgSmartCity },
   ];
 
   const talentTracks = [
@@ -154,8 +178,8 @@ const CareersPage = () => {
       title: "Graduate Engineer Trainee",
       duration: "12-month programme",
       description:
-        "For B.E./B.Tech and diploma graduates in ECE, EEE, CSE or IT. Six weeks of structured network fundamentals, then rotation across NOC, field deployment and project delivery before you specialise.",
-      points: ["Stipend + certification sponsorship", "Assigned senior-engineer mentor", "Conversion to full-time on completion"],
+        "For B.E./B.Tech and diploma graduates across ECE, EEE, Mechanical, Civil, CSE and IT. Structured fundamentals first, then rotation across design, deployment, operations and project delivery before you specialise.",
+      points: ["Stipend + certification sponsorship", "Assigned senior mentor", "Conversion to full-time on completion"],
     },
     {
       icon: Rocket,
@@ -163,47 +187,48 @@ const CareersPage = () => {
       title: "Summer & Semester Internships",
       duration: "8–24 weeks",
       description:
-        "Pre-final and final year students work on a real deliverable — a network design study, automation script, or site survey pack — reviewed by the engineers who use it.",
+        "Pre-final and final year students — engineering and non-engineering — work on a real deliverable such as a design study, automation script, site survey pack, market study or process improvement, reviewed by the team that uses it.",
       points: ["Live project, not shadowing", "Certificate + letter of recommendation", "Remote or on-site options"],
     },
     {
       icon: Wrench,
       tag: "ITI / Diploma",
-      title: "Field Technician Apprenticeship",
+      title: "Technician Apprenticeship",
       duration: "6 months",
       description:
-        "Hands-on apprenticeship in fibre splicing, FTTH installation and passive infrastructure, run out of our regional warehouses with certified trainers.",
-      points: ["Tool kit and safety gear provided", "On-site supervised practice", "Priority hiring for deployment teams"],
+        "Hands-on apprenticeship in installation, commissioning, cabling and passive infrastructure across our project sites and regional warehouses, run by certified trainers.",
+      points: ["Tool kit and safety gear provided", "On-site supervised practice", "Priority hiring for delivery teams"],
     },
   ];
 
   const innovation = [
     { icon: Lightbulb, title: "Innovation Challenge", description: "Anyone — including interns — can pitch an idea each quarter. Winning ideas get budget, engineering time and a named owner." },
-    { icon: Trophy, title: "Network Hackdays", description: "Two-day builds on automation, monitoring dashboards and field-app tooling that goes into real operations." },
-    { icon: BookOpen, title: "uConnect Labs", description: "A live lab of routers, switches, OLTs and splicing kits available to every engineer for practice and certification prep." },
-    { icon: Award, title: "Campus Collaborations", description: "Guest lectures, capstone project mentoring and lab tours with engineering colleges across our operating circles." },
+    { icon: Trophy, title: "Build Days", description: "Two-day builds on automation, monitoring dashboards, field apps and process tooling that go into real operations." },
+    { icon: BookOpen, title: "uConnect Labs", description: "A live lab of active and passive equipment, tools and test kits available to every engineer for practice and certification prep." },
+    { icon: Award, title: "Campus Collaborations", description: "Guest lectures, capstone project mentoring and lab tours with colleges across our operating regions." },
   ];
 
   const process = [
     { step: "01", title: "Apply online", detail: "Share your profile and CV. Applies to open roles and speculative applications alike." },
-    { step: "02", title: "Online screening", detail: "Role-specific technical test — timed, proctored and fair to every candidate." },
-    { step: "03", title: "Technical discussion", detail: "A conversation with the engineers you'd work alongside, focused on real scenarios." },
+    { step: "02", title: "Online screening", detail: "Role-specific assessment — timed, proctored and fair to every candidate." },
+    { step: "03", title: "Technical discussion", detail: "A conversation with the team you'd work alongside, focused on real scenarios." },
     { step: "04", title: "Offer & onboarding", detail: "Transparent offer, documentation support and a structured first-90-days plan." },
   ];
 
   const faqs = [
     { q: "Do you hire freshers with no experience?", a: "Yes. Our Graduate Engineer Trainee programme and internships are designed for candidates with no prior industry experience — we train on fundamentals first." },
+    { q: "Do you only hire network and telecom profiles?", a: "No. We are a product and services integrator working across energy and utilities, rail and transportation, government and public safety, enterprise and industrial, and digital infrastructure — so we hire design, deployment, operations, project management, supply chain, quality, commercial and corporate profiles too." },
     { q: "Can I apply if there is no matching open role?", a: "Absolutely. Use the Apply Now form below; we keep profiles on file and reach out when a matching requirement opens in your preferred location." },
-    { q: "Is the screening test mandatory?", a: "For technical roles it is the fastest route forward. Completing the L2 Network Engineer screening lets our team assess your skills directly, even before an interview." },
+    { q: "Is the screening test mandatory?", a: "It applies to specific technical roles and is the fastest route forward for them. Other roles are assessed through the standard application and interview process." },
     { q: "Are internships paid?", a: "Internship stipends depend on the project scope and duration. Terms are confirmed in writing before you start." },
-    { q: "Which locations do you hire for?", a: "We operate across 18 telecom circles in India with five regional warehouses, so roles span metro, tier-2 and field locations." },
+    { q: "Which locations do you hire for?", a: "We operate across 18 circles in India with five regional warehouses, so roles span metro, tier-2 and field locations." },
   ];
 
   return (
     <div className="min-h-screen bg-background">
       <SEO
         title="Careers at uConnect Technologies — Engineering, Graduate & Internships"
-        description="Build carrier-grade networks with uConnect Technologies. Explore engineering roles, the graduate trainee programme, internships and apprenticeships across India."
+        description="Careers at uConnect Technologies, a multi-sector product and services integrator. Roles across design, deployment, operations, project management, supply chain and corporate functions in India."
         path="/careers"
         image="https://uconnecttech.com/og/careers.jpg"
         breadcrumbs={[{ name: "Home", path: "/" }, { name: "Careers", path: "/careers" }]}
@@ -213,8 +238,8 @@ const CareersPage = () => {
         {/* Cinematic hero */}
         <section className="relative min-h-[72vh] flex items-end overflow-hidden">
           <img
-            src="/lovable-uploads/115872b6-8d21-43a0-b6ed-a612375446ba.webp"
-            alt="uConnect Technologies engineers working on network infrastructure"
+            src={careersHero}
+            alt="uConnect Technologies teams collaborating on multi-sector infrastructure projects"
             className="absolute inset-0 w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent" />
@@ -225,14 +250,16 @@ const CareersPage = () => {
                 Careers at uConnect
               </div>
               <h1 className="display-headline text-foreground text-4xl sm:text-6xl lg:text-7xl">
-                Engineer the networks
+                Many sectors. Many roles.
                 <br />
-                <span className="text-accent">everything else runs on.</span>
+                <span className="text-accent">One integrator.</span>
               </h1>
               <p className="mt-8 text-base lg:text-lg text-muted-foreground max-w-2xl leading-relaxed">
-                From fibre in the ground to the NOC that keeps it alive, our teams design, deploy and
-                manage infrastructure at national scale. Whether you have twelve years of experience
-                or none at all, there is a path here.
+                We are a product and services integrator delivering across energy and utilities, rail
+                and transportation, public infrastructure, enterprise and industrial, and digital
+                infrastructure. That means careers in design, deployment, operations, project and
+                resource management, supply chain, quality and corporate functions — for experienced
+                professionals and for people just starting out.
               </p>
               <div className="mt-10 flex flex-wrap gap-4">
                 <Button asChild size="lg" className="bg-accent hover:bg-accent/90">
@@ -262,8 +289,45 @@ const CareersPage = () => {
           </div>
         </section>
 
-        {/* Why work here */}
+        {/* Sectors we hire for */}
         <section className="py-24">
+          <div className="container mx-auto px-4 lg:px-8">
+            <motion.div {...fadeUp} className="max-w-3xl mb-14">
+              <div className="text-sm font-semibold text-accent uppercase tracking-[0.2em] mb-4">Sectors we hire for</div>
+              <h2 className="text-3xl lg:text-5xl font-bold text-foreground">
+                Not one industry — several
+              </h2>
+              <p className="mt-6 text-lg text-muted-foreground">
+                Our projects span multiple sectors, so your experience compounds across domains
+                instead of narrowing into one.
+              </p>
+            </motion.div>
+            <div className="grid grid-cols-2 lg:grid-cols-3 gap-6">
+              {sectors.map((s, i) => (
+                <motion.div
+                  key={s.title}
+                  {...fadeUp}
+                  transition={{ duration: 0.5, delay: i * 0.05 }}
+                  className="relative rounded-2xl overflow-hidden border border-border group"
+                >
+                  <img
+                    src={s.image}
+                    alt={`${s.title} projects at uConnect Technologies`}
+                    loading="lazy"
+                    className="h-48 lg:h-56 w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-5">
+                    <h3 className="text-base lg:text-lg font-semibold text-foreground">{s.title}</h3>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Why work here */}
+        <section className="py-24 bg-muted/30 border-y border-border">
           <div className="container mx-auto px-4 lg:px-8">
             <motion.div {...fadeUp} className="max-w-3xl mb-16">
               <div className="text-sm font-semibold text-accent uppercase tracking-[0.2em] mb-4">Life here</div>
@@ -271,8 +335,8 @@ const CareersPage = () => {
                 Serious infrastructure. Sane teams.
               </h2>
               <p className="mt-6 text-lg text-muted-foreground">
-                We are a product and services integrator — which means our engineers touch design,
-                deployment and operations rather than a single narrow slice.
+                As a product and services integrator, our people touch products, design, deployment
+                and operations across several sectors rather than a single narrow slice.
               </p>
             </motion.div>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -296,21 +360,43 @@ const CareersPage = () => {
         </section>
 
         {/* Disciplines */}
-        <section className="py-24 bg-muted/30 border-y border-border">
+        <section className="py-24">
           <div className="container mx-auto px-4 lg:px-8">
             <motion.div {...fadeUp} className="max-w-3xl mb-14">
               <div className="text-sm font-semibold text-accent uppercase tracking-[0.2em] mb-4">Where you fit</div>
-              <h2 className="text-3xl lg:text-5xl font-bold text-foreground">Career areas</h2>
+              <h2 className="text-3xl lg:text-5xl font-bold text-foreground">Career areas & profiles</h2>
+              <p className="mt-6 text-lg text-muted-foreground">
+                Technical and non-technical, field and office, entry level and senior — we hire across
+                the full delivery chain.
+              </p>
             </motion.div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-border rounded-2xl overflow-hidden">
-              {disciplines.map((d) => (
-                <div key={d.title} className="bg-background p-8 hover:bg-card transition-colors group">
-                  <d.icon className="h-7 w-7 text-accent mb-6" />
-                  <h3 className="text-xl font-semibold text-foreground group-hover:text-accent transition-colors">
-                    {d.title}
-                  </h3>
-                  <p className="mt-3 text-sm text-muted-foreground">{d.roles}</p>
-                </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {disciplines.map((d, i) => (
+                <motion.div
+                  key={d.title}
+                  {...fadeUp}
+                  transition={{ duration: 0.5, delay: i * 0.04 }}
+                  className="rounded-2xl overflow-hidden border border-border bg-card/60 backdrop-blur hover:border-accent/40 transition-colors group"
+                >
+                  <div className="relative h-36 overflow-hidden">
+                    <img
+                      src={d.image}
+                      alt={`${d.title} careers at uConnect Technologies`}
+                      loading="lazy"
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-card via-card/20 to-transparent" />
+                    <div className="absolute bottom-3 left-4 h-10 w-10 rounded-xl bg-accent/15 backdrop-blur flex items-center justify-center">
+                      <d.icon className="h-5 w-5 text-accent" />
+                    </div>
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-lg font-semibold text-foreground group-hover:text-accent transition-colors">
+                      {d.title}
+                    </h3>
+                    <p className="mt-2 text-sm text-muted-foreground">{d.roles}</p>
+                  </div>
+                </motion.div>
               ))}
             </div>
           </div>
@@ -324,7 +410,7 @@ const CareersPage = () => {
                 Emerging talent
               </div>
               <h2 className="text-3xl lg:text-5xl font-bold text-foreground">
-                Starting out? Start on a live network.
+                Starting out? Start on a real project.
               </h2>
               <p className="mt-6 text-lg text-muted-foreground">
                 Three structured routes in for students, graduates and diploma holders — each with
