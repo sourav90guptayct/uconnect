@@ -137,26 +137,38 @@ const CareersPage = () => {
   };
 
   const stats = [
-    { value: "200+", label: "Tier-1 engineers" },
-    { value: "18", label: "Telecom circles" },
+    { value: "200+", label: "Engineers & specialists" },
+    { value: "18", label: "Operating circles" },
     { value: "30+", label: "Projects delivered" },
     { value: "2017", label: "Building since" },
   ];
 
+  const sectors = [
+    { image: imgPower, title: "Energy & Utilities" },
+    { image: imgRail, title: "Rail & Transportation" },
+    { image: imgDataCentre, title: "Digital Infrastructure" },
+    { image: imgEnterprise, title: "Enterprise & Industrial" },
+    { image: imgSmartCity, title: "Government & Public Safety" },
+    { image: imgLogistics, title: "Logistics & Manufacturing" },
+  ];
+
   const pillars = [
-    { icon: Zap, title: "Work on live networks", description: "Deploy and manage carrier-grade infrastructure across 18 circles — not sandboxes." },
-    { icon: BookOpen, title: "Certification sponsored", description: "We fund CCNA, CCNP, JNCIA and OEM tracks, with paid study time before exams." },
-    { icon: Users, title: "Engineer-led culture", description: "Flat teams, senior engineers on call as mentors, and real ownership from month one." },
+    { icon: Zap, title: "Work across sectors", description: "Move between energy, transport, public infrastructure, industry and digital projects instead of one narrow domain." },
+    { icon: BookOpen, title: "Certification sponsored", description: "We fund technical, OEM, project management and safety certifications, with paid study time before exams." },
+    { icon: Users, title: "Engineer-led culture", description: "Flat teams, senior specialists on call as mentors, and real ownership from month one." },
     { icon: Heart, title: "Care that shows up", description: "Health cover, field allowances, and a safety-first culture on every site." },
   ];
 
   const disciplines = [
-    { icon: Radio, title: "RF & Wireless", roles: "RF Engineer · Drive Test · Optimisation" },
-    { icon: Network, title: "Network Engineering", roles: "L1/L2/L3 NOC · Routing & Switching" },
-    { icon: Server, title: "Data Centre & Cloud", roles: "DC Ops · Structured Cabling · Edge" },
-    { icon: Wrench, title: "Field & Installation", roles: "FTTH · Splicing · I&C Technicians" },
-    { icon: ShieldCheck, title: "Quality, HSE & PMO", roles: "QA/QC · Safety · Project Coordination" },
-    { icon: Briefcase, title: "Corporate & Support", roles: "Supply Chain · Finance · People" },
+    { icon: Server, title: "Design & Engineering", roles: "Solution design · Systems engineering · Documentation", image: imgPlanning },
+    { icon: Wrench, title: "Deployment & Field Operations", roles: "Installation · Commissioning · Site supervision", image: imgInfra },
+    { icon: Radio, title: "Technology & Integration", roles: "IT/OT integration · Automation · Systems testing", image: imgDataCentre },
+    { icon: Network, title: "Managed Services & Operations", roles: "Operations centres · Maintenance · Service desk", image: imgManaged },
+    { icon: Users, title: "Resource & Project Management", roles: "Project managers · Planners · Workforce leads", image: imgWorkforce },
+    { icon: ShieldCheck, title: "Quality, HSE & Governance", roles: "QA/QC · Safety · Audit & compliance", image: imgOffice },
+    { icon: Briefcase, title: "Supply Chain & Warehousing", roles: "Procurement · Logistics · Inventory control", image: imgLogistics },
+    { icon: Award, title: "Commercial & Client Facing", roles: "Pre-sales · Bids & proposals · Account management", image: imgEnterprise },
+    { icon: GraduationCap, title: "Corporate & Support", roles: "Finance · People · Legal · IT", image: imgSmartCity },
   ];
 
   const talentTracks = [
@@ -166,8 +178,8 @@ const CareersPage = () => {
       title: "Graduate Engineer Trainee",
       duration: "12-month programme",
       description:
-        "For B.E./B.Tech and diploma graduates in ECE, EEE, CSE or IT. Six weeks of structured network fundamentals, then rotation across NOC, field deployment and project delivery before you specialise.",
-      points: ["Stipend + certification sponsorship", "Assigned senior-engineer mentor", "Conversion to full-time on completion"],
+        "For B.E./B.Tech and diploma graduates across ECE, EEE, Mechanical, Civil, CSE and IT. Structured fundamentals first, then rotation across design, deployment, operations and project delivery before you specialise.",
+      points: ["Stipend + certification sponsorship", "Assigned senior mentor", "Conversion to full-time on completion"],
     },
     {
       icon: Rocket,
@@ -175,47 +187,48 @@ const CareersPage = () => {
       title: "Summer & Semester Internships",
       duration: "8–24 weeks",
       description:
-        "Pre-final and final year students work on a real deliverable — a network design study, automation script, or site survey pack — reviewed by the engineers who use it.",
+        "Pre-final and final year students — engineering and non-engineering — work on a real deliverable such as a design study, automation script, site survey pack, market study or process improvement, reviewed by the team that uses it.",
       points: ["Live project, not shadowing", "Certificate + letter of recommendation", "Remote or on-site options"],
     },
     {
       icon: Wrench,
       tag: "ITI / Diploma",
-      title: "Field Technician Apprenticeship",
+      title: "Technician Apprenticeship",
       duration: "6 months",
       description:
-        "Hands-on apprenticeship in fibre splicing, FTTH installation and passive infrastructure, run out of our regional warehouses with certified trainers.",
-      points: ["Tool kit and safety gear provided", "On-site supervised practice", "Priority hiring for deployment teams"],
+        "Hands-on apprenticeship in installation, commissioning, cabling and passive infrastructure across our project sites and regional warehouses, run by certified trainers.",
+      points: ["Tool kit and safety gear provided", "On-site supervised practice", "Priority hiring for delivery teams"],
     },
   ];
 
   const innovation = [
     { icon: Lightbulb, title: "Innovation Challenge", description: "Anyone — including interns — can pitch an idea each quarter. Winning ideas get budget, engineering time and a named owner." },
-    { icon: Trophy, title: "Network Hackdays", description: "Two-day builds on automation, monitoring dashboards and field-app tooling that goes into real operations." },
-    { icon: BookOpen, title: "uConnect Labs", description: "A live lab of routers, switches, OLTs and splicing kits available to every engineer for practice and certification prep." },
-    { icon: Award, title: "Campus Collaborations", description: "Guest lectures, capstone project mentoring and lab tours with engineering colleges across our operating circles." },
+    { icon: Trophy, title: "Build Days", description: "Two-day builds on automation, monitoring dashboards, field apps and process tooling that go into real operations." },
+    { icon: BookOpen, title: "uConnect Labs", description: "A live lab of active and passive equipment, tools and test kits available to every engineer for practice and certification prep." },
+    { icon: Award, title: "Campus Collaborations", description: "Guest lectures, capstone project mentoring and lab tours with colleges across our operating regions." },
   ];
 
   const process = [
     { step: "01", title: "Apply online", detail: "Share your profile and CV. Applies to open roles and speculative applications alike." },
-    { step: "02", title: "Online screening", detail: "Role-specific technical test — timed, proctored and fair to every candidate." },
-    { step: "03", title: "Technical discussion", detail: "A conversation with the engineers you'd work alongside, focused on real scenarios." },
+    { step: "02", title: "Online screening", detail: "Role-specific assessment — timed, proctored and fair to every candidate." },
+    { step: "03", title: "Technical discussion", detail: "A conversation with the team you'd work alongside, focused on real scenarios." },
     { step: "04", title: "Offer & onboarding", detail: "Transparent offer, documentation support and a structured first-90-days plan." },
   ];
 
   const faqs = [
     { q: "Do you hire freshers with no experience?", a: "Yes. Our Graduate Engineer Trainee programme and internships are designed for candidates with no prior industry experience — we train on fundamentals first." },
+    { q: "Do you only hire network and telecom profiles?", a: "No. We are a product and services integrator working across energy and utilities, rail and transportation, government and public safety, enterprise and industrial, and digital infrastructure — so we hire design, deployment, operations, project management, supply chain, quality, commercial and corporate profiles too." },
     { q: "Can I apply if there is no matching open role?", a: "Absolutely. Use the Apply Now form below; we keep profiles on file and reach out when a matching requirement opens in your preferred location." },
-    { q: "Is the screening test mandatory?", a: "For technical roles it is the fastest route forward. Completing the L2 Network Engineer screening lets our team assess your skills directly, even before an interview." },
+    { q: "Is the screening test mandatory?", a: "It applies to specific technical roles and is the fastest route forward for them. Other roles are assessed through the standard application and interview process." },
     { q: "Are internships paid?", a: "Internship stipends depend on the project scope and duration. Terms are confirmed in writing before you start." },
-    { q: "Which locations do you hire for?", a: "We operate across 18 telecom circles in India with five regional warehouses, so roles span metro, tier-2 and field locations." },
+    { q: "Which locations do you hire for?", a: "We operate across 18 circles in India with five regional warehouses, so roles span metro, tier-2 and field locations." },
   ];
 
   return (
     <div className="min-h-screen bg-background">
       <SEO
         title="Careers at uConnect Technologies — Engineering, Graduate & Internships"
-        description="Build carrier-grade networks with uConnect Technologies. Explore engineering roles, the graduate trainee programme, internships and apprenticeships across India."
+        description="Careers at uConnect Technologies, a multi-sector product and services integrator. Roles across design, deployment, operations, project management, supply chain and corporate functions in India."
         path="/careers"
         image="https://uconnecttech.com/og/careers.jpg"
         breadcrumbs={[{ name: "Home", path: "/" }, { name: "Careers", path: "/careers" }]}
