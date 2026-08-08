@@ -1,18 +1,39 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { Trophy, Zap, Shield, Users, Globe, Award, CheckCircle2 } from "lucide-react";
+import { Trophy, Package, Wrench, CheckCircle2 } from "lucide-react";
 import { motion } from "framer-motion";
 
 const WhyChooseUs = () => {
   const differentiators = [
-    { icon: Trophy, title: "SCALE", subtitle: "Pan-India Infrastructure", stats: ["Presence across 18 telecom circles", "200+ Tier-1 field engineers", "10,000+ Links deployed", "30+ projects delivered", "5 regional warehouses"] },
-    { icon: Zap, title: "AGILITY", subtitle: "Speed & Precision", stats: ["4-hour enterprise inquiry response", "Rapid mobilization across circles", "Real-time project tracking", "Flexible engagement models", "Certified rollout playbooks"] },
-    { icon: Shield, title: "RELIABILITY", subtitle: "Carrier-Grade Delivery", stats: ["24/7 NOC & field support", "SLA-driven managed services", "Multi-vendor equipment expertise", "Standardized QA & audits", "Secure operational processes"] },
-  ];
-
-  const achievements = [
-    { icon: Award, title: "Trusted Since 2017", description: "Serving India's top telecom carriers and enterprises" },
-    { icon: Users, title: "Active Enterprise Customers", description: "15+ carriers and enterprises rely on us" },
-    { icon: Globe, title: "Pan-India Presence", description: "Operations across 18 telecom circles" },
+    {
+      icon: Package,
+      title: "PRODUCT",
+      subtitle: "We own what we install",
+      stats: [
+        "ConnectLH™ hardware designed in-house",
+        "Stocked locally, so replacements ship same-day",
+        "No finger-pointing between vendor and installer",
+      ],
+    },
+    {
+      icon: Wrench,
+      title: "INTEGRATION",
+      subtitle: "Design, deploy, operate",
+      stats: [
+        "One contract across supply, rollout and operations",
+        "Certified rollout playbooks with QA and audits",
+        "Multi-vendor active and passive equipment expertise",
+      ],
+    },
+    {
+      icon: Trophy,
+      title: "SERVICE",
+      subtitle: "Accountable after go-live",
+      stats: [
+        "24/7 NOC with SLA-driven field response",
+        "Engineering teams you can scale up or down",
+        "Real-time project and ticket visibility",
+      ],
+    },
   ];
 
   return (
@@ -27,16 +48,17 @@ const WhyChooseUs = () => {
         >
           <div className="inline-flex items-center gap-2 bg-accent/10 text-accent px-4 py-2 rounded-full mb-6">
             <Trophy className="h-4 w-4" />
-            <span className="font-semibold text-sm">Why Leading Enterprises Choose Us</span>
+            <span className="font-semibold text-sm">Why enterprises pick an integrator</span>
           </div>
           <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-foreground">
             The uConnect <span className="text-gradient">Advantage</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Built for scale, engineered for reliability — discover why India's top organizations 
-            trust uConnect Technologies for their most critical operations.
+            Most partners sell you a box or sell you hours. We take responsibility for the
+            product, the installation and the service level that follows.
           </p>
         </motion.div>
+
 
         <div className="grid lg:grid-cols-3 gap-7 mb-20">
           {differentiators.map((item, index) => (
