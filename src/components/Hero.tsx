@@ -218,15 +218,15 @@ const Hero = () => {
 
               <button
                 onClick={startFilm}
-                className="group absolute bottom-16 right-4 lg:bottom-24 lg:right-8 inline-flex items-center gap-4 text-left"
+                className="group mt-8 self-start inline-flex items-center gap-3 text-left lg:mt-0 lg:self-auto lg:absolute lg:bottom-24 lg:right-8 lg:gap-4"
                 aria-label="Play the uConnect film"
               >
                 <span className="t-eyebrow text-on-media/85 group-hover:text-on-media">
                   Watch the film
                 </span>
-                <span className="relative inline-flex h-16 w-16 items-center justify-center rounded-full bg-on-media/95 text-primary transition-transform duration-300 group-hover:scale-110">
+                <span className="relative inline-flex h-12 w-12 lg:h-16 lg:w-16 items-center justify-center rounded-full bg-on-media/95 text-primary transition-transform duration-300 group-hover:scale-110">
                   <span className="absolute inset-0 rounded-full border border-on-media/50 animate-ping" />
-                  <Play className="h-6 w-6 translate-x-[1px] fill-current" />
+                  <Play className="h-5 w-5 lg:h-6 lg:w-6 translate-x-[1px] fill-current" />
                 </span>
               </button>
             </motion.div>
