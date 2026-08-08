@@ -95,6 +95,7 @@ const UseCases = () => {
               transition={{ delay: index * 0.06, duration: 0.5 }}
               className="group relative bg-background rounded-3xl overflow-hidden border border-border hover:border-accent/40 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1"
             >
+              <Link to={uc.to} className="block" aria-label={uc.title}>
               <div className="relative h-48 overflow-hidden">
                 <img
                   loading="lazy"
