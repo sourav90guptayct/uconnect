@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { X, Pause, Play } from "lucide-react";
+import { X, Pause, Play, Volume2, VolumeX } from "lucide-react";
 import filmAsset from "@/assets/uconnect-hero-film.mp4.asset.json";
 
 interface HeroFilmProps {
@@ -9,7 +9,9 @@ interface HeroFilmProps {
 const HeroFilm = ({ onClose }: HeroFilmProps) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [paused, setPaused] = useState(false);
+  const [muted, setMuted] = useState(true);
   const [progress, setProgress] = useState(0);
+
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -37,7 +39,7 @@ const HeroFilm = ({ onClose }: HeroFilmProps) => {
         ref={videoRef}
         src={filmAsset.url}
         autoPlay
-        muted
+        muted={muted}
         playsInline
         onEnded={onClose}
         onTimeUpdate={(e) => {
@@ -50,12 +52,20 @@ const HeroFilm = ({ onClose }: HeroFilmProps) => {
       {/* Controls */}
       <div className="absolute right-4 top-4 z-10 flex items-center gap-2">
         <button
+          onClick={() => setMuted((m) => !m)}
+          aria-label={muted ? "Unmute film" : "Mute film"}
+          className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-background/85 text-foreground backdrop-blur transition-transform hover:scale-105"
+        >
+          {muted ? <VolumeX className="h-5 w-5" /> : <Volume2 className="h-5 w-5" />}
+        </button>
+        <button
           onClick={toggle}
           aria-label={paused ? "Resume film" : "Pause film"}
           className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-background/85 text-foreground backdrop-blur transition-transform hover:scale-105"
         >
           {paused ? <Play className="h-5 w-5" /> : <Pause className="h-5 w-5" />}
         </button>
+
         <button
           onClick={onClose}
           aria-label="Close film"
