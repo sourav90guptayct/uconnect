@@ -14,6 +14,7 @@ const useCases = [
   {
     icon: Wifi,
     title: "Telecommunications",
+    to: "/networks",
     image: telecomImg,
     desc: "Carriers, ISPs, WISPs, tower companies and system integrators rely on our ConnectLH™ hardware and rollout playbooks for rapid, reliable network expansion.",
     tags: ["ConnectLH™", "Antennas & radios", "Turnkey rollouts"],
@@ -21,6 +22,7 @@ const useCases = [
   {
     icon: Shield,
     title: "Government & Public Safety",
+    to: "/networks",
     image: governmentImg,
     desc: "Police, smart cities, government networks, defense and emergency communications — mission-critical connectivity built for public service.",
     tags: ["Secure backhaul", "Smart city", "Surveillance"],
@@ -28,6 +30,7 @@ const useCases = [
   {
     icon: TrainFront,
     title: "Rail & Transportation",
+    to: "/networks",
     image: railImg,
     desc: "Railways, metro, highways, airports, ports and intelligent transportation systems stay connected with ruggedized radios and managed networks.",
     tags: ["Rail backhaul", "Onboard Wi-Fi", "ITS networks"],
@@ -35,6 +38,7 @@ const useCases = [
   {
     icon: Zap,
     title: "Energy & Utilities",
+    to: "/infra-installation",
     image: energyImg,
     desc: "Power, renewable energy, electricity distribution and water utilities use our outdoor enclosures and 4G/5G routers for secure remote operations.",
     tags: ["Smart grid", "Substation backhaul", "Remote monitoring"],
@@ -42,6 +46,7 @@ const useCases = [
   {
     icon: Factory,
     title: "Enterprise & Industrial",
+    to: "/managed-services",
     image: enterpriseImg,
     desc: "Manufacturing, mining, logistics, oil & gas, warehouses and large campuses get redundant, high-capacity connectivity for automation and operations.",
     tags: ["Industrial Wi-Fi", "Private networks", "SD-WAN"],
@@ -49,6 +54,7 @@ const useCases = [
   {
     icon: Server,
     title: "Digital Infrastructure",
+    to: "/products",
     image: digitalImg,
     desc: "Data centers, cloud infrastructure, edge computing and enterprise networks run on our structured cabling, PoE solutions and fiber/RF systems.",
     tags: ["Data center cabling", "Edge connectivity", "Fiber & RF"],
