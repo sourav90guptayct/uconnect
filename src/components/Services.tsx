@@ -96,11 +96,43 @@ const Services = () => {
                 <h3 className="display-headline text-background text-xl sm:text-2xl lg:text-4xl leading-tight">
                   {service.title}
                 </h3>
+                <p className="mt-2 hidden lg:block text-background/75 text-sm leading-relaxed">
+                  {service.desc}
+                </p>
               </div>
               </Link>
             </motion.div>
           ))}
         </div>
+
+        {/* Product side of the integrator story */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mt-8 lg:mt-10 rounded-3xl border border-border bg-muted/40 p-6 lg:p-10 flex flex-col lg:flex-row lg:items-center gap-6 lg:gap-10"
+        >
+          <div className="flex-1">
+            <div className="text-sm font-semibold text-accent uppercase tracking-widest mb-3">
+              The product side
+            </div>
+            <h3 className="display-headline text-foreground text-2xl lg:text-4xl">
+              ConnectLH™ — our own hardware line
+            </h3>
+            <p className="mt-4 text-muted-foreground text-sm lg:text-base leading-relaxed max-w-2xl">
+              Dish and sector antennas, PoE injectors, RF accessories and outdoor enclosures,
+              stocked in regional warehouses and installed by the same team that supplies them.
+              That is what makes us an integrator rather than a reseller or a labour vendor.
+            </p>
+          </div>
+          <Link to="/products" className="flex-shrink-0">
+            <span className="inline-flex items-center gap-2 rounded-full bg-accent text-accent-foreground px-6 py-3 font-semibold text-sm">
+              Browse products <ArrowUpRight className="h-4 w-4" />
+            </span>
+          </Link>
+        </motion.div>
+
       </div>
     </section>
   );
