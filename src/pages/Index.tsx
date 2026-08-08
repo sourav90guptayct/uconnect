@@ -83,7 +83,9 @@ const Index = () => {
           <About />
           <Services />
           <UseCases />
+          <HowItWorks />
           <WhyChooseUs />
+
           <Contact />
         </Suspense>
       </main>
