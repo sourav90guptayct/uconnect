@@ -1,7 +1,7 @@
 import { Separator } from "@/components/ui/separator";
 import { Mail } from "lucide-react";
 import { Link } from "react-router-dom";
-import logo from "@/assets/uconnect-logo.png";
+import logo from "@/assets/uconnect-logo.webp";
 
 const Footer = () => {
   const year = new Date().getFullYear();
