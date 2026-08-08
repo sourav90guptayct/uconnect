@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import AnimatedCounter from "@/components/animations/AnimatedCounter";
-import { ArrowRight, ArrowUpRight, ChevronDown, Play } from "lucide-react";
+import { ArrowRight, ChevronDown, Play } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import HeroFilm from "@/components/HeroFilm";
