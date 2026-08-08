@@ -98,38 +98,18 @@ const WhyChooseUs = () => {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="relative rounded-3xl overflow-hidden mb-12"
+          className="relative rounded-3xl overflow-hidden"
         >
-          <img loading="lazy" decoding="async" src="/lovable-uploads/e2f0fa8e-0cfd-4a8e-8ab3-e9550216c580.png" alt="Team Unity" className="w-full h-72 object-cover" />
+          <img loading="lazy" decoding="async" src="/lovable-uploads/e2f0fa8e-0cfd-4a8e-8ab3-e9550216c580.png" alt="uConnect Technologies field and operations team" className="w-full h-72 object-cover" />
           <div className="absolute inset-0 bg-gradient-to-r from-primary/45 via-primary/35 to-primary/45" />
           <div className="absolute inset-0 flex items-center justify-center text-center p-8">
             <div>
-              <h3 className="text-3xl lg:text-5xl font-bold mb-4" style={{ color: '#ffffff' }}>Powering India's Digital Infrastructure</h3>
-              <p className="text-xl max-w-2xl mx-auto" style={{ color: 'rgba(255,255,255,0.85)' }}>From telecom towers to enterprise IT — we build the backbone of India's connected future</p>
+              <h3 className="text-3xl lg:text-5xl font-bold mb-4" style={{ color: '#ffffff' }}>One partner. Product to operations.</h3>
+              <p className="text-xl max-w-2xl mx-auto" style={{ color: 'rgba(255,255,255,0.85)' }}>Managed services, network deployment, resources management and infra solutions — integrated around our own hardware.</p>
             </div>
           </div>
         </motion.div>
 
-        {/* Achievements */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="bg-gradient-to-r from-primary via-primary/95 to-primary/90 rounded-3xl p-8 lg:p-12"
-        >
-          <div className="grid md:grid-cols-3 gap-8">
-            {achievements.map((achievement, index) => (
-              <div key={index} className="text-center">
-                <div className="h-14 w-14 bg-white/10 rounded-2xl flex items-center justify-center mx-auto mb-4 backdrop-blur-sm">
-                  <achievement.icon className="h-7 w-7 text-accent" />
-                </div>
-                <h4 className="text-xl font-bold mb-2" style={{ color: '#ffffff' }}>{achievement.title}</h4>
-                <p style={{ color: 'rgba(255,255,255,0.8)' }}>{achievement.description}</p>
-              </div>
-            ))}
-          </div>
-        </motion.div>
       </div>
     </section>
   );
