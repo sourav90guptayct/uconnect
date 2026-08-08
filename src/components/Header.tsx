@@ -6,7 +6,7 @@ import { useAdminCheck } from "@/hooks/useAdminCheck";
 import { useNavigate, Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import MegaMenuOverlay from "@/components/MegaMenuOverlay";
-import logo from "@/assets/uconnect-logo.webp";
+import logoIcon from "@/assets/uconnect-icon-dark.webp";
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
