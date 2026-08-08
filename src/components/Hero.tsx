@@ -188,25 +188,6 @@ const Hero = () => {
                   </Link>
                 </div>
 
-                {/* Sector rail — shows the breadth of verticals we work across */}
-                <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3">
-                  {sectorFrames.map((s, i) => (
-                    <button
-                      key={s.label}
-                      onClick={() => setFrame(i)}
-                      className={`t-micro transition-colors ${
-                        i === frame ? "text-on-media" : "text-on-media/50 hover:text-on-media/80"
-                      }`}
-                    >
-                      <span
-                        className={`mr-2 inline-block h-1.5 w-1.5 rounded-full align-middle ${
-                          i === frame ? "bg-accent" : "bg-on-media/40"
-                        }`}
-                      />
-                      {s.label}
-                    </button>
-                  ))}
-                </div>
               </motion.div>
             </motion.div>
           )}
