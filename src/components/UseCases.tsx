@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { Wifi, Shield, TrainFront, Zap, Factory, Server, ArrowUpRight } from "lucide-react";
 import telecomAsset from "@/assets/telecom-connectivity.jpg.asset.json";
 import governmentImg from "@/assets/networks-smartcity.png";
@@ -13,6 +14,7 @@ const useCases = [
   {
     icon: Wifi,
     title: "Telecommunications",
+    to: "/networks",
     image: telecomImg,
     desc: "Carriers, ISPs, WISPs, tower companies and system integrators rely on our ConnectLH™ hardware and rollout playbooks for rapid, reliable network expansion.",
     tags: ["ConnectLH™", "Antennas & radios", "Turnkey rollouts"],
@@ -20,6 +22,7 @@ const useCases = [
   {
     icon: Shield,
     title: "Government & Public Safety",
+    to: "/networks",
     image: governmentImg,
     desc: "Police, smart cities, government networks, defense and emergency communications — mission-critical connectivity built for public service.",
     tags: ["Secure backhaul", "Smart city", "Surveillance"],
@@ -27,6 +30,7 @@ const useCases = [
   {
     icon: TrainFront,
     title: "Rail & Transportation",
+    to: "/networks",
     image: railImg,
     desc: "Railways, metro, highways, airports, ports and intelligent transportation systems stay connected with ruggedized radios and managed networks.",
     tags: ["Rail backhaul", "Onboard Wi-Fi", "ITS networks"],
@@ -34,6 +38,7 @@ const useCases = [
   {
     icon: Zap,
     title: "Energy & Utilities",
+    to: "/infra-installation",
     image: energyImg,
     desc: "Power, renewable energy, electricity distribution and water utilities use our outdoor enclosures and 4G/5G routers for secure remote operations.",
     tags: ["Smart grid", "Substation backhaul", "Remote monitoring"],
@@ -41,6 +46,7 @@ const useCases = [
   {
     icon: Factory,
     title: "Enterprise & Industrial",
+    to: "/managed-services",
     image: enterpriseImg,
     desc: "Manufacturing, mining, logistics, oil & gas, warehouses and large campuses get redundant, high-capacity connectivity for automation and operations.",
     tags: ["Industrial Wi-Fi", "Private networks", "SD-WAN"],
@@ -48,6 +54,7 @@ const useCases = [
   {
     icon: Server,
     title: "Digital Infrastructure",
+    to: "/products",
     image: digitalImg,
     desc: "Data centers, cloud infrastructure, edge computing and enterprise networks run on our structured cabling, PoE solutions and fiber/RF systems.",
     tags: ["Data center cabling", "Edge connectivity", "Fiber & RF"],
@@ -88,6 +95,7 @@ const UseCases = () => {
               transition={{ delay: index * 0.06, duration: 0.5 }}
               className="group relative bg-background rounded-3xl overflow-hidden border border-border hover:border-accent/40 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1"
             >
+              <Link to={uc.to} className="block" aria-label={uc.title}>
               <div className="relative h-48 overflow-hidden">
                 <img
                   loading="lazy"
@@ -123,6 +131,7 @@ const UseCases = () => {
                   ))}
                 </div>
               </div>
+              </Link>
             </motion.article>
           ))}
         </div>
