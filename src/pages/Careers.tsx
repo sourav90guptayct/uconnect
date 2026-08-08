@@ -238,8 +238,8 @@ const CareersPage = () => {
         {/* Cinematic hero */}
         <section className="relative min-h-[72vh] flex items-end overflow-hidden">
           <img
-            src="/lovable-uploads/115872b6-8d21-43a0-b6ed-a612375446ba.webp"
-            alt="uConnect Technologies engineers working on network infrastructure"
+            src={careersHero}
+            alt="uConnect Technologies teams collaborating on multi-sector infrastructure projects"
             className="absolute inset-0 w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent" />
@@ -250,14 +250,16 @@ const CareersPage = () => {
                 Careers at uConnect
               </div>
               <h1 className="display-headline text-foreground text-4xl sm:text-6xl lg:text-7xl">
-                Engineer the networks
+                Many sectors. Many roles.
                 <br />
-                <span className="text-accent">everything else runs on.</span>
+                <span className="text-accent">One integrator.</span>
               </h1>
               <p className="mt-8 text-base lg:text-lg text-muted-foreground max-w-2xl leading-relaxed">
-                From fibre in the ground to the NOC that keeps it alive, our teams design, deploy and
-                manage infrastructure at national scale. Whether you have twelve years of experience
-                or none at all, there is a path here.
+                We are a product and services integrator delivering across energy and utilities, rail
+                and transportation, public infrastructure, enterprise and industrial, and digital
+                infrastructure. That means careers in design, deployment, operations, project and
+                resource management, supply chain, quality and corporate functions — for experienced
+                professionals and for people just starting out.
               </p>
               <div className="mt-10 flex flex-wrap gap-4">
                 <Button asChild size="lg" className="bg-accent hover:bg-accent/90">
