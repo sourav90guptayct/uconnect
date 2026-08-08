@@ -24,23 +24,23 @@ export const SceneProducts: React.FC<{ span: number }> = ({ span }) => {
 
   return (
     <AbsoluteFill style={{ background: NAVY_GRADIENT }}>
-      <AbsoluteFill style={{ padding: "96px 120px", opacity: 1 - outro }}>
+      <AbsoluteFill style={{ padding: "64px 100px 96px", opacity: 1 - outro }}>
         <Eyebrow>Products</Eyebrow>
         <Headline
           text="Kept moving by uConnect industrial-grade products."
           delay={12}
-          size={84}
-          maxWidth={1180}
+          size={64}
+          maxWidth={980}
           accentFrom={3}
         />
 
         <div
           style={{
-            marginTop: 52,
+            marginTop: 30,
             display: "grid",
             gridTemplateColumns: "repeat(6, 1fr)",
             gap: 20,
-            flex: 1,
+            height: 560,
           }}
         >
           {products.map((p, i) => {
@@ -82,9 +82,9 @@ export const SceneProducts: React.FC<{ span: number }> = ({ span }) => {
                 </div>
                 <div
                   style={{
-                    marginTop: 16,
+                    marginTop: 14,
                     fontFamily: body,
-                    fontSize: 21,
+                    fontSize: 19,
                     fontWeight: 600,
                     color: "rgba(255,255,255,0.9)",
                     lineHeight: 1.25,
