@@ -144,7 +144,32 @@ const Clients = () => {
             ))}
           </div>
         </div>
+
+      {/* Contact Section */}
+      <section className="py-16 bg-muted/30">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto text-center">
+            <div className="text-sm font-semibold text-accent uppercase tracking-widest mb-4">
+              Contact us
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
+              Let's discuss your next infrastructure project
+            </h2>
+            <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
+              Reach out to our enterprise team for network deployment, managed services, resource management or infrastructure solutions.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <Button asChild variant="cta" size="xl">
+                <a href="mailto:reachus@youconnecttech.com">Email us</a>
+              </Button>
+              <Button asChild variant="ctaOutline" size="xl">
+                <a href="/?section=contact">Submit inquiry</a>
+              </Button>
+            </div>
+          </div>
+        </div>
       </section>
+
 
       {/* Stats Section */}
       <section className="py-16 bg-muted/30">
