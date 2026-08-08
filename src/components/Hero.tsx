@@ -4,7 +4,7 @@ import AnimatedCounter from "@/components/animations/AnimatedCounter";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
-import heroImg from "@/assets/networks-hero.jpg";
+import heroImg from "@/assets/hero-bright-tower.jpg";
 
 const slides = [
   {
