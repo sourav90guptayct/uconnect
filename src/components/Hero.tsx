@@ -252,11 +252,14 @@ const Hero = () => {
             transition={{ duration: 0.6 }}
             className="display-headline text-foreground text-2xl sm:text-3xl lg:text-5xl max-w-4xl mx-auto"
           >
-            Single-window partner for enterprise telecom &amp; IT infrastructure
+            A product &amp; services integrator for enterprise networks
           </motion.h2>
           <p className="mt-5 text-sm lg:text-base text-muted-foreground max-w-2xl mx-auto">
-            Carrier-grade products. Pan-India deployment. Operations that never sleep.
+            We supply our own ConnectLH™ hardware and integrate it with four service lines —
+            managed services, network deployment, resources management and infra solutions —
+            under one contract and one accountable team.
           </p>
+
 
           {/* Client trust strip */}
           <div className="mt-12 lg:mt-16 pt-10 border-t border-border">
