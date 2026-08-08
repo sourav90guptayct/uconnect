@@ -1,145 +1,234 @@
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import AnimatedCounter from "@/components/animations/AnimatedCounter";
-import { ArrowRight } from "lucide-react";
-import { motion } from "framer-motion";
+import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "react-router-dom";
+import heroImg from "@/assets/networks-hero.jpg";
+
+const slides = [
+  {
+    eyebrow: "Managed services",
+    titleA: "Your network,",
+    titleB: "our watch.",
+    body: "24×7 monitoring, field response and SLA-backed operations so your team stays focused on growth, not troubleshooting.",
+    ctaLabel: "Explore managed services",
+    ctaHref: "/managed-services",
+  },
+  {
+    eyebrow: "ConnectLH™ product line",
+    titleA: "Carrier-grade radios,",
+    titleB: "built for the field.",
+    body: "Dish and sector antennas, PoE injectors and outdoor accessories — 10,000+ Links already deployed across India.",
+    ctaLabel: "View products",
+    ctaHref: "/products",
+  },
+  {
+    eyebrow: "Network deployment",
+    titleA: "Towers, fiber, rollout —",
+    titleB: "one partner.",
+    body: "200+ Tier-1 engineers across 18 circles, backed by 5 regional warehouses for rapid pan-India deployment.",
+    ctaLabel: "See our networks work",
+    ctaHref: "/networks",
+  },
+];
+
+const logos = [
+  { src: "/clients/airtel.jpg", name: "Airtel" },
+  { src: "/clients/jio.png", name: "Jio" },
+  { src: "/clients/vi.jpg", name: "Vi" },
+  { src: "/clients/bsnl.png", name: "BSNL" },
+  { src: "/clients/railtel.jpg", name: "RailTel" },
+  { src: "/clients/wipro.webp", name: "Wipro" },
+  { src: "/clients/siemens.jpg", name: "Siemens" },
+  { src: "/clients/alstom.jpg", name: "Alstom" },
+];
 
 const Hero = () => {
+  const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
+
+  useEffect(() => {
+    if (paused) return;
+    const t = setInterval(() => setIndex((i) => (i + 1) % slides.length), 6500);
+    return () => clearInterval(t);
+  }, [paused]);
+
+  const go = (dir: number) =>
+    setIndex((i) => (i + dir + slides.length) % slides.length);
+
+  const slide = slides[index];
+
   return (
-    <section
-      id="home"
-      className="relative pt-24 pb-12 lg:pt-28 lg:pb-16"
-      style={{ background: "var(--gradient-hero-soft)" }}
-    >
-      {/* Subtle grid */}
+    <section id="home" className="relative">
+      {/* Full-bleed photographic band */}
       <div
-        className="absolute inset-0 opacity-[0.04] pointer-events-none"
-        style={{
-          backgroundImage: `linear-gradient(hsl(var(--foreground)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--foreground)) 1px, transparent 1px)`,
-          backgroundSize: "72px 72px",
-        }}
-      />
+        className="relative min-h-[620px] lg:min-h-[720px] flex items-center overflow-hidden"
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+      >
+        <img
+          src={heroImg}
+          alt="Telecom tower and microwave links deployed by uConnect Technologies at sunset"
+          fetchPriority="high"
+          decoding="async"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        {/* Legibility scrims */}
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/60 to-primary/20" />
+        <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-primary/40" />
 
-      <div className="container mx-auto px-4 relative z-10">
-        {/* Editorial headline */}
-        <motion.div
-          initial={{ y: 30 }}
-          animate={{ y: 0 }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
-          className="max-w-6xl"
-        >
-          <h1 className="display-headline text-foreground text-4xl sm:text-5xl lg:text-6xl xl:text-7xl">
-            Deploy. Connect.
-            <br />
-            <span className="text-accent">Empower.</span>{" "}
-            <span className="text-foreground/90">The enterprise edge.</span>
-          </h1>
+        <div className="container mx-auto px-4 relative z-10 py-24 lg:py-28">
+          <div className="grid lg:grid-cols-12 gap-10 items-center">
+            {/* Rotating message card */}
+            <div className="lg:col-span-7">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 18 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -12 }}
+                  transition={{ duration: 0.5, ease: "easeOut" }}
+                  className="rounded-3xl border border-primary-foreground/15 bg-primary/30 backdrop-blur-xl p-7 lg:p-10 shadow-2xl max-w-2xl"
+                >
+                  <div className="text-xs lg:text-sm font-semibold text-accent uppercase tracking-[0.18em]">
+                    {slide.eyebrow}
+                  </div>
+                  <h1 className="display-headline mt-4 text-primary-foreground text-3xl sm:text-4xl lg:text-5xl xl:text-6xl">
+                    {slide.titleA}
+                    <br />
+                    <span className="text-primary-foreground/70">{slide.titleB}</span>
+                  </h1>
+                  <p className="mt-5 text-sm lg:text-base text-primary-foreground/75 leading-relaxed max-w-xl">
+                    {slide.body}
+                  </p>
+                  <div className="mt-7 flex flex-col sm:flex-row gap-3">
+                    <Link to={slide.ctaHref}>
+                      <Button variant="cta" size="xl" className="w-full sm:w-auto">
+                        {slide.ctaLabel}
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </Button>
+                    </Link>
+                    <Button
+                      size="xl"
+                      variant="ghost"
+                      className="text-primary-foreground border border-primary-foreground/25 hover:bg-primary-foreground/10 hover:text-primary-foreground"
+                      onClick={() =>
+                        document
+                          .getElementById("contact")
+                          ?.scrollIntoView({ behavior: "smooth" })
+                      }
+                    >
+                      Talk to an engineer
+                    </Button>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
 
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3, duration: 0.7 }}
-            className="mt-8 text-base lg:text-lg text-muted-foreground max-w-2xl leading-relaxed"
-          >
-            From proprietary ConnectLH™ antenna systems and telecom products to
-            managed services, network deployment and workforce solutions
-            — uConnect Technologies is your single-window partner for end-to-end
-            enterprise technology.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.6 }}
-            className="mt-8 flex flex-col sm:flex-row gap-3"
-          >
-            <Button
-              variant="cta"
-              size="xl"
-              onClick={() =>
-                document
-                  .getElementById("services")
-                  ?.scrollIntoView({ behavior: "smooth" })
-              }
-            >
-              Explore solutions
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
-            <Button
-              variant="ctaOutline"
-              size="xl"
-              onClick={() =>
-                document
-                  .getElementById("contact")
-                  ?.scrollIntoView({ behavior: "smooth" })
-              }
-            >
-              Talk to an engineer
-            </Button>
-          </motion.div>
-        </motion.div>
-
-        {/* Hero image with sticker */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.96 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.4, duration: 0.8 }}
-          className="relative mt-12 lg:mt-16"
-        >
-          <div className="relative rounded-[2rem] overflow-hidden shadow-2xl bg-white">
-            <img
-              src="/lovable-uploads/hero-enterprise-network.webp"
-              alt="Enterprise telecom infrastructure deployed by uConnect Technologies"
-              fetchPriority="high"
-              decoding="async"
-              width={1376}
-              height={768}
-              className="w-full h-auto object-contain lg:max-h-[420px] xl:max-h-[480px]"
-            />
-          </div>
-
-          {/* Sticker badge */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 1, duration: 0.6, type: "spring" }}
-            className="hidden md:flex absolute top-4 right-4 lg:top-6 lg:right-6 w-28 h-28 lg:w-36 lg:h-36 bg-accent rounded-full items-center justify-center shadow-xl shadow-accent/30 animate-wobble z-20"
-          >
-            <div className="text-center -rotate-6">
-              <div className="text-accent-foreground font-bold text-lg lg:text-2xl leading-tight tracking-tight">
-                ConnectLH™
-              </div>
-              <div className="text-accent-foreground/90 font-semibold text-xs lg:text-sm uppercase tracking-wider mt-1">
-                New Series
+              {/* Slide controls */}
+              <div className="mt-6 flex items-center gap-4">
+                <div className="flex items-center gap-2">
+                  {slides.map((_, i) => (
+                    <button
+                      key={i}
+                      aria-label={`Show slide ${i + 1}`}
+                      onClick={() => setIndex(i)}
+                      className={`h-1.5 rounded-full transition-all duration-300 ${
+                        i === index
+                          ? "w-8 bg-accent"
+                          : "w-3 bg-primary-foreground/35 hover:bg-primary-foreground/60"
+                      }`}
+                    />
+                  ))}
+                </div>
+                <div className="flex items-center gap-2">
+                  <button
+                    aria-label="Previous slide"
+                    onClick={() => go(-1)}
+                    className="h-9 w-9 rounded-full border border-primary-foreground/25 text-primary-foreground/80 flex items-center justify-center hover:bg-primary-foreground/10 transition-colors"
+                  >
+                    <ChevronLeft className="h-4 w-4" />
+                  </button>
+                  <button
+                    aria-label="Next slide"
+                    onClick={() => go(1)}
+                    className="h-9 w-9 rounded-full border border-primary-foreground/25 text-primary-foreground/80 flex items-center justify-center hover:bg-primary-foreground/10 transition-colors"
+                  >
+                    <ChevronRight className="h-4 w-4" />
+                  </button>
+                </div>
               </div>
             </div>
-          </motion.div>
-        </motion.div>
 
-        {/* Stats strip */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.9, duration: 0.6 }}
-          className="mt-12 lg:mt-16 pt-10 border-t border-foreground/10"
-        >
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {[
-              { value: 200, suffix: "+", label: "Tier-1 engineers" },
-              { value: 10000, suffix: "+", label: "Links deployed" },
-              { value: 18, suffix: "", label: "Circles served" },
-              { value: 30, suffix: "+", label: "Ongoing projects" },
-            ].map((stat, i) => (
-              <div key={i}>
-                <div className="display-headline text-4xl lg:text-6xl text-foreground">
-                  <AnimatedCounter to={stat.value} suffix={stat.suffix} />
+            {/* Credibility panel */}
+            <motion.div
+              initial={{ opacity: 0, x: 24 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.3, duration: 0.7 }}
+              className="lg:col-span-5 hidden lg:block"
+            >
+              <div className="ml-auto max-w-sm rounded-3xl border border-primary-foreground/15 bg-primary/25 backdrop-blur-xl p-8">
+                <div className="text-xs font-semibold text-primary-foreground/60 uppercase tracking-[0.18em]">
+                  Since 2017
                 </div>
-                <div className="mt-2 text-xs lg:text-sm text-muted-foreground uppercase tracking-wider">
-                  {stat.label}
+                <div className="mt-6 grid grid-cols-2 gap-x-6 gap-y-8">
+                  {[
+                    { value: 200, suffix: "+", label: "Tier-1 engineers" },
+                    { value: 10000, suffix: "+", label: "Links deployed" },
+                    { value: 18, suffix: "", label: "Circles served" },
+                    { value: 5, suffix: "", label: "Warehouses" },
+                  ].map((stat, i) => (
+                    <div key={i}>
+                      <div className="display-headline text-3xl xl:text-4xl text-primary-foreground">
+                        <AnimatedCounter to={stat.value} suffix={stat.suffix} />
+                      </div>
+                      <div className="mt-1.5 text-[11px] text-primary-foreground/60 uppercase tracking-wider">
+                        {stat.label}
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
-            ))}
+            </motion.div>
           </div>
-        </motion.div>
+        </div>
+      </div>
+
+      {/* Positioning statement */}
+      <div className="bg-background py-14 lg:py-20">
+        <div className="container mx-auto px-4 text-center">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="display-headline text-foreground text-2xl sm:text-3xl lg:text-5xl max-w-4xl mx-auto"
+          >
+            Single-window partner for enterprise telecom &amp; IT infrastructure
+          </motion.h2>
+          <p className="mt-5 text-sm lg:text-base text-muted-foreground max-w-2xl mx-auto">
+            Carrier-grade products. Pan-India deployment. Operations that never sleep.
+          </p>
+
+          {/* Client trust strip */}
+          <div className="mt-12 lg:mt-16 pt-10 border-t border-border">
+            <div className="text-[11px] font-semibold text-muted-foreground uppercase tracking-[0.18em]">
+              Trusted by India's operators, integrators &amp; enterprises
+            </div>
+            <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-x-6 gap-y-8 items-center">
+              {logos.map((logo) => (
+                <img
+                  key={logo.name}
+                  src={logo.src}
+                  alt={`${logo.name} — uConnect Technologies client`}
+                  loading="lazy"
+                  decoding="async"
+                  className="h-8 lg:h-10 w-full object-contain opacity-55 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-300"
+                />
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
