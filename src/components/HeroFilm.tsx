@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { X, Pause, Play } from "lucide-react";
+import { X, Pause, Play, Volume2, VolumeX } from "lucide-react";
 import filmAsset from "@/assets/uconnect-hero-film.mp4.asset.json";
 
 interface HeroFilmProps {
@@ -9,7 +9,9 @@ interface HeroFilmProps {
 const HeroFilm = ({ onClose }: HeroFilmProps) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [paused, setPaused] = useState(false);
+  const [muted, setMuted] = useState(true);
   const [progress, setProgress] = useState(0);
+
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
