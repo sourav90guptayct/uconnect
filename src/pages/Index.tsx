@@ -18,20 +18,26 @@ const Index = () => {
   const location = useLocation();
 
   useEffect(() => {
-    // Handle section scroll from URL parameter
     const searchParams = new URLSearchParams(location.search);
-    const section = searchParams.get('section');
-    
-    if (section) {
-      // Small delay to ensure the DOM is ready
-      setTimeout(() => {
-        const element = document.getElementById(section);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      }, 100);
-    }
+    const section = searchParams.get('section') || location.hash.replace('#', '');
+
+    if (!section) return;
+
+    // Lazy sections may not be mounted yet — retry until found (max ~5s)
+    let attempts = 0;
+    const timer = window.setInterval(() => {
+      const element = document.getElementById(section);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        window.clearInterval(timer);
+      } else if (++attempts > 50) {
+        window.clearInterval(timer);
+      }
+    }, 100);
+
+    return () => window.clearInterval(timer);
   }, [location]);
+
 
   return (
     <div className="min-h-screen">

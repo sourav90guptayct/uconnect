@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronRight, ChevronLeft, ExternalLink } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -175,6 +175,20 @@ const MegaMenuOverlay = ({ open, onClose }: Props) => {
   const [tab, setTab] = useState(0);
   const [mobilePanelOpen, setMobilePanelOpen] = useState(false);
   const isMobile = useIsMobile();
+  const location = useLocation();
+
+  // Close the menu and, when already on the target page, scroll to the section
+  const handleNavClick = (to: string) => {
+    onClose();
+    const [path, query] = to.split("?");
+    const section = new URLSearchParams(query || "").get("section");
+    if (section && path === location.pathname) {
+      setTimeout(() => {
+        document.getElementById(section)?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 200);
+    }
+  };
+
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
@@ -236,7 +250,7 @@ const MegaMenuOverlay = ({ open, onClose }: Props) => {
                 <li key={l.label + l.to}>
                   <Link
                     to={l.to}
-                    onClick={onClose}
+                    onClick={() => handleNavClick(l.to)}
                     className="text-[15px] text-muted-foreground hover:text-accent transition-colors"
                   >
                     {l.label}
