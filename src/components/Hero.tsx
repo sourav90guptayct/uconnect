@@ -351,25 +351,28 @@ const Hero = () => {
                 </AnimatePresence>
               </div>
 
-              {/* Static supporting tiles */}
-              <div className="col-span-2 row-span-3 rounded-[1.5rem] overflow-hidden bg-muted">
-                <img
-                  src={tilePorts.url}
-                  alt="Aerial view of a container port terminal and logistics yard"
-                  loading="lazy"
-                  decoding="async"
-                  className="h-full w-full object-cover"
-                />
-              </div>
-              <div className="col-span-2 row-span-3 rounded-[1.5rem] overflow-hidden bg-muted">
-                <img
-                  src={tileTerminal.url}
-                  alt="Airport terminal forecourt at dusk with taxis and traffic"
-                  loading="lazy"
-                  decoding="async"
-                  className="h-full w-full object-cover"
-                />
-              </div>
+              {/* Supporting tiles — rotate with the featured tile, always different photos */}
+              {[tileA, tileB].map((tile, i) => (
+                <div
+                  key={i}
+                  className="col-span-2 row-span-3 relative rounded-[1.5rem] overflow-hidden bg-muted"
+                >
+                  <AnimatePresence mode="wait">
+                    <motion.img
+                      key={tile.url}
+                      src={tile.url}
+                      alt={tile.alt}
+                      initial={{ opacity: 0, scale: 1.06 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.7, ease: "easeOut", delay: i === 1 ? 0.12 : 0 }}
+                      loading="lazy"
+                      decoding="async"
+                      className="absolute inset-0 h-full w-full object-cover"
+                    />
+                  </AnimatePresence>
+                </div>
+              ))}
 
             </div>
           </div>
