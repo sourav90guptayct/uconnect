@@ -8,7 +8,9 @@ import SEO from "@/components/SEO";
 const About = lazy(() => import("@/components/About"));
 const Services = lazy(() => import("@/components/Services"));
 const UseCases = lazy(() => import("@/components/UseCases"));
+const HowItWorks = lazy(() => import("@/components/HowItWorks"));
 const WhyChooseUs = lazy(() => import("@/components/WhyChooseUs"));
+
 const Contact = lazy(() => import("@/components/Contact"));
 const Footer = lazy(() => import("@/components/Footer"));
 
