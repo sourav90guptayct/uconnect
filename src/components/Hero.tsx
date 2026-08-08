@@ -1,25 +1,28 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import AnimatedCounter from "@/components/animations/AnimatedCounter";
-import { ArrowRight, ArrowUpRight, ChevronDown, Play, X } from "lucide-react";
+import { ArrowRight, ArrowUpRight, ChevronDown, Play } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
-import heroVideo from "@/assets/hero-sectors.mp4.asset.json";
-import sectorDesign from "@/assets/sector-design.jpg";
-import sectorRailways from "@/assets/sector-railways.jpg";
-import sectorPower from "@/assets/sector-power.jpg";
-import sectorPorts from "@/assets/sector-ports.jpg";
-import sectorTransport from "@/assets/sector-transport.jpg";
-import sectorOperations from "@/assets/sector-operations.jpg";
+import HeroFilm from "@/components/HeroFilm";
+import sectorDesign from "@/assets/film-design.jpg";
+import sectorRailways from "@/assets/film-rail.jpg";
+import sectorPower from "@/assets/film-power.jpg";
+import sectorPorts from "@/assets/film-ports.jpg";
+import sectorTransport from "@/assets/film-transport.jpg";
+import sectorOperations from "@/assets/film-operations.jpg";
+import sectorAviation from "@/assets/film-aviation.jpg";
 
 const sectorFrames = [
-  { image: sectorDesign, label: "Design & engineering", alt: "Engineers reviewing an infrastructure design on a tablet" },
-  { image: sectorRailways, label: "Railways", alt: "Modern electric train at a station platform with trackside equipment" },
-  { image: sectorPower, label: "Power", alt: "Technician inspecting a control panel at a high-voltage substation" },
-  { image: sectorPorts, label: "Ports & logistics", alt: "Container port with gantry cranes loading a vessel" },
-  { image: sectorTransport, label: "Transportation", alt: "Metro viaduct and city highway with roadside equipment cabinets" },
-  { image: sectorOperations, label: "Day-to-day operations", alt: "Operators monitoring dashboards in a network operations centre" },
+  { image: sectorDesign, label: "Design & engineering", alt: "Engineers reviewing an infrastructure design together on screen" },
+  { image: sectorRailways, label: "Railways", alt: "Commuter boarding a modern train at a busy platform" },
+  { image: sectorPower, label: "Power", alt: "Engineer inspecting a solar array with a tablet" },
+  { image: sectorPorts, label: "Ports & logistics", alt: "Port terminal with gantry cranes working a container vessel" },
+  { image: sectorTransport, label: "Transportation", alt: "City expressway at golden hour with traffic flowing" },
+  { image: sectorOperations, label: "Day-to-day operations", alt: "Colleagues walking and talking inside a bright operations facility" },
+  { image: sectorAviation, label: "Aviation", alt: "Traveller crossing an airport boarding bridge" },
 ];
+
 
 
 
@@ -77,7 +80,6 @@ const Hero = () => {
   const [paused, setPaused] = useState(false);
   const [frame, setFrame] = useState(0);
   const [playing, setPlaying] = useState(false);
-  const videoRef = useRef<HTMLVideoElement | null>(null);
 
   useEffect(() => {
     if (paused) return;
@@ -92,29 +94,9 @@ const Hero = () => {
     return () => clearInterval(t);
   }, [playing]);
 
-  const startFilm = () => {
-    setPlaying(true);
-    requestAnimationFrame(() => {
-      const v = videoRef.current;
-      if (!v) return;
-      v.currentTime = 0;
-      v.muted = false;
-      v.volume = 1;
-      v.play().catch(() => {
-        v.muted = true;
-        v.play().catch(() => undefined);
-      });
-    });
-  };
+  const startFilm = () => setPlaying(true);
+  const stopFilm = () => setPlaying(false);
 
-  const stopFilm = () => {
-    const v = videoRef.current;
-    if (v) {
-      v.pause();
-      v.currentTime = 0;
-    }
-    setPlaying(false);
-  };
 
   const slide = slides[index];
   const sector = sectorFrames[frame];
@@ -139,38 +121,20 @@ const Hero = () => {
           )}
         </AnimatePresence>
 
-        {/* The film — only rendered/played on demand */}
-        <video
-          ref={videoRef}
-          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${
-            playing ? "opacity-100" : "opacity-0 pointer-events-none"
-          }`}
-          src={heroVideo.url}
-          playsInline
-          preload="none"
-          onEnded={stopFilm}
-        />
-
         {/* Legibility scrim */}
-        <div
-          className="absolute inset-0 transition-opacity duration-500"
-          style={{
-            opacity: playing ? 0.35 : 1,
-            background:
-              "linear-gradient(180deg, hsl(222 47% 8% / 0.55) 0%, hsl(222 47% 8% / 0.25) 40%, hsl(222 47% 8% / 0.75) 100%)",
-          }}
-        />
-
-        {/* Close control while the film plays */}
-        {playing && (
-          <button
-            onClick={stopFilm}
-            aria-label="Close film"
-            className="absolute right-4 top-4 z-20 inline-flex h-11 w-11 items-center justify-center rounded-full bg-background/85 text-foreground backdrop-blur transition-transform hover:scale-105"
-          >
-            <X className="h-5 w-5" />
-          </button>
+        {!playing && (
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(180deg, hsl(222 47% 8% / 0.55) 0%, hsl(222 47% 8% / 0.25) 40%, hsl(222 47% 8% / 0.75) 100%)",
+            }}
+          />
         )}
+
+        {/* The film — real photography with Arcadis-style on-screen titles */}
+        {playing && <HeroFilm onClose={stopFilm} />}
+
 
         <AnimatePresence>
           {!playing && (
