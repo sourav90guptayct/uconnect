@@ -4,22 +4,25 @@ import AnimatedCounter from "@/components/animations/AnimatedCounter";
 import { ArrowRight, ArrowUpRight, ChevronDown, Play, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
-import heroVideo from "@/assets/hero-sectors.mp4.asset.json";
-import sectorDesign from "@/assets/sector-design.jpg";
-import sectorRailways from "@/assets/sector-railways.jpg";
-import sectorPower from "@/assets/sector-power.jpg";
-import sectorPorts from "@/assets/sector-ports.jpg";
-import sectorTransport from "@/assets/sector-transport.jpg";
-import sectorOperations from "@/assets/sector-operations.jpg";
+import HeroFilm from "@/components/HeroFilm";
+import sectorDesign from "@/assets/film-design.jpg";
+import sectorRailways from "@/assets/film-rail.jpg";
+import sectorPower from "@/assets/film-power.jpg";
+import sectorPorts from "@/assets/film-ports.jpg";
+import sectorTransport from "@/assets/film-transport.jpg";
+import sectorOperations from "@/assets/film-operations.jpg";
+import sectorAviation from "@/assets/film-aviation.jpg";
 
 const sectorFrames = [
-  { image: sectorDesign, label: "Design & engineering", alt: "Engineers reviewing an infrastructure design on a tablet" },
-  { image: sectorRailways, label: "Railways", alt: "Modern electric train at a station platform with trackside equipment" },
-  { image: sectorPower, label: "Power", alt: "Technician inspecting a control panel at a high-voltage substation" },
-  { image: sectorPorts, label: "Ports & logistics", alt: "Container port with gantry cranes loading a vessel" },
-  { image: sectorTransport, label: "Transportation", alt: "Metro viaduct and city highway with roadside equipment cabinets" },
-  { image: sectorOperations, label: "Day-to-day operations", alt: "Operators monitoring dashboards in a network operations centre" },
+  { image: sectorDesign, label: "Design & engineering", alt: "Engineers reviewing an infrastructure design together on screen" },
+  { image: sectorRailways, label: "Railways", alt: "Commuter boarding a modern train at a busy platform" },
+  { image: sectorPower, label: "Power", alt: "Engineer inspecting a solar array with a tablet" },
+  { image: sectorPorts, label: "Ports & logistics", alt: "Port terminal with gantry cranes working a container vessel" },
+  { image: sectorTransport, label: "Transportation", alt: "City expressway at golden hour with traffic flowing" },
+  { image: sectorOperations, label: "Day-to-day operations", alt: "Colleagues walking and talking inside a bright operations facility" },
+  { image: sectorAviation, label: "Aviation", alt: "Traveller crossing an airport boarding bridge" },
 ];
+
 
 
 
