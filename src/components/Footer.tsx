@@ -110,13 +110,13 @@ const Footer = () => {
             <div className="space-y-4">
               <div className="flex items-start gap-3">
                 <Mail className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
-                <a href="mailto:reachus@youconnecttech.com" className="text-primary-foreground/50 hover:text-accent text-sm transition-colors">
+                <a href="mailto:reachus@youconnecttech.com" className="text-primary-foreground/50 hover:text-accent text-sm transition-colors break-all">
                   reachus@youconnecttech.com
                 </a>
               </div>
               <div className="flex items-start gap-3">
                 <Mail className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
-                <a href="mailto:support@youconnecttech.com" className="text-primary-foreground/50 hover:text-accent text-sm transition-colors">
+                <a href="mailto:support@youconnecttech.com" className="text-primary-foreground/50 hover:text-accent text-sm transition-colors break-all">
                   support@youconnecttech.com
                 </a>
               </div>
