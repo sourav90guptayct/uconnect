@@ -62,7 +62,7 @@ const About = () => {
                 About uConnect
               </div>
               <h2 className="display-headline text-foreground text-4xl sm:text-5xl lg:text-7xl">
-                India's trusted partner
+                A trusted global partner
                 <br />
                 <span className="text-muted-foreground">for enterprise technology.</span>
               </h2>
