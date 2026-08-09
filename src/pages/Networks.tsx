@@ -77,8 +77,8 @@ const industries = [
 
 const whyUs = [
   "Proven multi-vendor deployment expertise",
-  "PAN India execution capability",
-  "Cross-border project experience in South Asia",
+  "Global execution capability",
+  "Cross-border project experience across Asia, Americas, Europe and Middle East",
   "Experienced RF & network engineering teams",
   "Faster rollout execution",
   "Scalable deployment model",
@@ -86,7 +86,22 @@ const whyUs = [
   "Strong field operations and support capability",
 ];
 
-const regions = ["India", "Nepal", "Bhutan", "Sri Lanka"];
+const regions = [
+  "USA",
+  "Canada",
+  "Europe",
+  "Middle East",
+  "Singapore",
+  "Thailand",
+  "Vietnam",
+  "Philippines",
+  "Russia",
+  "South America",
+  "Nepal",
+  "Bhutan",
+  "Sri Lanka",
+  "India",
+];
 
 const telecomServices = [
   {
