@@ -315,6 +315,7 @@ const MegaMenuOverlay = ({ open, onClose }: Props) => {
               <div className="flex items-start justify-between">
                 <Link to="/" onClick={onClose} className="text-2xl font-bold tracking-tight text-foreground flex items-center gap-2">
                   uConnect<span className="text-gradient"> Technologies</span>
+                  <ChevronRight className="h-5 w-5 text-accent flex-shrink-0" />
                 </Link>
                 <button
                   onClick={onClose}
