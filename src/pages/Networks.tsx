@@ -214,12 +214,14 @@ const NetworksPage = () => {
                 Connectivity At
                 <br />
                 <span className="text-accent">Scale.</span>{" "}
-                <span className="text-foreground/80">Across South Asia.</span>
+                <span className="text-foreground/80">Across the Globe.</span>
               </h1>
               <p className="mt-8 text-base lg:text-lg text-muted-foreground max-w-2xl leading-relaxed">
                 uConnect Technologies delivers end-to-end network rollout and deployment
                 services for telecom operators, ISPs, enterprises, government projects, and
-                large-scale connectivity initiatives across India, Nepal, Bhutan, and Sri Lanka.
+                large-scale connectivity initiatives across the USA, Europe, Middle East, Canada,
+                Singapore, Nepal, Bhutan, Thailand, Sri Lanka, South America, Philippines, Vietnam,
+                and Russia.
               </p>
             </motion.div>
           </div>
