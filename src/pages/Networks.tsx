@@ -671,7 +671,7 @@ const NetworksPage = () => {
                 Coverage
               </div>
               <h2 className="display-headline text-foreground text-4xl sm:text-5xl lg:text-7xl">
-                Regional
+                Global
                 <br />
                 <span className="text-muted-foreground">reach.</span>
               </h2>
