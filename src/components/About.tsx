@@ -140,8 +140,8 @@ const About = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 to-transparent" />
                 <div className="absolute bottom-6 left-6 text-background">
-                  <div className="display-headline text-3xl lg:text-4xl">Pan-India</div>
-                  <div className="text-sm text-background/70 mt-1">Operations across 18 circles</div>
+                  <div className="display-headline text-3xl lg:text-4xl">Global Footprint</div>
+                  <div className="text-sm text-background/70 mt-1">Project delivery across 13+ markets</div>
                 </div>
               </div>
 
