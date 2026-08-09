@@ -3,10 +3,10 @@
 // supabase function: mcp
 // Bundled from src/lib/mcp/index.ts by @lovable.dev/mcp-js.
 // src/lib/mcp/index.ts
-import { defineMcp } from "npm:@lovable.dev/mcp-js@0.20.0";
+import { defineMcp } from "npm:@lovable.dev/mcp-js@0.26.1";
 
 // src/lib/mcp/tools/get-company-overview.ts
-import { defineTool } from "npm:@lovable.dev/mcp-js@0.20.0";
+import { defineTool } from "npm:@lovable.dev/mcp-js@0.26.1";
 var get_company_overview_default = defineTool({
   name: "get_company_overview",
   title: "Get company overview",
@@ -40,7 +40,7 @@ var get_company_overview_default = defineTool({
 });
 
 // src/lib/mcp/tools/list-product-categories.ts
-import { defineTool as defineTool2 } from "npm:@lovable.dev/mcp-js@0.20.0";
+import { defineTool as defineTool2 } from "npm:@lovable.dev/mcp-js@0.26.1";
 var CATEGORIES = [
   "FTTH Products",
   "Optic Fiber Cable Assemblies",
@@ -64,7 +64,7 @@ var list_product_categories_default = defineTool2({
 });
 
 // src/lib/mcp/tools/submit-contact-inquiry.ts
-import { defineTool as defineTool3 } from "npm:@lovable.dev/mcp-js@0.20.0";
+import { defineTool as defineTool3 } from "npm:@lovable.dev/mcp-js@0.26.1";
 import { z } from "npm:zod@^4.4.3";
 var submit_contact_inquiry_default = defineTool3({
   name: "submit_contact_inquiry",
@@ -137,5 +137,5 @@ var mcp_default = defineMcp({
 });
 
 // lovable-mcp-supabase-entry.ts
-import { createSupabaseHandler } from "npm:@lovable.dev/mcp-js@0.20.0/stacks/supabase";
+import { createSupabaseHandler } from "npm:@lovable.dev/mcp-js@0.26.1/stacks/supabase";
 Deno.serve(createSupabaseHandler(mcp_default, { functionName: "mcp" }));
