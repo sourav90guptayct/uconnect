@@ -40,7 +40,7 @@ const AboutStory = () => {
             </div>
             <h2 className="display-headline text-foreground text-4xl sm:text-5xl lg:text-6xl">
               From a single team in 2017 to{" "}
-              <span className="text-muted-foreground">India-wide telecom delivery.</span>
+              <span className="text-muted-foreground">global telecom delivery.</span>
             </h2>
           </motion.div>
 
