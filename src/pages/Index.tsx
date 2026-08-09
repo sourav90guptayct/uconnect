@@ -42,8 +42,8 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       <SEO
-        title="uConnect Technologies | Product & Services Integrator, India"
-        description="Product and services integrator for enterprise networks: managed services, network deployment, resources management and infra solutions, built around ConnectLH™ hardware."
+        title="uConnect Technologies | Global Product & Services Integrator"
+        description="Product and services integrator for enterprise networks worldwide: managed services, network deployment, resources management and infra solutions, built around ConnectLH™ hardware."
 
         path="/"
         image="https://uconnecttech.com/og/home.jpg"
@@ -54,12 +54,12 @@ const Index = () => {
             {
               "@type": "Question",
               name: "What does uConnect Technologies do?",
-              acceptedAnswer: { "@type": "Answer", text: "uConnect Technologies delivers telecom infrastructure, IT managed services, ConnectLH™ antennas, FTTH products, RF and fiber cables, PoE solutions, and skilled manpower across India." },
+              acceptedAnswer: { "@type": "Answer", text: "uConnect Technologies delivers telecom infrastructure, IT managed services, ConnectLH™ antennas, FTTH products, RF and fiber cables, PoE solutions, and skilled manpower across global markets." },
             },
             {
               "@type": "Question",
               name: "Where does uConnect Technologies operate?",
-              acceptedAnswer: { "@type": "Answer", text: "We operate pan-India across 18 telecom circles, with 200+ Tier-1 engineers, 5 regional warehouses, and 10,000+ ConnectLH™ Links deployed in the field." },
+              acceptedAnswer: { "@type": "Answer", text: "We operate across 18 telecom circles in India and deliver projects in the USA, Europe, Middle East, Canada, Singapore, Thailand, Vietnam, Philippines, Russia, South America, Nepal, Bhutan and Sri Lanka, with 200+ Tier-1 engineers and 10,000+ ConnectLH™ Links deployed." },
             },
             {
               "@type": "Question",
