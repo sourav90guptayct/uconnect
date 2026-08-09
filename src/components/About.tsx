@@ -36,12 +36,12 @@ const About = () => {
               <h1 className="display-headline text-foreground text-5xl sm:text-6xl lg:text-8xl">
                 Engineered for trust.
                 <br />
-                <span className="text-accent">Built for India.</span>
+                <span className="text-accent">Built for global scale.</span>
               </h1>
               <p className="mt-8 text-base lg:text-lg text-muted-foreground max-w-2xl leading-relaxed">
                 Since 2017, uConnect Technologies has been at the forefront of enterprise IT,
                 Telecom Infrastructure, NOC Operations and Strategic Workforce Management — serving
-                top companies, leading telecom operators and government organizations.
+                top companies, leading telecom operators and government organizations across global markets.
               </p>
             </motion.div>
           </div>
