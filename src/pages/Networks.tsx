@@ -704,7 +704,8 @@ const NetworksPage = () => {
               className="mt-8 text-muted-foreground text-base leading-relaxed max-w-2xl"
             >
               Delivering reliable connectivity solutions for challenging terrains, urban
-              environments, enterprise campuses, and large-scale telecom infrastructure projects.
+              environments, enterprise campuses, and large-scale telecom infrastructure projects
+              worldwide.
             </motion.p>
           </div>
         </section>
