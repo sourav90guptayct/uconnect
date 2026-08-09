@@ -312,10 +312,10 @@ const MegaMenuOverlay = ({ open, onClose }: Props) => {
           >
             {/* Left rail */}
             <div className="bg-background px-6 sm:px-10 py-8 lg:py-10 border-r border-border h-full overflow-y-auto">
-              <div className="flex items-start justify-between">
-                <Link to="/" onClick={onClose} className="text-2xl font-bold tracking-tight text-foreground flex items-center gap-2">
+              <div className="flex items-start justify-between gap-4">
+                <Link to="/" onClick={onClose} className="text-2xl font-bold tracking-tight text-foreground inline-flex items-center gap-2">
                   uConnect<span className="text-gradient"> Technologies</span>
-                  <ChevronRight className="h-5 w-5 text-accent flex-shrink-0" />
+                  <ChevronRight className="h-6 w-6 text-accent flex-shrink-0 ml-1" />
                 </Link>
                 <button
                   onClick={onClose}
