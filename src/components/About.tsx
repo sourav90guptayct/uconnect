@@ -147,7 +147,7 @@ const About = () => {
 
               {[
                 { icon: Target, title: "Our mission", desc: "Enable people and organizations to maximize the potential of Digital Transformation by providing best-in-class Products & Services for their business growth." },
-                { icon: Globe, title: "Our vision", desc: "Be India's most trusted technology solutions partner — known for operational excellence, innovation and lasting impact." },
+                { icon: Globe, title: "Our vision", desc: "Be a trusted global technology solutions partner — known for operational excellence, innovation and lasting impact." },
               ].map((card, i) => (
                 <motion.div
                   key={i}
