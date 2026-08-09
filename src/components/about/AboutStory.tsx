@@ -7,6 +7,7 @@ const timeline = [
   { year: "2021", title: "ConnectLH™ product line", desc: "Launched in-house product brand covering sector antennas, FTTH equipment, PoE solutions, and RF infrastructure." },
   { year: "2023", title: "10,000+ Links deployed", desc: "Crossed the 10,000 link-deployment milestone across customer networks nationwide." },
   { year: "2025", title: "18 circles, 5 warehouses", desc: "Scaled to 200+ Tier-1 engineers, 18 active telecom circles, and 5 regional warehouses for rapid project mobilization." },
+  { year: "2026", title: "Global delivery footprint", desc: "Extended project delivery capability across the USA, Europe, Middle East, Canada, Asia-Pacific, South America and beyond." },
 ];
 
 const capabilities = [
