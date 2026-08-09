@@ -67,7 +67,7 @@
       {
         "name": "submit_contact_inquiry",
         "title": "Submit contact inquiry",
-        "description": "Submits a contact inquiry to UConnect Tech. The team will follow up by email. Use for genuine business inquiries only.",
+        "description": "Submits a contact inquiry to UConnect Tech on behalf of the signed-in user. The team will follow up by email. Use for genuine business inquiries only.",
         "annotations": {
           "readOnlyHint": false,
           "destructiveHint": false,

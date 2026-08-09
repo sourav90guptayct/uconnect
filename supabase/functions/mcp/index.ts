@@ -66,69 +66,6 @@ var list_product_categories_default = defineTool2({
 // src/lib/mcp/tools/submit-contact-inquiry.ts
 import { defineTool as defineTool3 } from "npm:@lovable.dev/mcp-js@0.26.1";
 import { z } from "npm:zod@^4.4.3";
-var submit_contact_inquiry_default = defineTool3({
-  name: "submit_contact_inquiry",
-  title: "Submit contact inquiry",
-  description: "Submits a contact inquiry to UConnect Tech. The team will follow up by email. Use for genuine business inquiries only.",
-  inputSchema: {
-    fullName: z.string().trim().min(1).max(100).describe("Full name of the person."),
-    email: z.string().trim().email().max(254).describe("Contact email address."),
-    company: z.string().trim().max(100).optional().describe("Company name (optional)."),
-    phone: z.string().trim().max(20).optional().describe("Contact phone (optional)."),
-    message: z.string().trim().min(1).max(2e3).describe("Message / inquiry details.")
-  },
-  annotations: {
-    readOnlyHint: false,
-    destructiveHint: false,
-    idempotentHint: false,
-    openWorldHint: true
-  },
-  handler: async ({ fullName, email, company, phone, message }) => {
-    const supabaseUrl = process.env.SUPABASE_URL;
-    const anonKey = process.env.SUPABASE_PUBLISHABLE_KEY ?? process.env.SUPABASE_ANON_KEY;
-    if (!supabaseUrl || !anonKey) {
-      return {
-        content: [{ type: "text", text: "Contact endpoint is not configured." }],
-        isError: true
-      };
-    }
-    try {
-      const res = await fetch(`${supabaseUrl}/functions/v1/send-contact-email`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          apikey: anonKey,
-          Authorization: `Bearer ${anonKey}`
-        },
-        body: JSON.stringify({ fullName, email, phone, company, message })
-      });
-      const text = await res.text();
-      if (!res.ok) {
-        return {
-          content: [{ type: "text", text: `Submission failed (${res.status}): ${text}` }],
-          isError: true
-        };
-      }
-      return {
-        content: [
-          {
-            type: "text",
-            text: "Inquiry submitted successfully. The UConnect Tech team will reply by email."
-          }
-        ],
-        structuredContent: { ok: true }
-      };
-    } catch (err) {
-      return {
-        content: [{ type: "text", text: `Submission error: ${err.message}` }],
-        isError: true
-      };
-    }
-  }
-});
-
-// src/lib/mcp/tools/who-am-i.ts
-import { defineTool as defineTool4 } from "npm:@lovable.dev/mcp-js@0.26.1";
 
 // src/lib/mcp/supabase.ts
 import { createClient } from "npm:@supabase/supabase-js@^2.52.0";
@@ -183,7 +120,79 @@ function supabaseForUser(ctx) {
   });
 }
 
+// src/lib/mcp/tools/submit-contact-inquiry.ts
+var submit_contact_inquiry_default = defineTool3({
+  name: "submit_contact_inquiry",
+  title: "Submit contact inquiry",
+  description: "Submits a contact inquiry to UConnect Tech on behalf of the signed-in user. The team will follow up by email. Use for genuine business inquiries only.",
+  inputSchema: {
+    fullName: z.string().trim().min(1).max(100).describe("Full name of the person."),
+    email: z.string().trim().email().max(254).describe("Contact email address."),
+    company: z.string().trim().max(100).optional().describe("Company name (optional)."),
+    phone: z.string().trim().max(20).optional().describe("Contact phone (optional)."),
+    message: z.string().trim().min(1).max(2e3).describe("Message / inquiry details.")
+  },
+  annotations: {
+    readOnlyHint: false,
+    destructiveHint: false,
+    idempotentHint: false,
+    openWorldHint: true
+  },
+  handler: async ({ fullName, email, company, phone, message }, ctx) => {
+    if (!ctx.isAuthenticated()) {
+      return {
+        content: [{ type: "text", text: "Not authenticated. Sign in to use this tool." }],
+        isError: true
+      };
+    }
+    let supabaseUrl;
+    let anonKey;
+    try {
+      supabaseUrl = supabaseProjectUrl();
+      anonKey = supabasePublishableKey();
+    } catch {
+      return {
+        content: [{ type: "text", text: "Contact endpoint is not configured." }],
+        isError: true
+      };
+    }
+    try {
+      const res = await fetch(`${supabaseUrl}/functions/v1/send-contact-email`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          apikey: anonKey,
+          Authorization: `Bearer ${ctx.getToken()}`
+        },
+        body: JSON.stringify({ fullName, email, phone, company, message })
+      });
+      const text = await res.text();
+      if (!res.ok) {
+        return {
+          content: [{ type: "text", text: `Submission failed (${res.status}): ${text}` }],
+          isError: true
+        };
+      }
+      return {
+        content: [
+          {
+            type: "text",
+            text: "Inquiry submitted successfully. The UConnect Tech team will reply by email."
+          }
+        ],
+        structuredContent: { ok: true }
+      };
+    } catch (err) {
+      return {
+        content: [{ type: "text", text: `Submission error: ${err.message}` }],
+        isError: true
+      };
+    }
+  }
+});
+
 // src/lib/mcp/tools/who-am-i.ts
+import { defineTool as defineTool4 } from "npm:@lovable.dev/mcp-js@0.26.1";
 var who_am_i_default = defineTool4({
   name: "who_am_i",
   title: "Who am I",

@@ -1,11 +1,12 @@
 import { defineTool } from "@lovable.dev/mcp-js";
 import { z } from "zod";
+import { supabaseProjectUrl, supabasePublishableKey } from "../supabase";
 
 export default defineTool({
   name: "submit_contact_inquiry",
   title: "Submit contact inquiry",
   description:
-    "Submits a contact inquiry to UConnect Tech. The team will follow up by email. Use for genuine business inquiries only.",
+    "Submits a contact inquiry to UConnect Tech on behalf of the signed-in user. The team will follow up by email. Use for genuine business inquiries only.",
   inputSchema: {
     fullName: z.string().trim().min(1).max(100).describe("Full name of the person."),
     email: z.string().trim().email().max(254).describe("Contact email address."),
@@ -19,10 +20,19 @@ export default defineTool({
     idempotentHint: false,
     openWorldHint: true,
   },
-  handler: async ({ fullName, email, company, phone, message }) => {
-    const supabaseUrl = process.env.SUPABASE_URL;
-    const anonKey = process.env.SUPABASE_PUBLISHABLE_KEY ?? process.env.SUPABASE_ANON_KEY;
-    if (!supabaseUrl || !anonKey) {
+  handler: async ({ fullName, email, company, phone, message }, ctx) => {
+    if (!ctx.isAuthenticated()) {
+      return {
+        content: [{ type: "text", text: "Not authenticated. Sign in to use this tool." }],
+        isError: true,
+      };
+    }
+    let supabaseUrl: string;
+    let anonKey: string;
+    try {
+      supabaseUrl = supabaseProjectUrl();
+      anonKey = supabasePublishableKey();
+    } catch {
       return {
         content: [{ type: "text", text: "Contact endpoint is not configured." }],
         isError: true,
@@ -34,7 +44,7 @@ export default defineTool({
         headers: {
           "Content-Type": "application/json",
           apikey: anonKey,
-          Authorization: `Bearer ${anonKey}`,
+          Authorization: `Bearer ${ctx.getToken()}`,
         },
         body: JSON.stringify({ fullName, email, phone, company, message }),
       });
