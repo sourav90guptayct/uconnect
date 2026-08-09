@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/hooks/useAuth';
 import { Button } from '@/components/ui/button';
@@ -19,7 +19,12 @@ export default function Auth() {
   const [loading, setLoading] = useState(false);
   const [resetLoading, setResetLoading] = useState(false);
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const { toast } = useToast();
+
+  // Same-origin relative path to return to after sign-in (used by the OAuth consent flow).
+  const rawNext = searchParams.get('next');
+  const nextPath = rawNext && /^\/(?!\/)/.test(rawNext) ? rawNext : null;
 
   useEffect(() => {
     // Only redirect if auth is loaded and user exists
@@ -27,6 +32,10 @@ export default function Auth() {
       if (authLoading) return; // Wait for auth to load
       
       if (user) {
+        if (nextPath) {
+          window.location.href = nextPath;
+          return;
+        }
         try {
           // Check if user is admin
           const { data: roleData } = await supabase
@@ -50,7 +59,7 @@ export default function Auth() {
     };
 
     checkAndRedirect();
-  }, [user, authLoading, navigate]);
+  }, [user, authLoading, navigate, nextPath]);
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -61,7 +70,9 @@ export default function Auth() {
         email,
         password,
         options: {
-          emailRedirectTo: `${window.location.origin}/register`
+          emailRedirectTo: nextPath
+            ? `${window.location.origin}${nextPath}`
+            : `${window.location.origin}/register`
         }
       });
 
@@ -154,7 +165,11 @@ export default function Auth() {
           variant: "destructive"
         });
       } else if (data.user) {
-        navigate('/profile');
+        if (nextPath) {
+          window.location.href = nextPath;
+        } else {
+          navigate('/profile');
+        }
       }
     } catch (error) {
       toast({
@@ -191,6 +206,10 @@ export default function Auth() {
           .eq('role', 'admin')
           .maybeSingle();
 
+        if (nextPath) {
+          window.location.href = nextPath;
+          return;
+        }
         if (roleData) {
           toast({
             title: "Admin login successful",

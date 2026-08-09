@@ -3,10 +3,10 @@
 // supabase function: mcp
 // Bundled from src/lib/mcp/index.ts by @lovable.dev/mcp-js.
 // src/lib/mcp/index.ts
-import { defineMcp } from "npm:@lovable.dev/mcp-js@0.20.0";
+import { auth, defineMcp } from "npm:@lovable.dev/mcp-js@0.26.1";
 
 // src/lib/mcp/tools/get-company-overview.ts
-import { defineTool } from "npm:@lovable.dev/mcp-js@0.20.0";
+import { defineTool } from "npm:@lovable.dev/mcp-js@0.26.1";
 var get_company_overview_default = defineTool({
   name: "get_company_overview",
   title: "Get company overview",
@@ -40,7 +40,7 @@ var get_company_overview_default = defineTool({
 });
 
 // src/lib/mcp/tools/list-product-categories.ts
-import { defineTool as defineTool2 } from "npm:@lovable.dev/mcp-js@0.20.0";
+import { defineTool as defineTool2 } from "npm:@lovable.dev/mcp-js@0.26.1";
 var CATEGORIES = [
   "FTTH Products",
   "Optic Fiber Cable Assemblies",
@@ -64,12 +64,67 @@ var list_product_categories_default = defineTool2({
 });
 
 // src/lib/mcp/tools/submit-contact-inquiry.ts
-import { defineTool as defineTool3 } from "npm:@lovable.dev/mcp-js@0.20.0";
+import { defineTool as defineTool3 } from "npm:@lovable.dev/mcp-js@0.26.1";
 import { z } from "npm:zod@^4.4.3";
+
+// src/lib/mcp/supabase.ts
+import { createClient } from "npm:@supabase/supabase-js@^2.52.0";
+function runtimeEnv(name) {
+  const runtime = globalThis;
+  return runtime.Deno?.env?.get?.(name) ?? runtime.process?.env?.[name];
+}
+function configuredEnv(names) {
+  for (const name of names) {
+    const value = runtimeEnv(name)?.trim();
+    if (value) return value;
+  }
+  return void 0;
+}
+function supabaseProjectUrl() {
+  const url = configuredEnv(["SUPABASE_URL", "VITE_SUPABASE_URL"]);
+  if (!url) throw new Error("SUPABASE_URL (or VITE_SUPABASE_URL) is required");
+  return url;
+}
+function supabasePublishableKey() {
+  const direct = configuredEnv([
+    "SUPABASE_PUBLISHABLE_KEY",
+    "VITE_SUPABASE_PUBLISHABLE_KEY"
+  ]);
+  if (direct) return direct;
+  const keyset = runtimeEnv("SUPABASE_PUBLISHABLE_KEYS");
+  if (keyset) {
+    try {
+      const parsed = JSON.parse(keyset);
+      if (parsed && typeof parsed === "object" && !Array.isArray(parsed)) {
+        const keys = parsed;
+        const key = [keys.default, ...Object.values(keys)].find(
+          (v) => typeof v === "string" && v.trim().startsWith("sb_publishable_")
+        )?.trim();
+        if (key) return key;
+      }
+    } catch {
+    }
+  }
+  const legacy = configuredEnv(["SUPABASE_ANON_KEY", "VITE_SUPABASE_ANON_KEY"]);
+  if (legacy) return legacy;
+  throw new Error(
+    "SUPABASE_PUBLISHABLE_KEY, SUPABASE_PUBLISHABLE_KEYS, or SUPABASE_ANON_KEY is required"
+  );
+}
+function supabaseForUser(ctx) {
+  const token = ctx.getToken();
+  if (!token) throw new Error("supabaseForUser requires a verified OAuth token");
+  return createClient(supabaseProjectUrl(), supabasePublishableKey(), {
+    global: { headers: { Authorization: `Bearer ${token}` } },
+    auth: { persistSession: false, autoRefreshToken: false }
+  });
+}
+
+// src/lib/mcp/tools/submit-contact-inquiry.ts
 var submit_contact_inquiry_default = defineTool3({
   name: "submit_contact_inquiry",
   title: "Submit contact inquiry",
-  description: "Submits a contact inquiry to UConnect Tech. The team will follow up by email. Use for genuine business inquiries only.",
+  description: "Submits a contact inquiry to UConnect Tech on behalf of the signed-in user. The team will follow up by email. Use for genuine business inquiries only.",
   inputSchema: {
     fullName: z.string().trim().min(1).max(100).describe("Full name of the person."),
     email: z.string().trim().email().max(254).describe("Contact email address."),
@@ -83,10 +138,19 @@ var submit_contact_inquiry_default = defineTool3({
     idempotentHint: false,
     openWorldHint: true
   },
-  handler: async ({ fullName, email, company, phone, message }) => {
-    const supabaseUrl = process.env.SUPABASE_URL;
-    const anonKey = process.env.SUPABASE_PUBLISHABLE_KEY ?? process.env.SUPABASE_ANON_KEY;
-    if (!supabaseUrl || !anonKey) {
+  handler: async ({ fullName, email, company, phone, message }, ctx) => {
+    if (!ctx.isAuthenticated()) {
+      return {
+        content: [{ type: "text", text: "Not authenticated. Sign in to use this tool." }],
+        isError: true
+      };
+    }
+    let supabaseUrl;
+    let anonKey;
+    try {
+      supabaseUrl = supabaseProjectUrl();
+      anonKey = supabasePublishableKey();
+    } catch {
       return {
         content: [{ type: "text", text: "Contact endpoint is not configured." }],
         isError: true
@@ -98,7 +162,7 @@ var submit_contact_inquiry_default = defineTool3({
         headers: {
           "Content-Type": "application/json",
           apikey: anonKey,
-          Authorization: `Bearer ${anonKey}`
+          Authorization: `Bearer ${ctx.getToken()}`
         },
         body: JSON.stringify({ fullName, email, phone, company, message })
       });
@@ -127,15 +191,52 @@ var submit_contact_inquiry_default = defineTool3({
   }
 });
 
+// src/lib/mcp/tools/who-am-i.ts
+import { defineTool as defineTool4 } from "npm:@lovable.dev/mcp-js@0.26.1";
+var who_am_i_default = defineTool4({
+  name: "who_am_i",
+  title: "Who am I",
+  description: "Returns the signed-in uConnect user's identity and their roles in the app. Use this to confirm which account the connection is acting as.",
+  inputSchema: {},
+  annotations: { readOnlyHint: true, idempotentHint: true, openWorldHint: false },
+  handler: async (_input, ctx) => {
+    if (!ctx.isAuthenticated()) {
+      return {
+        content: [{ type: "text", text: "Not authenticated. Sign in to use this tool." }],
+        isError: true
+      };
+    }
+    const supabase = supabaseForUser(ctx);
+    const { data, error } = await supabase.from("user_roles").select("role").eq("user_id", ctx.getUserId());
+    if (error) {
+      return { content: [{ type: "text", text: error.message }], isError: true };
+    }
+    const identity = {
+      userId: ctx.getUserId(),
+      email: ctx.getUserEmail(),
+      roles: (data ?? []).map((r) => r.role)
+    };
+    return {
+      content: [{ type: "text", text: JSON.stringify(identity, null, 2) }],
+      structuredContent: identity
+    };
+  }
+});
+
 // src/lib/mcp/index.ts
+var projectRef = "dlgrlanmnvpwladkhexb";
 var mcp_default = defineMcp({
   name: "uconnect-tech-mcp",
   title: "UConnect Tech",
-  version: "0.1.0",
-  instructions: "Tools for UConnect Tech (uconnecttech.com). Use `get_company_overview` for company facts and contact emails, `list_product_categories` to browse the ConnectLH\u2122 catalog, and `submit_contact_inquiry` to send a business inquiry to the team.",
-  tools: [get_company_overview_default, list_product_categories_default, submit_contact_inquiry_default]
+  version: "0.2.0",
+  instructions: "Tools for UConnect Tech (uconnecttech.com). Callers must sign in as a uConnect user; every tool acts as that user. Use `who_am_i` to confirm the signed-in identity, `get_company_overview` for company facts and contact emails, `list_product_categories` to browse the ConnectLH\u2122 catalog, and `submit_contact_inquiry` to send a business inquiry to the team.",
+  auth: auth.oauth.issuer({
+    issuer: `https://${projectRef}.supabase.co/auth/v1`,
+    acceptedAudiences: "authenticated"
+  }),
+  tools: [who_am_i_default, get_company_overview_default, list_product_categories_default, submit_contact_inquiry_default]
 });
 
 // lovable-mcp-supabase-entry.ts
-import { createSupabaseHandler } from "npm:@lovable.dev/mcp-js@0.20.0/stacks/supabase";
+import { createSupabaseHandler } from "npm:@lovable.dev/mcp-js@0.26.1/stacks/supabase";
 Deno.serve(createSupabaseHandler(mcp_default, { functionName: "mcp" }));

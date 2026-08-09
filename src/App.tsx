@@ -35,6 +35,7 @@ const InfraInstallation = lazy(() => import("./pages/InfraInstallation"));
 const ResourceManagement = lazy(() => import("./pages/ResourceManagement"));
 const ScreeningL2NetworkEngineer = lazy(() => import("./pages/ScreeningL2NetworkEngineer"));
 const SeoLanding = lazy(() => import("./pages/SeoLanding"));
+const OAuthConsent = lazy(() => import("./pages/OAuthConsent"));
 
 // Legacy admin (kept for job posting dialogs and system users)
 const LegacyAdmin = lazy(() => import("./pages/Admin"));
@@ -93,6 +94,8 @@ const App = () => (
               <Route path="/careers" element={<CareersPage />} />
               <Route path="/about" element={<AboutPage />} />
               <Route path="/auth" element={<Auth />} />
+              <Route path="/.lovable/oauth/consent" element={<OAuthConsent />} />
+
               <Route path="/register" element={<Register />} />
               <Route path="/jobs" element={<Jobs />} />
               <Route path="/jobs/:id" element={<JobDetails />} />
