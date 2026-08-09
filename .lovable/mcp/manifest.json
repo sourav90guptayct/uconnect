@@ -3,15 +3,35 @@
   "sdk_version": "0.26.1",
   "path": "/functions/v1/mcp",
   "auth": {
-    "type": "none"
+    "type": "oauth",
+    "issuer": "https://dlgrlanmnvpwladkhexb.supabase.co/auth/v1",
+    "accepted_audiences": [
+      "authenticated"
+    ]
   },
   "mcp": {
     "server": {
       "name": "uconnect-tech-mcp",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "title": "UConnect Tech"
     },
     "tools": [
+      {
+        "name": "who_am_i",
+        "title": "Who am I",
+        "description": "Returns the signed-in uConnect user's identity and their roles in the app. Use this to confirm which account the connection is acting as.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      },
       {
         "name": "get_company_overview",
         "title": "Get company overview",
