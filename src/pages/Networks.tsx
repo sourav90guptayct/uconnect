@@ -513,7 +513,7 @@ const NetworksPage = () => {
               </h2>
               <p className="text-base lg:text-lg text-muted-foreground mt-6 max-w-2xl">
                 From planning and RF design to deployment, integration and lifecycle operations —
-                delivered by in-house Tier-1 engineering teams across India and South Asia.
+                delivered by in-house Tier-1 engineering teams across global markets.
               </p>
             </motion.div>
 
