@@ -361,7 +361,7 @@ const MegaMenuOverlay = ({ open, onClose }: Props) => {
                       )}
                     >
                       {item.label}
-                      <ChevronRight className="h-5 w-5" />
+                      <ChevronRight className="h-5 w-5 flex-shrink-0 ml-4" />
                     </button>
                   );
                 })}
