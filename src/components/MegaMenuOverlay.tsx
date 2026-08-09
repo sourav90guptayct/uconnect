@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronRight, ChevronLeft, ExternalLink } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useIsMobile } from "@/hooks/use-mobile";
+
 
 
 
@@ -175,8 +175,19 @@ const MegaMenuOverlay = ({ open, onClose }: Props) => {
   const [panel, setPanel] = useState<PanelKey>("what");
   const [tab, setTab] = useState(0);
   const [mobilePanelOpen, setMobilePanelOpen] = useState(false);
-  const isMobile = useIsMobile();
+  // Drilldown behaviour for anything below the desktop (lg) breakpoint
+  const [isCompact, setIsCompact] = useState(false);
   const location = useLocation();
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 1023px)");
+    const update = () => setIsCompact(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+  const isMobile = isCompact;
+
 
   // Close the menu and, when already on the target page, scroll to the section
   const handleNavClick = (to: string) => {
@@ -304,12 +315,18 @@ const MegaMenuOverlay = ({ open, onClose }: Props) => {
           <div className="absolute inset-0 bg-foreground/40" onClick={onClose} />
 
           <motion.div
-            initial={{ y: -24, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: -16, opacity: 0 }}
-            transition={{ duration: 0.28, ease: "easeOut" }}
-            className="relative h-full w-full grid lg:grid-cols-[minmax(260px,26%)_1fr] bg-background overflow-hidden lg:overflow-y-auto"
+            initial={isCompact ? { x: "-100%" } : { y: -24, opacity: 0 }}
+            animate={isCompact ? { x: 0 } : { y: 0, opacity: 1 }}
+            exit={isCompact ? { x: "-100%" } : { y: -16, opacity: 0 }}
+            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className={cn(
+              "relative h-full bg-background overflow-hidden",
+              isCompact
+                ? "w-[min(92vw,420px)] shadow-2xl"
+                : "w-full grid lg:grid-cols-[minmax(260px,26%)_1fr] lg:overflow-y-auto"
+            )}
           >
+
             {/* Left rail */}
             <div className="bg-background px-6 sm:px-10 py-8 lg:py-10 border-r border-border h-full overflow-y-auto">
               <div className="flex items-start justify-between gap-4">
