@@ -175,8 +175,19 @@ const MegaMenuOverlay = ({ open, onClose }: Props) => {
   const [panel, setPanel] = useState<PanelKey>("what");
   const [tab, setTab] = useState(0);
   const [mobilePanelOpen, setMobilePanelOpen] = useState(false);
-  const isMobile = useIsMobile();
+  // Drilldown behaviour for anything below the desktop (lg) breakpoint
+  const [isCompact, setIsCompact] = useState(false);
   const location = useLocation();
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 1023px)");
+    const update = () => setIsCompact(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+  const isMobile = isCompact;
+
 
   // Close the menu and, when already on the target page, scroll to the section
   const handleNavClick = (to: string) => {
