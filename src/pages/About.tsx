@@ -11,14 +11,29 @@ const AboutPage = () => {
     "url": "https://uconnecttech.com/about",
     "name": "About uConnect Technologies",
     "description":
-      "uConnect Technologies is an enterprise telecom infrastructure and managed IT services company founded in 2017, with 200+ Tier-1 engineers across 18 circles in India.",
+      "uConnect Technologies is an enterprise telecom infrastructure and managed IT services company founded in 2017, with 200+ Tier-1 engineers and delivery presence across India, the USA, Europe, Middle East, Canada, Asia-Pacific, South America and beyond.",
     "mainEntity": {
       "@type": "Organization",
       "name": "uConnect Technologies",
       "foundingDate": "2017",
       "url": "https://uconnecttech.com",
       "numberOfEmployees": { "@type": "QuantitativeValue", "minValue": 200 },
-      "areaServed": { "@type": "Country", "name": "India" },
+      "areaServed": [
+        { "@type": "Country", "name": "India" },
+        { "@type": "Country", "name": "USA" },
+        { "@type": "Country", "name": "Canada" },
+        { "@type": "Country", "name": "Singapore" },
+        { "@type": "Country", "name": "Thailand" },
+        { "@type": "Country", "name": "Vietnam" },
+        { "@type": "Country", "name": "Philippines" },
+        { "@type": "Country", "name": "Russia" },
+        { "@type": "Country", "name": "Nepal" },
+        { "@type": "Country", "name": "Bhutan" },
+        { "@type": "Country", "name": "Sri Lanka" },
+        { "@type": "Place", "name": "Europe" },
+        { "@type": "Place", "name": "Middle East" },
+        { "@type": "Place", "name": "South America" },
+      ],
     },
   };
 
