@@ -47,12 +47,12 @@ const Footer = () => {
     <footer className="bg-primary text-primary-foreground relative overflow-hidden">
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
       <div className="container mx-auto px-8 py-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
-          <div>
-            <Link to="/" className="text-2xl font-bold tracking-tight text-primary-foreground flex items-center gap-2 mb-4">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 items-start">
+          <div className="min-w-0">
+            <Link to="/" className="text-2xl font-bold tracking-tight text-primary-foreground flex flex-wrap items-center gap-2 mb-4">
               uConnect<span className="text-gradient"> Technologies</span>
             </Link>
-            <p className="text-primary-foreground/60 mb-6 text-sm leading-relaxed">
+            <p className="text-primary-foreground/60 mb-6 text-sm leading-relaxed break-words">
               Your trusted partner for Telecom, IT & Infrastructure solutions. Delivering enterprise technology and products across the USA, Europe, Middle East, Canada, Asia-Pacific, South America, and India.
             </p>
             <div className="flex gap-3">
@@ -66,7 +66,7 @@ const Footer = () => {
             </div>
           </div>
 
-          <div>
+          <div className="min-w-0">
             <h3 className="text-sm font-semibold mb-5 uppercase tracking-wider text-primary-foreground/80">Quick Links</h3>
             <ul className="space-y-3">
               {quickLinks.map((link) => (
@@ -79,7 +79,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          <div>
+          <div className="min-w-0">
             <h3 className="text-sm font-semibold mb-5 uppercase tracking-wider text-primary-foreground/80">Our Services</h3>
             <ul className="space-y-3">
               {services.map((s) => (
@@ -92,7 +92,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          <div>
+          <div className="min-w-0">
             <h3 className="text-sm font-semibold mb-5 uppercase tracking-wider text-primary-foreground/80">Our Products</h3>
             <ul className="space-y-3">
               {products.map((p) => (
@@ -105,18 +105,18 @@ const Footer = () => {
             </ul>
           </div>
 
-          <div>
+          <div className="min-w-0">
             <h3 className="text-sm font-semibold mb-5 uppercase tracking-wider text-primary-foreground/80">Contact Info</h3>
             <div className="space-y-4">
               <div className="flex items-start gap-3">
                 <Mail className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
-                <a href="mailto:reachus@youconnecttech.com" className="text-primary-foreground/50 hover:text-accent text-sm transition-colors">
+                <a href="mailto:reachus@youconnecttech.com" className="text-primary-foreground/50 hover:text-accent text-sm transition-colors break-all">
                   reachus@youconnecttech.com
                 </a>
               </div>
               <div className="flex items-start gap-3">
                 <Mail className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
-                <a href="mailto:support@youconnecttech.com" className="text-primary-foreground/50 hover:text-accent text-sm transition-colors">
+                <a href="mailto:support@youconnecttech.com" className="text-primary-foreground/50 hover:text-accent text-sm transition-colors break-all">
                   support@youconnecttech.com
                 </a>
               </div>
