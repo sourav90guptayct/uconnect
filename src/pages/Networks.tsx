@@ -678,7 +678,7 @@ const NetworksPage = () => {
             </motion.div>
 
             <div className="max-w-3xl">
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
                 {regions.map((region, index) => (
                   <motion.div
                     key={region}
