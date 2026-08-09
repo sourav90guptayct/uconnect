@@ -53,7 +53,7 @@ const Footer = () => {
               uConnect<span className="text-gradient"> Technologies</span>
             </Link>
             <p className="text-primary-foreground/60 mb-6 text-sm leading-relaxed">
-              Your trusted partner for Telecom, IT & Infrastructure solutions. Delivering enterprise technology and products across India.
+              Your trusted partner for Telecom, IT & Infrastructure solutions. Delivering enterprise technology and products across the USA, Europe, Middle East, Canada, Asia-Pacific, South America, and India.
             </p>
             <div className="flex gap-3">
               <a

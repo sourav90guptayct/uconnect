@@ -36,12 +36,12 @@ const About = () => {
               <h1 className="display-headline text-foreground text-5xl sm:text-6xl lg:text-8xl">
                 Engineered for trust.
                 <br />
-                <span className="text-accent">Built for India.</span>
+                <span className="text-accent">Built for global scale.</span>
               </h1>
               <p className="mt-8 text-base lg:text-lg text-muted-foreground max-w-2xl leading-relaxed">
                 Since 2017, uConnect Technologies has been at the forefront of enterprise IT,
                 Telecom Infrastructure, NOC Operations and Strategic Workforce Management — serving
-                top companies, leading telecom operators and government organizations.
+                top companies, leading telecom operators and government organizations across global markets.
               </p>
             </motion.div>
           </div>
@@ -62,7 +62,7 @@ const About = () => {
                 About uConnect
               </div>
               <h2 className="display-headline text-foreground text-4xl sm:text-5xl lg:text-7xl">
-                India's trusted partner
+                A trusted global partner
                 <br />
                 <span className="text-muted-foreground">for enterprise technology.</span>
               </h2>
@@ -140,14 +140,14 @@ const About = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 to-transparent" />
                 <div className="absolute bottom-6 left-6 text-background">
-                  <div className="display-headline text-3xl lg:text-4xl">Pan-India</div>
-                  <div className="text-sm text-background/70 mt-1">Operations across 18 circles</div>
+                  <div className="display-headline text-3xl lg:text-4xl">Global Footprint</div>
+                  <div className="text-sm text-background/70 mt-1">Project delivery across 13+ markets</div>
                 </div>
               </div>
 
               {[
                 { icon: Target, title: "Our mission", desc: "Enable people and organizations to maximize the potential of Digital Transformation by providing best-in-class Products & Services for their business growth." },
-                { icon: Globe, title: "Our vision", desc: "Be India's most trusted technology solutions partner — known for operational excellence, innovation and lasting impact." },
+                { icon: Globe, title: "Our vision", desc: "Be a trusted global technology solutions partner — known for operational excellence, innovation and lasting impact." },
               ].map((card, i) => (
                 <motion.div
                   key={i}

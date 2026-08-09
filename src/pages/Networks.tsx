@@ -77,8 +77,8 @@ const industries = [
 
 const whyUs = [
   "Proven multi-vendor deployment expertise",
-  "PAN India execution capability",
-  "Cross-border project experience in South Asia",
+  "Global execution capability",
+  "Cross-border project experience across Asia, Americas, Europe and Middle East",
   "Experienced RF & network engineering teams",
   "Faster rollout execution",
   "Scalable deployment model",
@@ -86,7 +86,22 @@ const whyUs = [
   "Strong field operations and support capability",
 ];
 
-const regions = ["India", "Nepal", "Bhutan", "Sri Lanka"];
+const regions = [
+  "USA",
+  "Canada",
+  "Europe",
+  "Middle East",
+  "Singapore",
+  "Thailand",
+  "Vietnam",
+  "Philippines",
+  "Russia",
+  "South America",
+  "Nepal",
+  "Bhutan",
+  "Sri Lanka",
+  "India",
+];
 
 const telecomServices = [
   {
@@ -199,12 +214,14 @@ const NetworksPage = () => {
                 Connectivity At
                 <br />
                 <span className="text-accent">Scale.</span>{" "}
-                <span className="text-foreground/80">Across South Asia.</span>
+                <span className="text-foreground/80">Across the Globe.</span>
               </h1>
               <p className="mt-8 text-base lg:text-lg text-muted-foreground max-w-2xl leading-relaxed">
                 uConnect Technologies delivers end-to-end network rollout and deployment
                 services for telecom operators, ISPs, enterprises, government projects, and
-                large-scale connectivity initiatives across India, Nepal, Bhutan, and Sri Lanka.
+                large-scale connectivity initiatives across the USA, Europe, Middle East, Canada,
+                Singapore, Nepal, Bhutan, Thailand, Sri Lanka, South America, Philippines, Vietnam,
+                and Russia.
               </p>
             </motion.div>
           </div>
@@ -496,7 +513,7 @@ const NetworksPage = () => {
               </h2>
               <p className="text-base lg:text-lg text-muted-foreground mt-6 max-w-2xl">
                 From planning and RF design to deployment, integration and lifecycle operations —
-                delivered by in-house Tier-1 engineering teams across India and South Asia.
+                delivered by in-house Tier-1 engineering teams across global markets.
               </p>
             </motion.div>
 
@@ -654,14 +671,14 @@ const NetworksPage = () => {
                 Coverage
               </div>
               <h2 className="display-headline text-foreground text-4xl sm:text-5xl lg:text-7xl">
-                Regional
+                Global
                 <br />
                 <span className="text-muted-foreground">reach.</span>
               </h2>
             </motion.div>
 
             <div className="max-w-3xl">
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
                 {regions.map((region, index) => (
                   <motion.div
                     key={region}
@@ -687,7 +704,8 @@ const NetworksPage = () => {
               className="mt-8 text-muted-foreground text-base leading-relaxed max-w-2xl"
             >
               Delivering reliable connectivity solutions for challenging terrains, urban
-              environments, enterprise campuses, and large-scale telecom infrastructure projects.
+              environments, enterprise campuses, and large-scale telecom infrastructure projects
+              worldwide.
             </motion.p>
           </div>
         </section>
