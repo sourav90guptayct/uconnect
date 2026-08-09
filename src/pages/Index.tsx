@@ -7,12 +7,14 @@ import SEO from "@/components/SEO";
 // Lazy load below-the-fold sections to reduce initial JS
 const Services = lazy(() => import("@/components/Services"));
 const UseCases = lazy(() => import("@/components/UseCases"));
+const CareersCTA = lazy(() => import("@/components/CareersCTA"));
 const Contact = lazy(() => import("@/components/Contact"));
 const Footer = lazy(() => import("@/components/Footer"));
 
 const SectionFallback = () => (
   <div className="min-h-[120px]" />
 );
+
 
 const Index = () => {
   const location = useLocation();
