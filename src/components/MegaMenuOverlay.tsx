@@ -315,20 +315,14 @@ const MegaMenuOverlay = ({ open, onClose }: Props) => {
           <div className="absolute inset-0 bg-foreground/40" onClick={onClose} />
 
           <motion.div
-            initial={isCompact ? { x: "-100%" } : { y: -24, opacity: 0 }}
-            animate={isCompact ? { x: 0 } : { y: 0, opacity: 1 }}
-            exit={isCompact ? { x: "-100%" } : { y: -16, opacity: 0 }}
-            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className={cn(
-              "relative h-full bg-background overflow-hidden",
-              isCompact
-                ? "w-[min(92vw,420px)] shadow-2xl"
-                : "w-full grid lg:grid-cols-[minmax(260px,26%)_1fr] lg:overflow-y-auto"
-            )}
+            initial={{ x: "-100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "-100%" }}
+            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            className="relative h-full flex bg-background shadow-2xl overflow-hidden"
           >
-
             {/* Left rail */}
-            <div className="bg-background px-6 sm:px-10 py-8 lg:py-10 border-r border-border h-full overflow-y-auto">
+            <div className="relative z-20 bg-background w-[min(92vw,420px)] lg:w-[460px] flex-shrink-0 px-6 sm:px-10 py-8 lg:py-12 border-r border-border h-full overflow-y-auto">
               <div className="flex items-start justify-between gap-4">
                 <Link to="/" onClick={onClose} className="text-2xl font-bold tracking-tight text-foreground inline-flex items-center gap-2">
                   uConnect<span className="text-gradient"> Technologies</span>
@@ -343,9 +337,9 @@ const MegaMenuOverlay = ({ open, onClose }: Props) => {
                 </button>
               </div>
 
-              <nav className="mt-10 divide-y divide-border border-t border-border">
+              <nav className="mt-10 mb-6 divide-y divide-border border-t border-border">
                 {railItems.map((item) => {
-                  const isActive = item.key && panel === item.key && !isMobile;
+                  const isActive = item.key && panel === item.key && mobilePanelOpen;
                   if (!item.key) {
                     return (
                       <Link
@@ -365,12 +359,7 @@ const MegaMenuOverlay = ({ open, onClose }: Props) => {
                       onClick={() => {
                         setPanel(item.key as PanelKey);
                         setTab(0);
-                        if (isMobile) setMobilePanelOpen(true);
-                      }}
-                      onMouseEnter={() => {
-                        if (isMobile) return;
-                        setPanel(item.key as PanelKey);
-                        setTab(0);
+                        setMobilePanelOpen(true);
                       }}
                       className={cn(
                         "w-full flex items-center justify-between py-5 text-left text-2xl sm:text-3xl font-bold transition-colors",
@@ -385,26 +374,28 @@ const MegaMenuOverlay = ({ open, onClose }: Props) => {
               </nav>
             </div>
 
-            {/* Right panel — desktop inline */}
-            {!isMobile && rightPanel}
-
-            {/* Right panel — mobile slide-in from right */}
-            {isMobile && (
-              <AnimatePresence>
-                {mobilePanelOpen && (
-                  <motion.div
-                    initial={{ x: "100%" }}
-                    animate={{ x: 0 }}
-                    exit={{ x: "100%" }}
-                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                    className="absolute inset-0 z-10 bg-background overflow-y-auto"
-                  >
-                    {rightPanel}
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            )}
+            {/* Sub panel — slides in left to right */}
+            <AnimatePresence>
+              {mobilePanelOpen && (
+                <motion.div
+                  key={panel}
+                  initial={{ x: isCompact ? "100%" : -60, opacity: isCompact ? 1 : 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  exit={{ x: isCompact ? "100%" : -60, opacity: isCompact ? 1 : 0 }}
+                  transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
+                  className={cn(
+                    "bg-background h-full overflow-y-auto",
+                    isCompact
+                      ? "absolute inset-0 z-30"
+                      : "relative z-10 w-[min(70vw,1000px)]"
+                  )}
+                >
+                  {rightPanel}
+                </motion.div>
+              )}
+            </AnimatePresence>
           </motion.div>
+
         </motion.div>
       )}
     </AnimatePresence>
