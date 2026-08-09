@@ -337,7 +337,7 @@ export default function Auth() {
                     required
                   />
                 </div>
-                <Button type="submit" className="w-full" disabled={loading} variant="destructive">
+                <Button type="submit" className="w-full" disabled={loading}>
                   {loading ? 'Signing in...' : 'Admin Login'}
                 </Button>
                 <p className="text-xs text-muted-foreground text-center">
