@@ -4,7 +4,7 @@
  * Each entry renders through src/components/SeoLandingLayout.tsx.
  */
 
-export type SeoGroup = "solutions" | "services" | "products" | "industries";
+export type SeoGroup = "solutions" | "services" | "products" | "industries" | "regions";
 
 export interface SeoPage {
   /** Route segment after the group, e.g. "5g" -> /solutions/5g */
@@ -30,6 +30,7 @@ const S = "/solutions";
 const V = "/services";
 const P = "/products";
 const I = "/industries";
+const R = "/regions";
 
 export const seoPages: SeoPage[] = [
   /* ---------------- SOLUTIONS ---------------- */
@@ -1671,4 +1672,5 @@ export const groupTitles: Record<SeoGroup, string> = {
   services: "Services",
   products: "Products",
   industries: "Industries",
+  regions: "Regions We Serve",
 };
