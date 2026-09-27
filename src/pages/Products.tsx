@@ -2,7 +2,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import { motion } from "framer-motion";
-import { Download, ChevronRight, ArrowUpRight, ArrowLeft, ArrowRight } from "lucide-react";
+import { Download, ChevronRight, ArrowUpRight, ArrowLeft, ArrowRight, DraftingCompass, BadgeCheck, SlidersHorizontal, RadioTower, Layers, Headset } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
@@ -778,6 +778,109 @@ const Products = () => {
         </div>
 
         <div className="container mx-auto px-4 py-16">
+
+        {!activeCategory && (
+          <>
+          {/* ConnectLH™ brand story */}
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start mb-16">
+            <div>
+              <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-4">ConnectLH™ — our own brand</p>
+              <h2 className="display-headline text-foreground text-3xl lg:text-4xl leading-tight">
+                Engineered in-house, proven in the field.
+              </h2>
+              <p className="mt-6 text-muted-foreground leading-relaxed">
+                ConnectLH™ is the proprietary product line of uConnect Technologies — designed and
+                engineered by our own team for telecom operators, ISPs, system integrators and
+                enterprises. Every product begins as a field problem: an antenna that must survive
+                200 km/h winds, a splitter that deploys without splicing equipment, a rack that keeps
+                running from -30°C to +70°C.
+              </p>
+              <p className="mt-4 text-muted-foreground leading-relaxed">
+                The result is a portfolio of fiber, RF, cable, power and site-infrastructure
+                products that are factory-tested, standards-compliant and built for the realities of
+                deployment — not just catalog specs.
+              </p>
+            </div>
+            <div>
+              <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-4">Distributed partners</p>
+              <h2 className="display-headline text-foreground text-3xl lg:text-4xl leading-tight">
+                One catalogue, two ways to connect.
+              </h2>
+              <p className="mt-6 text-muted-foreground leading-relaxed">
+                Alongside ConnectLH™, we are an authorised distributor for Teltonika Networks —
+                industrial IoT routers, gateways, switches, modems and access points trusted
+                worldwide for machine-to-machine connectivity. Their range completes our offering:
+                ConnectLH™ covers the passive and site side of your network, Teltonika covers the
+                active connectivity layer.
+              </p>
+              <p className="mt-4 text-muted-foreground leading-relaxed">
+                Sourcing both from one supplier means matched specifications, simpler logistics and
+                a single accountable partner for your entire network build.
+              </p>
+            </div>
+          </div>
+
+          {/* Value addition */}
+          <div className="border-t border-border pt-14 mb-16">
+            <p className="text-sm font-semibold text-accent uppercase tracking-widest mb-4">The uConnect value addition</p>
+            <h2 className="display-headline text-foreground text-3xl lg:text-4xl leading-tight max-w-3xl">
+              More than a product list — a partner behind every box.
+            </h2>
+            <p className="mt-6 text-muted-foreground leading-relaxed max-w-3xl">
+              Since 2017, our engineers have deployed 10,000+ links across 30+ projects. That
+              deployment experience shapes how we select, build and support every product we sell.
+            </p>
+            <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              {[
+                {
+                  icon: DraftingCompass,
+                  title: "In-house engineering",
+                  text: "Products designed by network engineers who install and operate the same systems — every spec is field-justified, not assumed."
+                },
+                {
+                  icon: BadgeCheck,
+                  title: "Factory-tested quality",
+                  text: "Every ConnectLH™ batch is tested for gain, isolation, return loss and build integrity before it ships. Datasheets state measured, not nominal, performance."
+                },
+                {
+                  icon: SlidersHorizontal,
+                  title: "Customised to your build",
+                  text: "Cable lengths, connector types, pin assignments, IP ratings and mounting configurations are manufactured to your project requirements."
+                },
+                {
+                  icon: RadioTower,
+                  title: "Deployment-backed expertise",
+                  text: "We don't just supply — we deploy. Our teams have built wireless, fiber and surveillance networks for operators, railways and enterprises."
+                },
+                {
+                  icon: Layers,
+                  title: "Single source for the site",
+                  text: "Antennas, fiber, cables, PoE, racks and BTS accessories from one catalogue — fewer vendors, matched specs, consolidated logistics."
+                },
+                {
+                  icon: Headset,
+                  title: "Engineering support & after-sales",
+                  text: "Pre-sales design assistance, installation guidance and responsive post-sales support from the same engineers who understand your network."
+                }
+              ].map((item, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: idx * 0.06 }}
+                  className="bg-card border border-border rounded-3xl p-8 hover:border-accent/40 hover:shadow-lg transition-all duration-500"
+                >
+                  <span className="inline-flex w-12 h-12 rounded-2xl bg-secondary text-foreground items-center justify-center mb-5">
+                    <item.icon className="w-5 h-5" />
+                  </span>
+                  <h3 className="display-headline text-foreground text-xl leading-tight mb-3">{item.title}</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{item.text}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+          </>
+        )}
 
         {!activeCategory && (
           <div className="mb-14">
