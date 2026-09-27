@@ -29,6 +29,7 @@ const Governance = lazy(() => import("./pages/Governance"));
 const QualityHSE = lazy(() => import("./pages/QualityHSE"));
 const Clients = lazy(() => import("./pages/Clients"));
 const Products = lazy(() => import("./pages/Products"));
+const TeltonikaNetworks = lazy(() => import("./pages/TeltonikaNetworks"));
 const Networks = lazy(() => import("./pages/Networks"));
 const ManagedServices = lazy(() => import("./pages/ManagedServices"));
 const InfraInstallation = lazy(() => import("./pages/InfraInstallation"));
@@ -87,6 +88,7 @@ const App = () => (
               <Route path="/" element={<Index />} />
               <Route path="/services" element={<ServicesPage />} />
               <Route path="/products" element={<Products />} />
+              <Route path="/teltonika-networks" element={<TeltonikaNetworks />} />
               <Route path="/networks" element={<Networks />} />
               <Route path="/managed-services" element={<ManagedServices />} />
               <Route path="/infra-installation" element={<InfraInstallation />} />
