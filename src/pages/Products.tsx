@@ -8,6 +8,21 @@ import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import dishAntenna from "@/assets/dish-antenna-connectlh.png.asset.json";
+import teltonikaRutm50 from "@/assets/teltonika-rutm50.png.asset.json";
+import teltonikaSwm280 from "@/assets/teltonika-swm280.png.asset.json";
+import teltonikaTrb501 from "@/assets/teltonika-trb501.png.asset.json";
+import teltonikaTrm500 from "@/assets/teltonika-trm500.png.asset.json";
+import teltonikaTap400 from "@/assets/teltonika-tap400.png.asset.json";
+import teltonikaOtd500 from "@/assets/teltonika-otd500.png.asset.json";
+
+const teltonikaTiles = [
+  { title: "Industrial Routers", description: "4G/5G cellular routers for enterprise, CCTV, traffic and smart-city connectivity.", image: teltonikaRutm50.url, to: "/teltonika-networks#group-routers" },
+  { title: "Ethernet Switches", description: "Managed and unmanaged industrial switches with PoE+ and L2/L3 features.", image: teltonikaSwm280.url, to: "/teltonika-networks#group-ethernet-switches" },
+  { title: "IoT Gateways", description: "Compact industrial gateways for M2M, telemetry and remote monitoring.", image: teltonikaTrb501.url, to: "/teltonika-networks#group-gateways" },
+  { title: "Cellular Modems", description: "Reliable 4G/5G modems for primary and backup connectivity.", image: teltonikaTrm500.url, to: "/teltonika-networks#group-modems" },
+  { title: "Wireless Access Points", description: "Enterprise Wi-Fi access points for indoor and outdoor coverage.", image: teltonikaTap400.url, to: "/teltonika-networks#group-access-points" },
+  { title: "Embedded Systems", description: "Embedded connectivity modules for OEM and custom integrations.", image: teltonikaOtd500.url, to: "/teltonika-networks#group-embedded-systems" },
+];
 
 const Products = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -765,14 +780,41 @@ const Products = () => {
         <div className="container mx-auto px-4 py-16">
 
         {!activeCategory && (
-          <Link to="/teltonika-networks" className="group mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-y border-border py-6 hover:border-accent transition-colors">
-            <div>
+          <div className="mb-14">
+            <div className="border-y border-border py-6 mb-8">
               <p className="text-sm font-semibold uppercase tracking-widest text-accent mb-2">Distributed by uConnect Technologies</p>
               <h2 className="display-headline text-foreground text-2xl sm:text-3xl">Teltonika Networks</h2>
-              <p className="mt-2 text-muted-foreground">Industrial IoT routers, gateways, switches, modems and access points.</p>
+              <p className="mt-2 text-muted-foreground max-w-2xl">Industrial IoT routers, gateways, switches, modems and access points — browse the full range without leaving our site.</p>
             </div>
-            <span className="inline-flex items-center gap-2 text-accent font-semibold shrink-0">Explore Teltonika products <ArrowUpRight className="h-4 w-4" /></span>
-          </Link>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              {teltonikaTiles.map((tile, idx) => (
+                <motion.div key={tile.title} initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: idx * 0.05 }}>
+                  <Link
+                    to={tile.to}
+                    className="group relative flex flex-col rounded-3xl overflow-hidden bg-card border border-border shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                  >
+                    <div className="relative m-3 rounded-2xl overflow-hidden aspect-[4/3] p-3 bg-secondary">
+                      <img
+                        src={tile.image}
+                        alt={tile.title}
+                        loading="lazy"
+                        className="w-full h-full object-contain object-center rounded-xl group-hover:scale-105 transition-transform duration-700 ease-out"
+                      />
+                    </div>
+                    <div className="px-6 pb-6 pt-2 flex flex-col flex-1">
+                      <div className="flex items-start justify-between gap-4">
+                        <h3 className="display-headline text-foreground text-xl lg:text-2xl leading-tight">{tile.title}</h3>
+                        <span className="shrink-0 w-10 h-10 rounded-full bg-secondary text-foreground flex items-center justify-center group-hover:bg-accent group-hover:text-accent-foreground transition-colors">
+                          <ArrowUpRight className="w-4 h-4" />
+                        </span>
+                      </div>
+                      <p className="mt-3 text-muted-foreground text-sm line-clamp-2">{tile.description}</p>
+                    </div>
+                  </Link>
+                </motion.div>
+              ))}
+            </div>
+          </div>
         )}
 
         {/* Inseego-style: image-tile category overview / drill-down */}
