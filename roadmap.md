@@ -1,3 +1,0 @@
-- [x] List Teltonika Networks models by product family with official product links.
-- [x] Add a right-to-left product showcase on the homepage in uConnect's theme.
-- [x] Connect the catalogue through the Products page and menu.

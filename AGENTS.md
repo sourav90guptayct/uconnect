@@ -1,2 +1,0 @@
-Keep the Teltonika Networks catalogue in `src/data/teltonika.ts`, sourced from official category listings, and render it on a distinct product page so ConnectLH™ products remain clearly separate from distributed third-party products.
-Store downloaded third-party product photography through lovable-assets pointers in `src/assets/` to avoid hotlinking and keep media maintainable.
