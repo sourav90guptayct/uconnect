@@ -42,7 +42,7 @@ const Products = () => {
 
   const productCategories = {
     ftth: {
-      title: "FTTH Products",
+      title: "ConnectLH™ FTTH Products",
       description: "FTTH Products are fiber-to-home technology solutions that deliver high speed and other services over optical fibers. These solutions meet the diverse needs and requirements of FTTH service providers. FTTH products support higher bandwidths, lower latencies, longer distances, lower costs, and lower power consumption.",
       subProducts: [
         {
@@ -125,7 +125,7 @@ const Products = () => {
       ]
     },
     fiberCables: {
-      title: "Optic Fiber Cable Assemblies",
+      title: "ConnectLH™ Optic Fiber Cable Assemblies",
       description: "Cutting-edge connectivity solutions designed to propel your communication networks into the future, delivering unparalleled performance, reliability, and speed.",
       subProducts: [
         {
@@ -153,7 +153,7 @@ const Products = () => {
       ]
     },
     rfCables: {
-      title: "RF Cables & Assemblies",
+      title: "ConnectLH™ RF Cables & Assemblies",
       description: "Top-notch RF and coaxial cables specially designed to mitigate signal interference. These cables carry radio frequency signals with different frequencies and wavelengths for various applications.",
       subProducts: [
         {
@@ -181,7 +181,7 @@ const Products = () => {
       ]
     },
     networkCables: {
-      title: "Network & Data Cable Assemblies",
+      title: "ConnectLH™ Network & Data Cable Assemblies",
       description: "Professional-grade network cables designed to meet the demands of modern connectivity, ensuring seamless data transfer and optimal network performance.",
       subProducts: [
         {
@@ -220,7 +220,7 @@ const Products = () => {
       ]
     },
     specializedCables: {
-      title: "Specialized Cable Assemblies",
+      title: "ConnectLH™ Specialized Cable Assemblies",
       description: "Meticulously crafted cables for distinct purposes and applications, featuring customized specifications for specific requirements with precision engineering.",
       subProducts: [
         {
@@ -324,7 +324,7 @@ const Products = () => {
       ]
     },
     bts: {
-      title: "BTS Installation Products",
+      title: "ConnectLH™ BTS Installation Products",
       description: "Complete range of products for Base Transceiver Station installations and site infrastructure, providing essential solutions for telecommunications installations.",
       subProducts: [
         {
@@ -619,7 +619,7 @@ const Products = () => {
       ]
     },
     fabricated: {
-      title: "Fabricated Products",
+      title: "ConnectLH™ Fabricated Products",
       description: "Specialized fabricated products for infrastructure support, providing sturdy and reliable frameworks for various industrial and telecommunications applications.",
       subProducts: [
         {
@@ -687,7 +687,7 @@ const Products = () => {
     : "Products — ConnectLH™ Antennas, FTTH, Cables, PoE | uConnect";
   const seoDescription = activeCategoryData
     ? String(activeCategoryData.description).slice(0, 300)
-    : "ConnectLH™ antennas, FTTH equipment, fiber & RF cables, PoE, racks, switches and BTS — engineered for the wireless edge.";
+    : "ConnectLH™ antennas, FTTH equipment, fiber & RF cables, PoE, racks and BTS — engineered for the wireless edge.";
   const seoPath = activeCategory ? `/products?category=${activeCategory}` : "/products";
 
   return (
@@ -710,8 +710,8 @@ const Products = () => {
           "@type": "ItemList",
           name: "uConnect Technologies Product Catalogue",
           itemListElement: [
-            "Dish Antennas", "Sector Antennas", "Outdoor 4G/5G Routers",
-            "AC & DC PoE", "Industrial Switches", "FTTH Products",
+            "Dish Antennas", "Sector Antennas",
+            "AC & DC PoE", "FTTH Products",
             "Fiber Optic Cables", "RF Cables", "Network Cables",
             "Racks & Cabinets", "BTS Equipment", "Specialized Cables"
           ].map((name, i) => ({
