@@ -37,6 +37,15 @@ const TeltonikaNetworks = () => {
   useEffect(() => {
     if (!hash) return;
     const model = hash.slice(1);
+    if (model.startsWith("group-")) {
+      const groupId = model.slice(6);
+      if (teltonikaGroups.some((entry) => entry.id === groupId)) {
+        setActiveGroup(groupId);
+        setQuery("");
+        requestAnimationFrame(() => setTimeout(() => document.getElementById(model)?.scrollIntoView({ block: "start", behavior: "smooth" }), 100));
+      }
+      return;
+    }
     const group = teltonikaGroups.find((entry) => entry.models.some((item) => item.name.toLowerCase() === model));
     if (group) {
       setActiveGroup(group.id);
