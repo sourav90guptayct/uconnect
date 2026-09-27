@@ -8,9 +8,9 @@ const featured = [
   { name: "29CLH4959", type: "29 dBi dish antenna", image: dishAntenna.url, category: "antennas", mediaBg: "product-media-gray" },
   { name: "19 dBi Sector", type: "Sector antenna", image: "/products/sector-antenna-19dbi.jpg", category: "sectorAntennas" },
   { name: "ACCLH-566-100", type: "56V AC PoE injector", image: "/products/acclh-566-100.jpg", category: "poe" },
-  { name: "CLH202", type: "Managed Gigabit PoE+ switch", image: "/products/clh202-switch.jpg", category: "switches" },
-  { name: "CLH500", type: "Outdoor 5G/4G router", image: "/products/clh500-router.jpg", category: "routers" },
   { name: "ConnectLH™ Racks", type: "Outdoor network cabinets", image: "/products/outdoor-floor-rack.jpg", category: "racks" },
+  { name: "FMS/LIU Boxes", type: "Fiber management", image: "/products/fms-96-port.webp", category: "ftth" },
+  { name: "RF Cables", type: "Feeder & jumper cables", image: "/products/category-rfCables.png", category: "rfCables" },
 ];
 
 const ConnectLHShowcase = () => {
@@ -22,7 +22,7 @@ const ConnectLHShowcase = () => {
         <div>
           <p className="text-sm font-semibold uppercase tracking-widest text-accent mb-3">Putting Imagination to work · Designed by uConnect</p>
           <h2 id="connectlh-showcase-title" className="display-headline text-foreground text-3xl sm:text-4xl lg:text-5xl">ConnectLH™ Products</h2>
-          <p className="mt-3 text-muted-foreground max-w-2xl">Our own antennas, PoE, industrial switches and outdoor connectivity products, engineered for real-world networks.</p>
+          <p className="mt-3 text-muted-foreground max-w-2xl">Our own antennas, PoE, FTTH, cabling and site infrastructure products, engineered for real-world networks.</p>
         </div>
         <Button asChild variant="ctaOutline" className="shrink-0 self-start sm:self-auto">
           <Link to="/products">Explore ConnectLH™ products <ArrowUpRight className="ml-2 h-4 w-4" /></Link>
