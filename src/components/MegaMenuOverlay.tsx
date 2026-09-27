@@ -159,15 +159,15 @@ const companyGroups = [
     title: "Who We Are",
     links: [
       { label: "About uConnect", to: "/about" },
-      { label: "ConnectLH™", to: "/products" },
-      { label: "Global Presence", to: "/about" },
+      { label: "ConnectLH™", to: "/company/connectlh" },
+      { label: "Global Presence", to: "/company/global-presence" },
     ],
   },
   {
     title: "How We Work",
     links: [
-      { label: "Manufacturing", to: "/infra-installation" },
-      { label: "Quality & Testing", to: "/quality-hse" },
+      { label: "Manufacturing", to: "/company/manufacturing" },
+      { label: "Quality & Testing", to: "/company/quality-testing" },
       { label: "Governance", to: "/governance" },
     ],
   },
