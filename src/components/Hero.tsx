@@ -288,11 +288,11 @@ const Hero = () => {
               </AnimatePresence>
             </div>
 
-            <h1 className="display-headline mt-6 text-foreground text-[2.5rem] sm:text-5xl lg:text-6xl xl:text-7xl">
+            <h2 className="display-headline mt-6 text-foreground text-[2.5rem] sm:text-5xl lg:text-6xl xl:text-7xl">
               We design <span className="text-accent">networks</span>
               <br />
               for seamless operations.
-            </h1>
+            </h2>
 
             <AnimatePresence mode="wait">
               <motion.p
