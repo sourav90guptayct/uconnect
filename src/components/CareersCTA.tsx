@@ -2,6 +2,9 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import careersTeamAsset from "@/assets/careers-team.jpg.asset.json";
+
+const careersTeamImg = `https://uconnecttech.com${careersTeamAsset.url}`;
 
 const CareersCTA = () => {
   const navigate = useNavigate();
@@ -49,8 +52,8 @@ const CareersCTA = () => {
           >
             <div className="relative aspect-square w-full max-w-xs sm:max-w-sm lg:max-w-md mx-auto lg:ml-auto overflow-hidden rounded-2xl">
               <img
-                src="/lovable-uploads/hero-enterprise-network.webp"
-                alt="uConnect team working on enterprise network infrastructure"
+                src={careersTeamImg}
+                alt="uConnect team members smiling while collaborating at a laptop"
                 className="w-full h-full object-cover"
                 loading="lazy"
                 decoding="async"
