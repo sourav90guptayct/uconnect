@@ -13,6 +13,8 @@ import networksEnterprise from "@/assets/networks-enterprise.jpg";
 import networksRail from "@/assets/networks-rail.jpg";
 import networksUtility from "@/assets/networks-utility.jpg";
 import networksSmartCity from "@/assets/networks-smartcity.jpg";
+import FeaturedSmartCity from "@/components/FeaturedSmartCity";
+import streetAsset from "@/assets/bhubaneswar-street.jpg.asset.json";
 
 const expertise = [
   {
@@ -576,7 +578,7 @@ const NetworksPage = () => {
               {[
                 { src: networksRail, label: "Railways & Transit", alt: "Aerial view of a large urban rail terminus connecting city infrastructure" },
                 { src: networksUtility, label: "Utilities & Industrial", alt: "Aerial view of a water utility treatment facility with circular tanks" },
-                { src: networksSmartCity, label: "Smart Cities", alt: "Illuminated smart city convention complex at dusk with connected buildings" },
+                { src: `https://uconnecttech.com${streetAsset.url}`, label: "Smart Cities", alt: "Redeveloped Bhubaneswar smart city street with protected cycle tracks and a BRTS bus stop" },
               ].map((item, index) => (
                 <motion.div
                   key={item.label}
@@ -618,6 +620,9 @@ const NetworksPage = () => {
             </div>
           </div>
         </section>
+
+        {/* Featured project: Bhubaneswar Smart City */}
+        <FeaturedSmartCity />
 
         {/* Why uConnect */}
         <section className="py-16 lg:py-24 bg-muted/40">
