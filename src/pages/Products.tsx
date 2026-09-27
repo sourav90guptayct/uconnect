@@ -2,7 +2,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import { motion } from "framer-motion";
-import { Download, ChevronRight, ArrowUpRight, ArrowLeft, ArrowRight } from "lucide-react";
+import { Download, ChevronRight, ArrowUpRight, ArrowLeft, ArrowRight, DraftingCompass, BadgeCheck, SlidersHorizontal, RadioTower, Layers, Headset } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
