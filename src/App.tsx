@@ -110,6 +110,7 @@ const App = () => (
               <Route path="/services/:slug" element={<SeoLanding group="services" />} />
               <Route path="/products/:slug" element={<SeoLanding group="products" />} />
               <Route path="/industries/:slug" element={<SeoLanding group="industries" />} />
+              <Route path="/regions/:slug" element={<SeoLanding group="regions" />} />
               <Route path="/careers/screening/l2-network-engineer" element={<ScreeningL2NetworkEngineer />} />
 
               {/* Redirects for legacy paths */}

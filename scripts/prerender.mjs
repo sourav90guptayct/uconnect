@@ -318,6 +318,36 @@ const routes = [
       "Network infrastructure, connectivity, racks, switching and deployment services for data centers.",
   },
   {
+    path: "/regions/usa",
+    title: "ConnectLH™ Antennas & Telecom Products in the USA | uConnect",
+    description:
+      "Carrier-grade ConnectLH™ dish & sector antennas, FTTH gear, RF & fiber cable assemblies supplied to WISPs, integrators and enterprises across the United States.",
+  },
+  {
+    path: "/regions/canada",
+    title: "ConnectLH™ Antennas & Telecom Products in Canada | uConnect",
+    description:
+      "ConnectLH™ dish & sector antennas, FTTH products and cable assemblies supplied to Canadian WISPs, integrators and utilities with full export support.",
+  },
+  {
+    path: "/regions/europe",
+    title: "ConnectLH™ Antennas & Telecom Products in Europe | uConnect",
+    description:
+      "ConnectLH™ antennas, FTTH products, cable assemblies and Teltonika industrial routers supplied to European operators, integrators and enterprises.",
+  },
+  {
+    path: "/regions/middle-east",
+    title: "ConnectLH™ Antennas & Telecom Products in the Middle East | uConnect",
+    description:
+      "ConnectLH™ antennas, FTTH products and cable assemblies supplied to operators, integrators and smart-city projects across the GCC and Middle East.",
+  },
+  {
+    path: "/regions/south-america",
+    title: "ConnectLH™ Antennas & Telecom Products in South America | uConnect",
+    description:
+      "ConnectLH™ antennas, FTTH products and cable assemblies supplied to WISPs, ISPs and integrators across Brazil, Chile, Colombia, Peru and South America.",
+  },
+  {
     path: "/industries/government",
     title: "Government Network & Connectivity Solutions India | uConnect",
     description:
