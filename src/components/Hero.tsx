@@ -153,6 +153,8 @@ const Hero = () => {
 
   const startFilm = () => setPlaying(true);
   const stopFilm = () => setPlaying(false);
+  const scrollToContact = () =>
+    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
 
 
   const slide = slides[index];
