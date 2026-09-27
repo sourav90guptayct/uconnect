@@ -107,18 +107,6 @@ const tilePool = [
 ];
 
 
-const logos = [
-  { src: "/clients/airtel.jpg", name: "Airtel" },
-  { src: "/clients/jio.png", name: "Jio" },
-  { src: "/clients/vi.jpg", name: "Vi" },
-  { src: "/clients/bsnl.png", name: "BSNL" },
-  { src: "/clients/railtel.jpg", name: "RailTel" },
-  { src: "/clients/wipro.webp", name: "Wipro" },
-  { src: "/clients/siemens.jpg", name: "Siemens" },
-  { src: "/clients/alstom.jpg", name: "Alstom" },
-];
-
-
 const Hero = () => {
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
@@ -427,54 +415,6 @@ const Hero = () => {
       </div>
 
 
-      {/* Positioning statement */}
-      <div className="bg-background py-10 lg:py-14">
-        <div className="container mx-auto px-4 text-center">
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="t-eyebrow text-accent"
-          >
-            Putting Imagination to work
-          </motion.p>
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="display-headline mt-3 text-foreground text-2xl sm:text-3xl lg:text-5xl max-w-4xl mx-auto"
-          >
-            A product &amp; services integrator for enterprise networks
-          </motion.h2>
-          <p className="mt-5 text-sm lg:text-base text-muted-foreground max-w-2xl mx-auto">
-            We supply our own ConnectLH™ hardware and integrate it with four service lines —
-            managed services, network deployment, resources management and infra solutions —
-            under one contract and one accountable team.
-          </p>
-
-
-          {/* Client trust strip */}
-          <div className="mt-8 lg:mt-12 pt-8 border-t border-border">
-            <div className="text-[11px] font-semibold text-muted-foreground uppercase tracking-[0.18em]">
-              Trusted by India's operators, integrators &amp; enterprises
-            </div>
-            <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-x-6 gap-y-8 items-center">
-              {logos.map((logo) => (
-                <img
-                  key={logo.name}
-                  src={logo.src}
-                  alt={`${logo.name} — uConnect Technologies client`}
-                  loading="lazy"
-                  decoding="async"
-                  className="h-8 lg:h-10 w-full object-contain opacity-55 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-300"
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
     </section>
     </>
   );
