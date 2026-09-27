@@ -28,6 +28,14 @@ const Footer = () => {
     { label: "Resource Management", to: "/resource-management" },
   ];
 
+  const regions = [
+    { label: "USA", to: "/regions/usa" },
+    { label: "Canada", to: "/regions/canada" },
+    { label: "Europe", to: "/regions/europe" },
+    { label: "Middle East", to: "/regions/middle-east" },
+    { label: "South America", to: "/regions/south-america" },
+  ];
+
   const products = [
     { label: "ConnectLH™ Antennas", to: "/products?category=antennas" },
     { label: "Sector Antennas", to: "/products?category=sectorAntennas" },
@@ -85,6 +93,16 @@ const Footer = () => {
                 <li key={s.to}>
                   <Link to={s.to} className="text-primary-foreground/50 hover:text-accent text-sm transition-colors duration-200">
                     {s.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <h3 className="text-sm font-semibold mt-8 mb-4 uppercase tracking-wider text-primary-foreground/80">Regions We Serve</h3>
+            <ul className="space-y-3">
+              {regions.map((r) => (
+                <li key={r.to}>
+                  <Link to={r.to} className="text-primary-foreground/50 hover:text-accent text-sm transition-colors duration-200">
+                    {r.label}
                   </Link>
                 </li>
               ))}
