@@ -194,7 +194,7 @@ const Hero = () => {
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(180deg, hsl(222 47% 8% / 0.55) 0%, hsl(222 47% 8% / 0.25) 40%, hsl(222 47% 8% / 0.75) 100%)",
+                "linear-gradient(180deg, hsl(222 47% 8% / 0.6) 0%, hsl(222 47% 8% / 0.42) 40%, hsl(222 47% 8% / 0.78) 100%)",
             }}
           />
         )}
