@@ -153,6 +153,8 @@ const Hero = () => {
 
   const startFilm = () => setPlaying(true);
   const stopFilm = () => setPlaying(false);
+  const scrollToContact = () =>
+    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
 
 
   const slide = slides[index];
@@ -192,7 +194,7 @@ const Hero = () => {
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(180deg, hsl(222 47% 8% / 0.55) 0%, hsl(222 47% 8% / 0.25) 40%, hsl(222 47% 8% / 0.75) 100%)",
+                "linear-gradient(180deg, hsl(222 47% 8% / 0.6) 0%, hsl(222 47% 8% / 0.42) 40%, hsl(222 47% 8% / 0.78) 100%)",
             }}
           />
         )}
@@ -218,17 +220,41 @@ const Hero = () => {
               >
                 <div className="flex items-center gap-3">
                   <span className="h-px w-10 bg-accent" />
-                  <span className="t-eyebrow text-on-media/80">uConnect Technologies</span>
+                  <span className="t-eyebrow text-on-media/80">Designed & Engineered by uConnect Technologies</span>
                 </div>
-                <h1 className="display-headline mt-6 text-on-media text-[2.75rem] leading-[1.02] sm:text-6xl lg:text-7xl xl:text-8xl">
-                  Putting Imagination
+                <h1 className="display-headline mt-6 text-on-media text-[2.35rem] leading-[1.04] sm:text-5xl lg:text-6xl xl:text-7xl">
+                  Connectivity.
                   <br />
-                  to <span className="text-accent">work</span>
+                  Engineered for the <span className="text-accent">real world.</span>
                 </h1>
-                <p className="mt-6 t-body-lg text-on-media/80 max-w-xl">
-                  Design, project management and day-to-day operations — plus our own ConnectLH™
-                  product line — across telecom, railways, power, transportation and ports.
+                <p className="mt-5 t-body-lg font-semibold text-on-media">
+                  ConnectLH™ Telecom & Industrial Networking Products
                 </p>
+                <p className="mt-2 text-sm sm:text-base text-on-media/75 tracking-wide">
+                  Antennas • PoE • Industrial Ethernet • 4G/5G Connectivity • Fiber Infrastructure
+                </p>
+
+                <div className="mt-8 flex flex-col sm:flex-row sm:items-center gap-3">
+                  <Link to="/products">
+                    <Button variant="ctaAccent" size="xl" className="w-full sm:w-auto">
+                      Explore Products
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </Link>
+                  <a href="mailto:reachus@youconnecttech.com?subject=Distributor%20Enquiry">
+                    <Button variant="ctaOutlineOnDark" size="xl" className="w-full sm:w-auto">
+                      Become a Distributor
+                    </Button>
+                  </a>
+                  <Button
+                    variant="ctaOutlineOnDark"
+                    size="xl"
+                    className="w-full sm:w-auto"
+                    onClick={scrollToContact}
+                  >
+                    Talk to an Engineer
+                  </Button>
+                </div>
               </motion.div>
 
               <button
@@ -404,12 +430,21 @@ const Hero = () => {
       {/* Positioning statement */}
       <div className="bg-background py-10 lg:py-14">
         <div className="container mx-auto px-4 text-center">
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="t-eyebrow text-accent"
+          >
+            Putting Imagination to work
+          </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="display-headline text-foreground text-2xl sm:text-3xl lg:text-5xl max-w-4xl mx-auto"
+            className="display-headline mt-3 text-foreground text-2xl sm:text-3xl lg:text-5xl max-w-4xl mx-auto"
           >
             A product &amp; services integrator for enterprise networks
           </motion.h2>
