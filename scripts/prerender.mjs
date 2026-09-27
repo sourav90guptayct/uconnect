@@ -48,6 +48,12 @@ const routes = [
       "Carrier-grade ConnectLH™ dish and sector antennas, FTTH gear, PoE, RF & fiber cables. Datasheets available on request.",
   },
   {
+    path: "/teltonika-networks",
+    title: "Teltonika Networks Industrial Routers & Gateways | uConnect Technologies",
+    description:
+      "Explore Teltonika Networks industrial IoT routers, cellular gateways, Ethernet switches, modems and access points distributed by uConnect Technologies.",
+  },
+  {
     path: "/networks",
     title: "Network Deployment Services India | uConnect",
     description:
