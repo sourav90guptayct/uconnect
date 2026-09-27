@@ -242,4 +242,9 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url><loc>https://uconnecttech.com/regions/usa</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://uconnecttech.com/regions/canada</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://uconnecttech.com/regions/europe</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://uconnecttech.com/regions/middle-east</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://uconnecttech.com/regions/south-america</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
 </urlset>
