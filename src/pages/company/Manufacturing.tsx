@@ -1,40 +1,28 @@
-import { Factory } from "lucide-react";
-import PolicyPage from "@/components/PolicyPage";
-
-const Manufacturing = () => (
-  <PolicyPage
-    eyebrow="Manufacturing"
-    title="How ConnectLH™ products are built"
-    intro="ConnectLH™ products are designed and engineered by uConnect Technologies and produced with qualified manufacturing partners under our specifications, inspection and release control."
-    seoTitle="Manufacturing | ConnectLH™ by uConnect Technologies"
-    seoDescription="Design, sourcing, production partners and release control behind ConnectLH™ antennas, PoE, industrial Ethernet, 4G/5G and fiber products."
-    path="/company/manufacturing"
-    icon={Factory}
-    related={[
-      { label: "Quality & Testing", to: "/company/quality-testing" },
-      { label: "ConnectLH™ brand", to: "/company/connectlh" },
-      { label: "Products", to: "/products" },
-    ]}
-    sections={[
-      {
-        title: "Design and engineering",
-        body: "Product requirements come directly from our field deployments. Our engineers define RF, mechanical and environmental specifications so products perform on real sites, not just on paper.",
-      },
-      {
-        title: "Qualified production partners",
-        body: "Production is carried out by vetted partners selected for process capability, consistency and compliance. Each partner works to documented uConnect specifications.",
-        points: [
-          "Supplier qualification before first production run.",
-          "Golden-sample approval for every product variant.",
-          "Periodic supplier performance reviews.",
-        ],
-      },
-      {
-        title: "Release and traceability",
-        body: "Batches are inspected before release into our regional warehouses, and serial or batch records allow issues to be traced back to production.",
-      },
-    ]}
-  />
-);
-
-export default Manufacturing;
+import { CompanyDetail, type CompanyPageData } from "@/components/company/CompanyDetail";
+const data: CompanyPageData = {
+  path: "/company/manufacturing", label: "Manufacturing & Supply", title: "Engineered in India. Built for global networks.",
+  intro: "Explore how ConnectLH™ product requirements, engineering and supply decisions come together. Production arrangements, custom specifications and documentation are confirmed by product and project.",
+  image: "/products/data-centre-rack.jpg",
+  process: ["Requirements", "Engineering", "Prototype", "Validation", "Production", "Quality control", "Packaging", "Delivery"],
+  sections: [
+    { label: "Portfolio", title: "Products that support network buildouts", intro: "These are product categories in our current catalogue, not a claim that every item is manufactured in-house.", items: [
+      { title: "Antennas & RF assemblies", text: "Dish antennas, sector antennas, RF jumpers and coaxial assemblies.", image: "/products/dish-antenna-32dbi.jpg", to: "/products?category=antennas" },
+      { title: "Power & industrial networking", text: "AC/DC PoE equipment, industrial switches and routers.", image: "/products/dcclh-35-56.jpg", to: "/products?category=poe" },
+      { title: "Fiber & site infrastructure", text: "FTTH equipment, cable assemblies, racks and mounting hardware.", image: "/products/fms-96-port.webp", to: "/products?category=ftth" },
+    ] },
+    { label: "Delivery considerations", title: "From a requirement to a supplied product", items: [
+      { title: "Product engineering", text: "Discuss form factor, interfaces, application and environmental requirements against existing products." },
+      { title: "Component sourcing & assembly", text: "Component choice, production route and assembly scope depend on the model and agreed specification; request details for the product you are evaluating." },
+      { title: "Quality control & traceability", text: "Ask for model-specific inspection, identification and traceability information before procurement; documentation availability varies by product." },
+      { title: "Supply chain & packaging", text: "For project orders, discuss volumes, packing format and destination requirements with the team." },
+      { title: "OEM & private label", text: "Share drawings, target specification and expected quantity to assess customization and private-label feasibility." },
+      { title: "Custom engineering", text: "Proposed changes are reviewed against performance, compatibility and deployment needs before a scope is agreed." },
+    ] },
+    { label: "Production visibility", title: "Request evidence for the model you need", intro: "Verified facility, assembly, laboratory, warehouse and packaging photographs have not been supplied for publication. We will not present unrelated imagery as a production facility.", items: [
+      { title: "Technical documentation", text: "Request the applicable product datasheet, inspection information or production documentation by model number." },
+      { title: "Factory & process imagery", text: "Facility photographs can be added when verified images are supplied by uConnect." },
+    ] },
+  ],
+  links: [{ label: "View product portfolio", to: "/products" }, { label: "Quality & testing", to: "/company/quality-testing" }], closing: "OEM & custom manufacturing starts with your specification."
+};
+export default function Manufacturing() { return <CompanyDetail data={data} />; }

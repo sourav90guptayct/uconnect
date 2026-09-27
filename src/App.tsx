@@ -3,6 +3,9 @@ import GlobalPresence from "./pages/company/GlobalPresence";
 import Manufacturing from "./pages/company/Manufacturing";
 import QualityTesting from "./pages/company/QualityTesting";
 import ConnectLH from "./pages/company/ConnectLH";
+import AboutCompany from "./pages/company/AboutCompany";
+import CompanyServices from "./pages/company/CompanyServices";
+import CompanyContact from "./pages/company/CompanyContact";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -107,6 +110,9 @@ const App = () => (
               <Route path="/clients" element={<Clients />} />
               <Route path="/business-practices" element={<BusinessPractices />} />
               <Route path="/company/global-presence" element={<GlobalPresence />} />
+              <Route path="/company/about" element={<AboutCompany />} />
+              <Route path="/company/services" element={<CompanyServices />} />
+              <Route path="/company/contact" element={<CompanyContact />} />
               <Route path="/company/manufacturing" element={<Manufacturing />} />
               <Route path="/company/quality-testing" element={<QualityTesting />} />
               <Route path="/company/connectlh" element={<ConnectLH />} />

@@ -1,0 +1,2 @@
+- Company editorial pages use a shared CompanyDetail layout with page-specific portfolio content so they stay visually consistent without changing product or service flows.
+- The Company contact page composes a local email draft instead of submitting to a new endpoint, preserving email-only contact and existing submission behavior elsewhere.

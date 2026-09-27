@@ -158,7 +158,7 @@ const companyGroups = [
   {
     title: "Who We Are",
     links: [
-      { label: "About uConnect", to: "/about" },
+      { label: "About uConnect", to: "/company/about" },
       { label: "ConnectLH™", to: "/company/connectlh" },
       { label: "Global Presence", to: "/company/global-presence" },
     ],
@@ -174,9 +174,9 @@ const companyGroups = [
   {
     title: "Engage",
     links: [
-      { label: "Services", to: "/services" },
+      { label: "Services", to: "/company/services" },
       { label: "Careers", to: "/careers" },
-      { label: "Contact", to: "/?section=contact" },
+      { label: "Contact", to: "/company/contact" },
     ],
   },
 ];
@@ -228,7 +228,7 @@ const featured: Record<PanelKey, { eyebrow: string; title: string; body: string;
     eyebrow: "Since 2017",
     title: "Built on disciplined governance and 200+ Tier-1 engineers",
     body: "Documented decision rights, project governance and safety practice on every site — read how we run the business.",
-    to: "/about",
+    to: "/company/about",
     cta: "About uConnect",
   },
 };
@@ -269,7 +269,7 @@ const panels: Record<
   },
   company: {
     tabs: [
-      { id: "company", label: "Company", groups: companyGroups, cta: { label: "About us", to: "/about" } },
+      { id: "company", label: "Company", groups: companyGroups, cta: { label: "About us", to: "/company/about" } },
     ],
   },
 };
