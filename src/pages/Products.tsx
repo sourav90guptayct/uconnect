@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
+import RequestQuote from "@/components/RequestQuote";
 import { motion } from "framer-motion";
 import { Download, ChevronRight, ArrowUpRight, ArrowLeft, ArrowRight, DraftingCompass, BadgeCheck, SlidersHorizontal, RadioTower, Layers, Headset } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -702,7 +703,7 @@ const Products = () => {
     : "Products — ConnectLH™ Antennas, FTTH, Cables, PoE | uConnect";
   const seoDescription = activeCategoryData
     ? String(activeCategoryData.description).slice(0, 300)
-    : "ConnectLH™ antennas, FTTH equipment, fiber & RF cables, PoE, racks and BTS — engineered for the wireless edge.";
+    : "ConnectLH™ antennas, FTTH equipment, fiber & RF cables, PoE, racks and BTS — engineered for the wireless edge. Global supply to the USA, Canada, Europe, Middle East & South America. Request pricing from our sales team.";
   const seoPath = activeCategory ? `/products?category=${activeCategory}` : "/products";
 
   return (
@@ -1035,17 +1036,26 @@ const Products = () => {
                           </div>
                         ))}
                       </div>
-                      {'datasheet' in product && (product as any).datasheet && (
+                      <div className="flex flex-wrap items-center gap-3">
+                        {'datasheet' in product && (product as any).datasheet && (
+                          <a
+                            href={(product as any).datasheet}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 px-5 py-2.5 bg-accent text-accent-foreground rounded-xl hover:bg-accent/90 transition-all text-sm font-semibold w-fit shadow-md hover:shadow-lg hover:-translate-y-0.5 duration-300"
+                          >
+                            <Download className="w-4 h-4" />
+                            Download Datasheet
+                          </a>
+                        )}
                         <a
-                          href={(product as any).datasheet}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 px-5 py-2.5 bg-accent text-accent-foreground rounded-xl hover:bg-accent/90 transition-all text-sm font-semibold w-fit shadow-md hover:shadow-lg hover:-translate-y-0.5 duration-300"
+                          href={`mailto:reachus@youconnecttech.com?subject=${encodeURIComponent(`Pricing enquiry — ${product.name}`)}&body=${encodeURIComponent(`Hello uConnect sales team,\n\nPlease share pricing, availability and lead time for:\n\nProduct: ${product.name}\nCategory: ${productCategories[activeCategory as keyof typeof productCategories].title}\nQuantity: \nCountry / Region: \n\nThank you.`)}`}
+                          className="inline-flex items-center gap-2 px-5 py-2.5 border border-accent/50 text-accent rounded-xl hover:bg-accent hover:text-accent-foreground transition-all text-sm font-semibold w-fit duration-300"
                         >
-                          <Download className="w-4 h-4" />
-                          Download Datasheet
+                          Request pricing
+                          <ArrowRight className="w-4 h-4" />
                         </a>
-                      )}
+                      </div>
                     </div>
                   </div>
                 </motion.div>
@@ -1054,20 +1064,19 @@ const Products = () => {
           </motion.div>
         )}
 
-        {/* CTA Section */}
-        <div className="mt-16 text-center bg-gradient-to-r from-primary/10 to-accent/10 rounded-2xl p-12 border border-border/50">
-          <h2 className="text-3xl font-bold mb-4">Need More Information?</h2>
-          <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-            Our team of experts is ready to help you find the perfect telecommunications solutions for your business needs.
+        {/* Global reach strip */}
+        <div className="mt-16 rounded-2xl border border-border/60 bg-muted/40 px-6 py-5 flex flex-col sm:flex-row items-center justify-center gap-3 text-center sm:text-left">
+          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent shrink-0">
+            Global supply
+          </span>
+          <p className="text-sm text-muted-foreground">
+            We quote, ship and support orders across the <strong className="text-foreground">USA, Canada, Europe, Middle East, South America</strong> and India — with export documentation and logistics handled by our team.
           </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Button asChild variant="cta" size="xl">
-              <a href="/?section=contact">Get a Quote <ArrowRight className="ml-2 h-4 w-4" /></a>
-            </Button>
-            <Button asChild variant="ctaOutline" size="xl">
-              <a href="/?section=contact">Talk to an Engineer</a>
-            </Button>
-          </div>
+        </div>
+
+        {/* Sales enquiry */}
+        <div className="mt-10">
+          <RequestQuote />
         </div>
         </div>
       </main>
