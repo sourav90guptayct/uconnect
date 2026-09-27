@@ -45,6 +45,14 @@ const servicesGroups = [
 
 const productGroups = [
   {
+    title: "Teltonika Networks",
+    links: [
+      { label: "All Teltonika products", to: "/teltonika-networks" },
+      { label: "Industrial routers", to: "/teltonika-networks#rutm50" },
+      { label: "IoT gateways", to: "/teltonika-networks#trb501" },
+    ],
+  },
+  {
     title: "Radio & Antennas",
     links: [
       { label: "Dish antennas", to: "/products?category=antennas" },

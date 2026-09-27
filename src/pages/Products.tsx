@@ -6,6 +6,7 @@ import { Download, ChevronRight, ArrowUpRight, ArrowLeft, ArrowRight } from "luc
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Products = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -847,6 +848,17 @@ const Products = () => {
         </div>
 
         <div className="container mx-auto px-4 py-16">
+
+        {!activeCategory && (
+          <Link to="/teltonika-networks" className="group mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-y border-border py-6 hover:border-accent transition-colors">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-widest text-accent mb-2">Distributed by uConnect Technologies</p>
+              <h2 className="display-headline text-foreground text-2xl sm:text-3xl">Teltonika Networks</h2>
+              <p className="mt-2 text-muted-foreground">Industrial IoT routers, gateways, switches, modems and access points.</p>
+            </div>
+            <span className="inline-flex items-center gap-2 text-accent font-semibold shrink-0">Explore Teltonika products <ArrowUpRight className="h-4 w-4" /></span>
+          </Link>
+        )}
 
         {/* Inseego-style: image-tile category overview / drill-down */}
         {!activeCategory ? (
