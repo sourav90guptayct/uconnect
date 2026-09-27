@@ -2,9 +2,10 @@ import { motion, useReducedMotion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import dishAntenna from "@/assets/dish-antenna-connectlh.png.asset.json";
 
 const featured = [
-  { name: "29CLH4959", type: "29 dBi dish antenna", image: "/products/dish-antenna-29dbi.jpg", category: "antennas" },
+  { name: "29CLH4959", type: "29 dBi dish antenna", image: dishAntenna.url, category: "antennas", mediaBg: "product-media-gray" },
   { name: "19 dBi Sector", type: "Sector antenna", image: "/products/sector-antenna-19dbi.jpg", category: "sectorAntennas" },
   { name: "ACCLH-566-100", type: "56V AC PoE injector", image: "/products/acclh-566-100.jpg", category: "poe" },
   { name: "CLH202", type: "Managed Gigabit PoE+ switch", image: "/products/clh202-switch.jpg", category: "switches" },
@@ -42,7 +43,7 @@ const ConnectLHShowcase = () => {
                   tabIndex={copy === 1 ? -1 : undefined}
                   className="group block w-56 sm:w-64 lg:w-72 shrink-0 border border-border bg-card rounded-md overflow-hidden hover:border-accent/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
                 >
-                  <div className="aspect-[4/3] bg-muted overflow-hidden">
+                  <div className={`aspect-[4/3] overflow-hidden ${product.mediaBg ?? "bg-muted"}`}>
                     <img src={product.image} alt={`${product.name} — ${product.type}`} loading="lazy" className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-105" />
                   </div>
                   <div className="p-4 flex items-start justify-between gap-2">

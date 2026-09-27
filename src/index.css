@@ -212,6 +212,9 @@
 @layer utilities {
   .hover-scale { @apply transition-transform duration-200 hover:scale-105; }
 
+  /* Neutral gray media surface for white product cutouts (e.g. dish antennas) */
+  .product-media-gray { background-color: hsl(220 14% 86%); }
+
   .story-link { position: relative; display: inline-block; }
   .story-link::after {
     content: "";

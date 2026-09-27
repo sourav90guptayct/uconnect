@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import dishAntenna from "@/assets/dish-antenna-connectlh.png.asset.json";
 
 const Products = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -26,7 +27,7 @@ const Products = () => {
 
   // Curated hero images shown on each category tile in the overview grid
   const categoryHeroImages: Record<string, string> = {
-    antennas: "/products/category-antennas.png",
+    antennas: dishAntenna.url,
     sectorAntennas: "/products/category-sectorAntennas.jpg",
     routers: "/products/category-routers.png",
     switches: "/products/category-switches.png",
@@ -413,7 +414,7 @@ const Products = () => {
       subProducts: [
         {
           name: "29CLH4959 — 29dBi 2×2 MIMO Dish Antenna",
-          image: "/products/dish-antenna-29dbi.jpg",
+          image: dishAntenna.url,
           description: "2 ft (Ø650mm) dual-pol dish for 4.9–5.9 GHz. Ideal for mid-range point-to-point links with excellent port isolation.",
           specs: [
             "Gain: 29 ±1 dBi | Beamwidth: 6° ±0.5",
@@ -427,7 +428,7 @@ const Products = () => {
         },
         {
           name: "32CLH4959 — 32dBi 2×2 MIMO Dish Antenna",
-          image: "/products/dish-antenna-32dbi.jpg",
+          image: dishAntenna.url,
           description: "3 ft (Ø950mm) dual-pol dish for 4.9–5.9 GHz. Higher gain for longer-distance backhaul deployments.",
           specs: [
             "Gain: 32 ±1 dBi | Beamwidth: 4° ±0.5",
@@ -441,7 +442,7 @@ const Products = () => {
         },
         {
           name: "34CLH4959 — 34dBi 2×2 MIMO Dish Antenna",
-          image: "/products/dish-antenna-34dbi.jpg",
+          image: dishAntenna.url,
           description: "4 ft (Ø1200mm) dual-pol dish for 4.9–5.9 GHz. Maximum gain for long-haul point-to-point wireless links.",
           specs: [
             "Gain: 34 ±1 dBi | Beamwidth: 3° ±0.25",
@@ -880,7 +881,7 @@ const Products = () => {
                   transition={{ duration: 0.5, delay: idx * 0.05 }}
                   className="group relative flex flex-col text-left rounded-3xl overflow-hidden bg-card border border-border shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
                 >
-                  <div className="relative m-3 rounded-2xl overflow-hidden bg-secondary aspect-[4/3] p-3">
+                  <div className={`relative m-3 rounded-2xl overflow-hidden aspect-[4/3] p-3 ${key === "antennas" ? "product-media-gray" : "bg-secondary"}`}>
                     {heroImg && (
                       <img
                         src={heroImg}
@@ -946,7 +947,7 @@ const Products = () => {
                   className="group bg-card border border-border rounded-3xl overflow-hidden hover:border-accent/40 hover:shadow-xl transition-all duration-500"
                 >
                   <div className="grid md:grid-cols-5 gap-0">
-                    <div className="md:col-span-2 relative bg-gradient-to-br from-muted/60 to-muted/20 p-8 flex items-center justify-center min-h-[240px]">
+                    <div className={`md:col-span-2 relative p-8 flex items-center justify-center min-h-[240px] ${activeCategory === "antennas" ? "product-media-gray" : "bg-gradient-to-br from-muted/60 to-muted/20"}`}>
                       {product.image && (
                         <img loading="lazy" decoding="async"
                           src={product.image}
