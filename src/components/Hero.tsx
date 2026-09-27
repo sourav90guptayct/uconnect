@@ -430,12 +430,21 @@ const Hero = () => {
       {/* Positioning statement */}
       <div className="bg-background py-10 lg:py-14">
         <div className="container mx-auto px-4 text-center">
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="t-eyebrow text-accent"
+          >
+            Putting Imagination to work
+          </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="display-headline text-foreground text-2xl sm:text-3xl lg:text-5xl max-w-4xl mx-auto"
+            className="display-headline mt-3 text-foreground text-2xl sm:text-3xl lg:text-5xl max-w-4xl mx-auto"
           >
             A product &amp; services integrator for enterprise networks
           </motion.h2>
