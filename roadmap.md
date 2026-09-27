@@ -1,4 +1,4 @@
 - [x] Compare Company content against current ConnectLH product catalogue and verified business facts.
 - [x] Replace outdated Company pages with portfolio-led About, ConnectLH, Manufacturing, Quality, Global Presence and Services pages.
 - [x] Add a dedicated Company contact page and link the Company navigation to the correct pages.
-- [ ] Verify Company links and pages in desktop and mobile preview.
+- [x] Verify Company pages in desktop and mobile preview; no broken images, overflow or runtime errors.

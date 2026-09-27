@@ -7,7 +7,7 @@ const data: CompanyPageData = {
   sections: [
     { label: "Portfolio", title: "Products that support network buildouts", intro: "These are product categories in our current catalogue, not a claim that every item is manufactured in-house.", items: [
       { title: "Antennas & RF assemblies", text: "Dish antennas, sector antennas, RF jumpers and coaxial assemblies.", image: "/products/dish-antenna-32dbi.jpg", to: "/products?category=antennas" },
-      { title: "Power & industrial networking", text: "AC/DC PoE equipment, industrial switches and routers.", image: "/products/ac-poe-clh.png", to: "/products?category=poe" },
+      { title: "Power & industrial networking", text: "AC/DC PoE equipment, industrial switches and routers.", image: "/products/dcclh-35-56.jpg", to: "/products?category=poe" },
       { title: "Fiber & site infrastructure", text: "FTTH equipment, cable assemblies, racks and mounting hardware.", image: "/products/fms-96-port.webp", to: "/products?category=ftth" },
     ] },
     { label: "Delivery considerations", title: "From a requirement to a supplied product", items: [

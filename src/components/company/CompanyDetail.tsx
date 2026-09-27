@@ -24,8 +24,8 @@ export const CompanyDetail = ({ data }: { data: CompanyPageData }) => (
         <img src={data.image} alt="" className="absolute inset-0 h-full w-full object-cover opacity-40" />
         <div className="absolute inset-0 bg-gradient-to-r from-foreground/95 via-foreground/70 to-transparent" />
         <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }} className="container relative mx-auto px-6 lg:px-8">
-          <nav aria-label="Breadcrumb" className="mb-8 flex gap-2 text-sm text-background/70"><Link to="/">Home</Link><span>/</span><Link to="/company/about">Company</Link><span>/</span><span className="text-background">{data.label}</span></nav>
-          <p className="mb-4 text-sm font-semibold uppercase text-accent">{data.label}</p>
+          <nav aria-label="Breadcrumb" className="mb-8 flex flex-wrap gap-2 text-sm text-background/70"><Link to="/">Home</Link><span>/</span><Link to="/company/about">Company</Link><span>/</span><span className="text-background">{data.label.split(" · ")[0]}</span></nav>
+          <p className="mb-4 text-sm font-semibold uppercase text-accent">{data.label.split(" · ")[0]}{data.label.includes(" · ") && <span className="mt-1 block text-background/80">{data.label.split(" · ")[1]}</span>}</p>
           <h1 className="max-w-4xl text-4xl font-bold text-background sm:text-5xl lg:text-6xl">{data.title}</h1>
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-background/85">{data.intro}</p>
         </motion.div>

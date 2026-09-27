@@ -8,7 +8,7 @@ const data: CompanyPageData = {
     { label: "Product portfolio", title: "Hardware for every layer of the network", intro: "Browse the live product catalogue for models, specifications and available datasheets.", items: [
       { title: "Wireless antennas", text: "Dish and sector antennas for backhaul and access networks.", image: "/products/dish-antenna-32dbi.jpg", to: "/products?category=antennas" },
       { title: "Industrial Ethernet", text: "Managed and unmanaged switching for industrial and telecom networks.", image: "/products/clhs-2710gh-switch.webp", to: "/products?category=switches" },
-      { title: "PoE & power", text: "AC and DC power-over-Ethernet devices for site installations.", image: "/products/ac-poe-clh.png", to: "/products?category=poe" },
+      { title: "PoE & power", text: "AC and DC power-over-Ethernet devices for site installations.", image: "/products/dcclh-35-56.jpg", to: "/products?category=poe" },
       { title: "4G/5G connectivity", text: "Industrial routers for connected equipment and remote sites.", image: "/products/clh500-router.jpg", to: "/products?category=routers" },
       { title: "Fiber connectivity", text: "Fiber cable assemblies, splitters and termination hardware.", image: "/products/fiber-patch-cord-1.webp", to: "/products?category=fiberCables" },
       { title: "RF connectivity", text: "RF jumpers and coaxial cable assemblies.", image: "/products/rf-jumpers.webp", to: "/products?category=rfCables" },
