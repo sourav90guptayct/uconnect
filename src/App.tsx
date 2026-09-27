@@ -1,4 +1,8 @@
 import { Toaster } from "@/components/ui/toaster";
+import GlobalPresence from "./pages/company/GlobalPresence";
+import Manufacturing from "./pages/company/Manufacturing";
+import QualityTesting from "./pages/company/QualityTesting";
+import ConnectLH from "./pages/company/ConnectLH";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -102,6 +106,10 @@ const App = () => (
               <Route path="/support" element={<Support />} />
               <Route path="/clients" element={<Clients />} />
               <Route path="/business-practices" element={<BusinessPractices />} />
+              <Route path="/company/global-presence" element={<GlobalPresence />} />
+              <Route path="/company/manufacturing" element={<Manufacturing />} />
+              <Route path="/company/quality-testing" element={<QualityTesting />} />
+              <Route path="/company/connectlh" element={<ConnectLH />} />
               <Route path="/governance" element={<Governance />} />
               <Route path="/quality-hse" element={<QualityHSE />} />
               <Route path="/solutions/:slug" element={<SeoLanding group="solutions" />} />
