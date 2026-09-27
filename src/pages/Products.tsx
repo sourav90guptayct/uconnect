@@ -428,7 +428,7 @@ const Products = () => {
         },
         {
           name: "32CLH4959 — 32dBi 2×2 MIMO Dish Antenna",
-          image: "/products/dish-antenna-32dbi.jpg",
+          image: dishAntenna.url,
           description: "3 ft (Ø950mm) dual-pol dish for 4.9–5.9 GHz. Higher gain for longer-distance backhaul deployments.",
           specs: [
             "Gain: 32 ±1 dBi | Beamwidth: 4° ±0.5",
@@ -442,7 +442,7 @@ const Products = () => {
         },
         {
           name: "34CLH4959 — 34dBi 2×2 MIMO Dish Antenna",
-          image: "/products/dish-antenna-34dbi.jpg",
+          image: dishAntenna.url,
           description: "4 ft (Ø1200mm) dual-pol dish for 4.9–5.9 GHz. Maximum gain for long-haul point-to-point wireless links.",
           specs: [
             "Gain: 34 ±1 dBi | Beamwidth: 3° ±0.25",
