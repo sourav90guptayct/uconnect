@@ -95,7 +95,7 @@ const HowItWorks = () => {
             <figure className="rounded-3xl overflow-hidden border border-border bg-card shadow-xl">
               <img
                 src="/lovable-uploads/hero-enterprise-network.webp"
-                alt="ConnectLH™ deployment diagram showing IP cameras, IP speaker, 4G LTE backhaul and remote management connected to a CLH951 unit"
+                alt="Smiling uConnect field engineer with a tablet beside a smart-city pole carrying an IP surveillance camera and ConnectLH™ network equipment"
                 loading="lazy"
                 decoding="async"
                 width={1376}
