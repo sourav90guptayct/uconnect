@@ -80,8 +80,8 @@ const RequestQuote = ({ product }: RequestQuoteProps) => {
             <div className="text-xs font-semibold uppercase tracking-[0.2em] text-accent mb-4">
               Talk to our sales team
             </div>
-            <h2 className="display-headline text-3xl lg:text-4xl leading-tight">
-              Get pricing, stock & delivery for your project
+            <h2 className="display-headline text-primary-foreground text-3xl lg:text-4xl leading-tight">
+              Get pricing, stock &amp; delivery for your project
             </h2>
             <p className="mt-5 text-primary-foreground/80 leading-relaxed text-sm lg:text-base">
               Tell us what you need and our sales engineers will respond with
