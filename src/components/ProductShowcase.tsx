@@ -2,12 +2,12 @@ import { motion, useReducedMotion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import rutm50 from "@/assets/teltonika-rutm50.jpg.asset.json";
-import trb501 from "@/assets/teltonika-trb501.jpg.asset.json";
-import swm280 from "@/assets/teltonika-swm280.jpg.asset.json";
-import trm500 from "@/assets/teltonika-trm500.jpg.asset.json";
-import tap400 from "@/assets/teltonika-tap400.jpg.asset.json";
-import otd500 from "@/assets/teltonika-otd500.jpg.asset.json";
+import rutm50 from "@/assets/teltonika-rutm50.png.asset.json";
+import trb501 from "@/assets/teltonika-trb501.png.asset.json";
+import swm280 from "@/assets/teltonika-swm280.png.asset.json";
+import trm500 from "@/assets/teltonika-trm500.png.asset.json";
+import tap400 from "@/assets/teltonika-tap400.png.asset.json";
+import otd500 from "@/assets/teltonika-otd500.png.asset.json";
 
 const featured = [
   { name: "RUTM50", type: "Industrial 5G router", image: rutm50.url },

@@ -7,12 +7,12 @@ import SEO from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { teltonikaGroups } from "@/data/teltonika";
-import rutm50 from "@/assets/teltonika-rutm50.jpg.asset.json";
-import trb501 from "@/assets/teltonika-trb501.jpg.asset.json";
-import swm280 from "@/assets/teltonika-swm280.jpg.asset.json";
-import trm500 from "@/assets/teltonika-trm500.jpg.asset.json";
-import tap400 from "@/assets/teltonika-tap400.jpg.asset.json";
-import otd500 from "@/assets/teltonika-otd500.jpg.asset.json";
+import rutm50 from "@/assets/teltonika-rutm50.png.asset.json";
+import trb501 from "@/assets/teltonika-trb501.png.asset.json";
+import swm280 from "@/assets/teltonika-swm280.png.asset.json";
+import trm500 from "@/assets/teltonika-trm500.png.asset.json";
+import tap400 from "@/assets/teltonika-tap400.png.asset.json";
+import otd500 from "@/assets/teltonika-otd500.png.asset.json";
 
 const images: Record<string, string> = {
   rutm50: rutm50.url, trb501: trb501.url, swm280: swm280.url,
