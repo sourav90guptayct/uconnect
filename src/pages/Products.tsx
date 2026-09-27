@@ -8,6 +8,21 @@ import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import dishAntenna from "@/assets/dish-antenna-connectlh.png.asset.json";
+import teltonikaRutm50 from "@/assets/teltonika-rutm50.png.asset.json";
+import teltonikaSwm280 from "@/assets/teltonika-swm280.png.asset.json";
+import teltonikaTrb501 from "@/assets/teltonika-trb501.png.asset.json";
+import teltonikaTrm500 from "@/assets/teltonika-trm500.png.asset.json";
+import teltonikaTap400 from "@/assets/teltonika-tap400.png.asset.json";
+import teltonikaOtd500 from "@/assets/teltonika-otd500.png.asset.json";
+
+const teltonikaTiles = [
+  { title: "Industrial Routers", description: "4G/5G cellular routers for enterprise, CCTV, traffic and smart-city connectivity.", image: teltonikaRutm50.url, to: "/teltonika-networks#group-routers" },
+  { title: "Ethernet Switches", description: "Managed and unmanaged industrial switches with PoE+ and L2/L3 features.", image: teltonikaSwm280.url, to: "/teltonika-networks#group-ethernet-switches" },
+  { title: "IoT Gateways", description: "Compact industrial gateways for M2M, telemetry and remote monitoring.", image: teltonikaTrb501.url, to: "/teltonika-networks#group-gateways" },
+  { title: "Cellular Modems", description: "Reliable 4G/5G modems for primary and backup connectivity.", image: teltonikaTrm500.url, to: "/teltonika-networks#group-modems" },
+  { title: "Wireless Access Points", description: "Enterprise Wi-Fi access points for indoor and outdoor coverage.", image: teltonikaTap400.url, to: "/teltonika-networks#group-access-points" },
+  { title: "Embedded Systems", description: "Embedded connectivity modules for OEM and custom integrations.", image: teltonikaOtd500.url, to: "/teltonika-networks#group-embedded-systems" },
+];
 
 const Products = () => {
   const [searchParams, setSearchParams] = useSearchParams();
