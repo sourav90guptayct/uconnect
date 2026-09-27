@@ -12,7 +12,6 @@ import networksInfra from "@/assets/networks-datacenter.jpg";
 import networksEnterprise from "@/assets/networks-enterprise.jpg";
 import networksRail from "@/assets/networks-rail.jpg";
 import networksUtility from "@/assets/networks-utility.jpg";
-import networksSmartCity from "@/assets/networks-smartcity.jpg";
 import FeaturedSmartCity from "@/components/FeaturedSmartCity";
 import streetAsset from "@/assets/bhubaneswar-street.jpg.asset.json";
 
