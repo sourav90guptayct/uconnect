@@ -29,8 +29,6 @@ const Products = () => {
   const categoryHeroImages: Record<string, string> = {
     antennas: dishAntenna.url,
     sectorAntennas: "/products/category-sectorAntennas.jpg",
-    routers: "/products/category-routers.png",
-    switches: "/products/category-switches.png",
     networkCables: "/products/category-networkCables.jpg",
     specializedCables: "/products/category-specializedCables.jpg",
     ftth: "/products/category-ftth.png",
@@ -574,90 +572,6 @@ const Products = () => {
             "Plug-and-play installation",
             "LED power and status indicators",
             "Compact form factor for flexible deployment"
-          ]
-        }
-      ]
-    },
-    switches: {
-      title: "ConnectLH™ Industrial Switches",
-      description: "Industrial-grade managed and unmanaged Ethernet switches under the ConnectLH™ brand — purpose-built for telecom, mission-critical networks, and PROFINET/EtherNet-IP industrial automation. Wide temperature, robust power, and L2+/L3 features for SMB, enterprise and carrier deployments.",
-      subProducts: [
-        {
-          name: "CLH202 — 8-Port Managed Gigabit PoE+ Switch",
-          image: "/products/clh202-switch.jpg",
-          description: "Managed PoE+ Ethernet switch for industrial networks with 8× Gigabit PoE+ ports plus 2× SFP fiber ports.",
-          specs: [
-            "8 × Gigabit PoE+ ports + 2 × SFP fiber ports",
-            "Up to 30 W per PoE port, 240 W total PoE budget",
-            "Supports PROFINET Class B, EtherNet/IP, MRP",
-            "VLAN, QoS, SNMP, ring redundancy",
-            "Industrial-grade, DIN-rail mountable"
-          ]
-        },
-        {
-          name: "CLH212 — 8-Port Managed Gigabit Switch (L2/L3)",
-          image: "/products/clh212-switch.jpg",
-          description: "Managed industrial Ethernet switch with L2 and added L3 features, 8× Gigabit copper ports plus 2× SFP fiber uplinks.",
-          specs: [
-            "8 × Gigabit Ethernet ports + 2 × SFP fiber ports",
-            "L2 with added L3 routing features",
-            "PROFINET Class B, EtherNet/IP, MRP support",
-            "SNMP, VLAN, QoS and security features",
-            "Industrial temperature operation"
-          ]
-        },
-        {
-          name: "CLH304 — 4-Port Unmanaged Gigabit Switch",
-          image: "/products/clh304-switch.jpg",
-          description: "Compact industrial unmanaged Ethernet switch with 4 Gigabit RJ45 ports, wide power input range, and very low power consumption.",
-          specs: [
-            "4 × Gigabit RJ45 ports",
-            "Wide power input: 7–57 VDC / 9–40 VAC",
-            "Low power consumption: max 1.44 W",
-            "Plug-and-play unmanaged operation",
-            "Compact DIN-rail design for industrial use"
-          ]
-        }
-      ]
-    },
-    routers: {
-      title: "Outdoor 4G/5G Routers",
-      description: "Industrial-grade outdoor 4G/5G cellular routers engineered for CCTV surveillance, enterprise connectivity, traffic signaling and smart-city IoT. Robust IP-rated enclosures, dual SIM, and PoE-out variants for powering downstream devices.",
-      subProducts: [
-        {
-          name: "CLH500 — 5G/4G Outdoor Router",
-          image: "/products/clh500-router.jpg",
-          description: "5G/4G outdoor router for high-throughput connectivity with integrated antennas and dual-SIM resiliency.",
-          specs: [
-            "Up to 500 Mbps throughput",
-            "5G with 4G fallback (Cat19)",
-            "Dual SIM for carrier resiliency",
-            "Integrated antenna — no external setup",
-            "Outdoor-rated enclosure for pole/wall mount"
-          ]
-        },
-        {
-          name: "CLH951 — Industrial 4G LTE PoE+ Cellular Router",
-          image: "/products/clh951-router.jpg",
-          description: "Industrial 4G LTE cellular router with PoE+ output, dual SIM/eSIM and Wi-Fi — ideal for powering and connecting downstream cameras and APs.",
-          specs: [
-            "4G LTE with 3G/2G fallback",
-            "Dual SIM / eSIM + Wi-Fi",
-            "PoE+ output, up to 90 W power budget",
-            "Multi-port for downstream devices",
-            "Industrial outdoor design"
-          ]
-        },
-        {
-          name: "CLHM31 — Compact 5G Router (IP69)",
-          image: "/products/clhm31-router.jpg",
-          description: "Cost-efficient 5G router for CCTV and enterprise connectivity, with optional external antenna and IP69-rated outdoor enclosure.",
-          specs: [
-            "5G SA & NSA support",
-            "Dual SIM",
-            "Option to connect external outdoor antenna",
-            "IP69 rated enclosure for harsh environments",
-            "Ideal for CCTV, traffic signaling, IoT"
           ]
         }
       ]
