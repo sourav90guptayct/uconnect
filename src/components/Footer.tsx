@@ -39,8 +39,7 @@ const Footer = () => {
     { label: "AC & DC PoE", to: "/products?category=poe" },
     { label: "Racks & Cabinets", to: "/products?category=racks" },
     { label: "BTS Products", to: "/products?category=bts" },
-    { label: "Industrial Routers", to: "/products?category=routers" },
-    { label: "Industrial Switches", to: "/products?category=switches" },
+    { label: "Teltonika Routers & Switches", to: "/teltonika-networks" },
   ];
 
   return (

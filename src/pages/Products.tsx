@@ -29,8 +29,6 @@ const Products = () => {
   const categoryHeroImages: Record<string, string> = {
     antennas: dishAntenna.url,
     sectorAntennas: "/products/category-sectorAntennas.jpg",
-    routers: "/products/category-routers.png",
-    switches: "/products/category-switches.png",
     networkCables: "/products/category-networkCables.jpg",
     specializedCables: "/products/category-specializedCables.jpg",
     ftth: "/products/category-ftth.png",
@@ -44,7 +42,7 @@ const Products = () => {
 
   const productCategories = {
     ftth: {
-      title: "FTTH Products",
+      title: "ConnectLH™ FTTH Products",
       description: "FTTH Products are fiber-to-home technology solutions that deliver high speed and other services over optical fibers. These solutions meet the diverse needs and requirements of FTTH service providers. FTTH products support higher bandwidths, lower latencies, longer distances, lower costs, and lower power consumption.",
       subProducts: [
         {
@@ -127,7 +125,7 @@ const Products = () => {
       ]
     },
     fiberCables: {
-      title: "Optic Fiber Cable Assemblies",
+      title: "ConnectLH™ Optic Fiber Cable Assemblies",
       description: "Cutting-edge connectivity solutions designed to propel your communication networks into the future, delivering unparalleled performance, reliability, and speed.",
       subProducts: [
         {
@@ -155,7 +153,7 @@ const Products = () => {
       ]
     },
     rfCables: {
-      title: "RF Cables & Assemblies",
+      title: "ConnectLH™ RF Cables & Assemblies",
       description: "Top-notch RF and coaxial cables specially designed to mitigate signal interference. These cables carry radio frequency signals with different frequencies and wavelengths for various applications.",
       subProducts: [
         {
@@ -183,7 +181,7 @@ const Products = () => {
       ]
     },
     networkCables: {
-      title: "Network & Data Cable Assemblies",
+      title: "ConnectLH™ Network & Data Cable Assemblies",
       description: "Professional-grade network cables designed to meet the demands of modern connectivity, ensuring seamless data transfer and optimal network performance.",
       subProducts: [
         {
@@ -222,7 +220,7 @@ const Products = () => {
       ]
     },
     specializedCables: {
-      title: "Specialized Cable Assemblies",
+      title: "ConnectLH™ Specialized Cable Assemblies",
       description: "Meticulously crafted cables for distinct purposes and applications, featuring customized specifications for specific requirements with precision engineering.",
       subProducts: [
         {
@@ -326,7 +324,7 @@ const Products = () => {
       ]
     },
     bts: {
-      title: "BTS Installation Products",
+      title: "ConnectLH™ BTS Installation Products",
       description: "Complete range of products for Base Transceiver Station installations and site infrastructure, providing essential solutions for telecommunications installations.",
       subProducts: [
         {
@@ -578,90 +576,6 @@ const Products = () => {
         }
       ]
     },
-    switches: {
-      title: "ConnectLH™ Industrial Switches",
-      description: "Industrial-grade managed and unmanaged Ethernet switches under the ConnectLH™ brand — purpose-built for telecom, mission-critical networks, and PROFINET/EtherNet-IP industrial automation. Wide temperature, robust power, and L2+/L3 features for SMB, enterprise and carrier deployments.",
-      subProducts: [
-        {
-          name: "CLH202 — 8-Port Managed Gigabit PoE+ Switch",
-          image: "/products/clh202-switch.jpg",
-          description: "Managed PoE+ Ethernet switch for industrial networks with 8× Gigabit PoE+ ports plus 2× SFP fiber ports.",
-          specs: [
-            "8 × Gigabit PoE+ ports + 2 × SFP fiber ports",
-            "Up to 30 W per PoE port, 240 W total PoE budget",
-            "Supports PROFINET Class B, EtherNet/IP, MRP",
-            "VLAN, QoS, SNMP, ring redundancy",
-            "Industrial-grade, DIN-rail mountable"
-          ]
-        },
-        {
-          name: "CLH212 — 8-Port Managed Gigabit Switch (L2/L3)",
-          image: "/products/clh212-switch.jpg",
-          description: "Managed industrial Ethernet switch with L2 and added L3 features, 8× Gigabit copper ports plus 2× SFP fiber uplinks.",
-          specs: [
-            "8 × Gigabit Ethernet ports + 2 × SFP fiber ports",
-            "L2 with added L3 routing features",
-            "PROFINET Class B, EtherNet/IP, MRP support",
-            "SNMP, VLAN, QoS and security features",
-            "Industrial temperature operation"
-          ]
-        },
-        {
-          name: "CLH304 — 4-Port Unmanaged Gigabit Switch",
-          image: "/products/clh304-switch.jpg",
-          description: "Compact industrial unmanaged Ethernet switch with 4 Gigabit RJ45 ports, wide power input range, and very low power consumption.",
-          specs: [
-            "4 × Gigabit RJ45 ports",
-            "Wide power input: 7–57 VDC / 9–40 VAC",
-            "Low power consumption: max 1.44 W",
-            "Plug-and-play unmanaged operation",
-            "Compact DIN-rail design for industrial use"
-          ]
-        }
-      ]
-    },
-    routers: {
-      title: "Outdoor 4G/5G Routers",
-      description: "Industrial-grade outdoor 4G/5G cellular routers engineered for CCTV surveillance, enterprise connectivity, traffic signaling and smart-city IoT. Robust IP-rated enclosures, dual SIM, and PoE-out variants for powering downstream devices.",
-      subProducts: [
-        {
-          name: "CLH500 — 5G/4G Outdoor Router",
-          image: "/products/clh500-router.jpg",
-          description: "5G/4G outdoor router for high-throughput connectivity with integrated antennas and dual-SIM resiliency.",
-          specs: [
-            "Up to 500 Mbps throughput",
-            "5G with 4G fallback (Cat19)",
-            "Dual SIM for carrier resiliency",
-            "Integrated antenna — no external setup",
-            "Outdoor-rated enclosure for pole/wall mount"
-          ]
-        },
-        {
-          name: "CLH951 — Industrial 4G LTE PoE+ Cellular Router",
-          image: "/products/clh951-router.jpg",
-          description: "Industrial 4G LTE cellular router with PoE+ output, dual SIM/eSIM and Wi-Fi — ideal for powering and connecting downstream cameras and APs.",
-          specs: [
-            "4G LTE with 3G/2G fallback",
-            "Dual SIM / eSIM + Wi-Fi",
-            "PoE+ output, up to 90 W power budget",
-            "Multi-port for downstream devices",
-            "Industrial outdoor design"
-          ]
-        },
-        {
-          name: "CLHM31 — Compact 5G Router (IP69)",
-          image: "/products/clhm31-router.jpg",
-          description: "Cost-efficient 5G router for CCTV and enterprise connectivity, with optional external antenna and IP69-rated outdoor enclosure.",
-          specs: [
-            "5G SA & NSA support",
-            "Dual SIM",
-            "Option to connect external outdoor antenna",
-            "IP69 rated enclosure for harsh environments",
-            "Ideal for CCTV, traffic signaling, IoT"
-          ]
-        }
-      ]
-    },
     sectorAntennas: {
       title: "ConnectLH™ Sector Antennas",
       description: "Dual-polarized sector antennas for 4.9–6.4 GHz unlicensed and licensed bands, engineered for WISP, point-to-multipoint backhaul and high-density wireless coverage with high cross-polarization and front-to-back isolation.",
@@ -705,7 +619,7 @@ const Products = () => {
       ]
     },
     fabricated: {
-      title: "Fabricated Products",
+      title: "ConnectLH™ Fabricated Products",
       description: "Specialized fabricated products for infrastructure support, providing sturdy and reliable frameworks for various industrial and telecommunications applications.",
       subProducts: [
         {
@@ -773,7 +687,7 @@ const Products = () => {
     : "Products — ConnectLH™ Antennas, FTTH, Cables, PoE | uConnect";
   const seoDescription = activeCategoryData
     ? String(activeCategoryData.description).slice(0, 300)
-    : "ConnectLH™ antennas, FTTH equipment, fiber & RF cables, PoE, racks, switches and BTS — engineered for the wireless edge.";
+    : "ConnectLH™ antennas, FTTH equipment, fiber & RF cables, PoE, racks and BTS — engineered for the wireless edge.";
   const seoPath = activeCategory ? `/products?category=${activeCategory}` : "/products";
 
   return (
@@ -796,8 +710,8 @@ const Products = () => {
           "@type": "ItemList",
           name: "uConnect Technologies Product Catalogue",
           itemListElement: [
-            "Dish Antennas", "Sector Antennas", "Outdoor 4G/5G Routers",
-            "AC & DC PoE", "Industrial Switches", "FTTH Products",
+            "Dish Antennas", "Sector Antennas",
+            "AC & DC PoE", "FTTH Products",
             "Fiber Optic Cables", "RF Cables", "Network Cables",
             "Racks & Cabinets", "BTS Equipment", "Specialized Cables"
           ].map((name, i) => ({

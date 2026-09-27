@@ -57,14 +57,12 @@ const productGroups = [
     links: [
       { label: "Dish antennas", to: "/products?category=antennas" },
       { label: "Sector antennas", to: "/products?category=sectorAntennas" },
-      { label: "4G/5G outdoor routers", to: "/products?category=routers" },
     ],
   },
   {
     title: "Power & Networking",
     links: [
       { label: "AC & DC PoE", to: "/products?category=poe" },
-      { label: "Switches", to: "/products?category=switches" },
       { label: "Network cables", to: "/products?category=networkCables" },
     ],
   },
