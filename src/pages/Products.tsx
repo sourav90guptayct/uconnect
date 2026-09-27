@@ -414,7 +414,7 @@ const Products = () => {
       subProducts: [
         {
           name: "29CLH4959 — 29dBi 2×2 MIMO Dish Antenna",
-          image: "/products/dish-antenna-29dbi.jpg",
+          image: dishAntenna.url,
           description: "2 ft (Ø650mm) dual-pol dish for 4.9–5.9 GHz. Ideal for mid-range point-to-point links with excellent port isolation.",
           specs: [
             "Gain: 29 ±1 dBi | Beamwidth: 6° ±0.5",
