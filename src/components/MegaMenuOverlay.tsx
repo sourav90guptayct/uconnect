@@ -7,181 +7,116 @@ import { cn } from "@/lib/utils";
 
 
 
-type PanelKey = "products" | "solutions" | "industries" | "resources" | "partners" | "support" | "company";
+type PanelKey = "what" | "who" | "products";
 
-const productsGroups = [
+const servicesGroups = [
   {
-    title: "Wireless & RF",
+    title: "Managed Services",
     links: [
-      { label: "Wireless Antennas", to: "/products?category=antennas" },
-      { label: "Sector Antennas", to: "/products?category=sectorAntennas" },
-      { label: "RF Connectivity", to: "/products?category=rfCables" },
-      { label: "4G/5G Connectivity", to: "/products?category=routers" },
+      { label: "24×7 NOC operations", to: "/managed-services" },
+      { label: "SLA-backed field support", to: "/managed-services" },
+      { label: "Preventive maintenance", to: "/managed-services" },
     ],
   },
   {
-    title: "Networking & Power",
+    title: "Network Deployment",
     links: [
-      { label: "Industrial Ethernet", to: "/products?category=switches" },
-      { label: "PoE & Power", to: "/products?category=poe" },
-      { label: "Network Cables", to: "/products?category=networkCables" },
+      { label: "Networks", to: "/networks" },
+      { label: "Rollout & integration", to: "/networks" },
+      { label: "Survey, QA & audits", to: "/networks" },
     ],
   },
   {
-    title: "Fiber & Infrastructure",
+    title: "Resources Management",
     links: [
-      { label: "Fiber Connectivity", to: "/products?category=fiberCables" },
-      { label: "FTTH Products", to: "/products?category=ftth" },
-      { label: "Racks & Enclosures", to: "/products?category=racks" },
-      { label: "Telecom Infrastructure", to: "/products?category=bts" },
+      { label: "Technology-enabled staffing", to: "/resource-management" },
+      { label: "Managed engineering teams", to: "/resource-management" },
+    ],
+  },
+  {
+    title: "Infra Solutions",
+    links: [
+      { label: "Infra installation", to: "/infra-installation" },
+      { label: "Tower & pole erection", to: "/infra-installation" },
+      { label: "Site infrastructure", to: "/infra-installation" },
     ],
   },
 ];
 
-const solutionsGroups = [
+const productGroups = [
   {
-    title: "Connectivity",
+    title: "Radio & Antennas",
     links: [
-      { label: "Wireless Backhaul", to: "/networks" },
-      { label: "Rural Broadband", to: "/networks" },
-      { label: "Smart City Connectivity", to: "/networks" },
+      { label: "Dish antennas", to: "/products?category=antennas" },
+      { label: "Sector antennas", to: "/products?category=sectorAntennas" },
+      { label: "4G/5G outdoor routers", to: "/products?category=routers" },
     ],
   },
   {
-    title: "Surveillance & Safety",
+    title: "Power & Networking",
     links: [
-      { label: "CCTV & Video Surveillance", to: "/infra-installation" },
-      { label: "Public Safety Networks", to: "/infra-installation" },
+      { label: "AC & DC PoE", to: "/products?category=poe" },
+      { label: "Switches", to: "/products?category=switches" },
+      { label: "Network cables", to: "/products?category=networkCables" },
     ],
   },
   {
-    title: "Sector Solutions",
+    title: "Fiber & FTTH",
     links: [
-      { label: "Industrial Networking", to: "/managed-services" },
-      { label: "Transportation Connectivity", to: "/networks" },
-    ],
-  },
-];
-
-const industriesGroups = [
-  {
-    title: "Telecom & Connectivity",
-    links: [
-      { label: "Telecom", to: "/?section=use-cases" },
-      { label: "WISP", to: "/?section=use-cases" },
-      { label: "Enterprise", to: "/?section=use-cases" },
+      { label: "FTTH products", to: "/products?category=ftth" },
+      { label: "Fiber cables", to: "/products?category=fiberCables" },
+      { label: "RF cables", to: "/products?category=rfCables" },
     ],
   },
   {
-    title: "Infrastructure & Transport",
+    title: "Site Infrastructure",
     links: [
-      { label: "Transportation", to: "/?section=use-cases" },
-      { label: "Ports & Logistics", to: "/?section=use-cases" },
-      { label: "Utilities", to: "/?section=use-cases" },
-    ],
-  },
-  {
-    title: "Public & Heavy Industry",
-    links: [
-      { label: "Government & Smart Cities", to: "/?section=use-cases" },
-      { label: "Industrial", to: "/?section=use-cases" },
-      { label: "Oil & Gas", to: "/?section=use-cases" },
+      { label: "Racks & cabinets", to: "/products?category=racks" },
+      { label: "BTS installation", to: "/products?category=bts" },
+      { label: "Fabricated products", to: "/products?category=fabricated" },
     ],
   },
 ];
 
-const resourcesGroups = [
+const whoGroups = [
   {
-    title: "Documentation",
+    title: "Company",
     links: [
-      { label: "Datasheets", to: "/products" },
-      { label: "User Manuals", to: "/support" },
-      { label: "Installation Guides", to: "/support" },
-      { label: "Quick Start Guides", to: "/support" },
+      { label: "About uConnect", to: "/about" },
+      { label: "Our story since 2017", to: "/about" },
+      { label: "Leadership & governance", to: "/governance" },
+      { label: "Clients & partners", to: "/clients" },
     ],
   },
   {
-    title: "Technical Files",
+    title: "How we work",
     links: [
-      { label: "Firmware", to: "/support" },
-      { label: "MIB Files", to: "/support" },
-      { label: "CAD Drawings", to: "/support" },
-      { label: "Certifications", to: "/quality-hse" },
+      { label: "Business practices & policies", to: "/business-practices" },
+      { label: "Quality, health, safety & environment", to: "/quality-hse" },
+      { label: "Risk & project governance", to: "/governance" },
     ],
   },
   {
-    title: "Insights",
+    title: "Industries we serve",
     links: [
-      { label: "Application Notes", to: "/support" },
-      { label: "White Papers", to: "/business-practices" },
-      { label: "Case Studies", to: "/clients" },
-    ],
-  },
-];
-
-const partnersGroups = [
-  {
-    title: "Distribution",
-    links: [
-      { label: "Find a Distributor", to: "/support" },
-      { label: "Become a Distributor", to: "/?section=contact" },
-    ],
-  },
-  {
-    title: "Alliances",
-    links: [
-      { label: "System Integrators", to: "/clients" },
-      { label: "OEM / Private Label Program", to: "/?section=contact" },
-    ],
-  },
-];
-
-const supportGroups = [
-  {
-    title: "Help & Service",
-    links: [
-      { label: "Technical Support", to: "/support" },
-      { label: "Warranty & RMA", to: "/support" },
-    ],
-  },
-  {
-    title: "Product Services",
-    links: [
-      { label: "Product Registration", to: "/support" },
-      { label: "Product Verification", to: "/support" },
-      { label: "Downloads", to: "/support" },
-    ],
-  },
-];
-
-const companyGroups = [
-  {
-    title: "Who We Are",
-    links: [
-      { label: "About uConnect", to: "/company/about" },
-      { label: "ConnectLH™", to: "/company/connectlh" },
-      { label: "Global Presence", to: "/company/global-presence" },
-    ],
-  },
-  {
-    title: "How We Work",
-    links: [
-      { label: "Manufacturing", to: "/company/manufacturing" },
-      { label: "Quality & Testing", to: "/company/quality-testing" },
-      { label: "Governance", to: "/governance" },
-    ],
-  },
-  {
-    title: "Engage",
-    links: [
-      { label: "Services", to: "/company/services" },
-      { label: "Careers", to: "/careers" },
-      { label: "Contact", to: "/company/contact" },
+      { label: "Telecommunications", to: "/?section=use-cases" },
+      { label: "Government & Public Safety", to: "/?section=use-cases" },
+      { label: "Rail & Transportation", to: "/?section=use-cases" },
+      { label: "Energy & Utilities", to: "/?section=use-cases" },
+      { label: "Enterprise & Industrial", to: "/?section=use-cases" },
+      { label: "Digital Infrastructure", to: "/?section=use-cases" },
     ],
   },
 ];
 
 const featured: Record<PanelKey, { eyebrow: string; title: string; body: string; to: string; cta: string }> = {
+  what: {
+    eyebrow: "Integrator",
+    title: "Product and services under one accountable owner",
+    body: "Managed services, network deployment, resource management and infra solutions delivered across 18 telecom circles.",
+    to: "/services",
+    cta: "Explore our capabilities",
+  },
   products: {
     eyebrow: "ConnectLH™",
     title: "Field-proven telecom hardware, 10,000+ links deployed",
@@ -189,100 +124,44 @@ const featured: Record<PanelKey, { eyebrow: string; title: string; body: string;
     to: "/products",
     cta: "Browse the catalogue",
   },
-  solutions: {
-    eyebrow: "Integrator",
-    title: "Product and services under one accountable owner",
-    body: "Managed services, network deployment, resource management and infra solutions delivered across 18 telecom circles.",
-    to: "/services",
-    cta: "Explore our capabilities",
-  },
-  industries: {
-    eyebrow: "18 circles",
-    title: "Connectivity for every sector we serve",
-    body: "From telecom operators and WISPs to ports, utilities, government and heavy industry — engineered for real-world conditions.",
-    to: "/?section=use-cases",
-    cta: "See industries in action",
-  },
-  resources: {
-    eyebrow: "Resource Library",
-    title: "Every document your engineering team needs",
-    body: "Datasheets, manuals, firmware, certifications and case studies — available on request from our support team.",
-    to: "/support",
-    cta: "Request documentation",
-  },
-  partners: {
-    eyebrow: "Partner Network",
-    title: "Grow with the ConnectLH™ ecosystem",
-    body: "Distributors, system integrators and OEM partners across regions — backed by 5 regional warehouses.",
-    to: "/?section=contact",
-    cta: "Become a partner",
-  },
-  support: {
-    eyebrow: "24×7 Support",
-    title: "SLA-backed support from Tier-1 engineers",
-    body: "Technical support, warranty and RMA handled by the same team that designs and deploys the networks.",
-    to: "/support",
-    cta: "Get support",
-  },
-  company: {
+  who: {
     eyebrow: "Since 2017",
     title: "Built on disciplined governance and 200+ Tier-1 engineers",
     body: "Documented decision rights, project governance and safety practice on every site — read how we run the business.",
-    to: "/company/about",
-    cta: "About uConnect",
+    to: "/governance",
+    cta: "How we are governed",
   },
 };
 
 const panels: Record<
   PanelKey,
-  { tabs: { id: string; label: string; groups: typeof productsGroups; cta: { label: string; to: string } }[] }
+  { tabs: { id: string; label: string; groups: typeof servicesGroups; cta: { label: string; to: string } }[] }
 > = {
+  what: {
+    tabs: [
+      { id: "services", label: "Services", groups: servicesGroups, cta: { label: "View all services", to: "/services" } },
+      { id: "products", label: "Products", groups: productGroups, cta: { label: "View all products", to: "/products" } },
+    ],
+  },
   products: {
     tabs: [
-      { id: "products", label: "ConnectLH™ Products", groups: productsGroups, cta: { label: "View all products", to: "/products" } },
+      { id: "products", label: "ConnectLH™", groups: productGroups, cta: { label: "View all products", to: "/products" } },
     ],
   },
-  solutions: {
+  who: {
     tabs: [
-      { id: "solutions", label: "Solutions", groups: solutionsGroups, cta: { label: "View all services", to: "/services" } },
-    ],
-  },
-  industries: {
-    tabs: [
-      { id: "industries", label: "Industries", groups: industriesGroups, cta: { label: "Industries we serve", to: "/?section=use-cases" } },
-    ],
-  },
-  resources: {
-    tabs: [
-      { id: "resources", label: "Resources", groups: resourcesGroups, cta: { label: "Visit support", to: "/support" } },
-    ],
-  },
-  partners: {
-    tabs: [
-      { id: "partners", label: "Partners", groups: partnersGroups, cta: { label: "Partner with us", to: "/?section=contact" } },
-    ],
-  },
-  support: {
-    tabs: [
-      { id: "support", label: "Support", groups: supportGroups, cta: { label: "Contact support", to: "/support" } },
-    ],
-  },
-  company: {
-    tabs: [
-      { id: "company", label: "Company", groups: companyGroups, cta: { label: "About us", to: "/company/about" } },
+      { id: "who", label: "Who we are", groups: whoGroups, cta: { label: "About us", to: "/about" } },
     ],
   },
 };
 
 const railItems: { key: PanelKey | null; label: string; to?: string; external?: boolean }[] = [
+  { key: "what", label: "What We Do" },
+  { key: "who", label: "Who We Are" },
   { key: "products", label: "Products" },
-  { key: "solutions", label: "Solutions" },
-  { key: "industries", label: "Industries" },
-  { key: "resources", label: "Resources" },
-  { key: "partners", label: "Partners" },
-  { key: "support", label: "Support" },
-  { key: "company", label: "Company" },
   { key: null, label: "Careers", to: "/careers", external: true },
+  { key: null, label: "Clients", to: "/clients" },
+  { key: null, label: "Contact Us", to: "/?section=contact" },
   { key: null, label: "Sign In", to: "/auth" },
 ];
 
@@ -293,7 +172,7 @@ interface Props {
 }
 
 const MegaMenuOverlay = ({ open, onClose }: Props) => {
-  const [panel, setPanel] = useState<PanelKey>("products");
+  const [panel, setPanel] = useState<PanelKey>("what");
   const [tab, setTab] = useState(0);
   const [mobilePanelOpen, setMobilePanelOpen] = useState(false);
   // Phones use a full-screen drilldown; tablet and desktop retain the expanding rail.

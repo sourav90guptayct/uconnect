@@ -1,2 +1,0 @@
-- Company detail pages use CompanyDetail; About uConnect uses a bespoke product-first editorial layout so the portfolio is immediately visible while other pages remain consistent.
-- The Company contact page composes a local email draft instead of submitting to a new endpoint, preserving email-only contact and existing submission behavior elsewhere.
