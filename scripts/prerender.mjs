@@ -45,7 +45,7 @@ const routes = [
     path: "/products",
     title: "ConnectLH™ Antennas & Telecom Products | uConnect",
     description:
-      "Carrier-grade ConnectLH™ dish and sector antennas, FTTH gear, PoE, RF & fiber cables. Datasheets available on request.",
+      "Carrier-grade ConnectLH™ dish and sector antennas, FTTH gear, PoE, RF & fiber cables. Global supply to USA, Canada, Europe, Middle East & South America — request pricing from our sales team.",
   },
   {
     path: "/teltonika-networks",

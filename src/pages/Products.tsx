@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
+import RequestQuote from "@/components/RequestQuote";
 import { motion } from "framer-motion";
 import { Download, ChevronRight, ArrowUpRight, ArrowLeft, ArrowRight, DraftingCompass, BadgeCheck, SlidersHorizontal, RadioTower, Layers, Headset } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -702,7 +703,7 @@ const Products = () => {
     : "Products — ConnectLH™ Antennas, FTTH, Cables, PoE | uConnect";
   const seoDescription = activeCategoryData
     ? String(activeCategoryData.description).slice(0, 300)
-    : "ConnectLH™ antennas, FTTH equipment, fiber & RF cables, PoE, racks and BTS — engineered for the wireless edge.";
+    : "ConnectLH™ antennas, FTTH equipment, fiber & RF cables, PoE, racks and BTS — engineered for the wireless edge. Global supply to the USA, Canada, Europe, Middle East & South America. Request pricing from our sales team.";
   const seoPath = activeCategory ? `/products?category=${activeCategory}` : "/products";
 
   return (
