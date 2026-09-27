@@ -30,16 +30,16 @@ const ConnectLHShowcase = () => {
       <div className="overflow-hidden" aria-label="Featured ConnectLH products">
         <motion.div
           className="flex w-max"
-          animate={reduceMotion ? undefined : { x: ["-50%", "0%"] }}
+          animate={reduceMotion ? undefined : { x: ["0%", "-50%"] }}
           transition={reduceMotion ? undefined : { duration: 32, ease: "linear", repeat: Infinity }}
         >
           {[0, 1].map((copy) => (
-            <div key={copy} className="flex shrink-0 gap-4 pr-4 lg:gap-5 lg:pr-5" aria-hidden={copy === 0 && !reduceMotion}>
+            <div key={copy} className="flex shrink-0 gap-4 pr-4 lg:gap-5 lg:pr-5" aria-hidden={copy === 1}>
               {featured.map((product) => (
                 <Link
                   key={product.name}
                   to={`/products?category=${product.category}`}
-                  tabIndex={copy === 0 && !reduceMotion ? -1 : undefined}
+                  tabIndex={copy === 1 ? -1 : undefined}
                   className="group block w-56 sm:w-64 lg:w-72 shrink-0 border border-border bg-card rounded-md overflow-hidden hover:border-accent/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
                 >
                   <div className="aspect-[4/3] bg-muted overflow-hidden">
