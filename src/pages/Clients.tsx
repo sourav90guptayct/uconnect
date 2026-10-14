@@ -117,8 +117,8 @@ const Clients = () => {
               <span className="text-accent">industry's best.</span>
             </h1>
             <p className="mt-8 text-base lg:text-lg text-muted-foreground max-w-2xl leading-relaxed">
-              Partnering with industry leaders to deliver exceptional talent solutions and drive
-              technological innovation across diverse sectors.
+              Operators, integrators and enterprises rely on us for ConnectLH™ products,
+              Teltonika networking hardware, network deployment and managed services.
             </p>
           </div>
         </div>
@@ -197,8 +197,8 @@ const Clients = () => {
               Industry Leaders Who Trust Us
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              From telecommunications giants to defense organizations, we've successfully 
-              partnered with diverse industry leaders to meet their talent acquisition needs.
+              From telecom carriers to rail and public-sector networks, we supply the hardware
+              and deliver the deployment and operations behind their infrastructure.
             </p>
           </div>
 
@@ -215,8 +215,8 @@ const Clients = () => {
                 Why Leading Companies Choose uConnect
               </h2>
               <p className="text-lg text-muted-foreground mb-8">
-                Our proven track record and commitment to excellence makes us the preferred 
-                partner for organizations seeking top-tier talent and innovative solutions.
+                One accountable partner for products, deployment and day-to-day operations —
+                engineered hardware backed by field teams who install and support it.
               </p>
               
               <div className="grid gap-4">
@@ -275,8 +275,8 @@ const Clients = () => {
               Ready to Join Our Success Stories?
             </h2>
             <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Let's discuss how we can help your organization find the right talent 
-              and achieve your business objectives.
+              Tell us about your network project — we'll recommend the right products
+              and the team to deploy and run them.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Button asChild variant="cta" size="xl">

@@ -103,6 +103,7 @@ const App = () => (
               <Route path="/jobs/:id" element={<JobDetails />} />
               <Route path="/support" element={<Support />} />
               <Route path="/clients" element={<Clients />} />
+              <Route path="/contact" element={<Navigate to="/?section=contact" replace />} />
               <Route path="/business-practices" element={<BusinessPractices />} />
               <Route path="/governance" element={<Governance />} />
               <Route path="/quality-hse" element={<QualityHSE />} />
