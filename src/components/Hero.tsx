@@ -159,7 +159,7 @@ const Hero = () => {
   return (
     <>
       {/* Cinematic hero — ambient sector montage with a play-to-watch film */}
-      <section className="relative h-[88svh] min-h-[520px] w-full overflow-hidden bg-primary">
+      <section className="relative h-[88svh] min-h-[660px] sm:min-h-[520px] w-full overflow-hidden bg-primary">
         {/* Ambient still montage (Ken Burns) */}
         <AnimatePresence mode="sync">
           {!playing && (
@@ -210,7 +210,7 @@ const Hero = () => {
                   <span className="h-px w-10 bg-accent" />
                   <span className="t-eyebrow text-on-media/80">Designed & Engineered by uConnect Technologies</span>
                 </div>
-                <h1 className="display-headline mt-6 text-on-media text-[2.35rem] leading-[1.04] sm:text-5xl lg:text-6xl xl:text-7xl">
+                <h1 className="display-headline mt-6 text-on-media text-[2.05rem] leading-[1.05] sm:text-5xl lg:text-6xl xl:text-7xl">
                   Connectivity.
                   <br />
                   Engineered for the <span className="text-accent">real world.</span>
@@ -247,13 +247,13 @@ const Hero = () => {
 
               <button
                 onClick={startFilm}
-                className="group mt-8 self-start inline-flex items-center gap-3 text-left lg:mt-0 lg:self-auto lg:absolute lg:bottom-24 lg:right-8 lg:gap-4"
+                className="group mt-6 self-start inline-flex items-center gap-3 text-left lg:mt-0 lg:self-auto lg:absolute lg:bottom-24 lg:right-8 lg:gap-4"
                 aria-label="Play the uConnect film"
               >
                 <span className="t-eyebrow text-on-media/85 group-hover:text-on-media">
                   Watch the film
                 </span>
-                <span className="relative inline-flex h-12 w-12 lg:h-16 lg:w-16 items-center justify-center rounded-full bg-on-media/95 text-primary transition-transform duration-300 group-hover:scale-110">
+                <span className="relative inline-flex h-10 w-10 lg:h-16 lg:w-16 items-center justify-center rounded-full bg-on-media/95 text-primary transition-transform duration-300 group-hover:scale-110">
                   <span className="absolute inset-0 rounded-full border border-on-media/50 animate-ping" />
                   <Play className="h-5 w-5 lg:h-6 lg:w-6 translate-x-[1px] fill-current" />
                 </span>
