@@ -159,7 +159,7 @@ const Clients = () => {
               Let's discuss your next infrastructure project
             </h2>
             <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Reach out to our enterprise team for network deployment, managed services, resource management or infrastructure solutions.
+              Reach out to our enterprise team for ConnectLH™ products, Teltonika networking hardware, network deployment, managed services or infrastructure solutions.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Button asChild variant="cta" size="xl">
