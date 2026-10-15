@@ -159,7 +159,7 @@ const Hero = () => {
   return (
     <>
       {/* Cinematic hero — ambient sector montage with a play-to-watch film */}
-      <section className="relative h-[88svh] min-h-[660px] sm:min-h-[520px] w-full overflow-hidden bg-primary">
+      <section className="relative h-[88svh] min-h-[620px] sm:min-h-[520px] w-full overflow-hidden bg-primary">
         {/* Ambient still montage (Ken Burns) */}
         <AnimatePresence mode="sync">
           {!playing && (
@@ -198,7 +198,7 @@ const Hero = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.5 }}
-              className="relative h-full container mx-auto px-4 flex flex-col justify-end pb-16 lg:pb-24"
+              className="relative h-full container mx-auto px-4 flex flex-col justify-end pb-14 lg:pb-24"
             >
               <motion.div
                 initial={{ opacity: 0, y: 28 }}
@@ -222,7 +222,7 @@ const Hero = () => {
                   Antennas • PoE • Industrial Ethernet • 4G/5G Connectivity • Fiber Infrastructure
                 </p>
 
-                <div className="mt-8 flex flex-col sm:flex-row sm:items-center gap-3">
+                <div className="mt-6 flex flex-col sm:flex-row sm:items-center gap-2.5">
                   <Link to="/products">
                     <Button variant="ctaAccent" size="xl" className="w-full sm:w-auto">
                       Explore Products
