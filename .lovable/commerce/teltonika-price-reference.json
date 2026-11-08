@@ -1,0 +1,688 @@
+{
+  "research_date": "2026-11-08T09:54:58.886693+00:00",
+  "source": "InfiniteIOT Teltonika brand listing pages",
+  "coverage": "All 75 products shown on the two fetched pagination pages; listed prices only. Product variants/SKUs recorded as displayed model names.",
+  "limitations": "Could not establish tax inclusion or stock availability from listing pages; no inference made. Prices may change. The listing page pagination is the scope, not a complete Teltonika catalog.",
+  "quote_only_items": [],
+  "products": [
+    {
+      "model_sku": "ALTOS",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 42,240.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/altos/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/"
+    },
+    {
+      "model_sku": "ATRM50",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 82,611.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/atrm50/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/"
+    },
+    {
+      "model_sku": "DAP140",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 7,028.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/dap140/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/"
+    },
+    {
+      "model_sku": "DAP142",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 8,015.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/dap142/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/"
+    },
+    {
+      "model_sku": "NTP001",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 13,563.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/ntp001/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/"
+    },
+    {
+      "model_sku": "OTD140",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 14,180.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/otd140/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/"
+    },
+    {
+      "model_sku": "OTD144",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 15,906.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/otd144/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/"
+    },
+    {
+      "model_sku": "OTD500",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 53,019.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/otd500/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/"
+    },
+    {
+      "model_sku": "RUT140",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 6,658.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/rut140/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/"
+    },
+    {
+      "model_sku": "RUT142",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 7,151.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/rut142/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/"
+    },
+    {
+      "model_sku": "RUT200",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 8,631.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/rut200/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/"
+    },
+    {
+      "model_sku": "RUT206",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 14,796.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/rut206/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/"
+    },
+    {
+      "model_sku": "RUT241",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 14,796.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/rut241/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/"
+    },
+    {
+      "model_sku": "RUT260",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 18,495.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/rut260/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/"
+    },
+    {
+      "model_sku": "RUT271",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 29,592.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/rut271/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/"
+    },
+    {
+      "model_sku": "RUT301",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 7,398.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/rut301/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/"
+    },
+    {
+      "model_sku": "RUT361",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 21,701.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/rut361/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/"
+    },
+    {
+      "model_sku": "RUT901",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 11,714.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/rut901/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/"
+    },
+    {
+      "model_sku": "RUT906",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 14,796.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/rut906/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/"
+    },
+    {
+      "model_sku": "RUT951",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 25,893.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/rut951/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/"
+    },
+    {
+      "model_sku": "RUT956",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 23,674.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/rut956/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/"
+    },
+    {
+      "model_sku": "RUT976",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 39,456.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/rut976/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/"
+    },
+    {
+      "model_sku": "RUTC50",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 71,514.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/rutc50/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/"
+    },
+    {
+      "model_sku": "RUTM08",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 9,617.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/rutm08/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/"
+    },
+    {
+      "model_sku": "RUTM09",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 27,126.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/rutm09/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/"
+    },
+    {
+      "model_sku": "RUTM10",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 12,762.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/rutm10/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/"
+    },
+    {
+      "model_sku": "RUTM11",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 29,592.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/rutm11/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/"
+    },
+    {
+      "model_sku": "RUTM30",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 45,621.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/rutm30/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/"
+    },
+    {
+      "model_sku": "RUTM31",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 29,592.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/rutm31/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/"
+    },
+    {
+      "model_sku": "RUTM50",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 54,375.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/rutm50/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/"
+    },
+    {
+      "model_sku": "RUTM51",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 36,990.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/rutm51/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/"
+    },
+    {
+      "model_sku": "RUTM52",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 123,300.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/rutm52/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/"
+    },
+    {
+      "model_sku": "RUTM54",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 71,514.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/rutm54/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/"
+    },
+    {
+      "model_sku": "RUTM55",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 54,930.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/rutm55/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/"
+    },
+    {
+      "model_sku": "RUTM56",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 67,815.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/rutm56/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/"
+    },
+    {
+      "model_sku": "RUTM59",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 56,151.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/rutm59/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/"
+    },
+    {
+      "model_sku": "RUTX08",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 15,413.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/rutx08/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/"
+    },
+    {
+      "model_sku": "RUTX09",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 30,825.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/rutx09/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/"
+    },
+    {
+      "model_sku": "RUTX10",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 19,728.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/rutx10/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/"
+    },
+    {
+      "model_sku": "RUTX11",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 30,825.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/rutx11/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/"
+    },
+    {
+      "model_sku": "RUTX12",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 45,621.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/rutx12/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/"
+    },
+    {
+      "model_sku": "RUTX14",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 46,238.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/rutx14/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/"
+    },
+    {
+      "model_sku": "RUTX50",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 54,252.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/rutx50/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/"
+    },
+    {
+      "model_sku": "RUTXR1",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 40,689.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/rutxr1/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/"
+    },
+    {
+      "model_sku": "SWM280",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 35,757.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/swm280/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/"
+    },
+    {
+      "model_sku": "SWM281",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 22,811.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/swm281/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/"
+    },
+    {
+      "model_sku": "SWM282",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 39,456.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/swm282/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/"
+    },
+    {
+      "model_sku": "TAP100",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 4,069.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/tap100/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/"
+    },
+    {
+      "model_sku": "TAP200",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 6,165.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/tap200/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/"
+    },
+    {
+      "model_sku": "TRB140",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 12,947.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/trb140/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/"
+    },
+    {
+      "model_sku": "TRB141",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 12,947.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/trb141/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/page/2/"
+    },
+    {
+      "model_sku": "TRB142",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 11,714.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/trb142/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/page/2/"
+    },
+    {
+      "model_sku": "TRB143",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 18,495.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/trb143/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/page/2/"
+    },
+    {
+      "model_sku": "TRB145",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 12,083.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/trb145/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/page/2/"
+    },
+    {
+      "model_sku": "TRB160",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 17,015.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/trb160/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/page/2/"
+    },
+    {
+      "model_sku": "TRB246",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 16,646.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/trb246/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/page/2/"
+    },
+    {
+      "model_sku": "TRB256",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 12,577.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/trb256/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/page/2/"
+    },
+    {
+      "model_sku": "TRB501",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 41,306.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/trb501/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/page/2/"
+    },
+    {
+      "model_sku": "TRM200",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 9,114.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/trm200/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/page/2/"
+    },
+    {
+      "model_sku": "TRM240",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 7,891.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/trm240/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/page/2/"
+    },
+    {
+      "model_sku": "TRM250",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 7,521.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/trm250/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/page/2/"
+    },
+    {
+      "model_sku": "TRM500",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 36,990.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/trm500/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/page/2/"
+    },
+    {
+      "model_sku": "TSF010",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 4,439.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/tsf010/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/page/2/"
+    },
+    {
+      "model_sku": "TSW010",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 2,663.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/tsw010/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/page/2/"
+    },
+    {
+      "model_sku": "TSW030",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 4,932.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/tsw030/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/page/2/"
+    },
+    {
+      "model_sku": "TSW040",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 5,487.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/tsw040/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/page/2/"
+    },
+    {
+      "model_sku": "TSW100",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 8,138.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/tsw100/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/page/2/"
+    },
+    {
+      "model_sku": "TSW101",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 8,138.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/tsw101/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/page/2/"
+    },
+    {
+      "model_sku": "TSW110",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 6,350.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/tsw110/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/page/2/"
+    },
+    {
+      "model_sku": "TSW114",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 4,439.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/tsw114/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/page/2/"
+    },
+    {
+      "model_sku": "TSW200",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 10,172.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/tsw200/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/page/2/"
+    },
+    {
+      "model_sku": "TSW202",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 12,453.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/tsw202/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/page/2/"
+    },
+    {
+      "model_sku": "TSW210",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 8,631.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/tsw210/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/page/2/"
+    },
+    {
+      "model_sku": "TSW212",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 11,159.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/tsw212/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/page/2/"
+    },
+    {
+      "model_sku": "TSW304",
+      "currency": "INR (₹)",
+      "price_displayed": "₹ 8,261.00",
+      "tax_inclusion_status": "Not stated on listing page",
+      "availability": "Not stated on listing page; listing alone does not confirm stock",
+      "product_url": "https://infiniteiotsolutions.com/product/tsw304/",
+      "evidence_url": "https://infiniteiotsolutions.com/brand/teltonika/page/2/"
+    }
+  ],
+  "unmatched_models": [
+    "RUTM31"
+  ],
+  "approved_tax_treatment": "Base INR prices exclude GST; GST added at checkout. Shopify configuration unverified."
+}
