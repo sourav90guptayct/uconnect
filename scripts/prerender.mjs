@@ -85,9 +85,9 @@ const routes = [
   },
   {
     path: "/careers",
-    title: "Careers at uConnect Technologies | Telecom & IT Jobs India",
+    title: "Telecom & Network Engineering Careers | uConnect Technologies",
     description:
-      "Join uConnect Technologies. Explore field engineering, NOC, RF and IT roles across 18 telecom circles in India.",
+      "Explore telecom and network infrastructure careers at uConnect Technologies in India: design, deployment, operations, graduate pathways and internships.",
   },
   {
     path: "/support",
