@@ -214,7 +214,7 @@ const Hero = () => {
                   <span className="t-eyebrow text-on-media/80">Designed & Engineered by uConnect Technologies</span>
                 </div>
                 <h1 id="homepage-main-heading" className="display-headline mt-6 text-on-media text-[2.05rem] leading-[1.05] sm:text-5xl lg:text-6xl xl:text-7xl">
-                  Connectivity.
+                  Telecom connectivity.
                   <br />
                   Engineered for the <span className="text-accent">real world.</span>
                 </h1>
