@@ -10,4 +10,6 @@
 - [x] Check payment-provider eligibility and existing payment/Cloud setup — external Supabase blocks built-in Stripe/Paddle; no existing payment code found.
 - [x] Enable Shopify for antenna/networking orders — store claimed and trial started; external Supabase preserved.
 - [x] Verify real Shopify shop API and empty-cart drawer on desktop/phone — no products exist, so add-to-cart and payment completion cannot yet be tested.
-- [ ] Add priced products — waiting on user-supplied prices and stock; payment/shipping setup and paid-order checks remain unverified.
+- [x] Research InfiniteIOT prices — 75 public model prices in INR found; Shopify currency confirmed INR. Tax treatment, exact regional SKUs and uConnect stock are not verified.
+- [ ] Import approved Teltonika prices — waiting on approval to use referenced prices, tax treatment and sellable inventory/SKUs.
+- [ ] Test real cart and checkout after products exist — store is empty and reports no accepted card brands; completed test payment requires Shopify test payment configuration.
