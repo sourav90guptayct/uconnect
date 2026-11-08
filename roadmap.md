@@ -6,9 +6,8 @@
 
 # Customer acquisition and payments
 
-- [x] Create replacement Shopify development store — previous store disconnected; new store uconnect-p1cm8-zurqx214 connected.
-- [ ] Claim replacement store using the user's requested account — user skipped claiming; ownership under that account remains unverified.
-- [ ] Reverify catalogue prices, stock and checkout against the replacement store — previous checks apply only to the disconnected store.
+- [x] Connect user's own Shopify store xzqtz8-pn (created under sourav90.gupta@gmail.com) — connected 2026-11-08; earlier replacement stores disconnected.
+- [x] Re-import and verify catalogue prices on the connected store — 74 products recreated at approved InfiniteIOT INR prices; RUT200 verified at ₹8,631 on /product/teltonika-rut200; unavailable until stock is set.
 - [x] Display live Shopify prices on matching Teltonika catalogue models and link to on-site purchase pages — exact model matching and unavailable inventory rules tested; desktop/mobile navigation verified.
 - [ ] Prepare first ad campaign — waiting on goal, audience, market and language choices.
 - [x] Check payment-provider eligibility and existing payment/Cloud setup — external Supabase blocks built-in Stripe/Paddle; no existing payment code found.
