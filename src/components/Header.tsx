@@ -6,6 +6,7 @@ import { useAdminCheck } from "@/hooks/useAdminCheck";
 import { useNavigate, Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import MegaMenuOverlay from "@/components/MegaMenuOverlay";
+import CartDrawer from "@/components/CartDrawer";
 
 
 const Header = () => {
@@ -52,6 +53,7 @@ const Header = () => {
             </Link>
 
             <div className="flex items-center gap-2 sm:gap-4 shrink-0">
+              <CartDrawer />
 
               {user && (
                 <nav className="hidden lg:flex items-center gap-1">

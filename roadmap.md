@@ -8,5 +8,6 @@
 
 - [ ] Prepare first ad campaign — waiting on goal, audience, market and language choices.
 - [x] Check payment-provider eligibility and existing payment/Cloud setup — external Supabase blocks built-in Stripe/Paddle; no existing payment code found.
-- [ ] Enable agreed payment provider — waiting on payment purpose and compatible provider confirmation; do not disconnect external Supabase.
-- [ ] Configure agreed products and checkout after payment setup.
+- [x] Enable Shopify for antenna/networking orders — store claimed and trial started; external Supabase preserved.
+- [ ] Verify real Shopify shopping/cart integration and document checkout readiness.
+- [ ] Add priced products — waiting on user-supplied prices and stock; payment/shipping setup and paid-order checks remain unverified.
