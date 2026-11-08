@@ -1,5 +1,5 @@
-const endpoint = "https://uconnect-05wzz-zgrzgt1q.myshopify.com/api/2026-10/graphql.json";
-const storefrontToken = "c7461c029bc5e0f40cd06b37b96c4766";
+const endpoint = "https://xzqtz8-pn.myshopify.com/api/2026-10/graphql.json";
+const storefrontToken = "fb1589f902a3bf240ec658df95872a57";
 
 export interface ShopVariant { id: string; title: string; availableForSale: boolean; price: { amount: string; currencyCode: string }; }
 export interface ShopProduct { id: string; handle: string; title: string; description: string; images: { nodes: { url: string; altText: string | null }[] }; variants: { nodes: ShopVariant[] }; }
