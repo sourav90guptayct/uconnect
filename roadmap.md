@@ -13,6 +13,8 @@
 - [x] Verify real Shopify shop API and empty-cart drawer on desktop/phone — no products exist, so add-to-cart and payment completion cannot yet be tested.
 - [x] Research InfiniteIOT prices — 75 public model prices in INR found; Shopify currency confirmed INR. Tax treatment, exact regional SKUs and uConnect stock are not verified.
 - [x] Import approved Teltonika prices — 74 exact catalogue matches created in Shopify; all INR prices read back and verified, inventory tracked with overselling denied. RUTM31 excluded because it is not in the verified technical catalogue.
-- [ ] Set tracked inventory in Shopify — user confirms 50–100 units each; available Shopify tools cannot set inventory quantities, so the owner must enter conservative available quantities in Shopify admin. Regional order SKUs remain unverified.
-- [ ] Verify GST added at checkout — user reports Shopify taxes configured; checkout verification awaits purchasable stock.
-- [ ] Test real cart and checkout — user reports test payments configured; completed test payment blocked by zero Shopify inventory, not unconfirmed physical stock.
+- [x] Confirm Shopify inventory updated — stock search returns stocked Teltonika models at 50 units; RUT200 successfully adds to a real cart.
+- [ ] Verify regional order SKUs and international shipping markets — exact regional SKUs unverified; checkout currently offers India only.
+- [ ] Verify GST added at checkout — requires delivery details to calculate taxes; not yet verified.
+- [x] Test real add-to-cart and checkout opening — RUT200 at ₹8,631 reaches Shopify checkout in a new tab.
+- [ ] Complete test payment — live checkout explicitly reports “This store can’t accept payments right now”; owner must activate a test-capable payment provider in this connected store.
