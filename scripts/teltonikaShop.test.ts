@@ -1,6 +1,6 @@
 import { test, expect } from "bun:test";
-import { findTeltonikaProduct } from "./teltonikaShop";
-import type { ShopProduct } from "./shopify";
+import { findTeltonikaProduct } from "../src/lib/teltonikaShop";
+import type { ShopProduct } from "../src/lib/shopify";
 
 const products: ShopProduct[] = [{ id: "rut951", handle: "teltonika-rut951", title: "Teltonika RUT951", description: "", images: { nodes: [] }, variants: { nodes: [{ id: "variant", title: "Default Title", availableForSale: false, price: { amount: "25893.00", currencyCode: "INR" } }] } }];
 test("approved RUT951 base price is INR 25893", () => {
