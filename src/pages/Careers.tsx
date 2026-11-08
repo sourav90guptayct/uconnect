@@ -227,8 +227,8 @@ const CareersPage = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEO
-        title="Careers at uConnect Technologies — Engineering, Graduate & Internships"
-        description="Careers at uConnect Technologies, a multi-sector product and services integrator. Roles across design, deployment, operations, project management, supply chain and corporate functions in India."
+        title="Telecom & Network Engineering Careers | uConnect Technologies"
+        description="Explore telecom and network infrastructure careers at uConnect Technologies in India: design, deployment, operations, graduate pathways and internships."
         path="/careers"
         image="https://uconnecttech.com/og/careers.jpg"
         breadcrumbs={[{ name: "Home", path: "/" }, { name: "Careers", path: "/careers" }]}
