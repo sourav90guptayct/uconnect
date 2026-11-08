@@ -379,7 +379,9 @@ function stampHead(html, { path, title, description, image = DEFAULT_IMAGE }) {
   const d = escapeAttr(description);
   const tText = escapeText(title);
 
-  let out = html;
+  // Match managed and unmanaged tags, then let Helmet replace the stamped
+  // route metadata instead of appending competing tags after hydration.
+  let out = html.replace(/\sdata-rh="true"/g, "");
 
   // Replace <title>
   out = out.replace(/<title>[\s\S]*?<\/title>/i, `<title>${tText}</title>`);
@@ -450,7 +452,9 @@ function stampHead(html, { path, title, description, image = DEFAULT_IMAGE }) {
     );
   }
 
-  return out;
+  return out
+    .replace(/<meta\s+(name="(?:description|twitter:[^"]+)"|property="og:(?:title|description|url|image|type)")/g, '<meta data-rh="true" $1')
+    .replace(/<link\s+rel="canonical"/g, '<link data-rh="true" rel="canonical"');
 }
 
 function main() {
