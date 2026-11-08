@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 import { ArrowUpRight, Search } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -7,6 +8,8 @@ import SEO from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { teltonikaGroups } from "@/data/teltonika";
+import { fetchShopProducts, formatMoney } from "@/lib/shopify";
+import { findTeltonikaProduct } from "@/lib/teltonikaShop";
 import rutm50 from "@/assets/teltonika-rutm50.png.asset.json";
 import trb501 from "@/assets/teltonika-trb501.png.asset.json";
 import swm280 from "@/assets/teltonika-swm280.png.asset.json";
@@ -27,6 +30,8 @@ const TeltonikaNetworks = () => {
   const [query, setQuery] = useState("");
   const [activeGroup, setActiveGroup] = useState("all");
   const { hash } = useLocation();
+  const shop = useQuery({ queryKey: ["teltonika-shop-prices"], queryFn: fetchShopProducts });
+  const shopProducts = shop.data?.products.nodes ?? [];
   const groups = teltonikaGroups.filter((group) => activeGroup === "all" || group.id === activeGroup);
   const matching = groups.map((group) => ({
     ...group,
@@ -70,7 +75,9 @@ const TeltonikaNetworks = () => {
             <h1 className="display-headline text-foreground text-4xl sm:text-5xl lg:text-7xl max-w-4xl">Teltonika Networks</h1>
             <p className="mt-5 text-lg text-muted-foreground max-w-2xl">Industrial IoT routers, gateways and networking equipment engineered for reliable connectivity in the field.</p>
             <p className="mt-4 text-sm text-muted-foreground">{total} models across {teltonikaGroups.length} product families · Availability varies by market</p>
+            <p className="mt-3 text-sm text-muted-foreground">Listed prices are in INR, excluding GST. Confirm regional model compatibility and availability with uConnect.</p>
           </div>
+          {shop.isError && <div role="status" className="mb-6 text-sm text-muted-foreground">Prices are temporarily unavailable. <Button variant="link" onClick={() => void shop.refetch()}>Retry prices</Button></div>}
         </section>
         <section className="container mx-auto px-4 py-12 lg:py-16" aria-label="Teltonika product catalogue">
           <div className="flex flex-col gap-5 mb-9">
@@ -93,12 +100,18 @@ const TeltonikaNetworks = () => {
                 </div>
               </div>
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
-                {group.models.map((model) => (
-                  <a id={model.name.toLowerCase()} key={model.url} href={model.url} target="_blank" rel="noopener noreferrer" className="group border border-border bg-card rounded-md p-4 min-h-20 flex items-center justify-between gap-2 hover:border-accent/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent transition-colors" aria-label={`${model.name} details on Teltonika Networks`}>
-                    <span className="font-semibold text-foreground group-hover:text-accent break-words">{model.name}</span>
-                    <ArrowUpRight className="h-4 w-4 shrink-0 text-accent" aria-hidden="true" />
-                  </a>
-                ))}
+                {group.models.map((model) => {
+                  const product = findTeltonikaProduct(model.name, shopProducts);
+                  const variant = product?.variants.nodes[0];
+                  return <article id={model.name.toLowerCase()} key={model.url} className="border border-border bg-card rounded-md p-4 min-w-0 flex flex-col gap-3">
+                    <h3 className="font-semibold text-foreground break-words">{model.name}</h3>
+                    {variant ? <><p className="font-semibold text-foreground">{formatMoney(variant.price)}</p><p className="text-xs text-muted-foreground">{variant.availableForSale ? "Available to order" : "Availability on enquiry"}</p></> : <p className="text-sm text-muted-foreground">{shop.isLoading ? "Loading price…" : "Request pricing"}</p>}
+                    <div className="mt-auto flex flex-col gap-2">
+                      <Button asChild variant={product ? "outline" : "ghost"} size="sm" className="w-full"><Link to={product ? `/product/${product.handle}` : `/contact?product=${encodeURIComponent(`Teltonika ${model.name}`)}`}>{product ? "View product" : "Enquire"}</Link></Button>
+                      <a href={model.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-xs text-accent hover:underline" aria-label={`${model.name} specifications on Teltonika Networks`}>Specifications <ArrowUpRight className="h-3 w-3 shrink-0" aria-hidden="true" /></a>
+                    </div>
+                  </article>;
+                })}
               </div>
               <a href={group.source} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 mt-5 text-sm text-accent hover:underline">Official {group.title.toLowerCase()} details <ArrowUpRight className="h-4 w-4" /></a>
             </section>
