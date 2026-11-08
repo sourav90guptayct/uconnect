@@ -6,6 +6,8 @@
 
 # Customer acquisition and payments
 
+- [ ] Create replacement Shopify store and claim using the user's requested account — previous store disconnected; new store setup pending.
+- [ ] Reverify catalogue prices, stock and checkout against the replacement store — previous checks apply only to the disconnected store.
 - [x] Display live Shopify prices on matching Teltonika catalogue models and link to on-site purchase pages — exact model matching and unavailable inventory rules tested; desktop/mobile navigation verified.
 - [ ] Prepare first ad campaign — waiting on goal, audience, market and language choices.
 - [x] Check payment-provider eligibility and existing payment/Cloud setup — external Supabase blocks built-in Stripe/Paddle; no existing payment code found.
