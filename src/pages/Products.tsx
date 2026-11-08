@@ -764,6 +764,7 @@ const Products = () => {
                 From our proprietary ConnectLH™ antenna systems to fiber optics and network
                 infrastructure — a complete product ecosystem engineered for performance.
               </p>
+              <Button asChild variant="outline" className="mt-6"><Link to="/shop">Shop available products <ArrowRight className="ml-2 h-4 w-4" /></Link></Button>
             </div>
           </div>
         </div>
