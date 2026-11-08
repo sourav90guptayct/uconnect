@@ -6,7 +6,7 @@
 
 # Customer acquisition and payments
 
-- [ ] Display live Shopify prices on matching Teltonika catalogue models and link to on-site purchase pages.
+- [x] Display live Shopify prices on matching Teltonika catalogue models and link to on-site purchase pages — exact model matching and unavailable inventory rules tested; desktop/mobile navigation verified.
 - [ ] Prepare first ad campaign — waiting on goal, audience, market and language choices.
 - [x] Check payment-provider eligibility and existing payment/Cloud setup — external Supabase blocks built-in Stripe/Paddle; no existing payment code found.
 - [x] Enable Shopify for antenna/networking orders — store claimed and trial started; external Supabase preserved.
