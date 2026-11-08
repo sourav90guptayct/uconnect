@@ -6,7 +6,8 @@
 
 # Customer acquisition and payments
 
-- [ ] Create replacement Shopify store and claim using the user's requested account — previous store disconnected; new store setup pending.
+- [x] Create replacement Shopify development store — previous store disconnected; new store uconnect-p1cm8-zurqx214 connected.
+- [ ] Claim replacement store using the user's requested account — user skipped claiming; ownership under that account remains unverified.
 - [ ] Reverify catalogue prices, stock and checkout against the replacement store — previous checks apply only to the disconnected store.
 - [x] Display live Shopify prices on matching Teltonika catalogue models and link to on-site purchase pages — exact model matching and unavailable inventory rules tested; desktop/mobile navigation verified.
 - [ ] Prepare first ad campaign — waiting on goal, audience, market and language choices.
