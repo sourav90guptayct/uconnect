@@ -159,7 +159,10 @@ const Hero = () => {
   return (
     <>
       {/* Cinematic hero — ambient sector montage with a play-to-watch film */}
-      <section className="relative h-[88svh] min-h-[620px] sm:min-h-[520px] w-full overflow-hidden bg-primary">
+      <section
+        aria-labelledby="homepage-main-heading"
+        className="relative h-[88svh] min-h-[620px] sm:min-h-[520px] w-full overflow-hidden bg-primary"
+      >
         {/* Ambient still montage (Ken Burns) */}
         <AnimatePresence mode="sync">
           {!playing && (
@@ -210,8 +213,8 @@ const Hero = () => {
                   <span className="h-px w-10 bg-accent" />
                   <span className="t-eyebrow text-on-media/80">Designed & Engineered by uConnect Technologies</span>
                 </div>
-                <h1 className="display-headline mt-6 text-on-media text-[2.05rem] leading-[1.05] sm:text-5xl lg:text-6xl xl:text-7xl">
-                  Connectivity.
+                <h1 id="homepage-main-heading" className="display-headline mt-6 text-on-media text-[2.05rem] leading-[1.05] sm:text-5xl lg:text-6xl xl:text-7xl">
+                  Telecom connectivity.
                   <br />
                   Engineered for the <span className="text-accent">real world.</span>
                 </h1>
