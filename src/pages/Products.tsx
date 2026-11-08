@@ -15,6 +15,7 @@ import teltonikaTrb501 from "@/assets/teltonika-trb501.png.asset.json";
 import teltonikaTrm500 from "@/assets/teltonika-trm500.png.asset.json";
 import teltonikaTap400 from "@/assets/teltonika-tap400.png.asset.json";
 import teltonikaOtd500 from "@/assets/teltonika-otd500.png.asset.json";
+import { connectlh29 } from "@/data/connectlh29";
 
 const teltonikaTiles = [
   { title: "Industrial Routers", description: "4G/5G cellular routers for enterprise, CCTV, traffic and smart-city connectivity.", image: teltonikaRutm50.url, to: "/teltonika-networks#group-routers" },
@@ -427,18 +428,7 @@ const Products = () => {
       description: "High-performance 2x2 MIMO dual-polarization dish antennas engineered for 4.9–5.9 GHz unlicensed and licensed bands. ConnectLH™ antennas deliver best-in-class gain, isolation, and rugged environmental durability for point-to-point wireless backhaul and public safety networks.",
       subProducts: [
         {
-          name: "29CLH4959 — 29dBi 2×2 MIMO Dish Antenna",
-          image: dishAntenna.url,
-          description: "2 ft (Ø650mm) dual-pol dish for 4.9–5.9 GHz. Ideal for mid-range point-to-point links with excellent port isolation.",
-          specs: [
-            "Gain: 29 ±1 dBi | Beamwidth: 6° ±0.5",
-            "VSWR ≤ 1.5:1 | Port Isolation > 30 dB",
-            "Front-to-Back > 30 dB | Cross Pol > 30 dB",
-            "IP65 rated | Wind survival 200 km/h",
-            "Weight: 5 ±0.5 kg | Pole mount 90–120 mm",
-            "Connector: 2× N(F) | Aluminum reflector, powder coated"
-          ],
-          datasheet: "/datasheets/29CLH4959-datasheet.pdf"
+          ...connectlh29
         },
         {
           name: "32CLH4959 — 32dBi 2×2 MIMO Dish Antenna",
@@ -1037,6 +1027,9 @@ const Products = () => {
                         ))}
                       </div>
                       <div className="flex flex-wrap items-center gap-3">
+                        {'path' in product && typeof product.path === 'string' && (
+                          <Button asChild variant="outline"><Link to={product.path}>View product details <ArrowRight className="ml-2 h-4 w-4" /></Link></Button>
+                        )}
                         {'datasheet' in product && (product as any).datasheet && (
                           <a
                             href={(product as any).datasheet}

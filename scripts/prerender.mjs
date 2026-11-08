@@ -54,6 +54,11 @@ const routes = [
       "Explore Teltonika Networks industrial IoT routers, cellular gateways, Ethernet switches, modems and access points distributed by uConnect Technologies.",
   },
   {
+    path: "/products/29clh4959",
+    title: "ConnectLH™ 29CLH4959 | 29 dBi MIMO Dish Antenna | uConnect",
+    description: "Explore the ConnectLH™ 29CLH4959 29 dBi 2×2 MIMO dish antenna for 4.9–5.9 GHz. View specifications, download the datasheet and enquire with uConnect sales.",
+  },
+  {
     path: "/networks",
     title: "Network Deployment Services India | uConnect",
     description:
