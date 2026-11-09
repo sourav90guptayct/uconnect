@@ -17,6 +17,6 @@
 - [x] Import approved Teltonika prices — 74 exact catalogue matches created in Shopify; all INR prices read back and verified, inventory tracked with overselling denied. RUTM31 excluded because it is not in the verified technical catalogue.
 - [x] Confirm Shopify inventory updated — on 2026-11-09 the current xzqtz8-pn Storefront API returns 74 products, 50 available for sale; RUT200 at ₹8,631 successfully adds to a real cart. Exact quantities are not exposed by the Storefront API.
 - [ ] Verify regional order SKUs and international shipping markets — exact regional SKUs unverified; checkout currently offers India only.
-- [ ] Verify GST added at checkout — blocked on 2026-11-09 because current Shopify checkout says “This store isn’t set up to receive orders yet” before showing delivery or tax fields.
+- [ ] Verify GST added at checkout — checkout opens on 2026-11-09, but RUT200 total ₹8,631 includes ₹1,316.59 tax instead of adding GST to the approved base price; owner must correct tax-inclusive pricing settings before retesting with a delivery address.
 - [x] Test real add-to-cart and checkout opening — RUT200 at ₹8,631 reaches Shopify checkout in a new tab.
-- [ ] Complete test payment — on 2026-11-09 the current store's Shopify-returned checkout opens in a new tab with channel=online_store but says “This store isn’t set up to receive orders yet”; owner must finish Shopify store/checkout setup before GST and test-payment checks can proceed. No order was placed or card charged.
+- [ ] Complete test payment — on 2026-11-09 checkout now shows card payment and COD, and owner's screenshot confirms Razorpay test mode. Correct tax treatment and verify shipping before submitting a test order. No order was placed or card charged.
